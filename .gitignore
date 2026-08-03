@@ -19,3 +19,4 @@ xcuserdata/
 # Session working files (never documentation)
 .context/
 *.rmeta
+build/

@@ -1,7 +1,15 @@
 ---
 title: iOS app
-status: backlog
-sources: []
+status: living
+sources:
+  - apps/ios/RustChap.xcodeproj/project.pbxproj
+  - apps/ios/RustChap/RustChapApp.swift
+  - apps/ios/RustChap/Core/Models.swift
+  - apps/ios/RustChap/Core/ContentStore.swift
+  - apps/ios/RustChap/Core/LocalEvaluator.swift
+  - apps/ios/RustChap/Features/TrackListView.swift
+  - apps/ios/RustChap/Features/PuzzleScreen.swift
+  - apps/ios/RustChap/Features/ResultView.swift
 related:
   - foundation/interaction-types.md
   - architecture/backend.md
@@ -15,8 +23,33 @@ manipulation, gestures, haptics, instant transitions) *is* the product's competi
 cross-platform UI would compromise the product actually used today to save hypothetical Android
 work. Android later gets its own first-class Compose client consuming the same contracts.
 
-> **Agreed design, no code yet.** Lives in `apps/ios/`. When implementation lands, add the real
-> file paths to `sources:` and flip `status` to `shipped`.
+## Shipped: the step-8 shell (`apps/ios/`)
+
+Launch → track list → puzzle → result → retry/next, fully offline against bundled content.
+
+- **Project**: hand-authored `project.pbxproj` (objectVersion 77, `PBXFileSystemSynchronizedRootGroup`
+  over `RustChap/` — no xcodegen dependency). `content/packs/` is added as a **folder reference**
+  resource, so the app bundles the repo's packs directly (hierarchy preserved; single source of
+  truth). Build: Swift 6, iOS 17 target, `GENERATE_INFOPLIST_FILE`.
+- **Models** (`Models.swift`): explicit-CodingKeys mirrors of the puzzle contract — `Puzzle`,
+  `Interaction` (tagged enum), `Outcomes`, `EvalResult`, `Diagnostic`. Deliberately no
+  `convertFromSnakeCase` (it would mangle dictionary keys like metric names).
+- **Evaluation** (`LocalEvaluator.swift`): `PuzzleOperation` + `OpsHash.canonicalJSON` /
+  `OpsHash.hash` — byte-exact mirror of Rust `puzzle-schema::ops` (select ops sorted by slot_id,
+  compact JSON, SHA-256). `LocalEvaluator.evaluate` looks the hash up in the bundled outcomes:
+  Milestone-1 offline evaluation is exact, not mocked. **Any change here or in Rust `ops.rs` must
+  keep the two byte-identical** (named `PuzzleOperation` to avoid shadowing Foundation.Operation).
+- **Content** (`ContentStore.swift`): `@MainActor @Observable`; loads `packs/` from the bundle in
+  fixed curriculum order; `nextPuzzleId(after:)` drives Next.
+- **Screens** (`Features/`): `TrackListView` (sections per pack), `PuzzleScreen` (goal, monospaced
+  code preview with slot substitution, placeholder controls — choice `Menu`s, drag-to-reorder
+  blocks, candidate rows — Run button), `ResultView` (status icon, rank label, metrics vs best,
+  categorized diagnostics, explanation on solve, Retry/Next).
+
+Placeholder interaction controls are scaffolding: steps 9–10 replace the preview + controls with
+the semantic code surface below. Verified by simulator-SDK build plus a macOS harness that
+compiles the real `Models.swift`/`LocalEvaluator.swift` and checks hashes against the
+linter-generated outcomes.
 
 ## Stack
 
@@ -30,7 +63,7 @@ work. Android later gets its own first-class Compose client consuming the same c
 - Anonymous local installation ID first; Sign in with Apple when cloud progress arrives
   (see [backend](backend.md) for the token flow).
 
-## The semantic code surface
+## The semantic code surface (next: steps 9–10)
 
 The hardest and most important UI component. **Not a text editor** — a structured puzzle tree
 rendered as native tokens that merely looks like code:

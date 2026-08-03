@@ -10,6 +10,14 @@ Regenerate via `scripts/build-map.py`.
 
 | Source file | Documented in |
 |---|---|
+| `apps/ios/RustChap.xcodeproj/project.pbxproj` | architecture/ios-app.md |
+| `apps/ios/RustChap/Core/ContentStore.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/Core/LocalEvaluator.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/Core/Models.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/Features/PuzzleScreen.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/Features/ResultView.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/Features/TrackListView.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/RustChapApp.swift` | architecture/ios-app.md |
 | `content/packs/build-the-iterator/puzzles/build-the-iterator.001.json` | foundation/curriculum.md |
 | `content/packs/design-the-api/puzzles/design-the-api.001.json` | foundation/curriculum.md |
 | `content/packs/move-or-borrow/puzzles/move-or-borrow.001.json` | foundation/curriculum.md |
@@ -35,7 +43,7 @@ Regenerate via `scripts/build-map.py`.
 |---|---|
 | `architecture/backend.md` | _(no source files — narrative/reference)_ |
 | `architecture/evaluation.md` | `lib.rs`, `metrics.rs`, `rustc_json.rs`, `ops.rs`, `lib.rs`, `main.rs`, `outcomes.schema.json` |
-| `architecture/ios-app.md` | _(no source files — narrative/reference)_ |
+| `architecture/ios-app.md` | `project.pbxproj`, `RustChapApp.swift`, `Models.swift`, `ContentStore.swift`, `LocalEvaluator.swift`, `TrackListView.swift`, `PuzzleScreen.swift`, `ResultView.swift` |
 | `architecture/puzzle-format.md` | `puzzle.schema.json`, `pack.schema.json`, `outcomes.schema.json`, `lib.rs`, `types.rs`, `template.rs`, `ops.rs`, `validate.rs` |
 | `foundation/core-loop.md` | _(no source files — narrative/reference)_ |
 | `foundation/curriculum.md` | `move-or-borrow.001.json`, `remove-the-clone.001.json`, `repair-the-lifetime.001.json`, `build-the-iterator.001.json`, `design-the-api.001.json` |

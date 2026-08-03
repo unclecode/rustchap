@@ -29,7 +29,9 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       runtime-test answer; all 72 submissions evaluated, outcomes sidecars generated + `--check` clean
 
 ## Phase 3 — iPhone interaction prototype
-- [ ] 8. SwiftUI app shell (Launch → Puzzle → Result → Retry/Next; no auth, no backend, 5 bundled puzzles)
+- [x] 8. SwiftUI app shell (`apps/ios/`: Launch → Track list → Puzzle → Result → Retry/Next; no
+      auth, no backend; bundles `content/packs` as a folder reference; offline evaluation via
+      Swift ops-hash byte-matched to Rust against the outcomes sidecars)
 - [ ] 9. Semantic code renderer (CodeSurface — the hardest UI component)
 - [ ] 10. All four interaction types against the five local puzzles
 - [ ] 11. Install via Xcode, dogfood — **gate: is the loop addictive?**
