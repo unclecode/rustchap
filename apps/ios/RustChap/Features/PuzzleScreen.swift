@@ -1,6 +1,5 @@
-// Step-8 shell: working end-to-end loop with placeholder interaction
-// controls (menus, move-to-reorder, candidate rows). The semantic code
-// surface with tappable tokens replaces the preview + controls in steps 9-10.
+// The puzzle screen: goal, semantic code surface (tappable slot chips inside
+// real highlighted code), interaction-specific controls, Run, result sheet.
 
 import SwiftUI
 
@@ -9,11 +8,19 @@ struct PuzzleScreen: View {
     let loaded: ContentStore.LoadedPuzzle
     @Binding var path: [String]
 
+    struct PresentedResult: Identifiable {
+        let id = UUID()
+        let result: EvalResult
+    }
+
     @State private var selections: [String: String] = [:]
     @State private var blockOrder: [Block] = []
     @State private var chosenCandidate: String?
-    @State private var result: EvalResult?
-    @State private var showResult = false
+    @State private var activeSlot: Slot?
+    @State private var activeConcept: Concept?
+    @State private var errorSlotIds: Set<String> = []
+    @State private var presentedResult: PresentedResult?
+    @State private var pendingNextId: String?
     @State private var showHints = false
 
     private var puzzle: Puzzle { loaded.puzzle }
@@ -25,13 +32,37 @@ struct PuzzleScreen: View {
                     .font(.callout)
             }
 
-            Section("Code") {
-                Text(codePreview)
-                    .font(.system(.footnote, design: .monospaced))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-
             interactionSection
+
+            let skills = store.concepts(for: puzzle)
+            if !skills.isEmpty {
+                Section("Skills for this puzzle") {
+                    ForEach(skills) { concept in
+                        Button {
+                            activeConcept = concept
+                        } label: {
+                            HStack(spacing: 12) {
+                                Image(systemName: "book.closed")
+                                    .foregroundStyle(.tint)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(concept.title)
+                                        .font(.subheadline.weight(.medium))
+                                        .foregroundStyle(.primary)
+                                    Text(concept.summary)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                        .lineLimit(1)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .font(.caption.weight(.semibold))
+                                    .foregroundStyle(.tertiary)
+                            }
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+            }
 
             if !puzzle.hints.isEmpty {
                 Section {
@@ -55,56 +86,77 @@ struct PuzzleScreen: View {
         .navigationTitle(puzzle.title)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: resetToInitial)
-        .sheet(isPresented: $showResult) {
-            if let result {
-                ResultView(
-                    loaded: loaded,
-                    result: result,
-                    nextPuzzleId: store.nextPuzzleId(after: puzzle.id),
-                    onRetry: { showResult = false },
-                    onNext: { nextId in
-                        showResult = false
-                        path = [nextId]
-                    }
-                )
-                .presentationDetents([.medium, .large])
+        .sensoryFeedback(trigger: presentedResult?.id) { _, _ in
+            guard let presented = presentedResult else { return nil }
+            return presented.result.status == .solved ? .success : .error
+        }
+        .sheet(item: $activeConcept) { concept in
+            ConceptView(concept: concept)
+        }
+        .sheet(item: $activeSlot) { slot in
+            ChoiceTray(slot: slot, selectedChoiceId: selections[slot.id]) { choice in
+                selections[slot.id] = choice.id
+                errorSlotIds = []
+                activeSlot = nil
             }
+        }
+        .sheet(
+            item: $presentedResult,
+            onDismiss: {
+                // Navigating while the sheet is still dismissing gets silently
+                // dropped by NavigationStack — defer the push until it's gone.
+                if let nextId = pendingNextId {
+                    pendingNextId = nil
+                    path = [nextId]
+                }
+            }
+        ) { presented in
+            ResultView(
+                loaded: loaded,
+                result: presented.result,
+                nextPuzzleId: store.nextPuzzleId(after: puzzle.id),
+                onRetry: { presentedResult = nil },
+                onNext: { nextId in
+                    pendingNextId = nextId
+                    presentedResult = nil
+                }
+            )
+            .presentationDetents([.large])
         }
     }
 
-    // MARK: - Interaction placeholders
+    // MARK: - Interactions
 
     @ViewBuilder
     private var interactionSection: some View {
         switch puzzle.interaction {
         case .slotSelection(let slots), .minimalEdit(let slots):
-            Section("Fill the slots") {
-                ForEach(slots) { slot in
-                    Menu {
-                        ForEach(slot.choices) { choice in
-                            Button(choice.text) { selections[slot.id] = choice.id }
-                        }
-                    } label: {
-                        HStack {
-                            Text(slot.label ?? slot.id)
-                                .foregroundStyle(.secondary)
-                            Spacer()
-                            Text(selectedText(slot) ?? "choose…")
-                                .font(.system(.body, design: .monospaced))
-                                .foregroundStyle(selections[slot.id] == nil ? .orange : .primary)
-                        }
-                    }
-                }
+            Section {
+                CodeSurface(
+                    lines: CodeLineBuilder.lines(template: puzzle.template ?? "", slots: slots),
+                    selections: selections,
+                    errorSlotIds: errorSlotIds,
+                    onTapSlot: { activeSlot = $0 }
+                )
+            } header: {
+                Text("Tap the highlighted tokens")
             }
-        case .blockArrangement:
-            Section("Order the blocks (drag to reorder)") {
+        case .blockArrangement(let prefix, _, let suffix):
+            Section("Drag the blocks into order") {
+                CodeText(source: prefix)
                 ForEach(blockOrder) { block in
-                    Text(block.text.trimmingCharacters(in: .whitespacesAndNewlines))
-                        .font(.system(.body, design: .monospaced))
+                    HStack {
+                        CodeText(source: block.text.trimmingCharacters(in: .whitespacesAndNewlines))
+                            .padding(.leading, 16)
+                        Spacer()
+                        Image(systemName: "line.3.horizontal")
+                            .foregroundStyle(.tertiary)
+                    }
                 }
                 .onMove { from, to in
                     blockOrder.move(fromOffsets: from, toOffset: to)
                 }
+                CodeText(source: suffix.trimmingCharacters(in: .newlines))
             }
             .environment(\.editMode, .constant(.active))
         case .bestSolution(let candidates):
@@ -113,16 +165,24 @@ struct PuzzleScreen: View {
                     Button {
                         chosenCandidate = candidate.id
                     } label: {
-                        HStack(alignment: .top) {
-                            Image(systemName: chosenCandidate == candidate.id
-                                ? "checkmark.circle.fill" : "circle")
-                                .foregroundStyle(.tint)
-                                .padding(.top, 2)
-                            Text(candidate.code)
-                                .font(.system(.caption, design: .monospaced))
-                                .foregroundStyle(.primary)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            CodeText(source: candidate.code)
+                                .padding(10)
                         }
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color(.secondarySystemBackground))
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .strokeBorder(
+                                    chosenCandidate == candidate.id ? Color.accentColor : .clear,
+                                    lineWidth: 2
+                                )
+                        )
                     }
+                    .buttonStyle(.plain)
+                    .listRowSeparator(.hidden)
                 }
             }
         }
@@ -132,6 +192,7 @@ struct PuzzleScreen: View {
 
     private func resetToInitial() {
         selections = [:]
+        errorSlotIds = []
         if case .minimalEdit(let slots) = puzzle.interaction {
             for slot in slots {
                 if let original = slot.original,
@@ -144,30 +205,6 @@ struct PuzzleScreen: View {
             blockOrder = blocks.reversed()
         }
         chosenCandidate = nil
-    }
-
-    private func selectedText(_ slot: Slot) -> String? {
-        guard let choiceId = selections[slot.id] else { return nil }
-        return slot.choices.first { $0.id == choiceId }?.text
-    }
-
-    private var codePreview: String {
-        switch puzzle.interaction {
-        case .slotSelection(let slots), .minimalEdit(let slots):
-            var preview = puzzle.template ?? ""
-            for slot in slots {
-                let value = selectedText(slot) ?? "⟦\(slot.label ?? slot.id)⟧"
-                preview = preview.replacingOccurrences(of: "⟦\(slot.id)⟧", with: value)
-            }
-            return preview
-        case .blockArrangement(let prefix, _, let suffix):
-            return prefix + blockOrder.map(\.text).joined() + suffix
-        case .bestSolution(let candidates):
-            guard let chosenCandidate,
-                  let candidate = candidates.first(where: { $0.id == chosenCandidate })
-            else { return "// pick a candidate below" }
-            return candidate.code
-        }
     }
 
     private var canRun: Bool {
@@ -191,7 +228,7 @@ struct PuzzleScreen: View {
         case .bestSolution:
             operations = [.pick(candidateId: chosenCandidate ?? "")]
         }
-        result = LocalEvaluator(outcomes: loaded.outcomes).evaluate(operations)
+        let result = LocalEvaluator(outcomes: loaded.outcomes).evaluate(operations)
             ?? EvalResult(
                 status: .invalid, rank: nil, metrics: [:],
                 diagnostics: [Diagnostic(
@@ -200,6 +237,9 @@ struct PuzzleScreen: View {
                     slotIds: [], rustCode: nil
                 )]
             )
-        showResult = true
+        errorSlotIds = result.status == .compileError
+            ? Set(result.diagnostics.flatMap(\.slotIds))
+            : []
+        presentedResult = PresentedResult(result: result)
     }
 }

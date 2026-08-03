@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "api-design",
+  "title": "The narrowest parameter",
+  "summary": "Take the least you need: &str over &String, &[T] over &Vec<T>, borrow over own.",
+  "lecture": [
+    "A signature is a contract about what the function may do with the data. Taking String says 'I consume this'; &mut String says 'I change it'; &str says 'I only look'. Callers can hand a narrower function more kinds of input with less ceremony — so the narrowest honest type is the kindest API.",
+    "Concretely: &String and &Vec<T> parameters are strictly worse than &str and &[T] — deref coercion means every caller of the slice version still works, plus literals, arrays, and sub-slices. Clippy's ptr_arg lint flags the former on sight.",
+    "This is also why 'it compiles' is a weak bar for API puzzles: several signatures compile, but they impose different costs on every future caller. The optimal one moves the fewest obligations across the boundary."
+  ],
+  "example": {
+    "code": "fn join_tags(tags: &Vec<String>) -> String  // works, but rigid\nfn join_tags(tags: &[String]) -> String     // same body, more callers",
+    "caption": "The slice version accepts vecs, arrays, and sub-slices alike."
+  }
+}

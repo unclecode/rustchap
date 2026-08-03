@@ -20,6 +20,7 @@ final class ContentStore {
     }
 
     private(set) var packs: [LoadedPack] = []
+    private(set) var concepts: [String: Concept] = [:]
     private(set) var loadError: String?
 
     private static let trackOrder = [
@@ -33,9 +34,15 @@ final class ContentStore {
     init() {
         do {
             packs = try Self.load()
+            concepts = try Self.loadConcepts()
         } catch {
             loadError = String(describing: error)
         }
+    }
+
+    /// The puzzle's skills, in the order the puzzle declares them.
+    func concepts(for puzzle: Puzzle) -> [Concept] {
+        puzzle.concepts.compactMap { concepts[$0] }
     }
 
     var allPuzzles: [LoadedPuzzle] { packs.flatMap(\.puzzles) }
@@ -48,6 +55,20 @@ final class ContentStore {
         let all = allPuzzles
         guard let index = all.firstIndex(where: { $0.id == id }) else { return nil }
         return all.indices.contains(index + 1) ? all[index + 1].id : nil
+    }
+
+    private static func loadConcepts() throws -> [String: Concept] {
+        guard let root = Bundle.main.url(forResource: "concepts", withExtension: nil) else {
+            return [:]
+        }
+        let decoder = JSONDecoder()
+        var result: [String: Concept] = [:]
+        let files = try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: nil)
+        for file in files where file.pathExtension == "json" {
+            let concept = try decoder.decode(Concept.self, from: Data(contentsOf: file))
+            result[concept.id] = concept
+        }
+        return result
     }
 
     private static func load() throws -> [LoadedPack] {

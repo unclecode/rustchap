@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "move",
+  "title": "Moves",
+  "summary": "Assigning or passing a non-Copy value transfers ownership — the old name dies.",
+  "lecture": [
+    "In Rust, every value has exactly one owner. Assigning a String, Vec, or any other non-Copy value to another binding — or passing it to a function — does not copy it. It MOVES it: ownership transfers, and the original binding becomes unusable.",
+    "This is not a runtime mechanism. The compiler simply refuses to let you touch a moved-from name, and the error is E0382: 'use of moved value'. Small scalar types (i32, bool, char, &T) are Copy, so they duplicate instead of moving — which is why this rule surprises people coming from GC languages only for heap-owning types.",
+    "When you hit E0382, the question is never 'how do I silence this?' but 'who should own this value?'. If the callee only needs to look, lend it a borrow instead of moving it."
+  ],
+  "example": {
+    "code": "let name = String::from(\"Jazz\");\nlet other = name;          // moved here\nprintln!(\"{name}\");        // E0382: use of moved value",
+    "caption": "After the move, `name` is dead — the compiler enforces single ownership."
+  }
+}

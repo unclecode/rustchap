@@ -22,7 +22,7 @@ covers (frontmatter `sources:`). Regenerate this index with
 | [Backend API and data model](architecture/backend.md) | backlog | — |
 | [Evaluation pipeline](architecture/evaluation.md) | living | lib.rs, metrics.rs, rustc_json.rs, ops.rs, … |
 | [iOS app](architecture/ios-app.md) | living | project.pbxproj, RustChapApp.swift, Models.swift, ContentStore.swift, … |
-| [Puzzle format and content pipeline](architecture/puzzle-format.md) | living | puzzle.schema.json, pack.schema.json, outcomes.schema.json, lib.rs, … |
+| [Puzzle format and content pipeline](architecture/puzzle-format.md) | living | puzzle.schema.json, pack.schema.json, outcomes.schema.json, concept.schema.json, … |
 
 ## Roadmap — scope and build order
 

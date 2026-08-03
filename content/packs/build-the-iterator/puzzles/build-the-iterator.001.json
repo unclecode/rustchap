@@ -4,7 +4,7 @@
   "version": 1,
   "title": "Evens, Doubled",
   "track": "build-the-iterator",
-  "concepts": ["iterator", "filter", "map", "collect", "pipeline-order"],
+  "concepts": ["iterator", "slice"],
   "difficulty": 2,
   "goal": "Keep the even numbers, double them. Order the pipeline.",
   "interaction": {

@@ -8,15 +8,15 @@
 //! evaluation. A puzzle only passes if at least one submission solves and at
 //! least one reproduces the declared optimal rank.
 
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 use std::fs;
 use std::path::Path;
 
 use anyhow::{Context, Result};
 use evaluator::{Toolchain, evaluate};
 use puzzle_schema::{
-    EvalStatus, Interaction, Outcomes, Pack, Puzzle, Rank, enumerate_submissions, ops_hash,
-    validate_puzzle,
+    Concept, EvalStatus, Interaction, Outcomes, Pack, Puzzle, Rank, enumerate_submissions,
+    ops_hash, validate_puzzle,
 };
 
 #[derive(Debug, Default)]
@@ -26,6 +26,53 @@ pub struct Options {
     pub check: bool,
     /// Structural checks only; skip compilation entirely.
     pub skip_eval: bool,
+    /// Concept library ids (from [`load_concepts`]). When present, every
+    /// puzzle `concepts` entry must resolve to one; when absent, the check
+    /// is skipped.
+    pub concept_ids: Option<BTreeSet<String>>,
+}
+
+/// Load and validate the concept library (content/concepts). Returns the valid
+/// ids plus any per-file errors — callers report the errors and still get the
+/// usable subset.
+pub fn load_concepts(dir: &Path) -> Result<(BTreeSet<String>, Vec<String>)> {
+    let mut ids = BTreeSet::new();
+    let mut errors = Vec::new();
+    for entry in fs::read_dir(dir).with_context(|| format!("reading {}", dir.display()))? {
+        let path = entry?.path();
+        if path.extension().and_then(|e| e.to_str()) != Some("json") {
+            continue;
+        }
+        let name = path
+            .file_stem()
+            .unwrap_or_default()
+            .to_string_lossy()
+            .into_owned();
+        let concept: Concept = match fs::read_to_string(&path)
+            .map_err(anyhow::Error::from)
+            .and_then(|text| serde_json::from_str(&text).map_err(anyhow::Error::from))
+        {
+            Ok(c) => c,
+            Err(e) => {
+                errors.push(format!("concept {name}: {e}"));
+                continue;
+            }
+        };
+        if concept.id != name {
+            errors.push(format!("concept {name}: file declares id {:?}", concept.id));
+            continue;
+        }
+        if concept.schema_version != 1 {
+            errors.push(format!("concept {name}: schema_version must be 1"));
+            continue;
+        }
+        if concept.lecture.is_empty() {
+            errors.push(format!("concept {name}: empty lecture"));
+            continue;
+        }
+        ids.insert(concept.id);
+    }
+    Ok((ids, errors))
 }
 
 #[derive(Debug, Default)]
@@ -136,6 +183,16 @@ pub fn lint_pack(pack_dir: &Path, toolchain: &Toolchain, opts: &Options) -> Resu
                 report.errors.push(format!("{puzzle_id}: {v}"));
             }
             structural_ok = false;
+        }
+        if let Some(known) = &opts.concept_ids {
+            for concept in &puzzle.concepts {
+                if !known.contains(concept) {
+                    report.errors.push(format!(
+                        "{puzzle_id}: references unknown concept {concept:?} (not in the concept library)"
+                    ));
+                    structural_ok = false;
+                }
+            }
         }
         if puzzle.scoring.optimal.is_empty() {
             report.warnings.push(format!(

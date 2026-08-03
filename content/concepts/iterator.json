@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "iterator",
+  "title": "Iterator pipelines",
+  "summary": "Lazy adapters compose left to right; nothing runs until a consumer like collect() drives it.",
+  "lecture": [
+    "A slice or Vec is not an iterator — .iter() turns it into one (borrowing each element; into_iter() moves them, iter_mut() borrows mutably). Adapters like .filter() and .map() wrap the iterator and do nothing yet: they are lazy descriptions of work.",
+    "A consumer — .collect(), .sum(), a for loop — drives the pipeline, pulling elements through every stage in composition order. Order therefore changes meaning, not just style: filter-then-map processes fewer elements than map-then-filter, and if the map changes the property being filtered, the results differ too.",
+    ".collect() must come last, and its target type steers inference — Vec<i32>, String, HashMap — often via the function's return type. If the compiler complains it 'cannot infer type' mid-pipeline, something after collect() is trying to keep iterating a finished collection.",
+    "The idiomatic payoff: pipelines replace hand-written loops with no index juggling, no mutable accumulator, and equal or better performance."
+  ],
+  "example": {
+    "code": "let evens_doubled: Vec<i32> = values\n    .iter()\n    .filter(|x| *x % 2 == 0)   // keep evens FIRST\n    .map(|x| x * 2)            // then double them\n    .collect();",
+    "caption": "Swap filter and map and every doubled number is even — the test catches it."
+  }
+}

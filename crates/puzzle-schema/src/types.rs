@@ -155,6 +155,28 @@ pub struct Pack {
     pub order: Vec<String>,
 }
 
+/// One teachable skill (content/concepts/<id>.json). Puzzles reference these
+/// by id in `Puzzle::concepts`; the linter verifies the references resolve.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Concept {
+    pub schema_version: u32,
+    pub id: String,
+    pub title: String,
+    pub summary: String,
+    pub lecture: Vec<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub example: Option<ConceptExample>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ConceptExample {
+    pub code: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub caption: Option<String>,
+}
+
 // ---- Submission + evaluation results (shared by app, outcomes sidecar, API) ----
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

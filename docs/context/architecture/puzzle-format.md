@@ -5,6 +5,7 @@ sources:
   - schemas/puzzle.schema.json
   - schemas/pack.schema.json
   - schemas/outcomes.schema.json
+  - schemas/concept.schema.json
   - crates/puzzle-schema/src/lib.rs
   - crates/puzzle-schema/src/types.rs
   - crates/puzzle-schema/src/template.rs
@@ -71,6 +72,16 @@ is exact, not mocked**; the server later reuses it as a warm cache.
 `pack.schema.json` / `types::Pack`: track metadata, pinned `toolchain`, linear `order`. Layout:
 `content/packs/<track>/pack.json` + `puzzles/*.json`. Cross-file checks (order entries resolve,
 prerequisites point backwards) belong to the linter, not the crate.
+
+## Concepts (the skill library)
+
+`concept.schema.json` / `types::Concept`: one teachable skill per file at
+`content/concepts/<id>.json` — title, one-line `summary`, short `lecture` paragraphs, optional
+highlighted `example`. Puzzles reference concepts by id in `concepts`; the app renders them as
+tap-to-learn skill rows per puzzle (Euclidea-style). The linter's `--concepts <dir>` flag loads
+the library via `load_concepts` (id must match filename, non-empty lecture) and errors on any
+puzzle referencing an unknown concept. Concept edits never touch outcomes — they are display
+content, invisible to evaluation.
 
 ## Still pending (build-order steps 6, 18–21)
 

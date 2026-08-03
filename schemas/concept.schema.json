@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rustchap.dev/schemas/concept.schema.json",
+  "title": "RustChap concept",
+  "description": "One teachable skill. Puzzles reference concepts by id in their `concepts` array; the app lists them per puzzle as tap-to-learn lectures (Euclidea-style). The linter (--concepts) verifies every referenced concept exists. File lives at content/concepts/<id>.json.",
+  "type": "object",
+  "required": ["schema_version", "id", "title", "summary", "lecture"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "Matches the filename and puzzle `concepts` entries." },
+    "title": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string", "minLength": 1, "description": "One line shown on the skill row." },
+    "lecture": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "Short paragraphs, written for an experienced programmer — the minimum needed to attempt the puzzle, not a course."
+    },
+    "example": {
+      "type": "object",
+      "required": ["code"],
+      "additionalProperties": false,
+      "properties": {
+        "code": { "type": "string", "description": "Tiny Rust snippet rendered with syntax highlighting." },
+        "caption": { "type": "string" }
+      }
+    }
+  }
+}

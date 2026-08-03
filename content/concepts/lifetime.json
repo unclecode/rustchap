@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "lifetime",
+  "title": "Lifetimes",
+  "summary": "'a names how long a borrow lives, letting a signature tie its output to its inputs.",
+  "lecture": [
+    "Every reference has a lifetime — the region of code it's valid for. Usually the compiler tracks these silently. Lifetime ANNOTATIONS ('a) exist for signatures where the relationship between references can't be inferred: they are names that declare 'these references live at least as long as each other'.",
+    "The classic case: a function returns a reference that could point into either of two inputs. The signature fn longest<'a>(a: &'a str, b: &'a str) -> &'a str says 'the result borrows from a or b, so it stays valid only while BOTH do'. At each call site, 'a becomes the shorter of the two input lifetimes.",
+    "Annotations never change how long anything lives — they only describe constraints so the compiler can check callers. If you can't write the relationship down, the design usually wants an owned return type instead."
+  ],
+  "example": {
+    "code": "fn longest<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() > b.len() { a } else { b }\n}",
+    "caption": "One lifetime parameter ties the returned borrow to both inputs."
+  }
+}

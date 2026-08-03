@@ -10,6 +10,9 @@ sources:
   - apps/ios/RustChap/Features/TrackListView.swift
   - apps/ios/RustChap/Features/PuzzleScreen.swift
   - apps/ios/RustChap/Features/ResultView.swift
+  - apps/ios/RustChap/PuzzleUI/RustLexer.swift
+  - apps/ios/RustChap/PuzzleUI/CodeSurface.swift
+  - apps/ios/RustChap/Features/ConceptView.swift
 related:
   - foundation/interaction-types.md
   - architecture/backend.md
@@ -46,10 +49,34 @@ Launch → track list → puzzle → result → retry/next, fully offline agains
   blocks, candidate rows — Run button), `ResultView` (status icon, rank label, metrics vs best,
   categorized diagnostics, explanation on solve, Retry/Next).
 
-Placeholder interaction controls are scaffolding: steps 9–10 replace the preview + controls with
-the semantic code surface below. Verified by simulator-SDK build plus a macOS harness that
-compiles the real `Models.swift`/`LocalEvaluator.swift` and checks hashes against the
-linter-generated outcomes.
+Verified by simulator-SDK build plus a macOS harness that compiles the real
+`Models.swift`/`LocalEvaluator.swift` and checks hashes against the linter-generated outcomes.
+
+## Shipped: the semantic code surface (steps 9–10, `PuzzleUI/`)
+
+- **`RustLexer`**: display-side tokenizer (keywords, types, strings, numbers, macros, comments,
+  lifetimes) — colors tokens, never decides meaning. `CodeLineBuilder.lines(template:slots:)`
+  splits a template on ⟦markers⟧ into renderable lines of `LineElement.token/.slot`.
+- **`CodeSurface`**: horizontal-scroll (never wraps) token lines; slots render as inline
+  **`SlotChip`s** — filled (tinted, current value) or empty (dashed placeholder, slot label);
+  after a failed run, chips named in diagnostic `slot_ids` turn red. Tap → **`ChoiceTray`**
+  bottom sheet listing choices as highlighted code. `CodeText` renders static highlighted code
+  (block rows, candidate cards, prefix/suffix).
+- **Result presentation** (`ResultView`): `RankLadder` (Solved → Fluent → Optimal with achieved
+  steps filled + "X needs: …" for the next rank), and a whole-solution score comparison —
+  "You: 1 clone · 1 edit" vs "Best known: 0 clones · 2 edits" via `ResultView.phrase` (never
+  per-metric "best" columns: thresholds are conditions, not a rival solution). Result sheet
+  opens at `.large`; `sensoryFeedback` success/error on evaluation.
+- **SwiftUI lessons (RCA)**: `.sheet(isPresented:)` + `if let` renders an empty sheet when the
+  state isn't visible to the content closure — always `.sheet(item:)`. NavigationStack drops
+  path mutations made during sheet dismissal — navigate in the sheet's `onDismiss`
+  (`pendingNextId` in `PuzzleScreen`).
+- **Automation**: `--open <puzzle-id>` launch argument deep-links to a puzzle
+  (`RustChapApp.init`), used for simulator screenshot verification.
+- **Skills** (`ConceptView.swift`): `content/concepts` is bundled as a second folder reference;
+  `ContentStore.concepts(for:)` maps a puzzle's `concepts` ids to loaded `Concept`s. The puzzle
+  screen shows a "Skills for this puzzle" section (title + summary rows); tapping opens the
+  lecture sheet with highlighted example code — teaches what the puzzle needs, Euclidea-style.
 
 ## Stack
 

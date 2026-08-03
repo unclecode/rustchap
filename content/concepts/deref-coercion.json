@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "deref-coercion",
+  "title": "Deref coercion",
+  "summary": "&String converts to &str automatically (and &Vec<T> to &[T]) at call sites.",
+  "lecture": [
+    "When a function wants &str and you pass &String, the compiler inserts the conversion for you — this is deref coercion, driven by String implementing Deref<Target = str>. The same applies to &Vec<T> coercing to &[T], and &Box<T> to &T.",
+    "The practical consequence flows one way: a parameter typed &str accepts &String, string literals, and sub-slices alike, while a parameter typed &String accepts only &String. That is why &str is strictly more useful in a signature and why Clippy's ptr_arg lint flags &String and &Vec<T> parameters.",
+    "Coercion happens silently at call sites, so you mostly notice it by its absence — when a signature demands the owning type and suddenly nothing fits."
+  ],
+  "example": {
+    "code": "fn print_name(x: &str) {\n    println!(\"hi {x}\");\n}\n\nlet name = String::from(\"Jazz\");\nprint_name(&name);      // &String → &str, automatic\nprint_name(\"Ferris\");   // literals work too",
+    "caption": "One &str parameter serves owned strings and literals alike."
+  }
+}

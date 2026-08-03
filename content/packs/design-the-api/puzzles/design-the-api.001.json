@@ -4,7 +4,7 @@
   "version": 1,
   "title": "First Word, Zero Copies",
   "track": "design-the-api",
-  "concepts": ["zero-copy", "slice", "api-design", "allocation"],
+  "concepts": ["zero-copy", "slice", "api-design"],
   "difficulty": 2,
   "goal": "Pick the implementation that returns the first word without allocating.",
   "interaction": {

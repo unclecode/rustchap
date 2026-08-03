@@ -4,7 +4,7 @@
 use std::fs;
 
 use evaluator::Toolchain;
-use puzzle_linter::{Options, lint_pack};
+use puzzle_linter::{Options, lint_pack, load_concepts};
 use puzzle_schema::Outcomes;
 
 const PUZZLE: &str = r##"{
@@ -87,6 +87,7 @@ fn lints_a_pack_and_generates_verifiable_outcomes() {
         &Options {
             check: true,
             skip_eval: false,
+            concept_ids: None,
         },
     )
     .unwrap();
@@ -100,6 +101,7 @@ fn lints_a_pack_and_generates_verifiable_outcomes() {
         &Options {
             check: true,
             skip_eval: false,
+            concept_ids: None,
         },
     )
     .unwrap();
@@ -136,10 +138,61 @@ fn structural_failures_are_reported_without_compiling() {
         &Options {
             check: false,
             skip_eval: true,
+            concept_ids: None,
         },
     )
     .unwrap();
     assert!(report.errors.iter().any(|e| e.contains("cannot read")));
     assert!(report.errors.iter().any(|e| e.contains("prerequisite")));
     assert_eq!(report.submissions_evaluated, 0);
+}
+
+#[test]
+fn concept_references_are_enforced_when_a_library_is_given() {
+    let dir = tempfile::tempdir().unwrap();
+    let pack_dir = dir.path().join("pack");
+    fs::create_dir(&pack_dir).unwrap();
+    fs::write(
+        pack_dir.join("pack.json"),
+        r#"{ "schema_version": 1, "id": "move-or-borrow", "title": "t",
+             "toolchain": "1.", "order": ["move-or-borrow.001"] }"#,
+    )
+    .unwrap();
+    fs::create_dir(pack_dir.join("puzzles")).unwrap();
+    fs::write(pack_dir.join("puzzles/move-or-borrow.001.json"), PUZZLE).unwrap();
+
+    // Library that knows "move" but not "borrow" (the puzzle references both),
+    // plus one broken file that must be reported without sinking the rest.
+    let lib = dir.path().join("concepts");
+    fs::create_dir(&lib).unwrap();
+    fs::write(
+        lib.join("move.json"),
+        r#"{ "schema_version": 1, "id": "move", "title": "Moves",
+             "summary": "s", "lecture": ["p"] }"#,
+    )
+    .unwrap();
+    fs::write(lib.join("broken.json"), r#"{ "id": "mismatch" }"#).unwrap();
+
+    let (ids, errors) = load_concepts(&lib).unwrap();
+    assert_eq!(ids.len(), 1, "only the valid concept loads");
+    assert_eq!(errors.len(), 1, "the broken file is reported");
+
+    let report = lint_pack(
+        &pack_dir,
+        &Toolchain::default(),
+        &Options {
+            check: false,
+            skip_eval: true,
+            concept_ids: Some(ids),
+        },
+    )
+    .unwrap();
+    assert!(
+        report
+            .errors
+            .iter()
+            .any(|e| e.contains("unknown concept \"borrow\"")),
+        "errors: {:?}",
+        report.errors
+    );
 }

@@ -65,6 +65,15 @@ holds one puzzle plus its linter-generated `outcomes/` sidecar:
 Authoring lesson recorded: `clippy::ptr_arg` fires only when the body provably works with the
 slice type (a real str/slice method call) — usage solely through `println!` suppresses it.
 
+## Concept library (shipped — `content/concepts/`)
+
+Ten tap-to-learn skills backing the puzzles' `concepts` references (linter-enforced): `move`,
+`borrow`, `deref-coercion`, `clone`, `slice`, `lifetime`, `elision`, `iterator`, `zero-copy`,
+`api-design`. Each is a one-line summary + 2–4 lecture paragraphs + a highlighted example,
+written for an experienced programmer — the minimum needed to attempt the puzzle, never a course.
+New puzzles should reference existing concepts where possible; add a new concept file only when a
+genuinely new instinct appears.
+
 ## Progression quality bar
 
 Every puzzle must survive these questions before publishing:
