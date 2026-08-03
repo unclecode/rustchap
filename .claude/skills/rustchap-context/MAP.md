@@ -10,6 +10,9 @@ Regenerate via `scripts/build-map.py`.
 
 | Source file | Documented in |
 |---|---|
+| `crates/evaluator/src/lib.rs` | architecture/evaluation.md |
+| `crates/evaluator/src/metrics.rs` | architecture/evaluation.md |
+| `crates/evaluator/src/rustc_json.rs` | architecture/evaluation.md |
 | `crates/puzzle-schema/src/lib.rs` | architecture/puzzle-format.md |
 | `crates/puzzle-schema/src/ops.rs` | architecture/evaluation.md, architecture/puzzle-format.md |
 | `crates/puzzle-schema/src/template.rs` | architecture/puzzle-format.md |
@@ -18,13 +21,15 @@ Regenerate via `scripts/build-map.py`.
 | `schemas/outcomes.schema.json` | architecture/evaluation.md, architecture/puzzle-format.md |
 | `schemas/pack.schema.json` | architecture/puzzle-format.md |
 | `schemas/puzzle.schema.json` | architecture/puzzle-format.md |
+| `tools/puzzle-linter/src/lib.rs` | architecture/evaluation.md |
+| `tools/puzzle-linter/src/main.rs` | architecture/evaluation.md |
 
 ## Fragment → sources
 
 | Fragment | Sources |
 |---|---|
 | `architecture/backend.md` | _(no source files — narrative/reference)_ |
-| `architecture/evaluation.md` | `ops.rs`, `outcomes.schema.json` |
+| `architecture/evaluation.md` | `lib.rs`, `metrics.rs`, `rustc_json.rs`, `ops.rs`, `lib.rs`, `main.rs`, `outcomes.schema.json` |
 | `architecture/ios-app.md` | _(no source files — narrative/reference)_ |
 | `architecture/puzzle-format.md` | `puzzle.schema.json`, `pack.schema.json`, `outcomes.schema.json`, `lib.rs`, `types.rs`, `template.rs`, `ops.rs`, `validate.rs` |
 | `foundation/core-loop.md` | _(no source files — narrative/reference)_ |

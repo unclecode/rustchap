@@ -112,12 +112,63 @@ pub enum ReconstructError {
     WrongOperationCount(usize),
 }
 
+/// A user-controlled byte range in reconstructed source: which slot / block /
+/// candidate produced `start..end`. Lets the evaluator map compiler spans back
+/// to the exact token the user touched, and scopes syntactic metric counting.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct SourceSpan {
+    pub region_id: String,
+    pub start: usize,
+    pub end: usize,
+}
+
+/// Reconstructed source plus the user-controlled spans inside it.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Reconstruction {
+    pub source: String,
+    pub spans: Vec<SourceSpan>,
+}
+
+impl Reconstruction {
+    /// Region ids whose spans overlap byte range `start..end` (e.g. a rustc
+    /// primary span), for diagnostic → token highlighting.
+    pub fn regions_overlapping(&self, start: usize, end: usize) -> Vec<&str> {
+        self.spans
+            .iter()
+            .filter(|s| s.start < end && start < s.end)
+            .map(|s| s.region_id.as_str())
+            .collect()
+    }
+
+    /// Concatenated user-controlled text (newline-joined) — the scope over
+    /// which syntactic metrics like `clone_count` are counted. For
+    /// best-solution puzzles this is the whole candidate: choosing it IS the
+    /// user's edit.
+    pub fn user_text(&self) -> String {
+        let mut out = String::new();
+        for span in &self.spans {
+            out.push_str(&self.source[span.start..span.end]);
+            out.push('\n');
+        }
+        out
+    }
+}
+
 /// Reconstruct the complete Rust source a submission denotes.
 ///
 /// Validates the operations against the puzzle's interaction: every slot assigned
 /// exactly once via a known choice, an arrangement is a permutation of the block
 /// ids, a pick names an existing candidate.
 pub fn reconstruct(puzzle: &Puzzle, operations: &[Operation]) -> Result<String, ReconstructError> {
+    Ok(reconstruct_with_spans(puzzle, operations)?.source)
+}
+
+/// [`reconstruct`], but also reporting where each user-controlled region landed
+/// in the output — see [`SourceSpan`].
+pub fn reconstruct_with_spans(
+    puzzle: &Puzzle,
+    operations: &[Operation],
+) -> Result<Reconstruction, ReconstructError> {
     match &puzzle.interaction {
         Interaction::SlotSelection { slots } | Interaction::MinimalEdit { slots } => {
             let template = puzzle
@@ -149,6 +200,7 @@ pub fn reconstruct(puzzle: &Puzzle, operations: &[Operation]) -> Result<String, 
             }
 
             let mut out = String::new();
+            let mut spans = Vec::new();
             for seg in &segments {
                 match seg {
                     Segment::Static(text) => out.push_str(text),
@@ -156,11 +208,17 @@ pub fn reconstruct(puzzle: &Puzzle, operations: &[Operation]) -> Result<String, 
                         let text = assigned
                             .get(id.as_str())
                             .ok_or_else(|| ReconstructError::UnassignedSlot(id.clone()))?;
+                        let start = out.len();
                         out.push_str(text);
+                        spans.push(SourceSpan {
+                            region_id: id.clone(),
+                            start,
+                            end: out.len(),
+                        });
                     }
                 }
             }
-            Ok(out)
+            Ok(Reconstruction { source: out, spans })
         }
         Interaction::BlockArrangement {
             fixed_prefix,
@@ -175,6 +233,7 @@ pub fn reconstruct(puzzle: &Puzzle, operations: &[Operation]) -> Result<String, 
             };
             let mut remaining: Vec<&str> = blocks.iter().map(|b| b.id.as_str()).collect();
             let mut out = fixed_prefix.clone();
+            let mut spans = Vec::new();
             for id in order {
                 let pos = remaining
                     .iter()
@@ -182,13 +241,19 @@ pub fn reconstruct(puzzle: &Puzzle, operations: &[Operation]) -> Result<String, 
                     .ok_or(ReconstructError::BadArrangement)?;
                 remaining.remove(pos);
                 let block = blocks.iter().find(|b| b.id == *id).expect("id verified");
+                let start = out.len();
                 out.push_str(&block.text);
+                spans.push(SourceSpan {
+                    region_id: id.clone(),
+                    start,
+                    end: out.len(),
+                });
             }
             if !remaining.is_empty() {
                 return Err(ReconstructError::BadArrangement);
             }
             out.push_str(fixed_suffix);
-            Ok(out)
+            Ok(Reconstruction { source: out, spans })
         }
         Interaction::BestSolution { candidates } => {
             let [Operation::Pick { candidate_id }] = operations else {
@@ -201,7 +266,14 @@ pub fn reconstruct(puzzle: &Puzzle, operations: &[Operation]) -> Result<String, 
                 .iter()
                 .find(|c| c.id == *candidate_id)
                 .ok_or_else(|| ReconstructError::UnknownCandidate(candidate_id.clone()))?;
-            Ok(candidate.code.clone())
+            Ok(Reconstruction {
+                spans: vec![SourceSpan {
+                    region_id: candidate.id.clone(),
+                    start: 0,
+                    end: candidate.code.len(),
+                }],
+                source: candidate.code.clone(),
+            })
         }
     }
 }
@@ -251,5 +323,75 @@ mod tests {
             parse_template("⟦BadId⟧"),
             Err(TemplateError::InvalidSlotId(_))
         ));
+    }
+
+    #[test]
+    fn spans_track_user_controlled_regions() {
+        use crate::types::*;
+        let puzzle = Puzzle {
+            schema_version: 1,
+            id: "t.001".into(),
+            version: 1,
+            title: "t".into(),
+            track: "t".into(),
+            concepts: vec!["t".into()],
+            difficulty: 1,
+            goal: "g".into(),
+            template: Some("let x = ⟦val⟧; let y = ⟦val⟧;".into()),
+            interaction: Interaction::SlotSelection {
+                slots: vec![Slot {
+                    id: "val".into(),
+                    original: None,
+                    label: None,
+                    choices: vec![
+                        Choice {
+                            id: "a".into(),
+                            text: "1".into(),
+                        },
+                        Choice {
+                            id: "b".into(),
+                            text: "2i64".into(),
+                        },
+                    ],
+                }],
+            },
+            evaluation: Evaluation {
+                tests: vec![],
+                clippy: Clippy::default(),
+                metrics: vec![Metric::CloneCount],
+            },
+            scoring: Scoring {
+                primary: Metric::CloneCount,
+                secondary: vec![],
+                fluent: Default::default(),
+                optimal: Default::default(),
+            },
+            hints: vec![],
+            explanation: String::new(),
+            prerequisites: vec![],
+            source: SourceInfo {
+                origin: "original".into(),
+                license: None,
+                attribution: None,
+            },
+        };
+        let ops = [Operation::Select {
+            slot_id: "val".into(),
+            choice_id: "b".into(),
+        }];
+        let recon = reconstruct_with_spans(&puzzle, &ops).unwrap();
+        assert_eq!(recon.source, "let x = 2i64; let y = 2i64;");
+        assert_eq!(
+            recon.spans.len(),
+            2,
+            "same slot at two positions → two spans"
+        );
+        assert_eq!(
+            &recon.source[recon.spans[0].start..recon.spans[0].end],
+            "2i64"
+        );
+        assert_eq!(recon.user_text(), "2i64\n2i64\n");
+        assert_eq!(recon.regions_overlapping(9, 10), vec!["val"]);
+        assert!(recon.regions_overlapping(0, 8).is_empty());
     }
 }

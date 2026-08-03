@@ -22,7 +22,8 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
 - [x] 4. Create the monorepo (skeleton created; name: RustChap)
 - [x] 5. Design the puzzle JSON schema (`schemas/puzzle.schema.json` + `pack` + `outcomes`;
       enforced by `crates/puzzle-schema` — types, validation, reconstruction, hashing, enumeration)
-- [ ] 6. Build the puzzle linter (`tools/puzzle-linter`)
+- [x] 6. Build the puzzle linter (`tools/puzzle-linter`: structure checks + full-space evaluation
+      via `crates/evaluator` + outcomes sidecar generation + `--check` CI mode)
 - [ ] 7. Hand-author five representative puzzles — one per track, deliberately covering: a compile
       failure, multiple valid answers, a measurable optimal answer, a Clippy-based result, a
       runtime-test answer
@@ -34,7 +35,8 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
 - [ ] 11. Install via Xcode, dogfood — **gate: is the loop addictive?**
 
 ## Phase 4 — evaluation
-- [ ] 12. Rust evaluator as a local CLI (`crates/evaluator`)
+- [ ] 12. Rust evaluator as a local CLI (engine already shipped as the `crates/evaluator` library
+      with step 6; only a thin CLI wrapper remains)
 - [ ] 13. Isolated compiler workers (Docker, no network, fixed toolchain)
 - [ ] 14. Axum API (`services/api`)
 - [ ] 15. Connect iPhone to remote evaluation

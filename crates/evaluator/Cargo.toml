@@ -1,0 +1,11 @@
+[package]
+name = "evaluator"
+edition.workspace = true
+version.workspace = true
+
+[dependencies]
+puzzle-schema = { path = "../puzzle-schema" }
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tempfile.workspace = true

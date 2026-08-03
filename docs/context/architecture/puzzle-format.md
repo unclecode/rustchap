@@ -42,7 +42,10 @@ future Android client possible without sharing UI code. Schema v1 is implemented
   prefix + ordered blocks + suffix; `BestSolution` picks a complete `Candidate`.
 - **Submissions** (`types::Operation`) — `Select{slot_id, choice_id}` / `Arrange{order}` /
   `Pick{candidate_id}`. `template::reconstruct(puzzle, ops)` yields the full source or a precise
-  `ReconstructError`. `template::token_edits` counts departures from originals without compiling.
+  `ReconstructError`; `reconstruct_with_spans` additionally reports each user-controlled byte
+  range (`SourceSpan`) so compiler errors highlight the exact token touched and metrics count
+  only user text (`Reconstruction::user_text`). `template::token_edits` counts departures from
+  originals without compiling.
 - **Canonical hashing** (`ops.rs`) — `normalize_ops` sorts select ops by `slot_id`;
   `normalized_ops_json` is a byte-stable contract (locked by the `canonical_json_shape_is_stable`
   test); `ops_hash` = SHA-256 hex. Cache key everywhere: `toolchain + puzzle_version + ops_hash`.

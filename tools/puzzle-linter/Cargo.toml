@@ -1,0 +1,13 @@
+[package]
+name = "puzzle-linter"
+edition.workspace = true
+version.workspace = true
+
+[dependencies]
+puzzle-schema = { path = "../../crates/puzzle-schema" }
+evaluator = { path = "../../crates/evaluator" }
+serde_json.workspace = true
+anyhow.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

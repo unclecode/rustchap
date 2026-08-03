@@ -15,7 +15,10 @@ pub mod types;
 pub mod validate;
 
 pub use ops::{normalize_ops, normalized_ops_json, ops_hash};
-pub use template::{Segment, parse_template, reconstruct, slot_ids, token_edits};
+pub use template::{
+    Reconstruction, Segment, SourceSpan, parse_template, reconstruct, reconstruct_with_spans,
+    slot_ids, token_edits,
+};
 pub use types::*;
 pub use validate::{
     MAX_SUBMISSION_SPACE, enumerate_submissions, submission_space, validate_puzzle,
