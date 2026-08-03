@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "option-and-result.002",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "12db0d51801fb7c05642227f40ecf8d4f1f9b88fcbf37cd5fc02d83d6c569cde": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5dcb9b46a59c8a200f1d0f8a73da6329f310cc8715d19db8dcb01e28bfa7d6ff": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9d6c66b0780082b3af27bd5324126600acb174d4cd3b030eab358900db202285": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1,
+        "clone_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

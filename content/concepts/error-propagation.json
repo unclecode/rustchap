@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "error-propagation",
+  "title": "Result and the ? operator",
+  "summary": "? unwraps success or returns the error to the caller — propagation in one character.",
+  "lecture": [
+    "A fallible operation returns Result<T, E>. You have three honest moves: handle the error here (match/unwrap_or), pass it up (?), or crash deliberately (unwrap — acceptable in tests and prototypes, a landmine elsewhere).",
+    "`let n = s.parse::<i32>()?;` reads: give me the number, or end this function now returning the error. The enclosing function's return type must be a compatible Result — ? is propagation, so there must be somewhere to propagate to.",
+    "The subtle failure is silent swallowing: unwrap_or(0) makes the error disappear into a plausible value. Now the caller can't distinguish \"parsed zero\" from \"garbage input\" — often worse than the panic, because nothing looks wrong."
+  ],
+  "example": {
+    "code": "fn parse_and_double(s: &str) -> Result<i32, std::num::ParseIntError> {\n    let n = s.parse::<i32>()?;   // error? return it to the caller\n    Ok(n * 2)\n}",
+    "caption": "One character, honest signature, caller decides."
+  }
+}

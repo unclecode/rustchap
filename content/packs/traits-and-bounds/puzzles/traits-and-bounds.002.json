@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.002",
+  "version": 1,
+  "title": "The Weakest Bound",
+  "track": "traits-and-bounds",
+  "concepts": ["traits", "generics", "api-design"],
+  "difficulty": 2,
+  "goal": "announce works for strings AND numbers. The body already tells you which capability it needs.",
+  "template": "fn announce<T: ⟦bound⟧>(items: &[T]) {\n    for item in items {\n        println!(\"- {item}\");\n    }\n}\n\nfn main() {\n    announce(&[\"alpha\", \"beta\"]);\n    announce(&[1, 2, 3]);\n}",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "bound",
+        "original": null,
+        "label": "trait bound",
+        "choices": [
+          { "id": "b1", "text": "std::fmt::Display" },
+          { "id": "b2", "text": "std::fmt::Debug" },
+          { "id": "b3", "text": "Clone" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
+    "metrics": ["clone_count"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0 }
+  },
+  "hints": [
+    "Look at the body: what does {item} in a format string demand?",
+    "Debug would need {item:?}. Clone isn't about printing at all."
+  ],
+  "explanation": "The bound is dictated by usage: `{item}` formats through Display, so `T: Display` is exactly sufficient — for &str and i32 alike. Debug is a different capability ({:?}), and Clone has nothing to do with formatting; both fail with E0277 pointing at the println. The instinct: read the body, demand precisely what it uses — the weakest bound that compiles is the most reusable signature.",
+  "prerequisites": ["traits-and-bounds.001"],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "direct transform of the original plan's trait-bound construction; rustlings generics2 flavor" }
+}

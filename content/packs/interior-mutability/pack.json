@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability",
+  "title": "Interior Mutability",
+  "description": "Cell, RefCell, and mutation through shared references — the runtime contract.",
+  "toolchain": "1.97.1",
+  "order": []
+}

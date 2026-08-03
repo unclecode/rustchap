@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "traits-and-bounds.001",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "5f2df45a16086b8001dbe22960e6e1c7fdbd30e33527b03e527d1a732240446c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`Config` doesn't implement `Debug`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7988a87cea0bfda1db963b6e8145c2a13365fb47ab1429c50c5750c97bd42f74": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "ae57f4639c59255c648853a57be00996a86907e2fe4165f516732bfee98c6f59": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot find derive macro `Display` in this scope",
+          "slot_ids": [
+            "derive_attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`Config` doesn't implement `Debug`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "build-the-iterator.003",
+  "version": 1,
+  "title": "Reuse After the Loop",
+  "track": "build-the-iterator",
+  "concepts": ["iterator", "borrow", "move"],
+  "difficulty": 2,
+  "goal": "Double the numbers AND keep the originals — pick the iterator that doesn't eat its input.",
+  "template": "fn main() {\n    let nums = vec![1, 2, 3];\n    let doubled: Vec<i32> = nums⟦iter_call⟧.map(|n| n * 2).collect();\n    println!(\"{doubled:?} from {nums:?}\");\n}",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "iter_call",
+        "original": ".into_iter()",
+        "label": "iterator call",
+        "choices": [
+          { "id": "c1", "text": ".into_iter()" },
+          { "id": "c2", "text": ".iter()" },
+          { "id": "c3", "text": ".clone().into_iter()" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
+    "metrics": ["clone_count", "token_edits"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": ["token_edits"],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0, "token_edits": 1 }
+  },
+  "hints": [
+    "into_iter() consumes the Vec — the elements move out, and nums is gone.",
+    "iter() lends: the closure sees &i32, and multiplying a &i32 by 2 works just fine."
+  ],
+  "explanation": "The three iterator families differ in what they take: into_iter() moves the collection (nums dies — E0382 at the second println), iter() borrows it (elements arrive as &i32, which arithmetic happily accepts), iter_mut() borrows mutably. Cloning first also 'works' — by paying for a full copy of the Vec. When you need the collection afterwards, iter() is the answer, not clone.",
+  "prerequisites": ["build-the-iterator.001"],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by iterators1/vecs2" }
+}

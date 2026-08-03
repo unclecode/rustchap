@@ -50,18 +50,26 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       `content/packs/index.json`
 
 ## Phase 5 — authentication and durable progress
-- [ ] 16. Identity — decided: anonymous device registration first (optional name/email profile),
-      Sign in with Apple later as account linking
-- [ ] 17. PostgreSQL user/progress model (Postgres via Docker + SQLx)
+- [x] 16. Identity — anonymous device registration (`/v1/devices/register`, hashed bearer token,
+      optional name/email profile); Sign in with Apple later as account linking
+- [x] 17. PostgreSQL user/progress model (Postgres 17 via Docker `tools/dev-db.sh` + SQLx
+      migrations: devices, puzzle_progress, puzzle_attempts)
 - [x] 18. SwiftData offline state (`ProgressStore.swift`: per-puzzle bests + attempts with merge
       rules; track-list badges; verified across cold relaunch)
-- [ ] 19. Cloud synchronization + identity edge cases
+- [x] 19. Cloud synchronization — **Milestone 3**: Keychain identity + SyncService with 401
+      self-heal + profile sheet; verified full uninstall → reinstall → progress restored from
+      server with no duplicate registration
 
-## Phase 6 — the real question bank
-- [ ] 20. Content authoring workflow (`tools/`)
-- [ ] 21. Ingest open-source material (transform, never import)
-- [ ] 22. Complete the first 40 puzzles
-- [ ] 23. Progression analysis pass
+## Phase 6 — the real question bank (reframed 2026-08-03: ingestion, not hand-authoring)
+- [x] 20a. Deck restructure — Euclidea two-level model: 12 named decks (5 with content, 7 planned
+      "Soon"), sequential unlock (solve-all), deck home screen + deck detail + deck-complete flow
+- [x] 20b. Authoring workflow — no authoring UI (decision); linter is the backbone, `--summary`
+      added for outcome-distribution review
+- [x] 21. Ingestion pipeline: `tools/fetch-sources.sh` (rustlings + exercism → bank/sources,
+      gitignored) + `tools/catalog-sources.py` (candidates → suggested decks, bank/catalog.json)
+- [ ] 22. Fill the decks from the bank — in progress: batch 1 done (Move or Borrow → 6 puzzles,
+      57 submissions verified); next batches: Remove the Clone, Slices & Views, Option & Result
+- [ ] 23. Progression analysis pass per deck
 
 ## Phase 7 — product finishing
 - [ ] 24. Track-map navigation

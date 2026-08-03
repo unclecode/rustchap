@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.001",
+  "version": 1,
+  "title": "Printable",
+  "track": "traits-and-bounds",
+  "concepts": ["traits"],
+  "difficulty": 1,
+  "goal": "The struct won't print. Grant it the right capability.",
+  "template": "⟦derive_attr⟧\nstruct Config {\n    retries: u32,\n    verbose: bool,\n}\n\nfn main() {\n    let config = Config { retries: 3, verbose: true };\n    println!(\"{config:?}\");\n}",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "derive_attr",
+        "original": null,
+        "label": "derive attribute",
+        "choices": [
+          { "id": "d1", "text": "#[derive(Debug)]" },
+          { "id": "d2", "text": "#[derive(Clone)]" },
+          { "id": "d3", "text": "#[derive(Display)]" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
+    "metrics": ["clone_count"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0 }
+  },
+  "hints": [
+    "{:?} is the Debug format — it asks the type for the Debug trait specifically.",
+    "Display can't be derived — it's for human-facing output you design by hand. Debug is the mechanical one."
+  ],
+  "explanation": "println!(\"{config:?}\") requires the Debug trait (E0277 without it), and #[derive(Debug)] writes the boring implementation for you. Clone grants the wrong capability entirely — copyable, still unprintable. And Display is deliberately underivable: user-facing formatting is a design decision, so the macro that would guess it doesn't exist. Traits are specific capabilities; grant the one that's actually demanded.",
+  "prerequisites": [],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by traits and structs exercises" }
+}

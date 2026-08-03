@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "closures.001",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "61d2222fffd89c1740dce9f2621a6961b4d71844379305b3d4cdabeeb4fdc8a4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "use of moved value: `greet`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `greeting`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b92942a53ba2b4ff2a2465b476c8f36247e704929e95fdf3c99fb989128ab25d": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "cdcd1157b68c116473740622270a200c6ee57584bd08ffbc5dbbc2e152b90f11": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `greeting`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

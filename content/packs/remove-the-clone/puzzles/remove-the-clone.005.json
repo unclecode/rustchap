@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "remove-the-clone.005",
+  "version": 1,
+  "title": "Sort Without Copy",
+  "track": "remove-the-clone",
+  "concepts": ["clone", "api-design"],
+  "difficulty": 2,
+  "goal": "Alphabetical order, zero clones — and beware the key that lies.",
+  "template": "fn sorted_names() -> Vec<String> {\n    let mut names = vec![\n        String::from(\"zoe\"),\n        String::from(\"amy\"),\n        String::from(\"mia\"),\n    ];\n    ⟦sort_stmt⟧;\n    names\n}\n\nfn main() {\n    println!(\"{:?}\", sorted_names());\n}",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "sort_stmt",
+        "original": "names.sort_by_key(|n| n.clone())",
+        "label": "sort statement",
+        "choices": [
+          { "id": "s1", "text": "names.sort_by_key(|n| n.clone())" },
+          { "id": "s2", "text": "names.sort()" },
+          { "id": "s3", "text": "names.sort_by_key(|n| n.len())" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn alphabetical() {\n    assert_eq!(sorted_names(), vec![\"amy\", \"mia\", \"zoe\"]);\n}"
+    ],
+    "metrics": ["clone_count", "token_edits"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": ["token_edits"],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0, "token_edits": 1 }
+  },
+  "hints": [
+    "sort_by_key clones every element into a key — but the elements ARE the keys.",
+    "Sorting by length compiles happily. Check what the test expects before celebrating."
+  ],
+  "explanation": "sort_by_key(|n| n.clone()) builds an owned copy of every String just to compare them — but when the sort key is the element itself, plain .sort() compares in place with zero allocations. The length-key variant is the deeper trap: it compiles and runs, but sorts by the wrong property entirely — [\"zoe\",\"amy\",\"mia\"] all have length 3, so nothing moves. Compiling is not the same as correct.",
+  "prerequisites": ["remove-the-clone.001"],
+  "source": { "origin": "exercism", "license": "MIT", "attribution": "inspired by sorting-flavored practice exercises" }
+}

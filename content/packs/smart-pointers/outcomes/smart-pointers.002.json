@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "smart-pointers.002",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "17078c017d01d773d5053d0e3da4106419c2b659ac7b140012da475eba2a3c5c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "the type `Rc` does not implement `Copy`",
+          "slot_ids": [
+            "audio_take"
+          ],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1b6c7db27c996eaf1be84078d9538f54e03aab41025910874f0bee772a750418": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "the type `Rc` does not implement `Copy`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6762d5c14f15d434d630a5b1dbc97f94d9c02dbdef0433b07b974e50824d9958": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "clone_count": 1,
+        "clippy_warning_count": 1
+      },
+      "diagnostics": []
+    },
+    "78b3048080b2f90183c1b8e82601aeb8700e296e2a6d917ab64d3124cc1416bc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "the type `Rc` does not implement `Copy`",
+          "slot_ids": [
+            "audio_take"
+          ],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "92e62a020753184aed03ed573a4f20b3f6a0aacb3f59600a1e274970a89b1678": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "the type `Rc` does not implement `Copy`",
+          "slot_ids": [
+            "audio_take"
+          ],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "move_error",
+          "message": "the type `Rc` does not implement `Copy`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b9c78fa399a10bfa55ff32285c9c285a6c19601c7459fbc737a5a7beccaecbe1": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "clone_count": 1,
+        "clippy_warning_count": 1
+      },
+      "diagnostics": []
+    },
+    "f336ecf3faa3115003b610dfdbc32cb0904dbe80052672d8fdb955d3a8f708e1": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "clone_count": 2,
+        "clippy_warning_count": 2
+      },
+      "diagnostics": []
+    },
+    "f7a929fefb2441654811e7142fededd2f26435177c33732753e8d44e21466d52": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0,
+        "clippy_warning_count": 0
+      },
+      "diagnostics": []
+    },
+    "f8e7379213e9a16a7012b647fb82d248a89470d426d7e5363d4eeff3651c8011": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "the type `Rc` does not implement `Copy`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.001",
+  "version": 1,
+  "title": "Match the Shape",
+  "track": "pattern-matching",
+  "concepts": ["pattern-matching"],
+  "difficulty": 1,
+  "goal": "Take each event apart by its shape — and mind the order of the pieces.",
+  "template": "enum Event {\n    Click(i64, i64),\n    Key(char),\n}\n\nfn describe(e: &Event) -> String {\n    match e {\n        ⟦click_pat⟧ => format!(\"click at {x},{y}\"),\n        ⟦key_pat⟧ => format!(\"key {c}\"),\n    }\n}\n\nfn main() {\n    println!(\"{}\", describe(&Event::Click(3, 9)));\n    println!(\"{}\", describe(&Event::Key('q')));\n}",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "click_pat",
+        "original": null,
+        "label": "click pattern",
+        "choices": [
+          { "id": "c1", "text": "Event::Click(x, y)" },
+          { "id": "c2", "text": "Event::Click(y, x)" },
+          { "id": "c3", "text": "Event::Click(x)" }
+        ]
+      },
+      {
+        "id": "key_pat",
+        "original": null,
+        "label": "key pattern",
+        "choices": [
+          { "id": "k1", "text": "Event::Key(c)" },
+          { "id": "k2", "text": "Event::Key(k)" },
+          { "id": "k3", "text": "Key(c)" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn describes() {\n    assert_eq!(describe(&Event::Click(3, 9)), \"click at 3,9\");\n    assert_eq!(describe(&Event::Key('q')), \"key q\");\n}"
+    ],
+    "metrics": ["clone_count"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0 }
+  },
+  "hints": [
+    "The pattern names the variant AND binds its fields — the names must match what the arm's body uses.",
+    "Swapping x and y compiles perfectly. The test knows where you clicked."
+  ],
+  "explanation": "Patterns destructure: Event::Click(x, y) tests the variant and binds both fields in one stroke. The wrong-arity pattern is rejected outright (E0023), the unqualified Key(c) doesn't resolve without a use — but the swapped Event::Click(y, x) compiles and lies: positions are meaning, and only the test notices the click reported mirror-imaged. Patterns are checked for shape by the compiler; for truth, by you.",
+  "prerequisites": [],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by enums3" }
+}

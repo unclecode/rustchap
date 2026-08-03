@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "build-the-iterator.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "24fef29ee676c2b9f69c741f27c66b8d1265ac42de316c52c2096bd8bf55eb0b": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "token_edits": 1,
+        "clone_count": 1
+      },
+      "diagnostics": []
+    },
+    "c6b68837b4b0979cc471399f75004891d7bde27671b9029966c8135e41a3e179": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1,
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "ef7ae9df59685b2b02966f7bc867785c85733a95b9b969cfdc4ca54fecd5c1fc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `nums`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

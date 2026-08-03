@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "closures.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1bb45fa117b41b4d64c3d83bd164f09c0db0727a17c2c26b0271d3ee05f9dbf9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "use of moved value: `f`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "27c6a7baf9b12650cd9db4e303dbf1a6d6c0098ff5478f4c9871567921366370": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0,
+        "mut_bindings": 0
+      },
+      "diagnostics": []
+    },
+    "3f875dc16493d4b4a890925769359c22c0aaf269422b9b62fb7239954e5e30d9": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "clone_count": 0,
+        "mut_bindings": 1
+      },
+      "diagnostics": []
+    },
+    "94619a97a8a0495d22c57b7d70c80fc96b5efea2e52b2c1748bc559d9cd053ce": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot borrow `f` as mutable, as it is not declared as mutable",
+          "slot_ids": [],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "df3032623484384047afa5e17c37336a5f7008f46237defa1cf487797ef1bdd2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "use of moved value: `f`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ea6ff434cd9e732457f020a9dd1553ddc04b1e55bb0f9892eb258fda1e36f8d8": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "clone_count": 0,
+        "mut_bindings": 1
+      },
+      "diagnostics": []
+    }
+  }
+}

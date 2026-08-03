@@ -3,8 +3,18 @@
   "order": [
     "move-or-borrow",
     "remove-the-clone",
+    "slices-and-views",
     "repair-the-lifetime",
+    "option-and-result",
+    "pattern-matching",
     "build-the-iterator",
-    "design-the-api"
+    "closures",
+    "traits-and-bounds",
+    "generics-and-dyn",
+    "smart-pointers",
+    "interior-mutability",
+    "design-the-api",
+    "async-and-send",
+    "unsafe-rust"
   ]
 }

@@ -20,3 +20,6 @@ xcuserdata/
 .context/
 *.rmeta
 build/
+
+# Ingestion raw material (fetched by tools/fetch-sources.sh)
+bank/

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "slices-and-views.002",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1daa9b9d15d4b792eaad8312df3465813922103a8bc50b57b3ed01d681866169": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot return value referencing local variable `owned`",
+          "slot_ids": [
+            "dangling"
+          ],
+          "rust_code": "E0515"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "23b47435238a133a379e87afdd9a9ed45e6eb8a40d41377df8dc2c1c8f76b412": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "eed82546e23a00c0a17f723ce47e23066b4b4292f53ae183026a0e72bb08a9ed": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "clone_count": 1
+      },
+      "diagnostics": []
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "option-and-result.001",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "08968f4e4cb5b8b82be852ddcda578d57c23d76d1110584516aaaec121465aff": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "188fef3225bc13448c4265abab30b37335b3f1c49df782aea0eeee90268b3c9a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "suffix"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "56e1cc7a80e3f08b3c223bbf261eff95da7561021a1695206a539c1d38ac3df3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e42461fc689d19f6141e36ebf9145c90bbc648ea38881e8dbc5ae7b45c0ca3f2": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

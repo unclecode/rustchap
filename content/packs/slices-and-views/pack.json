@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views",
+  "title": "Slices & Views",
+  "description": "Borrowed views into data — zero-copy from the start.",
+  "toolchain": "1.97.1",
+  "order": [
+    "slices-and-views.001",
+    "slices-and-views.002"
+  ]
+}

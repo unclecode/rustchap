@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "traits",
+  "title": "Traits: capability as a contract",
+  "summary": "A trait names what a type can do; impls and derives provide it; bounds demand it.",
+  "lecture": [
+    "A trait is an interface with teeth: `Display` means \"can be shown to users\", `Debug` means \"can be dumped for developers\", `Default` means \"has an obvious empty value\". Types opt in via impl blocks — or via #[derive(...)] when the implementation is mechanical.",
+    "Generic code asks for capabilities with bounds: `fn announce<T: Display>(items: &[T])`. The right bound is read off the body — if you write {item} in a format string, you need Display, not Debug, not Clone. Demand exactly what you use.",
+    "Prefer derive over hand-written impls when they'd do the same thing (Clippy's derivable_impls flags the manual version) — less code, same contract, and it updates itself when fields change."
+  ],
+  "example": {
+    "code": "#[derive(Debug, Default)]\nstruct Config {\n    retries: u32,\n    verbose: bool,\n}\n\nfn announce<T: std::fmt::Display>(items: &[T]) {\n    for item in items {\n        println!(\"- {item}\");\n    }\n}",
+    "caption": "Derives grant contracts; bounds spend them."
+  }
+}

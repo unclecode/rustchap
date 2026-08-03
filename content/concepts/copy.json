@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "copy",
+  "title": "Copy types",
+  "summary": "Small scalar types duplicate on assignment instead of moving — no ownership transfer.",
+  "lecture": [
+    "Types that implement Copy — i32, u64, f64, bool, char, shared references, small tuples of Copy types — are duplicated bit-for-bit when assigned or passed. The original stays fully usable; there is no move, ever.",
+    "That is why passing an i32 to a function and using it afterwards just works, while doing the same with a String is E0382. Heap-owning types (String, Vec, Box) can't be Copy: duplicating them bit-for-bit would create two owners of one allocation.",
+    "Corollary: calling .clone() on a Copy value is pointless — it costs nothing but says nothing. If the compiler never complains about reusing a value, stop cloning it."
+  ],
+  "example": {
+    "code": "let n = 7;\nlet m = n;          // copied — n still fine\nprintln!(\"{n} {m}\");\n\nlet s = String::from(\"hi\");\nlet t = s;          // moved — s is dead",
+    "caption": "Same syntax, opposite semantics — the type decides."
+  }
+}

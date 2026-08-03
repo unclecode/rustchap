@@ -11,7 +11,7 @@ covers (frontmatter `sources:`). Regenerate this index with
 | Fragment | Status | Covers |
 |---|---|---|
 | [Core loop and scoring](foundation/core-loop.md) | foundational | — |
-| [Curriculum](foundation/curriculum.md) | living | move-or-borrow.001.json, remove-the-clone.001.json, repair-the-lifetime.001.json, build-the-iterator.001.json, … |
+| [Curriculum](foundation/curriculum.md) | living | index.json |
 | [Interaction types](foundation/interaction-types.md) | foundational | — |
 | [Product vision](foundation/product-vision.md) | foundational | — |
 
@@ -19,7 +19,7 @@ covers (frontmatter `sources:`). Regenerate this index with
 
 | Fragment | Status | Covers |
 |---|---|---|
-| [Backend API and data model](architecture/backend.md) | living | lib.rs, main.rs |
+| [Backend API and data model](architecture/backend.md) | living | lib.rs, main.rs, db.rs, 0001_init.sql, … |
 | [Evaluation pipeline](architecture/evaluation.md) | living | lib.rs, metrics.rs, rustc_json.rs, evaluate.rs, … |
 | [iOS app](architecture/ios-app.md) | living | project.pbxproj, RustChapApp.swift, Models.swift, ContentStore.swift, … |
 | [Puzzle format and content pipeline](architecture/puzzle-format.md) | living | puzzle.schema.json, pack.schema.json, outcomes.schema.json, concept.schema.json, … |

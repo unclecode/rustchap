@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "design-the-api.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "6f6dccae87bb1b006d4b962a48fd63750d1b26cc4293ff06635689de93bb4ab4": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "clone_count": 0,
+        "mut_bindings": 3
+      },
+      "diagnostics": []
+    },
+    "ef4b8e44ef67b5c6e0ac12b58523ad59136bf9c13db4f7ab211ee5f7af6613fb": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0,
+        "mut_bindings": 0
+      },
+      "diagnostics": []
+    },
+    "f5f5f61ee469d6b7f37f29ebadf0fea6b6f124632f4002a5756da2dc99de5d33": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "clone_count": 0,
+        "mut_bindings": 1
+      },
+      "diagnostics": []
+    }
+  }
+}

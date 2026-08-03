@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "traits-and-bounds.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1e815a778ded18e13f8c5f80c7e5c8242004386ab23cdd0822de4ffb9a567436": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "clone_count": 0,
+        "clippy_warning_count": 1
+      },
+      "diagnostics": []
+    },
+    "8f15d0f74fb289024ef32e9f6aec285663c6e36221d36f13c0a27a4d34813c05": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0,
+        "clippy_warning_count": 0
+      },
+      "diagnostics": []
+    },
+    "d29dcaebf625279d6c4309babd471a1ac5a5e0feda552faa7829f84cb91c2229": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no associated function or constant named `default` found for struct `Config` in the current scope",
+          "slot_ids": [
+            "just_new"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

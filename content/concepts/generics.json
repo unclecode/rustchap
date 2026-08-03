@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "generics",
+  "title": "Generics, impl Trait, and dyn",
+  "summary": "Three ways to say \"some type with this capability\" — compile-time, anonymous, or runtime.",
+  "lecture": [
+    "`fn largest<T: PartialOrd>(list: &[T])` is monomorphized: the compiler stamps out a concrete copy per type used — zero runtime cost, and the bound (`PartialOrd` because the body uses `>`) is the whole requirement.",
+    "`-> impl Iterator<Item = i32>` returns a real concrete type without naming it — essential for iterator chains and closures whose types are unwritable. Still fully static.",
+    "`Box<dyn Draw>` defers to runtime: a fat pointer with a vtable, letting one Vec hold circles AND squares. The cost is a heap allocation and dynamic dispatch; the payoff is heterogeneity. A bare `dyn Draw` can't stand alone — it's unsized, so it lives behind Box, &, or Rc.",
+    "Default to generics; reach for dyn when you genuinely need mixed types in one collection or API."
+  ],
+  "example": {
+    "code": "fn evens() -> impl Iterator<Item = i32> {\n    (0..10).filter(|n| n % 2 == 0)\n}\n\nfn shapes() -> Vec<Box<dyn Draw>> {\n    vec![Box::new(Circle), Box::new(Square)]\n}",
+    "caption": "Static when you can, dynamic when you must."
+  }
+}

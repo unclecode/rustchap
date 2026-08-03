@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "move-or-borrow.004",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "6eb81ddf190a754076169efc34cdb89d99279e7e2618bc6b24c359fe7b8dabec": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `size` in this scope",
+          "slot_ids": [
+            "report"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `boxed` in this scope",
+          "slot_ids": [
+            "report"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a3fef0e8cc285366cca2016de8161fb6f642180099773e82f81b87e913b5925b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `data`",
+          "slot_ids": [
+            "read"
+          ],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bccd1efbc7421cbf8db2a9b2259b07ecc57075f54ab8bc0800097840a1b61708": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `size` in this scope",
+          "slot_ids": [
+            "report"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `boxed` in this scope",
+          "slot_ids": [
+            "report"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c2cf019753d7d4c78c855baa1c4b5e75843fd79f16a761aa14161697a05f9fb3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `boxed` in this scope",
+          "slot_ids": [
+            "report"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d6d327e654e710b175345abdc23edae9a306d8f8373f0509e05ee73f83102969": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `size` in this scope",
+          "slot_ids": [
+            "report"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e14850ee860d23b8f4af10154e5ac77966380062ae80ec1b95f926e507def805": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

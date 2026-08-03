@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "option-and-result.001",
+  "version": 1,
+  "title": "Maybe the First",
+  "track": "option-and-result",
+  "concepts": ["option"],
+  "difficulty": 1,
+  "goal": "The first character of a string that might be empty. Say 'maybe' in the type.",
+  "template": "fn first_char(s: &str) -> ⟦ret_ty⟧ {\n    s.chars().next()⟦suffix⟧\n}\n\nfn main() {\n    println!(\"{:?} {:?}\", first_char(\"hi\"), first_char(\"\"));\n}",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "ret_ty",
+        "original": null,
+        "label": "return type",
+        "choices": [
+          { "id": "r1", "text": "Option<char>" },
+          { "id": "r2", "text": "char" }
+        ]
+      },
+      {
+        "id": "suffix",
+        "original": null,
+        "label": "call suffix",
+        "choices": [
+          { "id": "s1", "text": "" },
+          { "id": "s2", "text": ".unwrap()" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn handles_both() {\n    assert_eq!(first_char(\"hi\"), Some('h'));\n    assert_eq!(first_char(\"\"), None);\n}"
+    ],
+    "metrics": ["clone_count"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0 }
+  },
+  "hints": [
+    "chars().next() already IS an Option — the honest signature just passes it along.",
+    "unwrap() promises 'never empty'. The second test call disagrees."
+  ],
+  "explanation": "The iterator already answers honestly: next() returns Option<char> because a stream can end. Returning that Option keeps the signature truthful and both tests happy. The unwrap variant claims a char always exists — the type checker then rejects comparing char with Some('h'), and even without that, first_char(\"\") would panic at runtime. When the data can be absent, the type should say so.",
+  "prerequisites": [],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by options1" }
+}

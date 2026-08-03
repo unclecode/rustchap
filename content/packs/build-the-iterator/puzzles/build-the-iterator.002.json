@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "build-the-iterator.002",
+  "version": 1,
+  "title": "Sum of Squares",
+  "track": "build-the-iterator",
+  "concepts": [
+    "iterator"
+  ],
+  "difficulty": 1,
+  "goal": "Square everything, add it up. Three pieces, one order.",
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn sum_of_squares(xs: &[i32]) -> i32 {\n    xs",
+    "blocks": [
+      {
+        "id": "sum",
+        "text": "\n        .sum()"
+      },
+      {
+        "id": "iter",
+        "text": "\n        .iter()"
+      },
+      {
+        "id": "square",
+        "text": "\n        .map(|x| x * x)"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn sums_squares() {\n    assert_eq!(sum_of_squares(&[1, 2, 3]), 14);\n    assert_eq!(sum_of_squares(&[]), 0);\n}"
+    ],
+    "metrics": [
+      "explicit_loops",
+      "mut_bindings"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [
+      "mut_bindings"
+    ],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0,
+      "mut_bindings": 0
+    }
+  },
+  "hints": [
+    "A slice isn't an iterator yet — something has to start the flow.",
+    "sum() is a consumer: it ends the pipeline, so nothing can come after it."
+  ],
+  "explanation": "Pipelines have a shape: an adapter source (.iter()), transformations (.map()), then exactly one consumer (.sum()) that drives the whole thing and produces the final value. Any other order fails to compile — the slice has no .map, and sum()'s output (i32) has no .iter. Once the shape is instinct, iterator chains read like sentences.",
+  "prerequisites": [],
+  "source": {
+    "origin": "exercism",
+    "license": "MIT",
+    "attribution": "inspired by difference-of-squares"
+  }
+}

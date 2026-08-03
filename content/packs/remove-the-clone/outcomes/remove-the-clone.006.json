@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "remove-the-clone.006",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "36bde80176131213ba422285b8d831beb5e9212468c13df86550446128af7fbd": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "clone_count": 2
+      },
+      "diagnostics": []
+    },
+    "861520320cb48655584f2e6309fd739c6e0b8d7f3c27e893e207fe6f932f6bf7": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "clone_count": 3
+      },
+      "diagnostics": []
+    },
+    "9f833f0e10a405ae84ef68da361d245b95bcc19108c7a8678fe84cbbe401adcc": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

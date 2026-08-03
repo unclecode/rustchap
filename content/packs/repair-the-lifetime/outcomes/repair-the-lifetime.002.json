@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "repair-the-lifetime.002",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0514cc1305098f05548a4487c4147a3164481d519d1747de3864966567be6c92": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "`label` does not live long enough",
+          "slot_ids": [],
+          "rust_code": "E0597"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "16484e9a5c77097187c5278543a8173a14d66660f5ce4a7fc8d4f56e47c3edc2": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "c676b37ee37f09ae3a18c18ff4e796621ae409751a8531b32c301ca9568e7811": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'b`",
+          "slot_ids": [
+            "label_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ce94a878a37acce28b59ab9ede6e5023bb1278701c84381aa12f9773e2029259": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "`label` does not live long enough",
+          "slot_ids": [],
+          "rust_code": "E0597"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds",
+  "title": "Traits & Bounds",
+  "description": "The weakest bound that still does the job.",
+  "toolchain": "1.97.1",
+  "order": [
+    "traits-and-bounds.001",
+    "traits-and-bounds.002",
+    "traits-and-bounds.003"
+  ]
+}

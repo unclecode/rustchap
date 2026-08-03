@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers",
+  "title": "Smart Pointers",
+  "description": "Box, Rc, Arc, RefCell — ownership beyond the stack.",
+  "toolchain": "1.97.1",
+  "order": [
+    "smart-pointers.001",
+    "smart-pointers.002",
+    "smart-pointers.003"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "pattern-matching.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "25b24b891e1751bbcad2fb865315208ce1d5cef6d555bedcf40738fa7c9a209f": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0,
+        "clippy_warning_count": 0
+      },
+      "diagnostics": []
+    },
+    "3de84749379f2d36526eedcc7eed216fbd3a549410d7754ff17720515ad05439": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "clone_count": 0,
+        "clippy_warning_count": 1
+      },
+      "diagnostics": []
+    },
+    "c8e9d78f671e70664da7eb86a73f107a211befb3eb19c64715ff08598b42f2d1": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0,
+        "clippy_warning_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

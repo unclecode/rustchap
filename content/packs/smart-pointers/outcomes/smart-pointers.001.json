@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "smart-pointers.001",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0861013132261c5b542c0701e5a17483ad6891aff9f2e3503e891e0191654b9e": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "84da221c6d31089c43ec45c994d244b22252075e1c51bca83f9e4c3c021c7fdb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "recursive type `List` has infinite size",
+          "slot_ids": [],
+          "rust_code": "E0072"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c2024b8be7997cdc742b8c82fdf387799d23e1fd5a75087039db6708ba630ba5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "tail_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

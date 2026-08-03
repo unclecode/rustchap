@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "traits-and-bounds.002",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "5b287e3abfa983fc961b13e0711c0e6418769a90b71f7efffe1e7f8096f98abf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`T` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b9e238492ebd4cd571d69da840582f10548a5fe1ff3a233df43ced0c73b347f2": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "e42fffd338e40c02148262135e3b3daa10c0ee14b9b0ee8bad9631cf072731d3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`T` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

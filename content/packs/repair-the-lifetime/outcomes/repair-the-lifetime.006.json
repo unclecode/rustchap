@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "repair-the-lifetime.006",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "37a77c623fac28bb1f1af5d4b20883442436ac17265c6a7ec49837384d37c503": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "`string2` does not live long enough",
+          "slot_ids": [
+            "arg2"
+          ],
+          "rust_code": "E0597"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8a66efa69b50d4270feaff2afe2d9dfbb4fa436220f57f6c104a6bfbbeb93f2a": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1,
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "fb7feb3142c2a5a1c0659644a9740dd2694cf14f390a35284b87ee2937cee3a4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "temporary value dropped while borrowed",
+          "slot_ids": [
+            "arg2"
+          ],
+          "rust_code": "E0716"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -48,8 +48,10 @@ reconstruct_with_spans          (puzzle-schema; illegal ops → status "invalid"
   E0277→`trait_not_implemented`, …), with primary spans mapped back to the slot/block the user
   touched via `Reconstruction::regions_overlapping`. Raw prose stays behind "Compiler details".
 - **Metrics** (`metrics.rs`): word-boundary counting over user-controlled text only —
-  `clone_count` (`.clone()`/`.to_owned()`), `explicit_loops`, `mut_bindings`, `unsafe_blocks`;
-  `token_edits` comes from operations without compiling; `clippy_warning_count` from the deny list.
+  `clone_count` counts explicit copies (`.clone()`, `.to_owned()`, `.to_vec()`, `.cloned()` —
+  extended 2026-08-03 so copying candidates can't tie zero-copy ones), `explicit_loops`,
+  `mut_bindings`, `unsafe_blocks`; `token_edits` comes from operations without compiling;
+  `clippy_warning_count` from the deny list.
 - **Toolchain** (`Toolchain`): rustc/clippy-driver from PATH, edition 2024, and an explicit
   `linker` picked up from `$CC` — cargo config does not apply to direct rustc calls, and on dev
   machines PATH's `cc` may not be a compiler (see the cc-alias note in ~/.cargo/config.toml).

@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "remove-the-clone.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "02b5fce743cd450aa5f26e7478638efebc13f2130582dde328cd748eab9f547b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "greet_arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "07b400512aeef32017e9e378dc42f45e4425b622b4251b504634cea1d20b207e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "farewell_arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2471b6009854f0bf987d51069cdf61b251eca541fd135b77e80281813ce2ef88": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "greet_arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "farewell_arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3573d302a957efac60b34327585ee5c30419b7fd9b506ce424e6aff87c32eb79": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "farewell_arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "89b3bb48c968d3b9cad3137c21154e8a11eaef4f6a20460d651a1a3dafd836c4": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "token_edits": 0,
+        "clone_count": 2
+      },
+      "diagnostics": []
+    },
+    "9d92e567741ece090d7bd135ef9448e2d8eb4507ae0a624935979f26d3d39b49": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "greet_arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ba4c7444aa8671045b23cb4d0a9db7b3cfcb91bb42c906bd412490525ac04408": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "token_edits": 1,
+        "clone_count": 1
+      },
+      "diagnostics": []
+    },
+    "e302c6abaa43b6ca799f469f3225f98328fc6a71cbbc180989388fb0587a8d7e": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "token_edits": 1,
+        "clone_count": 1
+      },
+      "diagnostics": []
+    },
+    "f605c97b547ac0c2d9c1586fdb3b953f628b59ec25cdf7ef8e377dfcc774acae": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2,
+        "clone_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

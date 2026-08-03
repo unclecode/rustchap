@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views.001",
+  "version": 1,
+  "title": "The Nice Slice",
+  "track": "slices-and-views",
+  "concepts": ["slice", "borrow"],
+  "difficulty": 1,
+  "goal": "Everything except the ends — as a view, not a copy.",
+  "template": "fn main() {\n    let a = [1, 2, 3, 4, 5];\n    let nice_slice = ⟦slice_expr⟧;\n    assert_eq!([2, 3, 4], nice_slice);\n    println!(\"neat: {nice_slice:?}\");\n}",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slice_expr",
+        "original": "a",
+        "label": "slice expression",
+        "choices": [
+          { "id": "s1", "text": "a" },
+          { "id": "s2", "text": "&a[1..4]" },
+          { "id": "s3", "text": "&a[1..=4]" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
+    "metrics": ["clone_count", "token_edits"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": ["token_edits"],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0, "token_edits": 1 }
+  },
+  "hints": [
+    "A range index borrows a window: &a[start..end], end exclusive.",
+    "1..=4 also compiles — inclusive ranges grab one more element than you think. The assert knows."
+  ],
+  "explanation": "&a[1..4] borrows elements 1, 2, 3 — a view into the array, no copying, end index exclusive. The whole array fails the assert on shape; the inclusive range 1..=4 compiles fine and then fails at runtime with four elements — the off-by-one that slices make visible. Ranges are half-open by default for exactly this reason: end minus start is the length.",
+  "prerequisites": [],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "direct transform of primitive_types4 (nice_slice)" }
+}

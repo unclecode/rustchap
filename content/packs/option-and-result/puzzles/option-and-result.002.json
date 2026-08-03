@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "option-and-result.002",
+  "version": 1,
+  "title": "The ? Shortcut",
+  "track": "option-and-result",
+  "concepts": ["error-propagation"],
+  "difficulty": 2,
+  "goal": "Parse, double, and be honest about garbage input. One character does it.",
+  "template": "fn parse_and_double(s: &str) -> Result<i32, std::num::ParseIntError> {\n    let n = s.parse::<i32>()⟦handler⟧;\n    Ok(n * 2)\n}\n\nfn main() {\n    println!(\"{:?} {:?}\", parse_and_double(\"21\"), parse_and_double(\"x\"));\n}",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "handler",
+        "original": ".unwrap()",
+        "label": "error handling",
+        "choices": [
+          { "id": "h1", "text": ".unwrap()" },
+          { "id": "h2", "text": "?" },
+          { "id": "h3", "text": ".unwrap_or(0)" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn doubles() {\n    assert_eq!(parse_and_double(\"21\"), Ok(42));\n}",
+      "#[test]\nfn reports_garbage() {\n    assert!(parse_and_double(\"x\").is_err());\n}"
+    ],
+    "metrics": ["clone_count", "token_edits"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": ["token_edits"],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0, "token_edits": 1 }
+  },
+  "hints": [
+    "The function's return type already says Result — someone upstream wants to KNOW about failures.",
+    "unwrap panics on garbage; unwrap_or(0) hides it inside a plausible number. Only one choice tells the caller the truth."
+  ],
+  "explanation": "All three compile. unwrap() turns bad input into a panic — the garbage test dies instead of failing gracefully. unwrap_or(0) is subtler poison: \"x\" quietly becomes Ok(0) and the error test fails because no error exists anymore — the caller can't tell garbage from zero. The ? operator forwards the ParseIntError to the caller, matching the signature's promise exactly: one character, honest function.",
+  "prerequisites": ["option-and-result.001"],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "direct transform of errors2 (? operator)" }
+}

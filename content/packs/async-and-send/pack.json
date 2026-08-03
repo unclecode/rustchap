@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send",
+  "title": "Async & Send",
+  "description": "Futures, ownership across .await, and what Send really promises.",
+  "toolchain": "1.97.1",
+  "order": []
+}

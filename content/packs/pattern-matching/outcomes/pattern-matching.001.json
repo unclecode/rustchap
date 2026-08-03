@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "pattern-matching.001",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "300a51d2a361ff38b48f3425234a787f1d765f924585fbb59427cd75d533a7a7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `y` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this pattern has 1 field, but the corresponding tuple variant has 2 fields",
+          "slot_ids": [
+            "click_pat"
+          ],
+          "rust_code": "E0023"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3055353d0f38fb6519416e94dcbc3eba27e3001786a59a5f43940c80cee9452a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot find tuple struct or tuple variant `Key` in this scope",
+          "slot_ids": [
+            "key_pat"
+          ],
+          "rust_code": "E0531"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6cb197ce76ef0206d255e9ef881587ec863ebc5cb9f42b14ca9ab32e139c48ae": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot find tuple struct or tuple variant `Key` in this scope",
+          "slot_ids": [
+            "key_pat"
+          ],
+          "rust_code": "E0531"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8655b21a1766c9016b911748726a25b45d33663dcc5dfb83b7c439f3cda9bcdc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `y` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `c` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this pattern has 1 field, but the corresponding tuple variant has 2 fields",
+          "slot_ids": [
+            "click_pat"
+          ],
+          "rust_code": "E0023"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9da45e042858684fa53148322fc37c3b92949b1fb306ee23f314a36c12dfc43d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `c` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9ddde2caf5f563e2279e90eccc6dccdab9a99fe1c65403a93615ba0eba72a74c": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a5f7d9e0706afb5b9a7ab0745234dfa92bd051bae706044973cb08065fed2fd8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `c` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c4cdfefdf89669c67e270a69a826b00bf776a612613f44c3a7e3ce9d1a557192": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `y` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot find tuple struct or tuple variant `Key` in this scope",
+          "slot_ids": [
+            "key_pat"
+          ],
+          "rust_code": "E0531"
+        },
+        {
+          "category": "compile_error",
+          "message": "this pattern has 1 field, but the corresponding tuple variant has 2 fields",
+          "slot_ids": [
+            "click_pat"
+          ],
+          "rust_code": "E0023"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f06265c36b6d73ccd7570527d9df2e9c35b8c30e37730723296cba96975f4de9": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

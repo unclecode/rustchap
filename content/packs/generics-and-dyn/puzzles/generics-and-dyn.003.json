@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.003",
+  "version": 1,
+  "title": "The Unnameable Return",
+  "track": "generics-and-dyn",
+  "concepts": ["generics", "iterator"],
+  "difficulty": 3,
+  "goal": "Return the lazy pipeline itself — its true type can't be written, but it can be promised.",
+  "template": "fn evens() -> ⟦ret_ty⟧ {\n    (0..10).filter(|n| n % 2 == 0)\n}\n\nfn main() {\n    let collected: Vec<i32> = evens().collect();\n    println!(\"{collected:?}\");\n}",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "ret_ty",
+        "original": null,
+        "label": "return type",
+        "choices": [
+          { "id": "r1", "text": "impl Iterator<Item = i32>" },
+          { "id": "r2", "text": "Iterator<Item = i32>" },
+          { "id": "r3", "text": "Vec<i32>" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn yields_evens() {\n    assert_eq!(evens().collect::<Vec<_>>(), vec![0, 2, 4, 6, 8]);\n}"
+    ],
+    "metrics": ["clone_count"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0 }
+  },
+  "hints": [
+    "The filter's real type involves a closure — a type with no name you could write.",
+    "impl Trait says: 'a concrete type exists, it does Iterator, and only I know which one'."
+  ],
+  "explanation": "The pipeline's true type is Filter<Range<i32>, {closure}> — unwritable because closures have anonymous types. `impl Iterator<Item = i32>` is the tool for exactly this: a static, concrete, zero-cost return whose name stays private. A bare trait as a return type is unsized and rejected outright, and Vec<i32> demands a .collect() the body never does — it would also throw away the laziness the caller might want. impl Trait keeps pipelines composable across function boundaries.",
+  "prerequisites": ["generics-and-dyn.001"],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by iterators and impl-Trait patterns" }
+}

@@ -13,10 +13,15 @@ Regenerate via `scripts/build-map.py`.
 | `apps/ios/RustChap.xcodeproj/project.pbxproj` | architecture/ios-app.md |
 | `apps/ios/RustChap/Core/APIClient.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Core/ContentStore.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/Core/Keychain.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Core/LocalEvaluator.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Core/Models.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Core/ProgressStore.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/Core/Progression.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/Core/SyncService.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Features/ConceptView.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/Features/DeckListView.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/Features/ProfileView.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Features/PuzzleScreen.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Features/ResultView.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Features/TrackListView.swift` | architecture/ios-app.md |
@@ -24,11 +29,7 @@ Regenerate via `scripts/build-map.py`.
 | `apps/ios/RustChap/PuzzleUI/RustLexer.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/RustChapApp.swift` | architecture/ios-app.md |
 | `apps/ios/Support/Info.plist` | architecture/ios-app.md |
-| `content/packs/build-the-iterator/puzzles/build-the-iterator.001.json` | foundation/curriculum.md |
-| `content/packs/design-the-api/puzzles/design-the-api.001.json` | foundation/curriculum.md |
-| `content/packs/move-or-borrow/puzzles/move-or-borrow.001.json` | foundation/curriculum.md |
-| `content/packs/remove-the-clone/puzzles/remove-the-clone.001.json` | foundation/curriculum.md |
-| `content/packs/repair-the-lifetime/puzzles/repair-the-lifetime.001.json` | foundation/curriculum.md |
+| `content/packs/index.json` | foundation/curriculum.md |
 | `crates/evaluator/src/bin/evaluate.rs` | architecture/evaluation.md |
 | `crates/evaluator/src/lib.rs` | architecture/evaluation.md |
 | `crates/evaluator/src/metrics.rs` | architecture/evaluation.md |
@@ -42,8 +43,11 @@ Regenerate via `scripts/build-map.py`.
 | `schemas/outcomes.schema.json` | architecture/evaluation.md, architecture/puzzle-format.md |
 | `schemas/pack.schema.json` | architecture/puzzle-format.md |
 | `schemas/puzzle.schema.json` | architecture/puzzle-format.md |
+| `services/api/migrations/0001_init.sql` | architecture/backend.md |
+| `services/api/src/db.rs` | architecture/backend.md |
 | `services/api/src/lib.rs` | architecture/backend.md |
 | `services/api/src/main.rs` | architecture/backend.md |
+| `tools/dev-db.sh` | architecture/backend.md |
 | `tools/puzzle-linter/src/lib.rs` | architecture/evaluation.md |
 | `tools/puzzle-linter/src/main.rs` | architecture/evaluation.md |
 
@@ -51,12 +55,12 @@ Regenerate via `scripts/build-map.py`.
 
 | Fragment | Sources |
 |---|---|
-| `architecture/backend.md` | `lib.rs`, `main.rs` |
+| `architecture/backend.md` | `lib.rs`, `main.rs`, `db.rs`, `0001_init.sql`, `dev-db.sh` |
 | `architecture/evaluation.md` | `lib.rs`, `metrics.rs`, `rustc_json.rs`, `evaluate.rs`, `ops.rs`, `lib.rs`, `main.rs`, `outcomes.schema.json` |
-| `architecture/ios-app.md` | `project.pbxproj`, `RustChapApp.swift`, `Models.swift`, `ContentStore.swift`, `LocalEvaluator.swift`, `TrackListView.swift`, `PuzzleScreen.swift`, `ResultView.swift`, `RustLexer.swift`, `CodeSurface.swift`, `ConceptView.swift`, `APIClient.swift`, `ProgressStore.swift`, `Info.plist` |
+| `architecture/ios-app.md` | `project.pbxproj`, `RustChapApp.swift`, `Models.swift`, `ContentStore.swift`, `LocalEvaluator.swift`, `DeckListView.swift`, `TrackListView.swift`, `Progression.swift`, `PuzzleScreen.swift`, `ResultView.swift`, `RustLexer.swift`, `CodeSurface.swift`, `ConceptView.swift`, `APIClient.swift`, `ProgressStore.swift`, `Keychain.swift`, `SyncService.swift`, `ProfileView.swift`, `Info.plist` |
 | `architecture/puzzle-format.md` | `puzzle.schema.json`, `pack.schema.json`, `outcomes.schema.json`, `concept.schema.json`, `lib.rs`, `types.rs`, `template.rs`, `ops.rs`, `validate.rs` |
 | `foundation/core-loop.md` | _(no source files — narrative/reference)_ |
-| `foundation/curriculum.md` | `move-or-borrow.001.json`, `remove-the-clone.001.json`, `repair-the-lifetime.001.json`, `build-the-iterator.001.json`, `design-the-api.001.json` |
+| `foundation/curriculum.md` | `index.json` |
 | `foundation/interaction-types.md` | _(no source files — narrative/reference)_ |
 | `foundation/product-vision.md` | _(no source files — narrative/reference)_ |
 | `roadmap/build-order.md` | _(no source files — narrative/reference)_ |

@@ -4,5 +4,12 @@
   "title": "Move or Borrow",
   "description": "When does a value move, and when is a borrow enough?",
   "toolchain": "1.97.1",
-  "order": ["move-or-borrow.001"]
+  "order": [
+    "move-or-borrow.001",
+    "move-or-borrow.002",
+    "move-or-borrow.003",
+    "move-or-borrow.004",
+    "move-or-borrow.005",
+    "move-or-borrow.006"
+  ]
 }

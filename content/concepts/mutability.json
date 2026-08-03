@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "mutability",
+  "title": "Mutable bindings and &mut",
+  "summary": "mut on a binding allows change; &mut lends exclusive write access — one writer at a time.",
+  "lecture": [
+    "Bindings are immutable unless declared `let mut`. A `&mut T` reference lends the right to modify — and it is exclusive: while a mutable borrow lives, no other borrow of that value may exist, shared or mutable.",
+    "The borrow checker enforces one-writer-XOR-many-readers at compile time. E0499 (two mutable borrows) and E0502 (mutable plus shared borrow) are its signatures — and the usual fix is not cleverness but ORDER: finish reading before you write, or write before you hand out views.",
+    "Non-lexical lifetimes help you: a borrow ends at its last use, not at the closing brace, so reordering statements is often the entire fix."
+  ],
+  "example": {
+    "code": "let mut score = String::from(\"10\");\nlet preview = &score;      // shared borrow…\nprintln!(\"was {preview}\"); // …last use here\nscore.push('0');           // now mutation is fine",
+    "caption": "Read first, then mutate — the borrow has already ended."
+  }
+}

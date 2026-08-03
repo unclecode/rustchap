@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.002",
+  "version": 1,
+  "title": "Box the Trait",
+  "track": "generics-and-dyn",
+  "concepts": ["generics", "traits", "smart-pointers"],
+  "difficulty": 3,
+  "goal": "One Vec, mixed shapes. Trait objects make it possible — with the right wrapping.",
+  "template": "trait Draw {\n    fn draw(&self) -> String;\n}\n\nstruct Circle;\nstruct Square;\n\nimpl Draw for Circle {\n    fn draw(&self) -> String {\n        String::from(\"o\")\n    }\n}\n\nimpl Draw for Square {\n    fn draw(&self) -> String {\n        String::from(\"□\")\n    }\n}\n\nfn shapes() -> Vec<⟦elem_ty⟧> {\n    vec![⟦first_elem⟧, Box::new(Square)]\n}\n\nfn main() {\n    for s in shapes() {\n        print!(\"{}\", s.draw());\n    }\n    println!();\n}",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "elem_ty",
+        "original": null,
+        "label": "element type",
+        "choices": [
+          { "id": "t1", "text": "Box<dyn Draw>" },
+          { "id": "t2", "text": "dyn Draw" },
+          { "id": "t3", "text": "Circle" }
+        ]
+      },
+      {
+        "id": "first_elem",
+        "original": null,
+        "label": "first element",
+        "choices": [
+          { "id": "e1", "text": "Box::new(Circle)" },
+          { "id": "e2", "text": "Circle" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn draws_both() {\n    let all: String = shapes().iter().map(|s| s.draw()).collect();\n    assert_eq!(all, \"o□\");\n}"
+    ],
+    "metrics": ["clone_count"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0 }
+  },
+  "hints": [
+    "dyn Draw has no fixed size — the compiler can't put 'some unknown shape' directly in a Vec.",
+    "Behind a Box, every trait object is one pointer wide. Box the circle, box the square."
+  ],
+  "explanation": "A Vec needs elements of one known size, but Circle and Square are different types — the escape is dynamic dispatch: Box<dyn Draw> is a fat pointer (data + vtable), uniform in size, calling the right draw() at runtime. Bare dyn Draw is unsized and can't live in a Vec directly (E0277), and Vec<Circle> simply can't hold a Square. This is the genuine use case for dyn: heterogeneous collections. When everything's the same type, prefer generics — monomorphization is free.",
+  "prerequisites": ["generics-and-dyn.001"],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by box1 and traits4/5" }
+}

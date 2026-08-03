@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "closures.003",
+  "version": 1,
+  "title": "Fn, FnMut, FnOnce",
+  "track": "closures",
+  "concepts": ["closures", "traits", "generics"],
+  "difficulty": 3,
+  "goal": "run_twice calls its argument twice. Demand the closure trait that makes that legal — with the least machinery.",
+  "template": "fn run_twice<F: ⟦bound⟧>(⟦param_mut⟧f: F) {\n    f();\n    f();\n}\n\nfn main() {\n    let name = String::from(\"crab\");\n    run_twice(|| println!(\"hi {name}\"));\n}",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "bound",
+        "original": null,
+        "label": "closure bound",
+        "choices": [
+          { "id": "b1", "text": "Fn()" },
+          { "id": "b2", "text": "FnMut()" },
+          { "id": "b3", "text": "FnOnce()" }
+        ]
+      },
+      {
+        "id": "param_mut",
+        "original": null,
+        "label": "parameter mutability",
+        "choices": [
+          { "id": "p1", "text": "" },
+          { "id": "p2", "text": "mut " }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
+    "metrics": ["clone_count", "mut_bindings"]
+  },
+  "scoring": {
+    "primary": "mut_bindings",
+    "secondary": ["clone_count"],
+    "fluent": { "mut_bindings": 1 },
+    "optimal": { "mut_bindings": 0 }
+  },
+  "hints": [
+    "FnOnce means exactly what it says — the second f() is using a spent closure.",
+    "FnMut works if you declare the parameter mut. Fn asks for less and needs no mut at all."
+  ],
+  "explanation": "Calling twice rules out FnOnce (the first call consumes f; the second is E0382). FnMut works — calling through it needs `mut f`, one extra pledge of machinery. Fn is the calmest contract: shared-borrow calls, no mut anywhere, and since every Fn closure is also FnMut and FnOnce, demanding Fn costs your CALLERS nothing extra for a print-only closure. The hierarchy nests — ask for the weakest trait your usage allows, in both directions.",
+  "prerequisites": ["closures.001"],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by the Fn-traits exercises and The Book ch13" }
+}

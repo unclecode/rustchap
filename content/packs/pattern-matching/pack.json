@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching",
+  "title": "Pattern Matching",
+  "description": "Destructure everything; make illegal states unrepresentable.",
+  "toolchain": "1.97.1",
+  "order": [
+    "pattern-matching.001",
+    "pattern-matching.002",
+    "pattern-matching.003"
+  ]
+}

@@ -4,5 +4,12 @@
   "title": "Build the Iterator",
   "description": "Assemble pipelines — and learn why order matters.",
   "toolchain": "1.97.1",
-  "order": ["build-the-iterator.001"]
+  "order": [
+    "build-the-iterator.002",
+    "build-the-iterator.001",
+    "build-the-iterator.003",
+    "build-the-iterator.004",
+    "build-the-iterator.006",
+    "build-the-iterator.005"
+  ]
 }

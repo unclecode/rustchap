@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "repair-the-lifetime.004",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1daa9b9d15d4b792eaad8312df3465813922103a8bc50b57b3ed01d681866169": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot return reference to local variable `id`",
+          "slot_ids": [
+            "dangling"
+          ],
+          "rust_code": "E0515"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "73f241e63ef6711f64fe3772f948217ea0916bd47bda1797a08dd9432ac75f53": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "clone_count": 1
+      },
+      "diagnostics": []
+    },
+    "9901e8a7962c71700267a972ed9cbdc5ea0d7726c6aec77099b0e02fcbf64ec1": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

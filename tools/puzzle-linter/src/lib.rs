@@ -83,6 +83,8 @@ pub struct LintReport {
     pub outcomes_written: usize,
     pub errors: Vec<String>,
     pub warnings: Vec<String>,
+    /// Per-puzzle outcome distribution (for `--summary` content review).
+    pub summaries: Vec<String>,
 }
 
 impl LintReport {
@@ -107,6 +109,11 @@ pub fn lint_pack(pack_dir: &Path, toolchain: &Toolchain, opts: &Options) -> Resu
             "pack schema_version must be 1, got {}",
             pack.schema_version
         ));
+    }
+    if pack.order.is_empty() {
+        report
+            .warnings
+            .push("pack has no puzzles — shown locked in the app".to_string());
     }
 
     if !opts.skip_eval {
@@ -219,7 +226,8 @@ fn evaluate_puzzle(
 ) -> Result<()> {
     let id = &puzzle.id;
     let mut outcomes = BTreeMap::new();
-    let (mut solved, mut optimal, mut failed) = (0u32, 0u32, 0u32);
+    let (mut solved, mut optimal, mut fluent, mut failed, mut test_failed) =
+        (0u32, 0u32, 0u32, 0u32, 0u32);
 
     for ops in enumerate_submissions(puzzle) {
         let result = evaluate(puzzle, &ops, toolchain)?;
@@ -227,14 +235,24 @@ fn evaluate_puzzle(
         match result.status {
             EvalStatus::Solved => {
                 solved += 1;
-                if result.rank == Some(Rank::Optimal) {
-                    optimal += 1;
+                match result.rank {
+                    Some(Rank::Optimal) => optimal += 1,
+                    Some(Rank::Fluent) => fluent += 1,
+                    _ => {}
                 }
+            }
+            EvalStatus::TestFailure => {
+                test_failed += 1;
+                failed += 1;
             }
             _ => failed += 1,
         }
         outcomes.insert(ops_hash(&ops), result);
     }
+    report.summaries.push(format!(
+        "{id}: {total} submissions — {solved} solved ({optimal} optimal, {fluent} fluent), {failed} failing ({test_failed} test failures)",
+        total = outcomes.len(),
+    ));
 
     if solved == 0 {
         report

@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "generics-and-dyn.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "4f17de6182145bf18b3d56721420aaf42bf3b2fff4b157f8d5ed26c158340b92": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a type, found a trait",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0782"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "840a73931146cdee984e5222cb80a80c3d8cd57b5ac7e7c631237cddd34b71d0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `collect` found for struct `Vec<i32>` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `collect` found for struct `Vec<i32>` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9a332ee6399669c895dedf5344c6238ce83b5eb29f5a2e107eb145e16c77e903": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

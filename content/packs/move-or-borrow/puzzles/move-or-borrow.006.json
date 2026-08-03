@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.006",
+  "version": 1,
+  "title": "The Loop That Steals",
+  "track": "move-or-borrow",
+  "concepts": ["move", "borrow", "iterator"],
+  "difficulty": 2,
+  "goal": "Print every word, then the count — one edit, no clones.",
+  "template": "fn main() {\n    let words = vec![String::from(\"hi\"), String::from(\"yo\")];\n    for w in ⟦loop_src⟧ {\n        println!(\"{w}\");\n    }\n    println!(\"{} words\", ⟦count_expr⟧);\n}",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "loop_src",
+        "original": "words",
+        "label": "loop source",
+        "choices": [
+          { "id": "l1", "text": "words" },
+          { "id": "l2", "text": "&words" },
+          { "id": "l3", "text": "words.clone()" }
+        ]
+      },
+      {
+        "id": "count_expr",
+        "original": "words.len()",
+        "label": "count expression",
+        "choices": [
+          { "id": "c1", "text": "words.len()" },
+          { "id": "c2", "text": "w.len()" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
+    "metrics": ["clone_count", "token_edits"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": ["token_edits"],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0, "token_edits": 1 }
+  },
+  "hints": [
+    "`for w in words` calls into_iter() — the whole Vec moves into the loop.",
+    "Loop over a borrow instead, and the Vec is still yours afterwards."
+  ],
+  "explanation": "A for loop consumes what you give it: `for w in words` moves the Vec (into_iter), so words.len() afterwards is use-after-move. Cloning the whole Vec buys the loop its own copy — legal, wasteful. `for w in &words` iterates borrowed elements and the Vec survives untouched: one edit, zero allocations. The loop variable also changes meaning (String vs &String) — the printing works either way.",
+  "prerequisites": ["move-or-borrow.001"],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by move_semantics3 and iterators exercises" }
+}

@@ -21,7 +21,10 @@ pub fn compute(
         let value = match metric {
             Metric::TokenEdits => token_edits(puzzle, operations).unwrap_or(0),
             Metric::CloneCount => {
-                count_substring(&user_text, ".clone()") + count_substring(&user_text, ".to_owned()")
+                count_substring(&user_text, ".clone()")
+                    + count_substring(&user_text, ".to_owned()")
+                    + count_substring(&user_text, ".to_vec()")
+                    + count_substring(&user_text, ".cloned()")
             }
             Metric::ExplicitLoops => {
                 count_word(&user_text, "for")

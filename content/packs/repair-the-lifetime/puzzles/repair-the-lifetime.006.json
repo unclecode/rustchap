@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime.006",
+  "version": 1,
+  "title": "Two Sources",
+  "track": "repair-the-lifetime",
+  "concepts": ["lifetime", "static-lifetime", "borrow-scope"],
+  "difficulty": 3,
+  "goal": "The result must outlive the inner block — pick an argument whose lifetime can keep up.",
+  "template": "fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {\n    if x.len() > y.len() { x } else { y }\n}\n\nfn main() {\n    let string1 = String::from(\"long string is long\");\n    let result;\n    {\n        let string2 = String::from(\"xyz\");\n        result = longest(string1.as_str(), ⟦arg2⟧);\n    }\n    println!(\"longest: {result}\");\n}",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "arg2",
+        "original": "string2.as_str()",
+        "label": "second argument",
+        "choices": [
+          { "id": "a1", "text": "string2.as_str()" },
+          { "id": "a2", "text": "\"xyz\"" },
+          { "id": "a3", "text": "string2.clone().as_str()" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
+    "metrics": ["clone_count", "token_edits"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": ["token_edits"],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0, "token_edits": 1 }
+  },
+  "hints": [
+    "result escapes the block, so 'a must cover code past the block — but string2 dies inside it.",
+    "One of the choices lives forever. Literally."
+  ],
+  "explanation": "The call's 'a becomes the intersection of both arguments' lifetimes, and result demands that 'a reach past the block — string2 can't (E0597), and cloning makes it worse: the temporary dies at the very same line (E0716). The literal \"xyz\" is &'static str, so the intersection collapses to string1's comfortable lifetime and result lives. This is rustlings' famous lifetimes2 — the fix isn't annotating harder, it's feeding the call data that lives long enough.",
+  "prerequisites": ["repair-the-lifetime.001"],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "direct transform of lifetimes2" }
+}

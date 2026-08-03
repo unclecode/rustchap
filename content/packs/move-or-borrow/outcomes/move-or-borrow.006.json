@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "move-or-borrow.006",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "3d5b048ff23da23b3568da729c64dc5ef01a1d2e7e118ed39a19089b2d7fe43b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `w` in this scope",
+          "slot_ids": [
+            "count_expr"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "410fe0e092748dcf911dd336cccc6a797e5420894f8bc68bc6ffcef472ab3a04": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1,
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "4cc479b60e5608eb99f0232c64af29792198e5952c9ac187dc28edc50c71fd0d": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "token_edits": 1,
+        "clone_count": 1
+      },
+      "diagnostics": []
+    },
+    "94c6ed8c26f73ca2f51979b2e42c0c4bc96de308ac0c8c9c261e15248d0eb7be": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `w` in this scope",
+          "slot_ids": [
+            "count_expr"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b2650dac65b50c4ea299fb3a36dea3c88ddff4f468ed1b65cc1154fb1a9059fa": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `w` in this scope",
+          "slot_ids": [
+            "count_expr"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d40518eb8bbe5e2661253aa38192bd78e3873c3b3f1fb47c2d515e4a5fa6b526": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `words`",
+          "slot_ids": [
+            "count_expr"
+          ],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

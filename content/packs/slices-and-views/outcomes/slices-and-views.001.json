@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "slices-and-views.001",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "420a59fa56430b7ca4dd6836cbfe3ab878f436a6617086b49d177c561f37be8c": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5bf8a3db3c77660bca1294b275ce528244f2b6aa02f1a176bedd0ca17346a910": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1,
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "d087260b2366cbb694dff95227d38f6945b0818b928f4cb827f1dc25f745f509": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "can't compare `[{integer}; 3]` with `[{integer}; 5]`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

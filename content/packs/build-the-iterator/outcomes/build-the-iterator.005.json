@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "build-the-iterator.005",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "a0d88c39e6ef2c5e0da457642a6eeebba3c6706b348497f3bfe147c726b14d1c": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "a88c2714b4ca1daf7394e1c8c5f8e71315a795e63f7306ae8892cfc7cefacfc0": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "clone_count": 1
+      },
+      "diagnostics": []
+    },
+    "e228a93e31372522087ffb2407187c7cbf32a074a8b97bc82511c6422267dea2": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "clone_count": 2
+      },
+      "diagnostics": []
+    }
+  }
+}

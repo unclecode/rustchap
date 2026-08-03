@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.003",
+  "version": 1,
+  "title": "If Let It Be",
+  "track": "pattern-matching",
+  "concepts": [
+    "pattern-matching",
+    "option"
+  ],
+  "difficulty": 2,
+  "goal": "One interesting case, three ways to handle it. Pick the one with nothing extra.",
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "full_match",
+        "code": "fn shout_if_some(maybe: Option<String>) -> String {\n    match maybe {\n        Some(v) => v.to_uppercase(),\n        None => String::new(),\n    }\n}\n\nfn main() {\n    assert_eq!(shout_if_some(Some(String::from(\"hi\"))), \"HI\");\n    assert_eq!(shout_if_some(None), \"\");\n}"
+      },
+      {
+        "id": "check_then_unwrap",
+        "code": "fn shout_if_some(maybe: Option<String>) -> String {\n    if maybe.is_some() {\n        maybe.unwrap().to_uppercase()\n    } else {\n        String::new()\n    }\n}\n\nfn main() {\n    assert_eq!(shout_if_some(Some(String::from(\"hi\"))), \"HI\");\n    assert_eq!(shout_if_some(None), \"\");\n}"
+      },
+      {
+        "id": "if_let",
+        "code": "fn shout_if_some(maybe: Option<String>) -> String {\n    if let Some(v) = maybe {\n        v.to_uppercase()\n    } else {\n        String::new()\n    }\n}\n\nfn main() {\n    assert_eq!(shout_if_some(Some(String::from(\"hi\"))), \"HI\");\n    assert_eq!(shout_if_some(None), \"\");\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "clippy": {
+      "deny": [
+        "clippy::unnecessary_unwrap"
+      ]
+    },
+    "metrics": [
+      "clippy_warning_count",
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clippy_warning_count",
+    "secondary": [
+      "clone_count"
+    ],
+    "fluent": {
+      "clippy_warning_count": 0
+    },
+    "optimal": {
+      "clippy_warning_count": 0
+    }
+  },
+  "hints": [
+    "is_some() followed by unwrap() checks the shape twice — the pattern could have bound the value the first time.",
+    "if let is match for when only one arm matters."
+  ],
+  "explanation": "check-then-unwrap asks 'is it Some?' and then asks AGAIN inside unwrap — Clippy's unnecessary_unwrap flags the double question, dropping it to Solved. The full match and if let both bind while testing and rank Optimal together — genuinely equal correctness; if let simply says it smaller when the None side is trivial. Rust often has two right answers; unwrap-after-checking is not one of them.",
+  "prerequisites": [
+    "pattern-matching.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by options2/if2"
+  }
+}

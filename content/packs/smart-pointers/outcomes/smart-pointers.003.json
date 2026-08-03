@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "smart-pointers.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "060497ae17cb4bc937af087f666b4e4d4112d9008a537bc1b1d2305903cc9235": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "read_access"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot borrow data in dereference of `Ref<'_, Vec<i32>>` as mutable",
+          "slot_ids": [
+            "mut_access"
+          ],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7ce51ffe646944076e896ad21d19d81982776e9fd4e7261e64f0221015a36ecd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "read_access"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7e3f34466176639e75060900fd0d3aa7e5d4cf32bdfd2124eb08493ac8b7934a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot borrow data in dereference of `Ref<'_, Vec<i32>>` as mutable",
+          "slot_ids": [
+            "mut_access"
+          ],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9d6099b58cb87f8c1dd87fd3f6e4775eab5aeb6fe72fdb92434297ed768ec01d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `push` found for reference `&std::rc::Rc<std::cell::RefCell<Vec<i32>>>` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "read_access"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "aeb06656f7dc8a379765fd9b9c3858157de5e875503d81fc482c25e100588171": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "b30023ca5238b98157cdd0c35510df014cc84cb17508ef367738a8a11f173ecc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `push` found for reference `&std::rc::Rc<std::cell::RefCell<Vec<i32>>>` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers.002",
+  "version": 1,
+  "title": "Share the Config",
+  "track": "smart-pointers",
+  "concepts": ["smart-pointers", "move"],
+  "difficulty": 2,
+  "goal": "Three owners of one theme string — without copying it and without moving it away.",
+  "template": "use std::rc::Rc;\n\nfn main() {\n    let theme = Rc::new(String::from(\"dark\"));\n    let ui = ⟦ui_take⟧;\n    let audio = ⟦audio_take⟧;\n    println!(\"{ui} {audio} {theme} — owners: {}\", Rc::strong_count(&theme));\n}",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "ui_take",
+        "original": null,
+        "label": "ui handle",
+        "choices": [
+          { "id": "u1", "text": "Rc::clone(&theme)" },
+          { "id": "u2", "text": "theme" },
+          { "id": "u3", "text": "theme.clone()" }
+        ]
+      },
+      {
+        "id": "audio_take",
+        "original": null,
+        "label": "audio handle",
+        "choices": [
+          { "id": "a1", "text": "Rc::clone(&theme)" },
+          { "id": "a2", "text": "theme" },
+          { "id": "a3", "text": "theme.clone()" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
+    "clippy": { "deny": ["clippy::clone_on_ref_ptr"] },
+    "metrics": ["clone_count", "clippy_warning_count"]
+  },
+  "scoring": {
+    "primary": "clippy_warning_count",
+    "secondary": ["clone_count"],
+    "fluent": { "clippy_warning_count": 1 },
+    "optimal": { "clippy_warning_count": 0 }
+  },
+  "hints": [
+    "Moving theme into ui leaves nothing for audio — Rc solves this by counting owners, not copying data.",
+    "theme.clone() works but reads like a deep copy. Rc::clone(&theme) says out loud: this is a counter bump."
+  ],
+  "explanation": "Rc means shared ownership: each Rc::clone(&theme) bumps a counter — all three handles point at ONE String, dropped when the last owner goes. Moving theme breaks the later handles (E0382). The method-call spelling theme.clone() does the identical cheap thing, but reads like an expensive deep clone — Clippy's clone_on_ref_ptr pushes toward the prefix form precisely so readers can trust that .clone() means real copying. Same machine, honest syntax.",
+  "prerequisites": ["smart-pointers.001"],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "direct transform of rc1" }
+}

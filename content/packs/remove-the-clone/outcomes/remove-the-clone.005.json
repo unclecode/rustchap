@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "remove-the-clone.005",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "86a9ab64d5deccd217648872039f45e8ea5d13155f1e7a247332037697251e36": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1,
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "c5c0216dbb343be3ea127c2d8305abf947888df96350e668ae9423421f96ec3e": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e5737b02439a2720888139ca7ef4ca44a6bcc51326dd09bf5691ea034fcde226": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "token_edits": 0,
+        "clone_count": 1
+      },
+      "diagnostics": []
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "build-the-iterator.002",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "092f42cbd2555aa3e5bfd64f620ca874d8092e18de8e8027c0cfc3d613179973": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0,
+        "mut_bindings": 0
+      },
+      "diagnostics": []
+    },
+    "100cd49ee0ed8198bc7f67dc46111165d78610775f220cef86b2566ce6d49e19": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `map` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "square"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1fa3206f4e880fd0bdfcf87b798edf2e94dd89edd990f04e3d7156bbae349d0d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `map` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "square"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "40afe9c09dbad39fc5b5130da2985b59b08e60e0e45f8e6dfafc5fb7cbc97c8b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [
+            "sum"
+          ],
+          "rust_code": "E0282"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5061f1cb84eddf496f70bf5959424259a8596b2247a4e901f7391db88166d7bc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `sum` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "sum"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bbe5f0c764a87a56692c31a4120acf4985127b7fcbefdb40dfdbd7ad67cf81f1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `sum` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "sum"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

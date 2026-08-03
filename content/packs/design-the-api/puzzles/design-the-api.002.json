@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.002",
+  "version": 1,
+  "title": "Take What You Need",
+  "track": "design-the-api",
+  "concepts": [
+    "api-design",
+    "deref-coercion",
+    "borrow"
+  ],
+  "difficulty": 2,
+  "goal": "One function, two very different callers — owned text and a literal. Choose the parameter that serves both.",
+  "template": "fn shout(text: ⟦param⟧) -> String {\n    text.to_uppercase()\n}\n\nfn main() {\n    let owned = String::from(\"crab\");\n    println!(\"{}\", shout(⟦arg_owned⟧));\n    println!(\"{}\", shout(⟦arg_lit⟧));\n    println!(\"still here: {owned}\");\n}",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "param",
+        "original": "String",
+        "label": "parameter type",
+        "choices": [
+          {
+            "id": "p1",
+            "text": "String"
+          },
+          {
+            "id": "p2",
+            "text": "&String"
+          },
+          {
+            "id": "p3",
+            "text": "&str"
+          }
+        ]
+      },
+      {
+        "id": "arg_owned",
+        "original": "owned.clone()",
+        "label": "owned argument",
+        "choices": [
+          {
+            "id": "a1",
+            "text": "owned.clone()"
+          },
+          {
+            "id": "a2",
+            "text": "&owned"
+          },
+          {
+            "id": "a3",
+            "text": "owned"
+          }
+        ]
+      },
+      {
+        "id": "arg_lit",
+        "original": "String::from(\"ferris\")",
+        "label": "literal argument",
+        "choices": [
+          {
+            "id": "l1",
+            "text": "String::from(\"ferris\")"
+          },
+          {
+            "id": "l2",
+            "text": "\"ferris\""
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "metrics": [
+      "clone_count",
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [
+      "token_edits"
+    ],
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0,
+      "token_edits": 3
+    }
+  },
+  "hints": [
+    "String demands every caller manufacture ownership; &String rejects literals outright.",
+    "&str accepts &owned by deref coercion AND \"ferris\" directly — the narrowest type serves the most callers."
+  ],
+  "explanation": "The String parameter taxes both callers: the owned side must clone (or lose `owned` for the final println), the literal side must allocate a String::from. &String fixes one caller and abandons the other — literals aren't &String. &str serves everyone: &owned coerces, \"ferris\" just works, nothing allocates. Parameter types are pricing policy for your callers — charge the minimum.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by strings/conversions exercises"
+  }
+}

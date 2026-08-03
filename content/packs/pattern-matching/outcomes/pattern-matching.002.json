@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "pattern-matching.002",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "17638b7ed574d60a431ecc4a02dd01f82e930a4eb69382fad32177e585c98c6e": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "8434d45d5d07cfae328eaab624ce9327f93ac463925069e6f34365d01ab533a4": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "e53356941d24ecbd86301dbd9539550ed33aca8fae366e43e39806dcc777bad6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Blocked` found for enum `Status` in the current scope",
+          "slot_ids": [
+            "last_arm"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

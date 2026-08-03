@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust",
+  "title": "Unsafe Rust",
+  "description": "The five superpowers, and the sound abstractions that cage them.",
+  "toolchain": "1.97.1",
+  "order": []
+}

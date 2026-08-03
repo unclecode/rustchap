@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "borrow-scope",
+  "title": "How long a borrow lasts",
+  "summary": "A borrow ends at its last USE, not at the closing brace — so statement order is a tool.",
+  "lecture": [
+    "Since non-lexical lifetimes (NLL), the compiler tracks where a reference is last *used*, not where it goes out of scope. A `let preview = &data;` whose final use is on the next line stops borrowing right there — later mutation or moving of `data` is fine.",
+    "This turns statement ordering into a first-class fix. 'Cannot move out of `x` because it is borrowed' or 'cannot borrow as mutable' often disappears if you finish all reads before the move or mutation — same statements, different order.",
+    "The reflex to train: when the borrow checker complains about overlap, don't reach for clone — first ask whether the timeline can be untangled."
+  ],
+  "example": {
+    "code": "let data = String::from(\"crab\");\nlet size = measure(&data); // borrow begins and ENDS here\nlet boxed = archive(data); // move is legal — no live borrow\nprintln!(\"{size} vs {boxed}\");",
+    "caption": "Borrow, finish using it, then move. Order is the fix."
+  }
+}

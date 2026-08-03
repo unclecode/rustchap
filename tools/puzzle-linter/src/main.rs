@@ -6,11 +6,13 @@ use std::process::ExitCode;
 use evaluator::Toolchain;
 use puzzle_linter::{Options, lint_pack, load_concepts};
 
-const USAGE: &str = "usage: puzzle-linter [--check] [--skip-eval] [--concepts <dir>] <pack-dir>...";
+const USAGE: &str =
+    "usage: puzzle-linter [--check] [--skip-eval] [--summary] [--concepts <dir>] <pack-dir>...";
 
 fn main() -> ExitCode {
     let mut opts = Options::default();
     let mut concepts_dir: Option<PathBuf> = None;
+    let mut summary = false;
     let mut dirs: Vec<PathBuf> = Vec::new();
 
     let mut args = std::env::args().skip(1);
@@ -18,6 +20,7 @@ fn main() -> ExitCode {
         match arg.as_str() {
             "--check" => opts.check = true,
             "--skip-eval" => opts.skip_eval = true,
+            "--summary" => summary = true,
             "--concepts" => {
                 let Some(dir) = args.next() else {
                     eprintln!("--concepts needs a directory\n{USAGE}");
@@ -66,6 +69,11 @@ fn main() -> ExitCode {
                     report.submissions_evaluated,
                     report.outcomes_written
                 );
+                if summary {
+                    for line in &report.summaries {
+                        println!("  {line}");
+                    }
+                }
                 for warning in &report.warnings {
                     println!("  warn: {warning}");
                 }

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "remove-the-clone.004",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "4f49197d4d41eec80c7f5a29bdd305946bbcea3bacd0dd0ce580483d4f83b89a": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1,
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "b97ea583d6d46265e09d73230fb63c48ab9a982fcf0e644cbfe7cba8b085c226": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "token_edits": 0,
+        "clone_count": 1
+      },
+      "diagnostics": []
+    },
+    "f20808b3d81794b2e53cc3415346e7399a18a9c145296114bc40b9e77065facd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "borrow of partially moved value: `profile`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

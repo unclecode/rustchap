@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "generics-and-dyn.002",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0054ece1a99f25007443d3255ed893cf1cf59f34136a38c21f71ca3ef5c21949": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "first_elem"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1ab63d305f2dbc157747623bb7c90324c7cff0a6fdd7c24a509478564458657b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "53b5c8a986269e7661d2234d2bfa35d548ab0812a01746210f2a0b636b1037a5": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "ab06202cdba5fa2c13aa21addb92a8e5ec327f56e56c613d0b85f66885731894": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `(dyn Draw + 'static)` cannot be known at compilation time",
+          "slot_ids": [
+            "elem_ty"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `(dyn Draw + 'static)` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`Vec<dyn Draw>` is not an iterator",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `iter` found for struct `Vec<T, A>` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `(dyn Draw + 'static)` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 7 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ad0e6e0c4d69d08a5362078404026af57700d57e9d5b55ebb719cb54bd045461": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "first_elem"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ec62f42e3cab9862fb3383d4d1b4932cec6d95677477c487c4bfadc60204cf6d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `(dyn Draw + 'static)` cannot be known at compilation time",
+          "slot_ids": [
+            "elem_ty"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `(dyn Draw + 'static)` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`Vec<dyn Draw>` is not an iterator",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `iter` found for struct `Vec<T, A>` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `(dyn Draw + 'static)` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

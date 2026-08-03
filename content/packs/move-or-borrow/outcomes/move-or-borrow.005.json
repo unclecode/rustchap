@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "move-or-borrow.005",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "02c32929f622412eedc7173c927d1b8df6b12c09f002250b8d1e8ba6de1d1998": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "973603d45c597685fd289e69e17399b1be1c75691fecc6433ddf9e5c293fb169": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c0e07e6b154920759b624ad3cbb04297a08ea8a3d058930f2cbd35cf7dc3ad12": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0,
+        "mut_bindings": 0
+      },
+      "diagnostics": []
+    },
+    "c5dea1cbacb8cecae77db3f78ad7fb157952baa796e860b261029757dbe01747": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cf35fa91025f3d8cc0c6cca9872c04dde8322e06501743c3f53c4213c98882d6": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f4caa562f310a7f2c38f378ed57d0b1f0f9b0e93dbc3c062feb4a4615859178f": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

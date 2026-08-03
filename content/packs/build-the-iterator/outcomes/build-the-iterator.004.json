@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "build-the-iterator.004",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "69ba4ec5a7a859745cb20e6372a62c3b01ee6a7d943d6cdca1fd50b21bbe401a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `filter` found for reference `&[String]` in the current scope",
+          "slot_ids": [
+            "keep_long"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "76bcd0b744800e8eebbf9b9c43cc78d44af5ebf734b4446476b68a3b94040fcc": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7cb3da42ce4840cbb052e468eb421c929f0de3673ab40376afee3accfeccc670": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0,
+        "mut_bindings": 0
+      },
+      "diagnostics": []
+    },
+    "90b756b54aacd47e1311ad9b4f3adc8eaac61eb9fd1a7bfb9670f2ab31526c91": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `next` found for reference `&[String]` in the current scope",
+          "slot_ids": [
+            "next"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c21f5811864386c3089c078b399c627593f00714882275e363698edc3d7c2474": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `next` found for reference `&[String]` in the current scope",
+          "slot_ids": [
+            "next"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "dd85969343aaff75de9aca8e3d808750d49686174192d886f6d32187e663e8b2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `filter` found for reference `&[String]` in the current scope",
+          "slot_ids": [
+            "keep_long"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

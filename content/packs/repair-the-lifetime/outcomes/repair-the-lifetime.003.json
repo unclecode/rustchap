@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "repair-the-lifetime.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0070daf7339b19f60373a19b3b1f10a6644c4cc478ce0bf95a938ca38abf84e7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "init_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0cfa188b6a07503052a25c9c1436977c74b123084d0cadb3ed5e80595e4c0cc5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "lifetime parameter `'a` is never used",
+          "slot_ids": [
+            "struct_generics"
+          ],
+          "rust_code": "E0392"
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `poem`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4adceafa368433d23ac4407ae7e31f090fe634c9429406def7c2634504dd5e5b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "field_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5619172a1f947c0d3d748e0711c59999e8882bd1585cfb3130f2e5315eedf8fb": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "73aa9b21dfa18c0fec30579b4a11dcbf684831dcfe3dadfdd340484d18760d5b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "field_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "783fe92da0e6b68bdb6407deddbcde6929d3bd28144ef503aca3fb54e2c0789a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "field_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9abc25f3f32918f06c1f28425b27e13fe7d489ca6b9b34beaa9cef0dc8df9fbe": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "init_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c19b19efdbbcfdcb28288229e949c1d6379057870ffc26b28b470511617704d5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "init_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c5d7f42916bee8874e546b9f4e4afa9e6f3711a7d08852a68b6513ed546be89b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "field_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c8dfdd269397b0d23d58272ffbfa5b92af769b4281b5e3cf71dcef04eb3b680e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "lifetime parameter `'a` is never used",
+          "slot_ids": [
+            "struct_generics"
+          ],
+          "rust_code": "E0392"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "init_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "db8771a2a38ae3ea7279dd19f944e1714b388edd3bd0b5886fc702ced111fc94": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "field_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e1c7ade0057d364fbe54a36e449e4e903c01c2715156dc43074a4cfc9391a0b4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `poem`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e7eb82da9f165116fcdd0ab6c8a999dffc45f9476ee4b746f731bf76a74854ea": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "field_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e838d0a1cc174e3e5942837ea65fdb6fc335d4d92987677af1841f85f427b5bc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "field_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "eb741294fe2860ef3eed9e39cca6153506c4fba4c5502c9f602a54f7404ba072": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "field_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f6f2e01405b26f097836afa37f90aaa4ef547c9c428bce50188fa6ea01d70e66": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "lifetime parameter `'a` is never used",
+          "slot_ids": [
+            "struct_generics"
+          ],
+          "rust_code": "E0392"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f89777b6f596c6307f1aa3eecaad062b8d4623e89afd7381d7cccf59441ee676": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "field_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fc67ecbf03f89a245a8889ba0c90fd8bad851bacbf1fc9461b5b4f6904552055": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "clone_count": 1
+      },
+      "diagnostics": []
+    }
+  }
+}

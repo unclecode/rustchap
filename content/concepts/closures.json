@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "closures",
+  "title": "Closures: Fn, FnMut, FnOnce",
+  "summary": "What a closure captures — and how — decides how many times you may call it.",
+  "lecture": [
+    "A closure captures its environment as weakly as possible: reading a variable borrows it (&T), mutating borrows mutably (&mut T), and moving it out — or the `move` keyword — takes ownership. You don't declare this; the body decides.",
+    "The capture mode determines the trait: Fn (shared borrow — call it forever), FnMut (mutable borrow — call it repeatedly, needs a mut binding), FnOnce (consumes a capture — one call, then it's spent; a second call is E0382 on the closure itself).",
+    "The hierarchy nests: every Fn is FnMut is FnOnce. So a bound of Fn accepts the most closures for callers that call many times, and FnOnce is the most permissive to receive when you'll call exactly once.",
+    "Watch the Copy trap: `move` on an i32 moves a COPY — the closure gets its own counter, and the original never changes. Compiles fine, does the wrong thing; tests catch what the type system waves through."
+  ],
+  "example": {
+    "code": "let name = String::from(\"crab\");\nlet greet = || println!(\"hi {name}\");   // borrows: Fn, call freely\ngreet();\ngreet();\nprintln!(\"{name}\");                      // still ours\n\nlet consume = || name;                    // moves out: FnOnce\nlet n = consume();                        // once — and never again",
+    "caption": "The body decides the capture; the capture decides the trait."
+  }
+}

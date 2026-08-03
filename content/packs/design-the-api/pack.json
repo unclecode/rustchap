@@ -4,5 +4,9 @@
   "title": "Design the API",
   "description": "All of these compile. Which one is right?",
   "toolchain": "1.97.1",
-  "order": ["design-the-api.001"]
+  "order": [
+    "design-the-api.002",
+    "design-the-api.001",
+    "design-the-api.003"
+  ]
 }
