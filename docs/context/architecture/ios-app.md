@@ -13,6 +13,8 @@ sources:
   - apps/ios/RustChap/PuzzleUI/RustLexer.swift
   - apps/ios/RustChap/PuzzleUI/CodeSurface.swift
   - apps/ios/RustChap/Features/ConceptView.swift
+  - apps/ios/RustChap/Core/APIClient.swift
+  - apps/ios/Support/Info.plist
 related:
   - foundation/interaction-types.md
   - architecture/backend.md
@@ -77,6 +79,24 @@ Verified by simulator-SDK build plus a macOS harness that compiles the real
   `ContentStore.concepts(for:)` maps a puzzle's `concepts` ids to loaded `Concept`s. The puzzle
   screen shows a "Skills for this puzzle" section (title + summary rows); tapping opens the
   lecture sheet with highlighted example code — teaches what the puzzle needs, Euclidea-style.
+
+## Shipped: server integration (step 15 — Milestone 2)
+
+- **`APIClient.swift`**: URLSession client for `services/api`, 3s timeout; default base
+  `http://localhost:8787` (simulator shares the Mac's loopback; loopback is ATS-exempt, and
+  `Support/Info.plist` adds `NSAllowsLocalNetworking` for LAN-IP device testing). Override with
+  the `--api <url>` launch argument. `SubmissionBody`/`PuzzleOperation: Encodable` mirror the
+  Rust `Submission` wire shape.
+- **Server-first content**: `ContentStore.refreshFromServer()` (called from `RustChapApp.task`)
+  replaces bundled packs with the server's copy when reachable — new content without an app
+  rebuild; silent fallback to bundled offline. `ContentSource` drives a track-list footer badge.
+  Server-fetched puzzles keep the bundled outcomes sidecar only when id+version match.
+- **Server-first evaluation**: `ContentStore.evaluate` POSTs to `/evaluate`, falling back to the
+  on-device `LocalEvaluator` lookup offline. `EvaluatedVia` (server-precomputed / server-compiled
+  / on-device) is shown as a small label on the result sheet — the wiring is visible, which is
+  how the alphabetical-pack-order bug was caught (fixed server-side via `content/packs/index.json`).
+- **Automation**: `--autorun` submits the initial state on appear (with `--open`, lets simulator
+  scripts capture result sheets without tapping).
 
 ## Stack
 

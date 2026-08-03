@@ -3,6 +3,7 @@ import SwiftUI
 struct ResultView: View {
     let loaded: ContentStore.LoadedPuzzle
     let result: EvalResult
+    let via: EvaluatedVia
     let nextPuzzleId: String?
     let onRetry: () -> Void
     let onNext: (String) -> Void
@@ -31,6 +32,9 @@ struct ResultView: View {
                                     .foregroundStyle(.secondary)
                             }
                         }
+                        Label(viaText, systemImage: viaIcon)
+                            .font(.caption2)
+                            .foregroundStyle(.tertiary)
                     }
                     .padding(.vertical, 4)
                 }
@@ -147,6 +151,24 @@ struct ResultView: View {
         }
         guard !needs.isEmpty else { return nil }
         return "\(target.name) needs: \(needs.joined(separator: " · "))"
+    }
+
+    // MARK: - Evaluation source
+
+    private var viaText: String {
+        switch via {
+        case .serverCached: "Server verdict · precomputed"
+        case .serverCompiled: "Server verdict · compiled live"
+        case .onDevice: "On-device verdict · offline"
+        }
+    }
+
+    private var viaIcon: String {
+        switch via {
+        case .serverCached: "cloud"
+        case .serverCompiled: "cloud.bolt"
+        case .onDevice: "iphone"
+        }
     }
 
     // MARK: - Status

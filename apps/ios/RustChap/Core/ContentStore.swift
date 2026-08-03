@@ -1,15 +1,31 @@
-// Loads the bundled puzzle packs (content/packs, shipped as a folder
-// reference) and exposes them in curriculum order.
+// Content + evaluation source of truth for the app. Starts from the bundled
+// packs (always available), then refreshes from the server when reachable —
+// so new content arrives without an app rebuild, and the app still works in
+// airplane mode. Evaluation prefers the server, falling back to the bundled
+// outcomes lookup offline.
 
 import Foundation
 import Observation
+
+enum ContentSource {
+    case bundled
+    case server
+}
+
+enum EvaluatedVia {
+    case serverCached
+    case serverCompiled
+    case onDevice
+}
 
 @MainActor
 @Observable
 final class ContentStore {
     struct LoadedPuzzle: Identifiable {
         let puzzle: Puzzle
-        let outcomes: Outcomes
+        /// Bundled sidecar for offline evaluation; server-fetched puzzles get
+        /// one only when the bundled copy matches id + version.
+        let outcomes: Outcomes?
         var id: String { puzzle.id }
     }
 
@@ -21,7 +37,11 @@ final class ContentStore {
 
     private(set) var packs: [LoadedPack] = []
     private(set) var concepts: [String: Concept] = [:]
+    private(set) var source: ContentSource = .bundled
     private(set) var loadError: String?
+
+    private let api = APIClient.fromEnvironment()
+    private var bundledOutcomes: [String: Outcomes] = [:]
 
     private static let trackOrder = [
         "move-or-borrow",
@@ -33,17 +53,73 @@ final class ContentStore {
 
     init() {
         do {
-            packs = try Self.load()
+            packs = try Self.loadBundled()
+            bundledOutcomes = Dictionary(
+                uniqueKeysWithValues: packs.flatMap(\.puzzles).compactMap { loaded in
+                    loaded.outcomes.map { (loaded.id, $0) }
+                }
+            )
             concepts = try Self.loadConcepts()
         } catch {
             loadError = String(describing: error)
         }
     }
 
-    /// The puzzle's skills, in the order the puzzle declares them.
-    func concepts(for puzzle: Puzzle) -> [Concept] {
-        puzzle.concepts.compactMap { concepts[$0] }
+    // MARK: - Server refresh (step 15)
+
+    /// Replace bundled content with the server's copy when reachable.
+    /// Silent no-op when the server is down — bundled content keeps working.
+    func refreshFromServer() async {
+        do {
+            let serverPacks = try await api.packs()
+            var refreshed: [LoadedPack] = []
+            for pack in serverPacks {
+                let detail = try await api.packDetail(pack.id)
+                let puzzles = detail.puzzles.map { puzzle in
+                    let bundled = bundledOutcomes[puzzle.id]
+                    let outcomes = (bundled?.puzzleVersion == puzzle.version) ? bundled : nil
+                    return LoadedPuzzle(puzzle: puzzle, outcomes: outcomes)
+                }
+                refreshed.append(LoadedPack(pack: detail.pack, puzzles: puzzles))
+            }
+            packs = refreshed
+            source = .server
+        } catch {
+            // Server unreachable — stay on bundled content.
+        }
     }
+
+    // MARK: - Evaluation (server first, on-device fallback)
+
+    func evaluate(_ loaded: LoadedPuzzle, operations: [PuzzleOperation]) async -> (EvalResult, EvaluatedVia) {
+        let body = SubmissionBody(
+            puzzleId: loaded.puzzle.id,
+            puzzleVersion: loaded.puzzle.version,
+            operations: operations
+        )
+        do {
+            let response = try await api.evaluate(puzzleId: loaded.puzzle.id, submission: body)
+            return (response.result, response.cached ? .serverCached : .serverCompiled)
+        } catch {
+            if let outcomes = loaded.outcomes,
+               let result = LocalEvaluator(outcomes: outcomes).evaluate(operations) {
+                return (result, .onDevice)
+            }
+            return (
+                EvalResult(
+                    status: .invalid, rank: nil, metrics: [:],
+                    diagnostics: [Diagnostic(
+                        category: "offline",
+                        message: "The server is unreachable and no on-device answers exist for this puzzle.",
+                        slotIds: [], rustCode: nil
+                    )]
+                ),
+                .onDevice
+            )
+        }
+    }
+
+    // MARK: - Lookup
 
     var allPuzzles: [LoadedPuzzle] { packs.flatMap(\.puzzles) }
 
@@ -57,13 +133,21 @@ final class ContentStore {
         return all.indices.contains(index + 1) ? all[index + 1].id : nil
     }
 
+    /// The puzzle's skills, in the order the puzzle declares them.
+    func concepts(for puzzle: Puzzle) -> [Concept] {
+        puzzle.concepts.compactMap { concepts[$0] }
+    }
+
+    // MARK: - Bundled content
+
     private static func loadConcepts() throws -> [String: Concept] {
         guard let root = Bundle.main.url(forResource: "concepts", withExtension: nil) else {
             return [:]
         }
         let decoder = JSONDecoder()
         var result: [String: Concept] = [:]
-        let files = try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: nil)
+        let files = try FileManager.default.contentsOfDirectory(
+            at: root, includingPropertiesForKeys: nil)
         for file in files where file.pathExtension == "json" {
             let concept = try decoder.decode(Concept.self, from: Data(contentsOf: file))
             result[concept.id] = concept
@@ -71,7 +155,7 @@ final class ContentStore {
         return result
     }
 
-    private static func load() throws -> [LoadedPack] {
+    private static func loadBundled() throws -> [LoadedPack] {
         guard let root = Bundle.main.url(forResource: "packs", withExtension: nil) else {
             throw CocoaError(.fileNoSuchFile)
         }
@@ -89,7 +173,7 @@ final class ContentStore {
                     Puzzle.self,
                     from: Data(contentsOf: packDir.appendingPathComponent("puzzles/\(puzzleId).json"))
                 )
-                let outcomes = try decoder.decode(
+                let outcomes = try? decoder.decode(
                     Outcomes.self,
                     from: Data(contentsOf: packDir.appendingPathComponent("outcomes/\(puzzleId).json"))
                 )

@@ -5,6 +5,7 @@ sources:
   - crates/evaluator/src/lib.rs
   - crates/evaluator/src/metrics.rs
   - crates/evaluator/src/rustc_json.rs
+  - crates/evaluator/src/bin/evaluate.rs
   - crates/puzzle-schema/src/ops.rs
   - tools/puzzle-linter/src/lib.rs
   - tools/puzzle-linter/src/main.rs
@@ -68,8 +69,13 @@ Because the legal space is finite (≤ `MAX_SUBMISSION_SPACE` = 512), the sideca
 everywhere: `toolchain + puzzle_version + ops_hash` (`puzzle-schema::ops`). The server later uses
 the same sidecars as a warm cache; live compilation only confirms what precomputation knows.
 
-## Still pending (build-order steps 13–15)
+## Serving layers (steps 12 + 14 shipped)
 
-Compiler workers (Docker: no network, read-only fs, CPU/memory limits, timeout, fixed toolchain),
-the job queue, and the Axum API endpoint wrapping this same `evaluate` call. A thin CLI wrapper
-(step 12) is also trivial now — the engine is the library.
+- **CLI** (`crates/evaluator/src/bin/evaluate.rs`): `evaluate <puzzle.json> < submission.json` →
+  `EvalResult` JSON. Failed submissions exit 0 (a compile error is a result); only
+  infrastructure errors exit 1.
+- **API** (`services/api`): `POST /v1/puzzles/{id}/evaluate` runs sidecar → live cache → live
+  compile, in that order — see [backend](backend.md). Router tests prove the live path agrees
+  with precomputed verdicts.
+- **Deferred to deployment (step 13/28)**: Docker worker isolation + job queue. In-process
+  evaluation is sound while submissions are enumerable operations only.

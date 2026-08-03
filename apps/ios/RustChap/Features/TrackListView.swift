@@ -26,6 +26,17 @@ struct TrackListView: View {
                     }
                 }
             }
+            Section {
+            } footer: {
+                Label(
+                    store.source == .server
+                        ? "Content from server (\(store.packs.count) packs)"
+                        : "Bundled content · server unreachable",
+                    systemImage: store.source == .server ? "cloud.fill" : "internaldrive"
+                )
+                .font(.caption2)
+                .frame(maxWidth: .infinity, alignment: .center)
+            }
         }
         .navigationTitle("RustChap")
     }

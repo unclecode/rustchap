@@ -11,6 +11,7 @@ struct PuzzleScreen: View {
     struct PresentedResult: Identifiable {
         let id = UUID()
         let result: EvalResult
+        let via: EvaluatedVia
     }
 
     @State private var selections: [String: String] = [:]
@@ -22,6 +23,7 @@ struct PuzzleScreen: View {
     @State private var presentedResult: PresentedResult?
     @State private var pendingNextId: String?
     @State private var showHints = false
+    @State private var evaluating = false
 
     private var puzzle: Puzzle { loaded.puzzle }
 
@@ -76,16 +78,30 @@ struct PuzzleScreen: View {
 
             Section {
                 Button(action: run) {
-                    Text("Run")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
+                    if evaluating {
+                        ProgressView()
+                            .frame(maxWidth: .infinity)
+                    } else {
+                        Text("Run")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                    }
                 }
-                .disabled(!canRun)
+                .disabled(!canRun || evaluating)
             }
         }
         .navigationTitle(puzzle.title)
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear(perform: resetToInitial)
+        .onAppear {
+            resetToInitial()
+            // Screenshot automation: submit the initial state right away.
+            if ProcessInfo.processInfo.arguments.contains("--autorun"), canRun {
+                Task {
+                    try? await Task.sleep(for: .milliseconds(800))
+                    run()
+                }
+            }
+        }
         .sensoryFeedback(trigger: presentedResult?.id) { _, _ in
             guard let presented = presentedResult else { return nil }
             return presented.result.status == .solved ? .success : .error
@@ -114,6 +130,7 @@ struct PuzzleScreen: View {
             ResultView(
                 loaded: loaded,
                 result: presented.result,
+                via: presented.via,
                 nextPuzzleId: store.nextPuzzleId(after: puzzle.id),
                 onRetry: { presentedResult = nil },
                 onNext: { nextId in
@@ -228,18 +245,14 @@ struct PuzzleScreen: View {
         case .bestSolution:
             operations = [.pick(candidateId: chosenCandidate ?? "")]
         }
-        let result = LocalEvaluator(outcomes: loaded.outcomes).evaluate(operations)
-            ?? EvalResult(
-                status: .invalid, rank: nil, metrics: [:],
-                diagnostics: [Diagnostic(
-                    category: "missing_outcome",
-                    message: "This submission is not in the precomputed outcomes — content bug.",
-                    slotIds: [], rustCode: nil
-                )]
-            )
-        errorSlotIds = result.status == .compileError
-            ? Set(result.diagnostics.flatMap(\.slotIds))
-            : []
-        presentedResult = PresentedResult(result: result)
+        evaluating = true
+        Task {
+            let (result, via) = await store.evaluate(loaded, operations: operations)
+            errorSlotIds = result.status == .compileError
+                ? Set(result.diagnostics.flatMap(\.slotIds))
+                : []
+            presentedResult = PresentedResult(result: result, via: via)
+            evaluating = false
+        }
     }
 }

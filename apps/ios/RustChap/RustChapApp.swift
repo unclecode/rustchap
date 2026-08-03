@@ -25,6 +25,9 @@ struct RustChapApp: App {
                     }
             }
             .environment(store)
+            .task {
+                await store.refreshFromServer()
+            }
         }
     }
 }

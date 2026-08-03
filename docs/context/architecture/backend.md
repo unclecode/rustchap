@@ -1,7 +1,9 @@
 ---
 title: Backend API and data model
-status: backlog
-sources: []
+status: living
+sources:
+  - services/api/src/lib.rs
+  - services/api/src/main.rs
 related:
   - architecture/evaluation.md
   - architecture/ios-app.md
@@ -10,31 +12,39 @@ related:
 
 # Backend API and data model
 
-Rust service exposing the puzzle catalogue, evaluation, auth, and progress sync. Lives in
+Rust service exposing the puzzle catalogue, evaluation, and (later) auth + progress sync. Lives in
 `services/api/`.
 
-> **Agreed design, no code yet.** When implementation lands, add real file paths to `sources:` and
-> flip `status` to `shipped`.
+## Shipped: catalogue + evaluation API (step 14)
 
-## Stack
-
-Rust stable · Tokio · **Axum** (0.8 line) · Serde · SQLx · **PostgreSQL** · **Redis** · Tracing ·
-Tower middleware. Deployed as one API service plus a compiler-worker pool (see
-[evaluation](evaluation.md)). Puzzle packs served via object storage/CDN eventually.
-
-## Endpoints (v0.1 surface)
+Axum 0.8 + Tokio. `load_content` indexes `content/` at startup (packs, puzzles, outcome
+sidecars); `router` exposes:
 
 ```http
-GET  /v1/app-config
-GET  /v1/packs
-GET  /v1/packs/{pack_id}
-GET  /v1/puzzles/{puzzle_id}
-POST /v1/puzzles/{puzzle_id}/evaluate
-POST /v1/progress/sync
-GET  /v1/leaderboards/{puzzle_id}     (post-v0.1)
+GET  /v1/app-config                        counts + schema version
+GET  /v1/packs                             all pack manifests
+GET  /v1/packs/{pack_id}                   pack + full puzzle JSONs
+GET  /v1/puzzles/{puzzle_id}               one puzzle
+POST /v1/puzzles/{puzzle_id}/evaluate      Submission → {cached, result}
 ```
 
-Anonymous users operate on a local installation ID; no account is required to play.
+`evaluate_submission` answers fastest-first: precomputed sidecar → in-memory live cache
+(`AppState.live_cache`, key `puzzle_id:version:ops_hash`) → real compile via
+`tokio::task::spawn_blocking(evaluator::evaluate)`. Version mismatch → 409 (`ApiError`
+enum maps to status codes). Dev server binds 127.0.0.1:8787 (`--content`, `--port`) — the iOS
+Simulator reaches it as plain `http://localhost:8787` (loopback is ATS-exempt); a physical
+device needs the Mac's LAN IP instead.
+
+> **In-process evaluation is a deliberate dev-stage decision.** Submissions are only
+> `puzzle_id + enumerable operations` — no arbitrary-code surface exists — so the sandboxed
+> worker pool (Docker: no network, pinned toolchain, CPU/memory/time limits) is deferred to
+> deployment (build-order step 13/28), not built before it's needed.
+
+## Planned (phase 5+): auth and durable progress
+
+SQLx · PostgreSQL · Redis · Sign in with Apple. Endpoints to come: `POST /v1/progress/sync`,
+leaderboards post-v0.1. Anonymous users operate on a local installation ID; no account is
+required to play.
 
 ## Authentication — Sign in with Apple
 

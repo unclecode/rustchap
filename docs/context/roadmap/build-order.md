@@ -36,14 +36,18 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       horizontal scroll, inline SlotChips with error highlighting, ChoiceTray)
 - [x] 10. All four interaction types against the five local puzzles (slot chips, block reorder,
       candidate cards; rank ladder + You-vs-Best score in ResultView)
-- [ ] 11. Install via Xcode, dogfood — **gate: is the loop addictive?**
+- [~] 11. Formal multi-day dogfood gate waived (2026-08-03) — continuous dogfooding via simulator
+      instead; physical-device install still pending a signing team in Xcode
 
 ## Phase 4 — evaluation
-- [ ] 12. Rust evaluator as a local CLI (engine already shipped as the `crates/evaluator` library
-      with step 6; only a thin CLI wrapper remains)
-- [ ] 13. Isolated compiler workers (Docker, no network, fixed toolchain)
-- [ ] 14. Axum API (`services/api`)
-- [ ] 15. Connect iPhone to remote evaluation
+- [x] 12. Rust evaluator as a local CLI (`evaluator/src/bin/evaluate.rs`)
+- [ ] 13. Isolated compiler workers — deferred to deployment (in-process evaluation is sound while
+      submissions are enumerable operations only; see evaluation fragment)
+- [x] 14. Axum API (`services/api`: catalogue + evaluate with sidecar → cache → live-compile
+      layering; localhost:8787 dev server; router tests incl. live-compile path)
+- [x] 15. Connect iPhone to remote evaluation — **Milestone 2**: server-first content + evaluation
+      with offline fallback; result sheet shows the verdict source; pack order served from
+      `content/packs/index.json`
 
 ## Phase 5 — authentication and durable progress
 - [ ] 16. Sign in with Apple

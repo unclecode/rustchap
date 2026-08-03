@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "order": [
+    "move-or-borrow",
+    "remove-the-clone",
+    "repair-the-lifetime",
+    "build-the-iterator",
+    "design-the-api"
+  ]
+}

@@ -11,6 +11,7 @@ Regenerate via `scripts/build-map.py`.
 | Source file | Documented in |
 |---|---|
 | `apps/ios/RustChap.xcodeproj/project.pbxproj` | architecture/ios-app.md |
+| `apps/ios/RustChap/Core/APIClient.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Core/ContentStore.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Core/LocalEvaluator.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Core/Models.swift` | architecture/ios-app.md |
@@ -21,11 +22,13 @@ Regenerate via `scripts/build-map.py`.
 | `apps/ios/RustChap/PuzzleUI/CodeSurface.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/PuzzleUI/RustLexer.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/RustChapApp.swift` | architecture/ios-app.md |
+| `apps/ios/Support/Info.plist` | architecture/ios-app.md |
 | `content/packs/build-the-iterator/puzzles/build-the-iterator.001.json` | foundation/curriculum.md |
 | `content/packs/design-the-api/puzzles/design-the-api.001.json` | foundation/curriculum.md |
 | `content/packs/move-or-borrow/puzzles/move-or-borrow.001.json` | foundation/curriculum.md |
 | `content/packs/remove-the-clone/puzzles/remove-the-clone.001.json` | foundation/curriculum.md |
 | `content/packs/repair-the-lifetime/puzzles/repair-the-lifetime.001.json` | foundation/curriculum.md |
+| `crates/evaluator/src/bin/evaluate.rs` | architecture/evaluation.md |
 | `crates/evaluator/src/lib.rs` | architecture/evaluation.md |
 | `crates/evaluator/src/metrics.rs` | architecture/evaluation.md |
 | `crates/evaluator/src/rustc_json.rs` | architecture/evaluation.md |
@@ -38,6 +41,8 @@ Regenerate via `scripts/build-map.py`.
 | `schemas/outcomes.schema.json` | architecture/evaluation.md, architecture/puzzle-format.md |
 | `schemas/pack.schema.json` | architecture/puzzle-format.md |
 | `schemas/puzzle.schema.json` | architecture/puzzle-format.md |
+| `services/api/src/lib.rs` | architecture/backend.md |
+| `services/api/src/main.rs` | architecture/backend.md |
 | `tools/puzzle-linter/src/lib.rs` | architecture/evaluation.md |
 | `tools/puzzle-linter/src/main.rs` | architecture/evaluation.md |
 
@@ -45,9 +50,9 @@ Regenerate via `scripts/build-map.py`.
 
 | Fragment | Sources |
 |---|---|
-| `architecture/backend.md` | _(no source files — narrative/reference)_ |
-| `architecture/evaluation.md` | `lib.rs`, `metrics.rs`, `rustc_json.rs`, `ops.rs`, `lib.rs`, `main.rs`, `outcomes.schema.json` |
-| `architecture/ios-app.md` | `project.pbxproj`, `RustChapApp.swift`, `Models.swift`, `ContentStore.swift`, `LocalEvaluator.swift`, `TrackListView.swift`, `PuzzleScreen.swift`, `ResultView.swift`, `RustLexer.swift`, `CodeSurface.swift`, `ConceptView.swift` |
+| `architecture/backend.md` | `lib.rs`, `main.rs` |
+| `architecture/evaluation.md` | `lib.rs`, `metrics.rs`, `rustc_json.rs`, `evaluate.rs`, `ops.rs`, `lib.rs`, `main.rs`, `outcomes.schema.json` |
+| `architecture/ios-app.md` | `project.pbxproj`, `RustChapApp.swift`, `Models.swift`, `ContentStore.swift`, `LocalEvaluator.swift`, `TrackListView.swift`, `PuzzleScreen.swift`, `ResultView.swift`, `RustLexer.swift`, `CodeSurface.swift`, `ConceptView.swift`, `APIClient.swift`, `Info.plist` |
 | `architecture/puzzle-format.md` | `puzzle.schema.json`, `pack.schema.json`, `outcomes.schema.json`, `concept.schema.json`, `lib.rs`, `types.rs`, `template.rs`, `ops.rs`, `validate.rs` |
 | `foundation/core-loop.md` | _(no source files — narrative/reference)_ |
 | `foundation/curriculum.md` | `move-or-borrow.001.json`, `remove-the-clone.001.json`, `repair-the-lifetime.001.json`, `build-the-iterator.001.json`, `design-the-api.001.json` |
