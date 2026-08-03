@@ -7,7 +7,9 @@ sources:
   - apps/ios/RustChap/Core/Models.swift
   - apps/ios/RustChap/Core/ContentStore.swift
   - apps/ios/RustChap/Core/LocalEvaluator.swift
+  - apps/ios/RustChap/Features/DeckListView.swift
   - apps/ios/RustChap/Features/TrackListView.swift
+  - apps/ios/RustChap/Core/Progression.swift
   - apps/ios/RustChap/Features/PuzzleScreen.swift
   - apps/ios/RustChap/Features/ResultView.swift
   - apps/ios/RustChap/PuzzleUI/RustLexer.swift
@@ -15,6 +17,9 @@ sources:
   - apps/ios/RustChap/Features/ConceptView.swift
   - apps/ios/RustChap/Core/APIClient.swift
   - apps/ios/RustChap/Core/ProgressStore.swift
+  - apps/ios/RustChap/Core/Keychain.swift
+  - apps/ios/RustChap/Core/SyncService.swift
+  - apps/ios/RustChap/Features/ProfileView.swift
   - apps/ios/Support/Info.plist
 related:
   - foundation/interaction-types.md
@@ -45,8 +50,10 @@ Launch → track list → puzzle → result → retry/next, fully offline agains
   compact JSON, SHA-256). `LocalEvaluator.evaluate` looks the hash up in the bundled outcomes:
   Milestone-1 offline evaluation is exact, not mocked. **Any change here or in Rust `ops.rs` must
   keep the two byte-identical** (named `PuzzleOperation` to avoid shadowing Foundation.Operation).
-- **Content** (`ContentStore.swift`): `@MainActor @Observable`; loads `packs/` from the bundle in
-  fixed curriculum order; `nextPuzzleId(after:)` drives Next.
+- **Content** (`ContentStore.swift`): `@MainActor @Observable`; bundled loading reads
+  `packs/index.json` for curriculum order (**never hardcode the deck list** — a hardcoded
+  five-track array once hid ten decks whenever the server was down); missing pack dirs are
+  skipped. `nextPuzzleId(after:)` is deck-scoped.
 - **Screens** (`Features/`): `TrackListView` (sections per pack), `PuzzleScreen` (goal, monospaced
   code preview with slot substitution, placeholder controls — choice `Menu`s, drag-to-reorder
   blocks, candidate rows — Run button), `ResultView` (status icon, rank label, metrics vs best,
@@ -113,12 +120,27 @@ Verified by simulator-SDK build plus a macOS harness that compiles the real
 - Verified headlessly: automation solved two puzzles at different ranks, app killed and
   cold-relaunched — badges restored from the store.
 
-## Next (steps 16–17, 19): anonymous identity + sync
+## Shipped: anonymous identity + cloud sync (step 19 client — Milestone 3)
 
-Decided 2026-08-03: anonymous device identity first (register with server, token in Keychain),
-optional name/email profile fields, Sign in with Apple later as account linking. Server side:
-Postgres via Docker + SQLx, `POST /v1/devices/register`, `POST /v1/progress/sync` with the same
-merge rules, server-verified beats local-only.
+- **`Keychain.swift`**: minimal SecItem wrapper + `DeviceCredentials` (device_id, token). The
+  Keychain outlives the app container — verified: full `simctl uninstall` + reinstall recovered
+  the identity and pulled all progress back from the server with an empty push.
+- **`SyncService.swift`** (@Observable, owns the shared ModelContainer's mainContext):
+  `bootstrap()` at launch = ensure registered → `syncNow()`; another `syncNow()` after every
+  recorded attempt. The server's merge is the authority — local records are pushed, the merged
+  response overwrites local state (attempt_count max-guarded for in-flight attempts).
+  **401 self-heals**: token rejected → credentials dropped → fresh registration → one retry
+  (covers server-side wipes/revocation; found by deleting the device row mid-test).
+  Debug trail written to `Documents/sync.log`.
+- **`APIClient`**: register/profile/sync endpoints; every request attaches
+  `Authorization: Bearer` from `DeviceCredentials` when present — authenticated evaluates get
+  attempt-logged server-side for free. `JSONDecoder.api`/`JSONEncoder.api` handle chrono's
+  fractional-seconds RFC3339 (plain `.iso8601` cannot parse microseconds).
+- **`ProfileView.swift`**: optional name/email form (never required to play), device identity +
+  sync state display; person icon in the track-list toolbar.
+- **RCA — Keychain needs a signed binary**: `CODE_SIGNING_ALLOWED=NO` simulator builds make
+  `SecItemAdd` fail silently (writes no-op, reads nil). Build simulator binaries with default
+  ad-hoc signing ("Sign to Run Locally"); never pass CODE_SIGNING_ALLOWED=NO.
 
 ## Stack
 
@@ -164,11 +186,19 @@ App/
 
 Within each feature: `PuzzleScreen` / `PuzzleViewModel` / `PuzzleState` / `PuzzleService`.
 
-## Navigation
+## Navigation (two levels — the deck model, shipped)
 
-Euclidea-shaped: `Track map → Puzzle → Result → Next`. Secondary screens only: profile, progress,
-settings, puzzle explanation, account management. No course dashboard. Profile shows current track,
-puzzles solved, optimal solutions, attempts, strongest/weakest concepts — no XP, coins, or badges.
+`Route` enum (`.deck(id)` / `.puzzle(id)`) drives one NavigationStack. **`DeckListView`** is home:
+every deck by name with progress (`solved/total`, ★ optimal count), locked decks visible
+(lock icon), planned empty decks marked "Soon". Unlock = previous deck fully solved, derived
+client-side (shared `Progression` helpers; empty decks never complete). **Locked decks are
+browsable**: tapping opens `DeckDetailView` (TrackListView.swift) with the puzzle list grayed +
+per-row locks + "Solve the previous deck to unlock" — preview what's ahead, play nothing.
+`--open` also accepts a deck id (no dot → deck route). `ContentStore.nextPuzzleId(after:)` is
+deck-scoped; the last solve in a deck offers "Deck finished — back to the decks"
+(`onDeckComplete` → path = []), landing where the next chest just unlocked. Deep link
+`--open <puzzle>` builds the two-element path (deck id = puzzle id prefix). No third level,
+no dashboards — by decision.
 
 ## Offline and sync behaviour
 

@@ -7,6 +7,7 @@ struct ResultView: View {
     let nextPuzzleId: String?
     let onRetry: () -> Void
     let onNext: (String) -> Void
+    let onDeckComplete: () -> Void
 
     @State private var showExplanation = false
 
@@ -84,6 +85,13 @@ struct ResultView: View {
                     if result.status == .solved, let nextPuzzleId {
                         Button { onNext(nextPuzzleId) } label: {
                             Text("Next puzzle")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.borderedProminent)
+                    } else if result.status == .solved {
+                        Button(action: onDeckComplete) {
+                            Text("Deck finished — back to the decks")
                                 .font(.headline)
                                 .frame(maxWidth: .infinity)
                         }

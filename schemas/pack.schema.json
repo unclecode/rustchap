@@ -14,10 +14,10 @@
     "toolchain": { "type": "string", "description": "Pinned Rust toolchain every puzzle in the pack is compiled against, e.g. '1.97.1'. Part of the outcomes cache key." },
     "order": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "uniqueItems": true,
       "items": { "type": "string", "pattern": "^[a-z0-9-]+\\.[0-9]{3}$" },
-      "description": "Linear progression. The linter verifies each entry resolves to a puzzle file and prerequisites only point backwards."
+      "description": "Linear progression. Empty = a planned deck, shown locked in the app ('solve all' can never hold for it, so nothing after it unlocks). The linter verifies each entry resolves to a puzzle file and prerequisites only point backwards."
     }
   }
 }

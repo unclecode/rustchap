@@ -43,13 +43,11 @@ final class ContentStore {
     private let api = APIClient.fromEnvironment()
     private var bundledOutcomes: [String: Outcomes] = [:]
 
-    private static let trackOrder = [
-        "move-or-borrow",
-        "remove-the-clone",
-        "repair-the-lifetime",
-        "build-the-iterator",
-        "design-the-api",
-    ]
+    /// Curriculum order comes from packs/index.json in the bundle — the same
+    /// source of truth the server reads. Never hardcode the deck list.
+    private struct PackIndex: Decodable {
+        let order: [String]
+    }
 
     init() {
         do {
@@ -127,10 +125,17 @@ final class ContentStore {
         allPuzzles.first { $0.id == id }
     }
 
+    func pack(containing puzzleId: String) -> LoadedPack? {
+        packs.first { pack in pack.puzzles.contains { $0.id == puzzleId } }
+    }
+
+    /// Next puzzle within the same deck; nil at the deck's end (the deck-complete
+    /// moment belongs to the deck list, where the next chest unlocks).
     func nextPuzzleId(after id: String) -> String? {
-        let all = allPuzzles
-        guard let index = all.firstIndex(where: { $0.id == id }) else { return nil }
-        return all.indices.contains(index + 1) ? all[index + 1].id : nil
+        guard let deck = pack(containing: id),
+              let index = deck.puzzles.firstIndex(where: { $0.id == id })
+        else { return nil }
+        return deck.puzzles.indices.contains(index + 1) ? deck.puzzles[index + 1].id : nil
     }
 
     /// The puzzle's skills, in the order the puzzle declares them.
@@ -160,13 +165,16 @@ final class ContentStore {
             throw CocoaError(.fileNoSuchFile)
         }
         let decoder = JSONDecoder()
+        let index = try decoder.decode(
+            PackIndex.self,
+            from: Data(contentsOf: root.appendingPathComponent("index.json"))
+        )
         var loaded: [LoadedPack] = []
-        for track in trackOrder {
+        for track in index.order {
             let packDir = root.appendingPathComponent(track)
-            let pack = try decoder.decode(
-                Pack.self,
-                from: Data(contentsOf: packDir.appendingPathComponent("pack.json"))
-            )
+            guard let packData = try? Data(contentsOf: packDir.appendingPathComponent("pack.json"))
+            else { continue }
+            let pack = try decoder.decode(Pack.self, from: packData)
             var puzzles: [LoadedPuzzle] = []
             for puzzleId in pack.order {
                 let puzzle = try decoder.decode(

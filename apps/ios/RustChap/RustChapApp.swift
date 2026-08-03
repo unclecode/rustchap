@@ -1,35 +1,62 @@
 import SwiftData
 import SwiftUI
 
+/// Two-level navigation: decks → puzzles. Nothing deeper, by design.
+enum Route: Hashable {
+    case deck(String)
+    case puzzle(String)
+}
+
 @main
 struct RustChapApp: App {
     @State private var store = ContentStore()
-    @State private var path: [String] = []
+    @State private var sync: SyncService
+    @State private var path: [Route] = []
+    private let container: ModelContainer
 
     init() {
-        // Debug/screenshot affordance: `--open <puzzle-id>` deep-links straight
-        // to a puzzle (used by simulator automation; harmless in production).
+        let container = try! ModelContainer(for: PuzzleProgressRecord.self)
+        self.container = container
+        _sync = State(initialValue: SyncService(container: container))
+
+        // Debug/screenshot affordance: `--open <puzzle-or-deck-id>` deep-links
+        // (used by simulator automation; harmless in production).
         let args = ProcessInfo.processInfo.arguments
         if let flag = args.firstIndex(of: "--open"), args.indices.contains(flag + 1) {
-            _path = State(initialValue: [args[flag + 1]])
+            let id = args[flag + 1]
+            if id.contains(".") {
+                let deckId = id.split(separator: ".").dropLast().joined(separator: ".")
+                _path = State(initialValue: [.deck(deckId), .puzzle(id)])
+            } else {
+                _path = State(initialValue: [.deck(id)])
+            }
         }
     }
 
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $path) {
-                TrackListView()
-                    .navigationDestination(for: String.self) { puzzleId in
-                        if let loaded = store.puzzle(id: puzzleId) {
-                            PuzzleScreen(loaded: loaded, path: $path)
+                DeckListView()
+                    .navigationDestination(for: Route.self) { route in
+                        switch route {
+                        case .deck(let deckId):
+                            if let deck = store.packs.first(where: { $0.id == deckId }) {
+                                DeckDetailView(deck: deck)
+                            }
+                        case .puzzle(let puzzleId):
+                            if let loaded = store.puzzle(id: puzzleId) {
+                                PuzzleScreen(loaded: loaded, path: $path)
+                            }
                         }
                     }
             }
             .environment(store)
+            .environment(sync)
             .task {
                 await store.refreshFromServer()
+                await sync.bootstrap()
             }
         }
-        .modelContainer(for: PuzzleProgressRecord.self)
+        .modelContainer(container)
     }
 }

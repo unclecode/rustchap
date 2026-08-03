@@ -6,9 +6,10 @@ import SwiftUI
 
 struct PuzzleScreen: View {
     @Environment(ContentStore.self) private var store
+    @Environment(SyncService.self) private var sync
     @Environment(\.modelContext) private var modelContext
     let loaded: ContentStore.LoadedPuzzle
-    @Binding var path: [String]
+    @Binding var path: [Route]
 
     struct PresentedResult: Identifiable {
         let id = UUID()
@@ -24,6 +25,7 @@ struct PuzzleScreen: View {
     @State private var errorSlotIds: Set<String> = []
     @State private var presentedResult: PresentedResult?
     @State private var pendingNextId: String?
+    @State private var pendingGoHome = false
     @State private var showHints = false
     @State private var evaluating = false
 
@@ -119,7 +121,10 @@ struct PuzzleScreen: View {
                 // dropped by NavigationStack — defer the push until it's gone.
                 if let nextId = pendingNextId {
                     pendingNextId = nil
-                    path = [nextId]
+                    path = [.deck(puzzle.track), .puzzle(nextId)]
+                } else if pendingGoHome {
+                    pendingGoHome = false
+                    path = []
                 }
             }
         ) { presented in
@@ -131,6 +136,10 @@ struct PuzzleScreen: View {
                 onRetry: { presentedResult = nil },
                 onNext: { nextId in
                     pendingNextId = nextId
+                    presentedResult = nil
+                },
+                onDeckComplete: {
+                    pendingGoHome = true
                     presentedResult = nil
                 }
             )
@@ -272,6 +281,7 @@ struct PuzzleScreen: View {
             ProgressRecorder.record(in: modelContext, puzzle: puzzle, result: result)
             presentedResult = PresentedResult(result: result, via: via)
             evaluating = false
+            await sync.syncNow()
         }
     }
 }
