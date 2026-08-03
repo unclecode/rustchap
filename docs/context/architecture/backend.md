@@ -4,6 +4,9 @@ status: living
 sources:
   - services/api/src/lib.rs
   - services/api/src/main.rs
+  - services/api/src/db.rs
+  - services/api/migrations/0001_init.sql
+  - tools/dev-db.sh
 related:
   - architecture/evaluation.md
   - architecture/ios-app.md
@@ -40,11 +43,36 @@ device needs the Mac's LAN IP instead.
 > worker pool (Docker: no network, pinned toolchain, CPU/memory/time limits) is deferred to
 > deployment (build-order step 13/28), not built before it's needed.
 
-## Planned (phase 5+): auth and durable progress
+## Shipped: anonymous identity + durable progress (steps 16-17, 19 server side)
 
-SQLx · PostgreSQL · Redis · Sign in with Apple. Endpoints to come: `POST /v1/progress/sync`,
-leaderboards post-v0.1. Anonymous users operate on a local installation ID; no account is
-required to play.
+Postgres 17 in Docker (`tools/dev-db.sh`, port 5433, volume `rustchap-pgdata`) + SQLx with
+embedded migrations (`db::connect_and_migrate`). `AppState.db` is optional: without a database
+the server still serves content and evaluates; identity/progress endpoints return 503.
+
+```http
+POST /v1/devices/register        {name?, email?} → {device_id, token}
+GET  /v1/devices/me              profile (auth)
+PUT  /v1/devices/me              update name/email — COALESCE, never clears (auth)
+POST /v1/progress/sync           {records: [...]} → merged full set (auth)
+```
+
+- **Identity** (`db.rs`): anonymous device — UUID + bearer token (244 random bits; only the
+  SHA-256 hash is stored, `devices.token_hash`). The app keeps the token in the Keychain, which
+  survives reinstalls — that's what makes progress recovery work. Name/email optional, never
+  required to play. `authenticate` touches `last_seen_at`.
+- **Sync** (`db::merge` + `sync_progress`): plan merge rules — newer puzzle_version wins
+  wholesale; same version: solved beats unsolved, better rank beats worse, earliest first-solve,
+  max attempt count. An empty push returns the server's full set (reinstall recovery).
+- **Attempts**: authenticated `POST /evaluate` calls log a `puzzle_attempts` row
+  (fire-and-forget) — operations, status, rank, metrics, cached — fuel for difficulty analysis.
+- Verified by `tests/identity_sync.rs` against live Postgres (skips without DATABASE_URL):
+  register → 401 unauth → optimal push → weaker-sync-no-downgrade → empty-push recovery →
+  profile COALESCE semantics → attempt row landed.
+
+## Later
+
+Sign in with Apple as account linking on top of device identity; Redis if the in-process caches
+outgrow one instance; leaderboards post-v0.1.
 
 ## Authentication — Sign in with Apple
 

@@ -11,19 +11,22 @@
 //!    `puzzle_id + enumerable operations`; there is no arbitrary-code surface.
 //!    Container isolation arrives with deployment, not before.
 
+pub mod db;
+
 use std::collections::HashMap;
 use std::path::Path;
 use std::sync::{Arc, RwLock};
 
 use anyhow::{Context, Result};
 use axum::extract::{Path as UrlPath, State};
-use axum::http::StatusCode;
+use axum::http::{HeaderMap, StatusCode, header};
 use axum::response::{IntoResponse, Response};
 use axum::routing::{get, post};
 use axum::{Json, Router};
 use evaluator::Toolchain;
 use puzzle_schema::{EvalResult, Outcomes, Pack, Puzzle, Submission, ops_hash};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
+use uuid::Uuid;
 
 pub struct ContentIndex {
     pub packs: Vec<Pack>,
@@ -106,6 +109,9 @@ pub fn load_content(root: &Path) -> Result<ContentIndex> {
 pub struct AppState {
     pub index: ContentIndex,
     pub toolchain: Toolchain,
+    /// Present when Postgres is reachable; identity/progress endpoints
+    /// return 503 without it, content/evaluation work regardless.
+    pub db: Option<sqlx::PgPool>,
     /// On-demand compilation results, keyed by `puzzle_id + version + ops_hash`.
     live_cache: RwLock<HashMap<String, EvalResult>>,
 }
@@ -115,8 +121,14 @@ impl AppState {
         AppState {
             index,
             toolchain: Toolchain::default(),
+            db: None,
             live_cache: RwLock::new(HashMap::new()),
         }
+    }
+
+    pub fn with_db(mut self, pool: sqlx::PgPool) -> Self {
+        self.db = Some(pool);
+        self
     }
 }
 
@@ -130,7 +142,114 @@ pub fn router(state: Arc<AppState>) -> Router {
             "/v1/puzzles/{puzzle_id}/evaluate",
             post(evaluate_submission),
         )
+        .route("/v1/devices/register", post(register_device))
+        .route("/v1/devices/me", get(get_profile).put(update_profile))
+        .route("/v1/progress/sync", post(sync_progress))
         .with_state(state)
+}
+
+// MARK: - Device auth (anonymous bearer token)
+
+fn bearer_token(headers: &HeaderMap) -> Option<&str> {
+    headers
+        .get(header::AUTHORIZATION)?
+        .to_str()
+        .ok()?
+        .strip_prefix("Bearer ")
+}
+
+/// Resolve the calling device, or the reason it can't be resolved.
+async fn require_device(state: &AppState, headers: &HeaderMap) -> Result<Uuid, ApiError> {
+    let Some(pool) = &state.db else {
+        return Err(ApiError::NoDatabase);
+    };
+    let Some(token) = bearer_token(headers) else {
+        return Err(ApiError::Unauthorized);
+    };
+    match db::authenticate(pool, token).await {
+        Ok(Some(device_id)) => Ok(device_id),
+        Ok(None) => Err(ApiError::Unauthorized),
+        Err(e) => {
+            tracing::error!("auth lookup failed: {e}");
+            Err(ApiError::Internal("auth lookup failed"))
+        }
+    }
+}
+
+#[derive(Deserialize, Default)]
+struct ProfileBody {
+    name: Option<String>,
+    email: Option<String>,
+}
+
+async fn register_device(
+    State(state): State<Arc<AppState>>,
+    body: Option<Json<ProfileBody>>,
+) -> Result<Json<db::RegisteredDevice>, ApiError> {
+    let Some(pool) = &state.db else {
+        return Err(ApiError::NoDatabase);
+    };
+    let body = body.map(|Json(b)| b).unwrap_or_default();
+    db::register_device(pool, body.name.as_deref(), body.email.as_deref())
+        .await
+        .map(Json)
+        .map_err(|e| {
+            tracing::error!("register failed: {e}");
+            ApiError::Internal("register failed")
+        })
+}
+
+async fn get_profile(
+    State(state): State<Arc<AppState>>,
+    headers: HeaderMap,
+) -> Result<Json<db::DeviceProfile>, ApiError> {
+    let device_id = require_device(&state, &headers).await?;
+    let pool = state.db.as_ref().expect("checked by require_device");
+    db::get_profile(pool, device_id)
+        .await
+        .map_err(|e| {
+            tracing::error!("profile fetch failed: {e}");
+            ApiError::Internal("profile fetch failed")
+        })?
+        .map(Json)
+        .ok_or(ApiError::NotFound)
+}
+
+async fn update_profile(
+    State(state): State<Arc<AppState>>,
+    headers: HeaderMap,
+    Json(body): Json<ProfileBody>,
+) -> Result<StatusCode, ApiError> {
+    let device_id = require_device(&state, &headers).await?;
+    let pool = state.db.as_ref().expect("checked by require_device");
+    db::update_profile(pool, device_id, body.name.as_deref(), body.email.as_deref())
+        .await
+        .map(|_| StatusCode::NO_CONTENT)
+        .map_err(|e| {
+            tracing::error!("profile update failed: {e}");
+            ApiError::Internal("profile update failed")
+        })
+}
+
+#[derive(Serialize, Deserialize)]
+struct SyncBody {
+    records: Vec<db::ProgressRecord>,
+}
+
+async fn sync_progress(
+    State(state): State<Arc<AppState>>,
+    headers: HeaderMap,
+    Json(body): Json<SyncBody>,
+) -> Result<Json<SyncBody>, ApiError> {
+    let device_id = require_device(&state, &headers).await?;
+    let pool = state.db.as_ref().expect("checked by require_device");
+    db::sync_progress(pool, device_id, &body.records)
+        .await
+        .map(|records| Json(SyncBody { records }))
+        .map_err(|e| {
+            tracing::error!("sync failed: {e}");
+            ApiError::Internal("sync failed")
+        })
 }
 
 // MARK-style sections keep handler order matching the route table above.
@@ -199,6 +318,7 @@ pub struct EvaluateResponse {
 async fn evaluate_submission(
     State(state): State<Arc<AppState>>,
     UrlPath(puzzle_id): UrlPath<String>,
+    headers: HeaderMap,
     Json(submission): Json<Submission>,
 ) -> Result<Json<EvaluateResponse>, ApiError> {
     let puzzle = state
@@ -214,55 +334,84 @@ async fn evaluate_submission(
     }
 
     let hash = ops_hash(&submission.operations);
-
-    // 1. Precomputed outcomes.
-    if let Some(sidecar) = state.index.outcomes.get(&puzzle_id)
-        && let Some(result) = sidecar.outcomes.get(&hash)
-    {
-        return Ok(Json(EvaluateResponse {
-            cached: true,
-            result: result.clone(),
-        }));
-    }
-
-    // 2. Live cache.
     let cache_key = format!("{}:{}:{}", puzzle.id, puzzle.version, hash);
-    if let Some(result) = state.live_cache.read().expect("cache lock").get(&cache_key) {
-        return Ok(Json(EvaluateResponse {
-            cached: true,
-            result: result.clone(),
-        }));
+
+    // Fastest first: precomputed sidecar → live cache → real compile.
+    let (result, cached) = if let Some(result) = state
+        .index
+        .outcomes
+        .get(&puzzle_id)
+        .and_then(|sidecar| sidecar.outcomes.get(&hash))
+    {
+        (result.clone(), true)
+    } else if let Some(result) = state.live_cache.read().expect("cache lock").get(&cache_key) {
+        (result.clone(), true)
+    } else {
+        let puzzle_clone = puzzle.clone();
+        let toolchain = state.toolchain.clone();
+        let operations = submission.operations.clone();
+        let result = tokio::task::spawn_blocking(move || {
+            evaluator::evaluate(&puzzle_clone, &operations, &toolchain)
+        })
+        .await
+        .map_err(|_| ApiError::Internal("evaluation task panicked"))?
+        .map_err(|e| {
+            tracing::error!("evaluation failed: {e}");
+            ApiError::Internal("evaluation failed")
+        })?;
+        state
+            .live_cache
+            .write()
+            .expect("cache lock")
+            .insert(cache_key, result.clone());
+        (result, false)
+    };
+
+    // Authenticated submissions become attempt rows (fire-and-forget) —
+    // fuel for difficulty analysis and replay measurement.
+    if let Some(pool) = state.db.clone()
+        && let Ok(device_id) = require_device(&state, &headers).await
+    {
+        let puzzle_id = puzzle.id.clone();
+        let puzzle_version = puzzle.version as i32;
+        let operations = serde_json::to_value(&submission.operations).unwrap_or_default();
+        let status = serde_json::to_value(result.status)
+            .ok()
+            .and_then(|v| v.as_str().map(String::from))
+            .unwrap_or_default();
+        let rank = result
+            .rank
+            .and_then(|r| serde_json::to_value(r).ok())
+            .and_then(|v| v.as_str().map(String::from));
+        let metrics = serde_json::to_value(&result.metrics).unwrap_or_default();
+        tokio::spawn(async move {
+            if let Err(e) = db::record_attempt(
+                &pool,
+                device_id,
+                &puzzle_id,
+                puzzle_version,
+                operations,
+                &status,
+                rank.as_deref(),
+                metrics,
+                cached,
+            )
+            .await
+            {
+                tracing::warn!("attempt log failed: {e}");
+            }
+        });
     }
 
-    // 3. Live compile on a blocking thread.
-    let puzzle_clone = puzzle.clone();
-    let toolchain = state.toolchain.clone();
-    let operations = submission.operations.clone();
-    let result = tokio::task::spawn_blocking(move || {
-        evaluator::evaluate(&puzzle_clone, &operations, &toolchain)
-    })
-    .await
-    .map_err(|_| ApiError::Internal("evaluation task panicked"))?
-    .map_err(|e| {
-        tracing::error!("evaluation failed: {e}");
-        ApiError::Internal("evaluation failed")
-    })?;
-
-    state
-        .live_cache
-        .write()
-        .expect("cache lock")
-        .insert(cache_key, result.clone());
-    Ok(Json(EvaluateResponse {
-        cached: false,
-        result,
-    }))
+    Ok(Json(EvaluateResponse { cached, result }))
 }
 
 pub enum ApiError {
     NotFound,
     BadRequest(&'static str),
     VersionMismatch,
+    Unauthorized,
+    NoDatabase,
     Internal(&'static str),
 }
 
@@ -274,6 +423,11 @@ impl IntoResponse for ApiError {
             ApiError::VersionMismatch => (
                 StatusCode::CONFLICT,
                 "puzzle version mismatch — refresh content",
+            ),
+            ApiError::Unauthorized => (StatusCode::UNAUTHORIZED, "unknown or missing device token"),
+            ApiError::NoDatabase => (
+                StatusCode::SERVICE_UNAVAILABLE,
+                "identity/progress requires the database",
             ),
             ApiError::Internal(m) => (StatusCode::INTERNAL_SERVER_ERROR, m),
         };

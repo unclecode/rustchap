@@ -34,24 +34,153 @@ struct APIClient {
     }
 
     func evaluate(puzzleId: String, submission: SubmissionBody) async throws -> EvaluateResponse {
-        var request = URLRequest(url: baseURL.appendingPathComponent("v1/puzzles/\(puzzleId)/evaluate"))
-        request.httpMethod = "POST"
+        try await send("POST", "v1/puzzles/\(puzzleId)/evaluate", body: submission)
+    }
+
+    // MARK: Identity + sync (anonymous device, token from the Keychain)
+
+    func register(name: String?, email: String?) async throws -> RegisteredDevice {
+        try await send("POST", "v1/devices/register", body: ProfileBody(name: name, email: email))
+    }
+
+    func profile() async throws -> DeviceProfileWire {
+        try await get("v1/devices/me")
+    }
+
+    func updateProfile(name: String?, email: String?) async throws {
+        let _: EmptyReply = try await send(
+            "PUT", "v1/devices/me",
+            body: ProfileBody(name: name, email: email)
+        )
+    }
+
+    func syncProgress(_ records: [ProgressWire]) async throws -> [ProgressWire] {
+        let reply: SyncBody = try await send("POST", "v1/progress/sync", body: SyncBody(records: records))
+        return reply.records
+    }
+
+    // MARK: Plumbing
+
+    private func request(_ method: String, _ path: String) -> URLRequest {
+        var request = URLRequest(url: baseURL.appendingPathComponent(path))
+        request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try JSONEncoder().encode(submission)
-        let (data, response) = try await session.data(for: request)
-        guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
-            throw APIError.badStatus((response as? HTTPURLResponse)?.statusCode ?? 0)
+        if let token = DeviceCredentials.token {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
-        return try JSONDecoder().decode(EvaluateResponse.self, from: data)
+        return request
+    }
+
+    private func send<Body: Encodable, Reply: Decodable>(
+        _ method: String, _ path: String, body: Body
+    ) async throws -> Reply {
+        var request = request(method, path)
+        request.httpBody = try JSONEncoder.api.encode(body)
+        let (data, response) = try await session.data(for: request)
+        let status = (response as? HTTPURLResponse)?.statusCode ?? 0
+        guard (200..<300).contains(status) else { throw APIError.badStatus(status) }
+        if data.isEmpty, let empty = EmptyReply() as? Reply { return empty }
+        return try JSONDecoder.api.decode(Reply.self, from: data)
     }
 
     private func get<T: Decodable>(_ path: String) async throws -> T {
-        let (data, response) = try await session.data(from: baseURL.appendingPathComponent(path))
-        guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
-            throw APIError.badStatus((response as? HTTPURLResponse)?.statusCode ?? 0)
-        }
-        return try JSONDecoder().decode(T.self, from: data)
+        let (data, response) = try await session.data(for: request("GET", path))
+        let status = (response as? HTTPURLResponse)?.statusCode ?? 0
+        guard (200..<300).contains(status) else { throw APIError.badStatus(status) }
+        return try JSONDecoder.api.decode(T.self, from: data)
     }
+}
+
+struct EmptyReply: Decodable {}
+
+struct RegisteredDevice: Decodable {
+    let deviceId: String
+    let token: String
+
+    private enum CodingKeys: String, CodingKey {
+        case token
+        case deviceId = "device_id"
+    }
+}
+
+struct ProfileBody: Encodable {
+    let name: String?
+    let email: String?
+}
+
+struct DeviceProfileWire: Decodable {
+    let deviceId: String
+    let name: String?
+    let email: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case name, email
+        case deviceId = "device_id"
+    }
+}
+
+/// One puzzle's progress on the wire — both directions of /v1/progress/sync.
+struct ProgressWire: Codable {
+    let puzzleId: String
+    let puzzleVersion: Int
+    let solved: Bool
+    let bestRank: String?
+    let bestMetrics: [String: Int]
+    let attemptCount: Int
+    let firstSolvedAt: Date?
+    let bestSolvedAt: Date?
+    let updatedAt: Date
+
+    private enum CodingKeys: String, CodingKey {
+        case solved
+        case puzzleId = "puzzle_id"
+        case puzzleVersion = "puzzle_version"
+        case bestRank = "best_rank"
+        case bestMetrics = "best_metrics"
+        case attemptCount = "attempt_count"
+        case firstSolvedAt = "first_solved_at"
+        case bestSolvedAt = "best_solved_at"
+        case updatedAt = "updated_at"
+    }
+}
+
+struct SyncBody: Codable {
+    let records: [ProgressWire]
+}
+
+// The server (chrono) emits RFC3339 with fractional seconds; plain .iso8601
+// on Foundation coders can't parse those. One shared pair handles both forms.
+extension JSONDecoder {
+    static let api: JSONDecoder = {
+        let fractional = ISO8601DateFormatter()
+        fractional.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        let plain = ISO8601DateFormatter()
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let text = try decoder.singleValueContainer().decode(String.self)
+            if let date = fractional.date(from: text) ?? plain.date(from: text) {
+                return date
+            }
+            throw DecodingError.dataCorrupted(.init(
+                codingPath: decoder.codingPath,
+                debugDescription: "unparseable date \(text)"
+            ))
+        }
+        return decoder
+    }()
+}
+
+extension JSONEncoder {
+    static let api: JSONEncoder = {
+        let fractional = ISO8601DateFormatter()
+        fractional.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .custom { date, encoder in
+            var container = encoder.singleValueContainer()
+            try container.encode(fractional.string(from: date))
+        }
+        return encoder
+    }()
 }
 
 enum APIError: Error {

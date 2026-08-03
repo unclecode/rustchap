@@ -65,10 +65,20 @@ async fn serves_packs_and_puzzles() {
 
     let (status, packs) = get_json(router(state.clone()), "/v1/packs").await;
     assert_eq!(status, 200);
-    assert_eq!(packs.as_array().unwrap().len(), 5);
+    let packs = packs.as_array().unwrap();
+    assert!(
+        packs.len() >= 12,
+        "full curriculum: content decks + planned empty decks"
+    );
     assert_eq!(
         packs[0]["id"], "move-or-borrow",
         "packs follow the curriculum order from packs/index.json, not directory order"
+    );
+    assert!(
+        packs
+            .iter()
+            .any(|p| p["order"].as_array().is_some_and(|o| o.is_empty())),
+        "planned decks are served with empty order"
     );
 
     let (status, puzzle) = get_json(router(state.clone()), "/v1/puzzles/move-or-borrow.001").await;

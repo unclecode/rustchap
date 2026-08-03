@@ -29,7 +29,20 @@ async fn main() -> anyhow::Result<()> {
         index.puzzles.len(),
         index.outcomes.len()
     );
-    let state = Arc::new(AppState::new(index));
+
+    let db_url = std::env::var("DATABASE_URL")
+        .unwrap_or_else(|_| "postgres://rustchap:rustchap@localhost:5433/rustchap".into());
+    let mut state = AppState::new(index);
+    match api::db::connect_and_migrate(&db_url).await {
+        Ok(pool) => {
+            tracing::info!("database connected + migrated");
+            state = state.with_db(pool);
+        }
+        Err(e) => {
+            tracing::warn!("no database ({e}) — identity/progress endpoints disabled");
+        }
+    }
+    let state = Arc::new(state);
 
     let addr = std::net::SocketAddr::from(([127, 0, 0, 1], port));
     let listener = tokio::net::TcpListener::bind(addr).await?;
