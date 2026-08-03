@@ -24,9 +24,9 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       enforced by `crates/puzzle-schema` — types, validation, reconstruction, hashing, enumeration)
 - [x] 6. Build the puzzle linter (`tools/puzzle-linter`: structure checks + full-space evaluation
       via `crates/evaluator` + outcomes sidecar generation + `--check` CI mode)
-- [ ] 7. Hand-author five representative puzzles — one per track, deliberately covering: a compile
-      failure, multiple valid answers, a measurable optimal answer, a Clippy-based result, a
-      runtime-test answer
+- [x] 7. Hand-author five representative puzzles — one per track (`content/packs/*/`), covering: a
+      compile failure, multiple valid answers, a measurable optimal answer, a Clippy-based result, a
+      runtime-test answer; all 72 submissions evaluated, outcomes sidecars generated + `--check` clean
 
 ## Phase 3 — iPhone interaction prototype
 - [ ] 8. SwiftUI app shell (Launch → Puzzle → Result → Retry/Next; no auth, no backend, 5 bundled puzzles)

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow",
+  "title": "Move or Borrow",
+  "description": "When does a value move, and when is a borrow enough?",
+  "toolchain": "1.97.1",
+  "order": ["move-or-borrow.001"]
+}

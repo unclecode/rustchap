@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api",
+  "title": "Design the API",
+  "description": "All of these compile. Which one is right?",
+  "toolchain": "1.97.1",
+  "order": ["design-the-api.001"]
+}

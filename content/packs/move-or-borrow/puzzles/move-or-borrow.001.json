@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.001",
+  "version": 1,
+  "title": "Use It Twice",
+  "track": "move-or-borrow",
+  "concepts": ["move", "borrow", "deref-coercion"],
+  "difficulty": 1,
+  "goal": "Make both print statements work — without any cloning.",
+  "template": "fn main() {\n    let name = String::from(\"Jazz\");\n    print_name(⟦arg⟧);\n    println!(\"{name}\");\n}\n\nfn print_name(x: ⟦param_ty⟧) {\n    println!(\"hi {}\", x.trim());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "arg",
+        "original": "name",
+        "label": "argument",
+        "choices": [
+          { "id": "c1", "text": "name" },
+          { "id": "c2", "text": "&name" },
+          { "id": "c3", "text": "name.clone()" }
+        ]
+      },
+      {
+        "id": "param_ty",
+        "original": "String",
+        "label": "parameter type",
+        "choices": [
+          { "id": "t1", "text": "String" },
+          { "id": "t2", "text": "&String" },
+          { "id": "t3", "text": "&str" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
+    "clippy": { "deny": ["clippy::ptr_arg"] },
+    "metrics": ["clone_count", "token_edits", "clippy_warning_count"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": ["token_edits", "clippy_warning_count"],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0, "token_edits": 2, "clippy_warning_count": 0 }
+  },
+  "hints": [
+    "Does print_name need to OWN the name, or just look at it?",
+    "A &String parameter works, but there is a more flexible type that accepts both &String and string literals."
+  ],
+  "explanation": "Passing `name` moves the String into print_name, so the later `println!(\"{name}\")` uses a moved value. Cloning works but pays an allocation for nothing. Borrowing with `&name` lets main keep ownership. For the parameter, `&str` beats `&String`: deref coercion means a `&String` argument converts automatically, and the function also accepts literals and slices — Clippy's ptr_arg lint flags `&String` for exactly this reason.",
+  "prerequisites": [],
+  "source": { "origin": "original", "license": null, "attribution": null }
+}

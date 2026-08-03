@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime",
+  "title": "Repair the Lifetime",
+  "description": "Say how long a borrow lives — no more, no less.",
+  "toolchain": "1.97.1",
+  "order": ["repair-the-lifetime.001"]
+}

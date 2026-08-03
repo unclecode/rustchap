@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "move-or-borrow.001",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0ae6238636254261195da660a00e772ea6b85063753b50c4798d47f8cb60ce80": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "17979e9b8da17d92e995c6f0d4592241367700dd5b18e01621631ea9cebe38c9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "21aa73b74e81eba3a9df8194d59e4ab7d54f837773d3e259bfda32ee9c9402ca": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "63364ede1535a6529549976aba11d681fbaf8dc3e605e0446bdaed115b28daed": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "75df1f528a8cc4bc4456d815ece50ba0c3762ff4e2fd7b91dc6b7308adc27432": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `name`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "85b59bd7110db3ed23dac45024a69ef3cefbf224938efd9ce461ccd3c3d56d26": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "token_edits": 1,
+        "clone_count": 1,
+        "clippy_warning_count": 0
+      },
+      "diagnostics": []
+    },
+    "b2c50c944f8552c3a5a70a20d9b844a1015350b056b3e7de7d0ac6993e9c6408": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c771843c21ee55a703b28e0c60a0c7b50ed3dc939eb91b6b5e3949857766671c": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "token_edits": 2,
+        "clone_count": 0,
+        "clippy_warning_count": 1
+      },
+      "diagnostics": []
+    },
+    "eb142600db4d865d7333aae749ed8686a0a022caa6510515b09113636637add9": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2,
+        "clone_count": 0,
+        "clippy_warning_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

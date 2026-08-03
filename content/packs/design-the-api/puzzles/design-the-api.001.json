@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.001",
+  "version": 1,
+  "title": "First Word, Zero Copies",
+  "track": "design-the-api",
+  "concepts": ["zero-copy", "slice", "api-design", "allocation"],
+  "difficulty": 2,
+  "goal": "Pick the implementation that returns the first word without allocating.",
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "double_copy",
+        "code": "fn first_word(input: &str) -> String {\n    let copy = input.to_owned();\n    copy.split_whitespace()\n        .next()\n        .unwrap_or(\"\")\n        .to_owned()\n}"
+      },
+      {
+        "id": "owned",
+        "code": "fn first_word(input: &str) -> String {\n    input.split_whitespace()\n        .next()\n        .unwrap_or(\"\")\n        .to_owned()\n}"
+      },
+      {
+        "id": "borrowed",
+        "code": "fn first_word(input: &str) -> &str {\n    input.split_whitespace()\n        .next()\n        .unwrap_or(\"\")\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn finds_first() {\n    assert_eq!(first_word(\"hello rust world\"), \"hello\");\n}",
+      "#[test]\nfn empty_input() {\n    assert_eq!(first_word(\"\"), \"\");\n}"
+    ],
+    "metrics": ["clone_count"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": { "clone_count": 1 },
+    "optimal": { "clone_count": 0 }
+  },
+  "hints": [
+    "The first word already exists inside `input`. Does the caller need a new String, or a view into the old one?",
+    "A returned &str borrows from the input — the signature says so, and the borrow checker enforces it."
+  ],
+  "explanation": "The borrowed version is zero-copy: `split_whitespace` yields subslices of the input, so returning `&str` hands back a view into memory the caller already owns — the elided lifetime ties it to `input`. The owned version allocates a fresh String for every call; the double-copy version even clones the whole input first. All three pass the tests — correctness alone cannot distinguish API quality, which is exactly what this track trains.",
+  "prerequisites": [],
+  "source": { "origin": "original", "license": null, "attribution": null }
+}

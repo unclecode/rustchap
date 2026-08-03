@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "id": "build-the-iterator",
+  "title": "Build the Iterator",
+  "description": "Assemble pipelines — and learn why order matters.",
+  "toolchain": "1.97.1",
+  "order": ["build-the-iterator.001"]
+}

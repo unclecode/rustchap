@@ -11,7 +11,7 @@ covers (frontmatter `sources:`). Regenerate this index with
 | Fragment | Status | Covers |
 |---|---|---|
 | [Core loop and scoring](foundation/core-loop.md) | foundational | — |
-| [Curriculum](foundation/curriculum.md) | foundational | — |
+| [Curriculum](foundation/curriculum.md) | living | move-or-borrow.001.json, remove-the-clone.001.json, repair-the-lifetime.001.json, build-the-iterator.001.json, … |
 | [Interaction types](foundation/interaction-types.md) | foundational | — |
 | [Product vision](foundation/product-vision.md) | foundational | — |
 

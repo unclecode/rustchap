@@ -194,7 +194,9 @@ fn clippy_warning_count(
     cmd.arg("--edition")
         .arg(&toolchain.edition)
         .arg("--error-format=json")
-        .arg("--emit=metadata");
+        .arg("--emit=metadata")
+        // Without this, --emit=metadata drops libmain.rmeta into the caller's cwd.
+        .current_dir(src_path.parent().expect("src lives in the scratch dir"));
     if !has_main {
         cmd.arg("--crate-type=lib");
     }

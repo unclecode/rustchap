@@ -10,6 +10,11 @@ Regenerate via `scripts/build-map.py`.
 
 | Source file | Documented in |
 |---|---|
+| `content/packs/build-the-iterator/puzzles/build-the-iterator.001.json` | foundation/curriculum.md |
+| `content/packs/design-the-api/puzzles/design-the-api.001.json` | foundation/curriculum.md |
+| `content/packs/move-or-borrow/puzzles/move-or-borrow.001.json` | foundation/curriculum.md |
+| `content/packs/remove-the-clone/puzzles/remove-the-clone.001.json` | foundation/curriculum.md |
+| `content/packs/repair-the-lifetime/puzzles/repair-the-lifetime.001.json` | foundation/curriculum.md |
 | `crates/evaluator/src/lib.rs` | architecture/evaluation.md |
 | `crates/evaluator/src/metrics.rs` | architecture/evaluation.md |
 | `crates/evaluator/src/rustc_json.rs` | architecture/evaluation.md |
@@ -33,7 +38,7 @@ Regenerate via `scripts/build-map.py`.
 | `architecture/ios-app.md` | _(no source files — narrative/reference)_ |
 | `architecture/puzzle-format.md` | `puzzle.schema.json`, `pack.schema.json`, `outcomes.schema.json`, `lib.rs`, `types.rs`, `template.rs`, `ops.rs`, `validate.rs` |
 | `foundation/core-loop.md` | _(no source files — narrative/reference)_ |
-| `foundation/curriculum.md` | _(no source files — narrative/reference)_ |
+| `foundation/curriculum.md` | `move-or-borrow.001.json`, `remove-the-clone.001.json`, `repair-the-lifetime.001.json`, `build-the-iterator.001.json`, `design-the-api.001.json` |
 | `foundation/interaction-types.md` | _(no source files — narrative/reference)_ |
 | `foundation/product-vision.md` | _(no source files — narrative/reference)_ |
 | `roadmap/build-order.md` | _(no source files — narrative/reference)_ |

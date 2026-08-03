@@ -1,0 +1,822 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "repair-the-lifetime.001",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "00b2e4ecd7522d42f36abcf149591cfea96f3c49201d2c71b2dad8d7275eddc2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "15849cca3e723fc3f10302ddeefbbfea2eb76e53def9c70df4bcac7b20105b58": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "invalid lifetime parameter name: `'static`",
+          "slot_ids": [
+            "generics"
+          ],
+          "rust_code": "E0262"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "param_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "param_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "19898db969bf8338fe6365cad2004ca302fc592b7ee3de55470b66cf5f3d7bb9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "invalid lifetime parameter name: `'static`",
+          "slot_ids": [
+            "generics"
+          ],
+          "rust_code": "E0262"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "param_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "param_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2133bec4155015312af410af64ab0466e3aa2ab84fd107909ece4a7f9b2f7a52": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2404eb3a0d145b714f3d87f3c7b7842cd2ef159178e058e9f710e36af52ea6d3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2539091dde183718fe310b388e4ebcec12b2d132baf1a788d008d8b212b9ac26": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "explicit lifetime required in the type of `a`",
+          "slot_ids": [],
+          "rust_code": "E0621"
+        },
+        {
+          "category": "lifetime_error",
+          "message": "explicit lifetime required in the type of `b`",
+          "slot_ids": [],
+          "rust_code": "E0621"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "25ef76ccc7df1e010d617ac18b3fe83763b150a08fe1d8f2706a3694708c8aa3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "267cfa860eb18f86215c4af5c44719818373bc803a9df59f81a6f64f3d75be4f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "282e42d51de6a715d928429f008fbfd7bb9ed1f76a3db372af82e291836e6c17": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "invalid lifetime parameter name: `'static`",
+          "slot_ids": [
+            "generics"
+          ],
+          "rust_code": "E0262"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "param_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "param_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "31ab4b14eb2f9c6a39c0fa688d220b89464051144d2291efc26b81779975e6a4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4841ad15487ad5281182ff7bc6ef15c3cfbca748403eb6cca5667ab01cd6c1b1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "invalid lifetime parameter name: `'static`",
+          "slot_ids": [
+            "generics"
+          ],
+          "rust_code": "E0262"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4adccadb90191d8b562049ae26c48b4f2c2db5d91bbf9da22cd914f137a6a03f": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "54f4453868bb5a80f96a972c0751a84a9f6d3f4511557af1a275005c5b937e82": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "59ebd2458fecd397d2fdc745e29363e76ac20f1c1d18aac3a53e97a38fc56464": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "param_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "param_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6a10abd5a24c89f1e6572f6f55f330fe3eb00817b9b600a412efc78dfc04853b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "param_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "param_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "77ecc2389f482f23b93f795812ea9d9c3df3feedcf914e2cef80db1dd9839049": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "786c737b3f19488ee0f5d64e106ea601be59ab3cab18eeb7cd990bf583b94002": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "param_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "param_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7b6a9aac8758fe804279c66474c672abdb6b65c242043da783c1a531fbcc0ee9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "invalid lifetime parameter name: `'static`",
+          "slot_ids": [
+            "generics"
+          ],
+          "rust_code": "E0262"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7f5c4023efd24db98b75890cf442214f5f43ce3d558e60f09b6ef202f9af239f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "89bfa4477ad8d2c2cb0b786a60ab4d18e3b2062b2ef5d5b6fa057677cb4fca95": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "95864a8ec354a878c7f38687da14d901cd8a3be922c6668378ef1371c0d19524": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a8758cabb5c3331bcb7fc618d6b1b0596874611dd0b380466ff2b7ecae15929a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "invalid lifetime parameter name: `'static`",
+          "slot_ids": [
+            "generics"
+          ],
+          "rust_code": "E0262"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "aa84b576a1ff29559de7556a99aaa143305ae9b5933b6c273a2a3b7dbefd09ed": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c997ca5b17a1d50a085b0682ae10bdb6c33ba65ee68596c7dab4bc6e161c2178": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "invalid lifetime parameter name: `'static`",
+          "slot_ids": [
+            "generics"
+          ],
+          "rust_code": "E0262"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e9d8893cb5a9196e20add66b0b8e13e2a55feb701947ffbd8656a8c39c7cecb1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "invalid lifetime parameter name: `'static`",
+          "slot_ids": [
+            "generics"
+          ],
+          "rust_code": "E0262"
+        },
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ef7e761d8ed90ea18877dc0b81f8ed7da7a6c28e3b30f1d00f0525f41cbadd0b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "arguments to this function are incorrect",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f46345213e4e571bac1b2df3b7c6dbc877cca5d80106e4be8604abce924c2b38": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "invalid lifetime parameter name: `'static`",
+          "slot_ids": [
+            "generics"
+          ],
+          "rust_code": "E0262"
+        },
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "id": "remove-the-clone",
+  "title": "Remove the Clone",
+  "description": "Spot the clone that never needed to exist.",
+  "toolchain": "1.97.1",
+  "order": ["remove-the-clone.001"]
+}

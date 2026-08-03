@@ -1,7 +1,12 @@
 ---
 title: Curriculum
-status: foundational
-sources: []
+status: living
+sources:
+  - content/packs/move-or-borrow/puzzles/move-or-borrow.001.json
+  - content/packs/remove-the-clone/puzzles/remove-the-clone.001.json
+  - content/packs/repair-the-lifetime/puzzles/repair-the-lifetime.001.json
+  - content/packs/build-the-iterator/puzzles/build-the-iterator.001.json
+  - content/packs/design-the-api/puzzles/design-the-api.001.json
 related:
   - foundation/product-vision.md
   - roadmap/v0.1-scope.md
@@ -42,9 +47,23 @@ course syllabi. The target user is an experienced programmer; syntax appears inc
 | Build the iterator | iterator pipelines, ownership variants (`iter`/`into_iter`/`iter_mut`) |
 | Design the API | narrowest correct signatures, weakest sufficient bounds |
 
-Eight puzzles per track, one linear path. The first five hand-authored puzzles (one per track)
-deliberately exercise the whole engine: a compile failure, multiple valid answers, a measurable
-optimal answer, a Clippy-based result, and an answer requiring runtime tests.
+Eight puzzles per track, one linear path.
+
+## Seed puzzles (shipped — one per track, `content/packs/<track>/`)
+
+The first five hand-authored puzzles deliberately exercise the whole engine; each pack currently
+holds one puzzle plus its linter-generated `outcomes/` sidecar:
+
+| Puzzle | Interaction | Engine feature it proves |
+|---|---|---|
+| `move-or-borrow.001` "Use It Twice" | minimal-edit | compile failures (E0382) + full Solved/Fluent/Optimal gradient |
+| `remove-the-clone.001` "Borrow the Tags" | minimal-edit | Clippy-based rank (`clippy::ptr_arg` splits `&Vec<String>` from `&[String]`) |
+| `repair-the-lifetime.001` "The Longest One" | slot-selection | 26/27 combinations fail with categorized lifetime errors; repeated-slot templates |
+| `build-the-iterator.001` "Evens, Doubled" | block-arrangement | runtime tests discriminate: map-before-filter compiles but fails the test |
+| `design-the-api.001` "First Word, Zero Copies" | best-solution | all candidates compile; only metrics (clone_count 2/1/0) rank them |
+
+Authoring lesson recorded: `clippy::ptr_arg` fires only when the body provably works with the
+slice type (a real str/slice method call) — usage solely through `println!` suppresses it.
 
 ## Progression quality bar
 
