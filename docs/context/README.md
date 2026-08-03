@@ -20,9 +20,9 @@ covers (frontmatter `sources:`). Regenerate this index with
 | Fragment | Status | Covers |
 |---|---|---|
 | [Backend API and data model](architecture/backend.md) | backlog | — |
-| [Evaluation pipeline](architecture/evaluation.md) | backlog | — |
+| [Evaluation pipeline](architecture/evaluation.md) | backlog | ops.rs, outcomes.schema.json |
 | [iOS app](architecture/ios-app.md) | backlog | — |
-| [Puzzle format and content pipeline](architecture/puzzle-format.md) | backlog | — |
+| [Puzzle format and content pipeline](architecture/puzzle-format.md) | living | puzzle.schema.json, pack.schema.json, outcomes.schema.json, lib.rs, … |
 
 ## Roadmap — scope and build order
 

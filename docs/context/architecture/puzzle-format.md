@@ -1,7 +1,15 @@
 ---
 title: Puzzle format and content pipeline
-status: backlog
-sources: []
+status: living
+sources:
+  - schemas/puzzle.schema.json
+  - schemas/pack.schema.json
+  - schemas/outcomes.schema.json
+  - crates/puzzle-schema/src/lib.rs
+  - crates/puzzle-schema/src/types.rs
+  - crates/puzzle-schema/src/template.rs
+  - crates/puzzle-schema/src/ops.rs
+  - crates/puzzle-schema/src/validate.rs
 related:
   - architecture/evaluation.md
   - foundation/curriculum.md
@@ -11,85 +19,59 @@ related:
 # Puzzle format and content pipeline
 
 The versioned puzzle JSON is the **platform-neutral contract** of the whole system — what makes a
-future Android client possible without sharing UI code. Schema will live in `schemas/`
-(`puzzle.schema.json`), validated by `crates/puzzle-schema/`, with content under `content/packs/`
-and authoring tools in `tools/` (`puzzle-linter`, `source-importer`).
+future Android client possible without sharing UI code. Schema v1 is implemented: JSON Schemas in
+`schemas/` document the contract; `crates/puzzle-schema` enforces it and owns all shared logic.
 
-> **Agreed design, no schema frozen yet.** The JSON snippets below are drafts from planning; the
-> real schema is authored at build-order Step 5 and versioned from day one (`schema_version`).
+> **One implementation rule.** Reconstruction, validation, and hashing live only in
+> `puzzle-schema`. Clients reimplement *display* tokenization, never reconstruction — so an answer
+> can never mean different source on different platforms.
 
-## Draft shape
+## The contract (shipped)
 
-```json
-{
-  "schema_version": 1,
-  "id": "borrow.reborrow.017",
-  "version": 1,
-  "title": "Borrow Again",
-  "track": "move-or-borrow",
-  "concepts": ["mutable-borrow", "reborrow", "non-lexical-lifetimes"],
-  "difficulty": 4,
-  "interaction": {
-    "type": "slot-selection",
-    "slots": [{ "id": "argument", "choices": ["value", "&value", "&mut value"] }]
-  },
-  "goal": "Make both print statements valid.",
-  "source_template": "...",
-  "editable_regions": ["…"],
-  "tests": ["..."],
-  "valid_solutions": ["..."],
-  "goals": { "must_compile": true, "max_clones": 0 },
-  "scoring": {
-    "primary": "clone_count",
-    "secondary": ["token_edits"],
-    "best_known": { "clone_count": 0, "token_edits": 1 }
-  },
-  "hints": ["..."],
-  "explanation": "...",
-  "prerequisites": ["…"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "..." }
-}
-```
+- **Puzzle** (`puzzle.schema.json`, `types::Puzzle`) — id `<track>.<nnn>`, independent
+  `version`, goal, optional `template`, `interaction`, `evaluation`, `scoring`, hints,
+  explanation, prerequisites, `source` attribution (licence mandatory unless origin is
+  `"original"`, enforced by `ValidationError::MissingLicense`).
+- **Templates** (`template.rs`) — plain Rust with `⟦slot_id⟧` markers (`MARKER_OPEN`/`MARKER_CLOSE`,
+  U+27E6/27E7 — never legal Rust). A slot id may repeat; all occurrences get the same value
+  (lifetimes!). `parse_template` → `Segment::Static | Segment::Slot`; malformed markers are
+  `TemplateError`s.
+- **Interactions** (`types::Interaction`, tagged by `type`) — `SlotSelection` and `MinimalEdit`
+  share the slot mechanism (minimal-edit pre-fills `Slot.original`, which must appear among its
+  choices — `ValidationError::OriginalNotInChoices`); `BlockArrangement` is
+  prefix + ordered blocks + suffix; `BestSolution` picks a complete `Candidate`.
+- **Submissions** (`types::Operation`) — `Select{slot_id, choice_id}` / `Arrange{order}` /
+  `Pick{candidate_id}`. `template::reconstruct(puzzle, ops)` yields the full source or a precise
+  `ReconstructError`. `template::token_edits` counts departures from originals without compiling.
+- **Canonical hashing** (`ops.rs`) — `normalize_ops` sorts select ops by `slot_id`;
+  `normalized_ops_json` is a byte-stable contract (locked by the `canonical_json_shape_is_stable`
+  test); `ops_hash` = SHA-256 hex. Cache key everywhere: `toolchain + puzzle_version + ops_hash`.
+- **Scoring** (`types::Scoring`, `types::Metric`) — one `primary` metric; `fluent`/`optimal`
+  threshold maps make ranks fully mechanical. Metric vocabulary: `token_edits`, `clone_count`,
+  `explicit_loops`, `mut_bindings`, `unsafe_blocks`, `clippy_warning_count`.
+- **Validation** (`validate::validate_puzzle`) — collects *all* violations: marker↔slot parity,
+  unique ids, duplicate choice texts, scoring metrics ⊆ `evaluation.metrics`, `token_edits` only on
+  slot interactions, id↔track consistency.
+- **Enumeration** (`validate::enumerate_submissions`, `submission_space`) — every legal submission,
+  capped at `MAX_SUBMISSION_SPACE` (512). The cap is also design pressure: a puzzle with thousands
+  of combinations is guessable, not learnable.
 
-IDs are hierarchical (`track/concept.family.number`); puzzles are versioned independently of the
-schema so a fixed puzzle doesn't invalidate stored progress silently.
+## Outcomes sidecar (decided; generated by the future linter)
 
-## The puzzle linter (built before any UI)
+`outcomes.schema.json` / `types::Outcomes`: the linter enumerates every legal submission, evaluates
+each against the pack's pinned toolchain, and stores `ops_hash → EvalResult` (status, rank,
+metrics, app-language diagnostics). The app bundles this file, so **Milestone-1 offline evaluation
+is exact, not mocked**; the server later reuses it as a warm cache.
 
-`cargo run -p puzzle-linter -- content/packs/<pack>` must verify: schema validity, unique IDs,
-valid prerequisites, editable slots exist, **every declared choice reconstructs valid source**, the
-reference solution compiles, tests pass, **best-known scores are reproducible**, and
-licence/attribution present. This is what keeps the content bank trustworthy.
+## Packs
 
-## Ingestion pipeline (transform, never import)
+`pack.schema.json` / `types::Pack`: track metadata, pinned `toolchain`, linear `order`. Layout:
+`content/packs/<track>/pack.json` + `puzzles/*.json`. Cross-file checks (order entries resolve,
+prerequisites point backwards) belong to the linter, not the crate.
 
-```text
-Find useful source exercise
-→ identify the Rust-specific insight
-→ reduce to one tiny challenge (5–15 lines)
-→ redesign for phone interaction
-→ define the replay metric
-→ generate valid and invalid paths
-→ compile every path against stable Rust
-→ human review
-```
+## Still pending (build-order steps 6, 18–21)
 
-## Per-puzzle publishing bar
-
-Reference solution · best-known score · at least one realistic wrong answer · structured feedback ·
-short hint · deeper explanation · mobile preview approval · compiler verification · licence record.
-
-## Authoring workflow (Step 18)
-
-Raw-JSON editing doesn't scale past the first puzzles. A small internal tool (CLI or local web UI)
-supports: create-from-template, paste starter code, mark editable regions, define choices, add
-tests, run all candidate solutions, inspect diagnostics, calculate scores, preview mobile
-rendering, attach attribution, publish a puzzle version.
-
-## Consumers of the contract
-
-- iOS app: renders `interaction` + `source_template` as the token surface, submits operations.
-- Evaluator: reconstructs source from `source_template` + operations, scores against `scoring`.
-- Linter/CI: compiles all reference solutions and declared alternatives, verifies score
-  reproducibility on every PR.
-- Future Android client: same JSON, same API, rewritten presentation only.
+- **Puzzle linter** (`tools/puzzle-linter`): schema + `validate_puzzle` + compile-all-choices +
+  score reproducibility + outcomes generation.
+- **Authoring workflow** and the ingestion pipeline (transform, never import) — see
+  [curriculum](../foundation/curriculum.md) for sources and the publishing bar.

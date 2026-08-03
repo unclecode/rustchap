@@ -20,7 +20,8 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
 
 ## Phase 2 — puzzle engine before the full app
 - [x] 4. Create the monorepo (skeleton created; name: RustChap)
-- [ ] 5. Design the puzzle JSON schema (`schemas/puzzle.schema.json`)
+- [x] 5. Design the puzzle JSON schema (`schemas/puzzle.schema.json` + `pack` + `outcomes`;
+      enforced by `crates/puzzle-schema` — types, validation, reconstruction, hashing, enumeration)
 - [ ] 6. Build the puzzle linter (`tools/puzzle-linter`)
 - [ ] 7. Hand-author five representative puzzles — one per track, deliberately covering: a compile
       failure, multiple valid answers, a measurable optimal answer, a Clippy-based result, a

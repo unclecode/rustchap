@@ -1,7 +1,9 @@
 ---
 title: Evaluation pipeline
 status: backlog
-sources: []
+sources:
+  - crates/puzzle-schema/src/ops.rs
+  - schemas/outcomes.schema.json
 related:
   - architecture/backend.md
   - architecture/puzzle-format.md
@@ -68,14 +70,21 @@ MVP; Firecracker microVMs or gVisor only if free-form code ever becomes a featur
 
 ## Caching — the instant-feel third layer
 
-Cache key:
+Cache key (canonicalization shipped in `puzzle-schema`: `ops::ops_hash` over
+`ops::normalized_ops_json`):
 
 ```text
-compiler_version + puzzle_version + normalized_operations
+toolchain + puzzle_version + ops_hash
 ```
 
 Most wrong *and* optimal answers recur across users; Redis answers repeats without invoking the
-compiler, and popular puzzles should converge to mostly cache hits. Combined with client-side
+compiler, and popular puzzles should converge to mostly cache hits.
+
+**Decided: precomputed outcomes sidecar.** Because edits are constrained, the legal submission
+space is finite (≤ `MAX_SUBMISSION_SPACE` = 512, enforced by `validate_puzzle`). The linter
+evaluates the whole space up front into `outcomes.json` (`ops_hash → EvalResult`). The app bundles
+it — Milestone-1 offline evaluation is exact, not mocked — and the server uses it as a warm cache,
+so live compilation only ever confirms what precomputation already knows. Combined with client-side
 validation and optimistic animation (see [ios-app](ios-app.md)), the target is **zero perceived
 waiting**, not merely "fast compilation".
 

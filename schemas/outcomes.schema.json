@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rustchap.dev/schemas/outcomes.schema.json",
+  "title": "RustChap precomputed outcomes",
+  "description": "Generated sidecar (never hand-written): the linter enumerates every legal submission for a puzzle, evaluates each against the pinned toolchain, and stores the result keyed by operations hash. The app bundles this file, making Milestone-1 offline evaluation exact; the server reuses it as a warm cache. Key = SHA-256 hex of the canonical operations JSON (select ops sorted by slot_id, compact separators) — computed by puzzle-schema's ops_hash.",
+  "type": "object",
+  "required": ["schema_version", "puzzle_id", "puzzle_version", "toolchain", "outcomes"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": 1 },
+    "puzzle_id": { "type": "string" },
+    "puzzle_version": { "type": "integer", "minimum": 1 },
+    "toolchain": { "type": "string" },
+    "outcomes": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^[0-9a-f]{64}$": { "$ref": "#/$defs/evalResult" }
+      }
+    }
+  },
+  "$defs": {
+    "evalResult": {
+      "type": "object",
+      "required": ["status", "rank", "metrics", "diagnostics"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "enum": ["solved", "compile_error", "test_failure", "invalid"] },
+        "rank": {
+          "oneOf": [ { "enum": ["solved", "fluent", "optimal"] }, { "type": "null" } ],
+          "description": "Set when status is 'solved', null otherwise."
+        },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": false,
+          "patternProperties": {
+            "^(token_edits|clone_count|explicit_loops|mut_bindings|unsafe_blocks|clippy_warning_count)$": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["category", "message"],
+            "additionalProperties": false,
+            "properties": {
+              "category": { "type": "string", "description": "App-facing class, e.g. 'borrow_conflict', 'move_error', 'lifetime_error', 'trait_not_implemented'." },
+              "message": { "type": "string", "description": "Puzzle-language message, not raw compiler prose." },
+              "slot_ids": { "type": "array", "items": { "type": "string" }, "description": "Slots/blocks implicated, for token highlighting." },
+              "rust_code": { "type": ["string", "null"], "description": "Underlying rustc code, e.g. 'E0502' — for the Compiler details disclosure." }
+            }
+          }
+        }
+      }
+    }
+  }
+}

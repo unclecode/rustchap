@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rustchap.dev/schemas/puzzle.schema.json",
+  "title": "RustChap puzzle",
+  "description": "One puzzle: goal, code template with ⟦slot⟧ markers, constrained interaction, evaluation spec, and mechanical scoring. The canonical Rust implementation (parsing, validation, reconstruction) lives in crates/puzzle-schema.",
+  "type": "object",
+  "required": ["schema_version", "id", "version", "title", "track", "concepts", "difficulty", "goal", "interaction", "evaluation", "scoring", "hints", "explanation", "prerequisites", "source"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": 1 },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+\\.[0-9]{3}$",
+      "description": "<track>.<nnn>, e.g. move-or-borrow.001"
+    },
+    "version": { "type": "integer", "minimum": 1, "description": "Puzzle revision, independent of schema_version. Bump on any change that affects answers or scores." },
+    "title": { "type": "string", "minLength": 1 },
+    "track": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "concepts": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "difficulty": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "goal": { "type": "string", "minLength": 1, "description": "The one-line objective shown on the puzzle screen." },
+    "template": {
+      "type": "string",
+      "description": "Rust source with ⟦slot_id⟧ markers (U+27E6/U+27E7 — never legal Rust). Required for slot-selection and minimal-edit; absent for block-arrangement and best-solution. A slot id may appear at multiple positions; all get the same value."
+    },
+    "interaction": {
+      "oneOf": [
+        { "$ref": "#/$defs/slotInteraction" },
+        { "$ref": "#/$defs/blockArrangement" },
+        { "$ref": "#/$defs/bestSolution" }
+      ]
+    },
+    "evaluation": { "$ref": "#/$defs/evaluation" },
+    "scoring": { "$ref": "#/$defs/scoring" },
+    "hints": { "type": "array", "items": { "type": "string" } },
+    "explanation": { "type": "string", "description": "Shown after solving (swipe left). Why the optimal answer is optimal." },
+    "prerequisites": { "type": "array", "items": { "type": "string" }, "description": "Puzzle ids that must be solved first. Existence is checked at pack level by the linter." },
+    "source": { "$ref": "#/$defs/source" }
+  },
+  "$defs": {
+    "slotInteraction": {
+      "type": "object",
+      "required": ["type", "slots"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "enum": ["slot-selection", "minimal-edit"] },
+        "slots": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/slot" } }
+      },
+      "description": "One engine path, two presentations: slot-selection may start blank (original: null); minimal-edit pre-fills every slot with its original and scores token_edits — each slot's original MUST then appear among its choices so 'keep' is expressible."
+    },
+    "slot": {
+      "type": "object",
+      "required": ["id", "original", "choices"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "original": { "type": ["string", "null"], "description": "The token as originally written (minimal-edit), or null for a blank slot (slot-selection)." },
+        "label": { "type": "string", "description": "Optional short label for the choice tray, e.g. 'argument'." },
+        "choices": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["id", "text"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+              "text": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "blockArrangement": {
+      "type": "object",
+      "required": ["type", "fixed_prefix", "blocks", "fixed_suffix"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "block-arrangement" },
+        "fixed_prefix": { "type": "string" },
+        "blocks": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["id", "text"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+              "text": { "type": "string" }
+            }
+          }
+        },
+        "fixed_suffix": { "type": "string" }
+      },
+      "description": "User orders ALL blocks; source = fixed_prefix + blocks-in-order + fixed_suffix. No template field."
+    },
+    "bestSolution": {
+      "type": "object",
+      "required": ["type", "candidates"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "best-solution" },
+        "candidates": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["id", "code"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+              "code": { "type": "string", "description": "A complete compiling program; correctness of the *choice* is judged by metrics under the stated goal." }
+            }
+          }
+        }
+      }
+    },
+    "evaluation": {
+      "type": "object",
+      "required": ["tests", "metrics"],
+      "additionalProperties": false,
+      "properties": {
+        "tests": { "type": "array", "items": { "type": "string" }, "description": "Rust #[test] functions appended in a test module to the reconstructed source." },
+        "clippy": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": { "deny": { "type": "array", "items": { "type": "string" } } },
+          "description": "Clippy lints that must produce no hits for the answer to rank above Solved (they feed clippy_warning_count)."
+        },
+        "metrics": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/metric" } }
+      }
+    },
+    "metric": {
+      "enum": ["token_edits", "clone_count", "explicit_loops", "mut_bindings", "unsafe_blocks", "clippy_warning_count"],
+      "description": "All mechanically computable. token_edits: slots whose submitted choice differs from original (slot interactions only). clone_count: syntactic .clone()/.to_owned() in user-controlled text. Allocation-style qualities ride on specific Clippy lints."
+    },
+    "scoring": {
+      "type": "object",
+      "required": ["primary", "fluent", "optimal"],
+      "additionalProperties": false,
+      "properties": {
+        "primary": { "$ref": "#/$defs/metric" },
+        "secondary": { "type": "array", "items": { "$ref": "#/$defs/metric" } },
+        "fluent": { "$ref": "#/$defs/thresholds" },
+        "optimal": { "$ref": "#/$defs/thresholds" }
+      },
+      "description": "Ranks are mechanical: Solved = compiles + tests pass. Fluent = Solved + every fluent threshold met (metric <= value). Optimal = Solved + every optimal threshold met. All metrics referenced here must be listed in evaluation.metrics."
+    },
+    "thresholds": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(token_edits|clone_count|explicit_loops|mut_bindings|unsafe_blocks|clippy_warning_count)$": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["origin", "license", "attribution"],
+      "additionalProperties": false,
+      "properties": {
+        "origin": { "type": "string", "description": "'original' or the upstream project, e.g. 'rustlings'." },
+        "license": { "type": ["string", "null"], "description": "Upstream licence (e.g. 'MIT'); null only when origin is 'original'." },
+        "attribution": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

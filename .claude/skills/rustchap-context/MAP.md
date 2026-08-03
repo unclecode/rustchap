@@ -10,15 +10,23 @@ Regenerate via `scripts/build-map.py`.
 
 | Source file | Documented in |
 |---|---|
+| `crates/puzzle-schema/src/lib.rs` | architecture/puzzle-format.md |
+| `crates/puzzle-schema/src/ops.rs` | architecture/evaluation.md, architecture/puzzle-format.md |
+| `crates/puzzle-schema/src/template.rs` | architecture/puzzle-format.md |
+| `crates/puzzle-schema/src/types.rs` | architecture/puzzle-format.md |
+| `crates/puzzle-schema/src/validate.rs` | architecture/puzzle-format.md |
+| `schemas/outcomes.schema.json` | architecture/evaluation.md, architecture/puzzle-format.md |
+| `schemas/pack.schema.json` | architecture/puzzle-format.md |
+| `schemas/puzzle.schema.json` | architecture/puzzle-format.md |
 
 ## Fragment → sources
 
 | Fragment | Sources |
 |---|---|
 | `architecture/backend.md` | _(no source files — narrative/reference)_ |
-| `architecture/evaluation.md` | _(no source files — narrative/reference)_ |
+| `architecture/evaluation.md` | `ops.rs`, `outcomes.schema.json` |
 | `architecture/ios-app.md` | _(no source files — narrative/reference)_ |
-| `architecture/puzzle-format.md` | _(no source files — narrative/reference)_ |
+| `architecture/puzzle-format.md` | `puzzle.schema.json`, `pack.schema.json`, `outcomes.schema.json`, `lib.rs`, `types.rs`, `template.rs`, `ops.rs`, `validate.rs` |
 | `foundation/core-loop.md` | _(no source files — narrative/reference)_ |
 | `foundation/curriculum.md` | _(no source files — narrative/reference)_ |
 | `foundation/interaction-types.md` | _(no source files — narrative/reference)_ |
