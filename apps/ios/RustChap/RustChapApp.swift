@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 
 @main
@@ -29,5 +30,6 @@ struct RustChapApp: App {
                 await store.refreshFromServer()
             }
         }
+        .modelContainer(for: PuzzleProgressRecord.self)
     }
 }

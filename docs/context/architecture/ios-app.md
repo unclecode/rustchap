@@ -14,6 +14,7 @@ sources:
   - apps/ios/RustChap/PuzzleUI/CodeSurface.swift
   - apps/ios/RustChap/Features/ConceptView.swift
   - apps/ios/RustChap/Core/APIClient.swift
+  - apps/ios/RustChap/Core/ProgressStore.swift
   - apps/ios/Support/Info.plist
 related:
   - foundation/interaction-types.md
@@ -95,8 +96,29 @@ Verified by simulator-SDK build plus a macOS harness that compiles the real
   on-device `LocalEvaluator` lookup offline. `EvaluatedVia` (server-precomputed / server-compiled
   / on-device) is shown as a small label on the result sheet — the wiring is visible, which is
   how the alphabetical-pack-order bug was caught (fixed server-side via `content/packs/index.json`).
-- **Automation**: `--autorun` submits the initial state on appear (with `--open`, lets simulator
-  scripts capture result sheets without tapping).
+- **Automation**: `--autorun` submits on appear; `--choose slot=choice,slot=choice` pre-applies
+  selections — together with `--open` they let simulator scripts solve puzzles headlessly
+  (used to verify persistence without tapping).
+
+## Shipped: durable local progress (step 18 — SwiftData)
+
+- **`ProgressStore.swift`**: `PuzzleProgressRecord` (@Model, unique per `puzzleId`) — solved flag,
+  best rank + best metrics JSON, attempt count, first/best solved timestamps.
+  `ProgressRecorder.record` folds each evaluation in with the plan's merge rules: solved beats
+  unsolved, better rank beats worse, a new attempt never downgrades the stored best. A changed
+  `puzzleVersion` resets bests but keeps attempt history.
+- Container attached in `RustChapApp` (`.modelContainer(for: PuzzleProgressRecord.self)`);
+  `PuzzleScreen.run` records after every evaluation; `TrackListView` shows per-puzzle badges via
+  `@Query` (⭐ optimal / teal ✓ fluent / green ✓ solved / dashed circle attempted-unsolved).
+- Verified headlessly: automation solved two puzzles at different ranks, app killed and
+  cold-relaunched — badges restored from the store.
+
+## Next (steps 16–17, 19): anonymous identity + sync
+
+Decided 2026-08-03: anonymous device identity first (register with server, token in Keychain),
+optional name/email profile fields, Sign in with Apple later as account linking. Server side:
+Postgres via Docker + SQLx, `POST /v1/devices/register`, `POST /v1/progress/sync` with the same
+merge rules, server-verified beats local-only.
 
 ## Stack
 

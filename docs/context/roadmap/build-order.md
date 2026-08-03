@@ -50,9 +50,11 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       `content/packs/index.json`
 
 ## Phase 5 — authentication and durable progress
-- [ ] 16. Sign in with Apple
-- [ ] 17. PostgreSQL user/progress model
-- [ ] 18. SwiftData offline state
+- [ ] 16. Identity — decided: anonymous device registration first (optional name/email profile),
+      Sign in with Apple later as account linking
+- [ ] 17. PostgreSQL user/progress model (Postgres via Docker + SQLx)
+- [x] 18. SwiftData offline state (`ProgressStore.swift`: per-puzzle bests + attempts with merge
+      rules; track-list badges; verified across cold relaunch)
 - [ ] 19. Cloud synchronization + identity edge cases
 
 ## Phase 6 — the real question bank

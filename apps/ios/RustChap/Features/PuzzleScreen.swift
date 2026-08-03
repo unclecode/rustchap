@@ -1,10 +1,12 @@
 // The puzzle screen: goal, semantic code surface (tappable slot chips inside
 // real highlighted code), interaction-specific controls, Run, result sheet.
 
+import SwiftData
 import SwiftUI
 
 struct PuzzleScreen: View {
     @Environment(ContentStore.self) private var store
+    @Environment(\.modelContext) private var modelContext
     let loaded: ContentStore.LoadedPuzzle
     @Binding var path: [String]
 
@@ -94,13 +96,7 @@ struct PuzzleScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             resetToInitial()
-            // Screenshot automation: submit the initial state right away.
-            if ProcessInfo.processInfo.arguments.contains("--autorun"), canRun {
-                Task {
-                    try? await Task.sleep(for: .milliseconds(800))
-                    run()
-                }
-            }
+            applyAutomationArguments()
         }
         .sensoryFeedback(trigger: presentedResult?.id) { _, _ in
             guard let presented = presentedResult else { return nil }
@@ -205,6 +201,28 @@ struct PuzzleScreen: View {
         }
     }
 
+    // MARK: - Automation (simulator screenshot scripts)
+
+    /// `--choose arg=c2,param_ty=t3` pre-applies slot selections;
+    /// `--autorun` submits once the screen appears.
+    private func applyAutomationArguments() {
+        let args = ProcessInfo.processInfo.arguments
+        if let flag = args.firstIndex(of: "--choose"), args.indices.contains(flag + 1) {
+            for pair in args[flag + 1].split(separator: ",") {
+                let parts = pair.split(separator: "=", maxSplits: 1)
+                if parts.count == 2 {
+                    selections[String(parts[0])] = String(parts[1])
+                }
+            }
+        }
+        if args.contains("--autorun"), canRun {
+            Task {
+                try? await Task.sleep(for: .milliseconds(800))
+                run()
+            }
+        }
+    }
+
     // MARK: - State
 
     private func resetToInitial() {
@@ -251,6 +269,7 @@ struct PuzzleScreen: View {
             errorSlotIds = result.status == .compileError
                 ? Set(result.diagnostics.flatMap(\.slotIds))
                 : []
+            ProgressRecorder.record(in: modelContext, puzzle: puzzle, result: result)
             presentedResult = PresentedResult(result: result, via: via)
             evaluating = false
         }
