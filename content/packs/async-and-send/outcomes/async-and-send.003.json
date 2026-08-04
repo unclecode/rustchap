@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "async-and-send.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "19b4c819ab5e1577e5f4fe7e87466c04c7113fd46e47a841efbdc6a728466f44": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "future cannot be sent between threads safely",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3cdc3fe3ad80f6dc8b0badd2198aa6e99b99bb9598e7cfc618bbcbf112dd1e50": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type `Cell<{integer}>` cannot be dereferenced",
+          "slot_ids": [],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "43d874aeb992332089dd58233b61c928ccf0c09bff2c73a4d9eaf4226e39e95a": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

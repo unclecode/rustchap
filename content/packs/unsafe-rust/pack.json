@@ -4,5 +4,9 @@
   "title": "Unsafe Rust",
   "description": "The five superpowers, and the sound abstractions that cage them.",
   "toolchain": "1.97.1",
-  "order": []
+  "order": [
+    "unsafe-rust.001",
+    "unsafe-rust.002",
+    "unsafe-rust.003"
+  ]
 }

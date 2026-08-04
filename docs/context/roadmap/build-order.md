@@ -67,9 +67,13 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       added for outcome-distribution review
 - [x] 21. Ingestion pipeline: `tools/fetch-sources.sh` (rustlings + exercism → bank/sources,
       gitignored) + `tools/catalog-sources.py` (candidates → suggested decks, bank/catalog.json)
-- [ ] 22. Fill the decks from the bank — in progress: batch 1 done (Move or Borrow → 6 puzzles,
-      57 submissions verified); next batches: Remove the Clone, Slices & Views, Option & Result
-- [ ] 23. Progression analysis pass per deck
+- [x] 22. Fill the decks from the bank — batches 1–6: **all 15 decks alive, 61 puzzles,
+      364 verified submissions**; deck deepening continues as ongoing content rhythm
+- [x] 23. Progression analysis — `tools/audit-progression.py`: difficulty ramps, guessability
+      as optimal-rate (the game is rank-seeking), allowlisted deliberate ties, opener-prereq
+      check; runs clean; two coin-flip puzzles widened as a result
+
+**Phase 6 complete (2026-08-04).**
 
 ## Phase 7 — product finishing
 - [ ] 24. Track-map navigation

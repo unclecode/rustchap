@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "unsafe-rust.002",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "4dd5d53c89b936c0cbaa1c95cccbaf2b652a692b0aa50656545aa5eabc204eb6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "call to unsafe function `read_both` is unsafe and requires unsafe block",
+          "slot_ids": [],
+          "rust_code": "E0133"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a76f6bc7670944774fd8c78497ae9166fa6cea551931d355530d73fb0fa9d86c": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "unsafe_blocks": 1
+      },
+      "diagnostics": []
+    },
+    "e97c7ed25995eab40ef74760bf6667830fc1e1ab96ca29accff2f3294c9fa7b6": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "unsafe_blocks": 2
+      },
+      "diagnostics": []
+    }
+  }
+}

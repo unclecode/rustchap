@@ -114,6 +114,17 @@ First, The ? Shortcut = errors2 direct — unwrap panics, unwrap_or swallows, bo
 tests). Totals: 31 puzzles, 249 verified submissions, 16 concepts, 7 live decks + 5 Soon.
 `clone_count` extended to all explicit copies (.to_vec/.cloned) during this batch.
 
+**Batch 6 (2026-08-04) — the journey completes; Phase 6 done:** Async & Send born (Await It —
+a 15-line std-only `block_on` embedded in the template makes async compile-verifiable; Move It
+to the Thread = rustlings threads1 E0373; Send Across the Await — Rc held across .await makes
+the future !Send, probed by a `requires_send` fn standing in for tokio::spawn) · Unsafe Rust
+born (The Unsafe Gate — optimal is ONE unsafe block, owning it; Narrow the Blast Radius — the
+unsafe-fn candidate fails because the shared test won't sign its contract; No Unsafe Needed —
+transmute vs to_le_bytes) · 3 concepts (async-await, send-and-static, unsafe-rust; 25 total) ·
+**Step-23 audit shipped** (`tools/audit-progression.py`): guessability measured as
+optimal-rate, deliberate ties allowlisted, two coin-flip puzzles widened to 3 choices.
+**Final: 61 puzzles, 364 verified submissions, 15/15 decks alive.**
+
 **Batch 5 (2026-08-03) — early decks deepened + Interior Mutability born:** Slices & Views → 5
 (Split the Word — hardcoded range passes one test then lies; Chars or Bytes — UTF-8 byte/char
 trap; The Tail End — window-from-the-wrong-end) · Option & Result → 5 (Default with Dignity —

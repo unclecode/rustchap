@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust.001",
+  "version": 1,
+  "title": "The Unsafe Gate",
+  "track": "unsafe-rust",
+  "concepts": [
+    "unsafe-rust"
+  ],
+  "difficulty": 2,
+  "goal": "boost() is marked unsafe — the caller must say the word, out loud.",
+  "template": "/// # Safety\n/// Always safe to call in this program; marked unsafe for the exercise.\nunsafe fn boost() -> i32 {\n    9000\n}\n\nfn power_level() -> i32 {\n    ⟦call⟧\n}\n\nfn main() {\n    println!(\"{}\", power_level());\n}",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "call",
+        "original": null,
+        "label": "the call",
+        "choices": [
+          {
+            "id": "c1",
+            "text": "unsafe { boost() }"
+          },
+          {
+            "id": "c2",
+            "text": "boost()"
+          },
+          {
+            "id": "c3",
+            "text": "unsafe boost()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn boosts() {\n    assert_eq!(power_level(), 9000);\n}"
+    ],
+    "metrics": [
+      "unsafe_blocks"
+    ]
+  },
+  "scoring": {
+    "primary": "unsafe_blocks",
+    "secondary": [],
+    "fluent": {
+      "unsafe_blocks": 1
+    },
+    "optimal": {
+      "unsafe_blocks": 1
+    }
+  },
+  "hints": [
+    "Calling an unsafe fn is one of the five things only an unsafe block may do.",
+    "The block is a signature — you, the caller, accepting the function's safety contract."
+  ],
+  "explanation": "Calling an unsafe fn outside an unsafe block is E0133 — the language insists the caller acknowledge the contract, visibly and greppably. `unsafe { boost() }` is that acknowledgment: you've read boost's # Safety section and vouch for its preconditions here. Note the optimal score is one unsafe block, not zero — when unsafety is genuinely required, the goal is owning it explicitly, not pretending it away. (And `unsafe boost()` without braces isn't syntax — unsafe delimits a block, not a keyword you sprinkle on a call.)",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by unsafe basics; The Book ch19"
+  }
+}

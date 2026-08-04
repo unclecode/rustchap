@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "unsafe-rust.001",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "00212643151c6d29350589b668cb22307c9ce58b3e9a0b5f45f1ca8421526d2d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `{`, found `boost`",
+          "slot_ids": [
+            "call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3ed6cde19d0f4620fb02276c7fdfc39ab4fb65f48c4183cd60a4358acb05c678": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "call to unsafe function `boost` is unsafe and requires unsafe block",
+          "slot_ids": [
+            "call"
+          ],
+          "rust_code": "E0133"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "44df2d04f9507ee91ce08dff5202d5803498ac8495878582345fd415b1c29a63": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "unsafe_blocks": 1
+      },
+      "diagnostics": []
+    }
+  }
+}

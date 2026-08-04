@@ -4,5 +4,9 @@
   "title": "Async & Send",
   "description": "Futures, ownership across .await, and what Send really promises.",
   "toolchain": "1.97.1",
-  "order": []
+  "order": [
+    "async-and-send.001",
+    "async-and-send.002",
+    "async-and-send.003"
+  ]
 }

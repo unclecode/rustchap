@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.003",
+  "version": 1,
+  "title": "Send Across the Await",
+  "track": "async-and-send",
+  "concepts": [
+    "send-and-static",
+    "smart-pointers",
+    "async-await"
+  ],
+  "difficulty": 4,
+  "goal": "The future holds a counter across an .await — and must stay Send. Choose the counter that can cross threads.",
+  "template": "use std::cell::Cell;\nuse std::rc::Rc;\nuse std::sync::Arc;\n\nasync fn tick() {}\n\nasync fn work() -> i32 {\n    let counter = ⟦counter_expr⟧;\n    tick().await;\n    *counter\n}\n\nfn requires_send<T: Send>(value: T) -> T {\n    value\n}\n\nfn get() -> i32 {\n    block_on(requires_send(work()))\n}\n\nfn main() {\n    println!(\"{}\", get());\n}\n\n// Minimal executor — polls the future to completion (std-only).\nfn block_on<F: std::future::Future>(mut fut: F) -> F::Output {\n    use std::task::{Context, Poll, RawWaker, RawWakerVTable, Waker};\n    fn noop(_: *const ()) {}\n    fn clone(p: *const ()) -> RawWaker {\n        RawWaker::new(p, &VTABLE)\n    }\n    static VTABLE: RawWakerVTable = RawWakerVTable::new(clone, noop, noop, noop);\n    let waker = unsafe { Waker::from_raw(RawWaker::new(std::ptr::null(), &VTABLE)) };\n    let mut cx = Context::from_waker(&waker);\n    let mut fut = unsafe { std::pin::Pin::new_unchecked(&mut fut) };\n    loop {\n        match fut.as_mut().poll(&mut cx) {\n            Poll::Ready(value) => return value,\n            Poll::Pending => std::thread::yield_now(),\n        }\n    }\n}",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "counter_expr",
+        "original": null,
+        "label": "counter",
+        "choices": [
+          {
+            "id": "e1",
+            "text": "Arc::new(7)"
+          },
+          {
+            "id": "e2",
+            "text": "Rc::new(7)"
+          },
+          {
+            "id": "e3",
+            "text": "Cell::new(7)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn works() {\n    assert_eq!(get(), 7);\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "A future remembers every local it holds across an .await — those locals ARE the future's state.",
+    "Rc's reference count isn't atomic, so an Rc-holding future can't be Send. Arc is the thread-safe twin."
+  ],
+  "explanation": "requires_send stands in for tokio::spawn: multithreaded executors demand Send futures. The future's state is whatever lives across an .await — hold an Rc there and the entire future becomes !Send (E0277, with the compiler pointing at exactly which value and which await). Arc is the atomic twin: same sharing, Send-safe, future crosses threads freely. This diagnosis — 'future is not Send, held across await' — is the single most common async compile error in real Rust; now you can read it. (Cell<i32> is Send too — but it isn't a pointer: there's nothing to deref, E0614. Wrappers earn their place by what they provide.)",
+  "prerequisites": [
+    "async-and-send.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by async Send bounds; The Book ch17 / tokio docs"
+  }
+}

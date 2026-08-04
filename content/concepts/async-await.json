@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "async-await",
+  "title": "async fn returns a future",
+  "summary": "Calling an async fn does nothing yet — it builds a machine that .await (or an executor) must drive.",
+  "lecture": [
+    "An `async fn fetch() -> i32` does not return an i32. It returns an anonymous Future that will EVENTUALLY produce an i32 — and calling it runs none of the body. Futures are inert values: no executor, no progress.",
+    "`.await` is how one future drives another, legal only inside async contexts. At the outermost edge, an executor (tokio's runtime, or a minimal block_on loop) polls the future to completion — that's where async meets the synchronous world.",
+    "The classic symptom of a forgotten .await: a type error complaining that `impl Future<Output = i32>` isn't an i32 (or doesn't implement Display). The value you wanted is one keyword away, still wrapped in the machine that computes it."
+  ],
+  "example": {
+    "code": "async fn fetch_score() -> i32 { 42 }\n\nlet fut = fetch_score();     // nothing ran — fut IS the future\nlet score = fut.await;       // inside async: drive it to 42",
+    "caption": "async builds machines; .await runs them."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "unsafe-rust.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "204e4e73c69c65ceed5c212fc17c354e008cd0fe37e138b488697acd7525871d": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "explicit_loops": 0,
+        "mut_bindings": 0,
+        "unsafe_blocks": 1
+      },
+      "diagnostics": []
+    },
+    "b489ee6068e09ba23bc0bb6f662617428a9a6ef536e2bf35734a5dcfd694f69a": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "explicit_loops": 1,
+        "mut_bindings": 1,
+        "unsafe_blocks": 0
+      },
+      "diagnostics": []
+    },
+    "fa374f26d0c3b60ae81a96e5565cffc14d2b03085b2d4fb7a06ca6b719879182": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0,
+        "mut_bindings": 0,
+        "unsafe_blocks": 0
+      },
+      "diagnostics": []
+    }
+  }
+}
