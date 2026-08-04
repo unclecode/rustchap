@@ -4,9 +4,12 @@
   "version": 1,
   "title": "First of Two",
   "track": "repair-the-lifetime",
-  "concepts": ["lifetime", "borrow"],
+  "concepts": [
+    "lifetime",
+    "borrow"
+  ],
   "difficulty": 3,
-  "goal": "The result borrows only from text — say so, and the short-lived label stops mattering.",
+  "goal": "The result borrows only from text - say so, and the short-lived label stops mattering.",
   "template": "fn first_word⟦generics⟧(text: &'a str, label: ⟦label_ty⟧) -> &'a str {\n    println!(\"[{label}]\");\n    text.split_whitespace().next().unwrap_or(text)\n}\n\nfn main() {\n    let text = String::from(\"hello world\");\n    let result;\n    {\n        let label = String::from(\"query\");\n        result = first_word(&text, &label);\n    }\n    println!(\"{result}\");\n}",
   "interaction": {
     "type": "slot-selection",
@@ -16,8 +19,14 @@
         "original": null,
         "label": "generic parameters",
         "choices": [
-          { "id": "g1", "text": "<'a>" },
-          { "id": "g2", "text": "<'a, 'b>" }
+          {
+            "id": "g1",
+            "text": "<'a>"
+          },
+          {
+            "id": "g2",
+            "text": "<'a, 'b>"
+          }
         ]
       },
       {
@@ -25,27 +34,47 @@
         "original": null,
         "label": "label type",
         "choices": [
-          { "id": "f1", "text": "&'a str" },
-          { "id": "f2", "text": "&'b str" }
+          {
+            "id": "f1",
+            "text": "&'a str"
+          },
+          {
+            "id": "f2",
+            "text": "&'b str"
+          }
         ]
       }
     ]
   },
   "evaluation": {
-    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
-    "metrics": ["clone_count"]
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "result outlives label. If label shares 'a, the returned borrow shrinks to label's short life — E0597.",
+    "result outlives label. If label shares 'a, the returned borrow shrinks to label's short life - E0597.",
     "The return only ever borrows from text. Give label its own lifetime and the constraint disappears."
   ],
-  "explanation": "With one shared 'a, the compiler must pick a lifetime that fits BOTH inputs at the call site — and the block-scoped label drags 'a down to its own short life, killing `result` before its println (E0597). The return value never touches label, so the honest signature gives label a separate 'b: now the result is tied to text alone and lives happily past the block. Rule of thumb: only inputs the output actually borrows from should share its lifetime.",
-  "prerequisites": ["repair-the-lifetime.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by lifetimes1/lifetimes2" }
+  "explanation": "With one shared 'a, the compiler must pick a lifetime that fits BOTH inputs at the call site - and the block-scoped label drags 'a down to its own short life, killing `result` before its println (E0597). The return value never touches label, so the honest signature gives label a separate 'b: now the result is tied to text alone and lives happily past the block. Rule of thumb: only inputs the output actually borrows from should share its lifetime.",
+  "prerequisites": [
+    "repair-the-lifetime.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by lifetimes1/lifetimes2"
+  }
 }

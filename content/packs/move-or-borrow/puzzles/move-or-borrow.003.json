@@ -4,9 +4,12 @@
   "version": 1,
   "title": "Give It Away",
   "track": "move-or-borrow",
-  "concepts": ["move", "api-design"],
+  "concepts": [
+    "move",
+    "api-design"
+  ],
   "difficulty": 2,
-  "goal": "The team stores the member. Sometimes the right move IS a move — 0 clones.",
+  "goal": "The team stores the member. Sometimes the right move IS a move - 0 clones.",
   "template": "fn main() {\n    let name = String::from(\"Ferris\");\n    let team = register(⟦arg⟧);\n    println!(\"{}\", team.join(\", \"));\n}\n\nfn register(member: ⟦param_ty⟧) -> Vec<String> {\n    let mut team = Vec::new();\n    team.push(⟦push_expr⟧);\n    team\n}",
   "interaction": {
     "type": "minimal-edit",
@@ -16,9 +19,18 @@
         "original": "&name",
         "label": "argument",
         "choices": [
-          { "id": "a1", "text": "&name" },
-          { "id": "a2", "text": "name" },
-          { "id": "a3", "text": "name.clone()" }
+          {
+            "id": "a1",
+            "text": "&name"
+          },
+          {
+            "id": "a2",
+            "text": "name"
+          },
+          {
+            "id": "a3",
+            "text": "name.clone()"
+          }
         ]
       },
       {
@@ -26,8 +38,14 @@
         "original": "&str",
         "label": "parameter type",
         "choices": [
-          { "id": "p1", "text": "&str" },
-          { "id": "p2", "text": "String" }
+          {
+            "id": "p1",
+            "text": "&str"
+          },
+          {
+            "id": "p2",
+            "text": "String"
+          }
         ]
       },
       {
@@ -35,27 +53,51 @@
         "original": "member.to_owned()",
         "label": "pushed value",
         "choices": [
-          { "id": "e1", "text": "member.to_owned()" },
-          { "id": "e2", "text": "member" }
+          {
+            "id": "e1",
+            "text": "member.to_owned()"
+          },
+          {
+            "id": "e2",
+            "text": "member"
+          }
         ]
       }
     ]
   },
   "evaluation": {
-    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
-    "metrics": ["clone_count", "token_edits"]
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "metrics": [
+      "clone_count",
+      "token_edits"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
-    "secondary": ["token_edits"],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0, "token_edits": 3 }
+    "secondary": [
+      "token_edits"
+    ],
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0,
+      "token_edits": 3
+    }
   },
   "hints": [
     "The borrow-then-to_owned version works… but who really needs to own the name?",
     "main never uses name after the call. Let register take the String itself and push it straight in."
   ],
-  "explanation": "The starting code borrows and then buys ownership back with to_owned() — an allocation for nothing. Because main never touches `name` afterwards, the clean design moves ownership INTO register: `String` parameter, push `member` directly, zero copies. The opposite lesson of Use It Twice: borrowing is the default, but when the callee stores the value, transfer it.",
-  "prerequisites": ["move-or-borrow.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by move_semantics1/move_semantics2 (fill_vec)" }
+  "explanation": "The starting code borrows and then buys ownership back with to_owned() - an allocation for nothing. Because main never touches `name` afterwards, the clean design moves ownership INTO register: `String` parameter, push `member` directly, zero copies. The opposite lesson of Use It Twice: borrowing is the default, but when the callee stores the value, transfer it.",
+  "prerequisites": [
+    "move-or-borrow.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by move_semantics1/move_semantics2 (fill_vec)"
+  }
 }

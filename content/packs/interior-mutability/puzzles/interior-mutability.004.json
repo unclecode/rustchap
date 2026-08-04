@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.004",
+  "version": 1,
+  "title": "Mutation Behind a Shared Reference",
+  "track": "interior-mutability",
+  "concepts": [
+    "interior-mutability",
+    "mutability"
+  ],
+  "difficulty": 1,
+  "goal": "Cell and RefCell move the mutability check inside the value.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Normally, mutation requires exclusive access: a `&self` method cannot assign to its fields, error `E0594`. Interior mutability moves the permission inside the value: the field itself allows controlled mutation through a shared reference. This is how a counter can live behind `&self`, or how shared `Rc` handles can still update the value they share."
+      },
+      {
+        "kind": "code",
+        "code": "use std::cell::Cell;\n\nstruct Metrics {\n    hits: Cell<u32>,\n}\n\nimpl Metrics {\n    fn record(&self) {                  // &self, and it still counts\n        self.hits.set(self.hits.get() + 1);\n    }\n}",
+        "caption": "Cell copies values in and out. No guards, no panics."
+      },
+      {
+        "kind": "prose",
+        "text": "`Cell<T>` is the simple form, for `Copy` types like `u32`. `get()` copies the value out, `set()` replaces it. Nothing can go wrong at runtime. `RefCell<T>` handles non-Copy types like `Vec`: `borrow()` gives a read guard, `borrow_mut()` gives a write guard, and the borrow rules are enforced at runtime instead of compile time."
+      },
+      {
+        "kind": "prose",
+        "text": "Runtime enforcement means a new failure mode: holding a read guard in a variable while asking for a write guard panics with already borrowed. Keep guards as short-lived as the syntax allows, and prefer the one-statement form `cell.borrow().len()` that releases the guard immediately."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Cell for Copy types, RefCell for the rest. RefCell checks the borrow rules at runtime, so keep its guards short.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

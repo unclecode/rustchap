@@ -4,7 +4,9 @@
   "version": 1,
   "title": "Default It",
   "track": "traits-and-bounds",
-  "concepts": ["traits"],
+  "concepts": [
+    "traits"
+  ],
   "difficulty": 2,
   "goal": "Config::default() must work. One version doesn't compile; of the two that do, one wrote code a derive already writes.",
   "interaction": {
@@ -25,21 +27,42 @@
     ]
   },
   "evaluation": {
-    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
-    "clippy": { "deny": ["clippy::derivable_impls"] },
-    "metrics": ["clippy_warning_count", "clone_count"]
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "clippy": {
+      "deny": [
+        "clippy::derivable_impls"
+      ]
+    },
+    "metrics": [
+      "clippy_warning_count",
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clippy_warning_count",
-    "secondary": ["clone_count"],
-    "fluent": { "clippy_warning_count": 1 },
-    "optimal": { "clippy_warning_count": 0 }
+    "secondary": [
+      "clone_count"
+    ],
+    "fluent": {
+      "clippy_warning_count": 1
+    },
+    "optimal": {
+      "clippy_warning_count": 0
+    }
   },
   "hints": [
-    "An inherent new() is not the Default trait — Config::default() only exists if the trait is implemented.",
+    "An inherent new() is not the Default trait - Config::default() only exists if the trait is implemented.",
     "When every field's default is the field type's default, the derive writes your impl verbatim."
   ],
-  "explanation": "Default is a trait, so a plain new() method leaves Config::default() unresolvable (E0599) — traits are contracts, not naming conventions. The manual impl works but reimplements exactly what #[derive(Default)] generates — Clippy's derivable_impls points this out. Zeros and falses ARE the field defaults, so the derive is both shorter and self-maintaining when fields change. Write impls only where the defaults are actually interesting.",
-  "prerequisites": ["traits-and-bounds.001"],
-  "source": { "origin": "exercism", "license": "MIT", "attribution": "inspired by struct-default practice patterns; clippy derivable_impls" }
+  "explanation": "Default is a trait, so a plain new() method leaves Config::default() unresolvable (E0599) - traits are contracts, not naming conventions. The manual impl works but reimplements exactly what #[derive(Default)] generates - Clippy's derivable_impls points this out. Zeros and falses ARE the field defaults, so the derive is both shorter and self-maintaining when fields change. Write impls only where the defaults are actually interesting.",
+  "prerequisites": [
+    "traits-and-bounds.001"
+  ],
+  "source": {
+    "origin": "exercism",
+    "license": "MIT",
+    "attribution": "inspired by struct-default practice patterns; clippy derivable_impls"
+  }
 }

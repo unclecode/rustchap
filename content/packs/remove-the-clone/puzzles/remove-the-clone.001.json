@@ -4,9 +4,14 @@
   "version": 1,
   "title": "Borrow the Tags",
   "track": "remove-the-clone",
-  "concepts": ["clone", "borrow", "slice", "api-design"],
+  "concepts": [
+    "clone",
+    "borrow",
+    "slice",
+    "api-design"
+  ],
   "difficulty": 2,
-  "goal": "Keep using tags after the call — 0 clones, and take the most flexible parameter type.",
+  "goal": "Keep using tags after the call - 0 clones, and take the most flexible parameter type.",
   "template": "fn main() {\n    let tags = vec![String::from(\"rust\"), String::from(\"ios\")];\n    let joined = join_tags(⟦arg⟧);\n    println!(\"{} tags: {joined}\", tags.len());\n}\n\nfn join_tags(tags: ⟦param_ty⟧) -> String {\n    tags.join(\",\")\n}\n",
   "interaction": {
     "type": "minimal-edit",
@@ -16,9 +21,18 @@
         "original": "tags",
         "label": "argument",
         "choices": [
-          { "id": "c1", "text": "tags" },
-          { "id": "c2", "text": "tags.clone()" },
-          { "id": "c3", "text": "&tags" }
+          {
+            "id": "c1",
+            "text": "tags"
+          },
+          {
+            "id": "c2",
+            "text": "tags.clone()"
+          },
+          {
+            "id": "c3",
+            "text": "&tags"
+          }
         ]
       },
       {
@@ -26,29 +40,61 @@
         "original": "Vec<String>",
         "label": "parameter type",
         "choices": [
-          { "id": "t1", "text": "Vec<String>" },
-          { "id": "t2", "text": "&Vec<String>" },
-          { "id": "t3", "text": "&[String]" }
+          {
+            "id": "t1",
+            "text": "Vec<String>"
+          },
+          {
+            "id": "t2",
+            "text": "&Vec<String>"
+          },
+          {
+            "id": "t3",
+            "text": "&[String]"
+          }
         ]
       }
     ]
   },
   "evaluation": {
-    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
-    "clippy": { "deny": ["clippy::ptr_arg"] },
-    "metrics": ["clone_count", "token_edits", "clippy_warning_count"]
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "clippy": {
+      "deny": [
+        "clippy::ptr_arg"
+      ]
+    },
+    "metrics": [
+      "clone_count",
+      "token_edits",
+      "clippy_warning_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
-    "secondary": ["token_edits", "clippy_warning_count"],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0, "token_edits": 2, "clippy_warning_count": 0 }
+    "secondary": [
+      "token_edits",
+      "clippy_warning_count"
+    ],
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0,
+      "token_edits": 2,
+      "clippy_warning_count": 0
+    }
   },
   "hints": [
     "The move happens because Vec<String> takes ownership. What does join_tags actually need?",
     "&Vec<String> compiles, but Clippy will tell you why a slice is the better borrow."
   ],
-  "explanation": "join_tags only reads the strings, so it should borrow. Cloning the Vec (and every String inside it!) buys nothing. Between the two borrows, `&[String]` wins over `&Vec<String>`: a &Vec argument coerces to a slice automatically, and the slice version also accepts arrays and sub-slices — Clippy's ptr_arg lint exists precisely for this.",
+  "explanation": "join_tags only reads the strings, so it should borrow. Cloning the Vec (and every String inside it!) buys nothing. Between the two borrows, `&[String]` wins over `&Vec<String>`: a &Vec argument coerces to a slice automatically, and the slice version also accepts arrays and sub-slices - Clippy's ptr_arg lint exists precisely for this.",
   "prerequisites": [],
-  "source": { "origin": "original", "license": null, "attribution": null }
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
 }

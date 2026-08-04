@@ -4,13 +4,13 @@
   "title": "Send and 'static: crossing boundaries",
   "summary": "Work that moves to another thread or task must own its data (or share it atomically).",
   "lecture": [
-    "thread::spawn (and multithreaded task spawning) accepts closures that are Send + 'static: nothing borrowed from the current stack frame — because the thread may outlive it (E0373). The `move` keyword is usually the fix: give the closure ownership.",
-    "Send means 'safe to hand to another thread'. Most types are; the notable civilian exception is Rc — its reference count isn't atomic, so two threads bumping it is a data race. Arc is the same idea with atomic counting, and it IS Send.",
-    "The async twist: a future remembers every local it holds ACROSS an .await. Hold an Rc across an await point and the whole future becomes !Send — unusable on a multithreaded executor (E0277 pointing at the spawn). Fix by switching to Arc, or by dropping the non-Send value before the await.",
-    "Reflex: at every spawn boundary, ask 'who owns this data, and can it cross?' — move it, Arc it, or finish with it first."
+    "thread::spawn (and multithreaded task spawning) accepts closures that are Send + 'static: nothing borrowed from the current stack frame - because the thread may outlive it (E0373). The `move` keyword is usually the fix: give the closure ownership.",
+    "Send means 'safe to hand to another thread'. Most types are; the notable civilian exception is Rc - its reference count isn't atomic, so two threads bumping it is a data race. Arc is the same idea with atomic counting, and it IS Send.",
+    "The async twist: a future remembers every local it holds ACROSS an .await. Hold an Rc across an await point and the whole future becomes !Send - unusable on a multithreaded executor (E0277 pointing at the spawn). Fix by switching to Arc, or by dropping the non-Send value before the await.",
+    "Reflex: at every spawn boundary, ask 'who owns this data, and can it cross?' - move it, Arc it, or finish with it first."
   ],
   "example": {
-    "code": "let name = String::from(\"worker\");\nthread::spawn(move || println!(\"{name}\"));  // owns it — Send + 'static\n\nasync fn work() -> i32 {\n    let n = Arc::new(7);   // Rc here would make the future !Send\n    tick().await;          // n is held across this point\n    *n\n}",
-    "caption": "What crosses the boundary must be owned — and atomically shareable."
+    "code": "let name = String::from(\"worker\");\nthread::spawn(move || println!(\"{name}\"));  // owns it - Send + 'static\n\nasync fn work() -> i32 {\n    let n = Arc::new(7);   // Rc here would make the future !Send\n    tick().await;          // n is held across this point\n    *n\n}",
+    "caption": "What crosses the boundary must be owned - and atomically shareable."
   }
 }

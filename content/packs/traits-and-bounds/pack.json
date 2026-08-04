@@ -5,8 +5,11 @@
   "description": "The weakest bound that still does the job.",
   "toolchain": "1.97.1",
   "order": [
+    "traits-and-bounds.004",
     "traits-and-bounds.001",
     "traits-and-bounds.002",
     "traits-and-bounds.003"
-  ]
+  ],
+  "icon": "checkmark.seal.fill",
+  "accent": "green"
 }

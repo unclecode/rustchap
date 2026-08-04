@@ -4,7 +4,11 @@
   "version": 1,
   "title": "The Counter",
   "track": "closures",
-  "concepts": ["closures", "mutability", "copy"],
+  "concepts": [
+    "closures",
+    "mutability",
+    "copy"
+  ],
   "difficulty": 3,
   "goal": "Two bumps, count of two. One version compiles and counts a ghost.",
   "template": "fn counted() -> i32 {\n    let mut count = 0;\n    let mut bump = ⟦closure⟧;\n    bump();\n    bump();\n    count\n}\n\nfn main() {\n    println!(\"{}\", counted());\n}",
@@ -16,9 +20,18 @@
         "original": null,
         "label": "the closure",
         "choices": [
-          { "id": "c1", "text": "|| count += 1" },
-          { "id": "c2", "text": "move || count += 1" },
-          { "id": "c3", "text": "|n| count += n" }
+          {
+            "id": "c1",
+            "text": "|| count += 1"
+          },
+          {
+            "id": "c2",
+            "text": "move || count += 1"
+          },
+          {
+            "id": "c3",
+            "text": "|n| count += n"
+          }
         ]
       }
     ]
@@ -27,19 +40,31 @@
     "tests": [
       "#[test]\nfn counts_two() {\n    assert_eq!(counted(), 2);\n}"
     ],
-    "metrics": ["clone_count"]
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "Mutating a capture makes the closure FnMut — that's why bump itself is declared mut.",
-    "move on a Copy type doesn't move it. It copies it — and the closure bumps its private copy."
+    "Mutating a capture makes the closure FnMut - that's why bump itself is declared mut.",
+    "move on a Copy type doesn't move it. It copies it - and the closure bumps its private copy."
   ],
-  "explanation": "The borrowing closure mutably captures count: two bumps, count is 2, everyone's honest. The move version is the trap: i32 is Copy, so `move` captures a COPY — the closure diligently increments its own private counter while the function returns the untouched original. It compiles; it returns 0; only the test objects. (The two-argument closure just doesn't match the zero-argument calls — E0057.) Copy types + move closures deserve a second look every time.",
-  "prerequisites": ["closures.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by iterators5/threads captures" }
+  "explanation": "The borrowing closure mutably captures count: two bumps, count is 2, everyone's honest. The move version is the trap: i32 is Copy, so `move` captures a COPY - the closure diligently increments its own private counter while the function returns the untouched original. It compiles; it returns 0; only the test objects. (The two-argument closure just doesn't match the zero-argument calls - E0057.) Copy types + move closures deserve a second look every time.",
+  "prerequisites": [
+    "closures.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by iterators5/threads captures"
+  }
 }

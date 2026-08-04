@@ -4,9 +4,12 @@
   "version": 1,
   "title": "Mutate Behind Sharing",
   "track": "smart-pointers",
-  "concepts": ["smart-pointers", "mutability"],
+  "concepts": [
+    "smart-pointers",
+    "mutability"
+  ],
   "difficulty": 3,
-  "goal": "A shared list that still accepts pushes — interior mutability, borrowed correctly on both sides.",
+  "goal": "A shared list that still accepts pushes - interior mutability, borrowed correctly on both sides.",
   "template": "use std::cell::RefCell;\nuse std::rc::Rc;\n\ntype Board = Rc<RefCell<Vec<i32>>>;\n\nfn add_score(board: &Board, score: i32) {\n    board⟦mut_access⟧.push(score);\n}\n\nfn snapshot(board: &Board) -> Vec<i32> {\n    board⟦read_access⟧.clone()\n}\n\nfn main() {\n    let scores: Board = Rc::new(RefCell::new(vec![10, 20]));\n    let leaderboard = Rc::clone(&scores);\n    add_score(&scores, 30);\n    println!(\"{:?}\", snapshot(&leaderboard));\n}",
   "interaction": {
     "type": "slot-selection",
@@ -16,9 +19,18 @@
         "original": null,
         "label": "mutating access",
         "choices": [
-          { "id": "m1", "text": ".borrow_mut()" },
-          { "id": "m2", "text": ".borrow()" },
-          { "id": "m3", "text": "" }
+          {
+            "id": "m1",
+            "text": ".borrow_mut()"
+          },
+          {
+            "id": "m2",
+            "text": ".borrow()"
+          },
+          {
+            "id": "m3",
+            "text": ""
+          }
         ]
       },
       {
@@ -26,8 +38,14 @@
         "original": null,
         "label": "reading access",
         "choices": [
-          { "id": "r1", "text": ".borrow()" },
-          { "id": "r2", "text": "" }
+          {
+            "id": "r1",
+            "text": ".borrow()"
+          },
+          {
+            "id": "r2",
+            "text": ""
+          }
         ]
       }
     ]
@@ -36,19 +54,31 @@
     "tests": [
       "#[test]\nfn shares_mutation() {\n    let scores: Board = Rc::new(RefCell::new(vec![10, 20]));\n    let leaderboard = Rc::clone(&scores);\n    add_score(&scores, 30);\n    assert_eq!(snapshot(&leaderboard), vec![10, 20, 30]);\n}"
     ],
-    "metrics": ["clone_count"]
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "Rc alone shares immutably. RefCell is the layer that sells write passes — one at a time, checked at runtime.",
-    "snapshot returns a Vec — cloning the RefCell wrapper instead of the Vec inside it produces the wrong type."
+    "Rc alone shares immutably. RefCell is the layer that sells write passes - one at a time, checked at runtime.",
+    "snapshot returns a Vec - cloning the RefCell wrapper instead of the Vec inside it produces the wrong type."
   ],
-  "explanation": "Rc<RefCell<T>> is the classic shared-mutable pairing: Rc counts owners, RefCell enforces one-writer-XOR-many-readers at RUNTIME. add_score needs the exclusive write pass — borrow_mut(); a read pass can't push (E0596 through the Ref), and no pass at all leaves you talking to the RefCell wrapper (no push there, E0599). On the reading side, borrow().clone() copies the Vec out; skipping the borrow clones the RefCell itself — wrong type, E0308. The mutation flows to the other handle instantly: one Vec, counted owners, disciplined access.",
-  "prerequisites": ["smart-pointers.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by rc1 + cell patterns; The Book ch15.5" }
+  "explanation": "Rc<RefCell<T>> is the classic shared-mutable pairing: Rc counts owners, RefCell enforces one-writer-XOR-many-readers at RUNTIME. add_score needs the exclusive write pass - borrow_mut(); a read pass can't push (E0596 through the Ref), and no pass at all leaves you talking to the RefCell wrapper (no push there, E0599). On the reading side, borrow().clone() copies the Vec out; skipping the borrow clones the RefCell itself - wrong type, E0308. The mutation flows to the other handle instantly: one Vec, counted owners, disciplined access.",
+  "prerequisites": [
+    "smart-pointers.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by rc1 + cell patterns; The Book ch15.5"
+  }
 }

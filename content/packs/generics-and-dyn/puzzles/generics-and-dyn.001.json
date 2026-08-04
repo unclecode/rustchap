@@ -4,9 +4,12 @@
   "version": 1,
   "title": "One Function, Any Comparable",
   "track": "generics-and-dyn",
-  "concepts": ["generics", "traits"],
+  "concepts": [
+    "generics",
+    "traits"
+  ],
   "difficulty": 2,
-  "goal": "largest works for numbers and strings alike — the > in the body names its price.",
+  "goal": "largest works for numbers and strings alike - the > in the body names its price.",
   "template": "fn largest<T: ⟦bound⟧>(list: &[T]) -> &T {\n    let mut max = &list[0];\n    for item in list {\n        if item > max {\n            max = item;\n        }\n    }\n    max\n}\n\nfn main() {\n    println!(\"{}\", largest(&[1, 5, 3]));\n    println!(\"{}\", largest(&[\"pear\", \"apple\"]));\n}",
   "interaction": {
     "type": "slot-selection",
@@ -16,9 +19,18 @@
         "original": null,
         "label": "trait bound",
         "choices": [
-          { "id": "b1", "text": "PartialOrd" },
-          { "id": "b2", "text": "std::fmt::Display" },
-          { "id": "b3", "text": "Clone" }
+          {
+            "id": "b1",
+            "text": "PartialOrd"
+          },
+          {
+            "id": "b2",
+            "text": "std::fmt::Display"
+          },
+          {
+            "id": "b3",
+            "text": "Clone"
+          }
         ]
       }
     ]
@@ -27,19 +39,29 @@
     "tests": [
       "#[test]\nfn finds_largest() {\n    assert_eq!(*largest(&[1, 5, 3]), 5);\n    assert_eq!(*largest(&[\"pear\", \"apple\"]), \"pear\");\n}"
     ],
-    "metrics": ["clone_count"]
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
     "The only operation the body performs on T is `>`. Which trait provides comparison operators?",
-    "Display is for printing — main prints, but the FUNCTION never does."
+    "Display is for printing - main prints, but the FUNCTION never does."
   ],
-  "explanation": "Monomorphized generics ask for capabilities via bounds, and the body defines the ask: `item > max` desugars to PartialOrd::gt, so T: PartialOrd is necessary and sufficient — the compiler stamps out an i32 version and a &str version at zero runtime cost. Display fails because comparison isn't printing (even though main happens to print the results — bounds serve the body, not the caller). This is THE generics reflex: capabilities in, one implementation out.",
+  "explanation": "Monomorphized generics ask for capabilities via bounds, and the body defines the ask: `item > max` desugars to PartialOrd::gt, so T: PartialOrd is necessary and sufficient - the compiler stamps out an i32 version and a &str version at zero runtime cost. Display fails because comparison isn't printing (even though main happens to print the results - bounds serve the body, not the caller). This is THE generics reflex: capabilities in, one implementation out.",
   "prerequisites": [],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by generics2 / The Book's largest example" }
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by generics2 / The Book's largest example"
+  }
 }

@@ -19,6 +19,9 @@ sources:
   - apps/ios/RustChap/Core/ProgressStore.swift
   - apps/ios/RustChap/Core/Keychain.swift
   - apps/ios/RustChap/Core/SyncService.swift
+  - apps/ios/RustChap/Core/TutorService.swift
+  - apps/ios/RustChap/Core/TutorProbe.swift
+  - apps/ios/RustChap/Features/TutorSheet.swift
   - apps/ios/RustChap/Features/ProfileView.swift
   - apps/ios/Support/Info.plist
 related:
@@ -81,8 +84,51 @@ Verified by simulator-SDK build plus a macOS harness that compiles the real
   state isn't visible to the content closure — always `.sheet(item:)`. NavigationStack drops
   path mutations made during sheet dismissal — navigate in the sheet's `onDismiss`
   (`pendingNextId` in `PuzzleScreen`).
+- **RCA — ghost selections across "Next puzzle" (found on-device 2026-08-04)**: replacing the
+  path wholesale (`path = [.deck, .puzzle(next)]`) keeps the depth-2 destination's **view
+  identity** — `@State selections` survives and `.onAppear` never re-fires, so the old puzzle's
+  choices rode into the next puzzle's submission (5 ops against a 3-slot table → offline lookup
+  miss → bogus "Invalid submission · offline"). Two-layer fix: `.id(puzzleId)` on `PuzzleScreen`
+  in `RustChapApp`'s `navigationDestination` (fresh identity per puzzle), and `PuzzleScreen.run`
+  builds operations **from the puzzle's own slots**, never by dumping the selections dictionary.
+  Only surfaced via the hand-tap journey solve → "Next puzzle" → play — deep-link automation
+  can't reproduce it; that class of flow needs real navigation.
 - **Automation**: `--open <puzzle-id>` launch argument deep-links to a puzzle
   (`RustChapApp.init`), used for simulator screenshot verification.
+- **Lesson nodes (2026-08-04)**: `Interaction.lesson(sections:)` renders a reading layout in
+  `PuzzleScreen.interactionSection` — prose paragraphs + `CodeText` cards with captions — and
+  the bottom bar swaps Run for **"Got it"** (`completeLesson()`: records a synthetic
+  solved/rank-solved `EvalResult` via `ProgressRecorder`, then path-replaces to the next deck
+  node). `run()`/`canRun` guard the lesson case; deck rows show an indigo book icon
+  (`TrackListView.puzzleRow`); `Puzzle.scoring` is optional (lessons have none — `ResultView`
+  falls back to an empty `Scoring`, unreachable in practice). Progression counts lessons like
+  puzzles: reading gates deck completion.
+- **On-device AI tutor (2026-08-04, experimental)**: `Core/TutorService.swift` +
+  `Features/TutorSheet.swift` + `Core/TutorProbe.swift` (the `--fm-probe` spike harness).
+  Foundation Models (iOS 26, Apple Intelligence) behind `TutorAvailability` — the sparkles
+  toolbar button (`.tutorButton { context }` modifier on home/deck/puzzle/result screens)
+  **does not exist** when the model is unavailable. Spike finding that shapes the design: the
+  raw 3B model invents Rust rules ("&str is a generic type"); grounded in bundled material it
+  answers correctly at ~1.4–3s. So `TutorContext` pins every session to app-owned content —
+  global = concept-library summaries; puzzle = full lectures for the puzzle's concepts +
+  template + player picks + real diagnostics + explanation — with a never-invent,
+  say-not-sure leash (`TutorContext.instructions`). Chat UI: suggested-question chips,
+  multi-turn `LanguageModelSession`, **streamed** answers (cumulative snapshots via
+  `streamResponse`; the bubble is created on first token and rewritten — the
+  unterminated-fence fallback in `TutorMarkdown` makes half-streamed code blocks render
+  highlighted), markdown rendering (`TutorMarkdown`: headings/lists/inline via
+  AttributedString, fenced blocks through `CodeText`/RustLexer; `--md-preview` shows it on
+  the FM-less simulator). **One durable conversation per surface** (clarified by the
+  user 2026-08-04: scope IS the thread — no history browser): `TutorConversationRecord`
+  (SwiftData, JSON transcript) keyed by `subjectId` = `home` / `deck:<id>` /
+  `puzzle:<id>`; each surface's tutor resumes its own thread, saved after every exchange,
+  LRU-pruned past 30 threads; a fresh session folds the last 6 turns of that thread into
+  its instructions so relaunch keeps context. Deck surfaces get a deck-scoped grounding
+  packet (`TutorContext.deck`: deck arc + concept summaries).
+  New-chat toolbar button clears it; per-message copy buttons put raw markdown on the
+  pasteboard; `.textSelection(.enabled)` on both bubble kinds;
+  `.scrollDismissesKeyboard(.interactively)` + tap-to-unfocus. All FM code is
+  `#available(iOS 26)`-gated; app min target stays iOS 17.
 - **Skills** (`ConceptView.swift`): `content/concepts` is bundled as a second folder reference;
   `ContentStore.concepts(for:)` maps a puzzle's `concepts` ids to loaded `Concept`s.
   `SkillsSheet` (book toolbar icon) lists them and pushes `ConceptLectureView`; `HintsSheet`
@@ -204,8 +250,11 @@ Within each feature: `PuzzleScreen` / `PuzzleViewModel` / `PuzzleState` / `Puzzl
 ## Navigation (two levels — the deck model, shipped)
 
 `Route` enum (`.deck(id)` / `.puzzle(id)`) drives one NavigationStack. **`DeckListView`** is home:
-every deck by name with progress (`solved/total`, ★ optimal count), locked decks visible
-(lock icon), planned empty decks marked "Soon". Unlock = previous deck fully solved, derived
+since 2026-08-04 a **two-column card grid** (LazyVGrid), each deck card carrying a tinted
+SF Symbol tile (`pack.json`'s display-only `icon` + `accent` fields; `accentColor(_:)` maps
+named colors, unknown → app tint), progress line (`solved/total`, ★ count), the current deck
+ringed in its accent with a Continue chip, locked decks dimmed with lock badges, planned
+empty decks marked "Soon". Unlock = previous deck fully solved, derived
 client-side (shared `Progression` helpers; empty decks never complete). **Locked decks are
 browsable**: tapping opens `DeckDetailView` (TrackListView.swift) with the puzzle list grayed +
 per-row locks + "Solve the previous deck to unlock" — preview what's ahead, play nothing.

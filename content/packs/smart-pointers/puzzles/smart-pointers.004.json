@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers.004",
+  "version": 1,
+  "title": "Pointers That Own",
+  "track": "smart-pointers",
+  "concepts": [
+    "smart-pointers"
+  ],
+  "difficulty": 1,
+  "goal": "Box owns on the heap. Rc counts owners. Each solves one specific problem.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "A smart pointer is a value that owns data somewhere else and cleans it up when dropped. `Box<T>` is the simplest: single ownership of one heap allocation. A `Box` is pointer-sized regardless of what it holds, which is what makes recursive types possible. A type that contains itself directly has infinite size, error `E0072`; a type that contains a `Box` of itself is one pointer per level."
+      },
+      {
+        "kind": "code",
+        "code": "enum List {\n    Node(i32, Box<List>),   // pointer-sized: the size equation works\n    End,\n}",
+        "caption": "Box turns infinite size into one heap hop."
+      },
+      {
+        "kind": "prose",
+        "text": "`Rc<T>` is shared ownership: several handles to one value, with a reference count. `Rc::clone(&handle)` increments the count and copies nothing. The value is dropped when the last handle goes away. Use it when several parts of the program genuinely own the same data and single ownership cannot express that."
+      },
+      {
+        "kind": "prose",
+        "text": "One spelling rule: prefer `Rc::clone(&x)` over `x.clone()`. Both do the same cheap count increment, but `.clone()` reads like an expensive deep copy. Clippy's clone_on_ref_ptr keeps the syntax honest so readers can trust what they see."
+      },
+      {
+        "kind": "prose",
+        "text": "`Rc` alone gives shared reading. Shared mutation needs one more piece, which is the next deck's topic: interior mutability."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Box gives single-owner heap allocation and enables recursion. Rc gives counted shared ownership. Rc::clone is a count bump, not a copy.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

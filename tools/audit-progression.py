@@ -36,11 +36,19 @@ for deck in index["order"]:
         print(f"{deck:22} {'0':>2}  (planned)")
         continue
 
-    diffs, total_space, total_solved, ties = [], 0, 0, []
+    diffs, ramp_display, total_space, total_solved, ties = [], [], 0, 0, []
     for pos, pid in enumerate(pack["order"]):
         puzzle = json.loads((PACKS / deck / "puzzles" / f"{pid}.json").read_text())
+        if puzzle["interaction"]["type"] == "lesson":
+            # Reading node: no outcomes, no solve stats, transparent to the
+            # difficulty ramp (its difficulty is not a challenge level).
+            ramp_display.append("L")
+            if pos == 0 and puzzle["prerequisites"]:
+                hard_flags.append(f"{pid}: deck opener declares prerequisites")
+            continue
         outcomes = json.loads((PACKS / deck / "outcomes" / f"{pid}.json").read_text())
         diffs.append(puzzle["difficulty"])
+        ramp_display.append(str(puzzle["difficulty"]))
         space = len(outcomes["outcomes"])
         solved = sum(1 for r in outcomes["outcomes"].values() if r["status"] == "solved")
         optimal = sum(1 for r in outcomes["outcomes"].values() if r.get("rank") == "optimal")
@@ -58,11 +66,11 @@ for deck in index["order"]:
             ties.append(f"{pid}×{optimal}")
         if pos == 0 and puzzle["prerequisites"]:
             hard_flags.append(f"{pid}: deck opener declares prerequisites")
-        if pos > 0 and diffs[-1] < diffs[-2] - 1:
+        if len(diffs) > 1 and diffs[-1] < diffs[-2] - 1:
             review.append(f"{pid}: difficulty drops {diffs[-2]}→{diffs[-1]}")
 
-    ramp = "".join(str(d) for d in diffs)
-    print(f"{deck:22} {len(diffs):>2}  {ramp:12} {total_space:>5} {100*total_solved//total_space:>5}%  {', '.join(ties) or '—'}")
+    ramp = "".join(ramp_display)
+    print(f"{deck:22} {len(ramp_display):>2}  {ramp:12} {total_space:>5} {100*total_solved//total_space:>5}%  {', '.join(ties) or '—'}")
 
 print()
 for f in hard_flags:

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "option-and-result.006",
+  "version": 1,
+  "title": "Absence Is a Type",
+  "track": "option-and-result",
+  "concepts": [
+    "option"
+  ],
+  "difficulty": 1,
+  "goal": "No null in Rust. A value that might be missing is an Option.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Rust has no null. When a value might be absent, the function returns `Option<T>`: either `Some(value)` or `None`. The possibility of absence is written in the type, so the compiler forces every caller to handle it. Forgetting the empty case becomes a compile error instead of a runtime crash."
+      },
+      {
+        "kind": "code",
+        "code": "fn first_char(s: &str) -> Option<char> {\n    s.chars().next()   // a stream can end: Option is honest\n}",
+        "caption": "The signature tells the caller the truth."
+      },
+      {
+        "kind": "prose",
+        "text": "The escape hatch `.unwrap()` takes the value out of a `Some` and panics on a `None`. It turns a possible absence into a certain crash. Sometimes that is acceptable in a test or a prototype. In API code, prefer to keep the `Option` and let the caller decide."
+      },
+      {
+        "kind": "prose",
+        "text": "You rarely need to open an `Option` by hand. Combinators work inside it: `.map()` transforms the value if there is one and passes `None` through. `.and_then()` chains a second operation that can itself fail. `.unwrap_or(default)` ends a chain with a fallback. The puzzles in this deck train you to stay inside the `Option` until the last step."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Option<T> makes absence part of the type. Prefer combinators like map and unwrap_or over unwrap.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

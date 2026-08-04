@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.004",
+  "version": 1,
+  "title": "Traits Are Capabilities",
+  "track": "traits-and-bounds",
+  "concepts": [
+    "traits",
+    "generics"
+  ],
+  "difficulty": 1,
+  "goal": "A trait names one thing a type can do. Bounds ask for exactly what the body uses.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "A trait names a capability. `Debug` means the type can be formatted with `{:?}`. `Display` means it has a user-facing text form for `{}`. `Clone` means it can be duplicated. A type only has the capabilities it implements, and using a missing one is error `E0277`."
+      },
+      {
+        "kind": "code",
+        "code": "#[derive(Debug, Clone, Default)]\nstruct Config {\n    retries: u32,\n    verbose: bool,\n}",
+        "caption": "derive writes the routine implementations for you."
+      },
+      {
+        "kind": "prose",
+        "text": "Many standard traits have mechanical implementations, and `#[derive(...)]` generates them: `Debug`, `Clone`, `Default`, `PartialEq`, and more. `Display` is deliberately not derivable, because user-facing formatting is a design decision. Writing an implementation by hand when a derive would produce the same code is flagged by Clippy's derivable_impls."
+      },
+      {
+        "kind": "prose",
+        "text": "Generic functions request capabilities through bounds. The bound should match what the body actually uses: if the body formats with `{item}`, the bound is `T: Display` and nothing more. Asking for less does not compile. Asking for more, like adding `Clone` a body never uses, narrows who can call the function for no benefit."
+      },
+      {
+        "kind": "prose",
+        "text": "The instinct for this deck: read what the body does, then grant or demand exactly that capability."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Traits name capabilities. Derive the mechanical ones, implement the meaningful ones, and bound generics by exactly what the body uses.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

@@ -88,7 +88,26 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
 
 **Phase 7 complete (2026-08-04); 27's remainder deliberately parked.**
 
-## Phase 8 — deployment
+## Phase 8 — deployment (user-chosen order: device first, then review, then the rest)
+- [x] Repo: private GitHub https://github.com/unclecode/rustchap (pushed 2026-08-04, full history)
+- [x] 30-first. Physical-device install DONE (2026-08-04) — UDID registered manually on the
+      portal (the `-allowProvisioningDeviceRegistration` path never worked), fresh team profile
+      embeds the device, app installed + launched headlessly via devicectl on iPhone-17-Pro-Max
+      (paid team TPP52TWEWR, no 7-day expiry).
+- [x] User review round BATCH 1 COMMITTED (2026-08-04). Shipped: (a) ghost-selections
+      state-leak bug found on-device and fixed (RCA in [ios-app](../architecture/ios-app.md));
+      (b) `lesson` interaction type end-to-end (contract → linter → audit → app); (c) 20
+      lectures — every deck opens with one + 4 mid-deck, plain-English style rules recorded in
+      [curriculum](../foundation/curriculum.md), em-dash sweep over all content; (d) on-device
+      AI tutor (Foundation Models; spike: raw model wrong, grounded correct → always grounded):
+      per-surface persistent chats (home/deck/puzzle), streaming markdown, UIKit-backed
+      selection, per-message copy; (e) home = 2-column card grid with tinted SF Symbol deck
+      tiles (`pack.json` icon/accent), puzzle rows carry interaction-type glyphs; (f) two stale
+      api test assertions refreshed. NEXT in phase 8: user continues on-device dogfood
+      (airplane mode, interruptions, large text) → then 29 CI/CD → 28 serverless-v0.1 decision
+      → 31 internal TestFlight.
+
+### Original step list
 - [ ] 28. Staging infrastructure (IaC from the start)
 - [ ] 29. CI/CD (Swift tests, Rust tests, schema validation, compile all reference solutions +
       alternatives, score reproducibility, container builds)

@@ -4,7 +4,10 @@
   "version": 1,
   "title": "Trim Without Buying",
   "track": "slices-and-views",
-  "concepts": ["slice", "zero-copy"],
+  "concepts": [
+    "slice",
+    "zero-copy"
+  ],
   "difficulty": 2,
   "goal": "Return the middle of the data. One of these can't exist, one pays rent, one is free.",
   "interaction": {
@@ -28,19 +31,31 @@
     "tests": [
       "#[test]\nfn middles() {\n    let data = [1, 2, 3, 4];\n    assert_eq!(middle(&data), [2, 3]);\n}"
     ],
-    "metrics": ["clone_count"]
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "The middle already exists inside data — a subslice is just a narrower window onto it.",
+    "The middle already exists inside data - a subslice is just a narrower window onto it.",
     "The dangling version builds a local Vec and tries to return a view into it. The brace wins."
   ],
-  "explanation": "Sub-slicing a borrow yields a narrower borrow: &data[1..len-1] is pointer arithmetic, zero allocation, lifetime tied to the input by elision. to_vec() copies the middle into a fresh Vec — legitimate only when the caller must own it. The third version is the classic dangling trap: a view into a LOCAL Vec can't leave the function (E0515), no matter how the lifetimes are spelled. Views point at the caller's data or they don't exist.",
-  "prerequisites": ["slices-and-views.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by slices and vecs exercises" }
+  "explanation": "Sub-slicing a borrow yields a narrower borrow: &data[1..len-1] is pointer arithmetic, zero allocation, lifetime tied to the input by elision. to_vec() copies the middle into a fresh Vec - legitimate only when the caller must own it. The third version is the classic dangling trap: a view into a LOCAL Vec can't leave the function (E0515), no matter how the lifetimes are spelled. Views point at the caller's data or they don't exist.",
+  "prerequisites": [
+    "slices-and-views.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by slices and vecs exercises"
+  }
 }

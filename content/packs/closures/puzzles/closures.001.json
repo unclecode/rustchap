@@ -4,9 +4,13 @@
   "version": 1,
   "title": "Capture or Take",
   "track": "closures",
-  "concepts": ["closures", "borrow", "move"],
+  "concepts": [
+    "closures",
+    "borrow",
+    "move"
+  ],
   "difficulty": 2,
-  "goal": "A greeter you can call twice — while the greeting stays yours.",
+  "goal": "A greeter you can call twice - while the greeting stays yours.",
   "template": "fn main() {\n    let greeting = String::from(\"hi\");\n    let greet = ⟦closure⟧;\n    greet();\n    greet();\n    println!(\"still mine: {greeting}\");\n}",
   "interaction": {
     "type": "slot-selection",
@@ -16,28 +20,49 @@
         "original": null,
         "label": "the closure",
         "choices": [
-          { "id": "c1", "text": "|| println!(\"{greeting}\")" },
-          { "id": "c2", "text": "move || println!(\"{greeting}\")" },
-          { "id": "c3", "text": "|| greeting" }
+          {
+            "id": "c1",
+            "text": "|| println!(\"{greeting}\")"
+          },
+          {
+            "id": "c2",
+            "text": "move || println!(\"{greeting}\")"
+          },
+          {
+            "id": "c3",
+            "text": "|| greeting"
+          }
         ]
       }
     ]
   },
   "evaluation": {
-    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
-    "metrics": ["clone_count"]
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "Printing only needs to LOOK at greeting — the lightest capture is a shared borrow.",
+    "Printing only needs to LOOK at greeting - the lightest capture is a shared borrow.",
     "move gives the closure the String itself; || greeting gives it away on the first CALL. Both end badly here."
   ],
-  "explanation": "Closures capture as weakly as the body allows: printing borrows, so the plain closure is Fn — call it forever, greeting stays with main. `move` transfers the String into the closure, so main's final println loses it (E0382). And `|| greeting` returns the capture, consuming it on the first call: that closure is FnOnce, and the second greet() is a use-of-moved-closure. The body writes the contract; read it before you call twice.",
+  "explanation": "Closures capture as weakly as the body allows: printing borrows, so the plain closure is Fn - call it forever, greeting stays with main. `move` transfers the String into the closure, so main's final println loses it (E0382). And `|| greeting` returns the capture, consuming it on the first call: that closure is FnOnce, and the second greet() is a use-of-moved-closure. The body writes the contract; read it before you call twice.",
   "prerequisites": [],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by move_semantics and threads closure exercises" }
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by move_semantics and threads closure exercises"
+  }
 }

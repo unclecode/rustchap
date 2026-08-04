@@ -4,16 +4,29 @@
   "version": 1,
   "title": "One Writer at a Time",
   "track": "move-or-borrow",
-  "concepts": ["mutability", "borrow-scope", "borrow"],
+  "concepts": [
+    "mutability",
+    "borrow-scope",
+    "borrow"
+  ],
   "difficulty": 3,
-  "goal": "The log must read \"was 10;now 100!\" — order the reads and the writes.",
+  "goal": "The log must read \"was 10;now 100!\" - order the reads and the writes.",
   "interaction": {
     "type": "block-arrangement",
     "fixed_prefix": "fn story() -> String {\n    let mut score = String::from(\"10\");\n    let mut log = String::new();",
     "blocks": [
-      { "id": "grow", "text": "\n    score.push('0');" },
-      { "id": "peek", "text": "\n    let preview = &score;\n    log += &format!(\"was {preview};\");" },
-      { "id": "bang", "text": "\n    score.push('!');" }
+      {
+        "id": "grow",
+        "text": "\n    score.push('0');"
+      },
+      {
+        "id": "peek",
+        "text": "\n    let preview = &score;\n    log += &format!(\"was {preview};\");"
+      },
+      {
+        "id": "bang",
+        "text": "\n    score.push('!');"
+      }
     ],
     "fixed_suffix": "\n    log += &format!(\"now {score}\");\n    log\n}"
   },
@@ -21,19 +34,32 @@
     "tests": [
       "#[test]\nfn tells_the_story() {\n    assert_eq!(story(), \"was 10;now 100!\");\n}"
     ],
-    "metrics": ["clone_count", "mut_bindings"]
+    "metrics": [
+      "clone_count",
+      "mut_bindings"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "Every order compiles — non-lexical lifetimes end the shared borrow at its last use. The TEST is the judge here.",
+    "Every order compiles - non-lexical lifetimes end the shared borrow at its last use. The TEST is the judge here.",
     "\"was 10\" means the peek happens before any push. Then grow, then bang."
   ],
-  "explanation": "All six orders satisfy the borrow checker — the shared borrow in peek ends on its own line, so mutation afterwards is legal in any arrangement. But only peek → grow → bang produces \"was 10;now 100!\": reads and writes are a timeline, and the compiler only guarantees the timeline is SAFE, not that it is RIGHT. That last distinction is what the tests are for.",
-  "prerequisites": ["move-or-borrow.004"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by move_semantics4/5 (mutable borrows in order)" }
+  "explanation": "All six orders satisfy the borrow checker - the shared borrow in peek ends on its own line, so mutation afterwards is legal in any arrangement. But only peek → grow → bang produces \"was 10;now 100!\": reads and writes are a timeline, and the compiler only guarantees the timeline is SAFE, not that it is RIGHT. That last distinction is what the tests are for.",
+  "prerequisites": [
+    "move-or-borrow.004"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by move_semantics4/5 (mutable borrows in order)"
+  }
 }

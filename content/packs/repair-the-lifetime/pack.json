@@ -2,14 +2,18 @@
   "schema_version": 1,
   "id": "repair-the-lifetime",
   "title": "Repair the Lifetime",
-  "description": "Say how long a borrow lives — no more, no less.",
+  "description": "Say how long a borrow lives - no more, no less.",
   "toolchain": "1.97.1",
   "order": [
+    "repair-the-lifetime.007",
     "repair-the-lifetime.001",
     "repair-the-lifetime.004",
+    "repair-the-lifetime.008",
     "repair-the-lifetime.005",
     "repair-the-lifetime.003",
     "repair-the-lifetime.002",
     "repair-the-lifetime.006"
-  ]
+  ],
+  "icon": "hourglass",
+  "accent": "purple"
 }

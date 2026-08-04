@@ -6,7 +6,7 @@ use std::collections::BTreeSet;
 use thiserror::Error;
 
 use crate::template::{is_valid_slot_id, parse_template, slot_ids};
-use crate::types::{Interaction, Metric, Operation, Puzzle};
+use crate::types::{Interaction, LessonSection, Metric, Operation, Puzzle};
 
 /// Every legal submission for a puzzle is precomputed into its outcomes sidecar;
 /// the linter rejects puzzles whose space exceeds this. Also healthy design
@@ -59,6 +59,12 @@ pub enum ValidationError {
     MissingLicense,
     #[error("submission space {0} exceeds the maximum of {MAX_SUBMISSION_SPACE}")]
     SpaceTooLarge(u128),
+    #[error("lesson puzzles must not define evaluation or scoring")]
+    LessonWithEvaluation,
+    #[error("non-lesson puzzles must define both evaluation and scoring")]
+    MissingEvaluation,
+    #[error("lesson section has empty {0}")]
+    EmptyLessonSection(&'static str),
 }
 
 /// All invariant violations at once (the linter reports them together).
@@ -188,17 +194,48 @@ fn validate_interaction(puzzle: &Puzzle, errors: &mut Vec<ValidationError>) {
             }
             check_unique_ids(candidates.iter().map(|c| c.id.as_str()), errors);
         }
+        Interaction::Lesson { sections } => {
+            if puzzle.template.is_some() {
+                errors.push(ValidationError::UnexpectedTemplate);
+            }
+            if sections.is_empty() {
+                errors.push(ValidationError::TooFew("sections"));
+            }
+            for section in sections {
+                match section {
+                    LessonSection::Prose { text } if text.trim().is_empty() => {
+                        errors.push(ValidationError::EmptyLessonSection("prose"));
+                    }
+                    LessonSection::Code { code, .. } if code.trim().is_empty() => {
+                        errors.push(ValidationError::EmptyLessonSection("code"));
+                    }
+                    _ => {}
+                }
+            }
+        }
     }
 }
 
 fn validate_scoring(puzzle: &Puzzle, errors: &mut Vec<ValidationError>) {
-    let metrics = &puzzle.evaluation.metrics;
+    let is_lesson = matches!(puzzle.interaction, Interaction::Lesson { .. });
+    let (evaluation, scoring) = match (&puzzle.evaluation, &puzzle.scoring, is_lesson) {
+        (None, None, true) => return,
+        (_, _, true) => {
+            errors.push(ValidationError::LessonWithEvaluation);
+            return;
+        }
+        (Some(evaluation), Some(scoring), false) => (evaluation, scoring),
+        _ => {
+            errors.push(ValidationError::MissingEvaluation);
+            return;
+        }
+    };
+
+    let metrics = &evaluation.metrics;
     let unique: BTreeSet<&Metric> = metrics.iter().collect();
     if metrics.is_empty() || unique.len() != metrics.len() {
         errors.push(ValidationError::BadMetricList);
     }
-
-    let scoring = &puzzle.scoring;
     let mut referenced: Vec<Metric> = vec![scoring.primary];
     referenced.extend(scoring.secondary.iter().copied());
     referenced.extend(scoring.fluent.keys().copied());
@@ -232,6 +269,7 @@ pub fn submission_space(puzzle: &Puzzle) -> u128 {
         }
         Interaction::BlockArrangement { blocks, .. } => (1..=blocks.len() as u128).product(),
         Interaction::BestSolution { candidates } => candidates.len() as u128,
+        Interaction::Lesson { .. } => 0,
     }
 }
 
@@ -274,6 +312,7 @@ pub fn enumerate_submissions(puzzle: &Puzzle) -> Vec<Vec<Operation>> {
                 }]
             })
             .collect(),
+        Interaction::Lesson { .. } => Vec::new(),
     }
 }
 

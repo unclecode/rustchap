@@ -2,10 +2,10 @@
   "schema_version": 1,
   "id": "borrow",
   "title": "Borrowing",
-  "summary": "&T lends read access, &mut T lends exclusive write access — ownership stays put.",
+  "summary": "&T lends read access, &mut T lends exclusive write access - ownership stays put.",
   "lecture": [
-    "A borrow (&value) lets code use a value without taking ownership. The owner keeps the value; the borrower gets a reference that must not outlive it. Any number of shared borrows (&T) may exist at once, OR exactly one mutable borrow (&mut T) — never both simultaneously.",
-    "Borrowing is the default answer to 'this function only needs to read my value'. Passing &name instead of name means the caller can keep using name afterwards — the exact fix for most E0382 move errors.",
+    "A borrow (&value) lets code use a value without taking ownership. The owner keeps the value; the borrower gets a reference that must not outlive it. Any number of shared borrows (&T) may exist at once, OR exactly one mutable borrow (&mut T) - never both simultaneously.",
+    "Borrowing is the default answer to 'this function only needs to read my value'. Passing &name instead of name means the caller can keep using name afterwards - the exact fix for most E0382 move errors.",
     "The one-writer-XOR-many-readers rule is what makes Rust memory-safe without a garbage collector: the compiler proves no one can observe a value while someone else mutates it."
   ],
   "example": {

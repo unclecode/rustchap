@@ -62,7 +62,10 @@ reconstruct_with_spans          (puzzle-schema; illegal ops → status "invalid"
 `lint_pack`: pack structure (ids, order, prerequisites-point-backwards, `validate_puzzle`), then
 evaluates **every** enumerated submission and writes `outcomes/<puzzle_id>.json`. A puzzle fails
 the lint unless ≥1 submission solves and ≥1 reproduces the declared optimal. `--check` re-evaluates
-and diffs against stored sidecars (CI mode); `--skip-eval` is structure-only.
+and diffs against stored sidecars (CI mode); `--skip-eval` is structure-only. **Lesson nodes**
+get structural checks only — no submissions, no sidecar (`evaluator::EvalError::NotEvaluatable`
+guards the engine; the linter warns on a leftover outcomes file). `tools/audit-progression.py`
+renders lessons as `L` in the difficulty ramp and excludes them from solve/guessability stats.
 
 ## Precomputed outcomes = Milestone-1 evaluation
 

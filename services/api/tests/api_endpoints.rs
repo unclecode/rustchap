@@ -77,8 +77,8 @@ async fn serves_packs_and_puzzles() {
     assert!(
         packs
             .iter()
-            .any(|p| p["order"].as_array().is_some_and(|o| o.is_empty())),
-        "planned decks are served with empty order"
+            .all(|p| p["order"].as_array().is_some_and(|o| !o.is_empty())),
+        "every deck in the curriculum has content (15/15 alive since content batch 5)"
     );
 
     let (status, puzzle) = get_json(router(state.clone()), "/v1/puzzles/move-or-borrow.001").await;
@@ -87,7 +87,10 @@ async fn serves_packs_and_puzzles() {
 
     let (status, detail) = get_json(router(state.clone()), "/v1/packs/build-the-iterator").await;
     assert_eq!(status, 200);
-    assert_eq!(detail["puzzles"].as_array().unwrap().len(), 1);
+    assert!(
+        !detail["puzzles"].as_array().unwrap().is_empty(),
+        "pack detail inlines its puzzles"
+    );
 
     let (status, _) = get_json(router(state), "/v1/puzzles/nope.001").await;
     assert_eq!(status, 404);

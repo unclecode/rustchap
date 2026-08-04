@@ -110,6 +110,8 @@ pub enum ReconstructError {
     UnknownCandidate(String),
     #[error("expected exactly one operation of this kind, got {0}")]
     WrongOperationCount(usize),
+    #[error("lesson puzzles have no reconstructable source")]
+    NotReconstructable,
 }
 
 /// A user-controlled byte range in reconstructed source: which slot / block /
@@ -275,6 +277,7 @@ pub fn reconstruct_with_spans(
                 source: candidate.code.clone(),
             })
         }
+        Interaction::Lesson { .. } => Err(ReconstructError::NotReconstructable),
     }
 }
 
@@ -355,17 +358,17 @@ mod tests {
                     ],
                 }],
             },
-            evaluation: Evaluation {
+            evaluation: Some(Evaluation {
                 tests: vec![],
                 clippy: Clippy::default(),
                 metrics: vec![Metric::CloneCount],
-            },
-            scoring: Scoring {
+            }),
+            scoring: Some(Scoring {
                 primary: Metric::CloneCount,
                 secondary: vec![],
                 fluent: Default::default(),
                 optimal: Default::default(),
-            },
+            }),
             hints: vec![],
             explanation: String::new(),
             prerequisites: vec![],

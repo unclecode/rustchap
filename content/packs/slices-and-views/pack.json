@@ -2,13 +2,16 @@
   "schema_version": 1,
   "id": "slices-and-views",
   "title": "Slices & Views",
-  "description": "Borrowed views into data — zero-copy from the start.",
+  "description": "Borrowed views into data - zero-copy from the start.",
   "toolchain": "1.97.1",
   "order": [
+    "slices-and-views.006",
     "slices-and-views.001",
     "slices-and-views.003",
     "slices-and-views.004",
     "slices-and-views.002",
     "slices-and-views.005"
-  ]
+  ],
+  "icon": "scissors",
+  "accent": "teal"
 }

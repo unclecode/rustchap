@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.007",
+  "version": 1,
+  "title": "Own, Lend, or Give",
+  "track": "move-or-borrow",
+  "concepts": [
+    "move",
+    "borrow",
+    "copy"
+  ],
+  "difficulty": 1,
+  "goal": "The decision behind the last three puzzles: lend the value, or give it away.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You have now seen both directions of the ownership decision. In Copy or Move? the caller still needed `label` after the call, so passing it by value was wrong: the value moved, and the final `println!` failed with `E0382`. The fix was to lend it: pass `&label`."
+      },
+      {
+        "kind": "code",
+        "code": "fn describe(text: &str) { /* borrows */ }\n\nlet label = String::from(\"attempts\");\ndescribe(&label);       // lend it\nprintln!(\"{label}\");    // still yours",
+        "caption": "Lend when the caller still needs the value."
+      },
+      {
+        "kind": "prose",
+        "text": "When a function only reads string data, take `&str` instead of `&String`. Every `&String` converts to `&str` automatically. This conversion is called deref coercion. A `&str` parameter also accepts string literals and slices, and it avoids one pointer hop. The same pattern applies to `&[T]` over `&Vec<T>`. Clippy has a lint for this, named ptr_arg."
+      },
+      {
+        "kind": "code",
+        "code": "fn register(member: String) -> Vec<String> {\n    let mut team = Vec::new();\n    team.push(member);   // the team owns it now\n    team\n}\n\nlet name = String::from(\"Ferris\");\nlet team = register(name);   // give it away, no clone",
+        "caption": "Move when the callee keeps the value."
+      },
+      {
+        "kind": "prose",
+        "text": "In Give It Away the situation was reversed. The function stores the value, so it needs ownership. Lending would force a `.clone()` inside. Moving costs nothing. And `Copy` types like `i32` stay out of this question entirely: they duplicate on every pass, so `count.clone()` is never needed."
+      },
+      {
+        "kind": "prose",
+        "text": "The decision in short: if the caller still needs the value, lend it with `&`. If the callee keeps the value, move it. If the type is `Copy`, just pass it. Use `.clone()` only when both sides truly need ownership."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Lend with & when the caller still needs the value. Move when the callee keeps it. Copy types never move. Clone is a last resort.",
+  "prerequisites": [
+    "move-or-borrow.003"
+  ],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

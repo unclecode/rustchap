@@ -19,12 +19,15 @@ Regenerate via `scripts/build-map.py`.
 | `apps/ios/RustChap/Core/ProgressStore.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Core/Progression.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Core/SyncService.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/Core/TutorProbe.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/Core/TutorService.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Features/ConceptView.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Features/DeckListView.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Features/ProfileView.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Features/PuzzleScreen.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Features/ResultView.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Features/TrackListView.swift` | architecture/ios-app.md |
+| `apps/ios/RustChap/Features/TutorSheet.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/PuzzleUI/CodeSurface.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/PuzzleUI/RustLexer.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/RustChapApp.swift` | architecture/ios-app.md |
@@ -57,7 +60,7 @@ Regenerate via `scripts/build-map.py`.
 |---|---|
 | `architecture/backend.md` | `lib.rs`, `main.rs`, `db.rs`, `0001_init.sql`, `dev-db.sh` |
 | `architecture/evaluation.md` | `lib.rs`, `metrics.rs`, `rustc_json.rs`, `evaluate.rs`, `ops.rs`, `lib.rs`, `main.rs`, `outcomes.schema.json` |
-| `architecture/ios-app.md` | `project.pbxproj`, `RustChapApp.swift`, `Models.swift`, `ContentStore.swift`, `LocalEvaluator.swift`, `DeckListView.swift`, `TrackListView.swift`, `Progression.swift`, `PuzzleScreen.swift`, `ResultView.swift`, `RustLexer.swift`, `CodeSurface.swift`, `ConceptView.swift`, `APIClient.swift`, `ProgressStore.swift`, `Keychain.swift`, `SyncService.swift`, `ProfileView.swift`, `Info.plist` |
+| `architecture/ios-app.md` | `project.pbxproj`, `RustChapApp.swift`, `Models.swift`, `ContentStore.swift`, `LocalEvaluator.swift`, `DeckListView.swift`, `TrackListView.swift`, `Progression.swift`, `PuzzleScreen.swift`, `ResultView.swift`, `RustLexer.swift`, `CodeSurface.swift`, `ConceptView.swift`, `APIClient.swift`, `ProgressStore.swift`, `Keychain.swift`, `SyncService.swift`, `TutorService.swift`, `TutorProbe.swift`, `TutorSheet.swift`, `ProfileView.swift`, `Info.plist` |
 | `architecture/puzzle-format.md` | `puzzle.schema.json`, `pack.schema.json`, `outcomes.schema.json`, `concept.schema.json`, `lib.rs`, `types.rs`, `template.rs`, `ops.rs`, `validate.rs` |
 | `foundation/core-loop.md` | _(no source files — narrative/reference)_ |
 | `foundation/curriculum.md` | `index.json` |

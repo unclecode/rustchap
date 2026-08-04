@@ -11,6 +11,8 @@
     "id": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "Track id; puzzle ids in this pack are '<id>.<nnn>'." },
     "title": { "type": "string", "minLength": 1 },
     "description": { "type": "string" },
+    "icon": { "type": "string", "description": "Display-only: SF Symbol name for the deck tile. Clients may fall back when absent or unknown." },
+    "accent": { "type": "string", "description": "Display-only: named accent color (orange, teal, indigo, ...). Clients map names to platform colors." },
     "toolchain": { "type": "string", "description": "Pinned Rust toolchain every puzzle in the pack is compiled against, e.g. '1.97.1'. Part of the outcomes cache key." },
     "order": {
       "type": "array",

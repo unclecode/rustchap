@@ -4,7 +4,11 @@
   "version": 1,
   "title": "Mutate or Return",
   "track": "design-the-api",
-  "concepts": ["api-design", "mutability", "borrow"],
+  "concepts": [
+    "api-design",
+    "mutability",
+    "borrow"
+  ],
   "difficulty": 3,
   "goal": "Make a louder greeting. Which signature leaves the least machinery in the caller's hands?",
   "interaction": {
@@ -25,20 +29,37 @@
     ]
   },
   "evaluation": {
-    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
-    "metrics": ["mut_bindings", "clone_count"]
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "metrics": [
+      "mut_bindings",
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "mut_bindings",
-    "secondary": ["clone_count"],
-    "fluent": { "mut_bindings": 1 },
-    "optimal": { "mut_bindings": 0 }
+    "secondary": [
+      "clone_count"
+    ],
+    "fluent": {
+      "mut_bindings": 1
+    },
+    "optimal": {
+      "mut_bindings": 0
+    }
   },
   "hints": [
-    "Count the muts each version forces into existence — including the caller's.",
+    "Count the muts each version forces into existence - including the caller's.",
     "The pure version keeps the original AND produces the loud one. No mut anywhere."
   ],
-  "explanation": "Three legitimate shapes with different costs. In-place mutation infects the caller: their binding must go mut, and the original is gone. The consuming version contains its mut inside and chains nicely — one mut, hidden. The pure borrow-in/new-out version has zero mutable state and keeps the original available; it allocates the result, which is usually the honest price. Default to pure; reach for &mut only when profiling says the allocation matters.",
-  "prerequisites": ["design-the-api.001"],
-  "source": { "origin": "exercism", "license": "MIT", "attribution": "inspired by string-mutation practice exercises" }
+  "explanation": "Three legitimate shapes with different costs. In-place mutation infects the caller: their binding must go mut, and the original is gone. The consuming version contains its mut inside and chains nicely - one mut, hidden. The pure borrow-in/new-out version has zero mutable state and keeps the original available; it allocates the result, which is usually the honest price. Default to pure; reach for &mut only when profiling says the allocation matters.",
+  "prerequisites": [
+    "design-the-api.001"
+  ],
+  "source": {
+    "origin": "exercism",
+    "license": "MIT",
+    "attribution": "inspired by string-mutation practice exercises"
+  }
 }

@@ -5,8 +5,11 @@
   "description": "The five superpowers, and the sound abstractions that cage them.",
   "toolchain": "1.97.1",
   "order": [
+    "unsafe-rust.004",
     "unsafe-rust.001",
     "unsafe-rust.002",
     "unsafe-rust.003"
-  ]
+  ],
+  "icon": "exclamationmark.triangle.fill",
+  "accent": "red"
 }

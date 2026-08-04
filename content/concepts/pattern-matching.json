@@ -2,10 +2,10 @@
   "schema_version": 1,
   "id": "pattern-matching",
   "title": "Match and destructure",
-  "summary": "match takes data apart by shape — and the compiler insists you handle every shape.",
+  "summary": "match takes data apart by shape - and the compiler insists you handle every shape.",
   "lecture": [
-    "A match arm is a shape with holes: `Event::Click(x, y)` both tests the variant AND binds its fields in one motion. No casts, no getters — the pattern is the access.",
-    "Exhaustiveness is the superpower: the compiler rejects a match that misses a variant. Add a variant next month and every match that needs updating becomes a compile error — a to-do list you can't ignore.",
+    "A match arm is a shape with holes: `Event::Click(x, y)` both tests the variant AND binds its fields in one motion. No casts, no getters - the pattern is the access.",
+    "Exhaustiveness is the superpower: the compiler rejects a match that misses a variant. Add a variant next month and every match that needs updating becomes a compile error - a to-do list you can't ignore.",
     "That's why a wildcard `_` arm deserves suspicion: it compiles today and silently absorbs the variants of tomorrow. Name the variants you handle; reserve `_` for genuinely don't-care cases.",
     "For a single interesting case, `if let Some(v) = maybe { … }` says it smaller than a match with an empty arm."
   ],

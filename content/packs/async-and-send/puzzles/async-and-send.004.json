@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.004",
+  "version": 1,
+  "title": "Futures Do Nothing Until Polled",
+  "track": "async-and-send",
+  "concepts": [
+    "async-await"
+  ],
+  "difficulty": 1,
+  "goal": "An async function returns a machine. Something must run it.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Calling an async function does not run its body. It returns a future: a paused state machine that describes the work. The type is `impl Future<Output = T>`, and until something drives it, nothing happens at all."
+      },
+      {
+        "kind": "code",
+        "code": "async fn fetch_score() -> i32 { 42 }\n\nlet score = fetch_score().await;   // .await drives it to completion\nprintln!(\"{score}\");",
+        "caption": ".await runs the machine and yields its output."
+      },
+      {
+        "kind": "prose",
+        "text": "`.await` is how one future runs another: it drives the inner machine and produces its `Output`. Forgetting `.await` is a type error you will learn to read: the compiler says it expected `i32` and found an opaque future type, `E0308`. Awaiting something that is not a future is the mirror error, `E0277`."
+      },
+      {
+        "kind": "prose",
+        "text": "At the bottom of every async program sits an executor: a loop that polls the outermost future until it is ready. Runtimes like tokio provide it in production. The idea fits in fifteen lines of std, and one puzzle in this deck contains exactly that, so you can see there is no magic."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "async fn returns a paused machine. .await drives it. An executor at the bottom polls until Ready.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

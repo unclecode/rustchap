@@ -2,11 +2,14 @@
   "schema_version": 1,
   "id": "closures",
   "title": "Closures",
-  "description": "Fn, FnMut, FnOnce — what your closure captures decides what it is.",
+  "description": "Fn, FnMut, FnOnce - what your closure captures decides what it is.",
   "toolchain": "1.97.1",
   "order": [
+    "closures.004",
     "closures.001",
     "closures.002",
     "closures.003"
-  ]
+  ],
+  "icon": "curlybraces",
+  "accent": "yellow"
 }

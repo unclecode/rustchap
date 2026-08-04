@@ -62,20 +62,32 @@ struct PuzzleScreen: View {
             }
         }
         .safeAreaInset(edge: .bottom) {
-            Button(action: run) {
-                Group {
-                    if evaluating {
-                        ProgressView()
-                    } else {
-                        Text("Run")
+            Group {
+                if puzzle.interaction.isLesson {
+                    Button(action: completeLesson) {
+                        Text("Got it")
                             .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 6)
                     }
+                    .buttonStyle(.borderedProminent)
+                } else {
+                    Button(action: run) {
+                        Group {
+                            if evaluating {
+                                ProgressView()
+                            } else {
+                                Text("Run")
+                                    .font(.headline)
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 6)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(!canRun || evaluating)
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 6)
             }
-            .buttonStyle(.borderedProminent)
-            .disabled(!canRun || evaluating)
             .padding(.horizontal)
             .padding(.vertical, 8)
             .background(.thinMaterial)
@@ -89,6 +101,15 @@ struct PuzzleScreen: View {
         .onAppear {
             resetToInitial()
             applyAutomationArguments()
+        }
+        .tutorButton {
+            let record = ProgressRecorder.fetch(puzzleId: puzzle.id, in: modelContext)
+            return .puzzle(
+                loaded,
+                concepts: store.concepts(for: puzzle),
+                selections: selections,
+                pastBest: record?.solved == true ? record?.bestRank : nil
+            )
         }
         .sensoryFeedback(trigger: presentedResult?.id) { _, _ in
             guard let presented = presentedResult else { return nil }
@@ -118,6 +139,7 @@ struct PuzzleScreen: View {
             ResultView(
                 loaded: loaded,
                 result: presented.result,
+                selections: selections,
                 via: presented.via,
                 deckCompleted: presented.deckCompleted,
                 nextPuzzleId: store.nextPuzzleId(after: puzzle.id),
@@ -169,6 +191,37 @@ struct PuzzleScreen: View {
                 CodeText(source: suffix.trimmingCharacters(in: .newlines))
             }
             .environment(\.editMode, .constant(.active))
+        case .lesson(let sections):
+            Section {
+                ForEach(Array(sections.enumerated()), id: \.offset) { _, section in
+                    switch section {
+                    case .prose(let text):
+                        // LocalizedStringKey init: renders inline markdown, so
+                        // lesson prose can mark types like `String` as code.
+                        Text(.init(text))
+                            .font(.callout)
+                            .lineSpacing(3)
+                            .listRowSeparator(.hidden)
+                    case .code(let code, let caption):
+                        VStack(alignment: .leading, spacing: 6) {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                CodeText(source: code)
+                                    .padding(10)
+                            }
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color(.secondarySystemBackground))
+                            )
+                            if let caption {
+                                Text(caption)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .listRowSeparator(.hidden)
+                    }
+                }
+            }
         case .bestSolution(let candidates):
             Section("Pick the best implementation") {
                 ForEach(candidates) { candidate in
@@ -247,18 +300,40 @@ struct PuzzleScreen: View {
             !blockOrder.isEmpty
         case .bestSolution:
             chosenCandidate != nil
+        case .lesson:
+            false
         }
+    }
+
+    /// Lessons complete by reading: record, then move along the deck.
+    private func completeLesson() {
+        ProgressRecorder.record(
+            in: modelContext, puzzle: puzzle,
+            result: EvalResult(status: .solved, rank: .solved, metrics: [:], diagnostics: [])
+        )
+        if let nextId = store.nextPuzzleId(after: puzzle.id) {
+            path = [.deck(puzzle.track), .puzzle(nextId)]
+        } else {
+            path = [.deck(puzzle.track)]
+        }
+        Task { await sync.syncNow() }
     }
 
     private func run() {
         let operations: [PuzzleOperation]
         switch puzzle.interaction {
-        case .slotSelection, .minimalEdit:
-            operations = selections.map { .select(slotId: $0.key, choiceId: $0.value) }
+        case .slotSelection(let slots), .minimalEdit(let slots):
+            // Submit exactly this puzzle's slots — never whatever else the
+            // selections dictionary has accumulated.
+            operations = slots.compactMap { slot in
+                selections[slot.id].map { .select(slotId: slot.id, choiceId: $0) }
+            }
         case .blockArrangement:
             operations = [.arrange(order: blockOrder.map(\.id))]
         case .bestSolution:
             operations = [.pick(candidateId: chosenCandidate ?? "")]
+        case .lesson:
+            return // lessons complete via completeLesson(), never Run
         }
         evaluating = true
         Task {

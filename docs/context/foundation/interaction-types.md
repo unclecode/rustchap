@@ -31,6 +31,15 @@ frozen):
    several compiling candidates, under a stated goal: no allocation, no cloning, reusable input,
    thread-safe, zero-copy, minimal dynamic dispatch.
 
+## The fifth type: lessons (added 2026-08-04, from the device review round)
+
+5. **Lesson** (`lesson`) — a **reading node**, Euclidea's learning-challenge idea: short prose +
+   highlighted code sections, completed by a "Got it" tap, no evaluation. Lessons are ordinary
+   curriculum entries in `pack.order`, freely interleaved (`puzzle - puzzle - lecture - puzzle…`)
+   and placed **after** first contact with the material — the puzzles before create the question,
+   the lecture answers it, the puzzles after cash it in. The next puzzles ARE the comprehension
+   check; dedicated check questions would be another interaction type later.
+
 ## Deferred types (designed, not in v0.1)
 
 - **Choose the signature** — given implementation and usage, build the narrowest correct API from

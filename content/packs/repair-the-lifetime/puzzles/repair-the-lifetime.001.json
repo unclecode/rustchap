@@ -4,7 +4,11 @@
   "version": 1,
   "title": "The Longest One",
   "track": "repair-the-lifetime",
-  "concepts": ["lifetime", "elision", "borrow"],
+  "concepts": [
+    "lifetime",
+    "elision",
+    "borrow"
+  ],
   "difficulty": 3,
   "goal": "Give longest a signature the borrow checker accepts.",
   "template": "fn longest⟦generics⟧(a: ⟦param_ty⟧, b: ⟦param_ty⟧) -> ⟦ret_ty⟧ {\n    if a.len() > b.len() { a } else { b }\n}\n\nfn main() {\n    let one = String::from(\"ferris\");\n    let two = String::from(\"rustchap\");\n    println!(\"{}\", longest(&one, &two));\n}\n",
@@ -16,9 +20,18 @@
         "original": null,
         "label": "generic parameters",
         "choices": [
-          { "id": "g1", "text": "" },
-          { "id": "g2", "text": "<'a>" },
-          { "id": "g3", "text": "<'static>" }
+          {
+            "id": "g1",
+            "text": ""
+          },
+          {
+            "id": "g2",
+            "text": "<'a>"
+          },
+          {
+            "id": "g3",
+            "text": "<'static>"
+          }
         ]
       },
       {
@@ -26,9 +39,18 @@
         "original": null,
         "label": "parameter type (both)",
         "choices": [
-          { "id": "p1", "text": "&str" },
-          { "id": "p2", "text": "&'a str" },
-          { "id": "p3", "text": "String" }
+          {
+            "id": "p1",
+            "text": "&str"
+          },
+          {
+            "id": "p2",
+            "text": "&'a str"
+          },
+          {
+            "id": "p3",
+            "text": "String"
+          }
         ]
       },
       {
@@ -36,28 +58,49 @@
         "original": null,
         "label": "return type",
         "choices": [
-          { "id": "r1", "text": "&str" },
-          { "id": "r2", "text": "&'a str" },
-          { "id": "r3", "text": "String" }
+          {
+            "id": "r1",
+            "text": "&str"
+          },
+          {
+            "id": "r2",
+            "text": "&'a str"
+          },
+          {
+            "id": "r3",
+            "text": "String"
+          }
         ]
       }
     ]
   },
   "evaluation": {
-    "tests": ["#[test]\nfn picks_longer() {\n    let a = String::from(\"hi\");\n    let b = String::from(\"there\");\n    assert_eq!(longest(&a, &b), \"there\");\n}"],
-    "metrics": ["clone_count"]
+    "tests": [
+      "#[test]\nfn picks_longer() {\n    let a = String::from(\"hi\");\n    let b = String::from(\"there\");\n    assert_eq!(longest(&a, &b), \"there\");\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "The returned reference could be a OR b — so its lifetime must be tied to both inputs.",
+    "The returned reference could be a OR b - so its lifetime must be tied to both inputs.",
     "Declare one lifetime, apply it to both parameters and the return."
   ],
-  "explanation": "The compiler cannot elide the output lifetime when there are two borrowed inputs: it needs you to say that the returned &str lives as long as BOTH a and b. `fn longest<'a>(a: &'a str, b: &'a str) -> &'a str` encodes exactly that — 'a becomes the shorter of the two input lifetimes. Returning String would compile away the problem, but at the cost of allocating; the call site passes borrows, so the types would no longer match.",
+  "explanation": "The compiler cannot elide the output lifetime when there are two borrowed inputs: it needs you to say that the returned &str lives as long as BOTH a and b. `fn longest<'a>(a: &'a str, b: &'a str) -> &'a str` encodes exactly that - 'a becomes the shorter of the two input lifetimes. Returning String would compile away the problem, but at the cost of allocating; the call site passes borrows, so the types would no longer match.",
   "prerequisites": [],
-  "source": { "origin": "original", "license": null, "attribution": null }
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
 }

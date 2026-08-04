@@ -46,10 +46,29 @@ struct DeckDetailView: View {
         }
         .navigationTitle(deck.pack.title)
         .navigationBarTitleDisplayMode(.inline)
+        .tutorButton { .deck(deck, concepts: Array(store.concepts.values)) }
+    }
+
+    /// Deck accent from pack.json, matching the home-grid card tile.
+    private var accent: Color { DeckListView.accentColor(deck.pack.accent) }
+
+    /// One glyph per interaction type, so the row says how it plays.
+    private func typeIcon(_ interaction: Interaction) -> String {
+        switch interaction {
+        case .slotSelection: "hand.tap.fill"
+        case .minimalEdit: "pencil"
+        case .blockArrangement: "arrow.up.arrow.down"
+        case .bestSolution: "trophy.fill"
+        case .lesson: "book.closed.fill"
+        }
     }
 
     private func puzzleRow(_ loaded: ContentStore.LoadedPuzzle) -> some View {
         HStack(spacing: 10) {
+            Image(systemName: typeIcon(loaded.puzzle.interaction))
+                .font(.subheadline)
+                .foregroundStyle(accent)
+                .frame(width: 24)
             VStack(alignment: .leading, spacing: 4) {
                 Text(loaded.puzzle.title)
                     .font(.headline)
@@ -67,6 +86,9 @@ struct DeckDetailView: View {
             }
         }
         .padding(.vertical, 2)
+        // Keep every separator at the same leading edge — the lesson rows'
+        // book icon otherwise pushes their separator further right.
+        .alignmentGuide(.listRowSeparatorLeading) { $0[.leading] }
     }
 
     @ViewBuilder

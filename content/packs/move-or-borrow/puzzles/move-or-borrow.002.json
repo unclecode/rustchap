@@ -4,9 +4,13 @@
   "version": 1,
   "title": "Copy or Move?",
   "track": "move-or-borrow",
-  "concepts": ["copy", "move", "borrow"],
+  "concepts": [
+    "copy",
+    "move",
+    "borrow"
+  ],
   "difficulty": 1,
-  "goal": "Make everything print — and pay for nothing.",
+  "goal": "Make everything print - and pay for nothing.",
   "template": "fn main() {\n    let count = 7;\n    let label = String::from(\"attempts\");\n    describe(⟦int_arg⟧, ⟦str_arg⟧);\n    println!(\"{count} {label}\");\n}\n\nfn describe(n: i32, text: ⟦param_ty⟧) {\n    println!(\"{n} {}\", text.trim());\n}",
   "interaction": {
     "type": "minimal-edit",
@@ -16,8 +20,14 @@
         "original": "count",
         "label": "integer argument",
         "choices": [
-          { "id": "i1", "text": "count" },
-          { "id": "i2", "text": "count.clone()" }
+          {
+            "id": "i1",
+            "text": "count"
+          },
+          {
+            "id": "i2",
+            "text": "count.clone()"
+          }
         ]
       },
       {
@@ -25,9 +35,18 @@
         "original": "label",
         "label": "string argument",
         "choices": [
-          { "id": "s1", "text": "label" },
-          { "id": "s2", "text": "&label" },
-          { "id": "s3", "text": "label.clone()" }
+          {
+            "id": "s1",
+            "text": "label"
+          },
+          {
+            "id": "s2",
+            "text": "&label"
+          },
+          {
+            "id": "s3",
+            "text": "label.clone()"
+          }
         ]
       },
       {
@@ -35,29 +54,64 @@
         "original": "String",
         "label": "parameter type",
         "choices": [
-          { "id": "t1", "text": "String" },
-          { "id": "t2", "text": "&String" },
-          { "id": "t3", "text": "&str" }
+          {
+            "id": "t1",
+            "text": "String"
+          },
+          {
+            "id": "t2",
+            "text": "&String"
+          },
+          {
+            "id": "t3",
+            "text": "&str"
+          }
         ]
       }
     ]
   },
   "evaluation": {
-    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
-    "clippy": { "deny": ["clippy::ptr_arg", "clippy::clone_on_copy"] },
-    "metrics": ["clone_count", "token_edits", "clippy_warning_count"]
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "clippy": {
+      "deny": [
+        "clippy::ptr_arg",
+        "clippy::clone_on_copy"
+      ]
+    },
+    "metrics": [
+      "clone_count",
+      "token_edits",
+      "clippy_warning_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
-    "secondary": ["token_edits", "clippy_warning_count"],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0, "token_edits": 2, "clippy_warning_count": 0 }
+    "secondary": [
+      "token_edits",
+      "clippy_warning_count"
+    ],
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0,
+      "token_edits": 2,
+      "clippy_warning_count": 0
+    }
   },
   "hints": [
-    "The integer never causes trouble — why? Its type answers.",
+    "The integer never causes trouble - why? Its type answers.",
     "Only the String moves. Lend it, and pick the parameter type that also accepts literals."
   ],
-  "explanation": "i32 is Copy: passing `count` duplicates it bit-for-bit, so the later println works untouched — and cloning a Copy value is pure noise (Clippy's clone_on_copy agrees). The String is the real problem: it moves. Borrowing with `&label` into a `&str` parameter fixes the move with two edits and zero allocations; `&String` also compiles but flunks ptr_arg.",
-  "prerequisites": ["move-or-borrow.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by move_semantics and primitive_types exercises" }
+  "explanation": "i32 is Copy: passing `count` duplicates it bit-for-bit, so the later println works untouched - and cloning a Copy value is pure noise (Clippy's clone_on_copy agrees). The String is the real problem: it moves. Borrowing with `&label` into a `&str` parameter fixes the move with two edits and zero allocations; `&String` also compiles but flunks ptr_arg.",
+  "prerequisites": [
+    "move-or-borrow.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by move_semantics and primitive_types exercises"
+  }
 }

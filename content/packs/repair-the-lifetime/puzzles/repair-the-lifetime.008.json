@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime.008",
+  "version": 1,
+  "title": "The 'static Promise",
+  "track": "repair-the-lifetime",
+  "concepts": [
+    "static-lifetime",
+    "lifetime"
+  ],
+  "difficulty": 1,
+  "goal": "One lifetime has a name: 'static means valid for the whole program.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "`'static` is the longest possible lifetime: the borrow is valid for the entire run of the program. A function with no borrowed inputs can only return a reference if that reference is `'static`, because there is no input the result could borrow from."
+      },
+      {
+        "kind": "code",
+        "code": "fn motto() -> &'static str {\n    \"fearless concurrency\"   // baked into the binary\n}",
+        "caption": "String literals are 'static for free."
+      },
+      {
+        "kind": "prose",
+        "text": "Only data that is never dropped can keep this promise. String literals qualify, because they are compiled into the program binary. A temporary `String` does not qualify: it is dropped at the end of its statement, and no annotation changes that. Claiming `'static` on borrowed temporary data produces `E0716` or `E0515`, not a longer life."
+      },
+      {
+        "kind": "prose",
+        "text": "You will also meet `'static` outside this deck: spawned threads and async tasks require it, because they may outlive the function that created them. The rule is the same everywhere. The promise must match the data. If the data is temporary, return ownership instead of a reference."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "'static means valid for the whole program. Literals qualify; temporaries never do. If the data is temporary, return ownership.",
+  "prerequisites": [
+    "repair-the-lifetime.004"
+  ],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

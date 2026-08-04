@@ -4,9 +4,12 @@
   "version": 1,
   "title": "Fold the Total",
   "track": "build-the-iterator",
-  "concepts": ["iterator", "mutability"],
+  "concepts": [
+    "iterator",
+    "mutability"
+  ],
   "difficulty": 2,
-  "goal": "Add up the cart. Three working versions — one has no moving parts at all.",
+  "goal": "Add up the cart. Three working versions - one has no moving parts at all.",
   "interaction": {
     "type": "best-solution",
     "candidates": [
@@ -28,19 +31,35 @@
     "tests": [
       "#[test]\nfn totals() {\n    assert_eq!(total(&[10, 20, 12]), 42);\n    assert_eq!(total(&[]), 0);\n}"
     ],
-    "metrics": ["explicit_loops", "mut_bindings"]
+    "metrics": [
+      "explicit_loops",
+      "mut_bindings"
+    ]
   },
   "scoring": {
     "primary": "explicit_loops",
-    "secondary": ["mut_bindings"],
-    "fluent": { "explicit_loops": 0 },
-    "optimal": { "explicit_loops": 0, "mut_bindings": 0 }
+    "secondary": [
+      "mut_bindings"
+    ],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0,
+      "mut_bindings": 0
+    }
   },
   "hints": [
     "All three pass. Count the mutable state in each.",
     "sum() is fold with the boring parts already written."
   ],
-  "explanation": "A ladder of the same computation: the loop juggles a mutable accumulator by hand; fold hides the loop but this version still declares mut inside the closure; sum() has zero visible state — the intent IS the code. Identical results, identical performance (iterators compile down to the loop) — the difference is how much machinery a reader must simulate. Reach for the most specific adapter that says what you mean.",
-  "prerequisites": ["build-the-iterator.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by iterators4 (sum via fold)" }
+  "explanation": "A ladder of the same computation: the loop juggles a mutable accumulator by hand; fold hides the loop but this version still declares mut inside the closure; sum() has zero visible state - the intent IS the code. Identical results, identical performance (iterators compile down to the loop) - the difference is how much machinery a reader must simulate. Reach for the most specific adapter that says what you mean.",
+  "prerequisites": [
+    "build-the-iterator.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by iterators4 (sum via fold)"
+  }
 }

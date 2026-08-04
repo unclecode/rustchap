@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.004",
+  "version": 1,
+  "title": "Patterns Take Data Apart",
+  "track": "pattern-matching",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "difficulty": 1,
+  "goal": "match tests the shape of a value and binds its parts in one step.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "A `match` expression compares a value against patterns. A pattern does two jobs at once: it tests which shape the value has, and it binds the inner parts to names. For an enum variant like `Event::Click(x, y)`, one pattern checks the variant and gives you both fields."
+      },
+      {
+        "kind": "code",
+        "code": "match event {\n    Event::Click(x, y) => println!(\"at {x},{y}\"),\n    Event::Key(c)      => println!(\"key {c}\"),\n    Event::Close       => println!(\"bye\"),\n}",
+        "caption": "One arm per shape. The compiler checks that no shape is missing."
+      },
+      {
+        "kind": "prose",
+        "text": "The compiler checks two things for you. First, exhaustiveness: a `match` must cover every variant, so adding a new variant later turns every incomplete `match` into a compile error. That is a feature. Second, shape: a pattern with the wrong number of fields is rejected with `E0023`."
+      },
+      {
+        "kind": "prose",
+        "text": "The compiler cannot check meaning. `Event::Click(y, x)` compiles exactly like `Event::Click(x, y)` and swaps the coordinates. Field order in a pattern carries meaning that only tests can verify."
+      },
+      {
+        "kind": "prose",
+        "text": "When only one shape is interesting, `if let Some(x) = value` is a smaller way to write a two-arm match. And the wildcard `_` matches anything, which also means it silently absorbs variants you add later. Prefer naming the variants you handle."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Patterns test shape and bind fields in one step. The compiler enforces exhaustiveness; the meaning of positions is on you.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.005",
+  "version": 1,
+  "title": "What Send Promises",
+  "track": "async-and-send",
+  "concepts": [
+    "send-and-static",
+    "async-await"
+  ],
+  "difficulty": 1,
+  "goal": "A future that moves between threads must only hold state that can move too.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "`Send` is a marker trait: a type is `Send` when it is safe to move it to another thread. Most types are. The famous exception is `Rc`, whose reference count is not thread-safe. Its atomic twin `Arc` does the same sharing with a thread-safe count, and is `Send`."
+      },
+      {
+        "kind": "prose",
+        "text": "For async code the rule has a twist. A future's state is whatever is alive across an `.await` point. Multithreaded executors like tokio move futures between worker threads, so they require the future to be `Send`. Hold an `Rc` across an `.await`, and the entire future silently becomes not `Send`."
+      },
+      {
+        "kind": "code",
+        "code": "let counter = Arc::new(0u32);      // Rc here would poison the future\nlet task = async move {\n    let mine = Arc::clone(&counter);\n    do_work().await;               // `mine` lives across this await\n    println!(\"{mine}\");\n};",
+        "caption": "State held across .await must be Send."
+      },
+      {
+        "kind": "prose",
+        "text": "The compile error for this is `E0277`, and it is worth learning to read: it names the exact value and the exact `.await` that pin the problem down. The fix is usually mechanical. Replace `Rc` with `Arc`, or drop the non-Send value before the `.await`. Spawned threads add one more requirement you have already seen: the closure must be `'static`, so captured data is moved in, not borrowed."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Send means safe to move across threads. A future is Send only if everything held across .await is Send. Arc replaces Rc in async code.",
+  "prerequisites": [
+    "async-and-send.001"
+  ],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

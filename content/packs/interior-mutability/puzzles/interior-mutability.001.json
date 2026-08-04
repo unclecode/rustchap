@@ -4,9 +4,12 @@
   "version": 1,
   "title": "Count Through &self",
   "track": "interior-mutability",
-  "concepts": ["interior-mutability", "mutability"],
+  "concepts": [
+    "interior-mutability",
+    "mutability"
+  ],
   "difficulty": 2,
-  "goal": "record() takes &self — and must still count. Pick the field that allows it.",
+  "goal": "record() takes &self - and must still count. Pick the field that allows it.",
   "template": "use std::cell::Cell;\n\nstruct Tracker {\n    hits: ⟦field_ty⟧,\n}\n\nimpl Tracker {\n    fn record(&self) {\n        ⟦record_stmt⟧;\n    }\n}\n\nfn main() {\n    let tracker = Tracker { hits: Cell::new(0) };\n    tracker.record();\n    tracker.record();\n    println!(\"{} hits\", tracker.hits.get());\n}",
   "interaction": {
     "type": "slot-selection",
@@ -16,8 +19,14 @@
         "original": null,
         "label": "field type",
         "choices": [
-          { "id": "t1", "text": "Cell<u32>" },
-          { "id": "t2", "text": "u32" }
+          {
+            "id": "t1",
+            "text": "Cell<u32>"
+          },
+          {
+            "id": "t2",
+            "text": "u32"
+          }
         ]
       },
       {
@@ -25,8 +34,14 @@
         "original": null,
         "label": "record statement",
         "choices": [
-          { "id": "s1", "text": "self.hits.set(self.hits.get() + 1)" },
-          { "id": "s2", "text": "self.hits += 1" }
+          {
+            "id": "s1",
+            "text": "self.hits.set(self.hits.get() + 1)"
+          },
+          {
+            "id": "s2",
+            "text": "self.hits += 1"
+          }
         ]
       }
     ]
@@ -35,19 +50,29 @@
     "tests": [
       "#[test]\nfn counts() {\n    let tracker = Tracker { hits: Cell::new(0) };\n    tracker.record();\n    tracker.record();\n    assert_eq!(tracker.hits.get(), 2);\n}"
     ],
-    "metrics": ["clone_count"]
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "&self forbids assignment to plain fields — E0594. The mutability has to live INSIDE the field.",
-    "Cell trades references for whole-value get/set — which is why it can never panic."
+    "&self forbids assignment to plain fields - E0594. The mutability has to live INSIDE the field.",
+    "Cell trades references for whole-value get/set - which is why it can never panic."
   ],
-  "explanation": "A &self method can't assign to a plain u32 field (E0594) — shared means read-only, by default. Cell<u32> moves the mutability inside the field: set() and get() copy whole values in and out through the shared reference, no guards, no panics possible. This is interior mutability's gentlest form — for Copy types, Cell is all you need, and the API stays &self as callers expect of a counter.",
+  "explanation": "A &self method can't assign to a plain u32 field (E0594) - shared means read-only, by default. Cell<u32> moves the mutability inside the field: set() and get() copy whole values in and out through the shared reference, no guards, no panics possible. This is interior mutability's gentlest form - for Copy types, Cell is all you need, and the API stays &self as callers expect of a counter.",
   "prerequisites": [],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by Cell patterns; The Book ch15.5" }
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by Cell patterns; The Book ch15.5"
+  }
 }

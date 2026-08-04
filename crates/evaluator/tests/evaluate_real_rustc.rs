@@ -44,17 +44,17 @@ fn puzzle() -> Puzzle {
                 },
             ],
         },
-        evaluation: Evaluation {
+        evaluation: Some(Evaluation {
             tests: vec!["#[test]\nfn runs() { main(); }".into()],
             clippy: Clippy::default(),
             metrics: vec![Metric::CloneCount, Metric::TokenEdits],
-        },
-        scoring: Scoring {
+        }),
+        scoring: Some(Scoring {
             primary: Metric::CloneCount,
             secondary: vec![Metric::TokenEdits],
             fluent: BTreeMap::from([(Metric::CloneCount, 0)]),
             optimal: BTreeMap::from([(Metric::CloneCount, 0), (Metric::TokenEdits, 2)]),
-        },
+        }),
         hints: vec![],
         explanation: String::new(),
         prerequisites: vec![],

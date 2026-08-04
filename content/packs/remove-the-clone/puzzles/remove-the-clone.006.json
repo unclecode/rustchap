@@ -4,7 +4,10 @@
   "version": 1,
   "title": "Cheap to Copy",
   "track": "remove-the-clone",
-  "concepts": ["copy", "clone"],
+  "concepts": [
+    "copy",
+    "clone"
+  ],
   "difficulty": 2,
   "goal": "A two-int point crosses this code four times. Pick the version that never allocates OR clones.",
   "interaction": {
@@ -28,19 +31,31 @@
     "tests": [
       "#[test]\nfn reports() {\n    assert_eq!(report(), \"(3, 4) is 5.0 away | mag 5.0\");\n}"
     ],
-    "metrics": ["clone_count"]
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 2 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 2
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "Two i32s are 8 bytes — smaller than the pointer you'd pass them by.",
+    "Two i32s are 8 bytes - smaller than the pointer you'd pass them by.",
     "derive(Copy) makes passing a Point behave like passing an int: duplicate, don't move."
   ],
   "explanation": "A struct of two i32s is exactly the kind of type Copy exists for: deriving Copy makes every pass-by-value a bit-for-bit duplicate, so the moves that forced cloning simply stop being moves. All three versions pass the tests; the Copy version deletes every clone() by changing one derive. The instinct: small, plain-data structs (no heap fields) should derive Copy, and clone() on them is a smell.",
-  "prerequisites": ["remove-the-clone.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by primitive_types and clippy clone_on_copy" }
+  "prerequisites": [
+    "remove-the-clone.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by primitive_types and clippy clone_on_copy"
+  }
 }

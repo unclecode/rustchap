@@ -4,34 +4,61 @@
   "version": 1,
   "title": "Borrow, Then Move",
   "track": "move-or-borrow",
-  "concepts": ["borrow-scope", "move", "borrow"],
+  "concepts": [
+    "borrow-scope",
+    "move",
+    "borrow"
+  ],
   "difficulty": 2,
-  "goal": "All three statements are correct — only their order isn't. Untangle the timeline.",
+  "goal": "All three statements are correct - only their order isn't. Untangle the timeline.",
   "interaction": {
     "type": "block-arrangement",
     "fixed_prefix": "fn main() {\n    let data = String::from(\"crab\");",
     "blocks": [
-      { "id": "consume", "text": "\n    let boxed = archive(data);" },
-      { "id": "read", "text": "\n    let size = measure(&data);" },
-      { "id": "report", "text": "\n    println!(\"{size} vs {boxed}\");" }
+      {
+        "id": "consume",
+        "text": "\n    let boxed = archive(data);"
+      },
+      {
+        "id": "read",
+        "text": "\n    let size = measure(&data);"
+      },
+      {
+        "id": "report",
+        "text": "\n    println!(\"{size} vs {boxed}\");"
+      }
     ],
     "fixed_suffix": "\n}\n\nfn measure(s: &str) -> usize {\n    s.len()\n}\n\nfn archive(s: String) -> String {\n    format!(\"[{s}]\")\n}"
   },
   "evaluation": {
-    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
-    "metrics": ["clone_count"]
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "archive takes the String by value — after that call, data is gone.",
+    "archive takes the String by value - after that call, data is gone.",
     "A borrow ends at its last use. Measure first, and the borrow is over before the move."
   ],
-  "explanation": "measure only borrows; archive consumes. Since a borrow ends at its last use (non-lexical lifetimes), reading before moving leaves no overlap: borrow, done, move, report. Any order that moves first hits E0382 — and no clone is ever needed. Statement order is a borrow-checker tool.",
-  "prerequisites": ["move-or-borrow.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by move_semantics6 (borrow after move)" }
+  "explanation": "measure only borrows; archive consumes. Since a borrow ends at its last use (non-lexical lifetimes), reading before moving leaves no overlap: borrow, done, move, report. Any order that moves first hits E0382 - and no clone is ever needed. Statement order is a borrow-checker tool.",
+  "prerequisites": [
+    "move-or-borrow.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by move_semantics6 (borrow after move)"
+  }
 }

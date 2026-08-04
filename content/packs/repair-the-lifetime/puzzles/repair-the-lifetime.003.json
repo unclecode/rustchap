@@ -4,9 +4,13 @@
   "version": 1,
   "title": "Struct Holder",
   "track": "repair-the-lifetime",
-  "concepts": ["lifetime", "borrow", "clone"],
+  "concepts": [
+    "lifetime",
+    "borrow",
+    "clone"
+  ],
   "difficulty": 3,
-  "goal": "A struct that holds a view into the poem — without owning or copying it.",
+  "goal": "A struct that holds a view into the poem - without owning or copying it.",
   "template": "struct Excerpt⟦struct_generics⟧ {\n    line: ⟦field_ty⟧,\n}\n\nfn main() {\n    let poem = String::from(\"crab season / silent tide\");\n    let ex = Excerpt { line: ⟦init_expr⟧ };\n    println!(\"quote: {}\", ex.line);\n    println!(\"full: {poem}\");\n}",
   "interaction": {
     "type": "slot-selection",
@@ -16,8 +20,14 @@
         "original": null,
         "label": "struct generics",
         "choices": [
-          { "id": "g1", "text": "" },
-          { "id": "g2", "text": "<'a>" }
+          {
+            "id": "g1",
+            "text": ""
+          },
+          {
+            "id": "g2",
+            "text": "<'a>"
+          }
         ]
       },
       {
@@ -25,9 +35,18 @@
         "original": null,
         "label": "field type",
         "choices": [
-          { "id": "t1", "text": "&str" },
-          { "id": "t2", "text": "&'a str" },
-          { "id": "t3", "text": "String" }
+          {
+            "id": "t1",
+            "text": "&str"
+          },
+          {
+            "id": "t2",
+            "text": "&'a str"
+          },
+          {
+            "id": "t3",
+            "text": "String"
+          }
         ]
       },
       {
@@ -35,28 +54,51 @@
         "original": null,
         "label": "field value",
         "choices": [
-          { "id": "e1", "text": "&poem" },
-          { "id": "e2", "text": "poem.clone()" },
-          { "id": "e3", "text": "poem" }
+          {
+            "id": "e1",
+            "text": "&poem"
+          },
+          {
+            "id": "e2",
+            "text": "poem.clone()"
+          },
+          {
+            "id": "e3",
+            "text": "poem"
+          }
         ]
       }
     ]
   },
   "evaluation": {
-    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
-    "metrics": ["clone_count"]
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
     "A struct field holding a reference makes the WHOLE struct lifetime-bound: Excerpt<'a>.",
-    "Owning (String) also compiles — if you pay for it. The poem is still needed afterwards."
+    "Owning (String) also compiles - if you pay for it. The poem is still needed afterwards."
   ],
-  "explanation": "Structs that hold references must declare it: Excerpt<'a> with a &'a str field ties every Excerpt to the data it views — that's E0106 waiting if you omit it. The borrowing version costs nothing and leaves poem usable. Owning versions also exist: moving poem in breaks the later println (E0382), and cloning works but buys a copy you didn't need. View-holding structs are everywhere in real Rust (parsers, iterators) — this shape is worth internalizing.",
-  "prerequisites": ["repair-the-lifetime.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by lifetimes3 (struct lifetimes)" }
+  "explanation": "Structs that hold references must declare it: Excerpt<'a> with a &'a str field ties every Excerpt to the data it views - that's E0106 waiting if you omit it. The borrowing version costs nothing and leaves poem usable. Owning versions also exist: moving poem in breaks the later println (E0382), and cloning works but buys a copy you didn't need. View-holding structs are everywhere in real Rust (parsers, iterators) - this shape is worth internalizing.",
+  "prerequisites": [
+    "repair-the-lifetime.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by lifetimes3 (struct lifetimes)"
+  }
 }

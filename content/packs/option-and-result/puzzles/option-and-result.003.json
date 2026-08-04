@@ -4,9 +4,12 @@
   "version": 1,
   "title": "Default with Dignity",
   "track": "option-and-result",
-  "concepts": ["option", "error-propagation"],
+  "concepts": [
+    "option",
+    "error-propagation"
+  ],
   "difficulty": 2,
-  "goal": "A port from the environment, or 3000. Garbage and absence both deserve the fallback — not a crash, not a zero.",
+  "goal": "A port from the environment, or 3000. Garbage and absence both deserve the fallback - not a crash, not a zero.",
   "template": "fn port(env: Option<&str>) -> u16 {\n    env.and_then(|s| s.parse().ok())⟦finisher⟧\n}\n\nfn main() {\n    println!(\"{} {} {}\", port(Some(\"8080\")), port(None), port(Some(\"nope\")));\n}",
   "interaction": {
     "type": "minimal-edit",
@@ -16,9 +19,18 @@
         "original": ".unwrap()",
         "label": "finisher",
         "choices": [
-          { "id": "f1", "text": ".unwrap()" },
-          { "id": "f2", "text": ".unwrap_or(3000)" },
-          { "id": "f3", "text": ".unwrap_or(0)" }
+          {
+            "id": "f1",
+            "text": ".unwrap()"
+          },
+          {
+            "id": "f2",
+            "text": ".unwrap_or(3000)"
+          },
+          {
+            "id": "f3",
+            "text": ".unwrap_or(0)"
+          }
         ]
       }
     ]
@@ -27,19 +39,35 @@
     "tests": [
       "#[test]\nfn falls_back() {\n    assert_eq!(port(Some(\"8080\")), 8080);\n    assert_eq!(port(None), 3000);\n    assert_eq!(port(Some(\"nope\")), 3000);\n}"
     ],
-    "metrics": ["clone_count", "token_edits"]
+    "metrics": [
+      "clone_count",
+      "token_edits"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
-    "secondary": ["token_edits"],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0, "token_edits": 1 }
+    "secondary": [
+      "token_edits"
+    ],
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0,
+      "token_edits": 1
+    }
   },
   "hints": [
     "and_then + parse().ok() already collapsed 'missing' and 'garbage' into one None. One finisher handles both.",
     "unwrap panics on that None; unwrap_or(0) invents a port nobody listens on."
   ],
-  "explanation": "The pipeline is the pattern: and_then chains the maybe, parse().ok() converts a Result into an Option, and by the finisher, absence and garbage are the same None. unwrap_or(3000) gives it the documented default. unwrap() turns a missing env var into a crash at startup; unwrap_or(0) is quieter and worse — port 0 is a lie that fails later, far from the cause. Defaults are API decisions: pick the honest one, once, at the boundary.",
-  "prerequisites": ["option-and-result.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by options and errors exercises" }
+  "explanation": "The pipeline is the pattern: and_then chains the maybe, parse().ok() converts a Result into an Option, and by the finisher, absence and garbage are the same None. unwrap_or(3000) gives it the documented default. unwrap() turns a missing env var into a crash at startup; unwrap_or(0) is quieter and worse - port 0 is a lie that fails later, far from the cause. Defaults are API decisions: pick the honest one, once, at the boundary.",
+  "prerequisites": [
+    "option-and-result.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by options and errors exercises"
+  }
 }

@@ -4,17 +4,32 @@
   "version": 1,
   "title": "Evens, Doubled",
   "track": "build-the-iterator",
-  "concepts": ["iterator", "slice"],
+  "concepts": [
+    "iterator",
+    "slice"
+  ],
   "difficulty": 2,
   "goal": "Keep the even numbers, double them. Order the pipeline.",
   "interaction": {
     "type": "block-arrangement",
     "fixed_prefix": "fn evens_doubled(values: &[i32]) -> Vec<i32> {\n    values",
     "blocks": [
-      { "id": "iter", "text": "\n        .iter()" },
-      { "id": "filt", "text": "\n        .filter(|x| *x % 2 == 0)" },
-      { "id": "map", "text": "\n        .map(|x| x * 2)" },
-      { "id": "coll", "text": "\n        .collect()" }
+      {
+        "id": "iter",
+        "text": "\n        .iter()"
+      },
+      {
+        "id": "filt",
+        "text": "\n        .filter(|x| *x % 2 == 0)"
+      },
+      {
+        "id": "map",
+        "text": "\n        .map(|x| x * 2)"
+      },
+      {
+        "id": "coll",
+        "text": "\n        .collect()"
+      }
     ],
     "fixed_suffix": "\n}"
   },
@@ -23,19 +38,33 @@
       "#[test]\nfn doubles_only_evens() {\n    assert_eq!(evens_doubled(&[1, 2, 3, 4]), vec![4, 8]);\n}",
       "#[test]\nfn empty_is_empty() {\n    assert_eq!(evens_doubled(&[]), Vec::<i32>::new());\n}"
     ],
-    "metrics": ["explicit_loops", "mut_bindings"]
+    "metrics": [
+      "explicit_loops",
+      "mut_bindings"
+    ]
   },
   "scoring": {
     "primary": "explicit_loops",
-    "secondary": ["mut_bindings"],
-    "fluent": { "explicit_loops": 0 },
-    "optimal": { "explicit_loops": 0, "mut_bindings": 0 }
+    "secondary": [
+      "mut_bindings"
+    ],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0,
+      "mut_bindings": 0
+    }
   },
   "hints": [
-    "A slice has no .filter — something has to turn it into an iterator first.",
+    "A slice has no .filter - something has to turn it into an iterator first.",
     "Doubling before filtering also compiles… but doubles change which numbers are even. Check what the test expects."
   ],
-  "explanation": "Two orders compile: filter-then-map and map-then-filter. Only the tests tell them apart — after doubling, every number is even, so map-then-filter returns all four values instead of two. This is the core iterator instinct: the pipeline is evaluated lazily element by element, in exactly the order you compose, and .collect() must come last because it is what finally drives the iteration.",
+  "explanation": "Two orders compile: filter-then-map and map-then-filter. Only the tests tell them apart - after doubling, every number is even, so map-then-filter returns all four values instead of two. This is the core iterator instinct: the pipeline is evaluated lazily element by element, in exactly the order you compose, and .collect() must come last because it is what finally drives the iteration.",
   "prerequisites": [],
-  "source": { "origin": "original", "license": null, "attribution": null }
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
 }

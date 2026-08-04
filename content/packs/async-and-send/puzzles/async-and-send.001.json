@@ -4,10 +4,12 @@
   "version": 1,
   "title": "Await It",
   "track": "async-and-send",
-  "concepts": ["async-await"],
+  "concepts": [
+    "async-await"
+  ],
   "difficulty": 2,
   "goal": "fetch_score() builds the future. Something still has to run it.",
-  "template": "async fn fetch_score() -> i32 {\n    42\n}\n\nfn get() -> i32 {\n    block_on(async {\n        ⟦call⟧\n    })\n}\n\nfn main() {\n    println!(\"{}\", get());\n}\n\n// Minimal executor — polls the future to completion (std-only).\nfn block_on<F: std::future::Future>(mut fut: F) -> F::Output {\n    use std::task::{Context, Poll, RawWaker, RawWakerVTable, Waker};\n    fn noop(_: *const ()) {}\n    fn clone(p: *const ()) -> RawWaker {\n        RawWaker::new(p, &VTABLE)\n    }\n    static VTABLE: RawWakerVTable = RawWakerVTable::new(clone, noop, noop, noop);\n    let waker = unsafe { Waker::from_raw(RawWaker::new(std::ptr::null(), &VTABLE)) };\n    let mut cx = Context::from_waker(&waker);\n    let mut fut = unsafe { std::pin::Pin::new_unchecked(&mut fut) };\n    loop {\n        match fut.as_mut().poll(&mut cx) {\n            Poll::Ready(value) => return value,\n            Poll::Pending => std::thread::yield_now(),\n        }\n    }\n}",
+  "template": "async fn fetch_score() -> i32 {\n    42\n}\n\nfn get() -> i32 {\n    block_on(async {\n        ⟦call⟧\n    })\n}\n\nfn main() {\n    println!(\"{}\", get());\n}\n\n// Minimal executor - polls the future to completion (std-only).\nfn block_on<F: std::future::Future>(mut fut: F) -> F::Output {\n    use std::task::{Context, Poll, RawWaker, RawWakerVTable, Waker};\n    fn noop(_: *const ()) {}\n    fn clone(p: *const ()) -> RawWaker {\n        RawWaker::new(p, &VTABLE)\n    }\n    static VTABLE: RawWakerVTable = RawWakerVTable::new(clone, noop, noop, noop);\n    let waker = unsafe { Waker::from_raw(RawWaker::new(std::ptr::null(), &VTABLE)) };\n    let mut cx = Context::from_waker(&waker);\n    let mut fut = unsafe { std::pin::Pin::new_unchecked(&mut fut) };\n    loop {\n        match fut.as_mut().poll(&mut cx) {\n            Poll::Ready(value) => return value,\n            Poll::Pending => std::thread::yield_now(),\n        }\n    }\n}",
   "interaction": {
     "type": "slot-selection",
     "slots": [
@@ -16,9 +18,18 @@
         "original": null,
         "label": "the call",
         "choices": [
-          { "id": "c1", "text": "fetch_score().await" },
-          { "id": "c2", "text": "fetch_score()" },
-          { "id": "c3", "text": "fetch_score().await.await" }
+          {
+            "id": "c1",
+            "text": "fetch_score().await"
+          },
+          {
+            "id": "c2",
+            "text": "fetch_score()"
+          },
+          {
+            "id": "c3",
+            "text": "fetch_score().await.await"
+          }
         ]
       }
     ]
@@ -27,19 +38,29 @@
     "tests": [
       "#[test]\nfn gets_the_score() {\n    assert_eq!(get(), 42);\n}"
     ],
-    "metrics": ["clone_count"]
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "Calling an async fn runs NOTHING — it returns the future itself.",
+    "Calling an async fn runs NOTHING - it returns the future itself.",
     "One .await drives it to the i32. A second .await would try to run the number."
   ],
-  "explanation": "fetch_score() without .await hands back an inert impl Future<Output = i32> — so the async block yields a future-of-a-future, and get() tries to return it as an i32 (E0308: the compiler literally tells you the value is still wrapped). One .await drives the machine to its 42; a second .await fails because i32 isn't a future (E0277). The executor at the bottom is what every runtime is at heart: a loop that polls until Ready.",
+  "explanation": "fetch_score() without .await hands back an inert impl Future<Output = i32> - so the async block yields a future-of-a-future, and get() tries to return it as an i32 (E0308: the compiler literally tells you the value is still wrapped). One .await drives the machine to its 42; a second .await fails because i32 isn't a future (E0277). The executor at the bottom is what every runtime is at heart: a loop that polls until Ready.",
   "prerequisites": [],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by async/futures fundamentals; The Book ch17" }
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by async/futures fundamentals; The Book ch17"
+  }
 }

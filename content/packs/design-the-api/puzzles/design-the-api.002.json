@@ -10,7 +10,7 @@
     "borrow"
   ],
   "difficulty": 2,
-  "goal": "One function, two very different callers — owned text and a literal. Choose the parameter that serves both.",
+  "goal": "One function, two very different callers - owned text and a literal. Choose the parameter that serves both.",
   "template": "fn shout(text: ⟦param⟧) -> String {\n    text.to_uppercase()\n}\n\nfn main() {\n    let owned = String::from(\"crab\");\n    println!(\"{}\", shout(⟦arg_owned⟧));\n    println!(\"{}\", shout(⟦arg_lit⟧));\n    println!(\"still here: {owned}\");\n}",
   "interaction": {
     "type": "minimal-edit",
@@ -94,9 +94,9 @@
   },
   "hints": [
     "String demands every caller manufacture ownership; &String rejects literals outright.",
-    "&str accepts &owned by deref coercion AND \"ferris\" directly — the narrowest type serves the most callers."
+    "&str accepts &owned by deref coercion AND \"ferris\" directly - the narrowest type serves the most callers."
   ],
-  "explanation": "The String parameter taxes both callers: the owned side must clone (or lose `owned` for the final println), the literal side must allocate a String::from. &String fixes one caller and abandons the other — literals aren't &String. &str serves everyone: &owned coerces, \"ferris\" just works, nothing allocates. Parameter types are pricing policy for your callers — charge the minimum.",
+  "explanation": "The String parameter taxes both callers: the owned side must clone (or lose `owned` for the final println), the literal side must allocate a String::from. &String fixes one caller and abandons the other - literals aren't &String. &str serves everyone: &owned coerces, \"ferris\" just works, nothing allocates. Parameter types are pricing policy for your callers - charge the minimum.",
   "prerequisites": [],
   "source": {
     "origin": "rustlings",

@@ -4,7 +4,11 @@
   "version": 1,
   "title": "Collect the Names",
   "track": "build-the-iterator",
-  "concepts": ["iterator", "zero-copy", "clone"],
+  "concepts": [
+    "iterator",
+    "zero-copy",
+    "clone"
+  ],
   "difficulty": 3,
   "goal": "A list of everyone's name. The question is: who pays for the strings?",
   "interaction": {
@@ -28,19 +32,31 @@
     "tests": [
       "#[test]\nfn collects() {\n    let users = vec![User { name: String::from(\"amy\") }, User { name: String::from(\"zoe\") }];\n    let ns = names(&users);\n    assert_eq!(ns.len(), 2);\n    assert_eq!(ns[0], \"amy\");\n}"
     ],
-    "metrics": ["clone_count"]
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 1 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "The names already exist inside the users. A Vec<&str> is a list of views — no new strings at all.",
-    "Lifetime elision ties the returned borrows to the input slice automatically — one input, no annotations needed."
+    "The names already exist inside the users. A Vec<&str> is a list of views - no new strings at all.",
+    "Lifetime elision ties the returned borrows to the input slice automatically - one input, no annotations needed."
   ],
-  "explanation": "Vec<&str> collects VIEWS into strings the caller already owns: zero allocations beyond the Vec itself, and elision handles the lifetimes (single borrowed input → output tied to it). Cloning each name costs one String per user — sometimes right, when the caller must outlive the users. The double-map version clones twice per element, which is never right. The collect target type is the API decision.",
-  "prerequisites": ["build-the-iterator.001"],
-  "source": { "origin": "exercism", "license": "MIT", "attribution": "inspired by collection-mapping practice exercises" }
+  "explanation": "Vec<&str> collects VIEWS into strings the caller already owns: zero allocations beyond the Vec itself, and elision handles the lifetimes (single borrowed input → output tied to it). Cloning each name costs one String per user - sometimes right, when the caller must outlive the users. The double-map version clones twice per element, which is never right. The collect target type is the API decision.",
+  "prerequisites": [
+    "build-the-iterator.001"
+  ],
+  "source": {
+    "origin": "exercism",
+    "license": "MIT",
+    "attribution": "inspired by collection-mapping practice exercises"
+  }
 }

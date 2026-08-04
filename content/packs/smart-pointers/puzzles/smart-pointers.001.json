@@ -4,9 +4,11 @@
   "version": 1,
   "title": "Box the Recursion",
   "track": "smart-pointers",
-  "concepts": ["smart-pointers"],
+  "concepts": [
+    "smart-pointers"
+  ],
   "difficulty": 2,
-  "goal": "A list that contains itself has infinite size — unless it contains a pointer instead.",
+  "goal": "A list that contains itself has infinite size - unless it contains a pointer instead.",
   "template": "enum List {\n    Cons(i32, ⟦tail_ty⟧),\n    Nil,\n}\n\nuse List::{Cons, Nil};\n\nfn sum(list: &List) -> i32 {\n    match list {\n        Cons(value, tail) => value + sum(tail),\n        Nil => 0,\n    }\n}\n\nfn main() {\n    let list = Cons(1, Box::new(Cons(2, Box::new(Nil))));\n    println!(\"{}\", sum(&list));\n}",
   "interaction": {
     "type": "slot-selection",
@@ -16,9 +18,18 @@
         "original": null,
         "label": "tail type",
         "choices": [
-          { "id": "t1", "text": "Box<List>" },
-          { "id": "t2", "text": "List" },
-          { "id": "t3", "text": "&List" }
+          {
+            "id": "t1",
+            "text": "Box<List>"
+          },
+          {
+            "id": "t2",
+            "text": "List"
+          },
+          {
+            "id": "t3",
+            "text": "&List"
+          }
         ]
       }
     ]
@@ -27,19 +38,29 @@
     "tests": [
       "#[test]\nfn sums() {\n    let list = Cons(1, Box::new(Cons(2, Box::new(Nil))));\n    assert_eq!(sum(&list), 3);\n}"
     ],
-    "metrics": ["clone_count"]
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
     "How big is a List that directly contains a List that contains a List…? The compiler asks the same question (E0072).",
     "A Box is always one pointer wide, no matter what it points at. That breaks the infinite regress."
   ],
-  "explanation": "Direct recursion makes the size equation unsolvable — E0072, 'recursive type has infinite size'. Box<List> fixes it because a Box is pointer-sized regardless of its contents: the recursion moves to the heap, one hop per node. The reference version trades one problem for another — now every List borrows its tail from… someone, and the struct needs lifetimes that no owner can satisfy for a self-built list. Owning heap indirection is exactly what Box is for.",
+  "explanation": "Direct recursion makes the size equation unsolvable - E0072, 'recursive type has infinite size'. Box<List> fixes it because a Box is pointer-sized regardless of its contents: the recursion moves to the heap, one hop per node. The reference version trades one problem for another - now every List borrows its tail from… someone, and the struct needs lifetimes that no owner can satisfy for a self-built list. Owning heap indirection is exactly what Box is for.",
   "prerequisites": [],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "direct transform of box1 (cons list)" }
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "direct transform of box1 (cons list)"
+  }
 }

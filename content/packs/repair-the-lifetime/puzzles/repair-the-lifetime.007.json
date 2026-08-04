@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime.007",
+  "version": 1,
+  "title": "What a Lifetime Is",
+  "track": "repair-the-lifetime",
+  "concepts": [
+    "lifetime",
+    "elision",
+    "borrow"
+  ],
+  "difficulty": 1,
+  "goal": "A lifetime is not how long a value lives. It is how long a borrow is valid.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Every reference in Rust has a lifetime: the region of code where the borrow is valid. Usually the compiler works lifetimes out on its own. The rules it uses are called lifetime elision. You only write lifetimes when elision has too little information, and the compiler asks you with errors like `E0106`."
+      },
+      {
+        "kind": "prose",
+        "text": "The common case: a function takes two references and returns one. The compiler cannot know which input the output borrows from, so you must say it. A lifetime parameter like `'a` is a name that connects inputs to outputs. It does not change how long anything lives. It only describes the connection."
+      },
+      {
+        "kind": "code",
+        "code": "fn longest<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() > b.len() { a } else { b }\n}",
+        "caption": "The output lives as long as both inputs. That is all this says."
+      },
+      {
+        "kind": "prose",
+        "text": "When one lifetime is shared by two inputs, the compiler picks the shorter of the two regions. If the caller then keeps the result longer than one of the inputs, the borrow checker reports `E0597`: borrowed value does not live long enough. The fix is usually not more annotations. It is either separating the lifetimes that do not belong together, or feeding the call data that lives long enough."
+      },
+      {
+        "kind": "prose",
+        "text": "Structs follow the same rule. A struct that stores a reference must declare a lifetime parameter, like `struct Excerpt<'a>`, so every instance is tied to the data it views. The puzzles ahead train you to read these errors and repair the signature, not to fight the borrow checker."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "A lifetime describes how long a borrow is valid and which input an output borrows from. Annotations describe connections; they never extend a value's life.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

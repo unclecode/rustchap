@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "build-the-iterator.008",
+  "version": 1,
+  "title": "Three Ways to Iterate",
+  "track": "build-the-iterator",
+  "concepts": [
+    "iterator",
+    "borrow",
+    "move"
+  ],
+  "difficulty": 1,
+  "goal": "iter borrows, iter_mut borrows mutably, into_iter takes ownership.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Every collection offers three iterator families, and they differ in ownership. `.iter()` borrows: items arrive as `&T`, and the collection stays usable afterwards. `.iter_mut()` borrows mutably: items arrive as `&mut T`, for editing in place. `.into_iter()` takes ownership: items arrive as `T`, and the collection is consumed."
+      },
+      {
+        "kind": "code",
+        "code": "let nums = vec![1, 2, 3];\nlet doubled: Vec<i32> = nums.iter().map(|n| n * 2).collect();\nprintln!(\"{nums:?}\");   // still valid: iter() only borrowed",
+        "caption": "Borrowing iteration leaves the collection alive."
+      },
+      {
+        "kind": "prose",
+        "text": "A `for` loop uses `into_iter()` behind the scenes. Writing `for w in words` moves the whole `Vec`, so using `words` after the loop is a use of a moved value, `E0382`. Writing `for w in &words` iterates borrowed items and the collection survives."
+      },
+      {
+        "kind": "prose",
+        "text": "The decision is the same ownership decision as always: if you need the collection afterwards, borrow it with `.iter()` or `&`. If the loop is the collection's last user, let `into_iter()` consume it. Cloning the collection first is the expensive way to avoid making this decision."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "iter borrows, iter_mut edits in place, into_iter consumes. A bare for loop consumes; iterate over a reference to keep the collection.",
+  "prerequisites": [
+    "build-the-iterator.001"
+  ],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

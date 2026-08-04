@@ -4,9 +4,13 @@
   "version": 1,
   "title": "Move It to the Thread",
   "track": "async-and-send",
-  "concepts": ["send-and-static", "move", "closures"],
+  "concepts": [
+    "send-and-static",
+    "move",
+    "closures"
+  ],
   "difficulty": 2,
-  "goal": "The worker thread may outlive main's stack. Hand it the name properly — no copies.",
+  "goal": "The worker thread may outlive main's stack. Hand it the name properly - no copies.",
   "template": "use std::thread;\n\nfn main() {\n    let name = String::from(\"worker-7\");\n    let handle = thread::spawn(⟦closure⟧);\n    handle.join().unwrap();\n}",
   "interaction": {
     "type": "slot-selection",
@@ -16,28 +20,51 @@
         "original": null,
         "label": "spawned closure",
         "choices": [
-          { "id": "c1", "text": "move || println!(\"hello from {name}\")" },
-          { "id": "c2", "text": "|| println!(\"hello from {name}\")" },
-          { "id": "c3", "text": "{ let copy = name.clone(); move || println!(\"hello from {copy}\") }" }
+          {
+            "id": "c1",
+            "text": "move || println!(\"hello from {name}\")"
+          },
+          {
+            "id": "c2",
+            "text": "|| println!(\"hello from {name}\")"
+          },
+          {
+            "id": "c3",
+            "text": "{ let copy = name.clone(); move || println!(\"hello from {copy}\") }"
+          }
         ]
       }
     ]
   },
   "evaluation": {
-    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
-    "metrics": ["clone_count"]
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
     "spawn demands 'static: the closure may run after main's frame is gone, so it can't borrow name (E0373).",
-    "main never uses name afterwards — just give it away with move. The clone buys nothing."
+    "main never uses name afterwards - just give it away with move. The clone buys nothing."
   ],
-  "explanation": "A spawned thread's closure must be 'static: the thread might outlive the function that made it, so borrowing name is rejected with E0373 ('closure may outlive the current function'). `move` transfers the String into the closure — ownership crosses the thread boundary, no lifetime to violate. The clone-then-move variant also satisfies 'static but pays an allocation to keep a name main never touches again. When the data's last user is the thread, moving IS the clean answer.",
-  "prerequisites": ["async-and-send.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "direct transform of threads1 (E0373)" }
+  "explanation": "A spawned thread's closure must be 'static: the thread might outlive the function that made it, so borrowing name is rejected with E0373 ('closure may outlive the current function'). `move` transfers the String into the closure - ownership crosses the thread boundary, no lifetime to violate. The clone-then-move variant also satisfies 'static but pays an allocation to keep a name main never touches again. When the data's last user is the thread, moving IS the clean answer.",
+  "prerequisites": [
+    "async-and-send.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "direct transform of threads1 (E0373)"
+  }
 }

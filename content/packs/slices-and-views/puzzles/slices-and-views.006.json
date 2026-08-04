@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views.006",
+  "version": 1,
+  "title": "Views Instead of Copies",
+  "track": "slices-and-views",
+  "concepts": [
+    "slice",
+    "borrow",
+    "zero-copy"
+  ],
+  "difficulty": 1,
+  "goal": "A slice is a borrowed window into existing data. No allocation, no copy.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "A slice is a reference to a part of a collection: a pointer and a length. Writing `&data[1..4]` does not copy elements 1, 2, and 3. It creates a view of them, and the original collection stays the owner. The string version of this is `&str`, which is a view into UTF-8 text."
+      },
+      {
+        "kind": "code",
+        "code": "let data = [10, 20, 30, 40, 50];\nlet middle = &data[1..4];   // view of 20, 30, 40\nassert_eq!(middle.len(), 3); // end index is exclusive",
+        "caption": "A range makes a view, not a copy."
+      },
+      {
+        "kind": "prose",
+        "text": "Ranges are half-open: `1..4` includes index 1 and excludes index 4, so the length is always end minus start. Methods like `split` and `trim` follow the same principle. They return subslices of their input instead of new allocations."
+      },
+      {
+        "kind": "prose",
+        "text": "A view borrows from its source, so it cannot outlive it. A function can return a slice of its input, and lifetime elision connects the two automatically. A function cannot return a slice of a local variable, because the local is dropped when the function ends. That is error `E0515`, and one puzzle in this deck walks straight into it."
+      },
+      {
+        "kind": "prose",
+        "text": "The instinct this deck trains: return a view when the caller just reads, and pay for an owned copy with `.to_vec()` or `.to_owned()` only when the caller must keep the data alive on its own."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "A slice is a pointer plus a length into existing data. Prefer views for reading; pay for a copy only when the caller must own the result.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

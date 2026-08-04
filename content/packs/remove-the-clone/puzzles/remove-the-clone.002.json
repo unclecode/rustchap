@@ -4,7 +4,11 @@
   "version": 1,
   "title": "Clone in a Loop",
   "track": "remove-the-clone",
-  "concepts": ["clone", "borrow", "borrow-scope"],
+  "concepts": [
+    "clone",
+    "borrow",
+    "borrow-scope"
+  ],
   "difficulty": 2,
   "goal": "Two clones per iteration, zero needed. Make the loop allocation-free.",
   "template": "fn main() {\n    let banner = String::from(\">> \");\n    let items = vec![String::from(\"a\"), String::from(\"b\")];\n    for item in &items {\n        render(⟦banner_arg⟧, ⟦item_arg⟧);\n    }\n}\n\nfn render(prefix: ⟦prefix_ty⟧, item: ⟦item_ty⟧) {\n    println!(\"{}{}\", prefix.trim(), item);\n}",
@@ -16,9 +20,18 @@
         "original": "banner.clone()",
         "label": "banner argument",
         "choices": [
-          { "id": "b1", "text": "banner.clone()" },
-          { "id": "b2", "text": "&banner" },
-          { "id": "b3", "text": "banner" }
+          {
+            "id": "b1",
+            "text": "banner.clone()"
+          },
+          {
+            "id": "b2",
+            "text": "&banner"
+          },
+          {
+            "id": "b3",
+            "text": "banner"
+          }
         ]
       },
       {
@@ -26,8 +39,14 @@
         "original": "String",
         "label": "prefix type",
         "choices": [
-          { "id": "p1", "text": "String" },
-          { "id": "p2", "text": "&str" }
+          {
+            "id": "p1",
+            "text": "String"
+          },
+          {
+            "id": "p2",
+            "text": "&str"
+          }
         ]
       },
       {
@@ -35,8 +54,14 @@
         "original": "item.clone()",
         "label": "item argument",
         "choices": [
-          { "id": "i1", "text": "item.clone()" },
-          { "id": "i2", "text": "item" }
+          {
+            "id": "i1",
+            "text": "item.clone()"
+          },
+          {
+            "id": "i2",
+            "text": "item"
+          }
         ]
       },
       {
@@ -44,27 +69,51 @@
         "original": "String",
         "label": "item type",
         "choices": [
-          { "id": "t1", "text": "String" },
-          { "id": "t2", "text": "&str" }
+          {
+            "id": "t1",
+            "text": "String"
+          },
+          {
+            "id": "t2",
+            "text": "&str"
+          }
         ]
       }
     ]
   },
   "evaluation": {
-    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
-    "metrics": ["clone_count", "token_edits"]
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "metrics": [
+      "clone_count",
+      "token_edits"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
-    "secondary": ["token_edits"],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0, "token_edits": 4 }
+    "secondary": [
+      "token_edits"
+    ],
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0,
+      "token_edits": 4
+    }
   },
   "hints": [
     "Every iteration pays for two Strings that are dropped immediately. Who needs ownership here? Nobody.",
-    "Passing `banner` without cloning moves it — fine once, fatal in a loop."
+    "Passing `banner` without cloning moves it - fine once, fatal in a loop."
   ],
-  "explanation": "render only reads, so both parameters should be borrows. Cloning inside a loop multiplies the waste by the iteration count — the classic allocation leak. Note the trap: passing `banner` unclOned compiles for a single call but moves the String, so the second iteration dies with E0382. Borrow both (&banner into &str; item is already a reference), and the loop allocates nothing.",
-  "prerequisites": ["remove-the-clone.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by move_semantics and strings exercises" }
+  "explanation": "render only reads, so both parameters should be borrows. Cloning inside a loop multiplies the waste by the iteration count - the classic allocation leak. Note the trap: passing `banner` unclOned compiles for a single call but moves the String, so the second iteration dies with E0382. Borrow both (&banner into &str; item is already a reference), and the loop allocates nothing.",
+  "prerequisites": [
+    "remove-the-clone.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by move_semantics and strings exercises"
+  }
 }

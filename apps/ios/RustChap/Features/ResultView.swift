@@ -1,8 +1,11 @@
 import SwiftUI
 
 struct ResultView: View {
+    @Environment(ContentStore.self) private var store
     let loaded: ContentStore.LoadedPuzzle
     let result: EvalResult
+    /// The slot picks that produced `result` — grounding for the tutor.
+    let selections: [String: String]
     let via: EvaluatedVia
     let deckCompleted: Bool
     let nextPuzzleId: String?
@@ -12,7 +15,11 @@ struct ResultView: View {
 
     @State private var showExplanation = false
 
-    private var scoring: Scoring { loaded.puzzle.scoring }
+    /// Results only exist for evaluated puzzles; lessons (scoring: nil) never
+    /// present this sheet. The fallback keeps a bad state visible, not fatal.
+    private var scoring: Scoring {
+        loaded.puzzle.scoring ?? Scoring(primary: "", secondary: [], fluent: [:], optimal: [:])
+    }
 
     var body: some View {
         NavigationStack {
@@ -118,6 +125,14 @@ struct ResultView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     SheetCloseButton()
                 }
+            }
+            .tutorButton {
+                .puzzle(
+                    loaded,
+                    concepts: store.concepts(for: loaded.puzzle),
+                    selections: selections,
+                    result: result
+                )
             }
         }
     }

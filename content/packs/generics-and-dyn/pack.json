@@ -2,11 +2,14 @@
   "schema_version": 1,
   "id": "generics-and-dyn",
   "title": "Generics vs dyn",
-  "description": "Monomorphized speed or dynamic flexibility — choose knowingly.",
+  "description": "Monomorphized speed or dynamic flexibility - choose knowingly.",
   "toolchain": "1.97.1",
   "order": [
+    "generics-and-dyn.004",
     "generics-and-dyn.001",
     "generics-and-dyn.002",
     "generics-and-dyn.003"
-  ]
+  ],
+  "icon": "cube.transparent",
+  "accent": "indigo"
 }

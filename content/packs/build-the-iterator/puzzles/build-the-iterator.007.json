@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "build-the-iterator.007",
+  "version": 1,
+  "title": "The Iterator Pipeline",
+  "track": "build-the-iterator",
+  "concepts": [
+    "iterator"
+  ],
+  "difficulty": 1,
+  "goal": "Source, adapters, one consumer. Every chain in this deck has that shape.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "An iterator pipeline has three parts. A source produces items, for example `.iter()` on a slice. Adapters transform the stream, for example `.map()` and `.filter()`. Exactly one consumer ends the chain and produces the final value, for example `.sum()`, `.collect()`, or `.next()`."
+      },
+      {
+        "kind": "code",
+        "code": "let total: i32 = nums.iter()\n    .map(|n| n * n)   // adapter\n    .sum();           // consumer drives the whole chain",
+        "caption": "Nothing runs until the consumer asks."
+      },
+      {
+        "kind": "prose",
+        "text": "Iterators are lazy. Adapters do no work on their own; they only describe the transformation. The consumer pulls items through the chain one at a time. This is why order matters: `.filter().map()` and `.map().filter()` can both compile and produce different results."
+      },
+      {
+        "kind": "prose",
+        "text": "Laziness also makes early exit free. A chain like `.filter(...).next()` stops at the first match and never looks at the rest of the data. The compiler turns these chains into the same machine code as a hand-written loop, so the choice is about clarity, not speed."
+      },
+      {
+        "kind": "prose",
+        "text": "The puzzles in this deck are ordering puzzles: arrange source, adapters, and consumer so the pipeline says exactly what you mean."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "A pipeline is source, adapters, and one consumer. Iterators are lazy: the consumer drives the work, and adapter order changes the result.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

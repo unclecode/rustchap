@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "id": "closures.004",
+  "version": 1,
+  "title": "What a Closure Captures",
+  "track": "closures",
+  "concepts": [
+    "closures",
+    "borrow",
+    "move"
+  ],
+  "difficulty": 1,
+  "goal": "A closure borrows, mutably borrows, or takes ownership. Its body decides which.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "A closure is a function that can use variables from the scope around it. Capturing follows the weakest rule the body allows: reading a variable borrows it, mutating it borrows mutably, and consuming it takes ownership. You do not choose the capture mode; the body does."
+      },
+      {
+        "kind": "code",
+        "code": "let greeting = String::from(\"hello\");\nlet greet = || println!(\"{greeting}\");   // reading: borrows\ngreet();\ngreet();\nprintln!(\"{greeting}\");                  // still valid",
+        "caption": "A read-only body only borrows."
+      },
+      {
+        "kind": "prose",
+        "text": "The `move` keyword overrides the default and transfers captured variables into the closure. This matters when the closure outlives the current function, for example in a spawned thread. Watch the interaction with `Copy` types: `move` on an `i32` captures a copy, so mutating it inside the closure changes the copy, not the original."
+      },
+      {
+        "kind": "prose",
+        "text": "Every closure implements one of three traits, based on what its body does to the captures. `Fn` closures only read and can be called any number of times. `FnMut` closures mutate and need a mutable binding to call. `FnOnce` closures consume a capture and can be called exactly once. The traits nest: every `Fn` is also `FnMut` and `FnOnce`. When a function takes a closure as a parameter, it should ask for the weakest trait its usage needs."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "The body decides the capture: read borrows, mutate borrows mutably, consume takes. Fn, FnMut, and FnOnce name those three contracts.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

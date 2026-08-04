@@ -201,10 +201,27 @@ pub fn lint_pack(pack_dir: &Path, toolchain: &Toolchain, opts: &Options) -> Resu
                 }
             }
         }
-        if puzzle.scoring.optimal.is_empty() {
+        if puzzle.scoring.as_ref().is_some_and(|s| s.optimal.is_empty()) {
             report.warnings.push(format!(
                 "{puzzle_id}: scoring.optimal is empty — no submission can rank Optimal"
             ));
+        }
+
+        // Lessons are reading nodes: structural checks only, no submissions,
+        // no outcomes sidecar (a leftover one would shadow nothing but is cruft).
+        if matches!(puzzle.interaction, Interaction::Lesson { .. }) {
+            if structural_ok {
+                report
+                    .summaries
+                    .push(format!("{puzzle_id}: lesson (reading node) — no outcomes"));
+                let stale = pack_dir.join("outcomes").join(format!("{puzzle_id}.json"));
+                if stale.exists() {
+                    report.warnings.push(format!(
+                        "{puzzle_id}: lesson has a leftover outcomes file — delete outcomes/{puzzle_id}.json"
+                    ));
+                }
+            }
+            continue;
         }
 
         if !structural_ok || opts.skip_eval {
@@ -259,7 +276,7 @@ fn evaluate_puzzle(
             .errors
             .push(format!("{id}: no submission solves the puzzle"));
     }
-    if optimal == 0 && !puzzle.scoring.optimal.is_empty() {
+    if optimal == 0 && puzzle.scoring.as_ref().is_some_and(|s| !s.optimal.is_empty()) {
         report.errors.push(format!(
             "{id}: declared optimal thresholds are not reproducible by any submission"
         ));

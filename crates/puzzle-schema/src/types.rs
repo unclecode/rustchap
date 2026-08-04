@@ -19,8 +19,12 @@ pub struct Puzzle {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub template: Option<String>,
     pub interaction: Interaction,
-    pub evaluation: Evaluation,
-    pub scoring: Scoring,
+    /// Absent iff the interaction is a lesson (enforced by `validate_puzzle`).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub evaluation: Option<Evaluation>,
+    /// Absent iff the interaction is a lesson (enforced by `validate_puzzle`).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub scoring: Option<Scoring>,
     pub hints: Vec<String>,
     pub explanation: String,
     pub prerequisites: Vec<String>,
@@ -43,6 +47,9 @@ pub enum Interaction {
     },
     /// Pick the preferable complete implementation under the stated goal.
     BestSolution { candidates: Vec<Candidate> },
+    /// A reading node in the curriculum: sections of prose and highlighted
+    /// code, completed by reading. No submission, no evaluation, no outcomes.
+    Lesson { sections: Vec<LessonSection> },
 }
 
 impl Interaction {
@@ -87,6 +94,20 @@ pub struct Block {
 pub struct Candidate {
     pub id: String,
     pub code: String,
+}
+
+/// One block of a lesson: flowing prose or a highlighted code snippet.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(tag = "kind", rename_all = "kebab-case", deny_unknown_fields)]
+pub enum LessonSection {
+    Prose {
+        text: String,
+    },
+    Code {
+        code: String,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        caption: Option<String>,
+    },
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -153,6 +174,12 @@ pub struct Pack {
     /// Pinned Rust toolchain — part of the outcomes cache key.
     pub toolchain: String,
     pub order: Vec<String>,
+    /// Display-only: SF Symbol name for the deck tile (clients may fall back).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub icon: Option<String>,
+    /// Display-only: named accent color (e.g. "orange", "teal").
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub accent: Option<String>,
 }
 
 /// One teachable skill (content/concepts/<id>.json). Puzzles reference these

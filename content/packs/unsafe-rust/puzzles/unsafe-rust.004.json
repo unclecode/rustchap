@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust.004",
+  "version": 1,
+  "title": "Unsafe Is a Contract",
+  "track": "unsafe-rust",
+  "concepts": [
+    "unsafe-rust"
+  ],
+  "difficulty": 1,
+  "goal": "The unsafe keyword does not turn checks off. It signs a responsibility.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "An `unsafe` block does not disable the borrow checker or any other rule you have learned. It unlocks a small set of extra operations, like dereferencing raw pointers and calling `unsafe` functions. For those operations the compiler cannot verify the safety conditions, so the block is your signature: you have checked them yourself."
+      },
+      {
+        "kind": "code",
+        "code": "let value = 10u32;\nlet ptr = &value as *const u32;\nlet read = unsafe { *ptr };   // your signature that ptr is valid",
+        "caption": "The block marks exactly where the manual argument lives."
+      },
+      {
+        "kind": "prose",
+        "text": "A function whose caller must uphold conditions is marked `unsafe fn`, and calling it without an `unsafe` block is error `E0133`. Good practice documents those conditions in a Safety section, and good design keeps the unsafe surface small: a tight `unsafe` block inside a safe function, argued once, invisible to callers. That is how the standard library is built."
+      },
+      {
+        "kind": "prose",
+        "text": "The last instinct is knowing when not to use it. Application code rarely needs `unsafe`. Before reaching for a tool like `transmute`, check whether std already provides a safe method; usually it does, like `u32::to_le_bytes` for reading integer bytes. Unsafe you avoided is unsafe you never have to argue for."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "unsafe marks where you verified what the compiler cannot. Keep the surface small, document the contract, and prefer a std method when one exists.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

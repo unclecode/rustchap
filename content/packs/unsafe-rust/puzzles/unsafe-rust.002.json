@@ -4,9 +4,12 @@
   "version": 1,
   "title": "Narrow the Blast Radius",
   "track": "unsafe-rust",
-  "concepts": ["unsafe-rust", "api-design"],
+  "concepts": [
+    "unsafe-rust",
+    "api-design"
+  ],
   "difficulty": 3,
-  "goal": "Raw pointer reads, three containments. Count who has to say 'unsafe' — and how often.",
+  "goal": "Raw pointer reads, three containments. Count who has to say 'unsafe' - and how often.",
   "interaction": {
     "type": "best-solution",
     "candidates": [
@@ -28,19 +31,31 @@
     "tests": [
       "#[test]\nfn reads() {\n    let (a, b) = (40, 2);\n    assert_eq!(read_both(&a, &b), 42);\n}"
     ],
-    "metrics": ["unsafe_blocks"]
+    "metrics": [
+      "unsafe_blocks"
+    ]
   },
   "scoring": {
     "primary": "unsafe_blocks",
     "secondary": [],
-    "fluent": { "unsafe_blocks": 2 },
-    "optimal": { "unsafe_blocks": 1 }
+    "fluent": {
+      "unsafe_blocks": 2
+    },
+    "optimal": {
+      "unsafe_blocks": 1
+    }
   },
   "hints": [
     "An unsafe fn exports the obligation: every caller must wrap the call. A safe fn with an inner block contains it.",
-    "Two dereferences under one contract can share one block — same guarantees, half the ceremony."
+    "Two dereferences under one contract can share one block - same guarantees, half the ceremony."
   ],
-  "explanation": "Three containment strategies for the same two dereferences. The unsafe fn pushes the burden outward onto every caller — and the shared test proves it the hard way: it calls read_both without ceremony, so the unsafe-API candidate fails to compile the test at all (E0133 inside the test). The two-block version contains the unsafety but signs the same safety argument twice. The tight single block behind a safe signature is the standard-library pattern: contained, argued once, invisible to callers.",
-  "prerequisites": ["unsafe-rust.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by raw-pointer exercises; The Book ch19 sound abstractions" }
+  "explanation": "Three containment strategies for the same two dereferences. The unsafe fn pushes the burden outward onto every caller - and the shared test proves it the hard way: it calls read_both without ceremony, so the unsafe-API candidate fails to compile the test at all (E0133 inside the test). The two-block version contains the unsafety but signs the same safety argument twice. The tight single block behind a safe signature is the standard-library pattern: contained, argued once, invisible to callers.",
+  "prerequisites": [
+    "unsafe-rust.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by raw-pointer exercises; The Book ch19 sound abstractions"
+  }
 }

@@ -164,7 +164,7 @@ fn validation_catches_broken_puzzles() {
 
     // Scoring references a metric the evaluation does not compute.
     let mut broken = example();
-    broken.evaluation.metrics = vec![Metric::TokenEdits];
+    broken.evaluation.as_mut().unwrap().metrics = vec![Metric::TokenEdits];
     let errors = validate_puzzle(&broken).unwrap_err();
     assert!(
         errors
@@ -199,9 +199,10 @@ fn arrangement_and_best_solution_reconstruct() {
     let mut puzzle = example();
     puzzle.template = None;
     puzzle.interaction = serde_json::from_value(arrangement).unwrap();
-    puzzle.scoring.secondary.clear(); // token_edits no longer applies
-    puzzle.scoring.optimal.remove(&Metric::TokenEdits);
-    puzzle.evaluation.metrics = vec![Metric::CloneCount];
+    let scoring = puzzle.scoring.as_mut().unwrap();
+    scoring.secondary.clear(); // token_edits no longer applies
+    scoring.optimal.remove(&Metric::TokenEdits);
+    puzzle.evaluation.as_mut().unwrap().metrics = vec![Metric::CloneCount];
 
     validate_puzzle(&puzzle).expect("arrangement puzzle is valid");
     assert_eq!(submission_space(&puzzle), 24); // 4!
@@ -233,4 +234,78 @@ fn arrangement_and_best_solution_reconstruct() {
     )
     .unwrap();
     assert!(source.contains("-> &str"));
+}
+
+// ---- Lesson nodes (reading puzzles) ----
+
+const LESSON: &str = r##"{
+  "schema_version": 1,
+  "id": "move-or-borrow.007",
+  "version": 1,
+  "title": "Own, Lend, or Give",
+  "track": "move-or-borrow",
+  "concepts": ["move", "borrow"],
+  "difficulty": 1,
+  "goal": "Read: when to lend and when to move.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      { "kind": "prose", "text": "If the caller still needs the value, lend it." },
+      { "kind": "code", "code": "fn describe(text: &str) {}", "caption": "Lend" }
+    ]
+  },
+  "hints": [],
+  "explanation": "Lend when the caller keeps using it; move when the callee keeps it.",
+  "prerequisites": [],
+  "source": { "origin": "original", "license": null, "attribution": null }
+}"##;
+
+fn lesson() -> Puzzle {
+    serde_json::from_str(LESSON).expect("lesson puzzle parses")
+}
+
+#[test]
+fn lesson_is_valid_without_evaluation_or_scoring() {
+    let puzzle = lesson();
+    validate_puzzle(&puzzle).expect("lesson passes validation");
+    assert_eq!(submission_space(&puzzle), 0);
+    assert!(enumerate_submissions(&puzzle).is_empty());
+}
+
+#[test]
+fn lesson_with_scoring_is_rejected() {
+    let mut broken = lesson();
+    broken.scoring = example().scoring;
+    let errors = validate_puzzle(&broken).unwrap_err();
+    assert!(
+        errors
+            .iter()
+            .any(|e| matches!(e, validate::ValidationError::LessonWithEvaluation))
+    );
+}
+
+#[test]
+fn non_lesson_without_evaluation_is_rejected() {
+    let mut broken = example();
+    broken.evaluation = None;
+    broken.scoring = None;
+    let errors = validate_puzzle(&broken).unwrap_err();
+    assert!(
+        errors
+            .iter()
+            .any(|e| matches!(e, validate::ValidationError::MissingEvaluation))
+    );
+}
+
+#[test]
+fn lesson_serde_round_trip() {
+    let puzzle = lesson();
+    let json = serde_json::to_value(&puzzle).expect("serializes");
+    assert!(json.get("evaluation").is_none(), "absent, not null");
+    assert!(json.get("scoring").is_none(), "absent, not null");
+    let back: Puzzle = serde_json::from_value(json).expect("round-trips");
+    let Interaction::Lesson { sections } = &back.interaction else {
+        panic!("interaction survived as lesson");
+    };
+    assert_eq!(sections.len(), 2);
 }

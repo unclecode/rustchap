@@ -4,16 +4,28 @@
   "version": 1,
   "title": "Find the First Long One",
   "track": "build-the-iterator",
-  "concepts": ["iterator", "option"],
+  "concepts": [
+    "iterator",
+    "option"
+  ],
   "difficulty": 2,
-  "goal": "The first word longer than four letters — maybe there isn't one. Order the pipeline.",
+  "goal": "The first word longer than four letters - maybe there isn't one. Order the pipeline.",
   "interaction": {
     "type": "block-arrangement",
     "fixed_prefix": "fn first_long(words: &[String]) -> Option<&String> {\n    words",
     "blocks": [
-      { "id": "next", "text": "\n        .next()" },
-      { "id": "iter", "text": "\n        .iter()" },
-      { "id": "keep_long", "text": "\n        .filter(|w| w.len() > 4)" }
+      {
+        "id": "next",
+        "text": "\n        .next()"
+      },
+      {
+        "id": "iter",
+        "text": "\n        .iter()"
+      },
+      {
+        "id": "keep_long",
+        "text": "\n        .filter(|w| w.len() > 4)"
+      }
     ],
     "fixed_suffix": "\n}"
   },
@@ -21,19 +33,35 @@
     "tests": [
       "#[test]\nfn finds_first() {\n    let words: Vec<String> = [\"hey\", \"hello\", \"hi\", \"greetings\"].iter().map(|s| s.to_string()).collect();\n    assert_eq!(first_long(&words), Some(&words[1]));\n    assert_eq!(first_long(&[]), None);\n}"
     ],
-    "metrics": ["explicit_loops", "mut_bindings"]
+    "metrics": [
+      "explicit_loops",
+      "mut_bindings"
+    ]
   },
   "scoring": {
     "primary": "explicit_loops",
-    "secondary": ["mut_bindings"],
-    "fluent": { "explicit_loops": 0 },
-    "optimal": { "explicit_loops": 0, "mut_bindings": 0 }
+    "secondary": [
+      "mut_bindings"
+    ],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0,
+      "mut_bindings": 0
+    }
   },
   "hints": [
-    "filter narrows the stream; next() pulls the first survivor — and stops pulling. Laziness means the rest are never even examined.",
+    "filter narrows the stream; next() pulls the first survivor - and stops pulling. Laziness means the rest are never even examined.",
     "The return type is Option because 'nothing qualified' is a real answer, not an error."
   ],
-  "explanation": "filter + next is the lazy way to say 'first match': elements flow one at a time, and the pipeline stops the moment one passes the filter — greetings is never inspected. next() returns Option<&String> because emptiness is an honest outcome, which is exactly the function's return type. (The fused spelling is .find(|w| w.len() > 4) — same machine, one call.)",
-  "prerequisites": ["build-the-iterator.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by iterators2 and options exercises" }
+  "explanation": "filter + next is the lazy way to say 'first match': elements flow one at a time, and the pipeline stops the moment one passes the filter - greetings is never inspected. next() returns Option<&String> because emptiness is an honest outcome, which is exactly the function's return type. (The fused spelling is .find(|w| w.len() > 4) - same machine, one call.)",
+  "prerequisites": [
+    "build-the-iterator.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by iterators2 and options exercises"
+  }
 }

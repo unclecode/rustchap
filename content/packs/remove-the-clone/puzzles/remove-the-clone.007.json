@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "remove-the-clone.007",
+  "version": 1,
+  "title": "What Clone Really Costs",
+  "track": "remove-the-clone",
+  "concepts": [
+    "clone",
+    "borrow",
+    "copy"
+  ],
+  "difficulty": 1,
+  "goal": "Clone always compiles. This deck is about when it is the wrong tool.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Calling `.clone()` on a `String` or a `Vec` allocates new heap memory and copies every element. The program stays correct, so the compiler never warns you. That is what makes clone dangerous: it is the easy way past a borrow-checker error, and it silently costs an allocation each time."
+      },
+      {
+        "kind": "code",
+        "code": "let user = String::from(\"ferris\");\ngreet(&user.clone());   // allocates a copy, borrows it, drops it\ngreet(&user);           // does the same job for free",
+        "caption": "Clone-then-borrow is the most common clone smell."
+      },
+      {
+        "kind": "prose",
+        "text": "A clone is justified in exactly one case: both sides need ownership of the data at the same time. If the function only reads, a borrow does the job. If the caller never uses the value again, a move does the job. A clone inside a loop deserves extra suspicion, because its cost multiplies by the iteration count."
+      },
+      {
+        "kind": "prose",
+        "text": "For small plain-data types there is a third option. A struct that holds only fixed-size fields, like two `i32` values, can derive `Copy`. Then passing it duplicates it automatically, and every `.clone()` on it becomes noise. Clippy flags that case with the clone_on_copy lint."
+      },
+      {
+        "kind": "prose",
+        "text": "Each puzzle in this deck starts with code that clones too much. Your job is to find which clones a borrow, a move, or a derive can replace."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Clone only when both sides need ownership. A borrow, a move, or a Copy derive removes most clones.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

@@ -57,6 +57,8 @@ pub enum EvalError {
     Io(#[from] std::io::Error),
     #[error("clippy-driver not runnable ({0}) — install with: rustup component add clippy")]
     ClippyMissing(String),
+    #[error("lesson puzzles are not evaluatable")]
+    NotEvaluatable,
 }
 
 /// Evaluate one submission end to end. Deterministic for a given
@@ -67,6 +69,9 @@ pub fn evaluate(
     operations: &[Operation],
     toolchain: &Toolchain,
 ) -> Result<EvalResult, EvalError> {
+    let (Some(evaluation), Some(scoring)) = (&puzzle.evaluation, &puzzle.scoring) else {
+        return Err(EvalError::NotEvaluatable);
+    };
     let reconstruction = match reconstruct_with_spans(puzzle, operations) {
         Ok(r) => r,
         Err(e) => {
@@ -84,13 +89,13 @@ pub fn evaluate(
         }
     };
 
-    let full_source = with_tests(&reconstruction.source, &puzzle.evaluation.tests);
+    let full_source = with_tests(&reconstruction.source, &evaluation.tests);
     let dir = tempfile::tempdir()?;
     let src_path = dir.path().join("main.rs");
     let bin_path = dir.path().join("submission");
     std::fs::write(&src_path, &full_source)?;
 
-    let has_tests = !puzzle.evaluation.tests.is_empty();
+    let has_tests = !evaluation.tests.is_empty();
     let has_main = reconstruction.source.contains("fn main");
 
     // Compile. Tests need the harness; a main-less, test-less fragment is
@@ -146,14 +151,15 @@ pub fn evaluate(
         }
     }
 
-    let wanted = &puzzle.evaluation.metrics;
+    let wanted = &evaluation.metrics;
     let mut metric_values = metrics::compute(puzzle, operations, &reconstruction, wanted);
     if wanted.contains(&Metric::ClippyWarningCount) {
-        let count = clippy_warning_count(puzzle, &src_path, has_main, toolchain)?;
+        let count =
+            clippy_warning_count(&evaluation.clippy.deny, &src_path, has_main, toolchain)?;
         metric_values.insert(Metric::ClippyWarningCount, count);
     }
 
-    let rank = rank_for(&puzzle.scoring, &metric_values);
+    let rank = rank_for(scoring, &metric_values);
     Ok(EvalResult {
         status: EvalStatus::Solved,
         rank: Some(rank),
@@ -185,7 +191,7 @@ fn with_tests(source: &str, tests: &[String]) -> String {
 /// Warnings emitted by clippy that match the puzzle's `clippy.deny` list
 /// (or any `clippy::*` warning when the list is empty).
 fn clippy_warning_count(
-    puzzle: &Puzzle,
+    deny: &[String],
     src_path: &std::path::Path,
     has_main: bool,
     toolchain: &Toolchain,
@@ -200,7 +206,7 @@ fn clippy_warning_count(
     if !has_main {
         cmd.arg("--crate-type=lib");
     }
-    for lint in &puzzle.evaluation.clippy.deny {
+    for lint in deny {
         cmd.arg("-W").arg(lint);
     }
     cmd.arg(src_path);
@@ -208,7 +214,6 @@ fn clippy_warning_count(
         .output()
         .map_err(|e| EvalError::ClippyMissing(e.to_string()))?;
     let diags = rustc_json::parse_stderr(&String::from_utf8_lossy(&out.stderr));
-    let deny = &puzzle.evaluation.clippy.deny;
     let count = diags
         .iter()
         .filter(|d| d.level == "warning")

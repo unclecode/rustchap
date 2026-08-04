@@ -5,8 +5,11 @@
   "description": "All of these compile. Which one is right?",
   "toolchain": "1.97.1",
   "order": [
+    "design-the-api.004",
     "design-the-api.002",
     "design-the-api.001",
     "design-the-api.003"
-  ]
+  ],
+  "icon": "slider.horizontal.3",
+  "accent": "teal"
 }

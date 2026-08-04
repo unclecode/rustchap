@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.004",
+  "version": 1,
+  "title": "Static or Dynamic Dispatch",
+  "track": "generics-and-dyn",
+  "concepts": [
+    "generics",
+    "traits"
+  ],
+  "difficulty": 1,
+  "goal": "Generics compile one copy per type. dyn picks the method at runtime. Different tools.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "A generic function like `fn largest<T: PartialOrd>(items: &[T])` is monomorphized: the compiler generates a separate copy for each concrete type it is used with. Calls are direct, the optimizer sees everything, and the runtime cost is zero. This is static dispatch, and it is the default choice."
+      },
+      {
+        "kind": "prose",
+        "text": "Static dispatch needs one concrete type per use. A `Vec` that mixes circles and squares breaks that assumption, because its elements are different types with different sizes. The tool for that case is a trait object: `Box<dyn Draw>` is a pointer plus a vtable, uniform in size, and each call looks up the right method at runtime. This is dynamic dispatch."
+      },
+      {
+        "kind": "code",
+        "code": "let shapes: Vec<Box<dyn Draw>> = vec![\n    Box::new(Circle { r: 1.0 }),\n    Box::new(Square { side: 2.0 }),\n];\nfor s in &shapes { s.draw(); }   // method chosen at runtime",
+        "caption": "Heterogeneous collections are the genuine dyn use case."
+      },
+      {
+        "kind": "prose",
+        "text": "A bare `dyn Draw` has no known size, so it cannot live in a `Vec` or be returned directly; it needs a pointer around it, usually `Box`. For return types there is a third tool: `impl Trait`. Writing `-> impl Iterator<Item = i32>` returns one concrete but unnameable type, keeping static dispatch for pipelines whose type you cannot write."
+      },
+      {
+        "kind": "prose",
+        "text": "The decision rule: same type everywhere, use generics. Mixed types behind one interface, use `Box<dyn Trait>`. One concrete type you cannot name, use `impl Trait`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Generics are static dispatch at zero cost. Box<dyn Trait> buys mixed types at runtime cost. impl Trait returns an unnameable concrete type.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

@@ -2,14 +2,14 @@
   "schema_version": 1,
   "id": "unsafe-rust",
   "title": "Unsafe: a scope, not a mode",
-  "summary": "unsafe unlocks five superpowers inside the smallest possible block — behind a safe interface.",
+  "summary": "unsafe unlocks five superpowers inside the smallest possible block - behind a safe interface.",
   "lecture": [
-    "unsafe doesn't turn the borrow checker off — it additionally permits exactly five things (deref raw pointers, call unsafe fns, touch mutable statics, implement unsafe traits, access unions). Everything else stays checked. Calling an unsafe fn outside an unsafe block is E0133: the gate is explicit.",
-    "The discipline is blast radius: mark the smallest expression that needs the superpower, not the whole function. An `unsafe fn` pushes the obligation onto every caller; a safe fn wrapping one tight unsafe block CONTAINS it — that's what 'sound abstraction' means, and it's how the standard library itself is built.",
+    "unsafe doesn't turn the borrow checker off - it additionally permits exactly five things (deref raw pointers, call unsafe fns, touch mutable statics, implement unsafe traits, access unions). Everything else stays checked. Calling an unsafe fn outside an unsafe block is E0133: the gate is explicit.",
+    "The discipline is blast radius: mark the smallest expression that needs the superpower, not the whole function. An `unsafe fn` pushes the obligation onto every caller; a safe fn wrapping one tight unsafe block CONTAINS it - that's what 'sound abstraction' means, and it's how the standard library itself is built.",
     "Before writing unsafe at all, look for the safe API that already exists: to_le_bytes over transmute, iterators over pointer arithmetic, atomics over static mut. Most unsafe in application code is a missed std method."
   ],
   "example": {
-    "code": "fn read_both(p: *const i32, q: *const i32) -> i32 {\n    unsafe { *p + *q }   // one tight block, safe signature\n}\n\nlet bytes = x.to_le_bytes();  // no transmute required — std had it",
-    "caption": "Smallest block, safe wrapper — or better, the safe API that already exists."
+    "code": "fn read_both(p: *const i32, q: *const i32) -> i32 {\n    unsafe { *p + *q }   // one tight block, safe signature\n}\n\nlet bytes = x.to_le_bytes();  // no transmute required - std had it",
+    "caption": "Smallest block, safe wrapper - or better, the safe API that already exists."
   }
 }

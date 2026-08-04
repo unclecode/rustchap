@@ -5,11 +5,14 @@
   "description": "Spot the clone that never needed to exist.",
   "toolchain": "1.97.1",
   "order": [
+    "remove-the-clone.007",
     "remove-the-clone.001",
     "remove-the-clone.003",
     "remove-the-clone.002",
     "remove-the-clone.004",
     "remove-the-clone.005",
     "remove-the-clone.006"
-  ]
+  ],
+  "icon": "doc.on.doc.fill",
+  "accent": "red"
 }

@@ -10,6 +10,9 @@ struct Pack: Decodable, Hashable {
     let description: String?
     let toolchain: String
     let order: [String]
+    /// Display-only deck identity (SF Symbol name + named accent color).
+    let icon: String?
+    let accent: String?
 }
 
 struct Puzzle: Decodable, Identifiable, Hashable {
@@ -22,7 +25,8 @@ struct Puzzle: Decodable, Identifiable, Hashable {
     let goal: String
     let template: String?
     let interaction: Interaction
-    let scoring: Scoring
+    /// Absent on lesson puzzles (reading nodes are never scored).
+    let scoring: Scoring?
     let hints: [String]
     let explanation: String
 }
@@ -61,11 +65,40 @@ struct Candidate: Decodable, Identifiable, Hashable {
     let code: String
 }
 
+/// One block of a lesson: flowing prose or a highlighted code snippet.
+enum LessonSection: Decodable, Hashable {
+    case prose(text: String)
+    case code(code: String, caption: String?)
+
+    private enum CodingKeys: String, CodingKey {
+        case kind, text, code, caption
+    }
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        switch try c.decode(String.self, forKey: .kind) {
+        case "prose":
+            self = .prose(text: try c.decode(String.self, forKey: .text))
+        case "code":
+            self = .code(
+                code: try c.decode(String.self, forKey: .code),
+                caption: try c.decodeIfPresent(String.self, forKey: .caption)
+            )
+        case let other:
+            throw DecodingError.dataCorruptedError(
+                forKey: .kind, in: c,
+                debugDescription: "unknown lesson section kind \(other)"
+            )
+        }
+    }
+}
+
 enum Interaction: Decodable, Hashable {
     case slotSelection(slots: [Slot])
     case minimalEdit(slots: [Slot])
     case blockArrangement(fixedPrefix: String, blocks: [Block], fixedSuffix: String)
     case bestSolution(candidates: [Candidate])
+    case lesson(sections: [LessonSection])
 
     var slots: [Slot]? {
         switch self {
@@ -74,8 +107,12 @@ enum Interaction: Decodable, Hashable {
         }
     }
 
+    var isLesson: Bool {
+        if case .lesson = self { true } else { false }
+    }
+
     private enum CodingKeys: String, CodingKey {
-        case type, slots, blocks, candidates
+        case type, slots, blocks, candidates, sections
         case fixedPrefix = "fixed_prefix"
         case fixedSuffix = "fixed_suffix"
     }
@@ -95,6 +132,8 @@ enum Interaction: Decodable, Hashable {
             )
         case "best-solution":
             self = .bestSolution(candidates: try c.decode([Candidate].self, forKey: .candidates))
+        case "lesson":
+            self = .lesson(sections: try c.decode([LessonSection].self, forKey: .sections))
         case let other:
             throw DecodingError.dataCorruptedError(
                 forKey: .type, in: c,

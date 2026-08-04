@@ -4,9 +4,13 @@
   "version": 1,
   "title": "Dangling Local",
   "track": "repair-the-lifetime",
-  "concepts": ["lifetime", "zero-copy", "clone"],
+  "concepts": [
+    "lifetime",
+    "zero-copy",
+    "clone"
+  ],
   "difficulty": 2,
-  "goal": "Return a freshly built id. One of these can never work — and one pays double.",
+  "goal": "Return a freshly built id. One of these can never work - and one pays double.",
   "interaction": {
     "type": "best-solution",
     "candidates": [
@@ -28,19 +32,31 @@
     "tests": [
       "#[test]\nfn builds_ids() {\n    assert_eq!(make_id(\"user\", 7), \"user-7\");\n}"
     ],
-    "metrics": ["clone_count"]
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "The string is BORN here — there is nothing in the caller's world for a returned reference to point at.",
+    "The string is BORN here - there is nothing in the caller's world for a returned reference to point at.",
     "When the function creates the value, the function must hand over ownership."
   ],
-  "explanation": "The borrowing version can never compile: `id` dies at the closing brace, so `&id` would dangle (E0515 — and no lifetime annotation can fix a value that stops existing). When a function CREATES data, it must return ownership: `-> String`, moving the fresh value out. The clone dance also returns ownership but copies the string it already owned for no reason. Zero-copy returns are for views into inputs; freshly built values are moved out, not borrowed.",
-  "prerequisites": ["repair-the-lifetime.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by lifetimes and strings exercises (E0515)" }
+  "explanation": "The borrowing version can never compile: `id` dies at the closing brace, so `&id` would dangle (E0515 - and no lifetime annotation can fix a value that stops existing). When a function CREATES data, it must return ownership: `-> String`, moving the fresh value out. The clone dance also returns ownership but copies the string it already owned for no reason. Zero-copy returns are for views into inputs; freshly built values are moved out, not borrowed.",
+  "prerequisites": [
+    "repair-the-lifetime.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by lifetimes and strings exercises (E0515)"
+  }
 }

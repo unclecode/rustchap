@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.004",
+  "version": 1,
+  "title": "Signatures Set the Price",
+  "track": "design-the-api",
+  "concepts": [
+    "api-design",
+    "zero-copy",
+    "borrow"
+  ],
+  "difficulty": 1,
+  "goal": "Every parameter and return type decides what your callers must pay.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "This deck is different: several answers compile and pass the tests. The question is which signature treats the caller best. A function's types are its pricing policy. A `String` parameter demands ownership, so a caller who wants to keep their value must clone it. A `&str` parameter costs every caller nothing: owned strings coerce, and literals just work."
+      },
+      {
+        "kind": "code",
+        "code": "fn shout(text: &str) -> String {\n    text.to_uppercase()\n}\n\nlet owned = String::from(\"hi\");\nshout(&owned);    // no clone\nshout(\"ferris\");  // literals work too",
+        "caption": "The cheapest parameter type serves every caller."
+      },
+      {
+        "kind": "prose",
+        "text": "Return types follow the same logic. Returning `&str` hands back a view into data the caller already owns: zero allocation, and lifetime elision ties it to the input. Returning `String` allocates, which is the honest choice when the function builds new data. Returning by mutating a `&mut` parameter is the most invasive shape: it forces `mut` into the caller's code."
+      },
+      {
+        "kind": "prose",
+        "text": "The general rule: accept the most flexible type that the body can work with, usually `&str` over `&String` and `&[T]` over `&Vec<T>`. Return views when the data already exists, owned values when you created something new. Reach for `&mut` parameters only when measurement says the allocation matters."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Parameter and return types are the price you charge callers. Accept flexible views, return owned data only when you built it.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

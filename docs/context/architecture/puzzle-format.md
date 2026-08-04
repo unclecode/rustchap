@@ -40,7 +40,15 @@ future Android client possible without sharing UI code. Schema v1 is implemented
 - **Interactions** (`types::Interaction`, tagged by `type`) — `SlotSelection` and `MinimalEdit`
   share the slot mechanism (minimal-edit pre-fills `Slot.original`, which must appear among its
   choices — `ValidationError::OriginalNotInChoices`); `BlockArrangement` is
-  prefix + ordered blocks + suffix; `BestSolution` picks a complete `Candidate`.
+  prefix + ordered blocks + suffix; `BestSolution` picks a complete `Candidate`; `Lesson`
+  (added 2026-08-04) is a **reading node** — `LessonSection` prose/code blocks, freely
+  interleavable in a deck's order (`puzzle - puzzle - lecture - puzzle …`), completed by
+  reading, never evaluated.
+- **Lesson invariant** — `Puzzle.evaluation`/`Puzzle.scoring` are `Option`s: absent **iff** the
+  interaction is a lesson (`ValidationError::LessonWithEvaluation` / `MissingEvaluation`, and
+  the JSON Schema's if/then mirrors it). Lessons take no template, need ≥1 non-empty section
+  (`EmptyLessonSection`), have `submission_space` 0, enumerate no submissions, and
+  `reconstruct` refuses them (`ReconstructError::NotReconstructable`).
 - **Submissions** (`types::Operation`) — `Select{slot_id, choice_id}` / `Arrange{order}` /
   `Pick{candidate_id}`. `template::reconstruct(puzzle, ops)` yields the full source or a precise
   `ReconstructError`; `reconstruct_with_spans` additionally reports each user-controlled byte
@@ -69,9 +77,11 @@ is exact, not mocked**; the server later reuses it as a warm cache.
 
 ## Packs
 
-`pack.schema.json` / `types::Pack`: track metadata, pinned `toolchain`, linear `order`. Layout:
-`content/packs/<track>/pack.json` + `puzzles/*.json`. Cross-file checks (order entries resolve,
-prerequisites point backwards) belong to the linter, not the crate.
+`pack.schema.json` / `types::Pack`: track metadata, pinned `toolchain`, linear `order`, and
+optional **display-only deck identity** (`icon`: SF Symbol name; `accent`: named color —
+added 2026-08-04 for the card-grid home; invisible to evaluation, clients fall back when
+absent). Layout: `content/packs/<track>/pack.json` + `puzzles/*.json`. Cross-file checks
+(order entries resolve, prerequisites point backwards) belong to the linter, not the crate.
 
 ## Concepts (the skill library)
 

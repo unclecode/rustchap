@@ -2,13 +2,17 @@
   "schema_version": 1,
   "id": "option-and-result",
   "title": "Option & Result",
-  "description": "Absence and failure as types — and the ? that tames them.",
+  "description": "Absence and failure as types - and the ? that tames them.",
   "toolchain": "1.97.1",
   "order": [
+    "option-and-result.006",
     "option-and-result.001",
     "option-and-result.003",
     "option-and-result.004",
+    "option-and-result.007",
     "option-and-result.002",
     "option-and-result.005"
-  ]
+  ],
+  "icon": "questionmark.circle.fill",
+  "accent": "blue"
 }

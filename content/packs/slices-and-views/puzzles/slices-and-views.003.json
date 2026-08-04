@@ -4,9 +4,12 @@
   "version": 1,
   "title": "Split the Word",
   "track": "slices-and-views",
-  "concepts": ["slice", "zero-copy"],
+  "concepts": [
+    "slice",
+    "zero-copy"
+  ],
   "difficulty": 2,
-  "goal": "The first word of any sentence — as a view. Hardcoding is not splitting.",
+  "goal": "The first word of any sentence - as a view. Hardcoding is not splitting.",
   "template": "fn first_word(s: &str) -> &str {\n    ⟦expr⟧\n}\n\nfn main() {\n    println!(\"{}\", first_word(\"rust is sharp\"));\n}",
   "interaction": {
     "type": "minimal-edit",
@@ -16,9 +19,18 @@
         "original": "&s[0..4]",
         "label": "expression",
         "choices": [
-          { "id": "e1", "text": "&s[0..4]" },
-          { "id": "e2", "text": "s.split(' ').next().unwrap_or(s)" },
-          { "id": "e3", "text": "s.split(' ').next().unwrap_or(s).to_owned()" }
+          {
+            "id": "e1",
+            "text": "&s[0..4]"
+          },
+          {
+            "id": "e2",
+            "text": "s.split(' ').next().unwrap_or(s)"
+          },
+          {
+            "id": "e3",
+            "text": "s.split(' ').next().unwrap_or(s).to_owned()"
+          }
         ]
       }
     ]
@@ -27,19 +39,35 @@
     "tests": [
       "#[test]\nfn splits() {\n    assert_eq!(first_word(\"rust is sharp\"), \"rust\");\n    assert_eq!(first_word(\"hi there\"), \"hi\");\n    assert_eq!(first_word(\"single\"), \"single\");\n}"
     ],
-    "metrics": ["clone_count", "token_edits"]
+    "metrics": [
+      "clone_count",
+      "token_edits"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
-    "secondary": ["token_edits"],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0, "token_edits": 1 }
+    "secondary": [
+      "token_edits"
+    ],
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0,
+      "token_edits": 1
+    }
   },
   "hints": [
     "&s[0..4] happens to work for 'rust'. The second test sends a different sentence.",
-    "split() yields subslices of the input — the first one IS the answer, no copy needed."
+    "split() yields subslices of the input - the first one IS the answer, no copy needed."
   ],
-  "explanation": "The hardcoded range compiles and even passes for the right four-letter word — then 'hi there' returns 'hi t' and the test objects: indexes encode assumptions, splitting encodes intent. split(' ').next() hands back a subslice of the original — a zero-copy view whose lifetime elision ties it to the input. The .to_owned() variant doesn't even compile here: the signature promises a borrowed &str, and returning an owned String breaks that promise (E0308).",
-  "prerequisites": ["slices-and-views.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by strings3/iterators (first-word pattern)" }
+  "explanation": "The hardcoded range compiles and even passes for the right four-letter word - then 'hi there' returns 'hi t' and the test objects: indexes encode assumptions, splitting encodes intent. split(' ').next() hands back a subslice of the original - a zero-copy view whose lifetime elision ties it to the input. The .to_owned() variant doesn't even compile here: the signature promises a borrowed &str, and returning an owned String breaks that promise (E0308).",
+  "prerequisites": [
+    "slices-and-views.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by strings3/iterators (first-word pattern)"
+  }
 }

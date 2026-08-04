@@ -24,12 +24,14 @@ struct RustChapApp: App {
     }
 
     init() {
-        let container = try! ModelContainer(for: PuzzleProgressRecord.self)
+        let container = try! ModelContainer(
+            for: PuzzleProgressRecord.self, TutorConversationRecord.self)
         self.container = container
         _sync = State(initialValue: SyncService(container: container))
 
         // Debug/screenshot affordance: `--open <puzzle-or-deck-id>` deep-links
         // (used by simulator automation; harmless in production).
+        TutorProbe.runIfRequested()
         let args = ProcessInfo.processInfo.arguments
         if let flag = args.firstIndex(of: "--open"), args.indices.contains(flag + 1) {
             let id = args[flag + 1]
@@ -54,7 +56,10 @@ struct RustChapApp: App {
                             }
                         case .puzzle(let puzzleId):
                             if let loaded = store.puzzle(id: puzzleId) {
+                                // Per-puzzle identity: replacing the path (Next puzzle)
+                                // must not reuse the previous screen's @State.
                                 PuzzleScreen(loaded: loaded, path: $path)
+                                    .id(puzzleId)
                             }
                         }
                     }

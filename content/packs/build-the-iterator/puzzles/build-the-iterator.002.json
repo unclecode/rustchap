@@ -51,10 +51,10 @@
     }
   },
   "hints": [
-    "A slice isn't an iterator yet — something has to start the flow.",
+    "A slice isn't an iterator yet - something has to start the flow.",
     "sum() is a consumer: it ends the pipeline, so nothing can come after it."
   ],
-  "explanation": "Pipelines have a shape: an adapter source (.iter()), transformations (.map()), then exactly one consumer (.sum()) that drives the whole thing and produces the final value. Any other order fails to compile — the slice has no .map, and sum()'s output (i32) has no .iter. Once the shape is instinct, iterator chains read like sentences.",
+  "explanation": "Pipelines have a shape: an adapter source (.iter()), transformations (.map()), then exactly one consumer (.sum()) that drives the whole thing and produces the final value. Any other order fails to compile - the slice has no .map, and sum()'s output (i32) has no .iter. Once the shape is instinct, iterator chains read like sentences.",
   "prerequisites": [],
   "source": {
     "origin": "exercism",

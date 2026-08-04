@@ -4,9 +4,12 @@
   "version": 1,
   "title": "The Static Promise",
   "track": "repair-the-lifetime",
-  "concepts": ["static-lifetime", "lifetime"],
+  "concepts": [
+    "static-lifetime",
+    "lifetime"
+  ],
   "difficulty": 2,
-  "goal": "A function with no inputs returns a &str. What must it promise — and what can keep that promise?",
+  "goal": "A function with no inputs returns a &str. What must it promise - and what can keep that promise?",
   "template": "fn motto() -> &⟦lt⟧str {\n    ⟦value⟧\n}\n\nfn main() {\n    println!(\"{}\", motto());\n}",
   "interaction": {
     "type": "slot-selection",
@@ -16,8 +19,14 @@
         "original": null,
         "label": "lifetime",
         "choices": [
-          { "id": "l1", "text": "'static " },
-          { "id": "l2", "text": "" }
+          {
+            "id": "l1",
+            "text": "'static "
+          },
+          {
+            "id": "l2",
+            "text": ""
+          }
         ]
       },
       {
@@ -25,8 +34,14 @@
         "original": null,
         "label": "returned value",
         "choices": [
-          { "id": "v1", "text": "\"fearless concurrency\"" },
-          { "id": "v2", "text": "String::from(\"fearless concurrency\").as_str()" }
+          {
+            "id": "v1",
+            "text": "\"fearless concurrency\""
+          },
+          {
+            "id": "v2",
+            "text": "String::from(\"fearless concurrency\").as_str()"
+          }
         ]
       }
     ]
@@ -35,19 +50,31 @@
     "tests": [
       "#[test]\nfn has_a_motto() {\n    assert_eq!(motto(), \"fearless concurrency\");\n}"
     ],
-    "metrics": ["clone_count"]
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
     "No inputs means no input lifetimes to borrow from. Only one lifetime remains.",
-    "A literal lives in the binary forever. A String built inside the function dies at the brace — no annotation can save it."
+    "A literal lives in the binary forever. A String built inside the function dies at the brace - no annotation can save it."
   ],
-  "explanation": "With no borrowed inputs, elision has nothing to work with (E0106): the only lifetime a returned reference can honestly claim is 'static. And only truly immortal data qualifies — string literals are compiled into the binary, so \"fearless concurrency\" is &'static str for free. The String::from(...).as_str() variant borrows a temporary that dies at the semicolon (E0716/E0515), 'static annotation or not. The promise must match the data.",
-  "prerequisites": ["repair-the-lifetime.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by lifetimes exercises ('static)" }
+  "explanation": "With no borrowed inputs, elision has nothing to work with (E0106): the only lifetime a returned reference can honestly claim is 'static. And only truly immortal data qualifies - string literals are compiled into the binary, so \"fearless concurrency\" is &'static str for free. The String::from(...).as_str() variant borrows a temporary that dies at the semicolon (E0716/E0515), 'static annotation or not. The promise must match the data.",
+  "prerequisites": [
+    "repair-the-lifetime.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by lifetimes exercises ('static)"
+  }
 }

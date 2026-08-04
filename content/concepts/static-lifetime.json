@@ -2,10 +2,10 @@
   "schema_version": 1,
   "id": "static-lifetime",
   "title": "The 'static lifetime",
-  "summary": "'static means \"lives for the whole program\" — string literals have it for free.",
+  "summary": "'static means \"lives for the whole program\" - string literals have it for free.",
   "lecture": [
-    "String literals are baked into the binary, so a &'static str is always valid — the one borrow you can return from a function that takes no inputs, store anywhere, and send across threads without ceremony.",
-    "A function returning a reference must tie it to SOMETHING: an input's lifetime, or 'static. With no borrowed inputs, 'static is the only honest option — and only data that truly lives forever qualifies. A local String can't be laundered into 'static by taking a reference to it; it dies at the brace (E0515).",
+    "String literals are baked into the binary, so a &'static str is always valid - the one borrow you can return from a function that takes no inputs, store anywhere, and send across threads without ceremony.",
+    "A function returning a reference must tie it to SOMETHING: an input's lifetime, or 'static. With no borrowed inputs, 'static is the only honest option - and only data that truly lives forever qualifies. A local String can't be laundered into 'static by taking a reference to it; it dies at the brace (E0515).",
     "Treat a 'static bound as a strong claim, not a convenience. When the compiler suggests 'static, first ask whether an owned return type is what you actually meant."
   ],
   "example": {

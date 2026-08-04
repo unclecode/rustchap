@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "id": "option-and-result.007",
+  "version": 1,
+  "title": "Errors as Values and the ? Operator",
+  "track": "option-and-result",
+  "concepts": [
+    "error-propagation"
+  ],
+  "difficulty": 1,
+  "goal": "A Result carries the error to the caller. The ? operator does it in one character.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Operations that can fail return `Result<T, E>`: either `Ok(value)` or `Err(error)`. Like `Option`, the failure is part of the type. Unlike `Option`, the error side carries information about what went wrong, for example a `ParseIntError`."
+      },
+      {
+        "kind": "code",
+        "code": "fn double(input: &str) -> Result<i32, std::num::ParseIntError> {\n    let n: i32 = input.parse()?;   // Err returns early, Ok unwraps\n    Ok(n * 2)\n}",
+        "caption": "? forwards the error and keeps the happy path flat."
+      },
+      {
+        "kind": "prose",
+        "text": "The `?` operator does one thing: if the value is `Err`, return it from the current function immediately. If it is `Ok`, take the value out and continue. One character replaces a whole `match`, and the function's signature stays honest."
+      },
+      {
+        "kind": "prose",
+        "text": "Two habits look similar and are worse. `.unwrap()` turns a bad input into a panic. `.unwrap_or(0)` hides the failure inside a normal-looking value, so the caller cannot tell garbage from a real zero. When the signature already declares an error type, `?` is the tool that keeps the promise."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Result carries the error as a value. Use ? to propagate it; avoid unwrap_or defaults that hide failures.",
+  "prerequisites": [
+    "option-and-result.004"
+  ],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}

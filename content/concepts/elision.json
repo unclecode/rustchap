@@ -2,10 +2,10 @@
   "schema_version": 1,
   "id": "elision",
   "title": "Lifetime elision",
-  "summary": "Three rules let most signatures skip lifetime annotations — until two inputs feed one output.",
+  "summary": "Three rules let most signatures skip lifetime annotations - until two inputs feed one output.",
   "lecture": [
     "You rarely write lifetimes because the compiler fills them in by three elision rules: (1) each elided input reference gets its own fresh lifetime; (2) if there is exactly one input lifetime, the output gets it; (3) in methods, &self's lifetime goes to the output.",
-    "Elision fails exactly where our lifetime puzzles live: two borrowed inputs and a borrowed output. Rule 1 gives a and b different lifetimes, rule 2 doesn't apply, and the compiler cannot guess which input the result borrows from — E0106, 'missing lifetime specifier'.",
+    "Elision fails exactly where our lifetime puzzles live: two borrowed inputs and a borrowed output. Rule 1 gives a and b different lifetimes, rule 2 doesn't apply, and the compiler cannot guess which input the result borrows from - E0106, 'missing lifetime specifier'.",
     "That error is not the compiler being pedantic. The answer genuinely isn't in the signature; you add <'a> to write it down. Understanding WHICH rule failed tells you exactly what to annotate."
   ],
   "example": {

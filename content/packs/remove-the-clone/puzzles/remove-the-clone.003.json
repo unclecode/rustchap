@@ -77,10 +77,10 @@
     }
   },
   "hints": [
-    "&user.clone() clones the String, then borrows the temporary — an allocation that lives for one call.",
+    "&user.clone() clones the String, then borrows the temporary - an allocation that lives for one call.",
     "Both functions take &str already. Just lend the original."
   ],
-  "explanation": "The functions were designed correctly — they take &str. The caller ruins it with `&user.clone()`: manufacture a fresh String, borrow it for the call, drop it. The borrow of the clone works exactly as well as a borrow of the original — so `&user` twice does the same job with zero allocations. Clone-then-borrow is the most common clone smell in real code.",
+  "explanation": "The functions were designed correctly - they take &str. The caller ruins it with `&user.clone()`: manufacture a fresh String, borrow it for the call, drop it. The borrow of the clone works exactly as well as a borrow of the original - so `&user` twice does the same job with zero allocations. Clone-then-borrow is the most common clone smell in real code.",
   "prerequisites": [
     "remove-the-clone.001"
   ],

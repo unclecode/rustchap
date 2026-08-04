@@ -4,9 +4,13 @@
   "version": 1,
   "title": "Struct Field Peek",
   "track": "remove-the-clone",
-  "concepts": ["clone", "borrow", "move"],
+  "concepts": [
+    "clone",
+    "borrow",
+    "move"
+  ],
   "difficulty": 2,
-  "goal": "Read one field without paying for it — and without breaking the struct.",
+  "goal": "Read one field without paying for it - and without breaking the struct.",
   "template": "struct Profile {\n    name: String,\n    karma: u32,\n}\n\nfn main() {\n    let profile = Profile {\n        name: String::from(\"crab\"),\n        karma: 42,\n    };\n    let display = ⟦expr⟧;\n    show(&profile);\n    println!(\"headline: {display}\");\n}\n\nfn show(p: &Profile) {\n    println!(\"{} has {} karma\", p.name, p.karma);\n}",
   "interaction": {
     "type": "minimal-edit",
@@ -16,28 +20,55 @@
         "original": "profile.name.clone()",
         "label": "field access",
         "choices": [
-          { "id": "e1", "text": "profile.name.clone()" },
-          { "id": "e2", "text": "&profile.name" },
-          { "id": "e3", "text": "profile.name" }
+          {
+            "id": "e1",
+            "text": "profile.name.clone()"
+          },
+          {
+            "id": "e2",
+            "text": "&profile.name"
+          },
+          {
+            "id": "e3",
+            "text": "profile.name"
+          }
         ]
       }
     ]
   },
   "evaluation": {
-    "tests": ["#[test]\nfn runs() {\n    main();\n}"],
-    "metrics": ["clone_count", "token_edits"]
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "metrics": [
+      "clone_count",
+      "token_edits"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
-    "secondary": ["token_edits"],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0, "token_edits": 1 }
+    "secondary": [
+      "token_edits"
+    ],
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0,
+      "token_edits": 1
+    }
   },
   "hints": [
-    "Moving the field out (profile.name) is a partial move — the struct is then broken for &profile.",
+    "Moving the field out (profile.name) is a partial move - the struct is then broken for &profile.",
     "You can borrow a single field: the reference reaches through the struct."
   ],
-  "explanation": "Three ways to read a field: clone it (works, allocates), move it out (a partial move — profile can no longer be borrowed whole, so show(&profile) dies with E0382), or borrow it. `&profile.name` borrows just the field, costs nothing, and leaves the struct intact for the later call. Field borrows are precise: the borrow checker tracks them per-field.",
-  "prerequisites": ["remove-the-clone.001"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by structs3 and move_semantics exercises" }
+  "explanation": "Three ways to read a field: clone it (works, allocates), move it out (a partial move - profile can no longer be borrowed whole, so show(&profile) dies with E0382), or borrow it. `&profile.name` borrows just the field, costs nothing, and leaves the struct intact for the later call. Field borrows are precise: the borrow checker tracks them per-field.",
+  "prerequisites": [
+    "remove-the-clone.001"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by structs3 and move_semantics exercises"
+  }
 }

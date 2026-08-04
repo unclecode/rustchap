@@ -114,6 +114,19 @@ First, The ? Shortcut = errors2 direct — unwrap panics, unwrap_or swallows, bo
 tests). Totals: 31 puzzles, 249 verified submissions, 16 concepts, 7 live decks + 5 Soon.
 `clone_count` extended to all explicit copies (.to_vec/.cloned) during this batch.
 
+**Lecture nodes (2026-08-04) — reading joins the curriculum:** `interaction.type: "lesson"`
+puzzles interleave freely with playable ones in `pack.order` (see
+[interaction-types](interaction-types.md)). The user's structural rule: **every deck opens
+with a lecture** (first-contact teaching), plus mid-deck lectures where a second topic
+cluster starts. Full pass shipped same day: 15 openers + 4 mid-deck (`'static` in Repair the
+Lifetime, `?`/error-propagation in Option & Result, iter/into_iter in Build the Iterator,
+Send in Async & Send) + the original "Own, Lend, or Give" (stays mid-deck after Give It
+Away). Audit ramps show lessons as `L` (e.g. `L112L232`).
+Totals: **81 curriculum nodes = 61 puzzles (364 verified submissions) + 20 lectures.**
+Writing style rule (user, standing): plain international English, short sentences, Rust
+domain only, industry-standard names, inline code for every type/keyword in prose
+(lesson prose renders inline markdown), no em dashes.
+
 **Batch 6 (2026-08-04) — the journey completes; Phase 6 done:** Async & Send born (Await It —
 a 15-line std-only `block_on` embedded in the template makes async compile-verifiable; Move It
 to the Thread = rustlings threads1 E0373; Send Across the Await — Rc held across .await makes

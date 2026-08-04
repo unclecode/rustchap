@@ -2,14 +2,14 @@
   "schema_version": 1,
   "id": "option",
   "title": "Option: absence as a type",
-  "summary": "Maybe-a-value is Option<T> — the compiler forces every caller to face the None case.",
+  "summary": "Maybe-a-value is Option<T> - the compiler forces every caller to face the None case.",
   "lecture": [
     "Rust has no null. A value that might not exist is Option<T>: Some(value) or None. The absence is part of the type, so forgetting to handle it is a compile error, not a 3am page.",
-    "Signatures speak: `fn first_char(s: &str) -> char` promises a char ALWAYS — a lie for the empty string that unwrap() converts into a runtime panic. `-> Option<char>` tells the truth and hands the decision to the caller, who has context you don't.",
+    "Signatures speak: `fn first_char(s: &str) -> char` promises a char ALWAYS - a lie for the empty string that unwrap() converts into a runtime panic. `-> Option<char>` tells the truth and hands the decision to the caller, who has context you don't.",
     ".unwrap() is a claim that None is impossible right here. In puzzle terms: every unwrap you write is a place where a test with the right input can make your program die. Prefer returning the Option, or ?, or unwrap_or/map when a default genuinely exists."
   ],
   "example": {
-    "code": "fn first_char(s: &str) -> Option<char> {\n    s.chars().next()   // already an Option — just return it\n}\n\nassert_eq!(first_char(\"hi\"), Some('h'));\nassert_eq!(first_char(\"\"), None);      // no panic, a value",
-    "caption": "The iterator already speaks Option — don't unwrap it into a lie."
+    "code": "fn first_char(s: &str) -> Option<char> {\n    s.chars().next()   // already an Option - just return it\n}\n\nassert_eq!(first_char(\"hi\"), Some('h'));\nassert_eq!(first_char(\"\"), None);      // no panic, a value",
+    "caption": "The iterator already speaks Option - don't unwrap it into a lie."
   }
 }

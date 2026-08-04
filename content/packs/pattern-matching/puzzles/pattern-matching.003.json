@@ -54,10 +54,10 @@
     }
   },
   "hints": [
-    "is_some() followed by unwrap() checks the shape twice — the pattern could have bound the value the first time.",
+    "is_some() followed by unwrap() checks the shape twice - the pattern could have bound the value the first time.",
     "if let is match for when only one arm matters."
   ],
-  "explanation": "check-then-unwrap asks 'is it Some?' and then asks AGAIN inside unwrap — Clippy's unnecessary_unwrap flags the double question, dropping it to Solved. The full match and if let both bind while testing and rank Optimal together — genuinely equal correctness; if let simply says it smaller when the None side is trivial. Rust often has two right answers; unwrap-after-checking is not one of them.",
+  "explanation": "check-then-unwrap asks 'is it Some?' and then asks AGAIN inside unwrap - Clippy's unnecessary_unwrap flags the double question, dropping it to Solved. The full match and if let both bind while testing and rank Optimal together - genuinely equal correctness; if let simply says it smaller when the None side is trivial. Rust often has two right answers; unwrap-after-checking is not one of them.",
   "prerequisites": [
     "pattern-matching.001"
   ],

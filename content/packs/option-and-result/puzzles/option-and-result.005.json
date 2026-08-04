@@ -4,7 +4,9 @@
   "version": 1,
   "title": "Chain of Results",
   "track": "option-and-result",
-  "concepts": ["error-propagation"],
+  "concepts": [
+    "error-propagation"
+  ],
   "difficulty": 3,
   "goal": "Parse two numbers and add them. Two failure points, one honest signature.",
   "interaction": {
@@ -29,19 +31,31 @@
       "#[test]\nfn adds() {\n    assert_eq!(add_strs(\"20\", \"22\"), Ok(42));\n}",
       "#[test]\nfn reports_garbage() {\n    assert!(add_strs(\"20\", \"x\").is_err());\n}"
     ],
-    "metrics": ["clone_count"]
+    "metrics": [
+      "clone_count"
+    ]
   },
   "scoring": {
     "primary": "clone_count",
     "secondary": [],
-    "fluent": { "clone_count": 0 },
-    "optimal": { "clone_count": 0 }
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
   },
   "hints": [
-    "The signature promises Result — but two of these versions can never produce an Err.",
+    "The signature promises Result - but two of these versions can never produce an Err.",
     "Each ? is a checkpoint: pass on success, return the error on failure. Two parses, two question marks."
   ],
-  "explanation": "All three compile against the same honest signature — but only the ?-chain can keep its promise. The unwrap version panics on garbage (the error type in the signature is decoration it never uses), and the unwrap_or version launders 'x' into 0, returning Ok(20) where an Err belonged — the caller can no longer distinguish garbage from arithmetic. Two question marks: three characters of syntax, and every failure point reports truthfully.",
-  "prerequisites": ["option-and-result.002"],
-  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by errors3/errors6" }
+  "explanation": "All three compile against the same honest signature - but only the ?-chain can keep its promise. The unwrap version panics on garbage (the error type in the signature is decoration it never uses), and the unwrap_or version launders 'x' into 0, returning Ok(20) where an Err belonged - the caller can no longer distinguish garbage from arithmetic. Two question marks: three characters of syntax, and every failure point reports truthfully.",
+  "prerequisites": [
+    "option-and-result.002"
+  ],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by errors3/errors6"
+  }
 }

@@ -4,8 +4,18 @@
   "title": "RustChap puzzle",
   "description": "One puzzle: goal, code template with ⟦slot⟧ markers, constrained interaction, evaluation spec, and mechanical scoring. The canonical Rust implementation (parsing, validation, reconstruction) lives in crates/puzzle-schema.",
   "type": "object",
-  "required": ["schema_version", "id", "version", "title", "track", "concepts", "difficulty", "goal", "interaction", "evaluation", "scoring", "hints", "explanation", "prerequisites", "source"],
+  "required": ["schema_version", "id", "version", "title", "track", "concepts", "difficulty", "goal", "interaction", "hints", "explanation", "prerequisites", "source"],
   "additionalProperties": false,
+  "allOf": [
+    {
+      "if": { "properties": { "interaction": { "properties": { "type": { "const": "lesson" } } } } },
+      "then": {
+        "not": { "anyOf": [{ "required": ["evaluation"] }, { "required": ["scoring"] }] },
+        "description": "Lessons are reading nodes: evaluation and scoring must be absent."
+      },
+      "else": { "required": ["evaluation", "scoring"] }
+    }
+  ],
   "properties": {
     "schema_version": { "const": 1 },
     "id": {
@@ -27,7 +37,8 @@
       "oneOf": [
         { "$ref": "#/$defs/slotInteraction" },
         { "$ref": "#/$defs/blockArrangement" },
-        { "$ref": "#/$defs/bestSolution" }
+        { "$ref": "#/$defs/bestSolution" },
+        { "$ref": "#/$defs/lesson" }
       ]
     },
     "evaluation": { "$ref": "#/$defs/evaluation" },
@@ -115,6 +126,43 @@
           }
         }
       }
+    },
+    "lesson": {
+      "type": "object",
+      "required": ["type", "sections"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "lesson" },
+        "sections": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/lessonSection" }
+        }
+      },
+      "description": "A reading node in the curriculum: completed by reading, no submission, no outcomes sidecar. evaluation, scoring, and template must be absent; goal is the one-line reading objective; explanation is the takeaway."
+    },
+    "lessonSection": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["kind", "text"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": { "const": "prose" },
+            "text": { "type": "string", "minLength": 1 }
+          }
+        },
+        {
+          "type": "object",
+          "required": ["kind", "code"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": { "const": "code" },
+            "code": { "type": "string", "minLength": 1 },
+            "caption": { "type": "string" }
+          }
+        }
+      ]
     },
     "evaluation": {
       "type": "object",

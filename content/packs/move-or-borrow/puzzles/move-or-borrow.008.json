@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.008",
+  "version": 1,
+  "title": "One Value, One Owner",
+  "track": "move-or-borrow",
+  "concepts": [
+    "move",
+    "borrow",
+    "copy"
+  ],
+  "difficulty": 1,
+  "goal": "The rule behind this whole deck: every value has exactly one owner.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Every value in Rust has exactly one owner. When you assign a value to a new variable, or pass it to a function by value, ownership moves. The old variable becomes invalid, and the compiler rejects any later use of it. This is error `E0382`, and you will meet it often in this deck."
+      },
+      {
+        "kind": "code",
+        "code": "let name = String::from(\"Ferris\");\nlet other = name;        // ownership moves to `other`\nprintln!(\"{name}\");      // error E0382: use of moved value",
+        "caption": "A move invalidates the old variable."
+      },
+      {
+        "kind": "prose",
+        "text": "If you only need to read a value, you do not need to own it. A reference, written `&name`, borrows the value. The owner keeps it, and the borrow ends when it is no longer used. Borrowing is the default way to pass data to a function that only reads it."
+      },
+      {
+        "kind": "code",
+        "code": "fn show(text: &str) { println!(\"{text}\"); }\n\nlet name = String::from(\"Ferris\");\nshow(&name);             // borrow\nprintln!(\"{name}\");      // still valid",
+        "caption": "A borrow leaves ownership where it was."
+      },
+      {
+        "kind": "prose",
+        "text": "Some types opt out of moving. Simple types like `i32`, `bool`, and `char` implement the `Copy` trait. Passing them duplicates the value bit for bit, and the original stays valid. Types that own heap memory, like `String` and `Vec`, are not `Copy`, because duplicating them would need an allocation."
+      },
+      {
+        "kind": "prose",
+        "text": "The puzzles in this deck train one decision: read the code, decide whether each value should move, be borrowed, or be copied, and pay nothing extra."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Every value has one owner. Borrow to read, move to transfer, and Copy types duplicate for free.",
+  "prerequisites": [],
+  "source": {
+    "origin": "original",
+    "license": null,
+    "attribution": null
+  }
+}
