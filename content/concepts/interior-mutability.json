@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability",
+  "title": "Interior mutability: Cell and RefCell",
+  "summary": "Mutation through a shared reference — with the borrow rules enforced at runtime instead.",
+  "lecture": [
+    "Sometimes an API must mutate through &self — caches, counters, observers. Interior mutability moves the one-writer-XOR-many-readers check from compile time to somewhere else: Cell<T> for Copy values (get/set whole values, no references handed out, no way to fail), RefCell<T> for everything else (borrow()/borrow_mut() return guards, violations PANIC at runtime).",
+    "The RefCell footgun is guard lifetime: a named guard (`let snapshot = cell.borrow();`) stays live until it drops — a borrow_mut() while it lives panics, even though everything compiled. A temporary (`cell.borrow().len()`) drops at the end of its statement, which is usually what you wanted.",
+    "Runtime checks are a real cost and a real risk — 'already borrowed' panics ship to production. Reach for Cell first (it can't panic), RefCell only when you must lend references, and treat every named guard as a live wire: scope it tight."
+  ],
+  "example": {
+    "code": "let hits = Cell::new(0);\nhits.set(hits.get() + 1);      // through &self-style access, no panic possible\n\nlet log = RefCell::new(vec![1]);\nlet n = log.borrow().len();    // temporary guard — dies at the ;\nlog.borrow_mut().push(2);      // fine\n\nlet held = log.borrow();       // named guard — still alive…\n// log.borrow_mut().push(3);   // …this would PANIC at runtime",
+    "caption": "Cell can't fail; RefCell trades compile errors for runtime panics — scope the guards."
+  }
+}

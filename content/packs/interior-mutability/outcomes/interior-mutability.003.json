@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "interior-mutability.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "41f2daf695ae3ff75617f0a0f9826a2c6c8f9675775c1a6816698e1d52cfe395": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "45c68f6a6d60dfc417f022cc9619d7eca0eee5a0e39f959e1af3f64767a0f185": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "clone_count": 1,
+        "clippy_warning_count": 1
+      },
+      "diagnostics": []
+    },
+    "8d2797cda11a9fce20be7abd1c5f34fff150ffd92df5d3107ae2187952b7be95": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0,
+        "clippy_warning_count": 0
+      },
+      "diagnostics": []
+    },
+    "8d64d6feb3a22f4ed09b65237f6ae9025675025ec2f8e7297087764a0017d94f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "the type `Rc` does not implement `Copy`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d11639380a72ba6fb43993b4b2ff902cf77243a59c0c76b697a5e754c0e4ad15": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d75e23ea5a881e35914ac384bec43557ee87f7ba724f80d8e33b266ba0970373": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "the type `Rc` does not implement `Copy`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

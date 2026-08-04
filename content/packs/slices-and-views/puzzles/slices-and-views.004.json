@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views.004",
+  "version": 1,
+  "title": "Chars or Bytes",
+  "track": "slices-and-views",
+  "concepts": ["slice"],
+  "difficulty": 2,
+  "goal": "Count the characters. Strings are UTF-8 — length has two meanings, and only one is right.",
+  "template": "fn char_count(s: &str) -> usize {\n    ⟦expr⟧\n}\n\nfn main() {\n    println!(\"{} {}\", char_count(\"crab\"), char_count(\"crábe\"));\n}",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "expr",
+        "original": "s.len()",
+        "label": "count expression",
+        "choices": [
+          { "id": "e1", "text": "s.len()" },
+          { "id": "e2", "text": "s.chars().count()" },
+          { "id": "e3", "text": "s.bytes().count()" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn counts_chars() {\n    assert_eq!(char_count(\"crab\"), 4);\n    assert_eq!(char_count(\"crábe\"), 5);\n}"
+    ],
+    "metrics": ["clone_count", "token_edits"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": ["token_edits"],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0, "token_edits": 1 }
+  },
+  "hints": [
+    "len() measures BYTES of UTF-8. 'á' takes two of them.",
+    "chars() walks the decoded characters — count those."
+  ],
+  "explanation": "A &str is UTF-8 bytes, and len() honestly reports bytes — 'crábe' is five characters in six bytes, so both len() and bytes().count() pass the ASCII test and fail the accented one at runtime. chars().count() walks decoded scalar values and answers the human question. This byte/char split is also why strings can't be indexed by integer — s[1] might land mid-character. When text leaves ASCII, choose your unit deliberately.",
+  "prerequisites": ["slices-and-views.001"],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by strings4 (bytes vs chars)" }
+}

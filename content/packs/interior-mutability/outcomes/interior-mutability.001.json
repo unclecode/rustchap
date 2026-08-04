@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "interior-mutability.001",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0322af1d8326d4a6b6bcd922943ffb888d1d929cdc81b3a7aa3bba29fc6e8724": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "0bdd062921f20633681643f3038082979027b98a28ef74eb9edb1cd69b3d0287": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `get` found for type `u32` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `get` found for type `u32` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `self.hits`, which is behind a `&` reference",
+          "slot_ids": [
+            "record_stmt"
+          ],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "14649afa0c045ccd1ad68b3215b748cc624937450c3551d19a12092dd4a99adc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "binary assignment operation `+=` cannot be applied to type `std::cell::Cell<u32>`",
+          "slot_ids": [
+            "record_stmt"
+          ],
+          "rust_code": "E0368"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "dfb7486a0a605008dd1c02a7ff8402053c7b5ed9c61c31ccc71b936ed9f8af55": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `set` found for type `u32` in the current scope",
+          "slot_ids": [
+            "record_stmt"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `get` found for type `u32` in the current scope",
+          "slot_ids": [
+            "record_stmt"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `get` found for type `u32` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `get` found for type `u32` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

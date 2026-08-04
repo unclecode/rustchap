@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.002",
+  "version": 1,
+  "title": "The Guard That Lingered",
+  "track": "interior-mutability",
+  "concepts": ["interior-mutability", "borrow-scope"],
+  "difficulty": 3,
+  "goal": "Read the length, then push. Every version compiles — one panics at runtime.",
+  "template": "use std::cell::RefCell;\n\nfn audit(log: &RefCell<Vec<i32>>) -> usize {\n    ⟦first_line⟧\n    log.borrow_mut().push(99);\n    n\n}\n\nfn main() {\n    let log = RefCell::new(vec![1, 2]);\n    println!(\"had {} entries\", audit(&log));\n}",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "first_line",
+        "original": null,
+        "label": "first line",
+        "choices": [
+          { "id": "f1", "text": "let n = log.borrow().len();" },
+          { "id": "f2", "text": "let guard = log.borrow();\n    let n = guard.len();" },
+          { "id": "f3", "text": "let n = log.borrow().clone().len();" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn audits() {\n    let log = RefCell::new(vec![1, 2]);\n    assert_eq!(audit(&log), 2);\n    assert_eq!(log.borrow().len(), 3);\n}"
+    ],
+    "metrics": ["clone_count"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0 }
+  },
+  "hints": [
+    "A named guard lives until it drops — right through the borrow_mut() below it.",
+    "A temporary guard (borrow().len()) dies at its own semicolon. That's the whole trick."
+  ],
+  "explanation": "RefCell enforces the borrow rules at RUNTIME, and guard lifetime is the live wire: the named `guard` is still alive when borrow_mut() runs — 'already borrowed' panic, in code that compiled without a murmur. The temporary form borrows, reads, and releases within one statement, so the later write finds the cell free. The clone variant also releases in time but copies the whole Vec to read a length. With RefCell, scope guards as tightly as syntax allows.",
+  "prerequisites": ["interior-mutability.001"],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by RefCell double-borrow patterns; The Book ch15.5" }
+}

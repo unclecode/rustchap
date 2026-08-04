@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "option-and-result.004",
+  "version": 1,
+  "title": "Map the Maybe",
+  "track": "option-and-result",
+  "concepts": ["option", "iterator"],
+  "difficulty": 2,
+  "goal": "Double the first element — if there is one. Stay inside the Option.",
+  "template": "fn double_head(xs: &[i32]) -> Option<i32> {\n    ⟦body⟧\n}\n\nfn main() {\n    println!(\"{:?} {:?}\", double_head(&[21, 5]), double_head(&[]));\n}",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "body",
+        "original": "Some(xs[0] * 2)",
+        "label": "body",
+        "choices": [
+          { "id": "b1", "text": "Some(xs[0] * 2)" },
+          { "id": "b2", "text": "xs.first().map(|x| x * 2)" },
+          { "id": "b3", "text": "Some(xs.first().unwrap() * 2)" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn doubles_or_none() {\n    assert_eq!(double_head(&[21, 5]), Some(42));\n    assert_eq!(double_head(&[]), None);\n}"
+    ],
+    "metrics": ["clone_count", "token_edits"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": ["token_edits"],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0, "token_edits": 1 }
+  },
+  "hints": [
+    "xs[0] on an empty slice doesn't return None — it panics. first() is the honest accessor.",
+    "map transforms the inside of a Some and passes None through untouched. No unwrapping required."
+  ],
+  "explanation": "Indexing promises an element and panics when the slice is empty — both the direct index and the unwrap variant compile, then die on the empty-slice test. first() returns Option<&i32>, and map() is the combinator that works INSIDE it: transform the Some, ferry the None. This is the everyday Option idiom — reach for combinators before reaching for unwrap, and let the type carry the emptiness to the caller.",
+  "prerequisites": ["option-and-result.001"],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by options3/iterators1" }
+}

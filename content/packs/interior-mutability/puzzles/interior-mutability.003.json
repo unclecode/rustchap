@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.003",
+  "version": 1,
+  "title": "Shared Counter, Many Hands",
+  "track": "interior-mutability",
+  "concepts": ["interior-mutability", "smart-pointers"],
+  "difficulty": 3,
+  "goal": "Two handles, one score, two bumps. Share the counter and actually increment it.",
+  "template": "use std::cell::Cell;\nuse std::rc::Rc;\n\nfn tally() -> i32 {\n    let score = Rc::new(Cell::new(0));\n    let judge = ⟦handle⟧;\n    ⟦judge_bump⟧;\n    score.set(score.get() + 1);\n    score.get()\n}\n\nfn main() {\n    println!(\"score: {}\", tally());\n}",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "handle",
+        "original": null,
+        "label": "second handle",
+        "choices": [
+          { "id": "h1", "text": "Rc::clone(&score)" },
+          { "id": "h2", "text": "score.clone()" },
+          { "id": "h3", "text": "score" }
+        ]
+      },
+      {
+        "id": "judge_bump",
+        "original": null,
+        "label": "judge's bump",
+        "choices": [
+          { "id": "b1", "text": "judge.set(judge.get() + 1)" },
+          { "id": "b2", "text": "judge.get() + 1" }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn tallies_two() {\n    assert_eq!(tally(), 2);\n}"
+    ],
+    "clippy": { "deny": ["clippy::clone_on_ref_ptr"] },
+    "metrics": ["clone_count", "clippy_warning_count"]
+  },
+  "scoring": {
+    "primary": "clippy_warning_count",
+    "secondary": ["clone_count"],
+    "fluent": { "clippy_warning_count": 1 },
+    "optimal": { "clippy_warning_count": 0 }
+  },
+  "hints": [
+    "Moving score into judge leaves the later score.set with nothing — share, don't transfer.",
+    "judge.get() + 1 computes a number and lets it evaporate. Cells only change when someone calls set."
+  ],
+  "explanation": "Rc shares the Cell (both handles reach ONE counter), and each set() lands where both can see it — 2. Moving score breaks the later lines (E0382). The evaporating bump is the quiet failure: computing get()+1 without set() changes nothing, compiles cleanly, and returns 1 — only the test complains. And spelling: score.clone() does the same cheap counter-bump as Rc::clone(&score), but reads like a deep copy — clone_on_ref_ptr keeps the syntax honest. Interior mutability plus shared ownership is powerful exactly because every piece is explicit.",
+  "prerequisites": ["interior-mutability.001"],
+  "source": { "origin": "rustlings", "license": "MIT", "attribution": "inspired by rc1 + Cell counter patterns" }
+}

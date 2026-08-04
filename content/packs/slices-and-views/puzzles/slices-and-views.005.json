@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views.005",
+  "version": 1,
+  "title": "The Tail End",
+  "track": "slices-and-views",
+  "concepts": ["slice", "zero-copy"],
+  "difficulty": 2,
+  "goal": "The last two readings. A view beats a copy — and the wrong window fails loudly.",
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "view",
+        "code": "fn recent(readings: &[i32]) -> &[i32] {\n    &readings[readings.len() - 2..]\n}"
+      },
+      {
+        "id": "copied",
+        "code": "fn recent(readings: &[i32]) -> Vec<i32> {\n    readings[readings.len() - 2..].to_vec()\n}"
+      },
+      {
+        "id": "wrong_window",
+        "code": "fn recent(readings: &[i32]) -> &[i32] {\n    &readings[..2]\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn takes_the_tail() {\n    assert_eq!(recent(&[3, 1, 4, 1, 5]), [1, 5]);\n}"
+    ],
+    "metrics": ["clone_count"]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": { "clone_count": 0 },
+    "optimal": { "clone_count": 0 }
+  },
+  "hints": [
+    "len() - 2 .. means 'from two-before-the-end, onward'. ..2 means the OPPOSITE end.",
+    "Returning &[i32] is a window; returning Vec<i32> is a purchase."
+  ],
+  "explanation": "Range arithmetic reads from both ends: `len()-2..` opens a window on the tail, `..2` on the head — both compile, and only the test knows which end you meant. Between the correct pair, the borrowed view costs nothing (elision ties it to the input) while to_vec() buys a fresh allocation the caller may not need. Return views by default; return owned copies when the caller must outlive the source.",
+  "prerequisites": ["slices-and-views.001"],
+  "source": { "origin": "exercism", "license": "MIT", "attribution": "inspired by series/sublist practice exercises" }
+}

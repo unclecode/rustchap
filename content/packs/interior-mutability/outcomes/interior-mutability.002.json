@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "interior-mutability.002",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0128dd8abf4cb40377b08a706be209f8da831275b1d2ca934f4ef62af99c262a": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "196438477ffcaf5f4de8ab51e78be5beb893091348f86a9e7dafe836ebe9beda": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "939810100ada00f580a8772e658184c9fbfb8b1a331cfbbcabe4fc0094a76788": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "clone_count": 1
+      },
+      "diagnostics": []
+    }
+  }
+}

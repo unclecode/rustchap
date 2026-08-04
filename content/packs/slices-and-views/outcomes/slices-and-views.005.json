@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "slices-and-views.005",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "23b47435238a133a379e87afdd9a9ed45e6eb8a40d41377df8dc2c1c8f76b412": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "7528f0ea9c77c004406824563b6e3424480148fd229b2587d10b22fbf4fff6e6": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c4f8f3c6d8b1437b13346667f08a54cc9994b1c8d3609d5605345af16acdd9dc": {
+      "status": "solved",
+      "rank": "solved",
+      "metrics": {
+        "clone_count": 1
+      },
+      "diagnostics": []
+    }
+  }
+}

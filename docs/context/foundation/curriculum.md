@@ -114,6 +114,16 @@ First, The ? Shortcut = errors2 direct — unwrap panics, unwrap_or swallows, bo
 tests). Totals: 31 puzzles, 249 verified submissions, 16 concepts, 7 live decks + 5 Soon.
 `clone_count` extended to all explicit copies (.to_vec/.cloned) during this batch.
 
+**Batch 5 (2026-08-03) — early decks deepened + Interior Mutability born:** Slices & Views → 5
+(Split the Word — hardcoded range passes one test then lies; Chars or Bytes — UTF-8 byte/char
+trap; The Tail End — window-from-the-wrong-end) · Option & Result → 5 (Default with Dignity —
+unwrap_or(0) is the worse bug; Map the Maybe — indexing panics, map ferries None; Chain of
+Results — the ?-chain is the only candidate that can keep its Err promise) · **Interior
+Mutability born** (Count Through &self — Cell vs E0594; The Guard That Lingered — named RefCell
+guard compiles then PANICS at runtime, test-caught; Shared Counter Many Hands — evaporating
+get()+1 bump). Totals: **55 puzzles, 346 verified submissions, 22 concepts, 13 live decks +
+2 planned** (Async & Send, Unsafe Rust).
+
 **Batch 4 (2026-08-03) — every planned v0.1 deck alive:** Pattern Matching (Match the Shape —
 swapped x,y compiles and lies; Exhaustive by Design; If Let It Be with unnecessary_unwrap) ·
 Traits & Bounds (Printable — Display isn't derivable; The Weakest Bound; Default It with

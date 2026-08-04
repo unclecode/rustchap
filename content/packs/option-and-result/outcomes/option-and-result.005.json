@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "option-and-result.005",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "52d9f2ac35c4392c4867cc2259dc6f91cf07e0bee8d07e1cb65bfa84527f8627": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "beb342ed74971b443fc1a429cb462efbb1c6fef4f23a1e8899855e98c7327b9f": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "df6c07cbd19a5f1c8ee6a354826c6c2515da9d4f35567f5a4231fdec889ba218": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}
