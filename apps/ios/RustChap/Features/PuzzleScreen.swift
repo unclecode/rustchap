@@ -15,6 +15,7 @@ struct PuzzleScreen: View {
         let id = UUID()
         let result: EvalResult
         let via: EvaluatedVia
+        let deckCompleted: Bool
     }
 
     @State private var selections: [String: String] = [:]
@@ -118,6 +119,7 @@ struct PuzzleScreen: View {
                 loaded: loaded,
                 result: presented.result,
                 via: presented.via,
+                deckCompleted: presented.deckCompleted,
                 nextPuzzleId: store.nextPuzzleId(after: puzzle.id),
                 onRetry: { presentedResult = nil },
                 onNext: { nextId in
@@ -265,7 +267,12 @@ struct PuzzleScreen: View {
                 ? Set(result.diagnostics.flatMap(\.slotIds))
                 : []
             ProgressRecorder.record(in: modelContext, puzzle: puzzle, result: result)
-            presentedResult = PresentedResult(result: result, via: via)
+            let deckCompleted = result.status == .solved
+                && store.pack(containing: puzzle.id)?.puzzles.allSatisfy { loaded in
+                    ProgressRecorder.fetch(puzzleId: loaded.id, in: modelContext)?.solved == true
+                } == true
+            presentedResult = PresentedResult(
+                result: result, via: via, deckCompleted: deckCompleted)
             evaluating = false
             await sync.syncNow()
         }

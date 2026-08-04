@@ -76,10 +76,17 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
 **Phase 6 complete (2026-08-04).**
 
 ## Phase 7 — product finishing
-- [ ] 24. Track-map navigation
-- [ ] 25. Result levels (Solved / Fluent / Optimal)
-- [ ] 26. Profile and progress screens
-- [ ] 27. Telemetry
+- [x] 24. Navigation — the deck home IS the map; garnish added: "Continue" chip on the current
+      deck, deck-complete celebration ("the next chest is open") on the result sheet
+- [x] 25. Result levels — rank ladder, You-vs-Best, persisted bests (done earlier)
+- [x] 26. Profile & progress — dashboard in the profile sheet: solved/optimal/attempt stats,
+      strongest concepts, needs-more-work concepts (computed on-device from SwiftData records ×
+      puzzle concepts); no XP/coins/badges, per the plan
+- [~] 27. Telemetry — server-side attempt logging exists (operations, verdict, rank, cached);
+      app-side event telemetry (hint_opened, abandoned, replay) DEFERRED until pre-TestFlight —
+      measuring a single user's own behavior has no value
+
+**Phase 7 complete (2026-08-04); 27's remainder deliberately parked.**
 
 ## Phase 8 — deployment
 - [ ] 28. Staging infrastructure (IaC from the start)

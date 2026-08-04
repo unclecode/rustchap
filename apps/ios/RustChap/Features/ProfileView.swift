@@ -1,12 +1,16 @@
-// Optional profile + app settings. Name/email are never required to play;
-// saves land locally first and reach the server when it's reachable.
+// Profile = progress picture + optional identity + app settings.
+// Per the plan: solved counts, optimals, attempts, strongest concepts,
+// concepts needing work — and no XP, coins, or badges.
 
+import SwiftData
 import SwiftUI
 
 struct ProfileView: View {
     @Environment(SyncService.self) private var sync
+    @Environment(ContentStore.self) private var store
     @Environment(\.dismiss) private var dismiss
     @AppStorage("appearance") private var appearance = "system"
+    @Query private var progress: [PuzzleProgressRecord]
 
     @State private var name = ""
     @State private var email = ""
@@ -17,9 +21,81 @@ struct ProfileView: View {
         case none, synced, localOnly
     }
 
+    private struct ConceptStrength: Identifiable {
+        let id: String
+        let title: String
+        let solved: Int
+        let total: Int
+        let optimals: Int
+        let attempts: Int
+        var ratio: Double { total == 0 ? 0 : Double(solved) / Double(total) }
+    }
+
+    private func record(_ puzzleId: String) -> PuzzleProgressRecord? {
+        progress.first { $0.puzzleId == puzzleId }
+    }
+
+    private var solvedCount: Int { progress.filter(\.solved).count }
+    private var optimalCount: Int { progress.filter { $0.bestRank == .optimal }.count }
+    private var attemptTotal: Int { progress.reduce(0) { $0 + $1.attemptCount } }
+
+    private var conceptStrengths: [ConceptStrength] {
+        store.concepts.values.map { concept in
+            let puzzles = store.allPuzzles.filter { $0.puzzle.concepts.contains(concept.id) }
+            let records = puzzles.compactMap { record($0.id) }
+            return ConceptStrength(
+                id: concept.id,
+                title: concept.title,
+                solved: records.filter(\.solved).count,
+                total: puzzles.count,
+                optimals: records.filter { $0.bestRank == .optimal }.count,
+                attempts: records.reduce(0) { $0 + $1.attemptCount }
+            )
+        }
+        .filter { $0.total > 0 }
+    }
+
+    private var strongest: [ConceptStrength] {
+        conceptStrengths
+            .filter { $0.solved > 0 }
+            .sorted { ($0.ratio, $0.optimals) > ($1.ratio, $1.optimals) }
+            .prefix(3).map { $0 }
+    }
+
+    private var needsWork: [ConceptStrength] {
+        let strongestIds = Set(strongest.map(\.id))
+        return conceptStrengths
+            .filter { $0.attempts > 0 && $0.ratio < 1.0 && !strongestIds.contains($0.id) }
+            .sorted { ($0.ratio, -$0.attempts) < ($1.ratio, -$1.attempts) }
+            .prefix(3).map { $0 }
+    }
+
     var body: some View {
         NavigationStack {
             Form {
+                Section {
+                    HStack {
+                        statBlock("\(solvedCount)/\(store.allPuzzles.count)", "solved")
+                        Divider()
+                        statBlock("\(optimalCount)", "optimal ★")
+                        Divider()
+                        statBlock("\(attemptTotal)", "attempts")
+                    }
+                } header: {
+                    Text("Progress")
+                }
+
+                if !strongest.isEmpty {
+                    Section("Strongest") {
+                        ForEach(strongest) { conceptRow($0) }
+                    }
+                }
+                if !needsWork.isEmpty {
+                    Section("Needs more work") {
+                        ForEach(needsWork) { conceptRow($0) }
+                    }
+                }
+
                 Section {
                     Picker("Appearance", selection: $appearance) {
                         Text("System").tag("system")
@@ -94,6 +170,33 @@ struct ProfileView: View {
                 }
             }
         }
+    }
+
+    private func statBlock(_ value: String, _ label: String) -> some View {
+        VStack(spacing: 2) {
+            Text(value)
+                .font(.title3.monospacedDigit().weight(.semibold))
+            Text(label)
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    private func conceptRow(_ strength: ConceptStrength) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                Text(strength.title)
+                    .font(.subheadline)
+                Spacer()
+                Text("\(strength.solved)/\(strength.total)\(strength.optimals > 0 ? " · \(strength.optimals)★" : "")")
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(.secondary)
+            }
+            ProgressView(value: strength.ratio)
+                .tint(strength.ratio == 1.0 ? .green : .accentColor)
+        }
+        .padding(.vertical, 2)
     }
 
     private var saveLabel: String {

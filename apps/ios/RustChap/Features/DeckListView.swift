@@ -11,6 +11,16 @@ struct DeckListView: View {
     @Query private var progress: [PuzzleProgressRecord]
     @State private var showProfile = false
 
+    /// The first unlocked, incomplete, non-empty deck — where the player is.
+    private var currentDeckId: String? {
+        let solved = Progression.solvedIds(progress)
+        return store.packs.enumerated().first { index, deck in
+            !deck.puzzles.isEmpty
+                && Progression.isUnlocked(deckIndex: index, packs: store.packs, solved: solved)
+                && !Progression.isComplete(deck, solved: solved)
+        }?.element.id
+    }
+
     var body: some View {
         List {
             if let error = store.loadError {
@@ -45,6 +55,12 @@ struct DeckListView: View {
         .sheet(isPresented: $showProfile) {
             ProfileView()
         }
+        .onAppear {
+            // Screenshot automation: `--profile` opens the profile sheet.
+            if ProcessInfo.processInfo.arguments.contains("--profile") {
+                showProfile = true
+            }
+        }
     }
 
     // MARK: - Rows
@@ -64,9 +80,19 @@ struct DeckListView: View {
     private func deckCard(_ deck: ContentStore.LoadedPack, unlocked: Bool) -> some View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
-                Text(deck.pack.title)
-                    .font(.headline)
-                    .foregroundStyle(unlocked ? .primary : .secondary)
+                HStack(spacing: 8) {
+                    Text(deck.pack.title)
+                        .font(.headline)
+                        .foregroundStyle(unlocked ? .primary : .secondary)
+                    if deck.id == currentDeckId {
+                        Text("Continue")
+                            .font(.caption2.weight(.semibold))
+                            .padding(.horizontal, 7)
+                            .padding(.vertical, 2)
+                            .background(Color.accentColor.opacity(0.15), in: Capsule())
+                            .foregroundStyle(Color.accentColor)
+                    }
+                }
                 if let description = deck.pack.description {
                     Text(description)
                         .font(.caption)

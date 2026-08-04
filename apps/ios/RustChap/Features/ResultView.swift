@@ -4,6 +4,7 @@ struct ResultView: View {
     let loaded: ContentStore.LoadedPuzzle
     let result: EvalResult
     let via: EvaluatedVia
+    let deckCompleted: Bool
     let nextPuzzleId: String?
     let onRetry: () -> Void
     let onNext: (String) -> Void
@@ -38,6 +39,18 @@ struct ResultView: View {
                             .foregroundStyle(.tertiary)
                     }
                     .padding(.vertical, 4)
+                }
+
+                if deckCompleted {
+                    Section {
+                        Label {
+                            Text("Deck complete — the next chest is open!")
+                                .font(.subheadline.weight(.semibold))
+                        } icon: {
+                            Image(systemName: "lock.open.fill")
+                                .foregroundStyle(.yellow)
+                        }
+                    }
                 }
 
                 if result.status == .solved {
@@ -91,7 +104,7 @@ struct ResultView: View {
                         .buttonStyle(.borderedProminent)
                     } else if result.status == .solved {
                         Button(action: onDeckComplete) {
-                            Text("Deck finished — back to the decks")
+                            Text(deckCompleted ? "Open the next chest" : "Back to the decks")
                                 .font(.headline)
                                 .frame(maxWidth: .infinity)
                         }

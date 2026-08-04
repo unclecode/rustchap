@@ -95,6 +95,13 @@ Verified by simulator-SDK build plus a macOS harness that compiles the real
   (UserDefaults) and marks dirty on server failure; `bootstrap()` pushes dirty profiles when
   the server returns. ProfileView renders the local cache instantly and says plainly when a
   save is device-only.
+- **Progress dashboard** (ProfileView, phase 7): solved/optimal/attempt stat blocks +
+  strongest / needs-more-work concept lists with progress bars, computed on-device
+  (`conceptStrengths`: SwiftData records joined to puzzle `concepts`; needs-work excludes
+  strongest to avoid overlap). Deck home shows a "Continue" chip on the first
+  unlocked-incomplete deck (`DeckListView.currentDeckId`); completing a deck's last unsolved
+  puzzle shows "Deck complete — the next chest is open" (`PresentedResult.deckCompleted`).
+  `--profile` launch arg opens the sheet for screenshot automation.
 
 ## Shipped: server integration (step 15 — Milestone 2)
 
