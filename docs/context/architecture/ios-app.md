@@ -84,9 +84,17 @@ Verified by simulator-SDK build plus a macOS harness that compiles the real
 - **Automation**: `--open <puzzle-id>` launch argument deep-links to a puzzle
   (`RustChapApp.init`), used for simulator screenshot verification.
 - **Skills** (`ConceptView.swift`): `content/concepts` is bundled as a second folder reference;
-  `ContentStore.concepts(for:)` maps a puzzle's `concepts` ids to loaded `Concept`s. The puzzle
-  screen shows a "Skills for this puzzle" section (title + summary rows); tapping opens the
-  lecture sheet with highlighted example code — teaches what the puzzle needs, Euclidea-style.
+  `ContentStore.concepts(for:)` maps a puzzle's `concepts` ids to loaded `Concept`s.
+  `SkillsSheet` (book toolbar icon) lists them and pushes `ConceptLectureView`; `HintsSheet`
+  (lightbulb icon) shows hints — both moved OUT of the puzzle scroll so the screen stays compact.
+- **No-scroll puzzle layout**: Run is pinned via `safeAreaInset(edge: .bottom)` in a material
+  bar — always visible; skills/hints live in the toolbar. The scroll contains only goal + code.
+- **Appearance**: `@AppStorage("appearance")` (system/light/dark) → `.preferredColorScheme`;
+  segmented picker in ProfileView.
+- **Offline-safe profile**: `SyncService.updateProfile` always writes the local cache
+  (UserDefaults) and marks dirty on server failure; `bootstrap()` pushes dirty profiles when
+  the server returns. ProfileView renders the local cache instantly and says plainly when a
+  save is device-only.
 
 ## Shipped: server integration (step 15 — Milestone 2)
 

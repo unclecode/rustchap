@@ -21,12 +21,12 @@ struct PuzzleScreen: View {
     @State private var blockOrder: [Block] = []
     @State private var chosenCandidate: String?
     @State private var activeSlot: Slot?
-    @State private var activeConcept: Concept?
+    @State private var showSkills = false
+    @State private var showHints = false
     @State private var errorSlotIds: Set<String> = []
     @State private var presentedResult: PresentedResult?
     @State private var pendingNextId: String?
     @State private var pendingGoHome = false
-    @State private var showHints = false
     @State private var evaluating = false
 
     private var puzzle: Puzzle { loaded.puzzle }
@@ -39,63 +39,52 @@ struct PuzzleScreen: View {
             }
 
             interactionSection
-
-            let skills = store.concepts(for: puzzle)
-            if !skills.isEmpty {
-                Section("Skills for this puzzle") {
-                    ForEach(skills) { concept in
-                        Button {
-                            activeConcept = concept
-                        } label: {
-                            HStack(spacing: 12) {
-                                Image(systemName: "book.closed")
-                                    .foregroundStyle(.tint)
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(concept.title)
-                                        .font(.subheadline.weight(.medium))
-                                        .foregroundStyle(.primary)
-                                    Text(concept.summary)
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
-                                        .lineLimit(1)
-                                }
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .font(.caption.weight(.semibold))
-                                    .foregroundStyle(.tertiary)
-                            }
-                        }
-                        .buttonStyle(.plain)
-                    }
-                }
-            }
-
-            if !puzzle.hints.isEmpty {
-                Section {
-                    DisclosureGroup("Hints", isExpanded: $showHints) {
-                        ForEach(Array(puzzle.hints.enumerated()), id: \.offset) { _, hint in
-                            Text(hint).font(.footnote)
-                        }
-                    }
-                }
-            }
-
-            Section {
-                Button(action: run) {
-                    if evaluating {
-                        ProgressView()
-                            .frame(maxWidth: .infinity)
-                    } else {
-                        Text("Run")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                    }
-                }
-                .disabled(!canRun || evaluating)
-            }
         }
         .navigationTitle(puzzle.title)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                if !store.concepts(for: puzzle).isEmpty {
+                    Button {
+                        showSkills = true
+                    } label: {
+                        Image(systemName: "book.closed")
+                    }
+                }
+                if !puzzle.hints.isEmpty {
+                    Button {
+                        showHints = true
+                    } label: {
+                        Image(systemName: "lightbulb")
+                    }
+                }
+            }
+        }
+        .safeAreaInset(edge: .bottom) {
+            Button(action: run) {
+                Group {
+                    if evaluating {
+                        ProgressView()
+                    } else {
+                        Text("Run")
+                            .font(.headline)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 6)
+            }
+            .buttonStyle(.borderedProminent)
+            .disabled(!canRun || evaluating)
+            .padding(.horizontal)
+            .padding(.vertical, 8)
+            .background(.thinMaterial)
+        }
+        .sheet(isPresented: $showSkills) {
+            SkillsSheet(concepts: store.concepts(for: puzzle))
+        }
+        .sheet(isPresented: $showHints) {
+            HintsSheet(hints: puzzle.hints)
+        }
         .onAppear {
             resetToInitial()
             applyAutomationArguments()
@@ -103,9 +92,6 @@ struct PuzzleScreen: View {
         .sensoryFeedback(trigger: presentedResult?.id) { _, _ in
             guard let presented = presentedResult else { return nil }
             return presented.result.status == .solved ? .success : .error
-        }
-        .sheet(item: $activeConcept) { concept in
-            ConceptView(concept: concept)
         }
         .sheet(item: $activeSlot) { slot in
             ChoiceTray(slot: slot, selectedChoiceId: selections[slot.id]) { choice in

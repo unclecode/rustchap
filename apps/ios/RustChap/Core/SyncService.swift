@@ -41,11 +41,40 @@ final class SyncService {
         }
     }
 
+    // MARK: Local profile cache (works offline; pushed when the server returns)
+
+    private static let nameKey = "profile_name"
+    private static let emailKey = "profile_email"
+    private static let dirtyKey = "profile_dirty"
+
+    var localProfile: (name: String, email: String) {
+        (UserDefaults.standard.string(forKey: Self.nameKey) ?? "",
+         UserDefaults.standard.string(forKey: Self.emailKey) ?? "")
+    }
+
+    private var profileDirty: Bool {
+        get { UserDefaults.standard.bool(forKey: Self.dirtyKey) }
+        set { UserDefaults.standard.set(newValue, forKey: Self.dirtyKey) }
+    }
+
     /// Called at launch: ensure identity exists, then reconcile with the server.
     func bootstrap() async {
         dlog("bootstrap: token present = \(DeviceCredentials.token != nil)")
         await ensureRegistered()
+        await pushProfileIfDirty()
         await syncNow()
+    }
+
+    private func pushProfileIfDirty() async {
+        guard profileDirty, DeviceCredentials.token != nil else { return }
+        let (name, email) = localProfile
+        if (try? await api.updateProfile(
+            name: name.isEmpty ? nil : name,
+            email: email.isEmpty ? nil : email
+        )) != nil {
+            profileDirty = false
+            dlog("pending profile pushed")
+        }
     }
 
     private func ensureRegistered() async {
@@ -108,11 +137,17 @@ final class SyncService {
         try? await api.profile()
     }
 
+    /// Always saves locally; returns whether the server also has it now.
+    /// Offline saves are pushed automatically on the next bootstrap.
     func updateProfile(name: String?, email: String?) async -> Bool {
+        UserDefaults.standard.set(name ?? "", forKey: Self.nameKey)
+        UserDefaults.standard.set(email ?? "", forKey: Self.emailKey)
         do {
             try await api.updateProfile(name: name, email: email)
+            profileDirty = false
             return true
         } catch {
+            profileDirty = true
             return false
         }
     }

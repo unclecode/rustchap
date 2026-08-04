@@ -1,20 +1,36 @@
-// Optional profile: name and email are never required to play. Identity is
-// the anonymous device; these fields just attach a human to it.
+// Optional profile + app settings. Name/email are never required to play;
+// saves land locally first and reach the server when it's reachable.
 
 import SwiftUI
 
 struct ProfileView: View {
     @Environment(SyncService.self) private var sync
     @Environment(\.dismiss) private var dismiss
+    @AppStorage("appearance") private var appearance = "system"
 
     @State private var name = ""
     @State private var email = ""
     @State private var saving = false
-    @State private var saved = false
+    @State private var saveState: SaveState = .none
+
+    enum SaveState {
+        case none, synced, localOnly
+    }
 
     var body: some View {
         NavigationStack {
             Form {
+                Section {
+                    Picker("Appearance", selection: $appearance) {
+                        Text("System").tag("system")
+                        Text("Light").tag("light")
+                        Text("Dark").tag("dark")
+                    }
+                    .pickerStyle(.segmented)
+                } header: {
+                    Text("Theme")
+                }
+
                 Section {
                     TextField("Name (optional)", text: $name)
                         .textContentType(.name)
@@ -33,11 +49,14 @@ struct ProfileView: View {
                         if saving {
                             ProgressView().frame(maxWidth: .infinity)
                         } else {
-                            Text(saved ? "Saved ✓" : "Save")
-                                .frame(maxWidth: .infinity)
+                            Text(saveLabel).frame(maxWidth: .infinity)
                         }
                     }
                     .disabled(saving)
+                } footer: {
+                    if saveState == .localOnly {
+                        Text("Server unreachable — saved on this device and will sync automatically when the server returns.")
+                    }
                 }
 
                 Section {
@@ -65,22 +84,34 @@ struct ProfileView: View {
                 }
             }
             .task {
+                // Local cache renders instantly; server copy refreshes it when available.
+                let local = sync.localProfile
+                name = local.name
+                email = local.email
                 if let profile = await sync.profile() {
-                    name = profile.name ?? ""
-                    email = profile.email ?? ""
+                    if name.isEmpty { name = profile.name ?? "" }
+                    if email.isEmpty { email = profile.email ?? "" }
                 }
             }
         }
     }
 
+    private var saveLabel: String {
+        switch saveState {
+        case .none: "Save"
+        case .synced: "Saved ✓"
+        case .localOnly: "Saved on device"
+        }
+    }
+
     private func save() {
         saving = true
-        saved = false
         Task {
-            saved = await sync.updateProfile(
+            let synced = await sync.updateProfile(
                 name: name.isEmpty ? nil : name,
                 email: email.isEmpty ? nil : email
             )
+            saveState = synced ? .synced : .localOnly
             saving = false
         }
     }

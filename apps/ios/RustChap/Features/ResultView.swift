@@ -101,6 +101,11 @@ struct ResultView: View {
             }
             .navigationTitle(loaded.puzzle.title)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    SheetCloseButton()
+                }
+            }
         }
     }
 

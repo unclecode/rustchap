@@ -12,7 +12,16 @@ struct RustChapApp: App {
     @State private var store = ContentStore()
     @State private var sync: SyncService
     @State private var path: [Route] = []
+    @AppStorage("appearance") private var appearance = "system"
     private let container: ModelContainer
+
+    private var colorScheme: ColorScheme? {
+        switch appearance {
+        case "light": .light
+        case "dark": .dark
+        default: nil
+        }
+    }
 
     init() {
         let container = try! ModelContainer(for: PuzzleProgressRecord.self)
@@ -52,6 +61,7 @@ struct RustChapApp: App {
             }
             .environment(store)
             .environment(sync)
+            .preferredColorScheme(colorScheme)
             .task {
                 await store.refreshFromServer()
                 await sync.bootstrap()

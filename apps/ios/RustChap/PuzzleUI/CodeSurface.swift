@@ -154,6 +154,11 @@ struct ChoiceTray: View {
             }
             .navigationTitle(slot.label ?? slot.id)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    SheetCloseButton()
+                }
+            }
         }
         .presentationDetents([.height(CGFloat(140 + slot.choices.count * 52))])
         .presentationDragIndicator(.visible)
