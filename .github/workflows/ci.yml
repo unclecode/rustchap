@@ -1,0 +1,61 @@
+# RustChap CI (build-order step 29).
+#
+# Two jobs on every push/PR:
+#   rust-and-content — workspace tests, then the full outcomes check: the
+#     linter recompiles all enumerated submissions with the pinned toolchain
+#     and fails if any stored verdict drifted. Then the progression audit.
+#   ios-build — simulator-SDK compile of the app (no signing, no upload;
+#     TestFlight is step 31 with its own signing pipeline).
+#
+# The Rust toolchain below must match the packs' pinned `toolchain`
+# (content/packs/*/pack.json) or the linter reports a version mismatch.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  rust-and-content:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust (pinned to the packs' toolchain)
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.97.1"
+          components: clippy
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Workspace tests
+        run: cargo test --workspace
+
+      - name: Outcomes check (recompile every submission)
+        run: cargo run -p puzzle-linter --release -- --check --concepts content/concepts content/packs/*/
+
+      - name: Progression audit
+        run: python3 tools/audit-progression.py
+
+  ios-build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select newest Xcode
+        run: |
+          DEVELOPER_DIR="$(ls -d /Applications/Xcode*.app | sort -V | tail -1)/Contents/Developer"
+          echo "DEVELOPER_DIR=$DEVELOPER_DIR" >> "$GITHUB_ENV"
+          echo "Using $DEVELOPER_DIR"
+
+      - name: Build (simulator SDK, no signing required)
+        run: |
+          xcodebuild -project apps/ios/RustChap.xcodeproj \
+            -target RustChap -configuration Debug \
+            -sdk iphonesimulator build
