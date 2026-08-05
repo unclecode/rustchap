@@ -103,8 +103,16 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       per-surface persistent chats (home/deck/puzzle), streaming markdown, UIKit-backed
       selection, per-message copy; (e) home = 2-column card grid with tinted SF Symbol deck
       tiles (`pack.json` icon/accent), puzzle rows carry interaction-type glyphs; (f) two stale
-      api test assertions refreshed. NEXT in phase 8: step 34 App Store prep (external testers deliberately skipped by user
-      decision 2026-08-05 — publishing directly; beta feedback will come from the store).
+      api test assertions refreshed. NEXT in phase 8: step 34 final ASC session (DSA non-trader declaration, age rating,
+      privacy labels, listing + screenshots upload, attach build 2, Submit for Review).
+- [x] 33. PUBLIC + LICENSED (2026-08-05): repo public at github.com/unclecode/rustchap,
+      Apache-2.0 WITH Commons Clause (use/modify/contribute freely; selling not granted —
+      user's choice over MIT/Apache dual). Public README, GitHub Pages from /docs:
+      privacy policy + support at unclecode.github.io/rustchap. History secret-scanned
+      clean before the flip. External testers skipped by user decision — feedback comes
+      from the store. Store prep DONE: 5 screenshots 1320×2868 (.context/store-screenshots,
+      gitignored), listing draft (.context/store-listing.md), trademark check clean
+      (name OK with independence disclaimer; Ferris is CC0).
 - [x] 28. DECIDED (2026-08-05): **v0.1 ships serverless.** The app is fully functional
       offline: bundled content, precomputed verdicts on device, progress in SwiftData, tutor
       on-device by default (OpenRouter only when the user supplies a key). `services/api`
