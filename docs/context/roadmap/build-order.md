@@ -109,7 +109,12 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       + published policy (unclecode.github.io/rustchap/privacy.html), DSA non-trader active,
       content rights declared, five 6.9" screenshots, reviewer notes explain the offline
       verdict design and the BYO-key tutor. Submission id 8d58ae23; the user pressed the
-      final Submit personally. Remaining after approval: user presses Release, then add the
+      final Submit personally. SWAPPED 2026-08-05 evening: original submission canceled,
+      build 3 (levels + Foundations) attached to 0.1 and resubmitted (submission 1c7e6a26,
+      WAITING_FOR_REVIEW 13:08 UTC) - the public's first version ships the full curriculum.
+      TestFlight: Core Testers auto-updated to build 3; Friends group waits on build 2's
+      beta review (one-build-per-version rule), add build 3 there after it clears.
+      Remaining after approval: user presses Release, then add the
       App Store link to README + Pages. NOTE: ASC Developer-role API key can read review
       submissions but not submit (403) - a future App Manager key would fully automate.
 - [x] 33. PUBLIC + LICENSED (2026-08-05): repo public at github.com/unclecode/rustchap,
