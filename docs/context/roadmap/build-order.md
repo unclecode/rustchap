@@ -103,8 +103,15 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       per-surface persistent chats (home/deck/puzzle), streaming markdown, UIKit-backed
       selection, per-message copy; (e) home = 2-column card grid with tinted SF Symbol deck
       tiles (`pack.json` icon/accent), puzzle rows carry interaction-type glyphs; (f) two stale
-      api test assertions refreshed. NEXT in phase 8: step 34 final ASC session (DSA non-trader declaration, age rating,
-      privacy labels, listing + screenshots upload, attach build 2, Submit for Review).
+      api test assertions refreshed. - [x] 34. SUBMITTED TO APP REVIEW (2026-08-05, API-verified WAITING_FOR_REVIEW at 11:31 UTC).
+      Version 0.1 build 2, free, all 175 territories, manual release. Listing: Education +
+      Developer Tools, 4+ age rating (full questionnaire), privacy label "Data Not Collected"
+      + published policy (unclecode.github.io/rustchap/privacy.html), DSA non-trader active,
+      content rights declared, five 6.9" screenshots, reviewer notes explain the offline
+      verdict design and the BYO-key tutor. Submission id 8d58ae23; the user pressed the
+      final Submit personally. Remaining after approval: user presses Release, then add the
+      App Store link to README + Pages. NOTE: ASC Developer-role API key can read review
+      submissions but not submit (403) - a future App Manager key would fully automate.
 - [x] 33. PUBLIC + LICENSED (2026-08-05): repo public at github.com/unclecode/rustchap,
       Apache-2.0 WITH Commons Clause (use/modify/contribute freely; selling not granted —
       user's choice over MIT/Apache dual). Public README, GitHub Pages from /docs:
