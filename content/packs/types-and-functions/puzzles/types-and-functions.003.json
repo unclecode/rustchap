@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.003",
+  "version": 1,
+  "title": "Bigger of Two",
+  "track": "types-and-functions",
+  "concepts": [
+    "expressions",
+    "functions"
+  ],
+  "difficulty": 1,
+  "goal": "Return the larger argument. The if needs to be the value, not a statement.",
+  "template": "fn main() {\n    println!(\"{}\", bigger(⟦args⟧));\n}\n\nfn bigger(a: i32, b: i32) -> i32 {\n    ⟦body⟧\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "args",
+        "original": "3, 7",
+        "label": "call arguments",
+        "choices": [
+          {
+            "id": "a1",
+            "text": "3, 7"
+          },
+          {
+            "id": "a2",
+            "text": "3"
+          },
+          {
+            "id": "a3",
+            "text": "\"3\", \"7\""
+          }
+        ]
+      },
+      {
+        "id": "body",
+        "original": "a > b",
+        "label": "function body",
+        "choices": [
+          {
+            "id": "b1",
+            "text": "a > b"
+          },
+          {
+            "id": "b2",
+            "text": "if a > b { a } else { b }"
+          },
+          {
+            "id": "b3",
+            "text": "if a > b { a; } else { b; }"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn picks_bigger() {\n    assert_eq!(bigger(3, 7), 7);\n    assert_eq!(bigger(9, 2), 9);\n    assert_eq!(bigger(4, 4), 4);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "`a > b` is a bool. The function promises an i32.",
+    "Semicolons inside the branches turn values into statements."
+  ],
+  "explanation": "`a > b` alone returns a `bool` where an `i32` was promised (E0308). Wrapping it in an if expression whose branches are bare values - `if a > b { a } else { b }` - makes the comparison choose the return value. Add semicolons inside the branches and both produce `()`, back to E0308. The call site must also pass exactly two i32 arguments.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings if1"
+  }
+}

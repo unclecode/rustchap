@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "collections.002",
+  "version": 1,
+  "title": "Build the List",
+  "track": "collections",
+  "concepts": [
+    "vec-basics"
+  ],
+  "difficulty": 1,
+  "goal": "Return the list 10, 20, 30 with 40 pushed on the end.",
+  "template": "fn build() -> Vec<i32> {\n    ⟦decl⟧ v = ⟦make⟧;\n    v.push(40);\n    v\n}\n\nfn main() {\n    println!(\"{:?}\", build());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "decl",
+        "original": "let",
+        "label": "binding",
+        "choices": [
+          {
+            "id": "d1",
+            "text": "let"
+          },
+          {
+            "id": "d2",
+            "text": "let mut"
+          },
+          {
+            "id": "d3",
+            "text": "const"
+          }
+        ]
+      },
+      {
+        "id": "make",
+        "original": "[10, 20, 30]",
+        "label": "initial list",
+        "choices": [
+          {
+            "id": "m1",
+            "text": "[10, 20, 30]"
+          },
+          {
+            "id": "m2",
+            "text": "vec![10, 20, 30]"
+          },
+          {
+            "id": "m3",
+            "text": "Vec::with_capacity(3)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn builds() {\n    assert_eq!(build(), vec![10, 20, 30, 40]);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "push changes the vec, and change needs permission.",
+    "with_capacity reserves space but the vec starts empty."
+  ],
+  "explanation": "Two fixes: `push` mutates, so the binding needs `let mut` (E0596 without it), and `[10, 20, 30]` is a fixed-size array, not a Vec - it has no `push` and the wrong return type. `vec![10, 20, 30]` is the list you meant. `Vec::with_capacity(3)` compiles and pushes fine, but starts empty: the test sees [40] and fails. Capacity is a promise about memory, not contents.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings vecs1"
+  }
+}

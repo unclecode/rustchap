@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "structs-and-enums.001",
+  "version": 1,
+  "title": "Shape Your Data",
+  "track": "structs-and-enums",
+  "concepts": [
+    "structs",
+    "enums-basics"
+  ],
+  "difficulty": 1,
+  "goal": "Structs name a shape with fields; enums name the alternatives; match handles them.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "A struct names a shape: fields with types. You build one by filling in every field - Rust has no partially built values (E0063 if you forget one)."
+      },
+      {
+        "kind": "code",
+        "code": "struct User { name: String }\n\nlet u = User { name: String::from(\"Ferris\") };",
+        "caption": "Every field named, every field filled."
+      },
+      {
+        "kind": "prose",
+        "text": "Behavior lives in an `impl` block. A method that only reads takes `&self`; a method that consumes its value takes `self`. The difference is not style: after a `self` method runs, the value is gone, and a second call is E0382. You will feel this in the puzzle."
+      },
+      {
+        "kind": "prose",
+        "text": "An enum is the other shape tool: a value that is exactly one of a fixed set of variants, each optionally carrying data. `enum Command { Add(i32), Reset }` - two shapes, one type."
+      },
+      {
+        "kind": "code",
+        "code": "match cmd {\n    Command::Add(n) => total + n,\n    Command::Reset => 0,\n}",
+        "caption": "match takes each shape apart by name."
+      },
+      {
+        "kind": "prose",
+        "text": "`match` must cover every variant - the compiler counts (E0004). When you add a variant next month, every match you forgot becomes a compile error instead of a 3 a.m. bug. This exhaustiveness is one of Rust's best gifts; the Pattern Matching deck in Core goes deep on it."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Structs name a shape with fields; enums name the alternatives; match handles them.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "distilled from rustlings 07_structs and 08_enums"
+  }
+}

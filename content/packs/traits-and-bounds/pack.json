@@ -11,5 +11,6 @@
     "traits-and-bounds.003"
   ],
   "icon": "checkmark.seal.fill",
-  "accent": "green"
+  "accent": "green",
+  "level": "advanced"
 }

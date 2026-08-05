@@ -14,5 +14,6 @@
     "remove-the-clone.006"
   ],
   "icon": "doc.on.doc.fill",
-  "accent": "red"
+  "accent": "red",
+  "level": "core"
 }

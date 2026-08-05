@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "hashmap-basics",
+  "title": "HashMap essentials",
+  "summary": "insert and get for single keys; entry().or_insert() for update-or-create.",
+  "lecture": [
+    "`HashMap<K, V>` stores values by key. `insert` writes, `get` returns an `Option` because the key may be absent. Indexing with `map[key]` panics on a missing key - fine for known keys, wrong for counting.",
+    "The counting idiom is `entry`: `map.entry(key).or_insert(0)` returns a mutable reference to the existing value, inserting the default first if needed. Bump it through the reference: `*count += 1`.",
+    "That `*` matters: the entry API hands you a `&mut i32`, and `+=` works on the value, not the reference (E0368 if you forget)."
+  ],
+  "example": {
+    "code": "let count = map.entry(word.to_string()).or_insert(0);\n*count += 1;",
+    "caption": "One line handles both the first and every later sighting."
+  }
+}

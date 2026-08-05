@@ -13,5 +13,6 @@
     "slices-and-views.005"
   ],
   "icon": "scissors",
-  "accent": "teal"
+  "accent": "teal",
+  "level": "core"
 }

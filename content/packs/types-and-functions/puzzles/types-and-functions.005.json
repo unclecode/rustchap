@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.005",
+  "version": 1,
+  "title": "Grade the Score",
+  "track": "types-and-functions",
+  "concepts": [
+    "expressions"
+  ],
+  "difficulty": 2,
+  "goal": "Sixty passes. Fix the comparison and make the if produce the value.",
+  "template": "fn main() {\n    println!(\"{}\", grade(72));\n}\n\nfn grade(score: i32) -> &'static str {\n    if score ⟦cmp⟧ { ⟦pass_val⟧ } else { \"fail\" }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "cmp",
+        "original": "> 60",
+        "label": "comparison",
+        "choices": [
+          {
+            "id": "c1",
+            "text": "> 60"
+          },
+          {
+            "id": "c2",
+            "text": ">= 60"
+          },
+          {
+            "id": "c3",
+            "text": "= 60"
+          }
+        ]
+      },
+      {
+        "id": "pass_val",
+        "original": "\"pass\";",
+        "label": "pass branch",
+        "choices": [
+          {
+            "id": "p1",
+            "text": "\"pass\";"
+          },
+          {
+            "id": "p2",
+            "text": "\"pass\""
+          },
+          {
+            "id": "p3",
+            "text": "pass"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn grades() {\n    assert_eq!(grade(60), \"pass\");\n    assert_eq!(grade(59), \"fail\");\n    assert_eq!(grade(90), \"pass\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Every choice compiles except two. The tests know which boundary matters.",
+    "A single = is assignment, not comparison."
+  ],
+  "explanation": "Two failures hide here. `> 60` compiles but fails the boundary test: sixty should pass, so the comparison is `>= 60`. And the branch value must be a bare expression: `\"pass\";` ends with a semicolon, making the branch `()` while the else branch is `&str` - E0308. Off-by-one bugs compile; that is what tests are for.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings if2"
+  }
+}

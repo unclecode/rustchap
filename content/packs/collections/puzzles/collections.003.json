@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "collections.003",
+  "version": 1,
+  "title": "Double Each",
+  "track": "collections",
+  "concepts": [
+    "vec-basics"
+  ],
+  "difficulty": 1,
+  "goal": "Walk the slice and push each element doubled.",
+  "template": "fn doubled(values: &[i32]) -> Vec<i32> {\n    let mut out = Vec::new();\n    for ⟦pat⟧ in values {\n        out.push(⟦expr⟧);\n    }\n    out\n}\n\nfn main() {\n    println!(\"{:?}\", doubled(&[1, 2, 3]));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "pat",
+        "original": "(i, n)",
+        "label": "loop variable",
+        "choices": [
+          {
+            "id": "p1",
+            "text": "(i, n)"
+          },
+          {
+            "id": "p2",
+            "text": "n"
+          },
+          {
+            "id": "p3",
+            "text": "n: i32"
+          }
+        ]
+      },
+      {
+        "id": "expr",
+        "original": "n + 2",
+        "label": "pushed value",
+        "choices": [
+          {
+            "id": "e1",
+            "text": "n + 2"
+          },
+          {
+            "id": "e2",
+            "text": "n * 2"
+          },
+          {
+            "id": "e3",
+            "text": "twice(n)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn doubles_all() {\n    assert_eq!(doubled(&[1, 2, 3]), vec![2, 4, 6]);\n    assert_eq!(doubled(&[]), Vec::<i32>::new());\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The loop yields one element at a time, not a pair.",
+    "Doubling is multiplication. The tests notice the difference."
+  ],
+  "explanation": "Iterating a slice yields one element per pass, so the pattern is a single name - a tuple pattern expects pairs (E0308), and type annotations do not belong in for patterns. Then the arithmetic: `n + 2` compiles as happily as `n * 2`, and only the tests can tell doubling from adding two. Compiling green is not passing green.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings vecs2"
+  }
+}

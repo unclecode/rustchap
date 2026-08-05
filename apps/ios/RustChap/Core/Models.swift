@@ -13,6 +13,16 @@ struct Pack: Decodable, Hashable {
     /// Display-only deck identity (SF Symbol name + named accent color).
     let icon: String?
     let accent: String?
+    /// Curriculum level id (packs/levels.json); absent means "core".
+    let level: String?
+}
+
+/// One curriculum tier (Foundations → Core → Advanced → Mastery), from
+/// packs/levels.json. Array order in the manifest IS the display order.
+struct Level: Decodable, Identifiable, Hashable {
+    let id: String
+    let title: String
+    let tagline: String?
 }
 
 struct Puzzle: Decodable, Identifiable, Hashable {

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.005",
+  "version": 1,
+  "title": "Assemble the Tally",
+  "track": "first-steps",
+  "concepts": [
+    "bindings",
+    "expressions"
+  ],
+  "difficulty": 2,
+  "goal": "Order the three statements so tally() returns 10.",
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn tally() -> i32 {",
+    "blocks": [
+      {
+        "id": "declare",
+        "text": "\n    let mut count = 0;"
+      },
+      {
+        "id": "add",
+        "text": "\n    count += 5;"
+      },
+      {
+        "id": "double",
+        "text": "\n    count *= 2;"
+      }
+    ],
+    "fixed_suffix": "\n    count\n}\n\nfn main() {\n    println!(\"tally: {}\", tally());\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn totals_ten() {\n    assert_eq!(tally(), 10);\n}"
+    ],
+    "metrics": [
+      "mut_bindings"
+    ]
+  },
+  "scoring": {
+    "primary": "mut_bindings",
+    "secondary": [],
+    "fluent": {
+      "mut_bindings": 1
+    },
+    "optimal": {
+      "mut_bindings": 1
+    }
+  },
+  "hints": [
+    "A name has to exist before anything can change it.",
+    "Adding five then doubling is not the same as doubling then adding five."
+  ],
+  "explanation": "The binding must come first: using `count` before `let mut count` is E0425. After that, order is arithmetic: `(0 + 5) * 2` is 10, while `(0 * 2) + 5` is 5. Both orders compile - only one passes the test. Statement order is program behavior, not decoration.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "inspired by 01_variables ordering drills"
+  }
+}

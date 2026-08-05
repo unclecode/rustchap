@@ -11,15 +11,28 @@ struct DeckListView: View {
     @Query private var progress: [PuzzleProgressRecord]
     @State private var showProfile = false
     @State private var showMarkdownPreview = false
+    @AppStorage("selectedLevel") private var selectedLevel = ""
 
     /// The first unlocked, incomplete, non-empty deck — where the player is.
     private var currentDeckId: String? {
         let solved = Progression.solvedIds(progress)
-        return store.packs.enumerated().first { index, deck in
+        return store.packs.first { deck in
             !deck.puzzles.isEmpty
-                && Progression.isUnlocked(deckIndex: index, packs: store.packs, solved: solved)
+                && Progression.isUnlocked(deckId: deck.id, packs: store.packs, solved: solved)
                 && !Progression.isComplete(deck, solved: solved)
-        }?.element.id
+        }?.id
+    }
+
+    /// The level whose grid is showing: the persisted pick when valid,
+    /// otherwise wherever the current deck lives, otherwise the first level.
+    private var activeLevelId: String {
+        let visible = store.visibleLevels
+        if visible.contains(where: { $0.id == selectedLevel }) { return selectedLevel }
+        if let current = currentDeckId,
+           let deck = store.packs.first(where: { $0.id == current }) {
+            return ContentStore.levelId(of: deck.pack)
+        }
+        return visible.first?.id ?? "core"
     }
 
     private let columns = [
@@ -34,9 +47,12 @@ struct DeckListView: View {
                     .foregroundStyle(.red)
                     .padding(.horizontal)
             }
+            if store.visibleLevels.count > 1 {
+                levelChips
+            }
             LazyVGrid(columns: columns, spacing: 12) {
-                ForEach(Array(store.packs.enumerated()), id: \.element.id) { index, deck in
-                    deckCell(deck, unlocked: isUnlocked(index))
+                ForEach(store.packs(in: activeLevelId)) { deck in
+                    deckCell(deck, unlocked: isUnlocked(deck))
                 }
             }
             .padding(.horizontal)
@@ -234,10 +250,61 @@ struct DeckListView: View {
         deck.puzzles.filter { record(for: $0.id)?.bestRank == .optimal }.count
     }
 
-    private func isUnlocked(_ index: Int) -> Bool {
+    private func isUnlocked(_ deck: ContentStore.LoadedPack) -> Bool {
         Progression.isUnlocked(
-            deckIndex: index, packs: store.packs,
+            deckId: deck.id, packs: store.packs,
             solved: Progression.solvedIds(progress)
         )
+    }
+
+    // MARK: - Level chips
+
+    /// The curriculum tier selector: scrollable capsules, App Store style.
+    /// Selected chip fills with the app tint and carries that level's progress.
+    private var levelChips: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                ForEach(store.visibleLevels) { level in
+                    levelChip(level)
+                }
+            }
+            .padding(.horizontal)
+        }
+        .padding(.bottom, 10)
+    }
+
+    private func levelChip(_ level: Level) -> some View {
+        let selected = level.id == activeLevelId
+        let decks = store.packs(in: level.id)
+        let total = decks.reduce(0) { $0 + $1.puzzles.count }
+        let solved = decks.reduce(0) { $0 + solvedCount($1) }
+        let stars = decks.reduce(0) { $0 + optimalCount($1) }
+        return Button {
+            selectedLevel = level.id
+        } label: {
+            HStack(spacing: 5) {
+                Text(level.title)
+                    .font(.subheadline.weight(.semibold))
+                if total > 0 && solved > 0 {
+                    Text("\(solved)/\(total)")
+                        .font(.caption2.monospacedDigit())
+                        .opacity(0.75)
+                }
+                if stars > 0 {
+                    Label("\(stars)", systemImage: "star.fill")
+                        .font(.caption2)
+                        .foregroundStyle(selected ? .white : .yellow)
+                        .opacity(selected ? 0.9 : 1)
+                }
+            }
+            .padding(.horizontal, 13)
+            .padding(.vertical, 7)
+            .background(
+                selected ? AnyShapeStyle(Color.accentColor)
+                         : AnyShapeStyle(Color(.secondarySystemBackground)),
+                in: Capsule())
+            .foregroundStyle(selected ? .white : .primary)
+        }
+        .buttonStyle(.plain)
     }
 }

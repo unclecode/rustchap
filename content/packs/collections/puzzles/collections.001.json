@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "collections.001",
+  "version": 1,
+  "title": "Growable Data",
+  "track": "collections",
+  "concepts": [
+    "vec-basics",
+    "hashmap-basics"
+  ],
+  "difficulty": 1,
+  "goal": "Vec for lists, HashMap for lookups, and the entry idiom for counting.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "`Vec<T>` is Rust's growable list. Build it with the `vec!` macro or start empty with `Vec::new()`. Growth is mutation, so a vec you push into must be bound with `let mut`."
+      },
+      {
+        "kind": "code",
+        "code": "let mut v = vec![10, 20, 30];\nv.push(40);",
+        "caption": "vec! builds, push grows, mut permits."
+      },
+      {
+        "kind": "prose",
+        "text": "A plain array `[10, 20, 30]` has a fixed size baked into its type and no `push`. Arrays and vecs look alike at a glance; their types and their errors are different."
+      },
+      {
+        "kind": "prose",
+        "text": "Walk a vec with `for n in &v`. Borrowing the vec in the loop lets you use it again afterward - the ampersand will make full sense in the Core decks; for now it is simply how you loop without giving the vec away."
+      },
+      {
+        "kind": "code",
+        "code": "let mut map = std::collections::HashMap::new();\nmap.insert(\"crab\", 1);",
+        "caption": "HashMap stores values by key."
+      },
+      {
+        "kind": "prose",
+        "text": "The counting idiom deserves memorizing: `map.entry(key).or_insert(0)` returns a mutable reference to the entry, creating it with 0 first if needed. Bump through the reference with `*count += 1`. The star matters - you are changing the value the reference points at, and the last puzzle makes you feel exactly that."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Vec for lists, HashMap for lookups, and the entry idiom for counting.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "distilled from rustlings 05_vecs and 11_hashmaps"
+  }
+}

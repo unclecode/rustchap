@@ -11,5 +11,6 @@
     "smart-pointers.003"
   ],
   "icon": "link",
-  "accent": "pink"
+  "accent": "pink",
+  "level": "advanced"
 }

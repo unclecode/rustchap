@@ -21,6 +21,7 @@ ALLOWED_TIES = {
     # both answers genuinely idiomatic; explanation says so explicitly
     "pattern-matching.002": "named variant vs wildcard — future-proofing is unmeasurable",
     "pattern-matching.003": "match vs if let — equally idiomatic",
+    "strings-basics.002": "literal &str vs &String via deref coercion — both correct, lesson says so",
 }
 
 hard_flags, review = [], []

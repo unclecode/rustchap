@@ -14,12 +14,15 @@ enum Progression {
         !deck.puzzles.isEmpty && deck.puzzles.allSatisfy { solved.contains($0.id) }
     }
 
-    static func isUnlocked(deckIndex: Int, packs: [ContentStore.LoadedPack], solved: Set<String>) -> Bool {
-        deckIndex == 0 || isComplete(packs[deckIndex - 1], solved: solved)
-    }
-
+    /// Decks chain WITHIN their level only: the first deck of every level is
+    /// always open (levels are free to enter), later decks need the previous
+    /// same-level deck complete.
     static func isUnlocked(deckId: String, packs: [ContentStore.LoadedPack], solved: Set<String>) -> Bool {
-        guard let index = packs.firstIndex(where: { $0.id == deckId }) else { return false }
-        return isUnlocked(deckIndex: index, packs: packs, solved: solved)
+        guard let deck = packs.first(where: { $0.id == deckId }) else { return false }
+        let chain = packs.filter {
+            ContentStore.levelId(of: $0.pack) == ContentStore.levelId(of: deck.pack)
+        }
+        guard let index = chain.firstIndex(where: { $0.id == deckId }) else { return false }
+        return index == 0 || isComplete(chain[index - 1], solved: solved)
     }
 }

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics",
+  "title": "Strings",
+  "description": "String and &str at working level: create, clean, and grow text.",
+  "toolchain": "1.97.1",
+  "order": [
+    "strings-basics.001",
+    "strings-basics.002",
+    "strings-basics.003",
+    "strings-basics.004"
+  ],
+  "icon": "textformat",
+  "accent": "pink",
+  "level": "foundations"
+}

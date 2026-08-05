@@ -11,5 +11,6 @@
     "unsafe-rust.003"
   ],
   "icon": "exclamationmark.triangle.fill",
-  "accent": "red"
+  "accent": "red",
+  "level": "advanced"
 }

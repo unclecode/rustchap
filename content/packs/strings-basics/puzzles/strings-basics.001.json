@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.001",
+  "version": 1,
+  "title": "Two Kinds of Text",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types"
+  ],
+  "difficulty": 1,
+  "goal": "String owns and grows; &str borrows and views; methods flow between them.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Rust has two everyday text types, and every confusing string error comes from mixing them up. `String` owns its text and can grow. `&str` is borrowed text: a view of characters that live somewhere else. Every literal in your source, like `\"ferris\"`, is a `&str`."
+      },
+      {
+        "kind": "code",
+        "code": "let borrowed: &str = \"ferris\";\nlet owned: String = String::from(\"ferris\");",
+        "caption": "Same characters, different relationships to them."
+      },
+      {
+        "kind": "prose",
+        "text": "The working rule: functions that only read text take `&str`, and functions that produce new text return `String`. A literal passes straight into a `&str` parameter. A `String` does not - but `&owned` does, through a conversion the Core decks explain properly."
+      },
+      {
+        "kind": "prose",
+        "text": "Methods move between the two types, and chains type-check one step at a time. `trim()` returns a `&str` view of the same text. `to_string()`, `to_uppercase()`, and `replace(..)` allocate and return an owned `String`. The order of a chain decides its type."
+      },
+      {
+        "kind": "code",
+        "code": "let cleaned = raw.trim();            // &str view\nlet owned = cleaned.to_string();     // owned String",
+        "caption": "trim borrows; to_string allocates."
+      },
+      {
+        "kind": "prose",
+        "text": "Growing text in place uses `push_str` on a `mut String`. The `+` operator also concatenates but consumes its left side - if that sounds strange, good: it is the door to the ownership decks, where it becomes obvious."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "String owns and grows; &str borrows and views; methods flow between them.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "distilled from rustlings 09_strings"
+  }
+}

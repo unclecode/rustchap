@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "primitive-types",
+  "title": "The primitive types",
+  "summary": "Integers default to i32, floats to f64; annotations pin the type when inference cannot.",
+  "lecture": [
+    "Rust's primitives are precise about size and signedness: `i32`, `u8`, `f64`, `bool`, `char`. An integer literal like `10` defaults to `i32` unless something forces another type. When the compiler cannot infer, or a construct demands it (like `const`), you annotate: `let limit: u8 = 10;`.",
+    "Types never convert silently. Comparing an `i32` with a `u8`, or assigning an integer literal where an `f64` is expected, is error E0308, not a warning. Conversions are explicit, usually with `as` or `From`.",
+    "This strictness is the foundation the rest of the language builds on: once code compiles, the types you see are the types you get."
+  ],
+  "example": {
+    "code": "const LIMIT: i32 = 10;   // const always needs a type\nlet used = 7;            // inferred as i32",
+    "caption": "Both are i32, so `used < LIMIT` type-checks."
+  }
+}

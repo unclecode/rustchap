@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.002",
+  "version": 1,
+  "title": "Sign the Function",
+  "track": "types-and-functions",
+  "concepts": [
+    "functions",
+    "string-types"
+  ],
+  "difficulty": 1,
+  "goal": "Complete the signature and body so greeting works for any name.",
+  "template": "fn main() {\n    println!(\"{}\", greeting(\"Ferris\"));\n}\n\nfn greeting(⟦param⟧) -> String {\n    format!(\"hi {}\", ⟦who⟧)\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "param",
+        "original": "name",
+        "label": "parameter",
+        "choices": [
+          {
+            "id": "p1",
+            "text": "name"
+          },
+          {
+            "id": "p2",
+            "text": "name: &str"
+          },
+          {
+            "id": "p3",
+            "text": "name: i32"
+          }
+        ]
+      },
+      {
+        "id": "who",
+        "original": "name",
+        "label": "interpolated value",
+        "choices": [
+          {
+            "id": "w1",
+            "text": "name"
+          },
+          {
+            "id": "w2",
+            "text": "\"name\""
+          },
+          {
+            "id": "w3",
+            "text": "name()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn greets() {\n    assert_eq!(greeting(\"Ferris\"), \"hi Ferris\");\n    assert_eq!(greeting(\"Uncle Code\"), \"hi Uncle Code\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "Parameters always need a type in Rust.",
+    "Quotes around a name make it a literal, not a variable."
+  ],
+  "explanation": "A bare `name` parameter is a syntax error: Rust has no inference at function boundaries, so every parameter is `name: Type`. Text arrives as `&str`. In the body, `name` interpolates the parameter; `\"name\"` would compile but print the word name for every caller, which the tests catch at runtime.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings functions3"
+  }
+}

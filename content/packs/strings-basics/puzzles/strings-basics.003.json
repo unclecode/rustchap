@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.003",
+  "version": 1,
+  "title": "Tidy the Input",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types"
+  ],
+  "difficulty": 1,
+  "goal": "Trim the noise, swap the underscores, and mind what each method returns.",
+  "template": "fn tidy(raw: &str) -> String {\n    let cleaned = raw⟦first⟧;\n    cleaned⟦second⟧\n}\n\nfn main() {\n    println!(\"{}\", tidy(\"  rust_chap  \"));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "first",
+        "original": ".to_string()",
+        "label": "first step",
+        "choices": [
+          {
+            "id": "f1",
+            "text": ".to_string()"
+          },
+          {
+            "id": "f2",
+            "text": ".trim()"
+          },
+          {
+            "id": "f3",
+            "text": ".trim_end()"
+          }
+        ]
+      },
+      {
+        "id": "second",
+        "original": ".replace(\"_\", \" \")",
+        "label": "second step",
+        "choices": [
+          {
+            "id": "s1",
+            "text": ".replace(\"_\", \" \")"
+          },
+          {
+            "id": "s2",
+            "text": ".replace(\"_\", \" \");"
+          },
+          {
+            "id": "s3",
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn tidies() {\n    assert_eq!(tidy(\"  rust_chap  \"), \"rust chap\");\n    assert_eq!(tidy(\"a_b\"), \"a b\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "Which end of the text does trim_end leave dirty?",
+    "replace returns an owned String - exactly what the signature wants."
+  ],
+  "explanation": "`trim()` removes whitespace from both ends and returns a `&str` view; `replace` then produces the owned `String` the signature promises. `trim_end()` compiles but leaves the leading spaces - the test catches it. Starting with `to_string()` skips trimming entirely, and the empty second step leaves a `&str` where a `String` is due (E0308). Chains type-check step by step; read them the same way.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings strings3"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.004",
+  "version": 1,
+  "title": "Take the Tuple Apart",
+  "track": "types-and-functions",
+  "concepts": [
+    "tuples"
+  ],
+  "difficulty": 2,
+  "goal": "Sum the two halves of the point. Two access styles work; pick one that compiles.",
+  "template": "fn main() {\n    println!(\"{}\", sum_point((3, 7)));\n}\n\nfn sum_point(p: (i32, i32)) -> i32 {\n    let ⟦pattern⟧ = p;\n    ⟦result⟧\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "pattern",
+        "original": "[x, y]",
+        "label": "binding pattern",
+        "choices": [
+          {
+            "id": "p1",
+            "text": "[x, y]"
+          },
+          {
+            "id": "p2",
+            "text": "(x, y)"
+          },
+          {
+            "id": "p3",
+            "text": "x"
+          }
+        ]
+      },
+      {
+        "id": "result",
+        "original": "x + y",
+        "label": "result expression",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "x + y"
+          },
+          {
+            "id": "r2",
+            "text": "x.0 + x.1"
+          },
+          {
+            "id": "r3",
+            "text": "x, y"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn sums() {\n    assert_eq!(sum_point((3, 7)), 10);\n    assert_eq!(sum_point((0, 0)), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "Square brackets pattern-match arrays, not tuples.",
+    "If you bind the whole tuple to one name, index it with .0 and .1."
+  ],
+  "explanation": "Tuples destructure with parentheses: `let (x, y) = p;` then `x + y`. Square brackets are for arrays (E0529). The other honest path binds the whole tuple - `let x = p;` - and indexes it: `x.0 + x.1`. Both compile and pass; the destructuring version needs one edit instead of two, which is why it takes the star.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings primitive_types6"
+  }
+}

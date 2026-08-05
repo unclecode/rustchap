@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "structs-and-enums.003",
+  "version": 1,
+  "title": "Copy the Rest",
+  "track": "structs-and-enums",
+  "concepts": [
+    "structs"
+  ],
+  "difficulty": 1,
+  "goal": "Bump the count; take every other field from the base order.",
+  "template": "struct Order {\n    id: u32,\n    count: u32,\n    express: bool,\n}\n\nfn bump(base: Order) -> Order {\n    Order { count: ⟦bumped⟧, ⟦rest⟧ }\n}\n\nfn main() {\n    let next = bump(Order { id: 7, count: 2, express: true });\n    println!(\"{}\", next.count);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "bumped",
+        "original": "count + 1",
+        "label": "new count",
+        "choices": [
+          {
+            "id": "b1",
+            "text": "count + 1"
+          },
+          {
+            "id": "b2",
+            "text": "base.count + 1"
+          },
+          {
+            "id": "b3",
+            "text": "base.count ++"
+          }
+        ]
+      },
+      {
+        "id": "rest",
+        "original": "base",
+        "label": "remaining fields",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "base"
+          },
+          {
+            "id": "r2",
+            "text": "..base"
+          },
+          {
+            "id": "r3",
+            "text": "id: base.id"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn bumps() {\n    let next = bump(Order { id: 7, count: 2, express: true });\n    assert_eq!(next.count, 3);\n    assert_eq!(next.id, 7);\n    assert!(next.express);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "There is no bare count in scope - the value lives in base.",
+    "Two dots before a value fill in every remaining field."
+  ],
+  "explanation": "Inside `bump` there is no standalone `count`; the source value is `base.count` (E0425 otherwise, and Rust has no `++`). For the rest, struct update syntax `..base` copies every remaining field and must come last. Writing `base` alone looks like field shorthand for a field named base (E0560), and listing only `id` leaves `express` missing (E0063).",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings structs2"
+  }
+}

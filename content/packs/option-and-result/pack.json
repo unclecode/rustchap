@@ -14,5 +14,6 @@
     "option-and-result.005"
   ],
   "icon": "questionmark.circle.fill",
-  "accent": "blue"
+  "accent": "blue",
+  "level": "core"
 }

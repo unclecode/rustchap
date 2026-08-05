@@ -15,5 +15,6 @@
     "repair-the-lifetime.006"
   ],
   "icon": "hourglass",
-  "accent": "purple"
+  "accent": "purple",
+  "level": "core"
 }

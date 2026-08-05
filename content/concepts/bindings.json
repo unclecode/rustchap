@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "bindings",
+  "title": "Bindings, not variables",
+  "summary": "let creates an immutable binding by default; mut opts into change; shadowing rebinds a name.",
+  "lecture": [
+    "Rust calls them bindings, not variables, because by default they do not vary. `let x = 5;` binds a name to a value, and reassigning it is a compile error. If you want mutation, you say so up front with `let mut`. Reading Rust, `mut` is a signal: this value changes somewhere below.",
+    "Shadowing is the second tool: a new `let` with the same name creates a fresh binding, and the old one stops being visible. Unlike mutation, shadowing can change the type - parse a `&str` into an `i32` and keep the same name. It is idiomatic, not a trick.",
+    "`const` is for values fixed at compile time. It requires an explicit type, lives happily at the top level, and is named in SCREAMING_SNAKE_CASE by convention."
+  ],
+  "example": {
+    "code": "let spelled = \"three\";\nlet spelled = 3;       // shadowing: new binding, new type",
+    "caption": "The second let replaces the first for the rest of the scope."
+  }
+}

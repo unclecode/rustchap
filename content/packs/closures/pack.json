@@ -11,5 +11,6 @@
     "closures.003"
   ],
   "icon": "curlybraces",
-  "accent": "yellow"
+  "accent": "yellow",
+  "level": "core"
 }

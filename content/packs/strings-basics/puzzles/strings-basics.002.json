@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.002",
+  "version": 1,
+  "title": "Shout It",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types"
+  ],
+  "difficulty": 1,
+  "goal": "Pass text that a &str parameter accepts, and return the loud version.",
+  "template": "fn main() {\n    println!(\"{}\", shout(⟦arg⟧));\n}\n\nfn shout(name: &str) -> String {\n    ⟦body⟧\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "arg",
+        "original": "String::from(\"ferris\")",
+        "label": "argument",
+        "choices": [
+          {
+            "id": "a1",
+            "text": "String::from(\"ferris\")"
+          },
+          {
+            "id": "a2",
+            "text": "\"ferris\""
+          },
+          {
+            "id": "a3",
+            "text": "&String::from(\"ferris\")"
+          }
+        ]
+      },
+      {
+        "id": "body",
+        "original": "name.to_uppercase();",
+        "label": "body",
+        "choices": [
+          {
+            "id": "b1",
+            "text": "name.to_uppercase();"
+          },
+          {
+            "id": "b2",
+            "text": "name.to_uppercase()"
+          },
+          {
+            "id": "b3",
+            "text": "name"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn shouts() {\n    assert_eq!(shout(\"ferris\"), \"FERRIS\");\n    assert_eq!(shout(\"ok\"), \"OK\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "A literal is already a &str.",
+    "Watch the trailing semicolon in the body."
+  ],
+  "explanation": "A `String` does not pass where `&str` is expected (E0308) - but two fixes work: the literal `\"ferris\"` is already a `&str`, and `&String::from(\"ferris\")` converts through deref coercion. Both earn the star; the literal is simply shorter. In the body, `to_uppercase()` returns the owned String the signature promises - with a semicolon the body returns `()`, and returning `name` alone is a `&str` where a `String` is due.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings strings1/strings2"
+  }
+}

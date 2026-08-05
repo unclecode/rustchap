@@ -31,9 +31,11 @@ struct ScoreboardSheet: View {
                     .listRowBackground(Color.clear)
                 }
 
-                Section("Decks") {
-                    ForEach(store.packs.filter { !$0.puzzles.isEmpty }) { deck in
-                        deckRow(deck)
+                ForEach(store.visibleLevels) { level in
+                    Section(level.title) {
+                        ForEach(store.packs(in: level.id).filter { !$0.puzzles.isEmpty }) { deck in
+                            deckRow(deck)
+                        }
                     }
                 }
             }

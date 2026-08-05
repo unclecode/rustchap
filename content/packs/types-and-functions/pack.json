@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions",
+  "title": "Types & Functions",
+  "description": "Signatures, returns, tuples, and if as an expression.",
+  "toolchain": "1.97.1",
+  "order": [
+    "types-and-functions.001",
+    "types-and-functions.002",
+    "types-and-functions.003",
+    "types-and-functions.004",
+    "types-and-functions.005"
+  ],
+  "icon": "function",
+  "accent": "blue",
+  "level": "foundations"
+}

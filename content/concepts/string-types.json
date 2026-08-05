@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "string-types",
+  "title": "String and &str",
+  "summary": "String owns and grows; &str is borrowed text; methods flow between them.",
+  "lecture": [
+    "Rust has two everyday text types. `String` owns its text and can grow; `&str` is borrowed text - every literal like `\"ferris\"` is a `&str`. Functions that only read text take `&str`; functions that produce new text return `String`.",
+    "Methods move between the two: `to_string()` and `to_uppercase()` produce owned `String`s; `trim()` returns a `&str` view of the same text. Chains type-check step by step, so the order matters.",
+    "Growing text in place uses `push_str` on a `mut String`. The `+` operator also concatenates, but it consumes the left side - the ownership decks explain exactly why."
+  ],
+  "example": {
+    "code": "let cleaned = raw.trim();           // &str view\nlet owned = cleaned.to_string();    // owned copy",
+    "caption": "trim borrows; to_string allocates."
+  }
+}

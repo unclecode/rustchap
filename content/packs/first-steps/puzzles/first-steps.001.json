@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.001",
+  "version": 1,
+  "title": "Bindings, Not Boxes",
+  "track": "first-steps",
+  "concepts": [
+    "bindings",
+    "expressions"
+  ],
+  "difficulty": 1,
+  "goal": "How Rust names values: immutable by default, mut to change, shadowing to rebind.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You already know variables. Rust calls them bindings, and the difference matters: `let x = 5;` binds a name to a value, and by default that binding cannot change. Reassigning it is a compile error, not a style complaint."
+      },
+      {
+        "kind": "code",
+        "code": "let x = 5;\nx = 6;              // error E0384: cannot assign twice",
+        "caption": "Immutable is the default."
+      },
+      {
+        "kind": "prose",
+        "text": "When a value genuinely needs to change, say so: `let mut x = 5;` allows `x = 6;` later. The `mut` is documentation the compiler enforces. Reading unfamiliar code, every mutation site is announced at the binding."
+      },
+      {
+        "kind": "prose",
+        "text": "The third tool is shadowing: a second `let` with the same name creates a new binding and the old one disappears. Shadowing may change the type, which mutation never can. Turning `\"3\"` into `3` while keeping the name is normal Rust."
+      },
+      {
+        "kind": "code",
+        "code": "let number = \"three\";\nlet number = 3;      // new binding, new type - fine",
+        "caption": "Shadowing rebinds the name."
+      },
+      {
+        "kind": "prose",
+        "text": "For fixed values there is `const`: it needs an explicit type, uses SCREAMING_SNAKE_CASE, and can live outside any function. You will use all three forms in the next puzzles."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "How Rust names values: immutable by default, mut to change, shadowing to rebind.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "distilled from rustlings 01_variables"
+  }
+}

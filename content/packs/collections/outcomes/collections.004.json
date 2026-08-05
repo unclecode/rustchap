@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "collections.004",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "048852add960078f279b7b35a85045a3d1652fbbe95c3906cc332cc253107e5e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "binary assignment operation `+=` cannot be applied to type `&mut {integer}`",
+          "slot_ids": [
+            "bump"
+          ],
+          "rust_code": "E0368"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "11c524c61a7b09f818ac163b65990b51d53507769795d2a92406c3c24f3acdb1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot assign twice to immutable variable `count`",
+          "slot_ids": [
+            "bump"
+          ],
+          "rust_code": "E0384"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2989206188b92971fa4267cd0b86e509f06cd5429c342d010640c852eff58f4e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "binary assignment operation `+=` cannot be applied to type `Option<&_>`",
+          "slot_ids": [
+            "bump"
+          ],
+          "rust_code": "E0368"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `String: Borrow<&str>` is not satisfied",
+          "slot_ids": [
+            "entry"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "509575e10b6e3f4488b070cdf4ee1dc811020878e43b63f35d98f648082dec9d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot add `{integer}` to `Option<&_>`",
+          "slot_ids": [
+            "bump"
+          ],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `String: Borrow<&str>` is not satisfied",
+          "slot_ids": [
+            "entry"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "72abe7c40a40b4884f4d327cbc8ca2eb8a19a8fa03cc45c403f53dc6e50e1977": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [],
+          "rust_code": "E0282"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "82a8234ab24164f337295dabe05eaafca6ecbf777773654faf76bf84c5ae857a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot assign twice to immutable variable `count`",
+          "slot_ids": [
+            "bump"
+          ],
+          "rust_code": "E0384"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 3 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "86128f3059c973ff329c6a96a6ce88e70634e78b4acdf5fa9e302641d9fa28b9": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "ae9b971af225ea66c91462c768c6ff7eed63892bff9f0905f7f73ee0da6c0595": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type `Option<&_>` cannot be dereferenced",
+          "slot_ids": [
+            "bump"
+          ],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `String: Borrow<&str>` is not satisfied",
+          "slot_ids": [
+            "entry"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e1e0769888554a733e47712f98543ef6b7d5f8dd352b2b8488d1c3ee16ab123e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot add `{integer}` to `&mut {integer}`",
+          "slot_ids": [
+            "bump"
+          ],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

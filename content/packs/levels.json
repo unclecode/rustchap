@@ -1,0 +1,8 @@
+{
+  "levels": [
+    { "id": "foundations", "title": "Foundations", "tagline": "Rust from zero, for programmers." },
+    { "id": "core", "title": "Core", "tagline": "Ownership instincts: the heart of Rust." },
+    { "id": "advanced", "title": "Advanced", "tagline": "Traits, generics, pointers, async, unsafe." },
+    { "id": "mastery", "title": "Mastery", "tagline": "The deep end: atomics, macros, FFI." }
+  ]
+}

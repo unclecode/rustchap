@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "vec-basics",
+  "title": "Vec, the growable list",
+  "summary": "vec! builds, push grows (needs mut), for walks the elements.",
+  "lecture": [
+    "`Vec<T>` is the growable list. Build one with the `vec!` macro - `vec![10, 20, 30]` - or start empty with `Vec::new()`. Growing it with `push` mutates, so the binding must be `let mut`.",
+    "A plain array `[10, 20, 30]` looks similar but has a fixed size and no `push`. The types are different, and so are the errors when you mix them up.",
+    "`for n in &v` walks the elements. Iterating a borrowed vec yields references; simple arithmetic on them works thanks to auto-deref, and the iterator decks later make this precise."
+  ],
+  "example": {
+    "code": "let mut v = vec![10, 20, 30];\nv.push(40);\nfor n in &v { println!(\"{n}\"); }",
+    "caption": "mut because push changes the vec."
+  }
+}

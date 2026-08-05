@@ -12,5 +12,6 @@
     "async-and-send.003"
   ],
   "icon": "paperplane.fill",
-  "accent": "blue"
+  "accent": "blue",
+  "level": "advanced"
 }

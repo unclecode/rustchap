@@ -180,6 +180,9 @@ pub struct Pack {
     /// Display-only: named accent color (e.g. "orange", "teal").
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub accent: Option<String>,
+    /// Curriculum level id (content/packs/levels.json); clients default to "core".
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub level: Option<String>,
 }
 
 /// One teachable skill (content/concepts/<id>.json). Puzzles reference these

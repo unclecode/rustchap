@@ -11,5 +11,6 @@
     "design-the-api.003"
   ],
   "icon": "slider.horizontal.3",
-  "accent": "teal"
+  "accent": "teal",
+  "level": "advanced"
 }

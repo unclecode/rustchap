@@ -1,6 +1,11 @@
 {
   "schema_version": 1,
   "order": [
+    "first-steps",
+    "types-and-functions",
+    "structs-and-enums",
+    "collections",
+    "strings-basics",
     "move-or-borrow",
     "remove-the-clone",
     "slices-and-views",

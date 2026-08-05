@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "functions",
+  "title": "Functions and signatures",
+  "summary": "Every parameter needs a type; the return type is part of the contract.",
+  "lecture": [
+    "A Rust function spells out its full contract: `fn greeting(name: &str) -> String`. Parameter types are mandatory - there is no inference at function boundaries - and the return type comes after `->`. Omit it and the function returns `()`.",
+    "The body's last expression is the return value. A mismatch between the promised return type and what the body actually produces is error E0308, and the fix is usually a missing type, a stray semicolon, or the wrong expression at the end.",
+    "Calling a function with the wrong number or types of arguments fails at compile time (E0061, E0308). Nothing is coerced behind your back."
+  ],
+  "example": {
+    "code": "fn greeting(name: &str) -> String {\n    format!(\"hi {name}\")\n}",
+    "caption": "Parameter typed, return typed, body ends in an expression."
+  }
+}

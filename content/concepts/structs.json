@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "structs",
+  "title": "Structs",
+  "summary": "Named fields, instantiated with braces; update syntax ..other copies the rest.",
+  "lecture": [
+    "A struct names a shape: `struct User { name: String }`. Each field has a type; you build a value by naming every field: `User { name: String::from(\"Ferris\") }`. Missing fields are error E0063 - there are no partially built structs.",
+    "Struct update syntax fills in the tail from another value: `Order { count: 2, ..base }` takes every remaining field from `base`. It must come last in the braces.",
+    "Methods live in an `impl` block. A method that only reads takes `&self`; one that consumes the value takes `self`. Calling a `self` method twice on the same value is E0382 - the first call moved it."
+  ],
+  "example": {
+    "code": "struct Package { weight: u32 }\n\nimpl Package {\n    fn cost(&self) -> u32 { self.weight * 3 }\n}",
+    "caption": "&self lets you call cost() as many times as you like."
+  }
+}

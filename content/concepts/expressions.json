@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "expressions",
+  "title": "Almost everything is an expression",
+  "summary": "Blocks, if, and match produce values; a trailing semicolon throws the value away.",
+  "lecture": [
+    "In Rust, `if`, `match`, and plain `{}` blocks are expressions: they produce values. The last line of a block, written without a semicolon, is the block's value. Add a semicolon and you turn it into a statement whose value is `()`, the unit type.",
+    "This is why function bodies usually end with a bare expression instead of `return`. `return` exists for early exits; using it on the last line is redundant, and Clippy's needless_return lint says so.",
+    "The most common beginner error in this area is E0308: the function promises `-> i32` but the body ends with a semicolon, so it returns `()`. Delete the semicolon and the types line up."
+  ],
+  "example": {
+    "code": "fn double(n: i32) -> i32 {\n    n * 2      // no semicolon: this is the return value\n}",
+    "caption": "A trailing semicolon here would change the return type to ()."
+  }
+}

@@ -36,6 +36,10 @@ final class ContentStore {
     }
 
     private(set) var packs: [LoadedPack] = []
+    /// Curriculum tiers from packs/levels.json, in display order. Always
+    /// bundled (the server never overrides structure). Falls back to a single
+    /// implicit "core" level when the manifest is missing.
+    private(set) var levels: [Level] = []
     private(set) var concepts: [String: Concept] = [:]
     private(set) var source: ContentSource = .bundled
     private(set) var loadError: String?
@@ -49,9 +53,25 @@ final class ContentStore {
         let order: [String]
     }
 
+    /// The level a deck belongs to; unlabeled packs count as "core".
+    nonisolated static func levelId(of pack: Pack) -> String {
+        pack.level ?? "core"
+    }
+
+    /// Decks of one level, in curriculum order.
+    func packs(in levelId: String) -> [LoadedPack] {
+        packs.filter { Self.levelId(of: $0.pack) == levelId }
+    }
+
+    /// Levels that actually have content — what the home selector shows.
+    var visibleLevels: [Level] {
+        levels.filter { level in packs(in: level.id).contains { !$0.puzzles.isEmpty } }
+    }
+
     init() {
         do {
             packs = try Self.loadBundled()
+            levels = Self.loadLevels()
             bundledOutcomes = Dictionary(
                 uniqueKeysWithValues: packs.flatMap(\.puzzles).compactMap { loaded in
                     loaded.outcomes.map { (loaded.id, $0) }
@@ -158,6 +178,20 @@ final class ContentStore {
             result[concept.id] = concept
         }
         return result
+    }
+
+    private struct LevelManifest: Decodable {
+        let levels: [Level]
+    }
+
+    private static func loadLevels() -> [Level] {
+        guard let root = Bundle.main.url(forResource: "packs", withExtension: nil),
+              let data = try? Data(contentsOf: root.appendingPathComponent("levels.json")),
+              let manifest = try? JSONDecoder().decode(LevelManifest.self, from: data)
+        else {
+            return [Level(id: "core", title: "Core", tagline: nil)]
+        }
+        return manifest.levels
     }
 
     private static func loadBundled() throws -> [LoadedPack] {

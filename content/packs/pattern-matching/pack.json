@@ -11,5 +11,6 @@
     "pattern-matching.003"
   ],
   "icon": "puzzlepiece.fill",
-  "accent": "mint"
+  "accent": "mint",
+  "level": "core"
 }

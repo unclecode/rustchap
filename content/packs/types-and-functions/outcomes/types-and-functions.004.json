@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "types-and-functions.004",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1de6506369ccdb912e3868938fb53b0dd5b2a7bf577102772bd86886253d01a6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "result"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "20e1bdab92d5cb8f02428445810ced124f642cdcc75fb26a1727e7398aa1a6f8": {
+      "status": "solved",
+      "rank": "fluent",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "2a7f781598e70e3394118f13167840cfb7526103fb647c65c53749bb2b0e38e0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "result"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected an array or slice, found `(i32, i32)`",
+          "slot_ids": [
+            "pattern"
+          ],
+          "rust_code": "E0529"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "556020d777d3e3908e82467ac0cc284fd781e25ae8555ea45ef5a316230fddc7": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    },
+    "627d5629e3620c69a7f37bbd7ae3e6c95cb829b60b5fec11c370d46e9062eaa7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `y` in this scope",
+          "slot_ids": [
+            "result"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "result"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "83cc11d76c158643b0c9c2a7aff7b4369c5451c030e20eb1170891952e5daaf6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected an array or slice, found `(i32, i32)`",
+          "slot_ids": [
+            "pattern"
+          ],
+          "rust_code": "E0529"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9c36949938a8ab320a3f37c567cb507cd769094d18d93f88afc3ecba94bcc4ed": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected an array or slice, found `(i32, i32)`",
+          "slot_ids": [
+            "pattern"
+          ],
+          "rust_code": "E0529"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c1f4f8fda22f1aa41f38dc8c1603ebea12d161b8b6f35a72a0cd8f56abf9e856": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "result"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "dc2c8fb8d922d6368be403df4102dd63773a98dc8ca8e7355e7a402fa0207178": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`i32` is a primitive type and therefore doesn't have fields",
+          "slot_ids": [
+            "result"
+          ],
+          "rust_code": "E0610"
+        },
+        {
+          "category": "compile_error",
+          "message": "`i32` is a primitive type and therefore doesn't have fields",
+          "slot_ids": [
+            "result"
+          ],
+          "rust_code": "E0610"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -11,5 +11,6 @@
     "interior-mutability.003"
   ],
   "icon": "lock.rotation",
-  "accent": "brown"
+  "accent": "brown",
+  "level": "advanced"
 }

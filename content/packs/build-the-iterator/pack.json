@@ -15,5 +15,6 @@
     "build-the-iterator.005"
   ],
   "icon": "point.3.connected.trianglepath.dotted",
-  "accent": "cyan"
+  "accent": "cyan",
+  "level": "core"
 }

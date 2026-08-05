@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "id": "first-steps",
+  "title": "First Steps",
+  "description": "Bindings, mutation, shadowing, and your first expressions.",
+  "toolchain": "1.97.1",
+  "order": [
+    "first-steps.001",
+    "first-steps.002",
+    "first-steps.003",
+    "first-steps.004",
+    "first-steps.005"
+  ],
+  "icon": "figure.walk",
+  "accent": "green",
+  "level": "foundations"
+}

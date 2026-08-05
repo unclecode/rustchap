@@ -11,5 +11,6 @@
     "generics-and-dyn.003"
   ],
   "icon": "cube.transparent",
-  "accent": "indigo"
+  "accent": "indigo",
+  "level": "advanced"
 }

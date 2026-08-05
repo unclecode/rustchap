@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "structs-and-enums.004",
+  "version": 1,
+  "title": "Borrow Yourself",
+  "track": "structs-and-enums",
+  "concepts": [
+    "structs"
+  ],
+  "difficulty": 2,
+  "goal": "cost() gets called twice on the same package. Choose the self that survives.",
+  "template": "struct Package {\n    weight: u32,\n}\n\nimpl Package {\n    fn cost(⟦selfparam⟧) -> u32 {\n        self.weight * ⟦rate⟧\n    }\n}\n\nfn main() {\n    let p = Package { weight: 2 };\n    println!(\"{} then {}\", p.cost(), p.cost());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "selfparam",
+        "original": "self",
+        "label": "self parameter",
+        "choices": [
+          {
+            "id": "s1",
+            "text": "self"
+          },
+          {
+            "id": "s2",
+            "text": "&self"
+          },
+          {
+            "id": "s3",
+            "text": "this: &Package"
+          }
+        ]
+      },
+      {
+        "id": "rate",
+        "original": "3",
+        "label": "rate",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "3"
+          },
+          {
+            "id": "r2",
+            "text": "RATE"
+          },
+          {
+            "id": "r3",
+            "text": "3.0"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn costs_twice() {\n    let p = Package { weight: 2 };\n    assert_eq!(p.cost(), 6);\n    assert_eq!(p.cost(), 6);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "The test calls cost() twice on the same value.",
+    "Taking self by value consumes the package on the first call."
+  ],
+  "explanation": "`self` by value consumes the package: the first `p.cost()` moves it, and the second is E0382, use of moved value. `&self` borrows instead - the method reads the weight and hands the package back. Naming the parameter `this` breaks the `self.weight` in the body (E0424: self only exists for self parameters). The rate must stay an integer: `3.0` is E0277 against a u32.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings structs3"
+  }
+}

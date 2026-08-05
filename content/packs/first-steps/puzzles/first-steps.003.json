@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.003",
+  "version": 1,
+  "title": "The Constant",
+  "track": "first-steps",
+  "concepts": [
+    "bindings",
+    "primitive-types"
+  ],
+  "difficulty": 1,
+  "goal": "Make LIMIT a proper compile-time constant that the comparison accepts.",
+  "template": "⟦kw⟧ LIMIT⟦ann⟧ = 10;\n\nfn main() {\n    let used: i32 = 7;\n    println!(\"{used} of {LIMIT} slots used\");\n    assert!(used < LIMIT);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "kw",
+        "original": "let",
+        "label": "declaration keyword",
+        "choices": [
+          {
+            "id": "k1",
+            "text": "let"
+          },
+          {
+            "id": "k2",
+            "text": "const"
+          },
+          {
+            "id": "k3",
+            "text": "static mut"
+          }
+        ]
+      },
+      {
+        "id": "ann",
+        "original": ": u8",
+        "label": "type annotation",
+        "choices": [
+          {
+            "id": "a1",
+            "text": ": u8"
+          },
+          {
+            "id": "a2",
+            "text": ": i32"
+          },
+          {
+            "id": "a3",
+            "text": ": f64"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "`let` only works inside functions. What lives at the top level?",
+    "`used` is an i32. The comparison needs both sides to agree."
+  ],
+  "explanation": "Top-level values use `const`, and `const` always requires a type annotation. The type must also agree with its users: `used` is an `i32`, so comparing it against a `u8` or `f64` LIMIT is E0308. `static mut` compiles nothing here - reading it would even require unsafe. `const LIMIT: i32` is the whole story.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings variables6"
+  }
+}

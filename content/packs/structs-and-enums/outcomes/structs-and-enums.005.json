@@ -1,0 +1,468 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "structs-and-enums.005",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "08ee621c8f117ee60d5770354d0864ea7008edfe255f6e38d82fe2a78538958a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `Red` in this scope",
+          "slot_ids": [
+            "last_arm"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Green` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [
+            "last_arm"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Green` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Green` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Green` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 13 previous errors; 3 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0c04b1a93b0805871ecd2871173709cdbca95a1df0573e59e21144a21250ae6c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `Red` in this scope",
+          "slot_ids": [
+            "last_arm"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [
+            "last_arm"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "179c4ff2cb8f5ef69170bb5e127189cd64ea6809fa5692f8bd436d103922fc52": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Green` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Orange` found for enum `Signal` in the current scope",
+          "slot_ids": [
+            "last_arm"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Green` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [
+            "last_arm"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Green` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Green` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 13 previous errors; 3 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "247e97d200b860dff24ab71bf238b1074fb2bdf939fda80cf67278bf17916a55": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "33b2d58a509ebf11fb21734b04f028bacac2f5f72682f213b719b9e5f25b03e7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Green` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [
+            "last_arm"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Green` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [
+            "last_arm"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Green` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Green` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Red` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 13 previous errors; 3 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "42ab37cdd25572b6f55fbc534e8c8c7a20ffe4b4ca80bd3c68b983709a6c7614": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Orange` found for enum `Signal` in the current scope",
+          "slot_ids": [
+            "last_arm"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4fb8b150d6ad7d6a3fefe1bb8e3e2e986a595f793f1b2da59c36522a9b32d44c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [
+            "last_arm"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "be17324b5a6f3d22b6c2e5aa710b32f240e2c99d034c8f8fab9e2edd23a07dfa": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `Red` in this scope",
+          "slot_ids": [
+            "last_arm"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cd8771c20d0f840ad10ea44650884f767fab305a3371aa1629a9f54c7d37c92f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Orange` found for enum `Signal` in the current scope",
+          "slot_ids": [
+            "last_arm"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no variant, associated function, or constant named `Yellow` found for enum `Signal` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

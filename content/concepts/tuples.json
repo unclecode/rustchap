@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "tuples",
+  "title": "Tuples",
+  "summary": "Fixed-size groups of possibly different types; destructure with (a, b) or index with .0.",
+  "lecture": [
+    "A tuple groups a fixed number of values that may have different types: `(3, 7)` is a `(i32, i32)`. Two ways to get the pieces out: destructure with a pattern, `let (x, y) = point;`, or index with `.0` and `.1`.",
+    "Destructuring reads best when you use both parts; indexing is fine for a quick single access. Square-bracket patterns like `[x, y]` belong to arrays and slices, not tuples - mixing them up is error E0529.",
+    "Functions can return tuples to hand back multiple values without a struct."
+  ],
+  "example": {
+    "code": "let point = (3, 7);\nlet (x, y) = point;      // destructure\nlet also_x = point.0;    // or index",
+    "caption": "Same data, two access styles."
+  }
+}

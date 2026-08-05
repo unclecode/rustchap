@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.004",
+  "version": 1,
+  "title": "The Last Expression",
+  "track": "first-steps",
+  "concepts": [
+    "expressions",
+    "functions"
+  ],
+  "difficulty": 1,
+  "goal": "Return the doubled value the way Rust prefers: as the last expression.",
+  "template": "fn main() {\n    println!(\"doubled: {}\", double(21));\n}\n\nfn double(n: i32) ⟦ret_ty⟧ {\n    ⟦body⟧\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "ret_ty",
+        "original": "-> i32",
+        "label": "return type",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "-> i32"
+          },
+          {
+            "id": "r2",
+            "text": ""
+          },
+          {
+            "id": "r3",
+            "text": "-> bool"
+          }
+        ]
+      },
+      {
+        "id": "body",
+        "original": "n * 2;",
+        "label": "function body",
+        "choices": [
+          {
+            "id": "b1",
+            "text": "n * 2;"
+          },
+          {
+            "id": "b2",
+            "text": "n * 2"
+          },
+          {
+            "id": "b3",
+            "text": "return n * 2;"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn doubles() {\n    assert_eq!(double(21), 42);\n    assert_eq!(double(0), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits",
+      "clippy_warning_count"
+    ],
+    "clippy": {
+      "deny": [
+        "clippy::needless_return"
+      ]
+    }
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [
+      "clippy_warning_count"
+    ],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1,
+      "clippy_warning_count": 0
+    }
+  },
+  "hints": [
+    "The semicolon is doing more than punctuation here.",
+    "A block's value is its last expression - only when there is no trailing semicolon."
+  ],
+  "explanation": "With the semicolon, `n * 2;` is a statement and the body's value is `()`, which cannot be the promised `i32` (E0308). Dropping the semicolon makes it the block's value. `return n * 2;` also works, but Clippy's needless_return points out the idiomatic form: the last line of a function is already its result.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings functions4/functions5"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.002",
+  "version": 1,
+  "title": "Make It a Binding",
+  "track": "first-steps",
+  "concepts": [
+    "bindings"
+  ],
+  "difficulty": 1,
+  "goal": "Spell a number as text, then reuse the same name for the real number.",
+  "template": "fn main() {\n    ⟦decl⟧ number = \"T-H-R-E-E\";\n    println!(\"Spell a number: {number}\");\n    ⟦redecl⟧ = 3;\n    println!(\"Number plus two is: {}\", number + 2);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "decl",
+        "original": "let",
+        "label": "first binding",
+        "choices": [
+          {
+            "id": "d1",
+            "text": "let"
+          },
+          {
+            "id": "d2",
+            "text": "const"
+          },
+          {
+            "id": "d3",
+            "text": "mut"
+          }
+        ]
+      },
+      {
+        "id": "redecl",
+        "original": "number",
+        "label": "second binding",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "number"
+          },
+          {
+            "id": "r2",
+            "text": "let number"
+          },
+          {
+            "id": "r3",
+            "text": "let spelled"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn runs() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "The first line is fine as it is. The problem is the second assignment.",
+    "You cannot assign a number to a name bound to text. You can bind the name again."
+  ],
+  "explanation": "Assigning `number = 3` fails twice over: the binding is immutable (E0384) and the types do not match (E0308). Shadowing with `let number = 3` creates a fresh binding with a fresh type, and the arithmetic below works. `mut` would not help here, because mutation can never change a binding's type.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings variables5"
+  }
+}

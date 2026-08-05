@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "enums-basics",
+  "title": "Enums and a first match",
+  "summary": "An enum lists the possible shapes of a value; match handles each one by name.",
+  "lecture": [
+    "An enum says a value is one of a fixed set of shapes: `enum Signal { Red, Green, Yellow }`. Variants can carry data: `Add(i32)`. You name variants through the type: `Signal::Red`.",
+    "`match` takes the value apart: each arm names a variant pattern, and a variant with data binds it - `Command::Add(n) => total + n`. Patterns must match the variant's shape exactly: matching `Add` without `(n)` is error E0532.",
+    "match must cover every variant (E0004 when it does not). That exhaustiveness is a feature: add a variant later and the compiler lists every match you must revisit."
+  ],
+  "example": {
+    "code": "enum Command { Add(i32), Reset }\n\nmatch cmd {\n    Command::Add(n) => total + n,\n    Command::Reset => 0,\n}",
+    "caption": "Each arm matches one shape; together they cover all of them."
+  }
+}

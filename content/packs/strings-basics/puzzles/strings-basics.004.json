@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.004",
+  "version": 1,
+  "title": "Grow the Label",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types"
+  ],
+  "difficulty": 2,
+  "goal": "Attach the tag to the base without losing the base.",
+  "template": "fn label(mut base: String, tag: &str) -> String {\n    ⟦grow⟧;\n    ⟦ret⟧\n}\n\nfn main() {\n    println!(\"{}\", label(String::from(\"v\"), \"1\"));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "grow",
+        "original": "base + tag",
+        "label": "grow step",
+        "choices": [
+          {
+            "id": "g1",
+            "text": "base + tag"
+          },
+          {
+            "id": "g2",
+            "text": "base.push_str(tag)"
+          },
+          {
+            "id": "g3",
+            "text": "base.push(tag)"
+          }
+        ]
+      },
+      {
+        "id": "ret",
+        "original": "base",
+        "label": "return",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "base"
+          },
+          {
+            "id": "r2",
+            "text": "&base"
+          },
+          {
+            "id": "r3",
+            "text": "tag"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn labels() {\n    assert_eq!(label(String::from(\"v\"), \"1\"), \"v1\");\n    assert_eq!(label(String::from(\"build-\"), \"42\"), \"build-42\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "push takes a single char; push_str takes text.",
+    "The + operator eats its left side. Then what does the last line return?"
+  ],
+  "explanation": "`push_str` grows the String in place - that is the whole job. `push` wants a single `char`, not a `&str` (E0308). And `base + tag` is the interesting failure: it compiles as an expression but consumes `base`, so the `base` on the last line is E0382, use of moved value. You just met the borrow checker in a string puzzle; the Move or Borrow deck makes this instinct.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings strings4"
+  }
+}

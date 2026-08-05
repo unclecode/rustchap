@@ -163,6 +163,17 @@ Verified by simulator-SDK build plus a macOS harness that compiles the real
   profile keeps identity/settings, the scoreboard owns progress). Large drawer: three stat
   tiles (solved/total, ★ optimal, attempts) + per-deck rows with icon tile, accent progress
   bar, counts. `--scoreboard` launch arg opens it for screenshots.
+- **Levels (2026-08-05, user-approved chips design)**: a curriculum tier above decks —
+  Foundations → Core → Advanced → Mastery, defined in `content/packs/levels.json` (bundled
+  via the packs folder reference; `ContentStore.loadLevels` falls back to a single implicit
+  "core"). `pack.json` gains optional `level` (schema + crate `Pack.level` + iOS `Pack.level`,
+  additive). Home: scrollable capsule chips (`DeckListView.levelChips`) with per-level
+  progress on the selected chip; `@AppStorage("selectedLevel")`, default = the current
+  deck's level; levels with no content stay hidden (`ContentStore.visibleLevels`).
+  UNLOCK CHANGE: decks chain within their level only (`Progression.isUnlocked(deckId:)`) —
+  every level is free to enter from day one. Scoreboard groups decks under level headers.
+  Design mock: claude.ai artifact a33dac5f. Current mapping: 8 core + 7 advanced;
+  Foundations and Mastery content pending.
 - **Skills** (`ConceptView.swift`): `content/concepts` is bundled as a second folder reference;
   `ContentStore.concepts(for:)` maps a puzzle's `concepts` ids to loaded `Concept`s.
   `SkillsSheet` (book toolbar icon) lists them and pushes `ConceptLectureView`; `HintsSheet`

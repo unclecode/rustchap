@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.001",
+  "version": 1,
+  "title": "Every Value Has a Type",
+  "track": "types-and-functions",
+  "concepts": [
+    "functions",
+    "primitive-types",
+    "tuples"
+  ],
+  "difficulty": 1,
+  "goal": "Signatures are contracts: parameter types, return types, and no silent conversions.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Rust functions spell out their whole contract. Every parameter carries a type, and the return type follows the arrow: `fn greeting(name: &str) -> String`. There is no inference at function boundaries, which keeps every signature readable on its own."
+      },
+      {
+        "kind": "code",
+        "code": "fn greeting(name: &str) -> String {\n    format!(\"hi {name}\")\n}",
+        "caption": "Typed in, typed out."
+      },
+      {
+        "kind": "prose",
+        "text": "Types never convert silently. An `i32` is not a `u8`, `10` is not `10.0`, and mixing them is error E0308 at the exact line of the mix. When you need a conversion, you write one."
+      },
+      {
+        "kind": "prose",
+        "text": "`if` is an expression, so it produces a value: `let label = if score >= 60 { \"pass\" } else { \"fail\" };`. Both branches must produce the same type, and an `if` used as a value needs its `else`."
+      },
+      {
+        "kind": "code",
+        "code": "fn bigger(a: i32, b: i32) -> i32 {\n    if a > b { a } else { b }\n}",
+        "caption": "The if IS the return value - no return keyword needed."
+      },
+      {
+        "kind": "prose",
+        "text": "Tuples group a fixed number of values of possibly different types. Take them apart by destructuring, `let (x, y) = point;`, or by index, `point.0`. You will use both in this deck."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Signatures are contracts: parameter types, return types, and no silent conversions.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "distilled from rustlings 02_functions, 03_if, 04_primitive_types"
+  }
+}

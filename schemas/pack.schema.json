@@ -1,25 +1,59 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://rustchap.dev/schemas/pack.schema.json",
-  "title": "RustChap puzzle pack",
-  "description": "Pack manifest: one track's metadata and its linear puzzle order. Lives at content/packs/<track>/pack.json with puzzles in puzzles/*.json next to it.",
-  "type": "object",
-  "required": ["schema_version", "id", "title", "toolchain", "order"],
-  "additionalProperties": false,
-  "properties": {
-    "schema_version": { "const": 1 },
-    "id": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "Track id; puzzle ids in this pack are '<id>.<nnn>'." },
-    "title": { "type": "string", "minLength": 1 },
-    "description": { "type": "string" },
-    "icon": { "type": "string", "description": "Display-only: SF Symbol name for the deck tile. Clients may fall back when absent or unknown." },
-    "accent": { "type": "string", "description": "Display-only: named accent color (orange, teal, indigo, ...). Clients map names to platform colors." },
-    "toolchain": { "type": "string", "description": "Pinned Rust toolchain every puzzle in the pack is compiled against, e.g. '1.97.1'. Part of the outcomes cache key." },
-    "order": {
-      "type": "array",
-      "minItems": 0,
-      "uniqueItems": true,
-      "items": { "type": "string", "pattern": "^[a-z0-9-]+\\.[0-9]{3}$" },
-      "description": "Linear progression. Empty = a planned deck, shown locked in the app ('solve all' can never hold for it, so nothing after it unlocks). The linter verifies each entry resolves to a puzzle file and prerequisites only point backwards."
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://rustchap.dev/schemas/pack.schema.json",
+    "title": "RustChap puzzle pack",
+    "description": "Pack manifest: one track's metadata and its linear puzzle order. Lives at content/packs/<track>/pack.json with puzzles in puzzles/*.json next to it.",
+    "type": "object",
+    "required": [
+        "schema_version",
+        "id",
+        "title",
+        "toolchain",
+        "order"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "schema_version": {
+            "const": 1
+        },
+        "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$",
+            "description": "Track id; puzzle ids in this pack are '<id>.<nnn>'."
+        },
+        "title": {
+            "type": "string",
+            "minLength": 1
+        },
+        "description": {
+            "type": "string"
+        },
+        "icon": {
+            "type": "string",
+            "description": "Display-only: SF Symbol name for the deck tile. Clients may fall back when absent or unknown."
+        },
+        "accent": {
+            "type": "string",
+            "description": "Display-only: named accent color (orange, teal, indigo, ...). Clients map names to platform colors."
+        },
+        "toolchain": {
+            "type": "string",
+            "description": "Pinned Rust toolchain every puzzle in the pack is compiled against, e.g. '1.97.1'. Part of the outcomes cache key."
+        },
+        "order": {
+            "type": "array",
+            "minItems": 0,
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+\\.[0-9]{3}$"
+            },
+            "description": "Linear progression. Empty = a planned deck, shown locked in the app ('solve all' can never hold for it, so nothing after it unlocks). The linter verifies each entry resolves to a puzzle file and prerequisites only point backwards."
+        },
+        "level": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$",
+            "description": "Curriculum level this deck belongs to (content/packs/levels.json). Clients fall back to 'core' when absent."
+        }
     }
-  }
 }

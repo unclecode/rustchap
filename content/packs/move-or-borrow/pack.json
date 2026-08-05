@@ -15,5 +15,6 @@
     "move-or-borrow.006"
   ],
   "icon": "arrow.left.arrow.right",
-  "accent": "orange"
+  "accent": "orange",
+  "level": "core"
 }

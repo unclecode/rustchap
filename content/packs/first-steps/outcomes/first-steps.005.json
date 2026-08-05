@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "first-steps.005",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "2169043da796e0ba6397ba00b842c2f48514afad5fd6d1bae1d651bda15e9307": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `count` in this scope",
+          "slot_ids": [
+            "double"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4aaede1415d154027574f0be8f7308e10d306b0f73f059e88f3467f03418b4ad": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "75fe063606d45072cd74f60b687c17fefaabe93266fd02a586e8492e24682dff": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "mut_bindings": 1
+      },
+      "diagnostics": []
+    },
+    "b51d4b34b5b7ae286a18de41b951e5a357775848765758ca04256620eb9b1209": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `count` in this scope",
+          "slot_ids": [
+            "add"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `count` in this scope",
+          "slot_ids": [
+            "double"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d333f3e1f43ba4e80258b9cf1820e2108348c178b5ae5e23c372114e0ee5c922": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `count` in this scope",
+          "slot_ids": [
+            "double"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `count` in this scope",
+          "slot_ids": [
+            "add"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f7b1aa0b19b743e5daf3c9ddaa1d094069dc0e7ebac738942e17f3b74c2a61d2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `count` in this scope",
+          "slot_ids": [
+            "add"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "collections",
+  "title": "Collections",
+  "description": "Vec and HashMap: build, grow, walk, and count.",
+  "toolchain": "1.97.1",
+  "order": [
+    "collections.001",
+    "collections.002",
+    "collections.003",
+    "collections.004"
+  ],
+  "icon": "tray.full.fill",
+  "accent": "indigo",
+  "level": "foundations"
+}

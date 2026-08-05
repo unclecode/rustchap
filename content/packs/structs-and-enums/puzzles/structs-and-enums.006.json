@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "structs-and-enums.006",
+  "version": 1,
+  "title": "First Match",
+  "track": "structs-and-enums",
+  "concepts": [
+    "enums-basics"
+  ],
+  "difficulty": 2,
+  "goal": "Two commands, two shapes: one carries a number, one carries nothing.",
+  "template": "enum Command {\n    Add(i32),\n    Reset,\n}\n\nfn apply(total: i32, cmd: Command) -> i32 {\n    match cmd {\n        ⟦add_arm⟧ => total + n,\n        ⟦reset_arm⟧ => 0,\n    }\n}\n\nfn main() {\n    println!(\"{}\", apply(5, Command::Add(3)));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "add_arm",
+        "original": "Command::Add",
+        "label": "add pattern",
+        "choices": [
+          {
+            "id": "a1",
+            "text": "Command::Add"
+          },
+          {
+            "id": "a2",
+            "text": "Command::Add(n)"
+          },
+          {
+            "id": "a3",
+            "text": "Add(n)"
+          }
+        ]
+      },
+      {
+        "id": "reset_arm",
+        "original": "Command::Reset()",
+        "label": "reset pattern",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "Command::Reset()"
+          },
+          {
+            "id": "r2",
+            "text": "Command::Reset"
+          },
+          {
+            "id": "r3",
+            "text": "_ if false"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn applies() {\n    assert_eq!(apply(5, Command::Add(3)), 8);\n    assert_eq!(apply(9, Command::Reset), 0);\n    assert_eq!(apply(0, Command::Add(0)), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Add carries data - its pattern needs a name for that data.",
+    "Reset carries nothing - its pattern takes no parentheses."
+  ],
+  "explanation": "Patterns mirror the variant's shape exactly. `Add` holds an `i32`, so the pattern is `Command::Add(n)` - matching it bare is E0532, and the arm body needs that `n`. `Reset` holds nothing, so parentheses on it are also E0532. A guard like `_ if false` compiles nowhere here: with it the match no longer covers every case (E0004).",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings enums3"
+  }
+}

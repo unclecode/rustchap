@@ -146,6 +146,18 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       ios-build on macos (simulator-SDK compile, newest runner Xcode, no signing).
       First run green: 2m16s / 1m06s. TestFlight upload deliberately deferred to 31.
 
+## Post-launch (v0.2 direction, user-set 2026-08-05)
+- [x] Levels layer SHIPPED (2026-08-05): Foundations/Core/Advanced/Mastery tiers above
+      decks; chips selector on home; per-level sequential unlock, levels free to enter;
+      existing 15 decks tagged 8 core + 7 advanced. Structure only — content next.
+- [x] Foundations content SHIPPED (2026-08-05): 5 decks, 24 nodes (5 lectures + 19
+      puzzles), 168 verified submissions — First Steps, Types & Functions, Structs &
+      Enums, Collections, Strings. All adapted from rustlings (MIT, attributed per node);
+      10 new concepts in the skill library. E-currency only at this tier; guessability
+      11-15%; one allowlisted tie (strings-basics.002, deref-coercion lesson). Curriculum
+      now 20 decks / 105 nodes / 532 verified submissions.
+- [ ] Mastery content: atomics/ordering, advanced lifetimes, macros, FFI — ongoing rhythm.
+
 ### Original step list
 - [ ] 28. Staging infrastructure (IaC from the start)
 - [ ] 29. CI/CD (Swift tests, Rust tests, schema validation, compile all reference solutions +

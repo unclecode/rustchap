@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "collections.004",
+  "version": 1,
+  "title": "Count Every Word",
+  "track": "collections",
+  "concepts": [
+    "hashmap-basics"
+  ],
+  "difficulty": 2,
+  "goal": "One line creates or finds the counter; the next line bumps it through the reference.",
+  "template": "use std::collections::HashMap;\n\nfn counts(words: &[&str]) -> HashMap<String, i32> {\n    let mut map = HashMap::new();\n    for word in words {\n        let count = map⟦entry⟧;\n        ⟦bump⟧\n    }\n    map\n}\n\nfn main() {\n    println!(\"{:?}\", counts(&[\"a\", \"b\", \"a\"]));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "entry",
+        "original": ".get(word)",
+        "label": "lookup",
+        "choices": [
+          {
+            "id": "e1",
+            "text": ".get(word)"
+          },
+          {
+            "id": "e2",
+            "text": ".entry(word.to_string()).or_insert(0)"
+          },
+          {
+            "id": "e3",
+            "text": "[*word]"
+          }
+        ]
+      },
+      {
+        "id": "bump",
+        "original": "count += 1;",
+        "label": "increment",
+        "choices": [
+          {
+            "id": "b1",
+            "text": "count += 1;"
+          },
+          {
+            "id": "b2",
+            "text": "*count += 1;"
+          },
+          {
+            "id": "b3",
+            "text": "count = count + 1;"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn tallies() {\n    let c = counts(&[\"a\", \"b\", \"a\"]);\n    assert_eq!(c.get(\"a\"), Some(&2));\n    assert_eq!(c.get(\"b\"), Some(&1));\n    assert_eq!(c.len(), 2);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "get only reads. You need find-or-create.",
+    "entry hands back a reference. The star reaches through it."
+  ],
+  "explanation": "`get` returns an `Option` and never inserts - the counting idiom is `entry(key).or_insert(0)`, which returns `&mut i32`, creating the zero first when the word is new. Because `count` is a reference, `count += 1` is E0368; you bump the value it points at with `*count += 1`. Indexing with `map[..]` panics on missing keys - exactly what a counter meets on every first sighting.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings hashmaps2"
+  }
+}
