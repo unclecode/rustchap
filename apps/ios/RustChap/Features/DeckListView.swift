@@ -62,6 +62,7 @@ struct DeckListView: View {
                 }
             }
         }
+        .scoreboardButton()
         .tutorButton { .global(concepts: Array(store.concepts.values)) }
         .sheet(isPresented: $showProfile) {
             ProfileView()

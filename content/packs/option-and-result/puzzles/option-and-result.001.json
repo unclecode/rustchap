@@ -8,7 +8,7 @@
     "option"
   ],
   "difficulty": 1,
-  "goal": "The first character of a string that might be empty. Say 'maybe' in the type.",
+  "goal": "Return the first character of a string that might be empty. The return type must show it can be absent.",
   "template": "fn first_char(s: &str) -> ⟦ret_ty⟧ {\n    s.chars().next()⟦suffix⟧\n}\n\nfn main() {\n    println!(\"{:?} {:?}\", first_char(\"hi\"), first_char(\"\"));\n}",
   "interaction": {
     "type": "slot-selection",

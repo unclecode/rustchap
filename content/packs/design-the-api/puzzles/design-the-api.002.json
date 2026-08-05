@@ -10,7 +10,7 @@
     "borrow"
   ],
   "difficulty": 2,
-  "goal": "One function, two very different callers - owned text and a literal. Choose the parameter that serves both.",
+  "goal": "One function is called with an owned String and with a literal. Choose the parameter type that serves both.",
   "template": "fn shout(text: ⟦param⟧) -> String {\n    text.to_uppercase()\n}\n\nfn main() {\n    let owned = String::from(\"crab\");\n    println!(\"{}\", shout(⟦arg_owned⟧));\n    println!(\"{}\", shout(⟦arg_lit⟧));\n    println!(\"still here: {owned}\");\n}",
   "interaction": {
     "type": "minimal-edit",

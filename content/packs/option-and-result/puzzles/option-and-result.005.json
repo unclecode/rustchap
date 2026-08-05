@@ -8,7 +8,7 @@
     "error-propagation"
   ],
   "difficulty": 3,
-  "goal": "Parse two numbers and add them. Two failure points, one honest signature.",
+  "goal": "Parse two numbers and add them. Both parses can fail; report failure through the return type.",
   "interaction": {
     "type": "best-solution",
     "candidates": [

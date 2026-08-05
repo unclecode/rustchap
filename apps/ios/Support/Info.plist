@@ -9,5 +9,10 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<!-- Standard HTTPS only (OpenRouter tutor calls) — the App Store export
+	     compliance exemption. Declared here so every upload skips the manual
+	     compliance question. -->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>

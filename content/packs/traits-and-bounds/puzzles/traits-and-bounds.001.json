@@ -8,7 +8,7 @@
     "traits"
   ],
   "difficulty": 1,
-  "goal": "The struct won't print. Grant it the right capability.",
+  "goal": "The struct does not print. Add the trait that {config:?} needs.",
   "template": "⟦derive_attr⟧\nstruct Config {\n    retries: u32,\n    verbose: bool,\n}\n\nfn main() {\n    let config = Config { retries: 3, verbose: true };\n    println!(\"{config:?}\");\n}",
   "interaction": {
     "type": "slot-selection",

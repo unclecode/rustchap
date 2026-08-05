@@ -8,7 +8,7 @@
     "pattern-matching"
   ],
   "difficulty": 1,
-  "goal": "Take each event apart by its shape - and mind the order of the pieces.",
+  "goal": "Match each event variant and use its fields. Field order matters.",
   "template": "enum Event {\n    Click(i64, i64),\n    Key(char),\n}\n\nfn describe(e: &Event) -> String {\n    match e {\n        ⟦click_pat⟧ => format!(\"click at {x},{y}\"),\n        ⟦key_pat⟧ => format!(\"key {c}\"),\n    }\n}\n\nfn main() {\n    println!(\"{}\", describe(&Event::Click(3, 9)));\n    println!(\"{}\", describe(&Event::Key('q')));\n}",
   "interaction": {
     "type": "slot-selection",

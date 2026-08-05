@@ -10,7 +10,7 @@
     "move"
   ],
   "difficulty": 2,
-  "goal": "Double the numbers AND keep the originals - pick the iterator that doesn't eat its input.",
+  "goal": "Double the numbers while keeping the original list usable. Pick the right iterator.",
   "template": "fn main() {\n    let nums = vec![1, 2, 3];\n    let doubled: Vec<i32> = nums⟦iter_call⟧.map(|n| n * 2).collect();\n    println!(\"{doubled:?} from {nums:?}\");\n}",
   "interaction": {
     "type": "minimal-edit",

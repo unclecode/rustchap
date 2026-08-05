@@ -10,6 +10,8 @@ struct ProfileView: View {
     @Environment(ContentStore.self) private var store
     @Environment(\.dismiss) private var dismiss
     @AppStorage("appearance") private var appearance = "system"
+    @AppStorage("tutorEngine") private var tutorEngine = TutorEngineKind.local.rawValue
+    @State private var openRouterKey = TutorSettings.openRouterKey ?? ""
     @Query private var progress: [PuzzleProgressRecord]
 
     @State private var name = ""
@@ -105,6 +107,34 @@ struct ProfileView: View {
                     .pickerStyle(.segmented)
                 } header: {
                     Text("Theme")
+                }
+
+                Section {
+                    Picker("Tutor answers", selection: $tutorEngine) {
+                        Text("On-device").tag(TutorEngineKind.local.rawValue)
+                        Text("OpenRouter").tag(TutorEngineKind.openRouter.rawValue)
+                    }
+                    if tutorEngine == TutorEngineKind.openRouter.rawValue {
+                        SecureField("OpenRouter API key", text: $openRouterKey)
+                            .textInputAutocapitalization(.never)
+                            .autocorrectionDisabled()
+                            .onSubmit { TutorSettings.openRouterKey = openRouterKey }
+                            .onChange(of: openRouterKey) { _, newValue in
+                                TutorSettings.openRouterKey = newValue
+                            }
+                    }
+                } header: {
+                    Text("AI tutor")
+                } footer: {
+                    if tutorEngine == TutorEngineKind.openRouter.rawValue {
+                        Text(
+                            (openRouterKey.isEmpty
+                                ? "No key yet — the tutor stays on-device. "
+                                : "Cloud answers via \(TutorSettings.openRouterModel). ")
+                            + "Falls back to the on-device model when the cloud fails.")
+                    } else {
+                        Text("Answers come from Apple's on-device model. Private and offline.")
+                    }
                 }
 
                 Section {

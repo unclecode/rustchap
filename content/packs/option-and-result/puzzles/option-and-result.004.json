@@ -9,7 +9,7 @@
     "iterator"
   ],
   "difficulty": 2,
-  "goal": "Double the first element - if there is one. Stay inside the Option.",
+  "goal": "Double the first element if there is one. Use Option methods, not unwrap.",
   "template": "fn double_head(xs: &[i32]) -> Option<i32> {\n    ⟦body⟧\n}\n\nfn main() {\n    println!(\"{:?} {:?}\", double_head(&[21, 5]), double_head(&[]));\n}",
   "interaction": {
     "type": "minimal-edit",

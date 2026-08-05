@@ -8,7 +8,7 @@
     "traits"
   ],
   "difficulty": 2,
-  "goal": "Config::default() must work. One version doesn't compile; of the two that do, one wrote code a derive already writes.",
+  "goal": "Make Config::default() work. Prefer the derive over hand-written code.",
   "interaction": {
     "type": "best-solution",
     "candidates": [

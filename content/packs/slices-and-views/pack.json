@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "slices-and-views",
   "title": "Slices & Views",
-  "description": "Borrowed views into data - zero-copy from the start.",
+  "description": "Read parts of data through views, without copying.",
   "toolchain": "1.97.1",
   "order": [
     "slices-and-views.006",

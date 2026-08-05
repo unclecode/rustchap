@@ -10,7 +10,7 @@
     "async-await"
   ],
   "difficulty": 4,
-  "goal": "The future holds a counter across an .await - and must stay Send. Choose the counter that can cross threads.",
+  "goal": "The future holds a counter across an .await and must stay Send. Choose a counter that can cross threads.",
   "template": "use std::cell::Cell;\nuse std::rc::Rc;\nuse std::sync::Arc;\n\nasync fn tick() {}\n\nasync fn work() -> i32 {\n    let counter = ⟦counter_expr⟧;\n    tick().await;\n    *counter\n}\n\nfn requires_send<T: Send>(value: T) -> T {\n    value\n}\n\nfn get() -> i32 {\n    block_on(requires_send(work()))\n}\n\nfn main() {\n    println!(\"{}\", get());\n}\n\n// Minimal executor - polls the future to completion (std-only).\nfn block_on<F: std::future::Future>(mut fut: F) -> F::Output {\n    use std::task::{Context, Poll, RawWaker, RawWakerVTable, Waker};\n    fn noop(_: *const ()) {}\n    fn clone(p: *const ()) -> RawWaker {\n        RawWaker::new(p, &VTABLE)\n    }\n    static VTABLE: RawWakerVTable = RawWakerVTable::new(clone, noop, noop, noop);\n    let waker = unsafe { Waker::from_raw(RawWaker::new(std::ptr::null(), &VTABLE)) };\n    let mut cx = Context::from_waker(&waker);\n    let mut fut = unsafe { std::pin::Pin::new_unchecked(&mut fut) };\n    loop {\n        match fut.as_mut().poll(&mut cx) {\n            Poll::Ready(value) => return value,\n            Poll::Pending => std::thread::yield_now(),\n        }\n    }\n}",
   "interaction": {
     "type": "slot-selection",

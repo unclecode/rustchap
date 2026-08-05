@@ -9,7 +9,7 @@
     "clone"
   ],
   "difficulty": 2,
-  "goal": "A two-int point crosses this code four times. Pick the version that never allocates OR clones.",
+  "goal": "Pick the version where passing the point never needs a clone.",
   "interaction": {
     "type": "best-solution",
     "candidates": [

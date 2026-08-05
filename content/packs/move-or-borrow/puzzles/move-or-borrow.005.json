@@ -10,7 +10,7 @@
     "borrow"
   ],
   "difficulty": 3,
-  "goal": "The log must read \"was 10;now 100!\" - order the reads and the writes.",
+  "goal": "Order the statements so the log prints \"was 10;now 100!\".",
   "interaction": {
     "type": "block-arrangement",
     "fixed_prefix": "fn story() -> String {\n    let mut score = String::from(\"10\");\n    let mut log = String::new();",

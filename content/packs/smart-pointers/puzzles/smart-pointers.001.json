@@ -8,7 +8,7 @@
     "smart-pointers"
   ],
   "difficulty": 2,
-  "goal": "A list that contains itself has infinite size - unless it contains a pointer instead.",
+  "goal": "Fix the recursive list type. It needs a pointer, not a value, inside itself.",
   "template": "enum List {\n    Cons(i32, ⟦tail_ty⟧),\n    Nil,\n}\n\nuse List::{Cons, Nil};\n\nfn sum(list: &List) -> i32 {\n    match list {\n        Cons(value, tail) => value + sum(tail),\n        Nil => 0,\n    }\n}\n\nfn main() {\n    let list = Cons(1, Box::new(Cons(2, Box::new(Nil))));\n    println!(\"{}\", sum(&list));\n}",
   "interaction": {
     "type": "slot-selection",

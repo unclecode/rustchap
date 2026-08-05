@@ -10,7 +10,7 @@
     "borrow"
   ],
   "difficulty": 1,
-  "goal": "Make everything print - and pay for nothing.",
+  "goal": "Make everything print, with zero clones.",
   "template": "fn main() {\n    let count = 7;\n    let label = String::from(\"attempts\");\n    describe(⟦int_arg⟧, ⟦str_arg⟧);\n    println!(\"{count} {label}\");\n}\n\nfn describe(n: i32, text: ⟦param_ty⟧) {\n    println!(\"{n} {}\", text.trim());\n}",
   "interaction": {
     "type": "minimal-edit",

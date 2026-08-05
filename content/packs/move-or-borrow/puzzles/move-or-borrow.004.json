@@ -10,7 +10,7 @@
     "borrow"
   ],
   "difficulty": 2,
-  "goal": "All three statements are correct - only their order isn't. Untangle the timeline.",
+  "goal": "Reorder the three statements so the borrow ends before the move.",
   "interaction": {
     "type": "block-arrangement",
     "fixed_prefix": "fn main() {\n    let data = String::from(\"crab\");",

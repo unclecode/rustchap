@@ -10,7 +10,7 @@
     "move"
   ],
   "difficulty": 2,
-  "goal": "Read one field without paying for it - and without breaking the struct.",
+  "goal": "Read one field without cloning it and without moving it out of the struct.",
   "template": "struct Profile {\n    name: String,\n    karma: u32,\n}\n\nfn main() {\n    let profile = Profile {\n        name: String::from(\"crab\"),\n        karma: 42,\n    };\n    let display = ⟦expr⟧;\n    show(&profile);\n    println!(\"headline: {display}\");\n}\n\nfn show(p: &Profile) {\n    println!(\"{} has {} karma\", p.name, p.karma);\n}",
   "interaction": {
     "type": "minimal-edit",

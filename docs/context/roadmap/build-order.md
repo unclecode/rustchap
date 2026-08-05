@@ -103,9 +103,21 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       per-surface persistent chats (home/deck/puzzle), streaming markdown, UIKit-backed
       selection, per-message copy; (e) home = 2-column card grid with tinted SF Symbol deck
       tiles (`pack.json` icon/accent), puzzle rows carry interaction-type glyphs; (f) two stale
-      api test assertions refreshed. NEXT in phase 8: user continues on-device dogfood
-      (airplane mode, interruptions, large text) → then 29 CI/CD → 28 serverless-v0.1 decision
-      → 31 internal TestFlight.
+      api test assertions refreshed. NEXT in phase 8: 28 serverless-v0.1 decision → 31 external testers + step 34 prep.
+- [x] 31. Internal TestFlight SHIPPED (2026-08-05): ASC app record "RustChap" (id 6798180343,
+      SKU rustchap-001, bundle dev.rustchap.RustChap auto-registered by the distribution
+      export), Release archive + Apple Distribution signing + upload ALL headless via the
+      Mac's Xcode account (`xcodebuild -exportArchive` destination=upload), export-compliance
+      key in Support/Info.plist. Build 0.1(1) Ready to Submit; internal group "Core Testers"
+      with automatic distribution; account holder invited. ASC API key for CI uploads located
+      (touchup-notary, SK8BLGJ8R8, Developer role) and installed at
+      ~/.appstoreconnect/private_keys. External testers (the ~6 friends) still pending:
+      external group + first-build beta review.
+- [x] 29. CI/CD SHIPPED (2026-08-05, `.github/workflows/ci.yml`): every push/PR runs
+      rust-and-content on ubuntu (workspace tests; linter --check recompiling all
+      enumerated submissions on pinned 1.97.1 — verdict drift fails the build; audit) +
+      ios-build on macos (simulator-SDK compile, newest runner Xcode, no signing).
+      First run green: 2m16s / 1m06s. TestFlight upload deliberately deferred to 31.
 
 ### Original step list
 - [ ] 28. Staging infrastructure (IaC from the start)

@@ -9,7 +9,7 @@
     "traits"
   ],
   "difficulty": 2,
-  "goal": "largest works for numbers and strings alike - the > in the body names its price.",
+  "goal": "Make largest work for numbers and strings. The > comparison tells you the bound it needs.",
   "template": "fn largest<T: ⟦bound⟧>(list: &[T]) -> &T {\n    let mut max = &list[0];\n    for item in list {\n        if item > max {\n            max = item;\n        }\n    }\n    max\n}\n\nfn main() {\n    println!(\"{}\", largest(&[1, 5, 3]));\n    println!(\"{}\", largest(&[\"pear\", \"apple\"]));\n}",
   "interaction": {
     "type": "slot-selection",

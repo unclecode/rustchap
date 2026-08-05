@@ -46,6 +46,7 @@ struct DeckDetailView: View {
         }
         .navigationTitle(deck.pack.title)
         .navigationBarTitleDisplayMode(.inline)
+        .scoreboardButton()
         .tutorButton { .deck(deck, concepts: Array(store.concepts.values)) }
     }
 

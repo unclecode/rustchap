@@ -8,7 +8,7 @@
     "pattern-matching"
   ],
   "difficulty": 2,
-  "goal": "Cover the last status - in the way that keeps future variants loud.",
+  "goal": "Handle the last status. Choose the pattern that will not hide future variants.",
   "template": "enum Status {\n    Active,\n    Idle,\n    Banned,\n}\n\nfn label(s: Status) -> &'static str {\n    match s {\n        Status::Active => \"on\",\n        Status::Idle => \"zzz\",\n        ⟦last_arm⟧ => \"blocked\",\n    }\n}\n\nfn main() {\n    println!(\"{} {} {}\", label(Status::Active), label(Status::Idle), label(Status::Banned));\n}",
   "interaction": {
     "type": "slot-selection",

@@ -9,7 +9,7 @@
     "mutability"
   ],
   "difficulty": 2,
-  "goal": "Add up the cart. Three working versions - one has no moving parts at all.",
+  "goal": "Sum the cart totals. Pick the version with no mutable state.",
   "interaction": {
     "type": "best-solution",
     "candidates": [

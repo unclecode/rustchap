@@ -144,6 +144,25 @@ Verified by simulator-SDK build plus a macOS harness that compiles the real
   `CostLegendSheet` (tap chip or meter): half-height sheet — approved exception to the
   all-large drawer rule — active letters tagged "this puzzle", others dimmed. Design mock:
   claude.ai artifact 57028cca.
+- **Tutor engines (2026-08-05)**: `Core/TutorEngine.swift` — a `TutorEngine` protocol with two
+  implementations behind `TutorEngineFactory`: `LocalTutorEngine` (Foundation Models, gated)
+  and `OpenRouterTutorEngine` (SSE streaming chat completions; pinned model in
+  `TutorSettings.openRouterModel` = deepseek/deepseek-v4-flash-0731, $0.09/$0.18 per M —
+  cheapest capable per the 2026-08 pricing pass; `reasoning` deltas ignored). Selection in
+  ProfileView ("AI tutor" section: engine picker + SecureField); key in the Keychain
+  (`openrouter_api_key`) — typed by the user in Profile, the ONLY entry path (the dev
+  launch-arg injection was removed 2026-08-05 by user decision: keys are never provisioned
+  outside the settings UI).
+  Cloud errors fall back to the local engine for that question and stay local; a failed
+  question is removed from the cloud history so the transcript never holds unanswered turns.
+  `TutorAvailability` = cloud configured OR FM available (the sparkles button now appears on
+  FM-less devices when cloud is set). Both engines stream cumulative snapshots via
+  `AsyncThrowingStream.makeStream` (@MainActor — the Swift 6 sending-closure fix).
+- **Scoreboard (2026-08-05)**: `Features/ScoreboardSheet.swift` — chart toolbar button on
+  home/deck screens (`.scoreboardButton()`, same always-there pattern as the tutor; the
+  profile keeps identity/settings, the scoreboard owns progress). Large drawer: three stat
+  tiles (solved/total, ★ optimal, attempts) + per-deck rows with icon tile, accent progress
+  bar, counts. `--scoreboard` launch arg opens it for screenshots.
 - **Skills** (`ConceptView.swift`): `content/concepts` is bundled as a second folder reference;
   `ContentStore.concepts(for:)` maps a puzzle's `concepts` ids to loaded `Concept`s.
   `SkillsSheet` (book toolbar icon) lists them and pushes `ConceptLectureView`; `HintsSheet`

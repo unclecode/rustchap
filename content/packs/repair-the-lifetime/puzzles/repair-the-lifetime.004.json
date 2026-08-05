@@ -10,7 +10,7 @@
     "clone"
   ],
   "difficulty": 2,
-  "goal": "Return a freshly built id. One of these can never work - and one pays double.",
+  "goal": "Return a newly built String. One version can never compile; one copies for no reason.",
   "interaction": {
     "type": "best-solution",
     "candidates": [

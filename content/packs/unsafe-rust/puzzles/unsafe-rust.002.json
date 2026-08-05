@@ -9,7 +9,7 @@
     "api-design"
   ],
   "difficulty": 3,
-  "goal": "Raw pointer reads, three containments. Count who has to say 'unsafe' - and how often.",
+  "goal": "Three ways to contain the same raw-pointer reads. Pick the one with the smallest unsafe surface.",
   "interaction": {
     "type": "best-solution",
     "candidates": [

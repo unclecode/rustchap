@@ -9,7 +9,7 @@
     "option"
   ],
   "difficulty": 2,
-  "goal": "The first word longer than four letters - maybe there isn't one. Order the pipeline.",
+  "goal": "Find the first word longer than four letters. There may be none.",
   "interaction": {
     "type": "block-arrangement",
     "fixed_prefix": "fn first_long(words: &[String]) -> Option<&String> {\n    words",

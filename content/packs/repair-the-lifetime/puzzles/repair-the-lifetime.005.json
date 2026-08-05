@@ -9,7 +9,7 @@
     "lifetime"
   ],
   "difficulty": 2,
-  "goal": "A function with no inputs returns a &str. What must it promise - and what can keep that promise?",
+  "goal": "Return a &str from a function with no inputs. Only one kind of data can do this.",
   "template": "fn motto() -> &⟦lt⟧str {\n    ⟦value⟧\n}\n\nfn main() {\n    println!(\"{}\", motto());\n}",
   "interaction": {
     "type": "slot-selection",

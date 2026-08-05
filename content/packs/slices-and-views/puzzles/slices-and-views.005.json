@@ -9,7 +9,7 @@
     "zero-copy"
   ],
   "difficulty": 2,
-  "goal": "The last two readings. A view beats a copy - and the wrong window fails loudly.",
+  "goal": "Return the last two readings as a view. Pick the right end of the data.",
   "interaction": {
     "type": "best-solution",
     "candidates": [

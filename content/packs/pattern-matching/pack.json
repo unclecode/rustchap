@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "pattern-matching",
   "title": "Pattern Matching",
-  "description": "Destructure everything; make illegal states unrepresentable.",
+  "description": "Take data apart with patterns and cover every case.",
   "toolchain": "1.97.1",
   "order": [
     "pattern-matching.004",

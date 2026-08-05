@@ -10,7 +10,7 @@
     "clone"
   ],
   "difficulty": 3,
-  "goal": "A struct that holds a view into the poem - without owning or copying it.",
+  "goal": "Build a struct that holds a view into the poem, without owning or copying it.",
   "template": "struct Excerpt⟦struct_generics⟧ {\n    line: ⟦field_ty⟧,\n}\n\nfn main() {\n    let poem = String::from(\"crab season / silent tide\");\n    let ex = Excerpt { line: ⟦init_expr⟧ };\n    println!(\"quote: {}\", ex.line);\n    println!(\"full: {poem}\");\n}",
   "interaction": {
     "type": "slot-selection",

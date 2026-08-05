@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "option-and-result",
   "title": "Option & Result",
-  "description": "Absence and failure as types - and the ? that tames them.",
+  "description": "Missing values and errors as types, handled with ?.",
   "toolchain": "1.97.1",
   "order": [
     "option-and-result.006",

@@ -10,7 +10,7 @@
     "borrow-scope"
   ],
   "difficulty": 2,
-  "goal": "Two clones per iteration, zero needed. Make the loop allocation-free.",
+  "goal": "Remove both clones from the loop. Borrow instead.",
   "template": "fn main() {\n    let banner = String::from(\">> \");\n    let items = vec![String::from(\"a\"), String::from(\"b\")];\n    for item in &items {\n        render(⟦banner_arg⟧, ⟦item_arg⟧);\n    }\n}\n\nfn render(prefix: ⟦prefix_ty⟧, item: ⟦item_ty⟧) {\n    println!(\"{}{}\", prefix.trim(), item);\n}",
   "interaction": {
     "type": "minimal-edit",

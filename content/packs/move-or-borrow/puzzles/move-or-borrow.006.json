@@ -10,7 +10,7 @@
     "iterator"
   ],
   "difficulty": 2,
-  "goal": "Print every word, then the count - one edit, no clones.",
+  "goal": "Print every word, then the count. One edit, no clones.",
   "template": "fn main() {\n    let words = vec![String::from(\"hi\"), String::from(\"yo\")];\n    for w in ⟦loop_src⟧ {\n        println!(\"{w}\");\n    }\n    println!(\"{} words\", ⟦count_expr⟧);\n}",
   "interaction": {
     "type": "minimal-edit",

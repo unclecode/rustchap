@@ -8,7 +8,7 @@
     "slice"
   ],
   "difficulty": 2,
-  "goal": "Count the characters. Strings are UTF-8 - length has two meanings, and only one is right.",
+  "goal": "Count the characters of a UTF-8 string, not its bytes.",
   "template": "fn char_count(s: &str) -> usize {\n    ⟦expr⟧\n}\n\nfn main() {\n    println!(\"{} {}\", char_count(\"crab\"), char_count(\"crábe\"));\n}",
   "interaction": {
     "type": "minimal-edit",

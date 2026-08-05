@@ -8,7 +8,7 @@
     "error-propagation"
   ],
   "difficulty": 2,
-  "goal": "Parse, double, and be honest about garbage input. One character does it.",
+  "goal": "Parse a number and double it. Invalid input must return an error, not a panic or a fake value.",
   "template": "fn parse_and_double(s: &str) -> Result<i32, std::num::ParseIntError> {\n    let n = s.parse::<i32>()⟦handler⟧;\n    Ok(n * 2)\n}\n\nfn main() {\n    println!(\"{:?} {:?}\", parse_and_double(\"21\"), parse_and_double(\"x\"));\n}",
   "interaction": {
     "type": "minimal-edit",

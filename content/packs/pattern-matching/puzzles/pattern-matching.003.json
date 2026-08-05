@@ -9,7 +9,7 @@
     "option"
   ],
   "difficulty": 2,
-  "goal": "One interesting case, three ways to handle it. Pick the one with nothing extra.",
+  "goal": "Handle the one interesting case, with nothing extra.",
   "interaction": {
     "type": "best-solution",
     "candidates": [

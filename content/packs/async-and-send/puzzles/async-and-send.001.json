@@ -8,7 +8,7 @@
     "async-await"
   ],
   "difficulty": 2,
-  "goal": "fetch_score() builds the future. Something still has to run it.",
+  "goal": "fetch_score() only builds the future. Make the code actually run it.",
   "template": "async fn fetch_score() -> i32 {\n    42\n}\n\nfn get() -> i32 {\n    block_on(async {\n        ⟦call⟧\n    })\n}\n\nfn main() {\n    println!(\"{}\", get());\n}\n\n// Minimal executor - polls the future to completion (std-only).\nfn block_on<F: std::future::Future>(mut fut: F) -> F::Output {\n    use std::task::{Context, Poll, RawWaker, RawWakerVTable, Waker};\n    fn noop(_: *const ()) {}\n    fn clone(p: *const ()) -> RawWaker {\n        RawWaker::new(p, &VTABLE)\n    }\n    static VTABLE: RawWakerVTable = RawWakerVTable::new(clone, noop, noop, noop);\n    let waker = unsafe { Waker::from_raw(RawWaker::new(std::ptr::null(), &VTABLE)) };\n    let mut cx = Context::from_waker(&waker);\n    let mut fut = unsafe { std::pin::Pin::new_unchecked(&mut fut) };\n    loop {\n        match fut.as_mut().poll(&mut cx) {\n            Poll::Ready(value) => return value,\n            Poll::Pending => std::thread::yield_now(),\n        }\n    }\n}",
   "interaction": {
     "type": "slot-selection",

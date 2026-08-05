@@ -10,7 +10,7 @@
     "move"
   ],
   "difficulty": 2,
-  "goal": "A greeter you can call twice - while the greeting stays yours.",
+  "goal": "Build a closure you can call twice, while main still owns the greeting.",
   "template": "fn main() {\n    let greeting = String::from(\"hi\");\n    let greet = ⟦closure⟧;\n    greet();\n    greet();\n    println!(\"still mine: {greeting}\");\n}",
   "interaction": {
     "type": "slot-selection",

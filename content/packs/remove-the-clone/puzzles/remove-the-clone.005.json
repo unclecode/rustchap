@@ -9,7 +9,7 @@
     "api-design"
   ],
   "difficulty": 2,
-  "goal": "Alphabetical order, zero clones - and beware the key that lies.",
+  "goal": "Sort the names alphabetically with zero clones. One option sorts by the wrong thing.",
   "template": "fn sorted_names() -> Vec<String> {\n    let mut names = vec![\n        String::from(\"zoe\"),\n        String::from(\"amy\"),\n        String::from(\"mia\"),\n    ];\n    ⟦sort_stmt⟧;\n    names\n}\n\nfn main() {\n    println!(\"{:?}\", sorted_names());\n}",
   "interaction": {
     "type": "minimal-edit",

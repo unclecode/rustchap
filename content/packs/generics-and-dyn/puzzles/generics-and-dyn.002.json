@@ -10,7 +10,7 @@
     "smart-pointers"
   ],
   "difficulty": 3,
-  "goal": "One Vec, mixed shapes. Trait objects make it possible - with the right wrapping.",
+  "goal": "Store circles and squares in one Vec. Wrap them the way trait objects require.",
   "template": "trait Draw {\n    fn draw(&self) -> String;\n}\n\nstruct Circle;\nstruct Square;\n\nimpl Draw for Circle {\n    fn draw(&self) -> String {\n        String::from(\"o\")\n    }\n}\n\nimpl Draw for Square {\n    fn draw(&self) -> String {\n        String::from(\"□\")\n    }\n}\n\nfn shapes() -> Vec<⟦elem_ty⟧> {\n    vec![⟦first_elem⟧, Box::new(Square)]\n}\n\nfn main() {\n    for s in shapes() {\n        print!(\"{}\", s.draw());\n    }\n    println!();\n}",
   "interaction": {
     "type": "slot-selection",

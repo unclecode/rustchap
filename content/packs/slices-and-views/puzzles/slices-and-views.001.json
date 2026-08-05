@@ -9,7 +9,7 @@
     "borrow"
   ],
   "difficulty": 1,
-  "goal": "Everything except the ends - as a view, not a copy.",
+  "goal": "Select the middle three elements as a view into the array. No copying.",
   "template": "fn main() {\n    let a = [1, 2, 3, 4, 5];\n    let nice_slice = ⟦slice_expr⟧;\n    assert_eq!([2, 3, 4], nice_slice);\n    println!(\"neat: {nice_slice:?}\");\n}",
   "interaction": {
     "type": "minimal-edit",

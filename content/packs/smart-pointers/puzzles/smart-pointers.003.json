@@ -9,7 +9,7 @@
     "mutability"
   ],
   "difficulty": 3,
-  "goal": "A shared list that still accepts pushes - interior mutability, borrowed correctly on both sides.",
+  "goal": "Share a list between two handles and still push to it. Borrow the RefCell correctly on both sides.",
   "template": "use std::cell::RefCell;\nuse std::rc::Rc;\n\ntype Board = Rc<RefCell<Vec<i32>>>;\n\nfn add_score(board: &Board, score: i32) {\n    board⟦mut_access⟧.push(score);\n}\n\nfn snapshot(board: &Board) -> Vec<i32> {\n    board⟦read_access⟧.clone()\n}\n\nfn main() {\n    let scores: Board = Rc::new(RefCell::new(vec![10, 20]));\n    let leaderboard = Rc::clone(&scores);\n    add_score(&scores, 30);\n    println!(\"{:?}\", snapshot(&leaderboard));\n}",
   "interaction": {
     "type": "slot-selection",

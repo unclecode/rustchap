@@ -3,9 +3,6 @@
 // TutorAvailability says the model is usable (see .tutorButton()).
 
 import SwiftUI
-#if canImport(FoundationModels)
-import FoundationModels
-#endif
 
 struct TutorSheet: View {
     let context: TutorContext
@@ -13,17 +10,7 @@ struct TutorSheet: View {
 
     var body: some View {
         NavigationStack {
-            Group {
-                if #available(iOS 26.0, *) {
-                    TutorChatView(context: context, clearRequest: clearRequest)
-                } else {
-                    ContentUnavailableView(
-                        "Tutor unavailable",
-                        systemImage: "sparkles",
-                        description: Text("The on-device tutor needs Apple Intelligence.")
-                    )
-                }
-            }
+            TutorChatView(context: context, clearRequest: clearRequest)
             .navigationTitle(context.subject.map { "Ask about \($0)" } ?? "Ask the tutor")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -44,8 +31,6 @@ struct TutorSheet: View {
     }
 }
 
-#if canImport(FoundationModels)
-@available(iOS 26.0, *)
 private struct TutorChatView: View {
     let context: TutorContext
     /// Incremented by the sheet's "New chat" button.
@@ -55,7 +40,8 @@ private struct TutorChatView: View {
     @State private var messages: [TutorMessage] = []
     @State private var input = ""
     @State private var thinking = false
-    @State private var session: LanguageModelSession?
+    @State private var engine: (any TutorEngine)?
+    @State private var engineIsCloud = false
     @FocusState private var inputFocused: Bool
 
     var body: some View {
@@ -134,7 +120,7 @@ private struct TutorChatView: View {
         .onChange(of: clearRequest) { _, _ in
             TutorConversation.clear(context.subjectId, in: modelContext)
             messages = []
-            session = nil
+            engine = nil
             input = ""
         }
     }
@@ -179,7 +165,14 @@ private struct TutorChatView: View {
         case .tutor:
             VStack(alignment: .leading, spacing: 8) {
                 TutorMarkdown(text: message.text)
-                CopyButton(text: message.text)
+                HStack(spacing: 8) {
+                    CopyButton(text: message.text)
+                    if let source = message.source {
+                        Text(source)
+                            .font(.caption2)
+                            .foregroundStyle(.tertiary)
+                    }
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         case .failure:
@@ -200,45 +193,72 @@ private struct TutorChatView: View {
         messages.append(TutorMessage(role: .player, text: question))
         thinking = true
         Task {
-            if session == nil {
-                // Fresh session (first question, or resumed after relaunch):
-                // fold the recent transcript in so the model keeps the thread.
-                var instructions = context.instructions
-                let replay = messages.dropLast().suffix(6).filter { $0.role != .failure }
-                if !replay.isEmpty {
-                    let turns = replay.map { message in
-                        "\(message.role == .player ? "Player" : "Tutor"): \(message.text)"
-                    }.joined(separator: "\n")
-                    instructions += "\n\n# Recent conversation (continue it)\n\(turns)"
-                }
-                session = LanguageModelSession(instructions: instructions)
+            if engine == nil {
+                engineIsCloud = TutorSettings.cloudConfigured
+                engine = TutorEngineFactory.make(
+                    context: context, transcript: Array(messages.dropLast()))
             }
-            do {
-                // Streamed cumulative snapshots: the answer bubble is created on
-                // the first token and rewritten as it grows — the standard
-                // Foundation Models pattern; SwiftUI diffs the re-render.
-                var answerIndex: Int?
-                for try await partial in session!.streamResponse(to: question) {
-                    if let index = answerIndex {
-                        messages[index].text = partial.content
-                    } else {
-                        thinking = false
-                        messages.append(TutorMessage(role: .tutor, text: partial.content))
-                        answerIndex = messages.count - 1
-                    }
-                }
-            } catch {
+            guard let current = engine else {
                 messages.append(TutorMessage(
                     role: .failure,
-                    text: "The tutor couldn't answer that. Try a shorter question."
+                    text: "No tutor is available. Enable Apple Intelligence or add an OpenRouter key in the profile."
+                ))
+                thinking = false
+                return
+            }
+
+            let sourceLabel = engineIsCloud
+                ? TutorSettings.openRouterModelDisplayName : "On-device"
+            var answered = await stream(question, from: current, source: sourceLabel)
+
+            // Cloud trouble must not end the conversation: retry the same
+            // question on the on-device engine, then stay there.
+            if !answered, engineIsCloud,
+               let fallback = TutorEngineFactory.makeLocal(
+                   context: context, transcript: Array(messages.dropLast())) {
+                engine = fallback
+                engineIsCloud = false
+                answered = await stream(question, from: fallback, source: "On-device")
+            }
+
+            if !answered {
+                messages.append(TutorMessage(
+                    role: .failure,
+                    text: "The tutor couldn't answer that. Try again in a moment."
                 ))
             }
             thinking = false
             TutorConversation.save(messages, subjectId: context.subjectId, in: modelContext)
         }
     }
+
+    /// Stream one answer; the bubble is created on the first snapshot and
+    /// rewritten as it grows. Returns false (and removes any partial bubble)
+    /// when the engine fails.
+    private func stream(
+        _ question: String, from engine: any TutorEngine, source: String
+    ) async -> Bool {
+        var answerIndex: Int?
+        do {
+            for try await text in engine.reply(to: question) {
+                if let index = answerIndex {
+                    messages[index].text = text
+                } else {
+                    thinking = false
+                    messages.append(TutorMessage(role: .tutor, text: text, source: source))
+                    answerIndex = messages.count - 1
+                }
+            }
+            return answerIndex != nil
+        } catch {
+            if let index = answerIndex, messages.indices.contains(index) {
+                messages.remove(at: index)
+            }
+            thinking = true
+            return false
+        }
+    }
 }
-#endif
 
 /// Quiet per-message copy: raw markdown to the pasteboard, brief confirmation.
 private struct CopyButton: View {

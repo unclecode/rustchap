@@ -9,7 +9,7 @@
     "smart-pointers"
   ],
   "difficulty": 3,
-  "goal": "Two handles, one score, two bumps. Share the counter and actually increment it.",
+  "goal": "Two handles share one score. Make both increments actually count.",
   "template": "use std::cell::Cell;\nuse std::rc::Rc;\n\nfn tally() -> i32 {\n    let score = Rc::new(Cell::new(0));\n    let judge = ⟦handle⟧;\n    ⟦judge_bump⟧;\n    score.set(score.get() + 1);\n    score.get()\n}\n\nfn main() {\n    println!(\"score: {}\", tally());\n}",
   "interaction": {
     "type": "slot-selection",

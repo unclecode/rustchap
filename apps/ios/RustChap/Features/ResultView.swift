@@ -102,6 +102,9 @@ struct ResultView: View {
                         Text(result.rank == .optimal ? "Play again" : "Try for a better score")
                             .frame(maxWidth: .infinity)
                     }
+                    // Centered label: pin the separator to the row edge, or the
+                    // List starts it under the text (memory: separator inset).
+                    .alignmentGuide(.listRowSeparatorLeading) { $0[.leading] }
                     if result.status == .solved, let nextPuzzleId {
                         Button { onNext(nextPuzzleId) } label: {
                             Text("Next puzzle")

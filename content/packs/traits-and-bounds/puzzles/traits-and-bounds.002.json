@@ -10,7 +10,7 @@
     "api-design"
   ],
   "difficulty": 2,
-  "goal": "announce works for strings AND numbers. The body already tells you which capability it needs.",
+  "goal": "Make announce work for strings and numbers. The body shows which trait bound it needs.",
   "template": "fn announce<T: ⟦bound⟧>(items: &[T]) {\n    for item in items {\n        println!(\"- {item}\");\n    }\n}\n\nfn main() {\n    announce(&[\"alpha\", \"beta\"]);\n    announce(&[1, 2, 3]);\n}",
   "interaction": {
     "type": "slot-selection",

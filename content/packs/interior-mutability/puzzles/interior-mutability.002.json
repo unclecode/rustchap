@@ -9,7 +9,7 @@
     "borrow-scope"
   ],
   "difficulty": 3,
-  "goal": "Read the length, then push. Every version compiles - one panics at runtime.",
+  "goal": "Read the length, then push. Every version compiles; one panics at runtime.",
   "template": "use std::cell::RefCell;\n\nfn audit(log: &RefCell<Vec<i32>>) -> usize {\n    ⟦first_line⟧\n    log.borrow_mut().push(99);\n    n\n}\n\nfn main() {\n    let log = RefCell::new(vec![1, 2]);\n    println!(\"had {} entries\", audit(&log));\n}",
   "interaction": {
     "type": "slot-selection",

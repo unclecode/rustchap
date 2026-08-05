@@ -9,7 +9,7 @@
     "borrow"
   ],
   "difficulty": 3,
-  "goal": "The result borrows only from text - say so, and the short-lived label stops mattering.",
+  "goal": "The result borrows only from text. Write the signature so label's short lifetime does not matter.",
   "template": "fn first_word⟦generics⟧(text: &'a str, label: ⟦label_ty⟧) -> &'a str {\n    println!(\"[{label}]\");\n    text.split_whitespace().next().unwrap_or(text)\n}\n\nfn main() {\n    let text = String::from(\"hello world\");\n    let result;\n    {\n        let label = String::from(\"query\");\n        result = first_word(&text, &label);\n    }\n    println!(\"{result}\");\n}",
   "interaction": {
     "type": "slot-selection",

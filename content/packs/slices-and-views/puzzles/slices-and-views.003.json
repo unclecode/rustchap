@@ -9,7 +9,7 @@
     "zero-copy"
   ],
   "difficulty": 2,
-  "goal": "The first word of any sentence - as a view. Hardcoding is not splitting.",
+  "goal": "Return the first word of any sentence as a view. Do not hardcode positions.",
   "template": "fn first_word(s: &str) -> &str {\n    ⟦expr⟧\n}\n\nfn main() {\n    println!(\"{}\", first_word(\"rust is sharp\"));\n}",
   "interaction": {
     "type": "minimal-edit",

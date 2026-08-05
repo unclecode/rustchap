@@ -9,7 +9,7 @@
     "zero-copy"
   ],
   "difficulty": 2,
-  "goal": "Return the middle of the data. One of these can't exist, one pays rent, one is free.",
+  "goal": "Return the middle of the data. One version cannot compile, one allocates, one is free.",
   "interaction": {
     "type": "best-solution",
     "candidates": [

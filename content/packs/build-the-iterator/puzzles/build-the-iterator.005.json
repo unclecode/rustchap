@@ -10,7 +10,7 @@
     "clone"
   ],
   "difficulty": 3,
-  "goal": "A list of everyone's name. The question is: who pays for the strings?",
+  "goal": "Collect everyone's name into a list. Decide whether the strings are borrowed or copied.",
   "interaction": {
     "type": "best-solution",
     "candidates": [

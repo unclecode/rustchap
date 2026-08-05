@@ -9,7 +9,7 @@
     "move"
   ],
   "difficulty": 2,
-  "goal": "Three owners of one theme string - without copying it and without moving it away.",
+  "goal": "Give three owners access to one theme String, without copying or moving it.",
   "template": "use std::rc::Rc;\n\nfn main() {\n    let theme = Rc::new(String::from(\"dark\"));\n    let ui = ⟦ui_take⟧;\n    let audio = ⟦audio_take⟧;\n    println!(\"{ui} {audio} {theme} - owners: {}\", Rc::strong_count(&theme));\n}",
   "interaction": {
     "type": "slot-selection",

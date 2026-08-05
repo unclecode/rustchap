@@ -10,7 +10,7 @@
     "borrow"
   ],
   "difficulty": 3,
-  "goal": "Make a louder greeting. Which signature leaves the least machinery in the caller's hands?",
+  "goal": "Make a louder greeting. Pick the signature that asks the least from the caller.",
   "interaction": {
     "type": "best-solution",
     "candidates": [

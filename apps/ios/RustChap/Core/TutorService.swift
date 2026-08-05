@@ -10,11 +10,12 @@ import SwiftData
 import FoundationModels
 #endif
 
-/// Whether the "Ask the tutor" affordance should exist at all.
-/// False on iOS < 26, non-Apple-Intelligence devices, or while the model
-/// assets are not ready — the button simply never appears.
+/// Whether the "Ask the tutor" affordance should exist at all: a configured
+/// cloud engine, or the on-device model, can answer. When neither can, the
+/// button simply never appears.
 enum TutorAvailability {
     static var isAvailable: Bool {
+        if TutorSettings.cloudConfigured { return true }
         #if canImport(FoundationModels)
         guard #available(iOS 26.0, *) else { return false }
         if case .available = SystemLanguageModel.default.availability {
@@ -37,6 +38,9 @@ struct TutorMessage: Identifiable, Equatable, Codable {
     var id = UUID()
     let role: Role
     var text: String
+    /// Which engine produced a tutor answer ("DeepSeek V4 Flash", "On-device").
+    /// Optional so transcripts saved before this field decode unchanged.
+    var source: String?
 }
 
 // MARK: - Durable conversation (SwiftData)
@@ -180,6 +184,8 @@ struct TutorContext {
         _ loaded: ContentStore.LoadedPuzzle,
         concepts: [Concept],
         selections: [String: String] = [:],
+        blockOrder: [Block] = [],
+        chosenCandidate: String? = nil,
         result: EvalResult? = nil,
         pastBest: EvalResult.Rank? = nil
     ) -> TutorContext {
@@ -202,20 +208,46 @@ struct TutorContext {
             sections.append("## Lecture text\n\(text)")
         }
 
-        if let template = puzzle.template {
+        // The code AS THE PLAYER CURRENTLY SEES IT — composed from their live
+        // picks, so "my code" means the same thing to the tutor and the player.
+        switch puzzle.interaction {
+        case .slotSelection(let slots), .minimalEdit(let slots):
+            var composed = puzzle.template ?? ""
+            var open: [String] = []
+            for slot in slots {
+                let marker = "⟦\(slot.id)⟧"
+                if let choiceId = selections[slot.id],
+                   let choice = slot.choices.first(where: { $0.id == choiceId }) {
+                    composed = composed.replacingOccurrences(of: marker, with: choice.text)
+                } else {
+                    composed = composed.replacingOccurrences(
+                        of: marker, with: "⟦\(slot.label ?? slot.id)⟧")
+                    open.append(slot.label ?? slot.id)
+                }
+            }
             sections.append(
-                "## Code template (⟦…⟧ marks an editable slot)\n```rust\n\(template)\n```")
-        }
-        if let slots = puzzle.interaction.slots, !selections.isEmpty {
-            let picks = slots.compactMap { slot -> String? in
-                guard let choiceId = selections[slot.id],
-                      let choice = slot.choices.first(where: { $0.id == choiceId })
-                else { return nil }
-                return "- \(slot.label ?? slot.id): `\(choice.text)`"
+                "## The player's code right now\n```rust\n\(composed)\n```"
+                    + (open.isEmpty ? "" : "\nSlots still unchosen: \(open.joined(separator: ", ")) (shown as ⟦…⟧)."))
+            let options = slots.map { slot -> String in
+                let current = selections[slot.id]
+                    .flatMap { id in slot.choices.first { $0.id == id }?.text }
+                let choices = slot.choices.map { "`\($0.text)`" }.joined(separator: ", ")
+                return "- \(slot.label ?? slot.id): options \(choices)"
+                    + (current.map { " — currently `\($0)`" } ?? " — not chosen yet")
             }
-            if !picks.isEmpty {
-                sections.append("## Player's current picks\n" + picks.joined(separator: "\n"))
-            }
+            sections.append("## Editable slots\n" + options.joined(separator: "\n"))
+        case .blockArrangement(let prefix, _, let suffix):
+            let body = blockOrder.map(\.text).joined(separator: "\n")
+            sections.append(
+                "## The player's code right now (their current block order)\n```rust\n\(prefix)\n\(body)\n\(suffix)\n```")
+        case .bestSolution(let candidates):
+            let listing = candidates.map { candidate in
+                let mark = candidate.id == chosenCandidate ? " (player's current pick)" : ""
+                return "### Candidate \(candidate.id)\(mark)\n```rust\n\(candidate.code)\n```"
+            }.joined(separator: "\n")
+            sections.append("## The candidate implementations\n\(listing)")
+        case .lesson:
+            break
         }
         if let result {
             let diags = result.diagnostics

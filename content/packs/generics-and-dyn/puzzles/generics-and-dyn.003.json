@@ -9,7 +9,7 @@
     "iterator"
   ],
   "difficulty": 3,
-  "goal": "Return the lazy pipeline itself - its true type can't be written, but it can be promised.",
+  "goal": "Return the iterator pipeline itself. Its exact type cannot be written, so promise the trait instead.",
   "template": "fn evens() -> ⟦ret_ty⟧ {\n    (0..10).filter(|n| n % 2 == 0)\n}\n\nfn main() {\n    let collected: Vec<i32> = evens().collect();\n    println!(\"{collected:?}\");\n}",
   "interaction": {
     "type": "slot-selection",

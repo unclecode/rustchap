@@ -8,7 +8,7 @@
     "unsafe-rust"
   ],
   "difficulty": 2,
-  "goal": "boost() is marked unsafe - the caller must say the word, out loud.",
+  "goal": "boost() is an unsafe fn. Call it the way the language requires.",
   "template": "/// # Safety\n/// Always safe to call in this program; marked unsafe for the exercise.\nunsafe fn boost() -> i32 {\n    9000\n}\n\nfn power_level() -> i32 {\n    ⟦call⟧\n}\n\nfn main() {\n    println!(\"{}\", power_level());\n}",
   "interaction": {
     "type": "slot-selection",

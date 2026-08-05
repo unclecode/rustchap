@@ -10,7 +10,7 @@
     "generics"
   ],
   "difficulty": 3,
-  "goal": "run_twice calls its argument twice. Demand the closure trait that makes that legal - with the least machinery.",
+  "goal": "run_twice calls its closure twice. Pick the weakest closure trait that allows this.",
   "template": "fn run_twice<F: ⟦bound⟧>(⟦param_mut⟧f: F) {\n    f();\n    f();\n}\n\nfn main() {\n    let name = String::from(\"crab\");\n    run_twice(|| println!(\"hi {name}\"));\n}",
   "interaction": {
     "type": "slot-selection",

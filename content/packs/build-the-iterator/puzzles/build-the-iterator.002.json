@@ -8,7 +8,7 @@
     "iterator"
   ],
   "difficulty": 1,
-  "goal": "Square everything, add it up. Three pieces, one order.",
+  "goal": "Square every number and sum them. Put the three pieces in the only order that works.",
   "interaction": {
     "type": "block-arrangement",
     "fixed_prefix": "fn sum_of_squares(xs: &[i32]) -> i32 {\n    xs",

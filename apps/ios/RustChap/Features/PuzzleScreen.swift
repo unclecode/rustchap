@@ -171,6 +171,8 @@ struct PuzzleScreen: View {
                 loaded,
                 concepts: store.concepts(for: puzzle),
                 selections: selections,
+                blockOrder: blockOrder,
+                chosenCandidate: chosenCandidate,
                 pastBest: record?.solved == true ? record?.bestRank : nil
             )
         }

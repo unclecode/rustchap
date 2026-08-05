@@ -10,7 +10,7 @@
     "closures"
   ],
   "difficulty": 2,
-  "goal": "The worker thread may outlive main's stack. Hand it the name properly - no copies.",
+  "goal": "The thread may outlive main. Hand it the String correctly, without cloning.",
   "template": "use std::thread;\n\nfn main() {\n    let name = String::from(\"worker-7\");\n    let handle = thread::spawn(⟦closure⟧);\n    handle.join().unwrap();\n}",
   "interaction": {
     "type": "slot-selection",

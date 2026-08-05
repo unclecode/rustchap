@@ -9,7 +9,7 @@
     "mutability"
   ],
   "difficulty": 2,
-  "goal": "record() takes &self - and must still count. Pick the field that allows it.",
+  "goal": "record() takes &self and must still increment a counter. Pick the field type that allows it.",
   "template": "use std::cell::Cell;\n\nstruct Tracker {\n    hits: ⟦field_ty⟧,\n}\n\nimpl Tracker {\n    fn record(&self) {\n        ⟦record_stmt⟧;\n    }\n}\n\nfn main() {\n    let tracker = Tracker { hits: Cell::new(0) };\n    tracker.record();\n    tracker.record();\n    println!(\"{} hits\", tracker.hits.get());\n}",
   "interaction": {
     "type": "slot-selection",

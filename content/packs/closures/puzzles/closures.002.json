@@ -10,7 +10,7 @@
     "copy"
   ],
   "difficulty": 3,
-  "goal": "Two bumps, count of two. One version compiles and counts a ghost.",
+  "goal": "Increment the counter twice and get 2. One version compiles but counts a copy.",
   "template": "fn counted() -> i32 {\n    let mut count = 0;\n    let mut bump = ⟦closure⟧;\n    bump();\n    bump();\n    count\n}\n\nfn main() {\n    println!(\"{}\", counted());\n}",
   "interaction": {
     "type": "slot-selection",

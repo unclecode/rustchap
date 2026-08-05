@@ -9,7 +9,7 @@
     "api-design"
   ],
   "difficulty": 2,
-  "goal": "The team stores the member. Sometimes the right move IS a move - 0 clones.",
+  "goal": "The function stores the value, so move it in. Zero clones.",
   "template": "fn main() {\n    let name = String::from(\"Ferris\");\n    let team = register(⟦arg⟧);\n    println!(\"{}\", team.join(\", \"));\n}\n\nfn register(member: ⟦param_ty⟧) -> Vec<String> {\n    let mut team = Vec::new();\n    team.push(⟦push_expr⟧);\n    team\n}",
   "interaction": {
     "type": "minimal-edit",

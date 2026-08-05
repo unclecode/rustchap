@@ -9,7 +9,7 @@
     "error-propagation"
   ],
   "difficulty": 2,
-  "goal": "A port from the environment, or 3000. Garbage and absence both deserve the fallback - not a crash, not a zero.",
+  "goal": "Read a port from the environment, falling back to 3000 when it is missing or invalid. Never crash, never return 0.",
   "template": "fn port(env: Option<&str>) -> u16 {\n    env.and_then(|s| s.parse().ok())⟦finisher⟧\n}\n\nfn main() {\n    println!(\"{} {} {}\", port(Some(\"8080\")), port(None), port(Some(\"nope\")));\n}",
   "interaction": {
     "type": "minimal-edit",

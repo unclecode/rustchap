@@ -9,7 +9,7 @@
     "api-design"
   ],
   "difficulty": 3,
-  "goal": "A u32 into its little-endian bytes. One version signs a waiver std already made unnecessary.",
+  "goal": "Turn a u32 into its little-endian bytes. One version uses unsafe that std makes unnecessary.",
   "interaction": {
     "type": "best-solution",
     "candidates": [
