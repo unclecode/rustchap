@@ -70,8 +70,19 @@ async fn serves_packs_and_puzzles() {
         packs.len() >= 12,
         "full curriculum: content decks + planned empty decks"
     );
+    let index: serde_json::Value = serde_json::from_str(
+        &std::fs::read_to_string(content_root().join("packs/index.json")).unwrap(),
+    )
+    .unwrap();
+    let expected: Vec<&str> = index["order"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|v| v.as_str().unwrap())
+        .collect();
+    let served: Vec<&str> = packs.iter().map(|p| p["id"].as_str().unwrap()).collect();
     assert_eq!(
-        packs[0]["id"], "move-or-borrow",
+        served, expected,
         "packs follow the curriculum order from packs/index.json, not directory order"
     );
     assert!(
