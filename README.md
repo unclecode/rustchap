@@ -1,35 +1,79 @@
-# RustChap
+# RustChap 🦀
 
-Euclidea for Rust semantics — a native iPhone puzzle game that trains **Rust instincts** in
-experienced programmers. One tiny program per screen, constrained edits instead of typing,
-compile → score → retry for a cleaner solution → next.
+**Learn Rust the way Euclidea teaches geometry: small puzzles with exact answers,
+verified by the real compiler.**
 
-> Not "learn Rust". The promise is **develop Rust instincts**: predicting what the type system
-> permits, expressing ownership correctly, recognising the idiomatic solution.
+RustChap is a native iOS game for experienced programmers. One tiny program per
+screen, constrained edits instead of typing: tap tokens, reorder statements, pick
+the best implementation. Every legal answer to every puzzle was compiled ahead of
+time with real `rustc` and Clippy, so every verdict is the compiler's truth.
 
-## Status
+> Not "learn Rust". The promise is **develop Rust instincts**: predicting what the
+> type system permits, expressing ownership correctly, recognising the idiomatic
+> solution.
 
-Pre-code. The product contract, architecture, and build order are decided and documented in
-[`docs/context/`](docs/context/README.md) — start there. The founding plan transcript is preserved
-in [`docs/archive/plan_draft.md`](docs/archive/plan_draft.md).
+## How it plays
 
-## Layout
+- **15 decks, one arc**: ownership → borrowing → lifetimes → slices → `Option`/
+  `Result` → pattern matching → iterators → closures → traits → generics → smart
+  pointers → interior mutability → API design → async → unsafe.
+- **60+ puzzles**, each teaching exactly one instinct. Ranks are mechanical:
+  Solved (compiles, tests pass) → Fluent → Optimal (match the star budget, like
+  `0C·2E` - zero clones in two edits).
+- **20 short lectures** in plain English - every deck opens with one.
+- **A grounded AI tutor** that knows the puzzle on your screen. On-device by
+  default (Apple Foundation Models); optionally bring your own OpenRouter key.
+- **Fully offline.** No account, no ads, no tracking, no server.
+
+## How it works
+
+The puzzle JSON contract lives in [`schemas/`](schemas/) and is enforced by
+[`crates/puzzle-schema`](crates/puzzle-schema). [`crates/evaluator`](crates/evaluator)
+compiles every enumerated submission with the pinned toolchain; the
+[`puzzle-linter`](tools/puzzle-linter) writes the verdicts into `outcomes/`
+sidecars the app bundles. The iOS app ([`apps/ios`](apps/ios)) looks answers up
+by a canonical operations hash - byte-identical between Rust and Swift. CI
+recompiles every submission on each push; any verdict drift fails the build.
 
 ```text
 apps/ios/                  SwiftUI iPhone app (Swift 6)
-services/api/              Axum API (Rust)
-services/compiler-worker/  Sandboxed rustc evaluation workers
-crates/puzzle-schema/      Puzzle JSON schema types + validation
-crates/evaluator/          Patch → source → compile → score
-crates/metrics/            Solution metric analysers (clones, allocations, …)
-content/packs/             Versioned puzzle content
-schemas/                   puzzle.schema.json (the platform-neutral contract)
-tools/                     puzzle-linter, source-importer, authoring tools
-docs/context/              Living design fragments (see its README)
-docs/archive/              Frozen provenance documents
+crates/puzzle-schema/      Puzzle JSON contract: types, validation, hashing
+crates/evaluator/          Ops → source → rustc/clippy → verdict + metrics
+services/api/              Axum API (built and tested; not deployed - v0.1 is serverless)
+content/packs/             15 decks: puzzles, lectures, verified outcomes
+content/concepts/          The tap-to-learn skill library
+schemas/                   The platform-neutral JSON contract
+tools/                     puzzle-linter, progression audit, ingestion
+docs/context/              Living design fragments (start at its README)
 ```
 
-## Working on RustChap
+## Building
 
-Project docs are load-on-demand fragments wired to source files. In Claude Code, use
-`/rustchap-context` to orient and `/rustchap-context sync` to keep docs honest after changes.
+```sh
+cargo test --workspace                             # engine + contract tests
+cargo run -p puzzle-linter -- --check \
+  --concepts content/concepts content/packs/*/     # re-verify every answer
+python3 tools/audit-progression.py                 # curriculum audit
+# iOS app (requires Xcode):
+xcodebuild -project apps/ios/RustChap.xcodeproj -target RustChap \
+  -configuration Debug -sdk iphonesimulator build
+```
+
+## Contributing
+
+Issues and pull requests are welcome - especially new puzzles and lectures.
+Content must pass the linter (which recompiles every answer) and the progression
+audit; the quality bar lives in
+[`docs/context/foundation/curriculum.md`](docs/context/foundation/curriculum.md).
+Every puzzle carries a `source` attribution. In Claude Code, `/rustchap-context`
+loads the right design fragment for whatever you touch.
+
+## License
+
+Apache License 2.0 with the [Commons Clause](https://commonsclause.com)
+condition: use, modify, and build RustChap for yourself, and contribute back -
+but do not sell it or a product substantially derived from it. See
+[LICENSE](LICENSE).
+
+RustChap is an independent educational project, not affiliated with or endorsed
+by the Rust Foundation. Ferris artwork by Karen Rustad Tölva (CC0).
