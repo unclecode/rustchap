@@ -13,7 +13,11 @@ related:
   - roadmap/build-order.md
 ---
 
-# Backend API and data model
+# Backend
+
+> **Status (2026-08-05): NOT DEPLOYED, by decision.** v0.1 ships serverless — see the
+> step-28 decision block in [build-order](../roadmap/build-order.md) for what that gives
+> up and the revisit triggers. Everything below remains true of the code and its tests. API and data model
 
 Rust service exposing the puzzle catalogue, evaluation, and (later) auth + progress sync. Lives in
 `services/api/`.

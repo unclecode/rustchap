@@ -103,7 +103,19 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       per-surface persistent chats (home/deck/puzzle), streaming markdown, UIKit-backed
       selection, per-message copy; (e) home = 2-column card grid with tinted SF Symbol deck
       tiles (`pack.json` icon/accent), puzzle rows carry interaction-type glyphs; (f) two stale
-      api test assertions refreshed. NEXT in phase 8: 28 serverless-v0.1 decision → 31 external testers + step 34 prep.
+      api test assertions refreshed. NEXT in phase 8: step 34 App Store prep (external testers deliberately skipped by user
+      decision 2026-08-05 — publishing directly; beta feedback will come from the store).
+- [x] 28. DECIDED (2026-08-05): **v0.1 ships serverless.** The app is fully functional
+      offline: bundled content, precomputed verdicts on device, progress in SwiftData, tutor
+      on-device by default (OpenRouter only when the user supplies a key). `services/api`
+      stays in the repo and in CI, but nothing is deployed and no ops burden exists.
+      Deliberately given up: cross-device sync, server-pushed content, live compilation,
+      server-side telemetry. REVISIT TRIGGERS (deploy only when one becomes real): users ask
+      for sync; content cadence outgrows app releases; a puzzle type needs live compilation;
+      aggregate tester telemetry becomes worth having. First deployment shape unchanged: one
+      container + managed Postgres; step 13's Docker sandbox gets built then. Side effect:
+      serverless keeps the privacy story near "Data Not Collected" and avoids the
+      account-deletion requirement.
 - [x] 31. Internal TestFlight SHIPPED (2026-08-05): ASC app record "RustChap" (id 6798180343,
       SKU rustchap-001, bundle dev.rustchap.RustChap auto-registered by the distribution
       export), Release archive + Apple Distribution signing + upload ALL headless via the
