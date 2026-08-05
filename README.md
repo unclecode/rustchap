@@ -3,10 +3,23 @@
 **Learn Rust the way Euclidea teaches geometry: small puzzles with exact answers,
 verified by the real compiler.**
 
+I'm [Uncle Code](https://unclecode.com) ([@unclecode](https://x.com/unclecode)),
+author of [Crawl4AI](https://github.com/unclecode/crawl4ai)
+[![GitHub stars](https://img.shields.io/github/stars/unclecode/crawl4ai)](https://github.com/unclecode/crawl4ai).
+I planned to rewrite Crawl4AI in Rust, and that meant making Rust second nature -
+not vocabulary, instinct. I'm also a long-time fan of Euclidea; I've played it
+through many times. So I built the same kind of game for the thing I needed to
+learn, for myself first. This is it.
+
 RustChap is a native iOS game for experienced programmers. One tiny program per
 screen, constrained edits instead of typing: tap tokens, reorder statements, pick
 the best implementation. Every legal answer to every puzzle was compiled ahead of
-time with real `rustc` and Clippy, so every verdict is the compiler's truth.
+time with real `rustc` and Clippy, so every verdict is the compiler's truth - not
+my opinion.
+
+If you're a professional programmer coming from other languages and want Rust's
+idioms, syntax, and concepts to become reflexes, this is a good place. Pull
+requests are welcome - puzzles, lectures, and more.
 
 **Available on the App Store** - download and play right now, or build it
 yourself from this repo.
@@ -70,17 +83,6 @@ audit; the quality bar lives in
 [`docs/context/foundation/curriculum.md`](docs/context/foundation/curriculum.md).
 Every puzzle carries a `source` attribution. In Claude Code, `/rustchap-context`
 loads the right design fragment for whatever you touch.
-
-## About
-
-I'm [Uncle Code](https://unclecode.com) ([@unclecode](https://x.com/unclecode)),
-author of [Crawl4AI](https://github.com/unclecode/crawl4ai)
-[![GitHub stars](https://img.shields.io/github/stars/unclecode/crawl4ai)](https://github.com/unclecode/crawl4ai).
-Planning its Rust rewrite meant skilling up in Rust - and as a long-time
-Euclidea fan, I built this game for myself first.
-
-Coming from other languages and want Rust's idioms and concepts to become
-reflexes? This is a good place. PRs welcome - puzzles, lectures, and more.
 
 ## License
 
