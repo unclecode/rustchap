@@ -8,10 +8,6 @@ screen, constrained edits instead of typing: tap tokens, reorder statements, pic
 the best implementation. Every legal answer to every puzzle was compiled ahead of
 time with real `rustc` and Clippy, so every verdict is the compiler's truth.
 
-The name says what it is: a "chap" is English for a friendly fellow - RustChap
-is the Rust chap, the companion who sits next to you and drills the language's
-instincts into your fingers, one small puzzle at a time.
-
 **Available on the App Store** - download and play right now, or build it
 yourself from this repo.
 
@@ -77,16 +73,14 @@ loads the right design fragment for whatever you touch.
 
 ## About
 
-I'm [Uncle Code](https://github.com/unclecode), author of
-[Crawl4AI](https://github.com/unclecode/crawl4ai) (74,000+ GitHub stars). I
-started planning a Rust rewrite of Crawl4AI, which meant seriously skilling up
-in Rust. I'm also a long-time fan of the Euclidea app - I've played through it
-many times - so I built the same kind of game for the thing I needed to learn,
-for myself first.
+I'm [Uncle Code](https://unclecode.com) ([@unclecode](https://x.com/unclecode)),
+author of [Crawl4AI](https://github.com/unclecode/crawl4ai)
+[![GitHub stars](https://img.shields.io/github/stars/unclecode/crawl4ai)](https://github.com/unclecode/crawl4ai).
+Planning its Rust rewrite meant skilling up in Rust - and as a long-time
+Euclidea fan, I built this game for myself first.
 
-If you're a professional programmer coming from other languages and want Rust's
-idioms, syntax, and concepts to become reflexes, this is a good place. Pull
-requests are welcome - the puzzle database, lectures, and much more.
+Coming from other languages and want Rust's idioms and concepts to become
+reflexes? This is a good place. PRs welcome - puzzles, lectures, and more.
 
 ## License
 
