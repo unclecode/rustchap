@@ -146,23 +146,15 @@ struct ResultView: View {
                 .foregroundStyle(emphasized ? .primary : .secondary)
                 .frame(width: 92, alignment: .leading)
             Text(profileText(values))
-                .font(.callout.monospacedDigit())
+                .font(.callout.monospaced())
                 .fontWeight(emphasized ? .semibold : .regular)
         }
     }
 
-    /// "1 clone · 1 edit" — whole-solution profile in a fixed metric order.
+    /// "1C·3E" — the game's cost notation, same as the goal chip and meter.
     private func profileText(_ values: [String: Int]) -> String {
-        let parts = scoring.displayOrder.compactMap { metric -> String? in
-            guard let value = values[metric] else { return nil }
-            // Hide a Clippy metric that is 0 on both sides — pure noise.
-            if metric == "clippy_warning_count", values[metric] == 0,
-               result.metrics[metric] ?? 0 == 0, scoring.optimal[metric] ?? 0 == 0 {
-                return nil
-            }
-            return Self.phrase(metric: metric, value: value)
-        }
-        return parts.isEmpty ? "—" : parts.joined(separator: " · ")
+        let text = CostLanguage.notation(values, order: scoring.displayOrder)
+        return text.isEmpty ? "—" : text
     }
 
     static func phrase(metric: String, value: Int) -> String {
@@ -185,13 +177,9 @@ struct ResultView: View {
         case .optimal: nil
         }
         guard let target else { return nil }
-        let needs = scoring.displayOrder.compactMap { metric -> String? in
-            guard let max = target.thresholds[metric] else { return nil }
-            let phrase = Self.phrase(metric: metric, value: max)
-            return max == 0 ? phrase : "≤ " + phrase
-        }
-        guard !needs.isEmpty else { return nil }
-        return "\(target.name) needs: \(needs.joined(separator: " · "))"
+        let notation = CostLanguage.notation(target.thresholds, order: scoring.displayOrder)
+        guard !notation.isEmpty else { return nil }
+        return "\(target.name) needs \(notation)"
     }
 
     // MARK: - Evaluation source

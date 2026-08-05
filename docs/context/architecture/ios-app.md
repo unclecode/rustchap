@@ -44,7 +44,11 @@ Launch → track list → puzzle → result → retry/next, fully offline agains
 - **Project**: hand-authored `project.pbxproj` (objectVersion 77, `PBXFileSystemSynchronizedRootGroup`
   over `RustChap/` — no xcodegen dependency). `content/packs/` is added as a **folder reference**
   resource, so the app bundles the repo's packs directly (hierarchy preserved; single source of
-  truth). Build: Swift 6, iOS 17 target, `GENERATE_INFOPLIST_FILE`.
+  truth). Build: Swift 6, iOS 17 target, `GENERATE_INFOPLIST_FILE`. **App icon** (2026-08-05):
+  `Assets.xcassets/AppIcon.appiconset` — Ferris at 1024px in the three modern variants
+  (light: warm gradient, opaque; dark: transparent glyph; tinted: grayscale glyph), wired via
+  `ASSETCATALOG_COMPILER_APPICON_NAME`; dark/tinted activate via the user's home-screen icon
+  style, not the system appearance alone.
 - **Models** (`Models.swift`): explicit-CodingKeys mirrors of the puzzle contract — `Puzzle`,
   `Interaction` (tagged enum), `Outcomes`, `EvalResult`, `Diagnostic`. Deliberately no
   `convertFromSnakeCase` (it would mangle dictionary keys like metric names).
@@ -129,6 +133,17 @@ Verified by simulator-SDK build plus a macOS harness that compiles the real
   pasteboard; `.textSelection(.enabled)` on both bubble kinds;
   `.scrollDismissesKeyboard(.interactively)` + tap-to-unfocus. All FM code is
   `#available(iOS 26)`-gated; app min target stays iOS 17.
+- **The cost language (2026-08-05, user-approved design)**: one letter per metric
+  (`CostLanguage.all`: E edits, C clones, W warnings, M mut, L loops, U unsafe) and one
+  notation ("0C·2E") across goal chip, live meter, result sheet, and deck-card currency
+  badges. `Core/CostLanguage.swift` mirrors `metrics.rs` counting EXACTLY (substring clone
+  calls; word-boundary for/while/loop, mut, unsafe) — live numbers are a preview from current
+  picks; outcomes at Run stay truth. `PuzzleScreen`: gold `★ 0C·2E` chip on the goal card,
+  cost pill left of Run (gray while picking → per-letter red over budget → all-green +
+  hairline ring + one soft haptic at goal; W renders dimmed "W?" until Run).
+  `CostLegendSheet` (tap chip or meter): half-height sheet — approved exception to the
+  all-large drawer rule — active letters tagged "this puzzle", others dimmed. Design mock:
+  claude.ai artifact 57028cca.
 - **Skills** (`ConceptView.swift`): `content/concepts` is bundled as a second folder reference;
   `ContentStore.concepts(for:)` maps a puzzle's `concepts` ids to loaded `Concept`s.
   `SkillsSheet` (book toolbar icon) lists them and pushes `ConceptLectureView`; `HintsSheet`

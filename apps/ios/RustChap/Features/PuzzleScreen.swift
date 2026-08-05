@@ -29,14 +29,66 @@ struct PuzzleScreen: View {
     @State private var pendingNextId: String?
     @State private var pendingGoHome = false
     @State private var evaluating = false
+    @State private var showCostLegend = false
 
     private var puzzle: Puzzle { loaded.puzzle }
+
+    // MARK: - Cost language (live preview; the outcomes table at Run is truth)
+
+    private var optimalBudget: [String: Int]? {
+        guard let scoring = puzzle.scoring, !scoring.optimal.isEmpty else { return nil }
+        return scoring.optimal
+    }
+
+    private var goalNotation: String? {
+        guard let scoring = puzzle.scoring, let budget = optimalBudget else { return nil }
+        let text = CostLanguage.notation(budget, order: scoring.displayOrder)
+        return text.isEmpty ? nil : text
+    }
+
+    private var liveCost: CostLanguage.LiveCost {
+        CostLanguage.liveCost(
+            puzzle: puzzle, selections: selections,
+            blockOrder: blockOrder, chosenCandidate: chosenCandidate)
+    }
+
+    /// Meter letters = the goal chip's letters, in the same order.
+    private var meterKeys: [String] {
+        guard let scoring = puzzle.scoring, let budget = optimalBudget else { return [] }
+        return CostLanguage.orderedKeys(budget, order: scoring.displayOrder)
+    }
+
+    private var atGoal: Bool {
+        guard let budget = optimalBudget else { return false }
+        let live = liveCost
+        guard live.complete else { return false }
+        return meterKeys.allSatisfy { key in
+            guard CostLanguage.metric(key)?.live != false else { return true }
+            return (live.counts[key] ?? 0) <= (budget[key] ?? 0)
+        }
+    }
 
     var body: some View {
         List {
             Section {
-                Text(puzzle.goal)
-                    .font(.callout)
+                HStack(alignment: .firstTextBaseline, spacing: 10) {
+                    Text(puzzle.goal)
+                        .font(.callout)
+                    if let goalNotation {
+                        Spacer(minLength: 0)
+                        Button {
+                            showCostLegend = true
+                        } label: {
+                            Text("★ \(goalNotation)")
+                                .font(.footnote.monospaced())
+                                .padding(.horizontal, 9)
+                                .padding(.vertical, 4)
+                                .background(.yellow.opacity(0.12), in: Capsule())
+                                .foregroundStyle(.yellow)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
             }
 
             interactionSection
@@ -72,20 +124,25 @@ struct PuzzleScreen: View {
                     }
                     .buttonStyle(.borderedProminent)
                 } else {
-                    Button(action: run) {
-                        Group {
-                            if evaluating {
-                                ProgressView()
-                            } else {
-                                Text("Run")
-                                    .font(.headline)
-                            }
+                    HStack(spacing: 10) {
+                        if !meterKeys.isEmpty {
+                            costMeter
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 6)
+                        Button(action: run) {
+                            Group {
+                                if evaluating {
+                                    ProgressView()
+                                } else {
+                                    Text("Run")
+                                        .font(.headline)
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 6)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(!canRun || evaluating)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(!canRun || evaluating)
                 }
             }
             .padding(.horizontal)
@@ -97,6 +154,12 @@ struct PuzzleScreen: View {
         }
         .sheet(isPresented: $showHints) {
             HintsSheet(hints: puzzle.hints)
+        }
+        .sheet(isPresented: $showCostLegend) {
+            CostLegendSheet(activeKeys: Set(meterKeys))
+        }
+        .sensoryFeedback(.impact(weight: .light), trigger: atGoal) { _, entered in
+            entered // one soft tick when the meter first reaches the goal
         }
         .onAppear {
             resetToInitial()
@@ -303,6 +366,44 @@ struct PuzzleScreen: View {
         case .lesson:
             false
         }
+    }
+
+    /// The live cost pill next to Run: gray while picking, per-letter red
+    /// when a budget is crossed, all green at the goal. Numbers never animate.
+    private var costMeter: some View {
+        let live = liveCost
+        let budget = optimalBudget ?? [:]
+        return Button {
+            showCostLegend = true
+        } label: {
+            HStack(spacing: 3) {
+                ForEach(Array(meterKeys.enumerated()), id: \.offset) { index, key in
+                    if index > 0 {
+                        Text("·").foregroundStyle(.secondary)
+                    }
+                    if CostLanguage.metric(key)?.live == false {
+                        Text("\(CostLanguage.letter(key))?")
+                            .foregroundStyle(.secondary.opacity(0.6))
+                    } else {
+                        let value = live.counts[key] ?? 0
+                        let over = value > (budget[key] ?? 0)
+                        Text("\(value)\(CostLanguage.letter(key))")
+                            .foregroundStyle(
+                                atGoal ? .green : (over ? .red : .secondary))
+                    }
+                }
+            }
+            .font(.subheadline.monospaced())
+            .padding(.horizontal, 13)
+            .padding(.vertical, 12)
+            .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 12))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .strokeBorder(atGoal ? Color.green.opacity(0.55) : .clear, lineWidth: 1.2)
+            )
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("Current cost; tap for the letter legend")
     }
 
     /// Lessons complete by reading: record, then move along the deck.

@@ -102,12 +102,21 @@ struct DeckListView: View {
         let accent = Self.accentColor(deck.pack.accent)
         let isCurrent = deck.id == currentDeckId
         return VStack(alignment: .leading, spacing: 10) {
-            HStack(alignment: .top) {
+            HStack(alignment: .top, spacing: 6) {
                 Image(systemName: deck.pack.icon ?? "square.stack.3d.up.fill")
                     .font(.system(size: 17, weight: .semibold))
                     .foregroundStyle(.white)
                     .frame(width: 38, height: 38)
                     .background(accent.gradient, in: RoundedRectangle(cornerRadius: 10))
+                if let currency = deckCurrency(deck) {
+                    // The deck's cost currency — the letter its puzzles play for.
+                    Text(currency)
+                        .font(.caption.monospaced().bold())
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .background(accent.opacity(0.14), in: Capsule())
+                        .foregroundStyle(accent)
+                }
                 Spacer()
                 statusBadge(deck, unlocked: unlocked)
             }
@@ -179,6 +188,16 @@ struct DeckListView: View {
                 }
             }
         }
+    }
+
+    /// The deck's dominant primary metric, as its cost letter ("C", "M", …).
+    private func deckCurrency(_ deck: ContentStore.LoadedPack) -> String? {
+        let primaries = deck.puzzles.compactMap { $0.puzzle.scoring?.primary }
+        guard !primaries.isEmpty else { return nil }
+        var frequency: [String: Int] = [:]
+        for primary in primaries { frequency[primary, default: 0] += 1 }
+        guard let top = frequency.max(by: { $0.value < $1.value }) else { return nil }
+        return CostLanguage.letter(top.key)
     }
 
     /// Named accent → platform color; unknown names fall back to the app tint.
