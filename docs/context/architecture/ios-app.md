@@ -207,7 +207,23 @@ Verified by simulator-SDK build plus a macOS harness that compiles the real
   ways — (a) the mock showed a lived-in state while the app was screenshotted empty, hiding
   every badge, dot, and history panel, and (b) the two actions shipped as plain list rows
   instead of the designed prominent buttons. Mock advanced states AND verify against seeded
-  data, or the comparison is meaningless. NO SCHEDULER by design (user decision): no due dates, no
+  data, or the comparison is meaningless.
+
+  **Thematic topics (2026-08-06)**: Skills sections are named after SUBJECTS, not decks.
+  Each concept carries an authored `topic`, ordered by `content/concepts/topics.json`
+  (Basics → Data shapes → Text and views → Ownership → Lifetimes → Errors and absence →
+  Iterators and closures → Abstraction → Pointers and interior mutability → Concurrency →
+  Unsafe); `validate-review.py` fails the build on an untagged or unknown topic. Replaces
+  the old `conceptTopics` heuristic ("first deck that teaches it"), which mislabelled
+  sections because concepts are deliberately taught by several decks — First Steps and
+  Types & Functions share `expressions`, `functions`, and `primitive-types`, so opening the
+  second deck showed topics legitimately learned in the first, and the deck-named header
+  made that look like a premature unlock. Unlocking itself was always correct (solved
+  nodes only, verified by clean-install reproduction). Deck attribution stays on the row
+  ("deck › puzzle") and in the detail screen's "Where you learned it".
+  `ContentStore.loadConcepts` skips `topics.json` and tolerates non-concept files.
+
+  NO SCHEDULER by design (user decision): no due dates, no
   counters, no notifications — time enters the sort only in phase 3. Automation:
   `--skills`, `--review <conceptId>`, `--reveal`.
 - **Skills** (`ConceptView.swift`): `content/concepts` is bundled as a second folder reference;
