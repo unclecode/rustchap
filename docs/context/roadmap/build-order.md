@@ -165,10 +165,38 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
 - [x] Skills review PHASE 1 SHIPPED (2026-08-06): recall cards over the concept library,
       42 cards across rule/gotcha/syntax/error/choice, topic-grouped list, weakest-first,
       shuffle-all, mastery states, missed cards re-queued within the run. No scheduler.
-- [ ] Skills review PHASE 2: "Remember this" on lectures, result sheets, and tutor answers
-      → user-authored cards in the same flow (edit/delete).
-- [ ] Skills review PHASE 3: the scheduler — time joins the sort so cards rotate on their
-      own (successful recalls push a card down for longer each time). Still no due dates.
+- [ ] Skills review PHASE 2 — **"Remember this"** (designed 2026-08-06, awaiting build):
+      capture buttons at three confirmed points: `ResultView:95` (the explanation),
+      `PuzzleScreen:261` (each lecture section — per-section, not one per lecture), and
+      `TutorSheet:169` (beside CopyButton on a tutor answer). Tapping opens a compact sheet:
+      **the player writes the QUESTION** (this friction is the point — deciding what you want
+      to be asked is the learning), while the ANSWER arrives pre-filled from the tapped text
+      and stays editable. Storage is a new SwiftData `UserCardRecord` — personal data beside
+      progress and tutor chats, NOT `content/review/` (that stays authored and shipped).
+      Surfaced as a sixth kind, `mine` ("My note"), attached to the concept it was captured
+      from so it mixes into that topic and its detail screen; captures with no concept
+      (home-screen tutor) collect under a "My notes" section. Review, mastery, shuffle, and
+      the missed-card re-queue treat them identically to authored cards; edit and delete from
+      the detail screen. OPEN: question required vs note-only cards (recommend required — a
+      card without a question is a bookmark); an "Export my cards" JSON share in the profile,
+      since serverless means these live on one device only.
+- [ ] Skills review PHASE 3 — **the scheduler** (designed 2026-08-06): adds exactly one
+      number per card, `intervalDays`, moved by the standard SM-2 rule — Got it × 2.2 (floor
+      1 day), Shaky unchanged, No idea → 1 day. It never becomes a schedule because it is
+      only consumed as a sort key: **ripeness = days since last review ÷ interval**, sorted
+      descending, so a never-reviewed card leads and a freshly-aced one sinks. No due dates,
+      counters, or notifications ever render. Mastery badges stay SEPARATE from ripeness
+      (mastery = how well you know it, ripeness = when to look again). Code: `intervalDays`
+      + `ripeness` on `ReviewRecord`, ~4 lines inside `apply(rating)`, and `weakestFirst`
+      becomes `ripestFirst`. Migration is free — derive the starting interval from the
+      existing state (learning 1d, solid 5d, mastered 15d). OPEN: whether to blend a small
+      weakness boost so Learning cards surface slightly sooner than pure ripeness would say
+      (recommended), and whether the detail screen shows one quiet "next suggestion in about
+      N days" line.
+- [ ] Skills content gap: 10 concepts still have no cards (closures, generics, traits,
+      smart-pointers, interior-mutability, async-await, send-and-static, unsafe-rust,
+      elision, static-lifetime) — roughly 30 cards, same five kinds. They appear
+      retroactively for already-solved puzzles once written.
 - [ ] On-device code execution (backlog, designed 2026-08-05): iOS forbids JIT, so native
       compilation on device is impossible and there is no embeddable Rust interpreter.
       Path: deploy `services/api` live-compile + step-13 sandbox, editor with a Rust key
