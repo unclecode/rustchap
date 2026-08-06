@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "move.gotcha.not-a-reference",
+  "kind": "gotcha",
+  "title": "Not a reference, unlike Java",
+  "concepts": [
+    "move",
+    "clone"
+  ],
+  "prompt": "In Java or Python, assigning an object to a second variable leaves you with two working handles on it. What happens in Rust?",
+  "answer": "The first handle stops working. There is no shared reference by default and no hidden reference count. If you truly need two owned copies you must ask for one with `.clone()`, and you pay for it."
+}

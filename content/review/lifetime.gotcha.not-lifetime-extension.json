@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "lifetime.gotcha.not-lifetime-extension",
+  "kind": "gotcha",
+  "title": "Annotations do not extend life",
+  "concepts": [
+    "lifetime"
+  ],
+  "prompt": "A common beginner belief is that adding `'a` makes a value live longer. What is actually true?",
+  "answer": "Nothing about the data changes. Lifetime annotations only let you describe how the lifetimes of inputs and outputs relate, so the compiler can check calls. If a value dies too early, no annotation can save it; you have to restructure or own the data."
+}

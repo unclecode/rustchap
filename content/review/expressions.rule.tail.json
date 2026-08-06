@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "expressions.rule.tail",
+  "kind": "rule",
+  "title": "How a function returns",
+  "concepts": [
+    "expressions"
+  ],
+  "prompt": "How does a Rust function return its value without the `return` keyword?",
+  "answer": "The last expression of the body, written with no trailing semicolon, is the block's value and therefore the return value. Adding a semicolon turns it into a statement whose value is `()`.",
+  "example": {
+    "code": "fn double(n: i32) -> i32 {\n    n * 2      // no semicolon\n}",
+    "caption": "The tail expression is the return value."
+  }
+}

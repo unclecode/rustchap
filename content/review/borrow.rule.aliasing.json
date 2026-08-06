@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "borrow.rule.aliasing",
+  "kind": "rule",
+  "title": "How many borrows at once",
+  "concepts": [
+    "borrow"
+  ],
+  "prompt": "How many shared borrows may exist at once? How many mutable ones? Can the two overlap?",
+  "answer": "Any number of shared borrows (`&T`), OR exactly one mutable borrow (`&mut T`), never both at the same time. This one rule is what makes data races impossible in safe Rust."
+}

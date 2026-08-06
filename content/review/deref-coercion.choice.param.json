@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "deref-coercion.choice.param",
+  "kind": "choice",
+  "title": "&str or &String",
+  "concepts": [
+    "deref-coercion",
+    "api-design"
+  ],
+  "prompt": "For a parameter you only read, why is `&str` better than `&String`?",
+  "answer": "Because every caller of the `&String` version can call the `&str` version too, plus callers holding literals and slices. `&String` narrows your API for nothing, which is why Clippy's `ptr_arg` lint flags it."
+}

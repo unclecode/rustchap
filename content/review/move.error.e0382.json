@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "move.error.e0382",
+  "kind": "error",
+  "title": "What is E0382?",
+  "concepts": [
+    "move"
+  ],
+  "prompt": "What is E0382, and what are the three usual fixes?",
+  "answer": "\"Use of moved value\": you used a binding after its value moved away. Fix it by borrowing instead of moving (`&value`), by reordering so the last use comes before the move, or by cloning if you genuinely need a second owned copy."
+}

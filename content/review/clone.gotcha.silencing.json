@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "clone.gotcha.silencing",
+  "kind": "gotcha",
+  "title": "Why clone is a suspicious fix",
+  "concepts": [
+    "clone",
+    "borrow"
+  ],
+  "prompt": "Why is `.clone()` a suspicious fix when the borrow checker complains?",
+  "answer": "Because it usually silences the complaint instead of answering it. The compiler was pointing at a lifetime or ordering problem; cloning buys a second copy so the problem disappears, and you pay an allocation on every run to avoid a one-line change."
+}

@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		A1000000000000000000B001 /* packs in Resources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000F001 /* packs */; };
 		A1000000000000000000B002 /* concepts in Resources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000F002 /* concepts */; };
+		A1000000000000000000B003 /* review in Resources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000F003 /* review */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A1000000000000000000F001 /* packs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = packs; path = "../../content/packs"; sourceTree = "<group>"; };
 		A1000000000000000000F002 /* concepts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = concepts; path = "../../content/concepts"; sourceTree = "<group>"; };
+		A1000000000000000000F003 /* review */ = {isa = PBXFileReference; lastKnownFileType = folder; name = review; path = "../../content/review"; sourceTree = "<group>"; };
 		A1000000000000000000P001 /* RustChap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RustChap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -38,6 +40,7 @@
 				A1000000000000000000S001 /* RustChap */,
 				A1000000000000000000F001 /* packs */,
 				A1000000000000000000F002 /* concepts */,
+				A1000000000000000000F003 /* review */,
 				A1000000000000000000G002 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -113,6 +116,7 @@
 			files = (
 				A1000000000000000000B001 /* packs in Resources */,
 				A1000000000000000000B002 /* concepts in Resources */,
+				A1000000000000000000B003 /* review in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

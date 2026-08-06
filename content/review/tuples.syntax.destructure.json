@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "tuples.syntax.destructure",
+  "kind": "syntax",
+  "title": "Taking a tuple apart",
+  "concepts": [
+    "tuples"
+  ],
+  "prompt": "You have `let point = (3, 7);`. Write both ways to read the two values.",
+  "answer": "Destructure with parentheses, `let (x, y) = point;`, or index with `point.0` and `point.1`. Square brackets belong to arrays and slices, not tuples.",
+  "example": {
+    "code": "let (x, y) = point;   // destructure\nlet first = point.0;  // index",
+    "caption": "Parentheses for tuples, not brackets."
+  }
+}

@@ -43,6 +43,9 @@ jobs:
       - name: Progression audit
         run: python3 tools/audit-progression.py
 
+      - name: Review cards
+        run: python3 tools/validate-review.py
+
   ios-build:
     runs-on: macos-latest
     steps:

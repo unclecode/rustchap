@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "move.rule.one-owner",
+  "kind": "rule",
+  "title": "One owner, and what moves",
+  "concepts": [
+    "move"
+  ],
+  "prompt": "Every value in Rust has how many owners, and what happens when you assign it to a second name?",
+  "answer": "Exactly one. Assigning it or passing it by value MOVES ownership; the old binding becomes invalid, and using it afterwards is error E0382.",
+  "example": {
+    "code": "let name = String::from(\"Ferris\");\nlet other = name;\nprintln!(\"{name}\");   // E0382",
+    "caption": "The old name dies at the move."
+  }
+}

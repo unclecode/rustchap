@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "bindings.gotcha.mut-default",
+  "kind": "gotcha",
+  "title": "mut is opt-in, unlike everywhere else",
+  "concepts": [
+    "bindings"
+  ],
+  "prompt": "In most languages a variable can be reassigned freely. What does Rust do differently, and why does it matter when reading code?",
+  "answer": "Rust makes bindings immutable unless you write `mut`. Reading unfamiliar code, every place a value can change is announced at the binding, so you can trust that a name without `mut` never changes under you."
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "mutability.syntax.mut-ref",
+  "kind": "syntax",
+  "title": "Passing &mut",
+  "concepts": [
+    "mutability",
+    "borrow"
+  ],
+  "prompt": "Write a function that takes a vector by mutable reference and pushes to it, plus the call site.",
+  "answer": "The parameter is `&mut Vec<i32>`, and the caller must pass `&mut values` from a binding that is itself `mut`.",
+  "example": {
+    "code": "fn add_one(v: &mut Vec<i32>) {\n    v.push(1);\n}\n\nlet mut values = vec![];\nadd_one(&mut values);",
+    "caption": "mut appears at binding, type, and call."
+  }
+}

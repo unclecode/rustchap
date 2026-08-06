@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "option.gotcha.no-null",
+  "kind": "gotcha",
+  "title": "There is no null",
+  "concepts": [
+    "option"
+  ],
+  "prompt": "Rust has no null. What replaces it, and what does the compiler force you to do?",
+  "answer": "`Option<T>`, with the variants `Some(T)` and `None`. Because the absent case is part of the type, the compiler makes you handle it before you can touch the value, so there is no way to dereference nothing by accident."
+}

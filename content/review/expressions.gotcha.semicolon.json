@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "expressions.gotcha.semicolon",
+  "kind": "gotcha",
+  "title": "A semicolon changes the type",
+  "concepts": [
+    "expressions"
+  ],
+  "prompt": "In most languages a semicolon is just punctuation. What does an extra semicolon do at the end of a Rust function body?",
+  "answer": "It changes the return type. `n * 2` is a value; `n * 2;` is a statement worth `()`. A function promising `-> i32` that ends with a semicolon fails with E0308, mismatched types."
+}

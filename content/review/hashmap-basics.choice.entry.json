@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "hashmap-basics.choice.entry",
+  "kind": "choice",
+  "title": "entry vs get",
+  "concepts": [
+    "hashmap-basics"
+  ],
+  "prompt": "You are counting words in a `HashMap`. Why is `entry` the right tool and `get` the wrong one?",
+  "answer": "`get` only reads and returns an `Option`, so you still have to insert the first sighting yourself. `entry(key).or_insert(0)` finds or creates in one step and hands back a `&mut` to the value.",
+  "example": {
+    "code": "let count = map.entry(word).or_insert(0);\n*count += 1;",
+    "caption": "Find-or-create in one line."
+  }
+}

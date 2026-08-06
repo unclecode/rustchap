@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "string-types.choice.methods",
+  "kind": "choice",
+  "title": "Which methods allocate",
+  "concepts": [
+    "string-types"
+  ],
+  "prompt": "Which of `trim()`, `to_string()`, and `replace(..)` borrow, and which allocate?",
+  "answer": "`trim()` returns a `&str` view of the same text and allocates nothing. `to_string()` and `replace(..)` both build a new owned `String`. In a chain, the type after each step decides what you can do next.",
+  "example": {
+    "code": "let cleaned = raw.trim();\nlet owned = cleaned.to_string();",
+    "caption": "trim() borrows a view; to_string() allocates."
+  }
+}

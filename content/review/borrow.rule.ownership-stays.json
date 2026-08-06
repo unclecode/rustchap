@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "borrow.rule.ownership-stays",
+  "kind": "rule",
+  "title": "What &value does",
+  "concepts": [
+    "borrow",
+    "move"
+  ],
+  "prompt": "What does passing `&value` do that passing `value` does not?",
+  "answer": "It lends access while leaving ownership where it is, so the original binding stays usable afterwards. Passing by value moves the value away.",
+  "example": {
+    "code": "show(&name);            // borrow\nprintln!(\"{name}\");     // still valid",
+    "caption": "Borrowing is the default for read-only access."
+  }
+}

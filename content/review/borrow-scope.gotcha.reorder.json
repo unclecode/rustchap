@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "borrow-scope.gotcha.reorder",
+  "kind": "gotcha",
+  "title": "Reorder before you clone",
+  "concepts": [
+    "borrow-scope"
+  ],
+  "prompt": "Your code fails with \"cannot borrow as mutable because it is also borrowed as immutable\". Before reaching for `.clone()`, what should you try?",
+  "answer": "Move the last use of the shared borrow above the mutation. Because a borrow ends at its last use, reordering two lines often fixes the error at zero cost, while cloning pays an allocation to avoid thinking."
+}

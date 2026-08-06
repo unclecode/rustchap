@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "slice.rule.view",
+  "kind": "rule",
+  "title": "What a slice is",
+  "concepts": [
+    "slice",
+    "zero-copy"
+  ],
+  "prompt": "What is a slice, and what does taking one cost?",
+  "answer": "A view into contiguous data: a pointer and a length, written `&data[1..4]`. It copies nothing and allocates nothing, so it is the cheap way to hand part of a collection to a function.",
+  "example": {
+    "code": "let middle = &values[1..4];",
+    "caption": "A view, not a copy."
+  }
+}

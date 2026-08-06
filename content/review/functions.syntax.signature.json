@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "functions.syntax.signature",
+  "kind": "syntax",
+  "title": "Writing a signature",
+  "concepts": [
+    "functions"
+  ],
+  "prompt": "Write the signature of a function called `greeting` that takes borrowed text and returns owned text.",
+  "answer": "`fn greeting(name: &str) -> String`. Every parameter needs its type, and the return type follows the arrow. There is no inference at function boundaries.",
+  "example": {
+    "code": "fn greeting(name: &str) -> String {\n    format!(\"hi {name}\")\n}",
+    "caption": "Typed in, typed out."
+  }
+}

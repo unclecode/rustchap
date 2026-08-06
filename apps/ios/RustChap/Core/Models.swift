@@ -17,6 +17,42 @@ struct Pack: Decodable, Hashable {
     let level: String?
 }
 
+/// One recall item on the Skills surface (content/review/*.json). The front
+/// is answered from memory; the back is the answer plus optional code.
+struct ReviewCard: Decodable, Identifiable, Hashable {
+    enum Kind: String, Decodable, CaseIterable {
+        case rule, gotcha, syntax, error, choice
+
+        /// Shown on the card so the player knows what is being asked of them.
+        var label: String {
+            switch self {
+            case .rule: "Rule"
+            case .gotcha: "Different in Rust"
+            case .syntax: "Write it"
+            case .error: "Compiler says"
+            case .choice: "Which one"
+            }
+        }
+    }
+
+    struct Example: Decodable, Hashable {
+        let code: String
+        let caption: String?
+    }
+
+    let id: String
+    let kind: Kind
+    /// Short name for lists; the prompt is the question itself.
+    let title: String
+    /// Concept ids; the first one owns the card for grouping.
+    let concepts: [String]
+    let prompt: String
+    let answer: String
+    let example: Example?
+
+    var conceptId: String { concepts.first ?? "" }
+}
+
 /// One curriculum tier (Foundations → Core → Advanced → Mastery), from
 /// packs/levels.json. Array order in the manifest IS the display order.
 struct Level: Decodable, Identifiable, Hashable {

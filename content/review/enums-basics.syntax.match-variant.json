@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "enums-basics.syntax.match-variant",
+  "kind": "syntax",
+  "title": "Writing match arms",
+  "concepts": [
+    "enums-basics",
+    "pattern-matching"
+  ],
+  "prompt": "An enum has `Add(i32)` and `Reset`. Write the two match arms.",
+  "answer": "The pattern mirrors the variant's shape exactly: `Command::Add(n)` binds the payload, and `Command::Reset` takes no parentheses. Getting this wrong is error E0532.",
+  "example": {
+    "code": "match cmd {\n    Command::Add(n) => total + n,\n    Command::Reset => 0,\n}",
+    "caption": "Data-carrying variants bind their data."
+  }
+}

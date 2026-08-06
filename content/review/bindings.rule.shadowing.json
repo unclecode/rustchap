@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "bindings.rule.shadowing",
+  "kind": "rule",
+  "title": "Shadowing vs mut",
+  "concepts": [
+    "bindings"
+  ],
+  "prompt": "What can shadowing do that `mut` can never do?",
+  "answer": "Change the type. A second `let` with the same name creates a brand new binding, so `let n = \"3\"; let n = 3;` is fine. Mutation can only put a new value of the SAME type into an existing binding.",
+  "example": {
+    "code": "let number = \"three\";\nlet number = 3;   // new type, same name",
+    "caption": "Shadowing rebinds; mutation cannot change type."
+  }
+}

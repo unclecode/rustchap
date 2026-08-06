@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "iterator.choice.iter-forms",
+  "kind": "choice",
+  "title": "iter, iter_mut, into_iter",
+  "concepts": [
+    "iterator",
+    "borrow"
+  ],
+  "prompt": "How do you choose between `iter()`, `iter_mut()`, and `into_iter()`?",
+  "answer": "`iter()` yields shared references and leaves the collection usable. `iter_mut()` yields mutable references so you can change elements in place. `into_iter()` consumes the collection and yields owned values."
+}

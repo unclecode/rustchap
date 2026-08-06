@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "primitive-types.gotcha.no-coercion",
+  "kind": "gotcha",
+  "title": "No silent conversions",
+  "concepts": [
+    "primitive-types"
+  ],
+  "prompt": "Many languages quietly widen an integer into a float or a smaller int into a bigger one. What happens in Rust?",
+  "answer": "Nothing is converted silently. Comparing an `i32` with a `u8`, or handing an integer where an `f64` is expected, is error E0308. Conversions are always written out, usually with `as` or `From`."
+}

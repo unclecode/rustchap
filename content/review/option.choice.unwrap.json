@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "option.choice.unwrap",
+  "kind": "choice",
+  "title": "When unwrap is fine",
+  "concepts": [
+    "option",
+    "error-propagation"
+  ],
+  "prompt": "When is `.unwrap()` acceptable, and what should you reach for instead?",
+  "answer": "Only when the `None` case is genuinely impossible or the program should die anyway, such as in tests and prototypes. Otherwise use `match`, `if let`, `unwrap_or`, `unwrap_or_default`, or the `?` operator to pass the problem up."
+}

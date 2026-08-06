@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "structs.rule.all-fields",
+  "kind": "rule",
+  "title": "Every field, always",
+  "concepts": [
+    "structs"
+  ],
+  "prompt": "What does Rust require when you build a struct value?",
+  "answer": "Every field must be given a value. There are no partially initialised structs, and leaving one out is error E0063. Struct update syntax `..other` can fill in the rest from another value, and it must come last.",
+  "example": {
+    "code": "Order { count: 2, ..base }",
+    "caption": "..base fills every remaining field."
+  }
+}

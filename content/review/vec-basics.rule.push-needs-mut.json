@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "vec-basics.rule.push-needs-mut",
+  "kind": "rule",
+  "title": "push needs mut",
+  "concepts": [
+    "vec-basics",
+    "mutability"
+  ],
+  "prompt": "What must be true of a binding before you can `push` onto its vector?",
+  "answer": "It must be `let mut`. Pushing changes the vector, and without `mut` the compiler rejects it with E0596, cannot borrow as mutable.",
+  "example": {
+    "code": "let mut v = vec![10, 20];\nv.push(30);",
+    "caption": "Growth is mutation."
+  }
+}

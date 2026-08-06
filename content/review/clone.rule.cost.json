@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "clone.rule.cost",
+  "kind": "rule",
+  "title": "What clone actually costs",
+  "concepts": [
+    "clone"
+  ],
+  "prompt": "What does `.clone()` on a `Vec<String>` actually do?",
+  "answer": "It allocates a new vector AND clones every `String` inside it, each with its own heap allocation. Cloning is never free and never just a pointer copy."
+}

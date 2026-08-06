@@ -41,6 +41,8 @@ final class ContentStore {
     /// implicit "core" level when the manifest is missing.
     private(set) var levels: [Level] = []
     private(set) var concepts: [String: Concept] = [:]
+    /// Recall cards for the Skills surface, grouped by their owning concept.
+    private(set) var reviewCards: [String: [ReviewCard]] = [:]
     private(set) var source: ContentSource = .bundled
     private(set) var loadError: String?
 
@@ -63,6 +65,21 @@ final class ContentStore {
         packs.filter { Self.levelId(of: $0.pack) == levelId }
     }
 
+    /// Concept id → the title of the first deck that teaches it, in curriculum
+    /// order. This is the topic grouping the Skills list uses; no new content
+    /// field needed.
+    var conceptTopics: [String: String] {
+        var owner: [String: String] = [:]
+        for deck in packs {
+            for loaded in deck.puzzles {
+                for concept in loaded.puzzle.concepts where owner[concept] == nil {
+                    owner[concept] = deck.pack.title
+                }
+            }
+        }
+        return owner
+    }
+
     /// Levels that actually have content — what the home selector shows.
     var visibleLevels: [Level] {
         levels.filter { level in packs(in: level.id).contains { !$0.puzzles.isEmpty } }
@@ -78,6 +95,7 @@ final class ContentStore {
                 }
             )
             concepts = try Self.loadConcepts()
+            reviewCards = Self.loadReviewCards()
         } catch {
             loadError = String(describing: error)
         }
@@ -178,6 +196,26 @@ final class ContentStore {
             result[concept.id] = concept
         }
         return result
+    }
+
+    /// Cards keyed by their first concept; sorted by kind for a stable run order.
+    private static func loadReviewCards() -> [String: [ReviewCard]] {
+        guard let root = Bundle.main.url(forResource: "review", withExtension: nil),
+              let files = try? FileManager.default.contentsOfDirectory(
+                  at: root, includingPropertiesForKeys: nil)
+        else { return [:] }
+        let decoder = JSONDecoder()
+        var out: [String: [ReviewCard]] = [:]
+        for file in files where file.pathExtension == "json" {
+            guard let data = try? Data(contentsOf: file),
+                  let card = try? decoder.decode(ReviewCard.self, from: data)
+            else { continue }
+            out[card.conceptId, default: []].append(card)
+        }
+        for key in out.keys {
+            out[key]?.sort { $0.id < $1.id }
+        }
+        return out
     }
 
     private struct LevelManifest: Decodable {

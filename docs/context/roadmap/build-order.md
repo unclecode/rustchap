@@ -162,6 +162,18 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       11-15%; one allowlisted tie (strings-basics.002, deref-coercion lesson). Curriculum
       now 20 decks / 105 nodes / 532 verified submissions.
 - [ ] Mastery content: atomics/ordering, advanced lifetimes, macros, FFI — ongoing rhythm.
+- [x] Skills review PHASE 1 SHIPPED (2026-08-06): recall cards over the concept library,
+      42 cards across rule/gotcha/syntax/error/choice, topic-grouped list, weakest-first,
+      shuffle-all, mastery states, missed cards re-queued within the run. No scheduler.
+- [ ] Skills review PHASE 2: "Remember this" on lectures, result sheets, and tutor answers
+      → user-authored cards in the same flow (edit/delete).
+- [ ] Skills review PHASE 3: the scheduler — time joins the sort so cards rotate on their
+      own (successful recalls push a card down for longer each time). Still no due dates.
+- [ ] On-device code execution (backlog, designed 2026-08-05): iOS forbids JIT, so native
+      compilation on device is impossible and there is no embeddable Rust interpreter.
+      Path: deploy `services/api` live-compile + step-13 sandbox, editor with a Rust key
+      accessory row (client work, can start any time), then typed challenge types.
+      Optional later: server compiles to wasm, device re-runs offline via an interpreter.
 
 ### Original step list
 - [ ] 28. Staging infrastructure (IaC from the start)

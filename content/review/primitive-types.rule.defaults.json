@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "primitive-types.rule.defaults",
+  "kind": "rule",
+  "title": "Default number types",
+  "concepts": [
+    "primitive-types"
+  ],
+  "prompt": "With no annotation and nothing else to guide it, what type does the compiler give the literal `10`? And `1.5`?",
+  "answer": "`10` becomes `i32` and `1.5` becomes `f64`. These are the defaults; anything else has to be annotated or forced by how the value is used."
+}

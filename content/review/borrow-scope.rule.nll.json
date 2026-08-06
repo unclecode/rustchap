@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "borrow-scope.rule.nll",
+  "kind": "rule",
+  "title": "When a borrow ends",
+  "concepts": [
+    "borrow-scope"
+  ],
+  "prompt": "When does a borrow actually end: at the closing brace, or somewhere else?",
+  "answer": "At its last USE. Since non-lexical lifetimes, the compiler tracks where a reference is last used, so a borrow whose final use is on line 3 stops borrowing there, and you may mutate the owner on line 4.",
+  "example": {
+    "code": "let preview = &data;\nprintln!(\"{preview}\");  // borrow ends\ndata.push_str(\"!\");     // fine",
+    "caption": "The borrow ends at its last use, not the brace."
+  }
+}

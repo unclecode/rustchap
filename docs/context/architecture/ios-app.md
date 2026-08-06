@@ -174,6 +174,42 @@ Verified by simulator-SDK build plus a macOS harness that compiles the real
   every level is free to enter from day one. Scoreboard groups decks under level headers.
   Design mock: claude.ai artifact a33dac5f. Current mapping: 8 core + 7 advanced;
   Foundations and Mastery content pending.
+- **Skills review, phase 1 (2026-08-06)**: recall cards over the concept library.
+  `content/review/*.json` (new folder reference in the bundle, schema
+  `schemas/review-card.schema.json`, validated by `tools/validate-review.py` in CI):
+  42 cards in five kinds — `rule` (semantics), `gotcha` (differs from other languages),
+  `syntax` (write it), `error` (diagnostics), `choice` (idiom). `Core/ReviewStore.swift`:
+  `ReviewRecord` (@Model, unique cardId, rating history) + `MasteryState`
+  (new → learning → solid → mastered) + `ReviewProgress` (weakest-first sort, concept
+  state = weakest card). `Features/SkillsView.swift`: brain toolbar button
+  (`.skillsButton()`), list grouped by topic (= first deck teaching the concept, via
+  `ContentStore.conceptTopics`), rating dots + mastery badge per row, Shuffle-all
+  (interleaving). `Features/ReviewSessionView.swift`: prompt → reveal → Got it/Shaky/No
+  idea; a missed card is re-queued to the END of the same run (standard "learning steps");
+  failure drops one state, never resets; 3+ misses flag the card as slipping (leech rule).
+  Concepts unlock from solved puzzles only — no empty library. Prompt/answer render inline
+  markdown via `Text(.init(...))` like lesson prose; card code examples are kept ≤42 chars
+  per line so they never wrap. **Observability pass (same day)**: every row carries the
+  concept summary + "N cards · M solid" + rating dots; a "Recently learned" section (last 7
+  days, max 5, derived from `PuzzleProgressRecord.firstSolvedAt`, hidden while everything is
+  recent so it never duplicates the list) shows TODAY/2D AGO and the puzzle that taught it;
+  rows push `ConceptDetailView` (value-based nav) — summary, mastery, Review + **Read the
+  lecture** (reuses `ConceptLectureView`, previously unreachable from Skills), dated rating
+  history (`ReviewRecord.ratingDates`), each card with its kind and state, and "Where you
+  learned it" listing the puzzles/lectures with their ranks. Cards carry a short `title`
+  (required by the schema) so lists read cleanly; the prompt stays the question. Detail
+  actions are two prominent side-by-side buttons, matching the approved mock. "Recently
+  learned" is always shown (max 5) and its concepts are SUBTRACTED from the topic sections,
+  so a row never appears twice. Automation: `--concept <id>`, `--seed-reviews` (plants a
+  plausible rating history so empty-state screenshots do not mislead).
+
+  RCA worth keeping: the first build of this pass diverged from the approved mock in two
+  ways — (a) the mock showed a lived-in state while the app was screenshotted empty, hiding
+  every badge, dot, and history panel, and (b) the two actions shipped as plain list rows
+  instead of the designed prominent buttons. Mock advanced states AND verify against seeded
+  data, or the comparison is meaningless. NO SCHEDULER by design (user decision): no due dates, no
+  counters, no notifications — time enters the sort only in phase 3. Automation:
+  `--skills`, `--review <conceptId>`, `--reveal`.
 - **Skills** (`ConceptView.swift`): `content/concepts` is bundled as a second folder reference;
   `ContentStore.concepts(for:)` maps a puzzle's `concepts` ids to loaded `Concept`s.
   `SkillsSheet` (book toolbar icon) lists them and pushes `ConceptLectureView`; `HintsSheet`

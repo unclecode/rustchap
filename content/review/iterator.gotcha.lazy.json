@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "iterator.gotcha.lazy",
+  "kind": "gotcha",
+  "title": "Why nothing happened",
+  "concepts": [
+    "iterator"
+  ],
+  "prompt": "You write `v.iter().map(|x| x * 2);` and nothing happens. Why not?",
+  "answer": "Iterator adapters are lazy. `map` builds a description of work and returns immediately; nothing runs until a consumer drives it, such as `collect()`, `sum()`, or a `for` loop.",
+  "example": {
+    "code": "let doubled: Vec<i32> = v\n    .iter()\n    .map(|x| x * 2)\n    .collect();",
+    "caption": "collect() is the consumer that makes it run."
+  }
+}

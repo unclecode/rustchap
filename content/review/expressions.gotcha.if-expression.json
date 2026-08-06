@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "expressions.gotcha.if-expression",
+  "kind": "gotcha",
+  "title": "if is an expression",
+  "concepts": [
+    "expressions"
+  ],
+  "prompt": "`if` in Rust is not a statement. What is it, and what does that let you write?",
+  "answer": "It is an expression that produces a value, so you can assign it directly. Both branches must have the same type, and an `if` used as a value needs its `else`.",
+  "example": {
+    "code": "let label = if score >= 60 {\n    \"pass\"\n} else {\n    \"fail\"\n};",
+    "caption": "The if produces the value. No ternary needed."
+  }
+}

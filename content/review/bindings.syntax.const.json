@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "bindings.syntax.const",
+  "kind": "syntax",
+  "title": "Writing a const",
+  "concepts": [
+    "bindings",
+    "primitive-types"
+  ],
+  "prompt": "Write a top-level constant named `LIMIT` holding the number 10.",
+  "answer": "`const LIMIT: i32 = 10;` - `const` always requires an explicit type, uses SCREAMING_SNAKE_CASE by convention, and can live outside any function. `let` cannot appear at the top level.",
+  "example": {
+    "code": "const LIMIT: i32 = 10;",
+    "caption": "Type annotation is mandatory on const."
+  }
+}

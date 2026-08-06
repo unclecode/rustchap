@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "string-types.rule.two-types",
+  "kind": "rule",
+  "title": "String vs &str",
+  "concepts": [
+    "string-types"
+  ],
+  "prompt": "What is the practical difference between `String` and `&str`?",
+  "answer": "`String` owns its text and can grow. `&str` is a borrowed view of text owned by someone else, and every literal like `\"ferris\"` is one. Functions that only read take `&str`; functions that produce new text return `String`."
+}

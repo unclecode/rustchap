@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "deref-coercion.rule.why",
+  "kind": "rule",
+  "title": "Why &String works as &str",
+  "concepts": [
+    "deref-coercion"
+  ],
+  "prompt": "Why does a function taking `&str` happily accept a `&String`?",
+  "answer": "Deref coercion: `String` implements `Deref<Target = str>`, so the compiler inserts the conversion at the call site. The same applies to `&Vec<T>` becoming `&[T]`.",
+  "example": {
+    "code": "fn show(text: &str) { .. }\nshow(&owned_string);   // converted",
+    "caption": "&String becomes &str at the call site."
+  }
+}

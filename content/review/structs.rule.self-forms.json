@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "structs.rule.self-forms",
+  "kind": "rule",
+  "title": "&self vs self",
+  "concepts": [
+    "structs"
+  ],
+  "prompt": "In an `impl` block, what is the difference between a method taking `&self` and one taking `self`?",
+  "answer": "`&self` borrows: the caller keeps the value and can call the method again. `self` consumes: the value moves into the method, so a second call on the same value is E0382, use of moved value.",
+  "example": {
+    "code": "fn cost(&self) -> u32 { .. }\nfn into_label(self) -> String { .. }",
+    "caption": "&self is callable twice; self consumes the value."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "enums-basics.gotcha.exhaustive",
+  "kind": "gotcha",
+  "title": "match must cover everything",
+  "concepts": [
+    "enums-basics",
+    "pattern-matching"
+  ],
+  "prompt": "In most languages a switch can quietly ignore cases you forgot. What does Rust's `match` do?",
+  "answer": "It must cover every variant or it does not compile (E0004). That is a feature: add a variant next month and the compiler points at every match that needs updating, instead of failing at runtime."
+}

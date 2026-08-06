@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "vec-basics.gotcha.array-vs-vec",
+  "kind": "gotcha",
+  "title": "Array vs Vec",
+  "concepts": [
+    "vec-basics"
+  ],
+  "prompt": "`[10, 20, 30]` and `vec![10, 20, 30]` look almost the same. What is the difference?",
+  "answer": "The first is an array with its length baked into the type and no way to grow. The second is a `Vec`, heap-allocated and growable. Calling `push` on the array does not compile."
+}

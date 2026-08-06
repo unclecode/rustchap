@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "hashmap-basics.error.deref-plus",
+  "kind": "error",
+  "title": "Why count += 1 fails",
+  "concepts": [
+    "hashmap-basics"
+  ],
+  "prompt": "`or_insert` gave you `count`, and `count += 1` will not compile. Why, and what is the fix?",
+  "answer": "`count` is a `&mut i32`, a reference, and you cannot add to a reference (E0368). Reach through it with the star: `*count += 1;`.",
+  "example": {
+    "code": "*count += 1;",
+    "caption": "The star changes the value being pointed at."
+  }
+}

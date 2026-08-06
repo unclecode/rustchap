@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "lifetime.rule.annotation",
+  "kind": "rule",
+  "title": "What 'a promises",
+  "concepts": [
+    "lifetime"
+  ],
+  "prompt": "What does `'a` in `fn longest<'a>(x: &'a str, y: &'a str) -> &'a str` actually promise?",
+  "answer": "That the returned reference is valid for at least as long as the shorter of the two inputs. The annotation describes a relationship that already exists; it never creates or extends a lifetime."
+}

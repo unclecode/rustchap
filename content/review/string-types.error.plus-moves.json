@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "string-types.error.plus-moves",
+  "kind": "error",
+  "title": "Why + eats the left side",
+  "concepts": [
+    "string-types",
+    "move"
+  ],
+  "prompt": "`let joined = base + tag;` compiles, but using `base` afterwards does not. Why?",
+  "answer": "The `+` operator on `String` takes the left side by value, so `base` moves into the result. Any later use is E0382. Use `base.push_str(tag)` when you want to keep the binding.",
+  "example": {
+    "code": "base.push_str(tag);   // base stays valid",
+    "caption": "push_str grows in place instead of consuming."
+  }
+}

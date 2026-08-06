@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "copy.rule.which-types",
+  "kind": "rule",
+  "title": "Which types copy",
+  "concepts": [
+    "copy",
+    "move"
+  ],
+  "prompt": "Which kinds of values duplicate on assignment instead of moving?",
+  "answer": "Types that implement `Copy`: the integers, floats, `bool`, `char`, shared references, and small tuples of those. `String`, `Vec<T>`, and anything owning heap memory always move.",
+  "example": {
+    "code": "let a = 5;\nlet b = a;\nprintln!(\"{a}\");   // fine: i32 is Copy",
+    "caption": "Copy types leave the original usable."
+  }
+}

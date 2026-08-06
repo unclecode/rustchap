@@ -25,7 +25,8 @@ struct RustChapApp: App {
 
     init() {
         let container = try! ModelContainer(
-            for: PuzzleProgressRecord.self, TutorConversationRecord.self)
+            for: PuzzleProgressRecord.self, TutorConversationRecord.self,
+            ReviewRecord.self)
         self.container = container
         _sync = State(initialValue: SyncService(container: container))
 

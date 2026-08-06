@@ -1,0 +1,76 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://rustchap.dev/schemas/review-card.schema.json",
+    "title": "RustChap review card",
+    "description": "One recall item for the Skills surface. Front is a prompt the player answers from memory; back is the answer plus an optional code example. Cards live at content/review/<id>.json and unlock when a puzzle or lecture teaching one of their concepts is completed.",
+    "type": "object",
+    "required": [
+        "schema_version",
+        "id",
+        "kind",
+        "title",
+        "concepts",
+        "prompt",
+        "answer"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "schema_version": {
+            "const": 1
+        },
+        "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+\\.(rule|gotcha|syntax|error|choice)\\.[a-z0-9-]+$",
+            "description": "<concept>.<kind>.<slug>"
+        },
+        "kind": {
+            "enum": [
+                "rule",
+                "gotcha",
+                "syntax",
+                "error",
+                "choice"
+            ],
+            "description": "rule: semantics. gotcha: differs from other languages. syntax: how to write it. error: reading diagnostics. choice: the idiomatic decision."
+        },
+        "title": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 44,
+            "description": "Short name for lists (the prompt is the question itself)."
+        },
+        "concepts": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+            },
+            "description": "Concept ids from content/concepts. The first one owns the card for grouping."
+        },
+        "prompt": {
+            "type": "string",
+            "minLength": 10
+        },
+        "answer": {
+            "type": "string",
+            "minLength": 10
+        },
+        "example": {
+            "type": "object",
+            "required": [
+                "code"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "caption": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
