@@ -43,6 +43,11 @@ pub fn load_concepts(dir: &Path) -> Result<(BTreeSet<String>, Vec<String>)> {
         if path.extension().and_then(|e| e.to_str()) != Some("json") {
             continue;
         }
+        // topics.json sits beside the concepts and is the section-order file,
+        // not a concept.
+        if path.file_name().and_then(|n| n.to_str()) == Some("topics.json") {
+            continue;
+        }
         let name = path
             .file_stem()
             .unwrap_or_default()

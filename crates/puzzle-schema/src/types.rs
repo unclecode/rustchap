@@ -193,6 +193,9 @@ pub struct Concept {
     pub schema_version: u32,
     pub id: String,
     pub title: String,
+    /// Thematic group for the app's Skills list (see content/concepts/topics.json).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub topic: Option<String>,
     pub summary: String,
     pub lecture: Vec<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
