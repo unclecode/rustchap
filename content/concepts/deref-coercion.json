@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "deref-coercion",
   "title": "Deref coercion",
+  "topic": "Ownership",
   "summary": "&String converts to &str automatically (and &Vec<T> to &[T]) at call sites.",
   "lecture": [
     "When a function wants &str and you pass &String, the compiler inserts the conversion for you - this is deref coercion, driven by String implementing Deref<Target = str>. The same applies to &Vec<T> coercing to &[T], and &Box<T> to &T.",

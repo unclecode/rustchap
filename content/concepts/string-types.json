@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "string-types",
   "title": "String and &str",
+  "topic": "Text and views",
   "summary": "String owns and grows; &str is borrowed text; methods flow between them.",
   "lecture": [
     "Rust has two everyday text types. `String` owns its text and can grow; `&str` is borrowed text - every literal like `\"ferris\"` is a `&str`. Functions that only read text take `&str`; functions that produce new text return `String`.",

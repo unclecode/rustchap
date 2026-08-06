@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "lifetime",
   "title": "Lifetimes",
+  "topic": "Lifetimes",
   "summary": "'a names how long a borrow lives, letting a signature tie its output to its inputs.",
   "lecture": [
     "Every reference has a lifetime - the region of code it's valid for. Usually the compiler tracks these silently. Lifetime ANNOTATIONS ('a) exist for signatures where the relationship between references can't be inferred: they are names that declare 'these references live at least as long as each other'.",

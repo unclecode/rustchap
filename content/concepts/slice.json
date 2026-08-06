@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "slice",
   "title": "Slices",
+  "topic": "Text and views",
   "summary": "&str and &[T] are borrowed views into existing data - no ownership, no allocation.",
   "lecture": [
     "A slice is a fat pointer: an address plus a length, viewing a contiguous run of data someone else owns. &str views string data (whether it lives in a String, a literal, or another slice); &[T] views array or Vec elements the same way.",

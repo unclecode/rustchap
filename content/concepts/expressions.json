@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "expressions",
   "title": "Almost everything is an expression",
+  "topic": "Basics",
   "summary": "Blocks, if, and match produce values; a trailing semicolon throws the value away.",
   "lecture": [
     "In Rust, `if`, `match`, and plain `{}` blocks are expressions: they produce values. The last line of a block, written without a semicolon, is the block's value. Add a semicolon and you turn it into a statement whose value is `()`, the unit type.",

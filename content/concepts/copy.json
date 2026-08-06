@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "copy",
   "title": "Copy types",
+  "topic": "Ownership",
   "summary": "Small scalar types duplicate on assignment instead of moving - no ownership transfer.",
   "lecture": [
     "Types that implement Copy - i32, u64, f64, bool, char, shared references, small tuples of Copy types - are duplicated bit-for-bit when assigned or passed. The original stays fully usable; there is no move, ever.",

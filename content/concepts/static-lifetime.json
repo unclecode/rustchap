@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "static-lifetime",
   "title": "The 'static lifetime",
+  "topic": "Lifetimes",
   "summary": "'static means \"lives for the whole program\" - string literals have it for free.",
   "lecture": [
     "String literals are baked into the binary, so a &'static str is always valid - the one borrow you can return from a function that takes no inputs, store anywhere, and send across threads without ceremony.",

@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "move",
   "title": "Moves",
+  "topic": "Ownership",
   "summary": "Assigning or passing a non-Copy value transfers ownership - the old name dies.",
   "lecture": [
     "In Rust, every value has exactly one owner. Assigning a String, Vec, or any other non-Copy value to another binding - or passing it to a function - does not copy it. It MOVES it: ownership transfers, and the original binding becomes unusable.",

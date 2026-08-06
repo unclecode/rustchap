@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "closures",
   "title": "Closures: Fn, FnMut, FnOnce",
+  "topic": "Iterators and closures",
   "summary": "What a closure captures - and how - decides how many times you may call it.",
   "lecture": [
     "A closure captures its environment as weakly as possible: reading a variable borrows it (&T), mutating borrows mutably (&mut T), and moving it out - or the `move` keyword - takes ownership. You don't declare this; the body decides.",

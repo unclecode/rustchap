@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "borrow",
   "title": "Borrowing",
+  "topic": "Ownership",
   "summary": "&T lends read access, &mut T lends exclusive write access - ownership stays put.",
   "lecture": [
     "A borrow (&value) lets code use a value without taking ownership. The owner keeps the value; the borrower gets a reference that must not outlive it. Any number of shared borrows (&T) may exist at once, OR exactly one mutable borrow (&mut T) - never both simultaneously.",

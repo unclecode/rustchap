@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "zero-copy",
   "title": "Zero-copy returns",
+  "topic": "Text and views",
   "summary": "Return a borrowed view (&str, &[T]) into the input instead of allocating a new value.",
   "lecture": [
     "When the answer already exists inside the input - the first word of a string, a row of a matrix - you can return a slice pointing at it instead of copying it out. The signature says it all: fn first_word(input: &str) -> &str returns a view; -> String promises a fresh allocation every call.",

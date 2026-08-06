@@ -194,6 +194,10 @@ enum Interaction: Decodable, Hashable {
 struct Concept: Decodable, Identifiable, Hashable {
     let id: String
     let title: String
+    /// Thematic group for the Skills list (Ownership, Lifetimes, …). Authored,
+    /// not derived from decks: a concept is taught by several decks, so deck
+    /// names are the wrong label for it.
+    let topic: String?
     let summary: String
     let lecture: [String]
     let example: ConceptExample?

@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "structs",
   "title": "Structs",
+  "topic": "Data shapes",
   "summary": "Named fields, instantiated with braces; update syntax ..other copies the rest.",
   "lecture": [
     "A struct names a shape: `struct User { name: String }`. Each field has a type; you build a value by naming every field: `User { name: String::from(\"Ferris\") }`. Missing fields are error E0063 - there are no partially built structs.",

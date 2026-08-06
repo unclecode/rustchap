@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "clone",
   "title": "What .clone() costs",
+  "topic": "Ownership",
   "summary": "A clone is a real deep copy - often a hidden allocation used to silence the borrow checker.",
   "lecture": [
     "Calling .clone() on a String or Vec allocates fresh heap memory and copies every element. Cloning a Vec<String> clones the vector AND every string inside it. It is never free, and unlike in reference-counted languages it is never just a pointer bump (that's Rc::clone, a different thing).",

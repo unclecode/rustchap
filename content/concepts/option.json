@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "option",
   "title": "Option: absence as a type",
+  "topic": "Errors and absence",
   "summary": "Maybe-a-value is Option<T> - the compiler forces every caller to face the None case.",
   "lecture": [
     "Rust has no null. A value that might not exist is Option<T>: Some(value) or None. The absence is part of the type, so forgetting to handle it is a compile error, not a 3am page.",

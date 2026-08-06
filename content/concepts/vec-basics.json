@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "vec-basics",
   "title": "Vec, the growable list",
+  "topic": "Data shapes",
   "summary": "vec! builds, push grows (needs mut), for walks the elements.",
   "lecture": [
     "`Vec<T>` is the growable list. Build one with the `vec!` macro - `vec![10, 20, 30]` - or start empty with `Vec::new()`. Growing it with `push` mutates, so the binding must be `let mut`.",

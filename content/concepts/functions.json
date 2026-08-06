@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "functions",
   "title": "Functions and signatures",
+  "topic": "Basics",
   "summary": "Every parameter needs a type; the return type is part of the contract.",
   "lecture": [
     "A Rust function spells out its full contract: `fn greeting(name: &str) -> String`. Parameter types are mandatory - there is no inference at function boundaries - and the return type comes after `->`. Omit it and the function returns `()`.",

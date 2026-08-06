@@ -65,18 +65,15 @@ struct SkillsView: View {
     /// currently shown under "Recently learned" so no row appears twice.
     private var topics: [(String, [String])] {
         let unlocked = unlockedConcepts.subtracting(recentlyLearned)
-        let owner = store.conceptTopics
-        var order: [String] = []
         var grouped: [String: [String]] = [:]
         for concept in unlocked.sorted() {
-            let topic = owner[concept] ?? "Other"
-            if grouped[topic] == nil { order.append(topic) }
+            let topic = store.concepts[concept]?.topic ?? "Other"
             grouped[topic, default: []].append(concept)
         }
-        // Curriculum order for sections, weakest concept first inside each.
-        let deckOrder = store.packs.map(\.pack.title)
-        order.sort { a, b in
-            (deckOrder.firstIndex(of: a) ?? .max) < (deckOrder.firstIndex(of: b) ?? .max)
+        // Teaching order for sections, weakest concept first inside each.
+        let topicOrder = store.conceptTopicOrder
+        let order = grouped.keys.sorted { a, b in
+            (topicOrder.firstIndex(of: a) ?? .max) < (topicOrder.firstIndex(of: b) ?? .max)
         }
         let cache = records
         return order.map { topic in
@@ -113,7 +110,8 @@ struct SkillsView: View {
             .navigationDestination(for: String.self) { conceptId in
                 ConceptDetailView(
                     concept: store.concepts[conceptId] ?? Concept(
-                        id: conceptId, title: conceptId, summary: "", lecture: [], example: nil),
+                        id: conceptId, title: conceptId, topic: nil,
+                        summary: "", lecture: [], example: nil),
                     cards: store.reviewCards[conceptId] ?? [])
             }
             .toolbar {

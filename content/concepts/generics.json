@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "generics",
   "title": "Generics, impl Trait, and dyn",
+  "topic": "Abstraction",
   "summary": "Three ways to say \"some type with this capability\" - compile-time, anonymous, or runtime.",
   "lecture": [
     "`fn largest<T: PartialOrd>(list: &[T])` is monomorphized: the compiler stamps out a concrete copy per type used - zero runtime cost, and the bound (`PartialOrd` because the body uses `>`) is the whole requirement.",

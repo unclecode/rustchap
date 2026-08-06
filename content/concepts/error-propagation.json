@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "error-propagation",
   "title": "Result and the ? operator",
+  "topic": "Errors and absence",
   "summary": "? unwraps success or returns the error to the caller - propagation in one character.",
   "lecture": [
     "A fallible operation returns Result<T, E>. You have three honest moves: handle the error here (match/unwrap_or), pass it up (?), or crash deliberately (unwrap - acceptable in tests and prototypes, a landmine elsewhere).",

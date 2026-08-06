@@ -13,8 +13,27 @@ CONCEPTS = ROOT / "content" / "concepts"
 KINDS = {"rule", "gotcha", "syntax", "error", "choice"}
 ID_RE = re.compile(r"^[a-z0-9-]+\.(rule|gotcha|syntax|error|choice)\.[a-z0-9-]+$")
 
+def check_concepts() -> list[str]:
+    """Every concept needs a topic, and it must be one the order file lists."""
+    errors = []
+    order_path = CONCEPTS / "topics.json"
+    if not order_path.exists():
+        return ["content/concepts/topics.json is missing"]
+    known_topics = set(json.loads(order_path.read_text())["topics"])
+    for path in sorted(CONCEPTS.glob("*.json")):
+        if path.name == "topics.json":
+            continue
+        concept = json.loads(path.read_text())
+        topic = concept.get("topic")
+        if not topic:
+            errors.append(f"concept {concept.get('id', path.stem)}: missing topic")
+        elif topic not in known_topics:
+            errors.append(f"concept {concept['id']}: unknown topic {topic!r}")
+    return errors
+
+
 def main() -> int:
-    known = {p.stem for p in CONCEPTS.glob("*.json")}
+    known = {p.stem for p in CONCEPTS.glob("*.json")} - {"topics"}
     errors, cards = [], []
     for path in sorted(REVIEW.glob("*.json")):
         card = json.loads(path.read_text())
@@ -41,6 +60,8 @@ def main() -> int:
             if len(text) < 10:
                 errors.append(f"{cid}: {field} is too short")
 
+    errors.extend(check_concepts())
+
     ids = [c["id"] for c in cards]
     for dup in {i for i in ids if ids.count(i) > 1}:
         errors.append(f"duplicate id: {dup}")
@@ -49,6 +70,7 @@ def main() -> int:
         print("error:", e)
     covered = {c for card in cards for c in card["concepts"]}
     print(f"review cards: {len(cards)} valid, {len(covered)} concepts covered")
+    print(f"concepts: {len(known)} tagged with a topic")
     by_kind = {}
     for card in cards:
         by_kind[card["kind"]] = by_kind.get(card["kind"], 0) + 1

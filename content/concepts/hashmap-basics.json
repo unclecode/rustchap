@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "hashmap-basics",
   "title": "HashMap essentials",
+  "topic": "Data shapes",
   "summary": "insert and get for single keys; entry().or_insert() for update-or-create.",
   "lecture": [
     "`HashMap<K, V>` stores values by key. `insert` writes, `get` returns an `Option` because the key may be absent. Indexing with `map[key]` panics on a missing key - fine for known keys, wrong for counting.",

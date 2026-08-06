@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "elision",
   "title": "Lifetime elision",
+  "topic": "Lifetimes",
   "summary": "Three rules let most signatures skip lifetime annotations - until two inputs feed one output.",
   "lecture": [
     "You rarely write lifetimes because the compiler fills them in by three elision rules: (1) each elided input reference gets its own fresh lifetime; (2) if there is exactly one input lifetime, the output gets it; (3) in methods, &self's lifetime goes to the output.",

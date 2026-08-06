@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "iterator",
   "title": "Iterator pipelines",
+  "topic": "Iterators and closures",
   "summary": "Lazy adapters compose left to right; nothing runs until a consumer like collect() drives it.",
   "lecture": [
     "A slice or Vec is not an iterator - .iter() turns it into one (borrowing each element; into_iter() moves them, iter_mut() borrows mutably). Adapters like .filter() and .map() wrap the iterator and do nothing yet: they are lazy descriptions of work.",

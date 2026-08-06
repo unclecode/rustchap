@@ -41,6 +41,8 @@ final class ContentStore {
     /// implicit "core" level when the manifest is missing.
     private(set) var levels: [Level] = []
     private(set) var concepts: [String: Concept] = [:]
+    /// Skills section order, from content/concepts/topics.json.
+    private(set) var conceptTopicOrder: [String] = []
     /// Recall cards for the Skills surface, grouped by their owning concept.
     private(set) var reviewCards: [String: [ReviewCard]] = [:]
     private(set) var source: ContentSource = .bundled
@@ -65,21 +67,6 @@ final class ContentStore {
         packs.filter { Self.levelId(of: $0.pack) == levelId }
     }
 
-    /// Concept id → the title of the first deck that teaches it, in curriculum
-    /// order. This is the topic grouping the Skills list uses; no new content
-    /// field needed.
-    var conceptTopics: [String: String] {
-        var owner: [String: String] = [:]
-        for deck in packs {
-            for loaded in deck.puzzles {
-                for concept in loaded.puzzle.concepts where owner[concept] == nil {
-                    owner[concept] = deck.pack.title
-                }
-            }
-        }
-        return owner
-    }
-
     /// Levels that actually have content — what the home selector shows.
     var visibleLevels: [Level] {
         levels.filter { level in packs(in: level.id).contains { !$0.puzzles.isEmpty } }
@@ -95,6 +82,7 @@ final class ContentStore {
                 }
             )
             concepts = try Self.loadConcepts()
+            conceptTopicOrder = Self.loadConceptTopicOrder()
             reviewCards = Self.loadReviewCards()
         } catch {
             loadError = String(describing: error)
@@ -192,10 +180,26 @@ final class ContentStore {
         let files = try FileManager.default.contentsOfDirectory(
             at: root, includingPropertiesForKeys: nil)
         for file in files where file.pathExtension == "json" {
-            let concept = try decoder.decode(Concept.self, from: Data(contentsOf: file))
+            // topics.json sits beside the concepts and is not one; skip
+            // anything that is not a concept rather than failing the load.
+            guard file.lastPathComponent != "topics.json",
+                  let concept = try? decoder.decode(Concept.self, from: Data(contentsOf: file))
+            else { continue }
             result[concept.id] = concept
         }
         return result
+    }
+
+    private struct TopicOrder: Decodable {
+        let topics: [String]
+    }
+
+    private static func loadConceptTopicOrder() -> [String] {
+        guard let root = Bundle.main.url(forResource: "concepts", withExtension: nil),
+              let data = try? Data(contentsOf: root.appendingPathComponent("topics.json")),
+              let order = try? JSONDecoder().decode(TopicOrder.self, from: data)
+        else { return [] }
+        return order.topics
     }
 
     /// Cards keyed by their first concept; sorted by kind for a stable run order.

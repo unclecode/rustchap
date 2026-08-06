@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "enums-basics",
   "title": "Enums and a first match",
+  "topic": "Data shapes",
   "summary": "An enum lists the possible shapes of a value; match handles each one by name.",
   "lecture": [
     "An enum says a value is one of a fixed set of shapes: `enum Signal { Red, Green, Yellow }`. Variants can carry data: `Add(i32)`. You name variants through the type: `Signal::Red`.",

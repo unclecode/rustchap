@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "primitive-types",
   "title": "The primitive types",
+  "topic": "Basics",
   "summary": "Integers default to i32, floats to f64; annotations pin the type when inference cannot.",
   "lecture": [
     "Rust's primitives are precise about size and signedness: `i32`, `u8`, `f64`, `bool`, `char`. An integer literal like `10` defaults to `i32` unless something forces another type. When the compiler cannot infer, or a construct demands it (like `const`), you annotate: `let limit: u8 = 10;`.",

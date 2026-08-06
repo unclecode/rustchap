@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "smart-pointers",
   "title": "Box, Rc, RefCell",
+  "topic": "Pointers and interior mutability",
   "summary": "Ownership beyond the stack: heap indirection, shared owners, and mutation checked at runtime.",
   "lecture": [
     "Box<T> is plain heap indirection with single ownership - the fix for recursive types (a List containing a List has infinite size; a List containing a Box<List> is one pointer, E0072 solved).",

@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "async-await",
   "title": "async fn returns a future",
+  "topic": "Concurrency",
   "summary": "Calling an async fn does nothing yet - it builds a machine that .await (or an executor) must drive.",
   "lecture": [
     "An `async fn fetch() -> i32` does not return an i32. It returns an anonymous Future that will EVENTUALLY produce an i32 - and calling it runs none of the body. Futures are inert values: no executor, no progress.",

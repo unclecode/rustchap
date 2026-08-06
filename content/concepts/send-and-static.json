@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "send-and-static",
   "title": "Send and 'static: crossing boundaries",
+  "topic": "Concurrency",
   "summary": "Work that moves to another thread or task must own its data (or share it atomically).",
   "lecture": [
     "thread::spawn (and multithreaded task spawning) accepts closures that are Send + 'static: nothing borrowed from the current stack frame - because the thread may outlive it (E0373). The `move` keyword is usually the fix: give the closure ownership.",

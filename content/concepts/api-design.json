@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "api-design",
   "title": "The narrowest parameter",
+  "topic": "Abstraction",
   "summary": "Take the least you need: &str over &String, &[T] over &Vec<T>, borrow over own.",
   "lecture": [
     "A signature is a contract about what the function may do with the data. Taking String says 'I consume this'; &mut String says 'I change it'; &str says 'I only look'. Callers can hand a narrower function more kinds of input with less ceremony - so the narrowest honest type is the kindest API.",

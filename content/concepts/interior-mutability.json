@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "interior-mutability",
   "title": "Interior mutability: Cell and RefCell",
+  "topic": "Pointers and interior mutability",
   "summary": "Mutation through a shared reference - with the borrow rules enforced at runtime instead.",
   "lecture": [
     "Sometimes an API must mutate through &self - caches, counters, observers. Interior mutability moves the one-writer-XOR-many-readers check from compile time to somewhere else: Cell<T> for Copy values (get/set whole values, no references handed out, no way to fail), RefCell<T> for everything else (borrow()/borrow_mut() return guards, violations PANIC at runtime).",

@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "mutability",
   "title": "Mutable bindings and &mut",
+  "topic": "Basics",
   "summary": "mut on a binding allows change; &mut lends exclusive write access - one writer at a time.",
   "lecture": [
     "Bindings are immutable unless declared `let mut`. A `&mut T` reference lends the right to modify - and it is exclusive: while a mutable borrow lives, no other borrow of that value may exist, shared or mutable.",

@@ -1,0 +1,15 @@
+{
+  "topics": [
+    "Basics",
+    "Data shapes",
+    "Text and views",
+    "Ownership",
+    "Lifetimes",
+    "Errors and absence",
+    "Iterators and closures",
+    "Abstraction",
+    "Pointers and interior mutability",
+    "Concurrency",
+    "Unsafe"
+  ]
+}

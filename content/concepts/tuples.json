@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "tuples",
   "title": "Tuples",
+  "topic": "Basics",
   "summary": "Fixed-size groups of possibly different types; destructure with (a, b) or index with .0.",
   "lecture": [
     "A tuple groups a fixed number of values that may have different types: `(3, 7)` is a `(i32, i32)`. Two ways to get the pieces out: destructure with a pattern, `let (x, y) = point;`, or index with `.0` and `.1`.",

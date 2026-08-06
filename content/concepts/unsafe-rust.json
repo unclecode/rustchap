@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "unsafe-rust",
   "title": "Unsafe: a scope, not a mode",
+  "topic": "Unsafe",
   "summary": "unsafe unlocks five superpowers inside the smallest possible block - behind a safe interface.",
   "lecture": [
     "unsafe doesn't turn the borrow checker off - it additionally permits exactly five things (deref raw pointers, call unsafe fns, touch mutable statics, implement unsafe traits, access unions). Everything else stays checked. Calling an unsafe fn outside an unsafe block is E0133: the gate is explicit.",

@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "bindings",
   "title": "Bindings, not variables",
+  "topic": "Basics",
   "summary": "let creates an immutable binding by default; mut opts into change; shadowing rebinds a name.",
   "lecture": [
     "Rust calls them bindings, not variables, because by default they do not vary. `let x = 5;` binds a name to a value, and reassigning it is a compile error. If you want mutation, you say so up front with `let mut`. Reading Rust, `mut` is a signal: this value changes somewhere below.",

@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "pattern-matching",
   "title": "Match and destructure",
+  "topic": "Errors and absence",
   "summary": "match takes data apart by shape - and the compiler insists you handle every shape.",
   "lecture": [
     "A match arm is a shape with holes: `Event::Click(x, y)` both tests the variant AND binds its fields in one motion. No casts, no getters - the pattern is the access.",

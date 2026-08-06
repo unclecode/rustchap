@@ -2,6 +2,7 @@
   "schema_version": 1,
   "id": "traits",
   "title": "Traits: capability as a contract",
+  "topic": "Abstraction",
   "summary": "A trait names what a type can do; impls and derives provide it; bounds demand it.",
   "lecture": [
     "A trait is an interface with teeth: `Display` means \"can be shown to users\", `Debug` means \"can be dumped for developers\", `Default` means \"has an obvious empty value\". Types opt in via impl blocks - or via #[derive(...)] when the implementation is mechanical.",
