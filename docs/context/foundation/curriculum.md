@@ -123,9 +123,37 @@ Lifetime, `?`/error-propagation in Option & Result, iter/into_iter in Build the 
 Send in Async & Send) + the original "Own, Lend, or Give" (stays mid-deck after Give It
 Away). Audit ramps show lessons as `L` (e.g. `L112L232`).
 Totals: **81 curriculum nodes = 61 puzzles (364 verified submissions) + 20 lectures.**
-Writing style rule (user, standing): plain international English, short sentences, Rust
-domain only, industry-standard names, inline code for every type/keyword in prose
-(lesson prose renders inline markdown), no em dashes.
+### Writing style (standing rule, tightened 2026-08-07 after a user complaint)
+
+Plain international English, Rust domain only, industry-standard names, inline code for every
+type/keyword in prose (lesson prose renders inline markdown), no em dashes. The 2026-08-07
+review found this rule was too vague to hold: a scan of 636 prose sentences found 50
+semicolon-welded clauses, 112 rhetorical colons, and 13 sentences over 32 words. The user's
+example was `A method that only reads takes &self; a method that consumes its value takes
+self.` — reference-manual register, not explanation.
+
+**The model is now google/comprehensive-rust** (CC-BY-4.0), which is written for the same
+audience (engineers fluent in another language). Its rules, adopted verbatim:
+
+1. **Anchor to the language the reader already knows in the first sentence.** "You use `if`
+   expressions exactly like `if` statements in other languages." "You will recognise the shape
+   from `switch` in C, Java, or JavaScript, but three things are different."
+2. **Short declarative sentences, one idea each.** No semicolons joining clauses. No colons
+   doing rhetorical work (colons introduce lists only).
+3. **No invented metaphors.** "A struct names a shape" was meaningless; say "a struct groups
+   several values under one name."
+4. **Say plainly what is NOT covered yet**, and name where it is covered. This is what prevents
+   the silent jumps (the user hit one when `match` appeared inside the enum lecture with no
+   prose introducing it).
+5. **Prose is short; the code carries the weight.** Their student-facing text is often ~40 words
+   plus a snippet; the depth lives in instructor notes. Our equivalent: depth lives in the
+   puzzles.
+6. **One lecture teaches one thing.** The failure case was `Shape Your Data`: struct + impl +
+   `&self`/`self` + enum + `match` + exhaustiveness in 159 words.
+
+Enforcement is planned as `tools/check-style.py` in CI (semicolons, rhetorical colons, sentence
+and lecture length, em dashes, missing attribution) — style must not depend on the author's
+memory, which is exactly how the regression happened.
 
 **Batch 6 (2026-08-04) — the journey completes; Phase 6 done:** Async & Send born (Await It —
 a 15-line std-only `block_on` embedded in the template makes async compile-verifiable; Move It
@@ -160,6 +188,53 @@ with mut_bindings ladder). Curriculum totals: **46 puzzles, 315 verified submiss
 unnecessary_unwrap, derivable_impls, clone_on_ref_ptr; wildcard_enum_match_arm does NOT fire
 via -W (pattern-matching.002 redesigned around it).
 
+## Curriculum rebuild (planned 2026-08-07, mapped against the reference courses)
+
+The 2026-08-07 audit compared RustChap against google/comprehensive-rust (4-day outline) and
+the Rust Book TOC. Findings:
+
+**Ordering mistakes in Foundations (mine, not inherited).** Comprehensive Rust teaches `match`
+on Day 1 under *Control Flow Basics* (matching plain values, beside `if` and loops) and gives
+*Pattern Matching* its own Day 2 session for destructuring structs and enums. I collapsed both
+into one enum lecture. They also teach `&` references on Day 1 as a tool and the ownership
+model on Day 3 — introduce, then explain.
+
+**Real content gaps** (each taught by every reference course, absent here): loops (`for`,
+`while`, `loop`, `break`/`continue`) — entirely missing; modules/paths/visibility (Rust Book
+ch7); threads, channels, `Arc`, `Mutex` (every course teaches plain concurrency before async);
+standard traits (`From`/`Into`, `Default`, `Display`, operators); `Drop`/RAII; testing;
+error types beyond `?` (the `Error` trait, conversion); idiomatic patterns (newtype, builder,
+typestate). Partial: casting/overflow, implementing `Iterator`, async depth, unsafe depth.
+
+**Proposed six levels** (existing 112 nodes all survive; changes are splits, re-levelling, and
+new decks): 1 Foundations (First Steps · Types & Functions · **Control Flow** · Structs · Enums
+& Reading Them Back · Collections · Strings) · 2 Ownership (Move or Borrow · Remove the Clone ·
+Slices & Views · Repair the Lifetime · **Drop & Cleanup**) · 3 Everyday Rust (Option & Result ·
+Pattern Matching · Build the Iterator · **Errors That Travel** · **Modules & Visibility** ·
+**Standard Traits**) · 4 Abstraction (Closures · Traits & Bounds · Generics vs dyn · Design the
+API) · 5 Systems (Smart Pointers · Interior Mutability · **Threads & Channels** · Async & Send ·
+Unsafe Rust) · 6 Mastery (**Idiomatic Patterns** · **Testing** · **Atomics & Ordering** ·
+**FFI & Raw Pointers**). Design map: claude.ai artifact ab0c9272.
+
+Comprehensive Rust's Android, Chromium, and Bare Metal tracks are **out of scope**:
+platform-specific, unverifiable with our compile pipeline, wrong for a phone puzzle game. Its
+Concurrency and Idiomatic Rust tracks are in scope.
+
+**PILOT SHIPPED (2026-08-07): Control Flow deck** — 7 nodes (2 lectures + 5 puzzles), 45
+verified submissions, adapted from Day 1 Morning: Control Flow Basics. Two lectures each
+teaching one thing: *Repeating Work* (the three loop keywords, `break`/`continue`, `break`
+carrying a value) and *Matching a Value* (`match` on plain values, no fall-through,
+exhaustiveness, `match` as an expression, and an explicit note that destructuring enums comes
+later). New concepts: `loops`, `match-basics`. This deck is the voice reference for the rebuild.
+
+**Proposed build approach** (awaiting user go): manifest-driven and reproducible —
+`content/curriculum.json` declaring every planned deck (level, source segments, concepts,
+status); `tools/extract-source.py` pulling teaching points from the cloned CR repo into
+`bank/`; `tools/authoring.py` giving `lesson()`/`puzzle()`/`slot()` helpers so each deck is a
+committed spec file under `tools/decks/` rather than a throwaway script; `tools/check-style.py`
+enforcing the voice in CI. Build order: re-level to six tiers → fix Foundations → Everyday
+gaps → Systems gaps → Mastery → review cards follow each batch.
+
 ## Progression quality bar
 
 Every puzzle must survive these questions before publishing:
@@ -178,6 +253,13 @@ Every puzzle must survive these questions before publishing:
 Open material bootstraps the bank but always via **transformation, never import** — existing
 exercises are written for keyboards and repositories, not phone interactions:
 
+- **Comprehensive Rust** (google/comprehensive-rust, **Apache-2.0 for code, CC-BY-4.0 for
+  prose**) — the primary structural source from 2026-08-07. Explicitly written for engineers
+  already fluent in another language, which is RustChap's audience. Cloned to
+  `bank/sources/comprehensive-rust` (gitignored). Neither licence is copyleft, so adapting it
+  does not affect RustChap's Apache-2.0 + Commons Clause. Attribution per node via
+  `source.origin = "comprehensive-rust"`; the outline/sequence itself is uncopyrightable
+  ideas, but credit is given anyway. Do not imply Google endorsement.
 - **Rustlings** (MIT) — concepts, compiler failures, minimal-repair patterns.
 - **Exercism Rust track** (MIT repo, 99 exercises) — practice problems; its track is explicitly
   non-sequential, so progression is ours to design.

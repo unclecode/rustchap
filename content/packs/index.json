@@ -3,6 +3,7 @@
   "order": [
     "first-steps",
     "types-and-functions",
+    "control-flow",
     "structs-and-enums",
     "collections",
     "strings-basics",

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.001",
+  "version": 1,
+  "title": "Repeating Work",
+  "track": "control-flow",
+  "concepts": [
+    "loops"
+  ],
+  "difficulty": 1,
+  "goal": "The three looping keywords, and how to leave a loop.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Rust has three looping keywords, and they behave much like the ones you already know from other languages."
+      },
+      {
+        "kind": "prose",
+        "text": "`while` repeats as long as its condition holds. `for` walks over a range or a collection. `loop` repeats forever."
+      },
+      {
+        "kind": "code",
+        "code": "while x >= 10 {\n    x = x / 2;\n}\n\nfor i in 1..5 {\n    println!(\"{i}\");\n}\n\nloop {\n    // forever, until something breaks\n}",
+        "caption": "Three keywords, three shapes of repetition."
+      },
+      {
+        "kind": "prose",
+        "text": "`break` leaves the loop immediately. `continue` skips the rest of this turn and starts the next one. Both work in all three kinds of loop."
+      },
+      {
+        "kind": "prose",
+        "text": "One thing is different from most languages. A `break` inside `loop` can carry a value out, and that value becomes the result of the loop. This makes `loop` the natural choice when you are searching for something."
+      },
+      {
+        "kind": "code",
+        "code": "let found = loop {\n    attempt += 1;\n    if attempt * attempt > 50 {\n        break attempt;\n    }\n};",
+        "caption": "break carries the answer out of the loop."
+      },
+      {
+        "kind": "prose",
+        "text": "A range like `1..5` counts from 1 up to but not including 5. Write `1..=5` when you want the last number included."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "The three looping keywords, and how to leave a loop.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  }
+}

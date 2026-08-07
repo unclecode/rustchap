@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.007",
+  "version": 1,
+  "title": "Match Into a Binding",
+  "track": "control-flow",
+  "concepts": [
+    "match-basics",
+    "expressions"
+  ],
+  "difficulty": 2,
+  "goal": "Let the match produce the value that price binds to.",
+  "template": "fn price(size: char) -> i32 {\n    let price ⟦eq⟧ match size {\n        's' => 3,\n        'm' => 5,\n        _ => 8,\n    }⟦tail⟧\n    price\n}\n\nfn main() {\n    println!(\"{}\", price('m'));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "eq",
+        "original": "==",
+        "label": "assignment",
+        "choices": [
+          {
+            "id": "e1",
+            "text": "=="
+          },
+          {
+            "id": "e2",
+            "text": "="
+          },
+          {
+            "id": "e3",
+            "text": ":"
+          }
+        ]
+      },
+      {
+        "id": "tail",
+        "original": "",
+        "label": "after the match",
+        "choices": [
+          {
+            "id": "t1",
+            "text": ""
+          },
+          {
+            "id": "t2",
+            "text": ";"
+          },
+          {
+            "id": "t3",
+            "text": "();"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn prices() {\n    assert_eq!(price('s'), 3);\n    assert_eq!(price('m'), 5);\n    assert_eq!(price('x'), 8);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "One equals sign binds. Two compare.",
+    "A `let` statement always ends with a semicolon, even when a match produced the value."
+  ],
+  "explanation": "`let price = match ... ;` binds the match's value to the name. A single `=` is assignment and `==` is a comparison, which is not valid in a `let`. The statement still needs its closing semicolon after the match block: without it the compiler reads the following line as a continuation, and the code does not build.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  }
+}

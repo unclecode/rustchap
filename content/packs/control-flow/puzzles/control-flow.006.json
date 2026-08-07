@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.006",
+  "version": 1,
+  "title": "Name the Code",
+  "track": "control-flow",
+  "concepts": [
+    "match-basics"
+  ],
+  "difficulty": 1,
+  "goal": "Turn a status code into a word. Anything unlisted is \"other\".",
+  "template": "fn name(code: i32) -> &'static str {\n    match code {\n        200 => \"ok\",\n        404 => ⟦missing⟧,\n        ⟦rest⟧ => \"other\",\n    }\n}\n\nfn main() {\n    println!(\"{}\", name(404));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "missing",
+        "original": "\"missing\";",
+        "label": "404 arm",
+        "choices": [
+          {
+            "id": "m1",
+            "text": "\"missing\";"
+          },
+          {
+            "id": "m2",
+            "text": "\"missing\""
+          },
+          {
+            "id": "m3",
+            "text": "missing"
+          }
+        ]
+      },
+      {
+        "id": "rest",
+        "original": "500",
+        "label": "last arm",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "500"
+          },
+          {
+            "id": "r2",
+            "text": "_"
+          },
+          {
+            "id": "r3",
+            "text": "code"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn names() {\n    assert_eq!(name(200), \"ok\");\n    assert_eq!(name(404), \"missing\");\n    assert_eq!(name(500), \"other\");\n    assert_eq!(name(1), \"other\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "An arm produces a value, so it takes no semicolon.",
+    "Listing 500 only handles 500. What handles everything else?"
+  ],
+  "explanation": "Each arm's body is an expression, so `\"missing\";` turns it into a statement worth `()` and breaks the match's type. Bare `missing` is an unknown variable. For the last arm, `_` is the catch-all that makes the match exhaustive. Listing `500` covers only that one code and leaves the rest unhandled, which the compiler rejects. Naming it `code` also works as a catch-all binding, so it passes too.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.002",
+  "version": 1,
+  "title": "Halve It Down",
+  "track": "control-flow",
+  "concepts": [
+    "loops"
+  ],
+  "difficulty": 1,
+  "goal": "Halve the number until it drops below 10.",
+  "template": "fn shrink(mut x: i32) -> i32 {\n    ⟦kw⟧ x ⟦cond⟧ {\n        x = x / 2;\n    }\n    x\n}\n\nfn main() {\n    println!(\"{}\", shrink(200));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "kw",
+        "original": "loop",
+        "label": "keyword",
+        "choices": [
+          {
+            "id": "k1",
+            "text": "loop"
+          },
+          {
+            "id": "k2",
+            "text": "while"
+          },
+          {
+            "id": "k3",
+            "text": "for"
+          }
+        ]
+      },
+      {
+        "id": "cond",
+        "original": "> 10",
+        "label": "condition",
+        "choices": [
+          {
+            "id": "c1",
+            "text": "> 10"
+          },
+          {
+            "id": "c2",
+            "text": ">= 10"
+          },
+          {
+            "id": "c3",
+            "text": "< 10"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn shrinks() {\n    assert_eq!(shrink(200), 6);\n    assert_eq!(shrink(10), 5);\n    assert_eq!(shrink(9), 9);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "`loop` takes no condition, and `for` needs something to walk over.",
+    "Ten should still be halved. Which comparison keeps going at exactly 10?"
+  ],
+  "explanation": "`while` is the keyword that repeats on a condition. `loop` takes no condition at all and `for` needs an iterable, so neither compiles here. The comparison then decides the answer: `>= 10` keeps halving while x is ten or more, which turns 10 into 5. Using `> 10` would stop early and leave 10 unchanged, and `< 10` never runs at all.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  }
+}

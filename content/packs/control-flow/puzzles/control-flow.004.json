@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.004",
+  "version": 1,
+  "title": "Break With an Answer",
+  "track": "control-flow",
+  "concepts": [
+    "loops"
+  ],
+  "difficulty": 2,
+  "goal": "Find the first number whose square passes 50, and return it.",
+  "template": "fn first_big() -> i32 {\n    let mut n = 0;\n    ⟦kw⟧ {\n        n += 1;\n        if n * n > 50 {\n            ⟦exit⟧;\n        }\n    }\n}\n\nfn main() {\n    println!(\"{}\", first_big());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "kw",
+        "original": "while true",
+        "label": "keyword",
+        "choices": [
+          {
+            "id": "k1",
+            "text": "while true"
+          },
+          {
+            "id": "k2",
+            "text": "loop"
+          },
+          {
+            "id": "k3",
+            "text": "for n in 0.."
+          }
+        ]
+      },
+      {
+        "id": "exit",
+        "original": "break",
+        "label": "exit",
+        "choices": [
+          {
+            "id": "e1",
+            "text": "break"
+          },
+          {
+            "id": "e2",
+            "text": "break n"
+          },
+          {
+            "id": "e3",
+            "text": "return"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn finds() {\n    assert_eq!(first_big(), 8);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The function must produce an i32, and the loop is the last thing in it.",
+    "A plain break leaves the loop with no value at all."
+  ],
+  "explanation": "`loop` is the keyword that can produce a value, and because it never ends normally the compiler accepts it as the function's final expression. `break n` carries the answer out. A plain `break` leaves the loop with `()`, which fails against the `i32` return type. `while true` cannot be used this way because the compiler cannot prove it always runs.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  }
+}

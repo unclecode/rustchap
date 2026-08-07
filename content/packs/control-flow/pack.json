@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "id": "control-flow",
+  "title": "Control Flow",
+  "description": "Repeat work with loops, then choose a path with match.",
+  "toolchain": "1.97.1",
+  "order": [
+    "control-flow.001",
+    "control-flow.002",
+    "control-flow.003",
+    "control-flow.004",
+    "control-flow.005",
+    "control-flow.006",
+    "control-flow.007"
+  ],
+  "icon": "arrow.triangle.branch",
+  "accent": "teal",
+  "level": "foundations"
+}

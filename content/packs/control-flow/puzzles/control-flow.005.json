@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.005",
+  "version": 1,
+  "title": "Matching a Value",
+  "track": "control-flow",
+  "concepts": [
+    "match-basics"
+  ],
+  "difficulty": 1,
+  "goal": "Compare a value against options, and get a value back.",
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "`match` compares one value against a list of options. You will recognise the shape from `switch` in C, Java, or JavaScript, but three things are different."
+      },
+      {
+        "kind": "code",
+        "code": "match code {\n    200 => println!(\"ok\"),\n    404 => println!(\"missing\"),\n    _ => println!(\"other\"),\n}",
+        "caption": "Each arm is a value, an arrow, and what to do."
+      },
+      {
+        "kind": "prose",
+        "text": "First, there is no fall-through. The first arm that matches runs, and nothing after it. You never write `break`."
+      },
+      {
+        "kind": "prose",
+        "text": "Second, a `match` must cover every possible value. The compiler checks this and refuses to build otherwise. `_` is the catch-all arm that handles everything you did not list."
+      },
+      {
+        "kind": "prose",
+        "text": "Third, `match` is an expression, so it can produce a value straight into a `let`. Every arm must then produce the same type."
+      },
+      {
+        "kind": "code",
+        "code": "let label = match code {\n    200 => \"ok\",\n    404 => \"missing\",\n    _ => \"other\",\n};",
+        "caption": "No semicolons after the arms, and one after the closing brace."
+      },
+      {
+        "kind": "prose",
+        "text": "This deck only matches on plain values like numbers and booleans. Matching on enums and pulling their data apart is a larger topic called pattern matching, and it has a deck of its own later."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Compare a value against options, and get a value back.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  }
+}

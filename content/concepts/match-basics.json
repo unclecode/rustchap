@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "match-basics",
+  "title": "match on a value",
+  "topic": "Basics",
+  "summary": "match compares a value against options and can produce a value itself.",
+  "lecture": [
+    "`match` compares one value against a list of options. Each arm is a pattern, an arrow, and what to do. Arms are checked from top to bottom, and the first one that matches runs.",
+    "There is no fall-through between arms, so no `break` is needed. That is the opposite of `switch` in C, Java, or JavaScript. A `match` must also cover every possible value, and `_` is the catch-all arm that handles the rest.",
+    "Like `if`, a `match` is an expression, so it can produce a value directly into a `let`. Matching on enums and taking their data apart is a bigger topic called pattern matching, and it has its own deck later."
+  ],
+  "example": {
+    "code": "let label = match code {\n    200 => \"ok\",\n    404 => \"missing\",\n    _ => \"other\",\n};",
+    "caption": "The match produces the value that label binds to."
+  }
+}

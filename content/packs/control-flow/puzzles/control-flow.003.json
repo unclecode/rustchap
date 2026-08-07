@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.003",
+  "version": 1,
+  "title": "Sum the Range",
+  "track": "control-flow",
+  "concepts": [
+    "loops"
+  ],
+  "difficulty": 1,
+  "goal": "Add up the numbers 1 through 5, including 5.",
+  "template": "fn total() -> i32 {\n    let mut sum = 0;\n    for n in ⟦range⟧ {\n        sum ⟦op⟧ n;\n    }\n    sum\n}\n\nfn main() {\n    println!(\"{}\", total());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "range",
+        "original": "1..5",
+        "label": "range",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "1..5"
+          },
+          {
+            "id": "r2",
+            "text": "1..=5"
+          },
+          {
+            "id": "r3",
+            "text": "1..6"
+          }
+        ]
+      },
+      {
+        "id": "op",
+        "original": "=",
+        "label": "operator",
+        "choices": [
+          {
+            "id": "o1",
+            "text": "="
+          },
+          {
+            "id": "o2",
+            "text": "+="
+          },
+          {
+            "id": "o3",
+            "text": "-="
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn totals() {\n    assert_eq!(total(), 15);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "A range written with two dots stops before its last number.",
+    "The sum has to keep what it already had."
+  ],
+  "explanation": "`1..5` counts 1, 2, 3, 4 and stops before 5, giving 10. Both `1..=5` and `1..6` include 5 and give 15, so either earns the star. The operator must accumulate: `sum = n` throws away everything counted so far, and `-=` subtracts.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  }
+}

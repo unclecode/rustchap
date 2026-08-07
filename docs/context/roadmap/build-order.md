@@ -193,6 +193,17 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       weakness boost so Learning cards surface slightly sooner than pure ripeness would say
       (recommended), and whether the detail screen shows one quiet "next suggestion in about
       N days" line.
+- [x] Curriculum audit against the reference courses (2026-08-07): mapped RustChap to
+      google/comprehensive-rust + the Rust Book, found the Foundations ordering mistakes and
+      eight real content gaps, proposed a six-level structure. Pilot deck **Control Flow**
+      shipped (7 nodes, 45 verified submissions) and approved as the voice reference. Details
+      in [curriculum](../foundation/curriculum.md).
+- [ ] CONTENT REBUILD (approach proposed 2026-08-07, awaiting go): manifest + authoring
+      library + style checker, then re-level to six tiers → fix Foundations (split Structs &
+      Enums, rewrite four lectures) → Everyday gaps (Modules, Errors That Travel, Standard
+      Traits) → Systems gaps (Threads & Channels, Drop, deepen Async and Unsafe) → Mastery
+      (Idiomatic Patterns, Testing, Atomics, FFI). Review cards follow each batch. Checkpoint
+      rhythm: deck-by-deck for the first three, then batches of three.
 - [ ] Skills content gap: 10 concepts still have no cards (closures, generics, traits,
       smart-pointers, interior-mutability, async-await, send-and-static, unsafe-rust,
       elision, static-lifetime) — roughly 30 cards, same five kinds. They appear
