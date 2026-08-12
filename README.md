@@ -37,16 +37,6 @@ requests are welcome - puzzles, lectures, and more.
 > solution.
 
 <p align="center">
-  <img src="docs/screens/demo.gif" width="34%" alt="Solving a puzzle: two taps turn a move into a borrow, and the score lands on Optimal">
-</p>
-
-<p align="center"><sub>
-  <code>print_name(name)</code> moves the string, so the next line will not compile.
-  Two taps make it a borrow, and the meter reaches the <code>0C·2E</code> budget.
-  <a href="docs/screens/demo.mp4">Full-size video</a>
-</sub></p>
-
-<p align="center">
   <img src="docs/screens/01-home.png" width="24%" alt="Six levels, thirty-one decks">
   <img src="docs/screens/02-puzzle.png" width="24%" alt="A puzzle: tap tokens, watch the cost meter">
   <img src="docs/screens/03-lecture.png" width="24%" alt="A short lecture in plain English">
