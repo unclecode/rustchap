@@ -32,7 +32,7 @@
       "diagnostics": [
         {
           "category": "trait_not_implemented",
-          "message": "`{closure@/var/folders/z7/2v9mp_7d0g387k4kjyjc9w4r0000gn/T/.tmpaXecfg/main.rs:4:5: 4:12}` is not a future",
+          "message": "`{closure@<src>/main.rs:4:5: 4:12}` is not a future",
           "slot_ids": [],
           "rust_code": "E0277"
         },
@@ -51,7 +51,7 @@
       "diagnostics": [
         {
           "category": "trait_not_implemented",
-          "message": "`{closure@/var/folders/z7/2v9mp_7d0g387k4kjyjc9w4r0000gn/T/.tmpDahr6f/main.rs:4:5: 4:12}` is not a future",
+          "message": "`{closure@<src>/main.rs:4:5: 4:12}` is not a future",
           "slot_ids": [],
           "rust_code": "E0277"
         },
@@ -91,7 +91,7 @@
       "diagnostics": [
         {
           "category": "compile_error",
-          "message": "expected `{async block@/var/folders/z7/2v9mp_7d0g387k4kjyjc9w4r0000gn/T/.tmpb05T8z/main.rs:4:5: 4:10}` to be a future that resolves to `usize`, but it resolves to `&usize`",
+          "message": "expected `{async block@<src>/main.rs:4:5: 4:10}` to be a future that resolves to `usize`, but it resolves to `&usize`",
           "slot_ids": [],
           "rust_code": "E0271"
         },
@@ -110,7 +110,7 @@
       "diagnostics": [
         {
           "category": "trait_not_implemented",
-          "message": "`{closure@/var/folders/z7/2v9mp_7d0g387k4kjyjc9w4r0000gn/T/.tmpmrSKdI/main.rs:4:5: 4:12}` is not a future",
+          "message": "`{closure@<src>/main.rs:4:5: 4:12}` is not a future",
           "slot_ids": [],
           "rust_code": "E0277"
         },
@@ -129,7 +129,7 @@
       "diagnostics": [
         {
           "category": "compile_error",
-          "message": "expected `{async block@/var/folders/z7/2v9mp_7d0g387k4kjyjc9w4r0000gn/T/.tmpfWrh8e/main.rs:4:5: 4:15}` to be a future that resolves to `usize`, but it resolves to `&usize`",
+          "message": "expected `{async block@<src>/main.rs:4:5: 4:15}` to be a future that resolves to `usize`, but it resolves to `&usize`",
           "slot_ids": [],
           "rust_code": "E0271"
         },

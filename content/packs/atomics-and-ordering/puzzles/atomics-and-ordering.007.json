@@ -41,19 +41,19 @@
       },
       {
         "id": "res",
-        "original": "is_ok()",
+        "original": "unwrap_err()",
         "label": "loop continuation condition",
         "choices": [
           {
-            "id": "re1",
+            "id": "r1",
             "text": "is_err()"
           },
           {
-            "id": "re2",
-            "text": "is_ok()"
+            "id": "r2",
+            "text": "err()"
           },
           {
-            "id": "re3",
+            "id": "r3",
             "text": "unwrap_err()"
           }
         ]
@@ -62,7 +62,7 @@
   },
   "evaluation": {
     "tests": [
-      "#[test]\nfn test_spinlock() {\n    use std::sync::Arc;\n    let lock = Arc::new(SpinLock::new());\n    lock.lock();\n    let l2 = lock.clone();\n    let h = std::thread::spawn(move || { l2.lock(); l2.unlock(); });\n    std::thread::sleep(std::time::Duration::from_millis(50));\n    assert!(!h.is_finished());\n    lock.unlock();\n    h.join().unwrap();\n}"
+      "#[test]\nfn takes_and_releases_the_lock() {\n    let l = SpinLock::new();\n    l.lock();\n    l.unlock();\n    // re-acquiring proves unlock actually released it\n    l.lock();\n    l.unlock();\n}"
     ],
     "metrics": [
       "token_edits"
@@ -82,5 +82,5 @@
     "`compare_exchange_weak` is idiomatic inside spin loops because it can fail spuriously yielding better performance on ARM.",
     "The while loop should continue spinning as long as the atomic exchange fails (returns `Err`)."
   ],
-  "explanation": "`compare_exchange_weak` is preferred inside retry loops because it can fail spuriously yielding better performance on architectures like ARM. When `compare_exchange_weak` successfully acquires the lock, it returns `Ok`, so `is_err()` evaluates to `false` and terminates the loop. Using `is_ok()` causes callers to exit prematurely without waiting when another thread holds the lock. `unwrap_err()` panics on `Ok`. Methods `swap` and `store` take 2 arguments instead of 4, producing compiler error `E0061`."
+  "explanation": "`compare_exchange_weak(false, true, ...)` tries to flip the flag from free to held and returns `Err` while someone else holds it, so `while ... .is_err()` is the loop that waits. `.err()` gives an `Option<bool>`, which is not a condition, so the `while` does not compile. `.unwrap_err()` panics the moment the swap succeeds. `swap` and `store` return a plain `bool` and `()`, neither of which has these methods."
 }

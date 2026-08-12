@@ -71,10 +71,64 @@ pub fn to_puzzle_diagnostics(
             slot_ids.dedup();
             Diagnostic {
                 category: category_for(d.code.as_ref().map(|c| c.code.as_str())).to_string(),
-                message: d.message.clone(),
+                message: sanitize_paths(&d.message),
                 slot_ids,
                 rust_code: d.code.as_ref().map(|c| c.code.clone()),
             }
         })
         .collect()
+}
+
+/// Strip the compile directory out of a diagnostic message.
+///
+/// rustc names closures and async blocks by their source location, e.g.
+/// `{async closure body@/var/folders/.../.tmpAbC123/main.rs:4:41: 6:6}`. Each
+/// run compiles in a FRESH temp directory, so that text differs every time and
+/// the puzzle's stored outcomes can never match a recompile: the linter reports
+/// it stale forever, on every machine. Replace the directory with `<src>` so the
+/// message stays useful and stays stable.
+fn sanitize_paths(message: &str) -> String {
+    let mut out = String::with_capacity(message.len());
+    let mut rest = message;
+    while let Some(at) = rest.find('/') {
+        let (head, tail) = rest.split_at(at);
+        out.push_str(head);
+        // a path runs until whitespace, a closing brace, or a quote
+        let end = tail
+            .find(|c: char| c.is_whitespace() || c == '}' || c == '`' || c == '\'')
+            .unwrap_or(tail.len());
+        let (path, after) = tail.split_at(end);
+        match path.rfind('/') {
+            Some(slash) => {
+                out.push_str("<src>");
+                out.push_str(&path[slash..]);
+            }
+            None => out.push_str(path),
+        }
+        rest = after;
+    }
+    out.push_str(rest);
+    out
+}
+
+#[cfg(test)]
+mod sanitize_tests {
+    use super::sanitize_paths;
+
+    #[test]
+    fn strips_the_temp_directory_but_keeps_the_file_and_position() {
+        let a = sanitize_paths(
+            "`{async closure body@/var/folders/z7/x/.tmp7xzABB/main.rs:4:41: 6:6}` doesn't implement `Debug`");
+        let b = sanitize_paths(
+            "`{async closure body@/var/folders/z7/x/.tmpCc3v7p/main.rs:4:41: 6:6}` doesn't implement `Debug`");
+        assert_eq!(a, b, "two runs must produce the same message");
+        assert!(a.contains("/main.rs:4:41"), "position is still useful: {a}");
+        assert!(!a.contains(".tmp"), "temp dir is gone: {a}");
+    }
+
+    #[test]
+    fn leaves_ordinary_messages_alone() {
+        let m = "cannot borrow `x` as mutable more than once at a time";
+        assert_eq!(sanitize_paths(m), m);
+    }
 }
