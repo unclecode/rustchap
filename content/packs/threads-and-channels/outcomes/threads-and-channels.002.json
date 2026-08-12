@@ -74,7 +74,7 @@
       "diagnostics": [
         {
           "category": "trait_not_implemented",
-          "message": "`{async closure body@<src>/main.rs:4:41: 6:6}` doesn't implement `Debug`",
+          "message": "`{async closure body@main.rs:4:41: 6:6}` doesn't implement `Debug`",
           "slot_ids": [
             "slot2"
           ],

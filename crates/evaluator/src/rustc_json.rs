@@ -98,11 +98,12 @@ fn sanitize_paths(message: &str) -> String {
             .find(|c: char| c.is_whitespace() || c == '}' || c == '`' || c == '\'')
             .unwrap_or(tail.len());
         let (path, after) = tail.split_at(end);
+        // Drop the directory entirely rather than replacing it. rustc prints a
+        // RELATIVE path on macOS ("main.rs:12:32") and an ABSOLUTE one on Linux,
+        // so keeping any prefix makes the two platforms disagree and CI reports
+        // outcomes stale that are fine locally.
         match path.rfind('/') {
-            Some(slash) => {
-                out.push_str("<src>");
-                out.push_str(&path[slash..]);
-            }
+            Some(slash) => out.push_str(&path[slash + 1..]),
             None => out.push_str(path),
         }
         rest = after;
@@ -122,8 +123,18 @@ mod sanitize_tests {
         let b = sanitize_paths(
             "`{async closure body@/var/folders/z7/x/.tmpCc3v7p/main.rs:4:41: 6:6}` doesn't implement `Debug`");
         assert_eq!(a, b, "two runs must produce the same message");
-        assert!(a.contains("/main.rs:4:41"), "position is still useful: {a}");
+        assert!(a.contains("main.rs:4:41"), "position is still useful: {a}");
         assert!(!a.contains(".tmp"), "temp dir is gone: {a}");
+        assert!(!a.contains('/'), "no directory survives: {a}");
+    }
+
+    #[test]
+    fn relative_and_absolute_paths_agree() {
+        // macOS prints the file relative, Linux prints it absolute. Both must
+        // reduce to the same text or CI disagrees with the developer machine.
+        let mac = sanitize_paths("`{closure@main.rs:12:32}` does not implement `Fn`");
+        let linux = sanitize_paths("`{closure@/tmp/.tmpQ9/main.rs:12:32}` does not implement `Fn`");
+        assert_eq!(mac, linux);
     }
 
     #[test]
