@@ -1,0 +1,11 @@
+{
+  "id": "closures.gotcha.function-pointer-vs-trait",
+  "kind": "gotcha",
+  "title": "Difference between fn pointers and closur...",
+  "concepts": [
+    "closures"
+  ],
+  "prompt": "What is the difference between a `fn(T) -> U` parameter and an `impl Fn(T) -> U` parameter?",
+  "answer": "A `fn(T) -> U` parameter is a function pointer that only accepts top-level functions or non-capturing closures. An `impl Fn(T) -> U` parameter accepts any closure, including those that capture state from their surrounding scope. Function signatures that accept callbacks should almost always use the closure trait bound.",
+  "schema_version": 1
+}

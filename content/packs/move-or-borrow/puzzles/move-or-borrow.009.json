@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.009",
+  "version": 1,
+  "title": "Shared or Exclusive",
+  "track": "move-or-borrow",
+  "concepts": [
+    "borrow",
+    "mutability"
+  ],
+  "difficulty": 1,
+  "goal": "Learn the aliasing rule that governs mutable and shared borrowing.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Borrowing"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You know that borrowing with `&` lets you read data without taking ownership. When you need to modify borrowed data, you use a mutable reference, written `&mut`."
+      },
+      {
+        "kind": "code",
+        "code": "let mut count = 10;\nlet num = &mut count;\n*num += 1;",
+        "caption": "`&mut` gives permission to modify the value through the reference."
+      },
+      {
+        "kind": "prose",
+        "text": "Rust enforces one core rule for borrowing to prevent data corruption. At any given moment, you can have many shared `&` references, or exactly one exclusive `&mut` reference."
+      },
+      {
+        "kind": "code",
+        "code": "let mut val = 5;\nlet r1 = &val;\nlet r2 = &mut val; // error E0502\nprintln!(\"{r1}\");",
+        "caption": "You cannot create `&mut val` while shared reference `r1` is still alive."
+      },
+      {
+        "kind": "prose",
+        "text": "The compiler checks this rule at compile time and rejects conflicts with error `E0502` or `E0499`. This rule eliminates data races and iterator invalidation bugs entirely."
+      },
+      {
+        "kind": "prose",
+        "text": "Lifetimes and borrowing across struct fields are covered later in this deck."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn the aliasing rule that governs mutable and shared borrowing."
+}

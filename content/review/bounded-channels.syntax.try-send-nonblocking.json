@@ -1,0 +1,11 @@
+{
+  "id": "bounded-channels.syntax.try-send-nonblocking",
+  "kind": "syntax",
+  "title": "Non-blocking send on sync channels",
+  "concepts": [
+    "bounded-channels"
+  ],
+  "prompt": "How do you attempt to send a message on a bounded channel without blocking if the buffer is full?",
+  "answer": "Call try_send on the SyncSender. It returns Ok(()) on success, or Err(`TrySendError::Full(val)`) immediately if the buffer is full.",
+  "schema_version": 1
+}

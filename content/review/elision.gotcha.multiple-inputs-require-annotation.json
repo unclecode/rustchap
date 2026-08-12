@@ -1,0 +1,11 @@
+{
+  "id": "elision.gotcha.multiple-inputs-require-annotation",
+  "kind": "gotcha",
+  "title": "Elision Fails for Multiple Inputs",
+  "concepts": [
+    "elision"
+  ],
+  "prompt": "Why does returning a reference from a function with two `&str` parameters require explicit lifetime annotations?",
+  "answer": "Rust cannot guess which input parameter the output borrows from. You must explicitly annotate the returned reference to declare which input it derives from.",
+  "schema_version": 1
+}

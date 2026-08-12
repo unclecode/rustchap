@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "enums-and-matching.006",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "31d501922f4cd9c9e25cc660073af4cb0a70ff2c669268497362411d1c3eb006": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected unit struct, unit variant or constant, found tuple variant `Status::Running`",
+          "slot_ids": [
+            "arm"
+          ],
+          "rust_code": "E0532"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "88e916760b8cb0ae119c4eb3d7bec0993d80adb60dd7dbe8c74982b049a21d19": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot find tuple struct or tuple variant `Running` in this scope",
+          "slot_ids": [
+            "arm"
+          ],
+          "rust_code": "E0531"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "df09c87c20e38441a4158e98f1b2a7c29ef58bdf797e9ea61920fbb175239dfe": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    }
+  }
+}

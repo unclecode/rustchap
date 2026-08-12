@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "enums-and-matching.012",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "15c7ace3188be0aa7f86ccc51789923fb2dd508103f1880bf7ec74a14bb0db5b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `p` in this scope",
+          "slot_ids": [
+            "if_let_stmt"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `p` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "binary operation `==` cannot be applied to type `Config`",
+          "slot_ids": [
+            "if_let_stmt"
+          ],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "else_branch"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "41c0a946ddae91a453dab9c7bab0a0920115079b1f6de3761ddedd62aeb3f2bb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `{`, found `8080`",
+          "slot_ids": [
+            "else_branch"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "69c2edb468c3c22e5e3a4b97d5dbcd71b0a04eded2f0a6ae4b9e343f38cdfa6c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "else_branch"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7d348e82ab2f067bb15aae8a1ac662f5b006afa410b30bc47d5812dd855dfc85": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "right curly brace `}` before `else` in a `let...else` statement not allowed",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected struct, variant or union type, found local variable `cfg`",
+          "slot_ids": [
+            "if_let_stmt"
+          ],
+          "rust_code": "E0574"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `p` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "`else` clause of `let...else` does not diverge",
+          "slot_ids": [
+            "else_branch"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "888ffecb62adf7bd22723bb4e5cb2babaa06cc8afea4828bb869a94d9a6fdc1c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `{`, found `8080`",
+          "slot_ids": [
+            "else_branch"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bdaec602a638cfe17a91f56d9ded62601cadaad6efaf37de7039e88101c6b585": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "right curly brace `}` before `else` in a `let...else` statement not allowed",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected struct, variant or union type, found local variable `cfg`",
+          "slot_ids": [
+            "if_let_stmt"
+          ],
+          "rust_code": "E0574"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `p` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "`else` clause of `let...else` does not diverge",
+          "slot_ids": [
+            "else_branch"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "eab653f779a195f50f72400d030743e4d6845a593a2552ab430397644aa78fe7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `{`, found `8080`",
+          "slot_ids": [
+            "else_branch"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f0efe05b1c0ecff5c06ec3b085d723f17c78f86628fe71ab8b5da6fa83e88fec": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "f3e7fedfca65c4c5dc5f769295a582c40a6bc34c9e4377cd0cc9406eda818e7a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `p` in this scope",
+          "slot_ids": [
+            "if_let_stmt"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `p` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "binary operation `==` cannot be applied to type `Config`",
+          "slot_ids": [
+            "if_let_stmt"
+          ],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

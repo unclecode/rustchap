@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.012",
+  "version": 1,
+  "title": "The Quiet Return",
+  "track": "types-and-functions",
+  "concepts": [
+    "functions",
+    "expressions"
+  ],
+  "difficulty": 2,
+  "goal": "Return an integer value by omitting the trailing semicolon.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Functions"
+  },
+  "template": "fn main() {\n    println!(\"{}\", double(5));\n}\n\nfn double(x: i32) -> ⟦ret_type⟧ {\n    let result = x * 2;\n    ⟦body_end⟧\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "ret_type",
+        "original": "()",
+        "label": "return type",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "()"
+          },
+          {
+            "id": "re2",
+            "text": "i32"
+          },
+          {
+            "id": "re3",
+            "text": "void"
+          }
+        ]
+      },
+      {
+        "id": "body_end",
+        "original": "result;",
+        "label": "final expression",
+        "choices": [
+          {
+            "id": "bo1",
+            "text": "result;"
+          },
+          {
+            "id": "bo2",
+            "text": "result"
+          },
+          {
+            "id": "bo3",
+            "text": "return;"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn doubles_value() {\n    assert_eq!(double(5), 10);\n    assert_eq!(double(0), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The function must return an integer so callers can use the number.",
+    "A semicolon turns an expression into a statement, discarding its value."
+  ],
+  "explanation": "In Rust, an expression without a semicolon evaluates to the block return value. Adding a semicolon to `result;` turns it into a statement that returns unit `()`. When the signature promises `i32`, returning `()` produces `E0308`. Rust has no `void` type."
+}

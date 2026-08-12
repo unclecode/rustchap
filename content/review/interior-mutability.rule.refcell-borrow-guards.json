@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.rule.refcell-borrow-guards",
+  "kind": "rule",
+  "title": "RefCell borrow guard lifetime",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "Why must RefCell borrow guards be kept in as short a scope as possible?",
+  "answer": "RefCell tracks active borrows dynamically at runtime. Holding a read or write guard in a local variable keeps the borrow active, which causes subsequent conflicting calls to `borrow` or `borrow_mut` to panic.",
+  "schema_version": 1
+}

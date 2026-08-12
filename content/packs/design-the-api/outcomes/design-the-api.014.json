@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "design-the-api.014",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "085443e7952c0896b52717ab724cf7658ce9ab0b994b56d12444a412d10d24f6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `build` found for unit type `()` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "340e9a7d685fbcdeeed4d7a07a4b20ec747432d1805f2373a5df882320fcd51d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `self.timeout`, which is behind a `&` reference",
+          "slot_ids": [],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "move_error",
+          "message": "cannot move out of a shared reference",
+          "slot_ids": [],
+          "rust_code": "E0507"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "35ea049d16bd994abec2ee7fea62c7d09c664343e354bc27c2e0447a4ee4eaa3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `build` found for unit type `()` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "43fd3bc9f07baf4a81e882f873a1c6664165dc99ac462789987a48234d6bea9d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7dbf8073f9abd9e58c1f9b38af4bd6847f0cc16de84b730820649c507997ac90": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `build` found for unit type `()` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9e3c673fe0524dd15ba77eae54e6d5d64be0860852a168244e485ec8ae53f84d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "missing lifetime specifier",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0106"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c6c503fbd9024ffc0e8ac796e4377b191a3e728ae0ba6e2d66567c38a0959068": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "dfa1678020a5fd26224e546ce5d62da1d3cf7d38d75f7e484fad92ea8183d7dc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fb53cafa3b1420385e88092234b44d2289f8409ad5a82d9777f029714cba5059": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of a shared reference",
+          "slot_ids": [],
+          "rust_code": "E0507"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

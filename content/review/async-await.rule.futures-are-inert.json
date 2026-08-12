@@ -1,0 +1,11 @@
+{
+  "id": "async-await.rule.futures-are-inert",
+  "kind": "rule",
+  "title": "Async calls construct unexecuted futures",
+  "concepts": [
+    "async-await"
+  ],
+  "prompt": "What does calling an async function produce before .await is applied?",
+  "answer": "Calling an async function constructs a paused state machine implementing the Future trait. No code inside the function body executes until an executor or .await polls the future.",
+  "schema_version": 1
+}

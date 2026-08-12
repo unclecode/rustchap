@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "collections.007",
+  "version": 1,
+  "title": "Lookup Owned Keys",
+  "track": "collections",
+  "concepts": [
+    "hashmap-basics",
+    "string-types"
+  ],
+  "difficulty": 2,
+  "goal": "Query a HashMap with String keys using a string slice &str.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: HashMap"
+  },
+  "template": "use std::collections::HashMap;\n\nfn get_score(\n    scores: &HashMap<String, i32>,\n    name: &str,\n) -> i32 {\n    let score = scores.⟦lookup⟧;\n    score.⟦unwrap_val⟧\n}\n\nfn main() {\n    let mut map = HashMap::new();\n    map.insert(String::from(\"Alice\"), 100);\n    println!(\"{}\", get_score(&map, \"Alice\"));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "lookup",
+        "original": "get(&name)",
+        "label": "lookup call",
+        "choices": [
+          {
+            "id": "lo1",
+            "text": "get(name)"
+          },
+          {
+            "id": "lo2",
+            "text": "get(&name)"
+          },
+          {
+            "id": "lo3",
+            "text": "[name]"
+          }
+        ]
+      },
+      {
+        "id": "unwrap_val",
+        "original": "unwrap()",
+        "label": "unwrap expression",
+        "choices": [
+          {
+            "id": "un1",
+            "text": "copied().unwrap_or(0)"
+          },
+          {
+            "id": "un2",
+            "text": "unwrap()"
+          },
+          {
+            "id": "un3",
+            "text": "cloned()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn finds_existing_and_missing() {\n    let mut map = HashMap::new();\n    map.insert(String::from(\"Alice\"), 100);\n    assert_eq!(get_score(&map, \"Alice\"), 100);\n    assert_eq!(get_score(&map, \"Bob\"), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rust's HashMap<String, V> allows searching with a &str reference directly.",
+    "The .get() method returns Option<&V>, which can be copied and unwrapped with a default."
+  ],
+  "explanation": "scores.get(name) accepts &str directly because String implements Borrow<str>. The get method returns Option<&i32>. copied().unwrap_or(0) converts Option<&i32> safely to i32. Passing &name creates &&str and fails the trait bound. Direct indexing with [name] returns &i32 directly and panics if missing."
+}

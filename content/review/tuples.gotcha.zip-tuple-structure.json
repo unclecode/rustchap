@@ -1,0 +1,11 @@
+{
+  "id": "tuples.gotcha.zip-tuple-structure",
+  "kind": "gotcha",
+  "title": "Zip produces two-element tuple stream",
+  "concepts": [
+    "tuples"
+  ],
+  "prompt": "What shape of items does the zip iterator adapter yield?",
+  "answer": "The `zip` adapter yields two-element tuples containing one item from each source iterator, like `(A, B)`. Downstream adapters like `map` receive this tuple as a single argument. You must destructure the tuple parameter with parentheses like `|(x, y)|` to access the two items separately.",
+  "schema_version": 1
+}

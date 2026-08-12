@@ -1,0 +1,11 @@
+{
+  "id": "standard-traits.rule.tryfrom-vs-from",
+  "kind": "rule",
+  "title": "fallible versus infallible conversions",
+  "concepts": [
+    "standard-traits"
+  ],
+  "prompt": "What is the key difference between the `From` and `TryFrom` traits?",
+  "answer": "`From` guarantees an infallible, lossless conversion that produces the target type directly. `TryFrom` is for fallible conversions and returns a `Result` containing an error if the conversion fails.",
+  "schema_version": 1
+}

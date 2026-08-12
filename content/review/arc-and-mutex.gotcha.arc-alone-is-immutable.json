@@ -1,0 +1,11 @@
+{
+  "id": "arc-and-mutex.gotcha.arc-alone-is-immutable",
+  "kind": "gotcha",
+  "title": "Why Arc Alone Does Not Allow Mutation",
+  "concepts": [
+    "arc-and-mutex"
+  ],
+  "prompt": "Why can you not mutate data inside an Arc<T> directly from multiple threads?",
+  "answer": "Arc provides shared references across threads, which are immutable by default. To mutate data inside an Arc, you must wrap it in a synchronization primitive like Mutex or RwLock that provides safe interior mutability.",
+  "schema_version": 1
+}

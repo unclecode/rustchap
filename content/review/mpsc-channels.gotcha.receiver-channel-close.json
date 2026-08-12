@@ -1,0 +1,11 @@
+{
+  "id": "mpsc-channels.gotcha.receiver-channel-close",
+  "kind": "gotcha",
+  "title": "How Channel Iteration Knows When to Stop",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "prompt": "Why will iterating over a channel receiver hang forever if you forget to drop the original Sender handle in the main thread?",
+  "answer": "A receiver iterator only terminates when every Sender handle for that channel has been dropped. If the main thread keeps its original Sender handle alive, the receiver waits indefinitely for possible new messages.",
+  "schema_version": 1
+}

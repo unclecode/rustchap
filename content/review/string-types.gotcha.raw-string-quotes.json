@@ -1,0 +1,11 @@
+{
+  "id": "string-types.gotcha.raw-string-quotes",
+  "kind": "gotcha",
+  "title": "Embed double quotes in raw strings",
+  "concepts": [
+    "string-types"
+  ],
+  "prompt": "How do you embed double quotes inside a raw string literal without escaping them?",
+  "answer": "Surround the raw string delimiter with matching hash symbols, such as `r#\"...\"#`. If your text contains `\"#`, add extra hashes like `r##\"...\"##` until the inner sequence no longer matches the closing delimiter.",
+  "schema_version": 1
+}

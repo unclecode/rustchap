@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.008",
+  "version": 1,
+  "title": "Trait Objects and Dynamic Dispatch",
+  "track": "generics-and-dyn",
+  "concepts": [
+    "traits"
+  ],
+  "difficulty": 1,
+  "goal": "Understand why dynamic dispatch requires indirection behind pointers.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Trait Objects"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In languages like Java or Go, all interface references use dynamic dispatch automatically. Rust makes dynamic dispatch explicit with the `dyn` keyword."
+      },
+      {
+        "kind": "code",
+        "code": "trait Speaker {\n    fn speak(&self) -> &str;\n}",
+        "caption": "A trait defines shared behavior without specifying a concrete type."
+      },
+      {
+        "kind": "prose",
+        "text": "A raw `dyn Speaker` type has no fixed size at compile time. Rust requires types in variables and function arguments to have a known size."
+      },
+      {
+        "kind": "code",
+        "code": "// Error E0277: dyn Speaker unsized\n// fn announce(s: dyn Speaker) { ... }",
+        "caption": "Unsized trait objects cannot be passed directly by value."
+      },
+      {
+        "kind": "prose",
+        "text": "To use dynamic dispatch, put `dyn Trait` behind a pointer such as `&dyn Speaker` or `Box<dyn Speaker>`."
+      },
+      {
+        "kind": "code",
+        "code": "fn announce(s: &dyn Speaker) {\n    println!(\"{}\", s.speak());\n}",
+        "caption": "&dyn Speaker is a fat pointer holding a data pointer and a vtable pointer."
+      },
+      {
+        "kind": "prose",
+        "text": "Monomorphization creates separate functions for every generic type. Dynamic dispatch uses one function and looks up methods in a vtable at runtime."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand why dynamic dispatch requires indirection behind pointers."
+}

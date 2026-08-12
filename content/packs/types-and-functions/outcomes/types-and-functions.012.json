@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "types-and-functions.012",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "4b7265e4bbd41ee2146ffa14c351fdff2bd88321c752748c9c9c8432bf5b7bb1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `void` in this scope",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4c7295dd1f79e5abef8e746c7ab4ff5d2e2fdb4a69f8764f8381bf1ff249d723": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`return;` in a function whose return type is not `()`",
+          "slot_ids": [
+            "body_end"
+          ],
+          "rust_code": "E0069"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "74cd50030f21c69a50dd829e4e8f0733b54255af84f9409d7d11f8e0ebaa684f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `void` in this scope",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "92053260740a5afc83fcbfa5055b0b1b1191e72e5c3ab3c21bdeffde373b393a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `void` in this scope",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ba59380fc4c5307b4e1e1098e96096011cfa0b645e8b430eeea60a0523b7a5ed": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`()` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bea8f3ff941f87bff2e24a379523e902a0303fc05ed22d897308ab173056055b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`()` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "body_end"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cb07dab7eec0687aa5048c1288dd9fda6ee4b1df416aae4a2ed5a1c77cf97468": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e555c897759041cde9a13f1d8bb4768b7e8561ae30a489aad419dc4d43b7ff75": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "e9dae10e163675fe7246d567d4903482fb380abf210a4731eef57fcc79c75284": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`()` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "vec-basics.syntax.vec-macro",
+  "kind": "syntax",
+  "title": "Creating a populated vector",
+  "concepts": [
+    "vec-basics"
+  ],
+  "prompt": "What is the idiomatic macro to create and initialize a Vec with elements?",
+  "answer": "Use the `vec!` macro with square brackets, like `vec![1, 2, 3]`. This allocates a heap buffer and initializes it with the specified values in one step.",
+  "schema_version": 1
+}

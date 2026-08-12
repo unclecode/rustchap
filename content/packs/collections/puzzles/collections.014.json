@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "collections.014",
+  "version": 1,
+  "title": "Build Lookup Table",
+  "track": "collections",
+  "concepts": [
+    "hashmap-basics",
+    "iterator",
+    "clone"
+  ],
+  "difficulty": 2,
+  "goal": "Convert owned tuples into a HashMap without unnecessary key allocations.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: HashMap"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "into_iter",
+        "code": "use std::collections::HashMap;\n\nfn make_map(pairs: Vec<(String, i32)>) -> HashMap<String, i32> {\n    pairs.into_iter().collect()\n}"
+      },
+      {
+        "id": "iter_without_move",
+        "code": "use std::collections::HashMap;\n\nfn make_map(pairs: Vec<(String, i32)>) -> HashMap<String, i32> {\n    pairs.iter().collect()\n}"
+      },
+      {
+        "id": "borrow_loop",
+        "code": "use std::collections::HashMap;\n\nfn make_map(pairs: Vec<(String, i32)>) -> HashMap<String, i32> {\n    let mut map = HashMap::new();\n    for (k, v) in &pairs {\n        map.insert(k, v);\n    }\n    map\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn builds_map() {\n    let pairs = vec![\n        (\"apple\".to_string(), 3),\n        (\"banana\".to_string(), 5),\n    ];\n    let map = make_map(pairs);\n    assert_eq!(map.get(\"apple\"), Some(&3));\n    assert_eq!(map.get(\"banana\"), Some(&5));\n    assert_eq!(map.len(), 2);\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "The input vector already owns the String keys.",
+    "into_iter moves owned values out of the vector without cloning or copying."
+  ],
+  "explanation": "into_iter moves owned String keys and values directly into the HashMap. iter produces references so collect cannot build a map of owned String keys. Iterating over a reference vector yields references and causes a type mismatch."
+}

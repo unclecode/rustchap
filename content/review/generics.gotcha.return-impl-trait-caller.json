@@ -1,0 +1,11 @@
+{
+  "id": "generics.gotcha.return-impl-trait-caller",
+  "kind": "gotcha",
+  "title": "Who chooses return type in impl Trait",
+  "concepts": [
+    "generics"
+  ],
+  "prompt": "How does `fn f() -> impl Trait` differ from `fn f<T: Trait>() -> T` in who picks the return type?",
+  "answer": "With `impl Trait` in return position, the function implementation chooses the single concrete return type. With generic `T: Trait`, the caller chooses which type `T` to receive using type inference or turbofish.",
+  "schema_version": 1
+}

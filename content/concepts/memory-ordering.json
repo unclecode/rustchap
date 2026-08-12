@@ -1,0 +1,16 @@
+{
+  "id": "memory-ordering",
+  "title": "Memory Ordering",
+  "topic": "Concurrency",
+  "summary": "Guarantees that control compiler and CPU memory operation reordering across threads.",
+  "lecture": [
+    "Memory ordering specifies how memory accesses around an atomic operation are ordered.",
+    "Relaxed ordering provides atomicity with no synchronization or ordering constraints.",
+    "Acquire and Release orderings pair up to establish happens-before relationships between threads."
+  ],
+  "example": {
+    "code": "use std::sync::atomic::Ordering;\nlet ord = Ordering::Acquire;",
+    "caption": "Acquire loads pair with Release stores."
+  },
+  "schema_version": 1
+}

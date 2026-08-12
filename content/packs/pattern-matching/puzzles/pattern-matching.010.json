@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.010",
+  "version": 1,
+  "title": "Diverging Else Blocks",
+  "track": "pattern-matching",
+  "concepts": [
+    "pattern-matching",
+    "option"
+  ],
+  "difficulty": 2,
+  "goal": "Unwrap an Option using let else with a valid diverging block.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Pattern Matching"
+  },
+  "template": "fn double_if_some(\n    opt: Option<i32>,\n) -> i32 {\n    let ⟦pat⟧ = opt ⟦else_blk⟧;\n    val * 2\n}\n\nfn main() {\n    println!(\"{}\", double_if_some(Some(5)));\n    println!(\"{}\", double_if_some(None));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "pat",
+        "original": "val",
+        "label": "left pattern",
+        "choices": [
+          {
+            "id": "pa1",
+            "text": "Some(val)"
+          },
+          {
+            "id": "pa2",
+            "text": "val"
+          },
+          {
+            "id": "pa3",
+            "text": "Some(i32)"
+          }
+        ]
+      },
+      {
+        "id": "else_blk",
+        "original": "else { 0 }",
+        "label": "else clause",
+        "choices": [
+          {
+            "id": "el1",
+            "text": "else { return 0; }"
+          },
+          {
+            "id": "el2",
+            "text": "else { 0 }"
+          },
+          {
+            "id": "el3",
+            "text": "else { break; }"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_double() {\n    assert_eq!(double_if_some(Some(5)), 10);\n    assert_eq!(double_if_some(None), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "`let else` destructures a pattern or executes the `else` block if the pattern fails to match.",
+    "The `else` block in a `let else` statement must diverge using `return`, `panic!`, `break`, or `continue`."
+  ],
+  "explanation": "`let else` requires the pattern on the left side (such as `Some(val)`) and a diverging block on the right. An `else` block that evaluates to a normal value like `0` causes `E0308` because the compiler requires the block to have type `!`. `break` is only valid inside loops (`E0268`). Binds without `Some(...)` fail because `val` remains an `Option<i32>`."
+}

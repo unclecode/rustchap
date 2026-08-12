@@ -1,0 +1,11 @@
+{
+  "id": "traits.error.e0277-as-ref",
+  "kind": "error",
+  "title": "Understanding E0277 on generic bounds",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "When calling a function with parameter `impl AsRef<str>`, why does passing an integer trigger compiler error `E0277`?",
+  "answer": "Error `E0277` means a required trait bound is not satisfied. The type `i32` does not implement `AsRef<str>`, so the compiler rejects the function call until a type implementing the trait is passed.",
+  "schema_version": 1
+}

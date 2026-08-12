@@ -1,0 +1,12 @@
+{
+  "id": "drop-trait.choice.mem-take-in-drop",
+  "kind": "choice",
+  "title": "Use mem take inside Drop implementation",
+  "concepts": [
+    "drop-trait",
+    "zero-copy"
+  ],
+  "prompt": "How do you take ownership of a struct field inside `Drop::drop(&mut self)` without cloning?",
+  "answer": "Use `std::mem::take(&mut self.field)` to replace the field value with its type default. This leaves `self.field` in a valid state while returning the original owned data with zero heap allocations.",
+  "schema_version": 1
+}

@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "move-or-borrow.017",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "00215cae48c6dfcac20232616fa2178d3d4adb9b1a0e840e0c565cb49aa34c5e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "ret_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "08190395d268f97e81f59f2a2dbeeeda9b4d32a861ee4edebb388079b8f0a73b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot return reference to local variable `title`",
+          "slot_ids": [
+            "ret_expr"
+          ],
+          "rust_code": "E0515"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1d73e1628ac2249183c2febb776fc26080d6d99d1c7bad882c822749f4aa1a9b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "ret_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "353455ae5c143a0183e4fa0d7bda98b53e85dc5a293be3a11efb1ef5ca1f5054": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "ret_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "455d4d3592af78a8cea399b7ed3bb314ea71444d4f61f9aea09bec3c91ca62da": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "ret_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "60c36a342f608c3c1248a4870726e48127c8ab59121396334681c35d853f1d66": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot return value referencing local variable `title`",
+          "slot_ids": [
+            "ret_expr"
+          ],
+          "rust_code": "E0515"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7c663ca8336073462b1633b5cfccd1d8ed44d983f13e55467d5ae0ef11b25f9e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "ret_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b66c2e9bfce71bdb842cf913afb01a571935bf5b21368c4af93fb9ac5dcce709": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "c411ea69c3017233b83b8fcf59ac49fcfd1fd29cb67757aa6b50580f7c86b167": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot return reference to local variable `title`",
+          "slot_ids": [
+            "ret_expr"
+          ],
+          "rust_code": "E0515"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

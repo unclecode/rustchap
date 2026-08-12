@@ -1,0 +1,11 @@
+{
+  "id": "mutability.gotcha.aliasing-mutable-slices",
+  "kind": "gotcha",
+  "title": "Range indexing twice borrows whole collec...",
+  "concepts": [
+    "mutability"
+  ],
+  "prompt": "Why does creating two mutable slices like `&mut a[..2]` and `&mut a[2..]` in one scope fail to compile?",
+  "answer": "Range indexing borrows the entire target array as mutable. Creating two mutable references to the same array in one scope violates aliasing rules and triggers `E0499`.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "dynamic-errors.gotcha.missing-error-trait-impl",
+  "kind": "gotcha",
+  "title": "Boxing a type that lacks std::error::Error",
+  "concepts": [
+    "dynamic-errors"
+  ],
+  "prompt": "Why does returning `Box::new(my_custom_err)` cause a compiler error when my_custom_err only derives Debug?",
+  "answer": "Box<dyn Error> requires the inner type to implement the `std::error::Error` trait. Deriving Debug is insufficient. You must also implement `fmt::Display` and `std::error::Error` for the custom type.",
+  "schema_version": 1
+}

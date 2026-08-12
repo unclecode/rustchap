@@ -1,0 +1,11 @@
+{
+  "id": "generics.rule.monomorphization-cost",
+  "kind": "rule",
+  "title": "How Rust generics execute at runtime",
+  "concepts": [
+    "generics"
+  ],
+  "prompt": "What runtime cost do Rust generics incur compared to concrete types?",
+  "answer": "Rust generic functions incur zero runtime overhead because the compiler uses monomorphization. It generates dedicated binary code for each concrete type used at compile time.",
+  "schema_version": 1
+}

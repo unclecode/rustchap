@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.009",
+  "version": 1,
+  "title": "Pick the Branch Value",
+  "track": "control-flow",
+  "concepts": [
+    "expressions"
+  ],
+  "difficulty": 1,
+  "goal": "Make both branches of an if expression return matching integers.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  },
+  "template": "fn limit(val: i32) -> i32 {\n    let max = 100;\n    let result = if val > max {\n        max⟦s1⟧\n    } else {\n        val⟦s2⟧\n    };\n    result\n}\n\nfn main() {\n    println!(\"{}\", limit(150));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "s1",
+        "original": ";",
+        "label": "then branch ending",
+        "choices": [
+          {
+            "id": "s11",
+            "text": ";"
+          },
+          {
+            "id": "s12",
+            "text": ""
+          },
+          {
+            "id": "s13",
+            "text": " + 0;"
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "original": ";",
+        "label": "else branch ending",
+        "choices": [
+          {
+            "id": "s21",
+            "text": ";"
+          },
+          {
+            "id": "s22",
+            "text": ""
+          },
+          {
+            "id": "s23",
+            "text": " * 1;"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn limits_value() {\n    assert_eq!(limit(150), 100);\n    assert_eq!(limit(50), 50);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "A line ending in a semicolon returns unit `()`, not an integer.",
+    "Both branches must return the exact same type to assign into `result`."
+  ],
+  "explanation": "An `if` expression requires every branch to produce the exact same type. Omitting the semicolon leaves the `i32` value as the branch result. Adding a semicolon converts the expression into a statement and produces `()`, which triggers error `E0308` because the branch types no longer match."
+}

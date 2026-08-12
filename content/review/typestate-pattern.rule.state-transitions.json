@@ -1,0 +1,11 @@
+{
+  "id": "typestate-pattern.rule.state-transitions",
+  "kind": "rule",
+  "title": "Enforcing object state transitions",
+  "concepts": [
+    "typestate-pattern"
+  ],
+  "prompt": "How does the type-state pattern prevent calling methods in the wrong state?",
+  "answer": "Methods are implemented only for specific generic state parameters and consume `self` by value. Returning a new state type prevents reusing the old state and causes invalid method calls to fail at compile time.",
+  "schema_version": 1
+}

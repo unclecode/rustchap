@@ -1,0 +1,11 @@
+{
+  "id": "threads-basics.rule.thread-spawn-closure",
+  "kind": "rule",
+  "title": "Spawning threads with owned data",
+  "concepts": [
+    "threads-basics"
+  ],
+  "prompt": "Why must thread closures usually use the move keyword when referencing local variables?",
+  "answer": "Spawned threads may outlive the function that created them. The move keyword forces the closure to take ownership of captured variables so they remain valid for the thread's entire lifetime.",
+  "schema_version": 1
+}

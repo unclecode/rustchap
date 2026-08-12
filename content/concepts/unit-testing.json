@@ -1,0 +1,16 @@
+{
+  "id": "unit-testing",
+  "title": "Unit Testing",
+  "topic": "Basics",
+  "summary": "Write unit tests using `#[test]`, assertions, and Result return types.",
+  "lecture": [
+    "Rust includes built-in support for unit testing with the `#[test]` attribute.",
+    "Tests use assert!, assert_eq!, and assert_ne! to check expectations and fail on mismatch.",
+    "Test functions can return Result<(), E> to use the question mark operator directly inside tests."
+  ],
+  "example": {
+    "code": "#[test]\nfn check() {\n    assert_eq!(1 + 1, 2);\n}",
+    "caption": "The #[test] attribute marks a function as a unit test."
+  },
+  "schema_version": 1
+}

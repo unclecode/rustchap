@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime.010",
+  "version": 1,
+  "title": "Borrow One Input Only",
+  "track": "repair-the-lifetime",
+  "concepts": [
+    "lifetime",
+    "borrow"
+  ],
+  "difficulty": 2,
+  "goal": "Allow mutating the unreturned parameter while keeping the returned reference.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 3 Afternoon: Lifetimes"
+  },
+  "template": "fn prefix<'a>(\n    s: ⟦t1⟧,\n    _t: ⟦t2⟧,\n) -> &'a str {\n    &s[..2]\n}\n\nfn main() {\n    let text = String::from(\"rust\");\n    let mut tag = String::from(\"v1\");\n    let p = prefix(&text, &tag);\n    tag.clear();\n    println!(\"{p}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "t1",
+        "original": "&str",
+        "label": "first parameter type",
+        "choices": [
+          {
+            "id": "t11",
+            "text": "&'a str"
+          },
+          {
+            "id": "t12",
+            "text": "&'b str"
+          },
+          {
+            "id": "t13",
+            "text": "&str"
+          }
+        ]
+      },
+      {
+        "id": "t2",
+        "original": "&'a str",
+        "label": "second parameter type",
+        "choices": [
+          {
+            "id": "t21",
+            "text": "&str"
+          },
+          {
+            "id": "t22",
+            "text": "&'a str"
+          },
+          {
+            "id": "t23",
+            "text": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn borrows_first_only() {\n    let text = String::from(\"rust\");\n    let mut tag = String::from(\"v1\");\n    let p = prefix(&text, &tag);\n    tag.clear();\n    assert_eq!(p, \"ru\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at what main does to tag while p is still active.",
+    "Tag does not need to share lifetime 'a with the returned reference."
+  ],
+  "explanation": "Tying `_t` to `'a` forces `tag` to remain borrowed as long as `p` lives, causing `E0502` when calling `tag.clear()`. Giving `s` the type `&'a str` and `_t` an unannotated `&str` assigns `_t` its own independent lifetime, allowing `tag` to be mutated immediately after the function call. Using `&'b str` without declaring `'b` produces `E0261`, and passing `String` causes type mismatch `E0308`."
+}

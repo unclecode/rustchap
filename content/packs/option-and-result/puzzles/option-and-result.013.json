@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "option-and-result.013",
+  "version": 1,
+  "title": "Flipping Nested Containers",
+  "track": "option-and-result",
+  "concepts": [
+    "option",
+    "error-propagation"
+  ],
+  "difficulty": 2,
+  "goal": "Swap Option and Result layers using transpose.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Option and Result"
+  },
+  "template": "use std::num::ParseIntError;\n\nfn parse_optional_id(s: Option<&str>) -> Result<Option<u32>, ParseIntError> {\n    s.map(|val| val.parse::<u32>())⟦slot1⟧⟦slot2⟧\n}\n\nfn main() {\n    println!(\"{:?}\", parse_optional_id(Some(\"42\")));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "",
+        "label": "container swap",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": ".transpose()"
+          },
+          {
+            "id": "sl2",
+            "text": ""
+          },
+          {
+            "id": "sl3",
+            "text": ".ok_or(None)"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": ".unwrap()",
+        "label": "unwrapping",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": ""
+          },
+          {
+            "id": "sl2",
+            "text": "?"
+          },
+          {
+            "id": "sl3",
+            "text": ".unwrap()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn parses_some_valid() {\n    assert_eq!(parse_optional_id(Some(\"42\")), Ok(Some(42)));\n}",
+      "#[test]\nfn handles_none() {\n    assert_eq!(parse_optional_id(None), Ok(None));\n}",
+      "#[test]\nfn returns_parse_error() {\n    assert!(parse_optional_id(Some(\"abc\")).is_err());\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Mapping over Option<&str> with parse gives Option<Result<u32, ParseIntError>>.",
+    "Use transpose to swap Option<Result<T, E>> into Result<Option<T>, E>."
+  ],
+  "explanation": "Mapping `val.parse()` over `Option<&str>` yields `Option<Result<u32, ParseIntError>>`. Calling `.transpose()` turns `Option<Result<T, E>>` into `Result<Option<T>, E>`. Applying `?` or `.unwrap()` would extract the inner `Option`, causing type error `E0308` against the expected `Result` return type."
+}

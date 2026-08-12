@@ -1,0 +1,16 @@
+{
+  "id": "builder-pattern",
+  "title": "Builder Pattern",
+  "topic": "Abstraction",
+  "summary": "Construct complex objects step by step using method chaining.",
+  "lecture": [
+    "The builder pattern decouples object construction from representation. It allows setting optional or required parameters incrementally before creating the final struct.",
+    "In Rust, builders can leverage typestates or Option fields to validate that all required data is provided at compile time or runtime.",
+    "Consuming self in builder methods enables fluent method chaining without unnecessary copies."
+  ],
+  "example": {
+    "code": "let client = Client::builder()\n    .host(\"localhost\")\n    .port(8080)\n    .build();",
+    "caption": "Chaining builder methods to construct a client."
+  },
+  "schema_version": 1
+}

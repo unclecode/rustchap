@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "atomics-and-ordering.002",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0964bf92632dfae852e6f1c2da2ba566d08cc1354ecfc9d2069d59a81507b06a": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "434587323b5e73c42fd362b885bc2e277c2ddd5b32440bdc24ae297bb99f3c9e": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "483cd3f709961c1edbc6f9ab6e743f0ff2a3df54e3c3416959d1d1edafcb763e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `add` found for struct `Arc<Atomic<i32>>` in the current scope",
+          "slot_ids": [
+            "op"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "556dfeff496262492a29b86bf5372d1b54fc587b9b8b4a531978384b63cdc4d0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 0 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "ld"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "73ddc4b955f915c68697418eb511084c3137042f6ec9364d89163eb066cd91cd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `get` found for struct `Arc<Atomic<i32>>` in the current scope",
+          "slot_ids": [
+            "ld"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a0e81bd61136b618beca03e5f85886d682d1a3972c7f93fb10896753a3996973": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `add` found for struct `Arc<Atomic<i32>>` in the current scope",
+          "slot_ids": [
+            "op"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 0 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "ld"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a5488994432d02cc19ed43e0a30da53c3b74c4583bbddcbdbcc706a7ccbcf998": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 0 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "ld"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b467621872cec5bd832b9252cb19fd3d41f1d98e10a2530134b6eef60e67f0d5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `add` found for struct `Arc<Atomic<i32>>` in the current scope",
+          "slot_ids": [
+            "op"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `get` found for struct `Arc<Atomic<i32>>` in the current scope",
+          "slot_ids": [
+            "ld"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fec41f889c91d8ee091fdf8173e63d486d339405b5694157706172a297c24c32": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `get` found for struct `Arc<Atomic<i32>>` in the current scope",
+          "slot_ids": [
+            "ld"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

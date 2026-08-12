@@ -1,0 +1,12 @@
+{
+  "id": "move.gotcha.last-use-ownership",
+  "kind": "gotcha",
+  "title": "Ownership transfer on final call",
+  "concepts": [
+    "move",
+    "clone"
+  ],
+  "prompt": "Why is cloning unnecessary when passing a String to a function taking ownership on its last use?",
+  "answer": "The caller does not use the variable after that point, so ownership can move directly into the function. Moving transfers the heap pointer in place without duplicating heap bytes. Cloning on the final call wastes memory by allocating an identical duplicate.",
+  "schema_version": 1
+}

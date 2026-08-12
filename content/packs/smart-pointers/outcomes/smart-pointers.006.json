@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "smart-pointers.006",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1dc42888a529d66cf5d0f2595358b1c996825deda4f91b1fa8e9f6559e4a7759": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a type, found a trait",
+          "slot_ids": [
+            "elem_ty"
+          ],
+          "rust_code": "E0782"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "item_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "57bfa22c0e53ace091bfd98e8422cd7a0f80ba84cd34539510f63ae2d1456366": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Render` cannot be known at compilation time",
+          "slot_ids": [
+            "elem_ty"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `iter` exists for reference `&[dyn Render]`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "item_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Render` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Render` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 7 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5a1d5fd6a5c81fa27ac4ea1c92f0df2a6410aac50500fdfc9c1ad3a70c2eec24": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a type, found a trait",
+          "slot_ids": [
+            "elem_ty"
+          ],
+          "rust_code": "E0782"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "abe8fcde27e5df3dd7064fc6b1a77c02d57bcae1ead412b0881190658523f7c0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Render` cannot be known at compilation time",
+          "slot_ids": [
+            "elem_ty"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `iter` exists for reference `&[dyn Render]`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "item_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Render` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Render` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 7 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b7d35b065fd62793bc56b8927755a3b5f971b9a1fb29e05b5a179fd5a1748870": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "item_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c28fff574bd2e0db8fe4f1c8e101bb81e2f661dd5ffc3357c1b33cc978190319": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Render` cannot be known at compilation time",
+          "slot_ids": [
+            "elem_ty"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `iter` exists for reference `&[dyn Render]`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Render` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Render` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ca7069852f8750bd8a34c2bc3e21a5cd48fd7e5183c370133e8c48ba18a1e33b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a type, found a trait",
+          "slot_ids": [
+            "elem_ty"
+          ],
+          "rust_code": "E0782"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "item_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cb55b661ce828ab80b64825890b4b18b122412b6bcde35fb9fe75a9748559dd2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "item_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "df079cd623589a0df30de2c67e3319465163aaf2d919fee3c2500870ede02932": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    }
+  }
+}

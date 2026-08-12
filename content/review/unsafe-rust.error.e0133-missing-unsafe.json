@@ -1,0 +1,11 @@
+{
+  "id": "unsafe-rust.error.e0133-missing-unsafe",
+  "kind": "error",
+  "title": "Reading compiler error E0133",
+  "concepts": [
+    "unsafe-rust"
+  ],
+  "prompt": "What causes compiler error E0133 and how do you resolve it?",
+  "answer": "Error E0133 occurs when an unsafe operation, like dereferencing a raw pointer, is called outside an unsafe block. Resolve it by wrapping the operation in an unsafe block after ensuring its safety invariants hold.",
+  "schema_version": 1
+}

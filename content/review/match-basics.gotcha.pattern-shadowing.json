@@ -1,0 +1,11 @@
+{
+  "id": "match-basics.gotcha.pattern-shadowing",
+  "kind": "gotcha",
+  "title": "Pattern variables shadow outer names",
+  "concepts": [
+    "match-basics"
+  ],
+  "prompt": "Why can you not use an existing local variable name in a match pattern to test for equality?",
+  "answer": "A variable name inside a pattern introduces a new variable binding rather than reading an existing one. That new variable shadows the outer local variable and matches any incoming value. Use a match guard if you need to compare against an existing local variable.",
+  "schema_version": 1
+}

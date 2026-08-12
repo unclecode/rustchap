@@ -48,7 +48,7 @@ struct RustChapApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $path) {
-                DeckListView()
+                DeckListView(path: $path)
                     .navigationDestination(for: Route.self) { route in
                         switch route {
                         case .deck(let deckId):

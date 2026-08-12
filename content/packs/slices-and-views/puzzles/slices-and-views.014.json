@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views.014",
+  "version": 1,
+  "title": "Moving Out of a Slice",
+  "track": "slices-and-views",
+  "concepts": [
+    "slice",
+    "move",
+    "mutability"
+  ],
+  "difficulty": 1,
+  "goal": "Learn why slice elements cannot be moved out and how in-place methods work.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Slices and Borrowing"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In languages like Python or C++, swapping two list elements uses a temporary variable. In Rust, elements behind a slice reference cannot be moved out."
+      },
+      {
+        "kind": "code",
+        "code": "fn inspect(items: &[String]) {\n    let item = &items[0];\n}",
+        "caption": "Borrow the element instead of moving it."
+      },
+      {
+        "kind": "prose",
+        "text": "Moving an element out of a slice would leave uninitialized memory in the underlying collection. Rust stops this at compile time with error `E0507`."
+      },
+      {
+        "kind": "prose",
+        "text": "If elements implement `Copy`, indexing copies them automatically. For owned types like `String`, you must borrow or use in-place slice methods."
+      },
+      {
+        "kind": "code",
+        "code": "fn reorder(items: &mut [String]) {\n    items.swap(0, 1);\n}",
+        "caption": "swap exchanges elements without moving."
+      },
+      {
+        "kind": "prose",
+        "text": "Methods like `swap`, `reverse`, and `sort` operate on `&mut [T]` directly. They modify existing memory in place without allocating or moving items out."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn why slice elements cannot be moved out and how in-place methods work."
+}

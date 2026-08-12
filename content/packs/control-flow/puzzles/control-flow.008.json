@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.008",
+  "version": 1,
+  "title": "Branches as Expressions",
+  "track": "control-flow",
+  "concepts": [
+    "expressions"
+  ],
+  "difficulty": 1,
+  "goal": "Use if as an expression that produces a value.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You use `if` expressions to choose a path based on a boolean condition."
+      },
+      {
+        "kind": "prose",
+        "text": "`if` in Rust is an expression that yields a value. You can assign its result directly to a variable."
+      },
+      {
+        "kind": "code",
+        "code": "let label = if speed > 100 {\n    \"fast\"\n} else {\n    \"slow\"\n};",
+        "caption": "Both branches return a value to the binding."
+      },
+      {
+        "kind": "prose",
+        "text": "Because `if` produces a value, every branch must produce the exact same type."
+      },
+      {
+        "kind": "prose",
+        "text": "Adding a semicolon to the last line inside a branch block changes its return type to `()`."
+      },
+      {
+        "kind": "code",
+        "code": "let x = if ready {\n    10\n} else {\n    20\n};",
+        "caption": "Omitting semicolons yields integers."
+      },
+      {
+        "kind": "prose",
+        "text": "If branch types differ, the compiler stops with error `E0308`."
+      },
+      {
+        "kind": "prose",
+        "text": "Matching on enums with `if let` is covered in the Pattern Matching deck later."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Use if as an expression that produces a value."
+}

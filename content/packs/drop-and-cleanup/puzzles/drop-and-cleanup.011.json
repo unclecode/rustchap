@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.011",
+  "version": 1,
+  "title": "Scoped Guards and Underscore",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait",
+    "bindings"
+  ],
+  "difficulty": 1,
+  "goal": "Learn how binding names affect value lifetimes.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You use variables in Python or Java to hold values until they go out of scope."
+      },
+      {
+        "kind": "code",
+        "code": "struct Guard;\nimpl Drop for Guard {\n    fn drop(&mut self) {\n        println!(\"dropped\");\n    }\n}",
+        "caption": "Guards execute cleanup code when dropped."
+      },
+      {
+        "kind": "prose",
+        "text": "A standard binding like `let _g = Guard;` keeps the value alive until the end of the enclosing block."
+      },
+      {
+        "kind": "code",
+        "code": "{\n    let _g = Guard; // lives to end\n    let _ = Guard;  // drops immediately!\n}",
+        "caption": "let _ drops the temporary right away."
+      },
+      {
+        "kind": "prose",
+        "text": "The underscore `_` is a pattern that matches anything without binding it. Because no variable holds the value, Rust drops it on that exact line."
+      },
+      {
+        "kind": "prose",
+        "text": "This distinction matters when RAII guards hold locks or manage state. Using `let _` releases the guard before your work even starts."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn how binding names affect value lifetimes."
+}

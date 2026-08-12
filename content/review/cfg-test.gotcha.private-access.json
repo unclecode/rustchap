@@ -1,0 +1,11 @@
+{
+  "id": "cfg-test.gotcha.private-access",
+  "kind": "gotcha",
+  "title": "Testing private functions in Rust",
+  "concepts": [
+    "cfg-test"
+  ],
+  "prompt": "Why can unit tests access private functions without marking those functions public?",
+  "answer": "Unit test modules live inside the same file as the code under test. In Rust, child modules have full access to private items in their parent module.",
+  "schema_version": 1
+}

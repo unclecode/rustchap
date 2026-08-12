@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.010",
+  "version": 1,
+  "title": "Fallible Port Conversion",
+  "track": "standard-traits",
+  "concepts": [
+    "standard-traits",
+    "traits"
+  ],
+  "difficulty": 2,
+  "goal": "Implement TryFrom for safe boundary validation.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Standard Traits"
+  },
+  "template": "use std::convert::TryFrom;\n\n#[derive(Debug, PartialEq)]\nstruct Port(u16);\n\nimpl TryFrom<u32> for Port {\n    type Error = &'static str;\n\n    fn try_from(\n        val: u32,\n    ) -> Result<Self, Self::Error> {\n        if val ⟦cmp⟧ 65535 {\n            Ok(Port(val ⟦cast⟧))\n        } else {\n            Err(\"out of range\")\n        }\n    }\n}\n\nfn main() {\n    let p = Port::try_from(8080);\n    assert_eq!(p, Ok(Port(8080)));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "cmp",
+        "original": ">",
+        "label": "range condition",
+        "choices": [
+          {
+            "id": "cm1",
+            "text": "<="
+          },
+          {
+            "id": "cm2",
+            "text": ">"
+          },
+          {
+            "id": "cm3",
+            "text": "=="
+          }
+        ]
+      },
+      {
+        "id": "cast",
+        "original": "as u32",
+        "label": "value conversion",
+        "choices": [
+          {
+            "id": "ca1",
+            "text": "as u16"
+          },
+          {
+            "id": "ca2",
+            "text": "into()"
+          },
+          {
+            "id": "ca3",
+            "text": "as u32"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn valid_port() {\n    assert_eq!(Port::try_from(8080), Ok(Port(8080)));\n}",
+      "#[test]\nfn invalid_port() {\n    assert!(Port::try_from(70000).is_err());\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Check that the input port number fits within the maximum value of a 16-bit integer.",
+    "Inside `Port(val)`, cast the valid `u32` value down to `u16`."
+  ],
+  "explanation": "The target type `Port` wraps a `u16`, whose maximum value is 65535. Using `<=` ensures values within range return `Ok`. Casting `val as u16` works once range-checked. Passing `val as u32` causes `E0308` because `Port` expects a `u16`. `into()` fails with `E0277` because lossless conversion from `u32` to `u16` does not exist."
+}

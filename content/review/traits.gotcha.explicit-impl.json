@@ -1,0 +1,11 @@
+{
+  "id": "traits.gotcha.explicit-impl",
+  "kind": "gotcha",
+  "title": "Rust traits require explicit impl blocks",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "How does Rust determine whether a type satisfies a trait, compared to Go interfaces?",
+  "answer": "Rust requires an explicit `impl Trait for Type` block. Matching method names and signatures alone is not enough for a type to satisfy a trait.",
+  "schema_version": 1
+}

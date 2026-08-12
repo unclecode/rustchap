@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "slices-and-views.011",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1c68656560bcd0c2421940c7dd5b65c322e2ce874d91a55bedb84c77dda9ad27": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `left[_]`, which is behind a `&` reference",
+          "slot_ids": [],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `right[_]`, which is behind a `&` reference",
+          "slot_ids": [
+            "idx_slot"
+          ],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "556a452bda7443d9231e0a7afd932f9992b56523923ebb7b114cf5f424ce7cf5": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5a9f19784bea02163b8f3388241b1aeaa78b600a40ac35411e42d5ba8e98e9a1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `left[_]`, which is behind a `&` reference",
+          "slot_ids": [],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `right[_]`, which is behind a `&` reference",
+          "slot_ids": [
+            "idx_slot"
+          ],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "64ad6463d8378d5acc5190b9aa0ee7a05bc1c266d994a5faf1c9069d7c4e3442": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    },
+    "910dc0513ee07b6262eb2911a1dd6c6ca3ba583e22e5e87707588caba17c1b9a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `*arr` as mutable more than once at a time",
+          "slot_ids": [
+            "split_slot"
+          ],
+          "rust_code": "E0499"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9f8d9b0ca538ea88516b8d63884cf1463982b778b2c140f9e31b81de6c3f2b94": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `*arr` as mutable more than once at a time",
+          "slot_ids": [
+            "split_slot"
+          ],
+          "rust_code": "E0499"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ae040b288bc51718f7ab98c777a65c443887ed53e15162056962104356ed3208": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "afcd342a0b72cfc15789c02eb02f29b146a8d48592e78c986cb4ce0e97d58232": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `left[_]`, which is behind a `&` reference",
+          "slot_ids": [],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `right[_]`, which is behind a `&` reference",
+          "slot_ids": [
+            "idx_slot"
+          ],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bbe4120acd621cc771e143955252aec7e302a7938659376c4f3946e44f0eb995": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `*arr` as mutable more than once at a time",
+          "slot_ids": [
+            "split_slot"
+          ],
+          "rust_code": "E0499"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

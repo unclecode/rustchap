@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust.011",
+  "version": 1,
+  "title": "Unions: Memory Overlaps",
+  "track": "unsafe-rust",
+  "concepts": [
+    "unions",
+    "unsafe-rust"
+  ],
+  "difficulty": 1,
+  "goal": "Learn how Rust unions store fields at the same memory location.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Unsafe Rust: Unions"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You know unions from C or C++, where multiple fields share the exact same memory address. Rust supports unions using the `union` keyword."
+      },
+      {
+        "kind": "code",
+        "code": "#[repr(C)]\nunion Data {\n    integer: u32,\n    float: f32,\n}",
+        "caption": "All fields in a union start at memory offset zero."
+      },
+      {
+        "kind": "prose",
+        "text": "Unlike enums, unions do not store a discriminant tag to track which field is active. Constructing a union and writing to its fields are safe operations."
+      },
+      {
+        "kind": "prose",
+        "text": "Reading a field from a union requires an `unsafe` block. The compiler cannot check if the memory contains valid data for the requested field type."
+      },
+      {
+        "kind": "code",
+        "code": "let d = Data { integer: 42 };\nlet val = unsafe { d.integer };",
+        "caption": "Reading a field requires unsafe because Rust cannot verify the tag."
+      },
+      {
+        "kind": "prose",
+        "text": "Reading a union field outside an `unsafe` block produces compiler error `E0133`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn how Rust unions store fields at the same memory location."
+}

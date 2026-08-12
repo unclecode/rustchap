@@ -1,0 +1,2931 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "testing.004",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "01964740f9dec3868b3e5360eb3657fb34edb0e2f9f6e3bf1e63deb99b23bd07": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "06da4ad719db52fae62a652622daf54aa94366b5e075f5d66732cafde45800a8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "07001eab0f1a6c9e9b5a8d359dc33b6c34025c5797cc1318a4d22dd9fc11bb7e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "084139aedcb1310eaf395dcaba694f6fb3b0befdb45e3d8f6e92846b94e5face": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "09ca89e9814a26ccda1d86a4cbed2e2d1933e5b8a8032fa405756ffc479ae385": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0cad320ca944e27415e2a90eba55722f996be4bcb93e6617379d3b4585ab4055": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0cb11a269c1b3f499f09a36c3bf6e65cec24beeec38ae08c61a3ca6a812a9962": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "too many leading `super` keywords",
+          "slot_ids": [
+            "import"
+          ],
+          "rust_code": "E0433"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `double` in this scope",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0d6ddcade68482257a24c45f9e321e7509ab9b8a7869aeb09a0b8745aa4a0aeb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0e40c36434458569a5cff7e367bbdc591f5dce01a8d86c31ff1184881031fbfd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0f53080484cf4408287f32c0088927e617e00a9a77d3c73ed68f80126278850e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "10ed43f42321508c336436b7c4da7c57784e51ee1ba6bc6b2646b236c8c7dd52": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "123470a6f2a307753c38ec321747149b813ec621c33358d9c4cd66a5d9f2b2a5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "172806699c9c5bec9fb27ce5ae66b2d8043183f5f86f3318d8d7eb46bffb5d67": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1c3c3f95b5997cdf5032ef82ac33f4d05caa64fce95970d2b16c667cb642ca4e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1cc46ebf8673f67b61d416f62ad534fcd4ef1b2f2e6ec254d614ffb113c5dbb0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1d084bdd1146726a56954a2b5c2b05d46949e24ea9951cc68ae797b6bd5f33cf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "20cb0f357d760ae243a9bcff0f4ac8539f29b26fa68f51b732eb9f1f0d50cc7f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "21418f109910645efc8d2b731387f2285961f650a281c193adedd8b4fc39cdee": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "22a1ed028010c82801641f7de24e90d071cfb7063e380505c2577c20bd341a46": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "22c22d4944cff418d414216080217600e6384c3db3841734af071dc40c6f995d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "267d06a4ffcb3df2a0432e05c7835590b13269e6a3b7582ad8960cebaaf1ed3d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "26855b2d1eb4cdc14c8ad73d3125cdbdc5a8957912fd6d30326f126944a11033": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "too many leading `super` keywords",
+          "slot_ids": [
+            "import"
+          ],
+          "rust_code": "E0433"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `double` in this scope",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2945aaee7846543b9d1cc60cf2ace032e2e296370fea84f4bdd74d7ff81b3c94": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2a32a02fa69bc3daff364575efa4a4b38621ed6f58133ddd51ffdd6d804fd9ec": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2b6c914523c21065966a422e8761aac14b2024f10e3335185001c696b373d86f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2e21e36e2918263d818a4983180bb4eabe0052fa1620fc4af85c260d74594d2f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2e946cf2aa6e1b18f92af842a0d77919b8e60031141e130b8df017bef6c5ee39": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2ea12484e418d2f267a074804900914b0976698782393733e84f3de86bf7abf1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2f6f07fe20d9747fd81026d56449bd00b0e763078dccee259d530079fa4ca6ac": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2fe919bdf963c09727201890a173b2fdd6707e50ae57de3bc6af708802a674aa": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "30b06892d357cb09dfaf7cd4685ba8d00bb69a4bc0cf3761625b8ac035421464": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "31e1609619db6740e6bf6b8a8f22408f3d9fa90ed6b4c76954fcbe9e8e2b1d98": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3204c4fc5a6a6c058372ab28d01cd0d955ca2d39890484bfeea824bcd96e7af9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "32acbff7766dde36abd759a9e1a306c0d024d52ed346e87ce2f396202652ff54": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "333e1ad0fcbaffd6a18ddb7382e24486d38e83e4e692311221aec3970da567d3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "35a6a3aafaced2c1226f9b25efd268f2e0228b364df5b58092bf264cdda77529": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "35cfa4d7e4659012c9d00fa5a976237a44e3a052ca6a5212ee6767a48258dc05": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "388ea9f94d8fcc244fe769ff1b0adce9c11121efe97fceb73c1ef6418fdd2b51": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3cba251191312a3d99f7ac11894eabe49968cba50d00ccecb6f019190ee515e7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4027d4a6d3b70ddb140ec88760971185d63ce2c5e3c9f551f3fdd2192e183320": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "40ef2fe5f2d09944c63acef5de7c754f7617a981b3ba81541d64fc16a8f1f4a7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "410f8ccfb90b1220c71c66d02b7a30e55e56d32b1b935dd780020325fb7a2cab": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "42a519cd07b52eb4ac6a475e365702d8e02a3ad90d4921601fd32643d5ce86c1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "43bb0bd22ba66b86635a7c2bad5dd394f6d516405c0eca0955018bbccb7e5ce8": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0
+      },
+      "diagnostics": []
+    },
+    "45a10f62d816f1780773bfb92a31eb5680724d1e4702f663efc83cb2f4f1d575": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "46c0e5ba2710e899b6434eb64436a95a8cb77bc2432eb1e525d78da13e44962a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4b1e440d87e0f9a13f8e7392bf9cf48a6972c43e7e8cd37ad84a9b09748c02c3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4e63bf72f5dda396cde5f523498758f5c0eb5f0272cebbd2d599a6d985335f9d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4f88144ab86265dc771c17a0870eb41aa12e3f1ed7170244736191a3219af681": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "505cd079ce1c498fb98187de5018dea655fcc9cedb208d2e2fe487a56a46eb49": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "524506dc5c9adfca96afdfc64915ebadeae0761646759c9f56bd69d7a1a26e86": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "564b81808cb5d17cb7962e461ac6a715e8e3b2044aaee56c69aea384b9cfd5c9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5bf6910b93115a9b56c703fe2746c80daf7fcccef882f704261879f5c3a8fbe5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "too many leading `super` keywords",
+          "slot_ids": [
+            "import"
+          ],
+          "rust_code": "E0433"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `double` in this scope",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5e7c3ebbcbd4330813f19587b0b3a0a613f4717265444f89c642e6a80c8a57d3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "too many leading `super` keywords",
+          "slot_ids": [
+            "import"
+          ],
+          "rust_code": "E0433"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `double` in this scope",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5eb6d90dbe054375decea2d16dd8e7e15517938f80bb829201555cc0b34a0d7b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "too many leading `super` keywords",
+          "slot_ids": [
+            "import"
+          ],
+          "rust_code": "E0433"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `double` in this scope",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5eff7a0f438792c3d8f5766ba6b2c3c7f25872c1f83afdcb96771d342e80cd98": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5f1e05eb62c77c9c55e2a060290ee23d6f7f0b1d2182f45c6f67ef5328258f1b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "647fce48d2a1ca2d2eccf71483786972ec687e1e5412cc2848195340a77c6418": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "69731078d3c109d2f70d8e43b0f3889d0892d8c73ca329b8c0b950c89afeb714": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6d665d87ab01ecf27f9af065704bd3f267efc5bad47ee29b737a37bf7dc7cd22": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6e1003df2cbee69e7c28fe179a637462cdbe737fbd1ec24aa1fc44234b80cd31": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "711438844fe2d5ae6b39e5aaf365f823c4b87c4046cb88f33e57d5e4a416b23d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "760571bda67116742dbbe078a0a3b130b1e1024df9f2586d6b8176ff35a3500e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "771e12a5e3656ea608806887f13b0b98aa133cf7bf640ac3fc773e33e107ab50": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "too many leading `super` keywords",
+          "slot_ids": [
+            "import"
+          ],
+          "rust_code": "E0433"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `double` in this scope",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "77b8767ac09c7e3be322d47193fe48c8175c9975947fb06aaca69fa3a2bf62a3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7927509e4e8f13bd214704fe20208819f43bdf031d1241be9e5154f981860dc9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7c8b7367de9f7986f591187928c6374b670a9efee19ed979b757e61d5c1f21f8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7e0be64c1a1d52cc715b74d1777d54d919870803429caf7813931b88c72ef7fb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7f50c12dcc7a31f022206f837bbf7dd504d4d5dc5e43a900401d4b1b6dd5b38d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "82638107122849d2288236b3f6832bc31e2e51c891f3053240b0533849aba3ad": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "82aa5ce8c40893b8a91634b4115064b4db6751e09338f2ccea3e404586435138": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "82f6287f3386014f1d80aa912863b1dbc79d81804c465ae332bc7f6961a76845": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "846ea28a0789607e5929495cac3dd1acaf1f5ba7b7c7ff155f3a462fdf72dea3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8853997472c89d4a1737c60e369bc5b3bc4ef659a56d7a10c8d53e9ec2c3c214": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "89fdb7e9b95359d6ea69b3ab3a069f6963584f93800e6762c836ec7accc07f87": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8ab357cc5e63f6b73da6eff53e83cd3cb8e32013b977782e69fe625ca17635d1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8ac45cbb1f7584148561bebb5f07d094d23d7fae8cb740e58f2f086d215ff4d5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8f08f1c02c203d669405c731f64bca5c639ddd7413ed939425bf39a0d1f996ee": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8f5984957f47d63504f57853c5155eccd7e016e745414400e7eaf4903c632a36": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "99fc1003c18187785753630477812cb444d8e7fd581043dd4a164e703cde2d54": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9c11fb43004a887bb8157a4789b92c40e11ec9a61e3e75aa5d82fbc9081574fe": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9d45eb759873f71283ac133075afd9424523446da6b035658941c02c1f975eaf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a05e0beccb098521c67414bbf151898cf35e7c55026cdb8fd824a929d98407b8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a0636bb1a4324b0dfe4e5eb3dbbd96cf4e1fedbb3ec5e2442787e3401b0e023f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a162ee720053c6e9719b0f0c888f9f8a27cbcbac93a869b32e6fed23725b916a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a2a8851f7649ea58ae436dd4fb7925881a4c0d8f6335ed740e62784a4e7f7b22": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a2d7ebc25c303b7d98f7408d573e27d65e88046ebaf0032e0c2cb26c4b2aa9aa": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a374b127bdec910d5fb221c1e551c13e8b1a93af7b8871fb79fc592a2ae7aee9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a3da75757ddd372dc36870e5b4ad343c88419ffdffa7949ccf14a05d7f131140": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "too many leading `super` keywords",
+          "slot_ids": [
+            "import"
+          ],
+          "rust_code": "E0433"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `double` in this scope",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a681431af9fa403329a43ccfe21164aa16cd6ee8fc09b9823951861f636d7ae8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a906f29c6c57a43b80f83886c0d9dfe29feb7e1ed0ce6ddff5c74af968cc3eb7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "af88d53bd9b23f8fa6ccc51c45f33acd2578c33bc143076e6b022173fa9fd627": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b211187fff2ad5ccd6a172d9628b568f6d1395139362cdc8d29f9a2974e69971": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b6a0b0c9665c747aa751e701c575b3b4425336a16ef89127e9ff0919a64f8e7f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "too many leading `super` keywords",
+          "slot_ids": [
+            "import"
+          ],
+          "rust_code": "E0433"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `double` in this scope",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b9cc82afe17483506903a706e1aa3cbe11e2ea39657c3ba89690793f7e7b772d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bb8c6ad4a8fb03f5fe3a4564bdd52be137c59e512ba23017154ff4a87fd8fb27": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "beee4e42e669c6964cc7aca9d1074242319608d5f80aef8a8b0a8fe8e3c5f4d0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "too many leading `super` keywords",
+          "slot_ids": [
+            "import"
+          ],
+          "rust_code": "E0433"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `double` in this scope",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c5738cff863b7c4e71cf2c0bc548d1799f91f0de995fab49d8e30e6189252959": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c6847ad10a3a0b83ac9bd66ef0ea5bd6aff191f4142d5ba564e3644fd4dab287": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c82d281b8b3ed61d042e78ba0d1f6a310151da596e3a4937a45f21973e89147d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cf692f444fc9b1a94bec535292155aa1d80b29a3b2904656caeabce80688b022": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d2d7a81c469b6520a389f483420fd9159ed30528db328e12c2cfa9ba7f43cc04": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d2ef1a6d736ce3221c780fa3aa7cb14b061f2e59acd60701763560d7a1fae210": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "db03a4fbdb77db4594c1719a1c7cd7744077336efd1bcb07a1325f634d558efd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "db1df6a904b372e429a93ac9dfde0fdd627dee865fdb2d4f5c9ecd4271dbfbf2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "db261ffaca8bfc2ce17280a6480ea2d0917760710c87f271c14242a7679656bb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "dc774abb1d039395b4a1f14195d694d179214c707b8f7961b2f1986d771a9b50": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "deeab2fdc136d1fb892ddac6c1c472ffacb3a269b2e0554edb4a75016ed47ef9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e37fa376a22ebee80f831efa9e03e741b23eb050c671b1e40bcd87f196824fcc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e62ffabeb60b6cd5e5b495cce694ba06f72b197046ad2150958917a66582dec9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e66a0566fbc26f8ff7de1150973f34a7ee44bd804fa190e550af92ed47567018": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e9f83c551044ced988a32bdd1c02cece3c191fafd6e7ddd23983dddc400dc743": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e9fafbb50c4b515b6f453b9858627de73c5de522386c184f9233de196210669b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "eb85438fa18b765550e3edbb14ceeff408cdc6652a594e634b074097d5882171": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f13b0d364a489a4a27c5fefd75d081cf379a886de621fc426f1daaf895870561": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f32f69cd4bc7921654a1ce9726e672721f09b95bf6090ae86603b7cab6a57549": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the `#[test]` attribute may only be used on a free function",
+          "slot_ids": [
+            "attr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "too many leading `super` keywords",
+          "slot_ids": [
+            "import"
+          ],
+          "rust_code": "E0433"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected type, found variant `Err`",
+          "slot_ids": [
+            "fn_decl"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `double` in this scope",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f55edc9579301801cd7a132c16389cf467d56b25bdf8e6fc351456f355f6aa37": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fbfeddf788e05ce201bb50807c23f492d523b2e22c389dc0c1c3b95131b09536": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fc1b4cf92b0e292f9eddede41f47e736802231bcbaab4a5cd3ebf23c19507f37": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fd420ede28a271965b92afa954e90ac9dfa4be574a6e48b275dc7146c0f721b3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [
+            "body_close"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

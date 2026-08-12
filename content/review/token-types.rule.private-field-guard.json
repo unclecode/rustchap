@@ -1,0 +1,11 @@
+{
+  "id": "token-types.rule.private-field-guard",
+  "kind": "rule",
+  "title": "Preventing direct construction of token t...",
+  "concepts": [
+    "token-types"
+  ],
+  "prompt": "What structural detail prevents external modules from instantiating a token struct directly?",
+  "answer": "Token structs include at least one private field such as proof: (). External modules cannot construct struct literals containing private fields, forcing them to call authorized constructor functions.",
+  "schema_version": 1
+}

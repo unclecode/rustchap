@@ -1,0 +1,12 @@
+{
+  "id": "token-types.error.private-field-instantiation",
+  "kind": "error",
+  "title": "Compiler diagnostic for private field access",
+  "concepts": [
+    "token-types",
+    "visibility"
+  ],
+  "prompt": "What diagnostic code occurs when trying to construct a token struct with private fields from outside its module?",
+  "answer": "The compiler emits error `E0616` or `E0423` indicating that a field or constructor is private. This diagnostic guarantees at compile time that callers cannot forge token instances. Callers must invoke a public module function that performs validation before returning the token.",
+  "schema_version": 1
+}

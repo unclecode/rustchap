@@ -11,9 +11,17 @@
     "option-and-result.004",
     "option-and-result.007",
     "option-and-result.002",
-    "option-and-result.005"
+    "option-and-result.005",
+    "option-and-result.008",
+    "option-and-result.009",
+    "option-and-result.010",
+    "option-and-result.011",
+    "option-and-result.012",
+    "option-and-result.013",
+    "option-and-result.014",
+    "option-and-result.015"
   ],
   "icon": "questionmark.circle.fill",
   "accent": "blue",
-  "level": "core"
+  "level": "everyday"
 }

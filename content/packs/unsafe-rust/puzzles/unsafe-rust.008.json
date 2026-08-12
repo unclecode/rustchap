@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust.008",
+  "version": 1,
+  "title": "Global State and Unsafe Traits",
+  "track": "unsafe-rust",
+  "concepts": [
+    "unsafe-rust",
+    "static-lifetime"
+  ],
+  "difficulty": 1,
+  "goal": "Learn how mutable statics and unsafe traits require manual safety guarantees.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Mutable Statics"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Global variables declared with `static mut` can be accessed by any thread at any time. Because Rust cannot prove at compile time that multi-threaded access is race-free, reading or writing a `static mut` requires an `unsafe` block."
+      },
+      {
+        "kind": "code",
+        "code": "static mut COUNTER: u32 = 0;\n\nfn increment() {\n    unsafe {\n        COUNTER += 1;\n    }\n}",
+        "caption": "Reading or writing a mutable static requires unsafe."
+      },
+      {
+        "kind": "prose",
+        "text": "In safe Rust, data races are prevented by ownership and borrowing rules. With `static mut`, you take full responsibility for thread synchronization."
+      },
+      {
+        "kind": "prose",
+        "text": "Traits can also be marked `unsafe`. An `unsafe trait` declares that implementing it requires upholding invariants the compiler cannot verify. To implement such a trait, you must write `unsafe impl`."
+      },
+      {
+        "kind": "code",
+        "code": "unsafe trait ByteSerializable {}\n\nunsafe impl ByteSerializable for Data {}",
+        "caption": "Implementing an unsafe trait requires the unsafe impl keyword."
+      },
+      {
+        "kind": "prose",
+        "text": "The built-in traits `Send` and `Sync` are unsafe traits. Marking a type `Send` promises that moving it across thread boundaries is safe, even if the compiler cannot verify it automatically."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn how mutable statics and unsafe traits require manual safety guarantees."
+}

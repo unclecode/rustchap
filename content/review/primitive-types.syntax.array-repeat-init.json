@@ -1,0 +1,11 @@
+{
+  "id": "primitive-types.syntax.array-repeat-init",
+  "kind": "syntax",
+  "title": "Repeat initializer for fixed arrays",
+  "concepts": [
+    "primitive-types"
+  ],
+  "prompt": "What syntax initializes a fixed-size array with the same value repeated?",
+  "answer": "Use square brackets with a value, a semicolon, and the count, such as `[0; 100]`. This creates a 100-element array where every element is set to zero.",
+  "schema_version": 1
+}

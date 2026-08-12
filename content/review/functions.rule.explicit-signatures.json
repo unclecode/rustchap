@@ -1,0 +1,11 @@
+{
+  "id": "functions.rule.explicit-signatures",
+  "kind": "rule",
+  "title": "Mandatory Type Annotations in Functions",
+  "concepts": [
+    "functions"
+  ],
+  "prompt": "How does type inference apply to function parameters and return types in Rust?",
+  "answer": "Type inference does not operate across function boundaries. Every parameter and return type in a function signature must be explicitly annotated with its type.",
+  "schema_version": 1
+}

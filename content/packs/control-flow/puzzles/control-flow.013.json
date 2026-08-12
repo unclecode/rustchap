@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.013",
+  "version": 1,
+  "title": "Early Return Guard",
+  "track": "control-flow",
+  "concepts": [
+    "functions",
+    "expressions"
+  ],
+  "difficulty": 2,
+  "goal": "Return early for negative inputs and compute the square for valid numbers.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  },
+  "template": "fn safe_square(n: i32) -> i32 {\n    if n < 0 {\n        ⟦s1⟧ 0;\n    }\n    n ⟦s2⟧\n}\n\nfn main() {\n    println!(\"{}\", safe_square(-4));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "s1",
+        "original": "",
+        "label": "guard exit",
+        "choices": [
+          {
+            "id": "s11",
+            "text": ""
+          },
+          {
+            "id": "s12",
+            "text": "return"
+          },
+          {
+            "id": "s13",
+            "text": "break"
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "original": "* n;",
+        "label": "return expression",
+        "choices": [
+          {
+            "id": "s21",
+            "text": "* n;"
+          },
+          {
+            "id": "s22",
+            "text": "* n"
+          },
+          {
+            "id": "s23",
+            "text": "+ n"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn calculates_safe_square() {\n    assert_eq!(safe_square(-4), 0);\n    assert_eq!(safe_square(3), 9);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "An `if` statement without `return` continues execution after the block.",
+    "The final expression of the function must evaluate to `i32` without a semicolon."
+  ],
+  "explanation": "An early return inside a function requires the `return` keyword. Without `return`, execution continues past the `if` block and evaluates the rest of the function body. The final expression `n * n` produces the result without a semicolon, whereas adding a semicolon evaluates to `()` and produces error `E0308`."
+}

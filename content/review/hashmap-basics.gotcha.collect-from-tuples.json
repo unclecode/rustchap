@@ -1,0 +1,12 @@
+{
+  "id": "hashmap-basics.gotcha.collect-from-tuples",
+  "kind": "gotcha",
+  "title": "Building a map from key-value pairs",
+  "concepts": [
+    "hashmap-basics",
+    "iterator"
+  ],
+  "prompt": "How do you convert an iterator of key-value tuples directly into a HashMap?",
+  "answer": "Call `.collect()` on an iterator yielding `(K, V)` tuples with an explicit or inferred `HashMap` return type. This consumes the iterator and builds the map without manual loop insertion.",
+  "schema_version": 1
+}

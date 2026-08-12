@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "ffi-and-raw-pointers.014",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1ed3efcfb3b5e48f422535c041556a51d1c51f23a0227b72546ed13b8f3036b9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unrecognized representation hint",
+          "slot_ids": [
+            "attr_slot"
+          ],
+          "rust_code": "E0552"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "98ec7f04eb324a2c5ee9d77c115b320bc666f1167cdc3e7f2688186f7ff240c8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "afe7d885d14f9748eabc0dd67cbf4d410fcf8439140f7032834a3dd50e73115e": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b6821e3374d280cfb42010ce70ffb7959e2647d3c4c605e0e21a88e61cdad5a1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type `u8` cannot be dereferenced",
+          "slot_ids": [],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b7d47ed395f3a63a6723f8cbf7114635464c3ceab6d4f482d17eadeb38ce9418": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unrecognized representation hint",
+          "slot_ids": [
+            "attr_slot"
+          ],
+          "rust_code": "E0552"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d13fed9242927a09b8496cba0d0e287def7f2a5b1b45472006bd4dc846e95a05": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type `u8` cannot be dereferenced",
+          "slot_ids": [],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f59a56974e3c7b949a8f39e429b5c540f4e015d3089b206caec4ea6ea4545224": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "f85d99ac9ac286be9210ed20dca453e022c7cfeee50cb836d3089431ae5e91c3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unrecognized representation hint",
+          "slot_ids": [
+            "attr_slot"
+          ],
+          "rust_code": "E0552"
+        },
+        {
+          "category": "compile_error",
+          "message": "type `u8` cannot be dereferenced",
+          "slot_ids": [],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fe5adb7b11d4f34f41f6b7e3e80f78bd5b94267a3b43749d02e073f8c33b6df5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

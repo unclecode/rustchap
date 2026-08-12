@@ -1,0 +1,11 @@
+{
+  "id": "match-basics.rule.exhaustiveness",
+  "kind": "rule",
+  "title": "Exhaustive match checking",
+  "concepts": [
+    "match-basics"
+  ],
+  "prompt": "Why does the Rust compiler require `match` expressions to cover every possible value?",
+  "answer": "Exhaustiveness checking guarantees that no unhandled case exists at runtime. Adding a new variant to an enum causes every incomplete `match` to fail at compile time.",
+  "schema_version": 1
+}

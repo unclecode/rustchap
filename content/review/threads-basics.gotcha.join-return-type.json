@@ -1,0 +1,11 @@
+{
+  "id": "threads-basics.gotcha.join-return-type",
+  "kind": "gotcha",
+  "title": "Joining thread handle return type",
+  "concepts": [
+    "threads-basics"
+  ],
+  "prompt": "What type does `thread::spawn`'s `JoinHandle::join` return, and why is it wrapped in a Result?",
+  "answer": "`JoinHandle::join` returns Result<T, Box<dyn Any + Send>>. The outer Result catches thread panics, so a panicking child thread returns an Err payload rather than panicking the caller.",
+  "schema_version": 1
+}

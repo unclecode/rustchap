@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.007",
+  "version": 1,
+  "title": "Matching Against Variables",
+  "track": "pattern-matching",
+  "concepts": [
+    "pattern-matching",
+    "match-basics"
+  ],
+  "difficulty": 2,
+  "goal": "Compare an incoming value against a target variable without shadowing it.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Pattern Matching"
+  },
+  "template": "fn check_code(\n    code: u32,\n    expected: u32,\n) -> &'static str {\n    match code {\n        ⟦arm1⟧ => \"match\",\n        ⟦arm2⟧ => \"zero\",\n        _ => \"mismatch\",\n    }\n}\n\nfn main() {\n    println!(\"{}\", check_code(200, 200));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "arm1",
+        "original": "expected",
+        "label": "arm 1 pattern",
+        "choices": [
+          {
+            "id": "ar1",
+            "text": "c if c == expected"
+          },
+          {
+            "id": "ar2",
+            "text": "expected"
+          },
+          {
+            "id": "ar3",
+            "text": "== expected"
+          }
+        ]
+      },
+      {
+        "id": "arm2",
+        "original": "0",
+        "label": "arm 2 pattern",
+        "choices": [
+          {
+            "id": "ar1",
+            "text": "0"
+          },
+          {
+            "id": "ar2",
+            "text": "target"
+          },
+          {
+            "id": "ar3",
+            "text": "if 0"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_check_code() {\n    assert_eq!(check_code(200, 200), \"match\");\n    assert_eq!(check_code(0, 200), \"zero\");\n    assert_eq!(check_code(404, 200), \"mismatch\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "An identifier like `expected` inside a match pattern creates a new variable binding, shadowing any variable with the same name outside.",
+    "To compare against an existing variable in a match arm, use a match guard with `if`."
+  ],
+  "explanation": "In Rust match patterns, bare names like `expected` create new variable bindings that catch any value. They do not compare against outer variables of the same name. To compare against a local variable, use a match guard `c if c == expected`. Slot 2 requires a literal value like `0`. Using a pattern variable like `target` catches every remaining value."
+}

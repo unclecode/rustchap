@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.choice.cell-vs-refcell",
+  "kind": "choice",
+  "title": "Choosing Between Cell and RefCell",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "When should you prefer Cell over RefCell for interior mutability?",
+  "answer": "Use Cell when working with Copy types or when you only need to swap whole values using replace or take. Cell has no runtime borrow tracking and cannot panic. Use RefCell when you need references or in-place mutation of complex types like Vec.",
+  "schema_version": 1
+}

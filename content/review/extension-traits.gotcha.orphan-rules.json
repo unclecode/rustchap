@@ -1,0 +1,11 @@
+{
+  "id": "extension-traits.gotcha.orphan-rules",
+  "kind": "gotcha",
+  "title": "Why inherent impl on foreign types fails",
+  "concepts": [
+    "extension-traits"
+  ],
+  "prompt": "Why does the compiler prevent writing inherent implementation blocks for types like str or Vec?",
+  "answer": "Rust enforces orphan rules to prevent ambiguity and conflicting implementations across crates. To add custom methods to foreign types, you must define a local trait and implement that trait for the foreign type.",
+  "schema_version": 1
+}

@@ -1,0 +1,12 @@
+{
+  "id": "smart-pointers.gotcha.rc-mutation",
+  "kind": "gotcha",
+  "title": "Mutating values behind an Rc handle",
+  "concepts": [
+    "smart-pointers",
+    "mutability"
+  ],
+  "prompt": "Why does the compiler prevent direct mutation of data stored inside an `Rc` pointer?",
+  "answer": "`Rc` provides shared ownership across multiple handles without runtime borrow tracking. Allowing direct mutation through one `Rc` handle would invalidate references held by other handles. To mutate data safely behind shared ownership, pair `Rc` with `RefCell` or use `Rc::make_mut`.",
+  "schema_version": 1
+}

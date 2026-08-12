@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "testing.012",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "55fc51aaa537d0fc76cb965198a7f61479bf0994957d1fffc4877b397356f57c": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6eb501c07dda97414e942eef3b805624fe3f1e0be3a6780fa817ce8cfc9efe52": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "739032e0328490b27cb7d60abe0bff5111fe9adcef7177d58569a1380fc8a5b2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "binary operation `==` cannot be applied to type `Player`",
+          "slot_ids": [],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`Player` doesn't implement `Debug`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`Player` doesn't implement `Debug`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7d45cc23cbb44bd82bb12bd9d6621a63ba5d171959771926f4ce469c5ab04e1d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot apply unary operator `!` to type `Player`",
+          "slot_ids": [
+            "assert_stmt"
+          ],
+          "rust_code": "E0600"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8e1b68404d6357d564ebcdc9279ebea27e846697d56b0ba96b45aab489942928": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot apply unary operator `!` to type `Player`",
+          "slot_ids": [
+            "assert_stmt"
+          ],
+          "rust_code": "E0600"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a116d753a790ee20c2393f899a3171a839585f79dda3ae45f44006c1812a4f84": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot apply unary operator `!` to type `Player`",
+          "slot_ids": [
+            "assert_stmt"
+          ],
+          "rust_code": "E0600"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "dc179d9ed92465c9c05e3e77c8a42f0b40756db82bcb8845cbb6ac82b684d395": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`Player` doesn't implement `Debug`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`Player` doesn't implement `Debug`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ec91df2332371d77d38d4818ec1f77fa10a56f6769c86d9c2c1ed35d6cffea9f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "binary operation `==` cannot be applied to type `Player`",
+          "slot_ids": [],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`Player` doesn't implement `Debug`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`Player` doesn't implement `Debug`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fa24159d77ec25496c01b7b6a377617ad98e017f990215d9601dcb072cbb4772": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`Player` doesn't implement `Debug`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`Player` doesn't implement `Debug`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

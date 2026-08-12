@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.012",
+  "version": 1,
+  "title": "Functions and Return Values",
+  "track": "control-flow",
+  "concepts": [
+    "functions"
+  ],
+  "difficulty": 1,
+  "goal": "Declare functions with explicit types and implicit return expressions.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Functions in Rust are declared with the `fn` keyword."
+      },
+      {
+        "kind": "prose",
+        "text": "Parameters require explicit type annotations, and the return type follows an arrow `->`."
+      },
+      {
+        "kind": "code",
+        "code": "fn double(x: i32) -> i32 {\n    x * 2\n}",
+        "caption": "Parameters specify types after a colon."
+      },
+      {
+        "kind": "prose",
+        "text": "The last expression in a function body becomes its return value. Omit the semicolon to return that value."
+      },
+      {
+        "kind": "prose",
+        "text": "Use an explicit `return` keyword for early exits from a function."
+      },
+      {
+        "kind": "code",
+        "code": "fn absolute(x: i32) -> i32 {\n    if x < 0 {\n        return -x;\n    }\n    x\n}",
+        "caption": "Early exit uses return. Final result omits return."
+      },
+      {
+        "kind": "prose",
+        "text": "When a function returns nothing, it returns the unit type `()`. Omitting `->` implies `-> ()`."
+      },
+      {
+        "kind": "prose",
+        "text": "Generic parameters on functions are covered in the Generics deck later."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Declare functions with explicit types and implicit return expressions."
+}

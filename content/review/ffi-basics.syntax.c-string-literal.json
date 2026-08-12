@@ -1,0 +1,11 @@
+{
+  "id": "ffi-basics.syntax.c-string-literal",
+  "kind": "syntax",
+  "title": "Passing string literals to C functions",
+  "concepts": [
+    "ffi-basics"
+  ],
+  "prompt": "How do you create a NUL-terminated C string literal in Rust?",
+  "answer": "Use the c\"hello\" literal syntax to create a &CStr at compile time. Call .as_ptr() on the CStr reference to obtain a *const c_char for foreign function calls.",
+  "schema_version": 1
+}

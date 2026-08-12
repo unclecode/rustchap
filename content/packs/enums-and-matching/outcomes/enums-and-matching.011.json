@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "enums-and-matching.011",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0349ed9264a6b58c801efaaa4b60159e4036c861b63c1da965e754c30a58286a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `=>`, `@`, `if`, or `|`, found `<`",
+          "slot_ids": [
+            "negative_arm"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "120e1e0603e4eb1f4c384bad2ecade5a45331c6f545ee39c9b9b4892f3cc531b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `=>`, `@`, `if`, or `|`, found `<`",
+          "slot_ids": [
+            "negative_arm"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "573b9c0aaddfdfb5aaac940d94280bec3c9f70d0fec3af691bdef80925ab11cb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `x` in this scope",
+          "slot_ids": [
+            "negative_arm"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "80e51777a4fa0a5e7c9ff5488570799169fc3f07dfa1b29c17ab49d8b0f324a8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `x` in this scope",
+          "slot_ids": [
+            "negative_arm"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "976eaade0835a5a507473a6f68403d2aa7b7f9424a622f9f1a44e502ff2ef735": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-exhaustive patterns: `i32::MIN..=-1_i32` and `1_i32..=i32::MAX` not covered",
+          "slot_ids": [],
+          "rust_code": "E0004"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a0f9ae394af276b442aa1904be58fb3f2a192c6ddede939a5fc6754fc0810e08": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `x` in this scope",
+          "slot_ids": [
+            "negative_arm"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "de8357545152b6c25d7084ff08a79fd87d47a2eebdacb86967e02ce9f9cc2bc9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `=>`, `@`, `if`, or `|`, found `<`",
+          "slot_ids": [
+            "negative_arm"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e00c9e2b3dd3e68c02d7d3568861820548fe9a61735a31d667bb30805330524e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-exhaustive patterns: `i32::MIN..=i32::MAX` not covered",
+          "slot_ids": [],
+          "rust_code": "E0004"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f71c156c5be77ef75f82f1000bc063799049305f4f533018b1ee2f05ae256487": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    }
+  }
+}

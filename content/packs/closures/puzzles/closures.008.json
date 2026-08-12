@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "closures.008",
+  "version": 1,
+  "title": "Returning Closures",
+  "track": "closures",
+  "concepts": [
+    "closures",
+    "move"
+  ],
+  "difficulty": 1,
+  "goal": "Return a closure from a function by transferring captured values.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Closures"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You return closures from functions just like any other value, but one scope rule changes how captures work."
+      },
+      {
+        "kind": "code",
+        "code": "fn make_adder(\n    n: i32,\n) -> impl Fn(i32) -> i32 {\n    move |x| x + n\n}",
+        "caption": "impl Fn describes the return type."
+      },
+      {
+        "kind": "prose",
+        "text": "Local variables die when a function returns. A returning closure cannot borrow variables from that function's scope."
+      },
+      {
+        "kind": "prose",
+        "text": "Adding `move` forces the closure to take ownership of its captured variables. The captured values live inside the closure as long as the closure exists."
+      },
+      {
+        "kind": "code",
+        "code": "let add_five = make_adder(5);\nlet result = add_five(10);",
+        "caption": "add_five owns its captured n."
+      },
+      {
+        "kind": "prose",
+        "text": "If you omit `move`, the compiler complains that the closure outlives the local scope with error `E0373`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Return a closure from a function by transferring captured values."
+}

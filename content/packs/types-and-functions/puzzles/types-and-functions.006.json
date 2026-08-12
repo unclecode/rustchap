@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.006",
+  "version": 1,
+  "title": "Arrays Have Fixed Sizes",
+  "track": "types-and-functions",
+  "concepts": [
+    "primitive-types"
+  ],
+  "difficulty": 1,
+  "goal": "Understand fixed-size array types and repetition syntax.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Arrays"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "An array in Rust holds a fixed number of elements of the same type. The length is written directly in the type signature."
+      },
+      {
+        "kind": "code",
+        "code": "let grid: [i32; 3] = [10, 20, 30];",
+        "caption": "[i32; 3] is an array of three 32-bit integers."
+      },
+      {
+        "kind": "prose",
+        "text": "Because length is part of the type, `[i32; 3]` and `[i32; 4]` are completely different types. You cannot pass a four-element array to a function expecting three."
+      },
+      {
+        "kind": "code",
+        "code": "let zeroes = [0; 100];",
+        "caption": "[value; count] repeats a single initial value."
+      },
+      {
+        "kind": "prose",
+        "text": "Arrays live on the stack and cannot change size. Dynamic lists use `Vec`, which is covered in a later deck."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand fixed-size array types and repetition syntax."
+}

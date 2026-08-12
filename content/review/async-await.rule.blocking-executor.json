@@ -1,0 +1,11 @@
+{
+  "id": "async-await.rule.blocking-executor",
+  "kind": "rule",
+  "title": "Never call thread sleep in async code",
+  "concepts": [
+    "async-await"
+  ],
+  "prompt": "Why must you avoid calling `std::thread::sleep` inside an async function?",
+  "answer": "Async runtimes execute many tasks on a small pool of worker threads. Calling `std::thread::sleep` halts the worker thread, blocking all other tasks assigned to that thread.",
+  "schema_version": 1
+}

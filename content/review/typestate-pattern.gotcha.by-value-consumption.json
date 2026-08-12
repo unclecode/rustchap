@@ -1,0 +1,11 @@
+{
+  "id": "typestate-pattern.gotcha.by-value-consumption",
+  "kind": "gotcha",
+  "title": "Consuming old states during transitions",
+  "concepts": [
+    "typestate-pattern"
+  ],
+  "prompt": "How do state transition methods in the typestate pattern prevent reusing an old state?",
+  "answer": "Transition methods take self by value, consuming the original struct and moving its data. Attempting to use the old variable after a transition causes compile error E0382 for use of a moved value.",
+  "schema_version": 1
+}

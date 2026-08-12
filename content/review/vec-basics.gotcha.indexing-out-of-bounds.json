@@ -1,0 +1,11 @@
+{
+  "id": "vec-basics.gotcha.indexing-out-of-bounds",
+  "kind": "gotcha",
+  "title": "Direct Vector Indexing Behavior",
+  "concepts": [
+    "vec-basics"
+  ],
+  "prompt": "What happens when you query a vector past its length using brackets like v[i], and how do you avoid it?",
+  "answer": "Direct indexing with brackets panics at runtime if the index is out of bounds. To avoid panicking, call the `.get(i)` method, which returns `None` when the index exceeds the vector bounds.",
+  "schema_version": 1
+}

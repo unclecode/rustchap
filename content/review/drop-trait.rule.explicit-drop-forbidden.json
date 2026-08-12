@@ -1,0 +1,11 @@
+{
+  "id": "drop-trait.rule.explicit-drop-forbidden",
+  "kind": "rule",
+  "title": "Calling Drop drop directly is forbidden",
+  "concepts": [
+    "drop-trait"
+  ],
+  "prompt": "Why does calling `val.drop()` directly fail to compile in Rust?",
+  "answer": "Direct calls to `Drop::drop` are forbidden to prevent double-free bugs when the variable goes out of scope. Call `std::mem::drop(val)` instead, which takes ownership of the value and drops it safely when that call ends.",
+  "schema_version": 1
+}

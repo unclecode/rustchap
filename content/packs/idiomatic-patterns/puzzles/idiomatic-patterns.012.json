@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.012",
+  "version": 1,
+  "title": "The Builder Pattern",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "builder-pattern"
+  ],
+  "difficulty": 1,
+  "goal": "Construct complex objects step by step without ambiguous parameters.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Builder Pattern"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You assemble complex objects with constructors in Java or named arguments in Python. Rust lacks method overloading and named arguments, so it uses the builder pattern instead."
+      },
+      {
+        "kind": "code",
+        "code": "pub struct Server {\n    host: String,\n    port: u16,\n}\n\npub struct ServerBuilder {\n    host: String,\n    port: u16,\n}",
+        "caption": "The builder holds configuration before creating the final type."
+      },
+      {
+        "kind": "prose",
+        "text": "A builder struct starts with sensible defaults. Methods on the builder modify options one by one and return ownership of the updated builder."
+      },
+      {
+        "kind": "code",
+        "code": "impl ServerBuilder {\n    pub fn port(mut self, p: u16)\n        -> Self\n    {\n        self.port = p;\n        self\n    }\n}",
+        "caption": "Consuming and returning self enables method chaining."
+      },
+      {
+        "kind": "prose",
+        "text": "A final `build` method converts the builder into the target struct. This pattern validates arguments and keeps constructor calls clear."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Construct complex objects step by step without ambiguous parameters."
+}

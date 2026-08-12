@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "build-the-iterator.010",
+  "version": 1,
+  "title": "Parse or Fail",
+  "track": "build-the-iterator",
+  "concepts": [
+    "iterator",
+    "error-propagation"
+  ],
+  "difficulty": 2,
+  "goal": "Parse a slice of strings into a Result containing a vector of numbers.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Comprehensive Rust: Iterators"
+  },
+  "template": "use std::num::ParseIntError;\n\nfn parse_all(strings: &[&str]) -> Result<Vec<i32>, ParseIntError> {\n    strings\n        .iter()\n        ⟦adapter⟧\n        ⟦consumer⟧\n}\n\nfn main() {\n    let nums = parse_all(&[\"10\", \"20\", \"30\"]).unwrap();\n    println!(\"{nums:?}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "adapter",
+        "original": ".map(|s| s.parse::<i32>().unwrap())",
+        "label": "iterator adapter",
+        "choices": [
+          {
+            "id": "ad1",
+            "text": ".map(|s| s.parse::<i32>())"
+          },
+          {
+            "id": "ad2",
+            "text": ".map(|s| s.parse::<i32>().unwrap())"
+          },
+          {
+            "id": "ad3",
+            "text": ".filter_map(|s| s.parse::<i32>().ok())"
+          }
+        ]
+      },
+      {
+        "id": "consumer",
+        "original": ".collect::<Vec<_>>()",
+        "label": "iterator consumer",
+        "choices": [
+          {
+            "id": "co1",
+            "text": ".collect()"
+          },
+          {
+            "id": "co2",
+            "text": ".collect::<Vec<_>>()"
+          },
+          {
+            "id": "co3",
+            "text": ".sum()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn parses_valid_strings() {\n    assert_eq!(parse_all(&[\"1\", \"2\", \"3\"]), Ok(vec![1, 2, 3]));\n}",
+      "#[test]\nfn fails_on_invalid_string() {\n    assert!(parse_all(&[\"1\", \"foo\", \"3\"]).is_err());\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The map stage should produce Result values without unwrapping them.",
+    "The function return type asks for Result<Vec<i32>, ParseIntError>, so collect needs to construct a Result."
+  ],
+  "explanation": "`.map(|s| s.parse::<i32>())` yields `Result` items without panicking on invalid input. `.collect()` sees the function return type `Result<Vec<i32>, ParseIntError>` and automatically converts the `Iterator<Item = Result<T, E>>` into a `Result<Vec<T>, E>`. Using `.unwrap()` inside `map` panics on invalid input instead of returning an `Err`. Calling `.collect::<Vec<_>>()` tries to return `Vec<Result<i32, ParseIntError>>`, which causes a type mismatch `E0308`. `.sum()` fails with `E0277` because `Result` cannot be summed directly."
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "testing.002",
+  "version": 1,
+  "title": "Test Scope Imports",
+  "track": "testing",
+  "concepts": [
+    "unit-testing",
+    "cfg-test"
+  ],
+  "difficulty": 1,
+  "goal": "Bring outer functions into scope inside a unit test module.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Unit Tests"
+  },
+  "template": "fn add_bonus(score: u32) -> u32 {\n    score + 10\n}\n\n#[cfg(test)]\nmod tests {\n    ⟦slot1⟧;\n\n    #[test]\n    fn test_bonus() {\n        ⟦slot2⟧(add_bonus(5), 15);\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "use super::*",
+        "label": "module import",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "use super::*"
+          },
+          {
+            "id": "sl2",
+            "text": "use self::*"
+          },
+          {
+            "id": "sl3",
+            "text": "use super::tests::*"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "assert_eq!",
+        "label": "assertion macro",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "assert_eq!"
+          },
+          {
+            "id": "sl2",
+            "text": "assert!"
+          },
+          {
+            "id": "sl3",
+            "text": "assert_ne!"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_runs() {\n    assert_eq!(add_bonus(5), 15);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at how nested modules access their parent module items.",
+    "Use super to step up one module level, and choose an assertion macro that compares two values."
+  ],
+  "explanation": "`use super::*;` pulls items from the parent module into `tests`. Writing `use self::*;` looks inside `tests` itself and fails with compiler error `E0425` because `add_bonus` is defined outside `tests`. `assert_eq!` compares two values for equality, whereas `assert!` takes a single boolean expression and fails with `E0308` when given two arguments without a format string."
+}

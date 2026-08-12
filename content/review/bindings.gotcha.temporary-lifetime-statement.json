@@ -1,0 +1,12 @@
+{
+  "id": "bindings.gotcha.temporary-lifetime-statement",
+  "kind": "gotcha",
+  "title": "Temporary values drop at statement end",
+  "concepts": [
+    "bindings",
+    "borrow-scope"
+  ],
+  "prompt": "When does Rust drop temporary values created inside an expression statement?",
+  "answer": "Temporary values produced during an expression are dropped at the end of the enclosing statement marked by the semicolon. Assigning the temporary to a named variable extends its scope to the end of the enclosing block.",
+  "schema_version": 1
+}

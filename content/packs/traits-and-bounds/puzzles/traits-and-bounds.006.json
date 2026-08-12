@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.006",
+  "version": 1,
+  "title": "Explicit Contracts",
+  "track": "traits-and-bounds",
+  "concepts": [
+    "traits"
+  ],
+  "difficulty": 1,
+  "goal": "Connect the trait to the struct and call its method inside a generic function.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Implementing Traits"
+  },
+  "template": "trait Render { fn render(&self) -> String; }\nstruct Button { label: String }\n\n⟦impl_head⟧\n    fn render(&self) -> String { self.label.clone() }\n}\n\nfn draw<T: Render>(item: &T) -> String {\n    item.⟦call_method⟧\n}\n\nfn main() {\n    let b = Button { label: \"Save\".into() };\n    println!(\"{}\", draw(&b));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "impl_head",
+        "original": "impl Button {",
+        "label": "impl header",
+        "choices": [
+          {
+            "id": "im1",
+            "text": "impl Render for Button {"
+          },
+          {
+            "id": "im2",
+            "text": "impl Button {"
+          },
+          {
+            "id": "im3",
+            "text": "impl Render {"
+          }
+        ]
+      },
+      {
+        "id": "call_method",
+        "original": "render",
+        "label": "method call",
+        "choices": [
+          {
+            "id": "ca1",
+            "text": "render()"
+          },
+          {
+            "id": "ca2",
+            "text": "render"
+          },
+          {
+            "id": "ca3",
+            "text": "to_string()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn draws_button() {\n    let b = Button { label: \"OK\".to_string() };\n    assert_eq!(draw(&b), \"OK\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rust traits require explicit binding to the target type.",
+    "Method calls require parentheses, unlike field access."
+  ],
+  "explanation": "`impl Render for Button` explicitly binds the trait to the struct. An inherent `impl Button` creates a method on `Button`, but fails with `E0277` when passed to `draw` because `Button` does not implement `Render`. Syntax `impl Render` without `for Button` is invalid. Calling `item.render()` invokes the trait method. Calling `item.render` without parentheses fails with `E0615`. Calling `to_string()` fails with `E0599` because `Display` is not implemented."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "unit-testing.choice.assert-vs-assert-eq",
+  "kind": "choice",
+  "title": "Choosing between assert and assert_eq",
+  "concepts": [
+    "unit-testing"
+  ],
+  "prompt": "Why should you prefer `assert_eq!` over `assert!` when checking equality in tests?",
+  "answer": "`assert_eq!` prints both the actual and expected values when an assertion fails. `assert!` only receives a boolean expression, so it cannot show the mismatched values in the failure output.",
+  "schema_version": 1
+}

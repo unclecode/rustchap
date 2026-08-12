@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.010",
+  "version": 1,
+  "title": "Handling Multiple Error Types",
+  "track": "errors-that-travel",
+  "concepts": [
+    "dynamic-errors",
+    "error-propagation"
+  ],
+  "difficulty": 3,
+  "goal": "Choose the signature and implementation that parses strings without redundant allocations.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from comprehensive-rust"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "box_dyn",
+        "code": "use std::error::Error;\n\nfn parse_and_check(\n    s: &str,\n) -> Result<i32, Box<dyn Error>> {\n    let n = s.parse::<i32>()?;\n    Ok(n)\n}"
+      },
+      {
+        "id": "missing_try",
+        "code": "use std::error::Error;\n\nfn parse_and_check(\n    s: &str,\n) -> Result<i32, Box<dyn Error>> {\n    let n = s.parse::<i32>();\n    Ok(n)\n}"
+      },
+      {
+        "id": "swallow_error",
+        "code": "use std::error::Error;\n\nfn parse_and_check(\n    s: &str,\n) -> Result<i32, Box<dyn Error>> {\n    let n = s.parse::<i32>().unwrap_or(0);\n    Ok(n)\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_parse() {\n    assert_eq!(parse_and_check(\"42\").unwrap(), 42);\n    assert!(parse_and_check(\"abc\").is_err());\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Use `?` to automatically convert `ParseIntError` into `Box<dyn Error>`.",
+    "Ensure invalid input results in an `Err` variant rather than falling back to a default value."
+  ],
+  "explanation": "Candidate 1 parses directly from `&str` and uses `?` to convert and propagate `ParseIntError` as `Box<dyn Error>`. Candidate 2 fails to compile because omitting `?` leaves `n` as a `Result`, causing a type mismatch. Candidate 3 swallows parse failures with `unwrap_or(0)` and returns `Ok(0)`, failing the test assertion for invalid input."
+}

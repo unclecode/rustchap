@@ -1,0 +1,12 @@
+{
+  "id": "smart-pointers.rule.refcell-guard-deref",
+  "kind": "rule",
+  "title": "RefMut binding requirement for method calls",
+  "concepts": [
+    "smart-pointers",
+    "interior-mutability"
+  ],
+  "prompt": "Why must a variable holding the result of cell.borrow_mut() be declared with let mut?",
+  "answer": "Calling mutating methods through RefMut relies on its DerefMut implementation. The compiler requires the local guard binding itself to be mutable to invoke deref_mut.",
+  "schema_version": 1
+}

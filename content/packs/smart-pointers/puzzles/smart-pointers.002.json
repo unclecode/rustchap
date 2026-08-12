@@ -82,9 +82,9 @@
   },
   "hints": [
     "Moving theme into ui leaves nothing for audio - Rc solves this by counting owners, not copying data.",
-    "theme.clone() works but reads like a deep copy. Rc::clone(&theme) says out loud: this is a counter bump."
+    "theme.clone() works but reads like a deep copy. `Rc::clone(&theme)` says out loud: this is a counter bump."
   ],
-  "explanation": "Rc means shared ownership: each Rc::clone(&theme) bumps a counter - all three handles point at ONE String, dropped when the last owner goes. Moving theme breaks the later handles (E0382). The method-call spelling theme.clone() does the identical cheap thing, but reads like an expensive deep clone - Clippy's clone_on_ref_ptr pushes toward the prefix form precisely so readers can trust that .clone() means real copying. Same machine, honest syntax.",
+  "explanation": "Rc means shared ownership: each `Rc::clone(&theme)` bumps a counter - all three handles point at ONE String, dropped when the last owner goes. Moving theme breaks the later handles (E0382). The method-call spelling theme.clone() does the identical cheap thing, but reads like an expensive deep clone - Clippy's clone_on_ref_ptr pushes toward the prefix form precisely so readers can trust that .clone() means real copying. Same machine, honest syntax.",
   "prerequisites": [
     "smart-pointers.001"
   ],

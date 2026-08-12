@@ -1,0 +1,11 @@
+{
+  "id": "iterator.rule.pipeline-collect",
+  "kind": "rule",
+  "title": "Lazy Iterator Processing",
+  "concepts": [
+    "iterator"
+  ],
+  "prompt": "When are iterator adapters like filter and map actually evaluated?",
+  "answer": "Iterator adapters are lazy and do no work when composed. The pipeline evaluates elements only when a consuming terminal method like `.collect()` is called.",
+  "schema_version": 1
+}

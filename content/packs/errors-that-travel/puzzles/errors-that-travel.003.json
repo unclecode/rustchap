@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.003",
+  "version": 1,
+  "title": "Bridging Option and Result",
+  "track": "errors-that-travel",
+  "concepts": [
+    "error-propagation",
+    "option"
+  ],
+  "difficulty": 2,
+  "goal": "Convert an Option to a Result before using the try operator.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Error Handling"
+  },
+  "template": "fn first_char(\n    s: &str,\n) -> Result<char, &'static str> {\n    let ch = s\n        .chars()\n        .next()\n        ⟦slot1⟧\n        ⟦slot2⟧;\n    Ok(ch)\n}\n\nfn main() {\n    let _ = first_char(\"a\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "",
+        "label": "option conversion",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": ".ok_or(\"empty\")"
+          },
+          {
+            "id": "sl2",
+            "text": ""
+          },
+          {
+            "id": "sl3",
+            "text": "?"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "",
+        "label": "try propagation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "?"
+          },
+          {
+            "id": "sl2",
+            "text": ""
+          },
+          {
+            "id": "sl3",
+            "text": ".unwrap()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_char() {\n    assert_eq!(first_char(\"abc\"), Ok('a'));\n    assert_eq!(first_char(\"\"), Err(\"empty\"));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "`chars().next()` returns an Option, but the function returns a Result.",
+    "Convert Option to Result using ok_or before applying the try operator."
+  ],
+  "explanation": "Calling `?` directly on an `Option` inside a function returning `Result` fails with `E0277` because the return types do not match. Calling `.ok_or(\"empty\")` turns `Some(v)` into `Ok(v)` and `None` into `Err(\"empty\")`. Then `?` unwraps the `char` or early-returns the error string."
+}

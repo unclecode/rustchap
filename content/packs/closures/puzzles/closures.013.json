@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "closures.013",
+  "version": 1,
+  "title": "Storing Diverse Handlers",
+  "track": "closures",
+  "concepts": [
+    "closures",
+    "smart-pointers",
+    "traits"
+  ],
+  "difficulty": 3,
+  "goal": "Process input values using a slice of boxed closure trait objects without extra clones.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from google/comprehensive-rust: closures exercise"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "optimal_slice_iter",
+        "code": "fn process_all(val: i32, ops: &[Box<dyn Fn(i32) -> i32>]) -> i32 {\n    let mut current = val;\n    for op in ops {\n        current = op(current);\n    }\n    current\n}"
+      },
+      {
+        "id": "invalid_method_call",
+        "code": "fn process_all(val: i32, ops: &[Box<dyn Fn(i32) -> i32>]) -> i32 {\n    let mut current = val;\n    for op in ops {\n        current = op.call(current);\n    }\n    current\n}"
+      },
+      {
+        "id": "wrong_fold_logic",
+        "code": "fn process_all(val: i32, ops: &[Box<dyn Fn(i32) -> i32>]) -> i32 {\n    ops.iter().fold(0, |acc, op| op(acc + val))\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn runs_pipeline() {\n    let ops: Vec<Box<dyn Fn(i32) -> i32>> = vec![\n        Box::new(|x| x + 5),\n        Box::new(|x| x * 2),\n    ];\n    assert_eq!(process_all(10, &ops), 30);\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "A slice reference `&[T]` can be iterated over directly in a for loop.",
+    "Calling a boxed closure directly uses `op(val)` syntax rather than an explicit `.call()` method."
+  ],
+  "explanation": "Iterating directly over `ops` using `for op in ops` and calling `op(current)` requires zero clone calls and compiles cleanly. Trying to invoke `.call()` on a closure fails to compile with `E0599` because `call` is an internal trait method. Initializing `fold` with `0` and adding `val` inside each step computes incorrect values, failing the unit tests."
+}

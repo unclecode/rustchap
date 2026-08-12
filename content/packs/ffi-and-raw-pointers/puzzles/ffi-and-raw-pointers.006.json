@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.006",
+  "version": 1,
+  "title": "Passing Strings to C",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "ffi-basics",
+    "string-types",
+    "unsafe-rust"
+  ],
+  "difficulty": 2,
+  "goal": "Convert a Rust string into a C-compatible NUL-terminated string pointer.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from FFI: Foreign Functions"
+  },
+  "template": "use std::ffi::{c_char, CStr};\n\nunsafe extern \"C\" {\n    unsafe fn strlen(s: *const c_char) -> usize;\n}\n\nfn measure(s: ⟦type_slot⟧) -> usize {\n    unsafe { strlen(⟦arg_slot⟧) }\n}\n\nfn main() {\n    println!(\"{}\", measure(c\"hello\"));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "type_slot",
+        "original": "&str",
+        "label": "parameter type",
+        "choices": [
+          {
+            "id": "ty1",
+            "text": "&CStr"
+          },
+          {
+            "id": "ty2",
+            "text": "&str"
+          },
+          {
+            "id": "ty3",
+            "text": "String"
+          }
+        ]
+      },
+      {
+        "id": "arg_slot",
+        "original": "s.as_bytes().as_ptr()",
+        "label": "argument conversion",
+        "choices": [
+          {
+            "id": "ar1",
+            "text": "s.as_ptr()"
+          },
+          {
+            "id": "ar2",
+            "text": "s.as_bytes().as_ptr()"
+          },
+          {
+            "id": "ar3",
+            "text": "*s"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn measures_c_string() {\n    assert_eq!(measure(c\"rust\"), 4);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "C strings require a NUL terminator and the `&CStr` type.",
+    "`CStr::as_ptr` returns `*const c_char` suitable for FFI."
+  ],
+  "explanation": "Rust `&str` and `String` are UTF-8 sequences without trailing NUL bytes and return `*const u8` from `as_ptr()`. C functions expect `*const c_char` pointing to NUL-terminated strings, provided by `&CStr::as_ptr()`."
+}

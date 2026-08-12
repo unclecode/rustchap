@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "idiomatic-patterns.015",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "26d4c6dc2931c55edf6ae13584930ce0e973467ded5b167e1fc4af09812059ba": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `header` found for struct `String` in the current scope",
+          "slot_ids": [
+            "b2"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "27fa5fd442bfb25601d715eccff02f75f8f237dd0d541efd838d64756c42b4d4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `send` found for struct `RequestBuilder<NoUrl>` in the current scope",
+          "slot_ids": [
+            "b3"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2cc142a6c157cf7cc88b31e826ff3f184332669ef30151641c6d39897b316bcc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `send` found for struct `RequestBuilder<NoUrl>` in the current scope",
+          "slot_ids": [
+            "b3"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4383882553563442b18c84027d108c67e0419980f754400e0de88521abc156d2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `header` found for struct `RequestBuilder<NoUrl>` in the current scope",
+          "slot_ids": [
+            "b2"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8f5c5ff4ab7aad5713ab4e262cfd13cfe9e6d9d25ddf76a31abc53e8df1ed2fb": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0
+      },
+      "diagnostics": []
+    },
+    "9e8ee54076709f78f8fc512ecc3aa9e2710c8ae4436c9edca030569615cfcedf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `header` found for struct `RequestBuilder<NoUrl>` in the current scope",
+          "slot_ids": [
+            "b2"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "build-the-iterator.015",
+  "version": 1,
+  "title": "Fold the Total",
+  "track": "build-the-iterator",
+  "concepts": [
+    "iterator",
+    "mutability"
+  ],
+  "difficulty": 2,
+  "goal": "Summarize numbers into a tuple using fold.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from google/comprehensive-rust iterators"
+  },
+  "template": "fn summarize(ns: &[i32]) -> (i32, usize) {\n    ns.iter().⟦iter_method⟧(\n        (0, 0),\n        |(sum, count), &x| {\n            if x > 0 {\n                ⟦acc_expr⟧\n            } else {\n                (sum, count)\n            }\n        },\n    )\n}\n\nfn main() {\n    let (s, c) = summarize(&[1, -2, 3]);\n    println!(\"{s}, {c}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "iter_method",
+        "original": "map",
+        "label": "iterator method",
+        "choices": [
+          {
+            "id": "it1",
+            "text": "fold"
+          },
+          {
+            "id": "it2",
+            "text": "map"
+          },
+          {
+            "id": "it3",
+            "text": "scan"
+          }
+        ]
+      },
+      {
+        "id": "acc_expr",
+        "original": "{ sum += x; count += 1; }",
+        "label": "accumulator expression",
+        "choices": [
+          {
+            "id": "ac1",
+            "text": "(sum + x, count + 1)"
+          },
+          {
+            "id": "ac2",
+            "text": "{ sum += x; count += 1; }"
+          },
+          {
+            "id": "ac3",
+            "text": "(sum + x, count)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn summarizes_positives() {\n    assert_eq!(summarize(&[10, -5, 20, 0]), (30, 2));\n    assert_eq!(summarize(&[]), (0, 0));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "fold takes an initial accumulator seed and passes it into the closure on each step.",
+    "The closure must return the next accumulator value. Block statements that do not return a value evaluate to unit and break the type check."
+  ],
+  "explanation": "fold threads an accumulator through every element. The closure receives the current accumulator and must evaluate to the next accumulator value. Using map fails with E0061 because map takes only a closure. Statement blocks that update variables in place evaluate to unit. This fails with E0308 because fold expects a tuple."
+}

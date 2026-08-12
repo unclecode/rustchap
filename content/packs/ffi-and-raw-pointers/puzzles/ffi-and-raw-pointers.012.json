@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.012",
+  "version": 1,
+  "title": "Sound Safe Wrappers",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "unsafe-rust",
+    "raw-pointers"
+  ],
+  "difficulty": 2,
+  "goal": "Encapsulate unsafe raw pointer lookup within a sound safe wrapper using minimal unsafe blocks.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Unsafe Rust"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "optimal_wrapper",
+        "code": "fn safe_get(\n    slice: &[i32],\n    index: usize,\n) -> Option<i32> {\n    if index < slice.len() {\n        Some(unsafe {\n            *slice.as_ptr().add(index)\n        })\n    } else {\n        None\n    }\n}\n\nfn main() {\n    let nums = [10, 20, 30];\n    println!(\"{:?}\", safe_get(&nums, 1));\n}"
+      },
+      {
+        "id": "off_by_one",
+        "code": "fn safe_get(\n    slice: &[i32],\n    index: usize,\n) -> Option<i32> {\n    if index <= slice.len() {\n        Some(unsafe {\n            *slice.as_ptr().add(index)\n        })\n    } else {\n        None\n    }\n}\n\nfn main() {\n    let nums = [10, 20, 30];\n    println!(\"{:?}\", safe_get(&nums, 1));\n}"
+      },
+      {
+        "id": "unchecked_read",
+        "code": "fn safe_get(\n    slice: &[i32],\n    index: usize,\n) -> Option<i32> {\n    Some(unsafe {\n        *slice.as_ptr().add(index)\n    })\n}\n\nfn main() {\n    let nums = [10, 20, 30];\n    println!(\"{:?}\", safe_get(&nums, 1));\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn gets_valid_index() {\n    let nums = [10, 20, 30];\n    assert_eq!(safe_get(&nums, 1), Some(20));\n}",
+      "#[test]\nfn bounds_check_prevents_ub() {\n    let nums = [10, 20, 30];\n    assert_eq!(safe_get(&nums, 3), None);\n}"
+    ],
+    "metrics": [
+      "unsafe_blocks"
+    ]
+  },
+  "scoring": {
+    "primary": "unsafe_blocks",
+    "secondary": [],
+    "fluent": {
+      "unsafe_blocks": 1
+    },
+    "optimal": {
+      "unsafe_blocks": 1
+    }
+  },
+  "hints": [
+    "Calling as_ptr() on a slice is safe.",
+    "Ensure strict bounds checking (`index < slice.len()`) before entering unsafe pointer arithmetic."
+  ],
+  "explanation": "To make an unsafe abstraction safe, you must perform proper bounds checking (`index < slice.len()`) before pointer arithmetic. `index <= slice.len()` is an off-by-one bug that permits reading past the end of the slice when `index == slice.len()`."
+}

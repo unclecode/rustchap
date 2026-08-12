@@ -1,0 +1,11 @@
+{
+  "id": "standard-traits.error.into-not-implemented-for-lossy",
+  "kind": "error",
+  "title": "error E0277 on lossy into conversion",
+  "concepts": [
+    "standard-traits"
+  ],
+  "prompt": "Why does calling `.into()` to convert an `i32` into a `u8` trigger compiler error `E0277`?",
+  "answer": "`From` and `Into` are reserved for lossless conversions. Because `i32` to `u8` can overflow or truncate, Rust does not implement `From<i32>` for `u8`. Use `TryFrom` or `TryInto` instead.",
+  "schema_version": 1
+}

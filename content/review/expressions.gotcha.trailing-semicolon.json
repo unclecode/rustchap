@@ -1,0 +1,11 @@
+{
+  "id": "expressions.gotcha.trailing-semicolon",
+  "kind": "gotcha",
+  "title": "Effect of semicolons on block values",
+  "concepts": [
+    "expressions"
+  ],
+  "prompt": "What happens to the value of a block when you add a trailing semicolon?",
+  "answer": "A trailing semicolon converts the final expression into a statement. The block then evaluates to `()` instead of the value of that expression.",
+  "schema_version": 1
+}

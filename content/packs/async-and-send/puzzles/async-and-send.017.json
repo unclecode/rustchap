@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.017",
+  "version": 1,
+  "title": "Box the Trait Future",
+  "track": "async-and-send",
+  "concepts": [
+    "traits",
+    "async-await",
+    "pinned-futures"
+  ],
+  "difficulty": 3,
+  "goal": "Return a pinned boxed future to enable dynamic dispatch on async traits.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Async Traits"
+  },
+  "template": "use std::future::Future;\nuse std::pin::Pin;\n\ntrait Service {\n    fn call(&self) -> ⟦ret_type⟧;\n}\n\nstruct Echo;\nimpl Service for Echo {\n    fn call(&self) -> Pin<Box<dyn Future<Output = i32>>> {\n        ⟦body_expr⟧\n    }\n}\n",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "ret_type",
+        "original": null,
+        "label": "return type in trait definition",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "Pin<Box<dyn Future<Output = i32>>>"
+          },
+          {
+            "id": "re2",
+            "text": "impl Future<Output = i32>"
+          },
+          {
+            "id": "re3",
+            "text": "Box<dyn Future<Output = i32>>"
+          }
+        ]
+      },
+      {
+        "id": "body_expr",
+        "original": null,
+        "label": "body return expression",
+        "choices": [
+          {
+            "id": "bo1",
+            "text": "Box::pin(async { 42 })"
+          },
+          {
+            "id": "bo2",
+            "text": "async { 42 }"
+          },
+          {
+            "id": "bo3",
+            "text": "Box::new(async { 42 })"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn calls_dyn_service() {\n    let echo = Echo;\n    let svc: &dyn Service = &echo;\n    fn noop(_: *const ()) {}\n    fn clone(p: *const ()) -> std::task::RawWaker { std::task::RawWaker::new(p, &VTABLE) }\n    static VTABLE: std::task::RawWakerVTable = std::task::RawWakerVTable::new(clone, noop, noop, noop);\n    let waker = unsafe { std::task::Waker::from_raw(std::task::RawWaker::new(std::ptr::null(), &VTABLE)) };\n    let mut cx = std::task::Context::from_waker(&waker);\n    let mut fut = svc.call();\n    if let std::task::Poll::Ready(val) = fut.as_mut().poll(&mut cx) {\n        assert_eq!(val, 42);\n    } else {\n        panic!(\"future pending\");\n    }\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Dynamic dispatch requires a concrete, fixed-size return type like Pin<Box<dyn Future>>.",
+    "`Box::pin` allocates the async block on the heap and wraps it in a Pin."
+  ],
+  "explanation": "`Box::pin(async { 42 })` allocates the async block on the heap and pins it, which is what the declared return type asks for. Returning the bare async block gives an anonymous future type that does not match. Leaving off `Box::pin` fails for the same reason."
+}

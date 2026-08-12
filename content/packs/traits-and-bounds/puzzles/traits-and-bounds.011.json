@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.011",
+  "version": 1,
+  "title": "Trait Consistency",
+  "track": "traits-and-bounds",
+  "concepts": [
+    "traits",
+    "standard-traits",
+    "api-design"
+  ],
+  "difficulty": 2,
+  "goal": "Choose the cleanest implementation for duplicating a struct using standard traits.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Deriving"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "derived_clone",
+        "code": "#[derive(Debug, Clone)]\nstruct Config {\n    endpoint: String,\n    port: u16,\n}\n\nfn duplicate_config(cfg: &Config) -> Config {\n    cfg.clone()\n}\n\nfn main() {\n    let c = Config { endpoint: \"localhost\".to_string(), port: 8080 };\n    let c2 = duplicate_config(&c);\n    println!(\"{c2:?}\");\n}"
+      },
+      {
+        "id": "manual_move_error",
+        "code": "#[derive(Debug)]\nstruct Config {\n    endpoint: String,\n    port: u16,\n}\n\nfn duplicate_config(cfg: &Config) -> Config {\n    Config {\n        endpoint: cfg.endpoint,\n        port: cfg.port,\n    }\n}\n\nfn main() {\n    let c = Config { endpoint: \"localhost\".to_string(), port: 8080 };\n    let c2 = duplicate_config(&c);\n    println!(\"{c2:?}\");\n}"
+      },
+      {
+        "id": "missing_derive_error",
+        "code": "#[derive(Debug)]\nstruct Config {\n    endpoint: String,\n    port: u16,\n}\n\nfn duplicate_config(cfg: &Config) -> Config {\n    cfg.clone()\n}\n\nfn main() {\n    let c = Config { endpoint: \"localhost\".to_string(), port: 8080 };\n    let c2 = duplicate_config(&c);\n    println!(\"{c2:?}\");\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_config() {\n    let c = Config { endpoint: \"127.0.0.1\".to_string(), port: 9000 };\n    let c2 = duplicate_config(&c);\n    assert_eq!(c2.endpoint, \"127.0.0.1\");\n    assert_eq!(c2.port, 9000);\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 2
+    },
+    "optimal": {
+      "clone_count": 1
+    }
+  },
+  "hints": [
+    "Deriving Clone gives the struct a full clone method automatically.",
+    "You cannot move owned fields out of a borrowed reference."
+  ],
+  "explanation": "Deriving `Clone` on `Config` automatically implements the `Clone` trait and allows calling `cfg.clone()`. Trying to move `cfg.endpoint` out of `&Config` fails with `E0507` because shared references cannot be moved. Calling `cfg.clone()` without deriving `Clone` fails with `E0599` because `Config` does not implement the trait."
+}

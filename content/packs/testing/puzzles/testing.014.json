@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "testing.014",
+  "version": 1,
+  "title": "Suppressing Compiler Lints",
+  "track": "testing",
+  "concepts": [
+    "unit-testing",
+    "cfg-test"
+  ],
+  "difficulty": 2,
+  "goal": "Use lint attributes to selectively allow expected warnings in test helpers.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Compiler Lints"
+  },
+  "template": "#[deny(unused_variables)]\nfn calc(x: i32) -> i32 {\n    ⟦slot1⟧\n    let unused = 42;\n    x * 2\n}\n\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_calc() {\n        ⟦slot2⟧(calc(3), 6);\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "#[deny(unused_variables)]",
+        "label": "lint override attribute",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "#[allow(unused_variables)]"
+          },
+          {
+            "id": "sl2",
+            "text": "#[deny(unused_variables)]"
+          },
+          {
+            "id": "sl3",
+            "text": "#[inline]"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "assert_ne!",
+        "label": "assertion macro",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "assert_eq!"
+          },
+          {
+            "id": "sl2",
+            "text": "assert!"
+          },
+          {
+            "id": "sl3",
+            "text": "assert_ne!"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn check_calc() {\n    assert_eq!(calc(5), 10);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The function has an outer `#[deny(unused_variables)]` attribute.",
+    "Use `#[allow(unused_variables)]` on the local variable to suppress the denied lint."
+  ],
+  "explanation": "`#[allow(unused_variables)]` locally overrides the outer `#[deny(unused_variables)]` attribute, permitting the unused variable without a build error. Leaving `#[deny(unused_variables)]` causes compilation to fail on `let unused = 42;`. Using `assert!` fails compilation because `assert!(calc(3), 6)` has an invalid argument format, while `assert_ne!` panics because 6 equals 6."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "slice.rule.view-not-copy",
+  "kind": "rule",
+  "title": "Slice views do not copy data",
+  "concepts": [
+    "slice"
+  ],
+  "prompt": "What data does a slice reference store under the hood?",
+  "answer": "A slice reference stores a pointer to the starting element and a length. It provides a view into existing data without copying or owning elements.",
+  "schema_version": 1
+}

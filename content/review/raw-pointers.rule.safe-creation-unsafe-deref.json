@@ -1,0 +1,11 @@
+{
+  "id": "raw-pointers.rule.safe-creation-unsafe-deref",
+  "kind": "rule",
+  "title": "Raw pointer safe creation and unsafe dere...",
+  "concepts": [
+    "raw-pointers"
+  ],
+  "prompt": "What operations on raw pointers are permitted in safe Rust code?",
+  "answer": "Creating raw pointers from references or casting between pointer types is safe. Only dereferencing a raw pointer to read or write memory requires an unsafe block.",
+  "schema_version": 1
+}

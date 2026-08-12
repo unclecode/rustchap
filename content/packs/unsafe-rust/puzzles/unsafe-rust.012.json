@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust.012",
+  "version": 1,
+  "title": "Reading Union Fields",
+  "track": "unsafe-rust",
+  "concepts": [
+    "unions",
+    "unsafe-rust"
+  ],
+  "difficulty": 2,
+  "goal": "Access a union field inside an unsafe block.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Unsafe Rust: Unions"
+  },
+  "template": "#[repr(C)]\nunion Payload {\n    val: u32,\n    raw: [u8; 4],\n}\n\nfn extract_u32(p: Payload) -> u32 {\n    ⟦block_start⟧\n        p.⟦field_access⟧\n    }\n}\n\nfn main() {\n    let p = Payload { val: 0x12345678 };\n    println!(\"{}\", extract_u32(p));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "block_start",
+        "original": "{",
+        "label": "block header",
+        "choices": [
+          {
+            "id": "bl1",
+            "text": "unsafe {"
+          },
+          {
+            "id": "bl2",
+            "text": "{"
+          },
+          {
+            "id": "bl3",
+            "text": "if true {"
+          }
+        ]
+      },
+      {
+        "id": "field_access",
+        "original": "raw[0] as u32",
+        "label": "field expression",
+        "choices": [
+          {
+            "id": "fi1",
+            "text": "val"
+          },
+          {
+            "id": "fi2",
+            "text": "val()"
+          },
+          {
+            "id": "fi3",
+            "text": "raw[0] as u32"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn reads_exact_u32() {\n    let p = Payload { val: 0x12345678 };\n    assert_eq!(extract_u32(p), 0x12345678);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Unions store no type tag, so reading any field requires an unsafe block.",
+    "Select the field that holds the full integer value rather than just one byte."
+  ],
+  "explanation": "Reading a field from a union requires `unsafe` because Rust cannot verify that the memory matches that field's type. Omission of `unsafe` triggers compiler error `E0133`. Accessing `val()` fails with `E0599` because fields are not methods. Choosing `raw[0] as u32` compiles inside `unsafe` but fails the test by returning only the first byte instead of the complete integer."
+}

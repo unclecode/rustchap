@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "structs.002",
+  "version": 1,
+  "title": "Copy the Rest",
+  "track": "structs",
+  "concepts": [
+    "structs"
+  ],
+  "difficulty": 1,
+  "goal": "Raise the count by one and take every other field from the base order.",
+  "template": "struct Order {\n    id: u32,\n    count: u32,\n    express: bool,\n}\n\nfn bump(base: Order) -> Order {\n    Order { count: ⟦bumped⟧, ⟦rest⟧ }\n}\n\nfn main() {\n    let next = bump(Order { id: 7, count: 2, express: true });\n    println!(\"{}\", next.count);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "bumped",
+        "original": "count + 1",
+        "label": "new count",
+        "choices": [
+          {
+            "id": "b1",
+            "text": "count + 1"
+          },
+          {
+            "id": "b2",
+            "text": "base.count + 1"
+          },
+          {
+            "id": "b3",
+            "text": "base.count ++"
+          }
+        ]
+      },
+      {
+        "id": "rest",
+        "original": "base",
+        "label": "remaining fields",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "base"
+          },
+          {
+            "id": "r2",
+            "text": "..base"
+          },
+          {
+            "id": "r3",
+            "text": "id: base.id"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn bumps() {\n    let next = bump(Order { id: 7, count: 2, express: true });\n    assert_eq!(next.count, 3);\n    assert_eq!(next.id, 7);\n    assert!(next.express);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The new count is built from the old one.",
+    "One piece of syntax copies all the remaining fields."
+  ],
+  "explanation": "`count: base.count + 1` computes the new value, and `..base` fills in every field you did not name. The update syntax must come last in the literal. Without it you would have to write out `id` and `express` by hand, and adding a fourth field later would break the code.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings structs2"
+  }
+}

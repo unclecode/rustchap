@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "drop-and-cleanup.013",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0d0a61d5aec30f2cc2f41351040fe898baf3e4a8091984d2fd42acc3d0ef3bf9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of type `Buffer`, which implements the `Drop` trait",
+          "slot_ids": [
+            "field_access"
+          ],
+          "rust_code": "E0509"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "21ce5bd602a3a8d7b3165d664bb36f737332f12eaf5708700faf98f234529d04": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `str` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "236e38fd292018e757f34c9112c7a903fd4734ee4fb1165a0b1f34c80beafcfa": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "explicit use of destructor method",
+          "slot_ids": [
+            "return_expr"
+          ],
+          "rust_code": "E0040"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `&String: Drop` is not satisfied",
+          "slot_ids": [
+            "return_expr"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "return_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2a34496dbbdaf8936ca85be264bf37a40b152e1cb8e092d6e164016d0b24ce26": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "return_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "440cec3d886efc4c97b94ab5bc6b73e26f1948d63ffece5c33669c9edbcae711": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "return_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "69ff7691f498797b61b19d5a185c8857702898325112910e68ebd8f9f7ed74d8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "explicit use of destructor method",
+          "slot_ids": [
+            "return_expr"
+          ],
+          "rust_code": "E0040"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `String: Drop` is not satisfied",
+          "slot_ids": [
+            "return_expr"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "return_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6eb9ae7a2d3d629431d6240f3e72a7e63c1a24de875743c8119bc72810705f4b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "explicit use of destructor method",
+          "slot_ids": [
+            "return_expr"
+          ],
+          "rust_code": "E0040"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `str` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `str: Drop` is not satisfied",
+          "slot_ids": [
+            "return_expr"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "return_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ebf62bb21bdf5583bd9623a6d8362e3920e4f5c06aae7a04f6fcfc6a1478f42e": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    },
+    "f06c344a6d03ee4c25d70239055f5558f7d36775bb66a14a621b943fdf9a60ea": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `clear` found for type `str` in the current scope",
+          "slot_ids": [
+            "return_expr"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `str` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

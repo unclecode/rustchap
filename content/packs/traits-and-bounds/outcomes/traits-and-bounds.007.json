@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "traits-and-bounds.007",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0cab18bdf3c6949127102ca7c480ae31abff7e160556b0d37b42f445febc0ea6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`T` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "16a3b7611fc54662c7aaf1998bf22622e9f7d4b1c314ebec31cdcb87d166b4a2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`Vec<{integer}>` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "54058b72277b55632e08ed38459430c65e5351231144314dc8e971063a911851": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `clone` found for type parameter `T` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`()` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5e439fadd5f93fb54bf0e32a0a20b1975b41e59564c3d97ad8711ca187251703": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`T` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "613f1ddf86dbf05a4e44840efc653031b19d40120050b90dd42a7ba316a1c29b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`()` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "82b13cc54a83da6c3fe5a699a1f780284520ceae4fc62e3d6f1e9249ff287b3e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `clone` found for type parameter `T` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "90401789d7a9c6cf3e5475a93f42150e47159fde4d17d5cbb96a51ead72f2f34": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "970f75ba370a796548e656e2481eba0320a43c22c568b802bcdee2b0ad18948c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`T` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f93bfef880aceabf10173c487a843482d48b47553081355821b4dc186ea2588e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `clone` found for type parameter `T` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`Vec<{integer}>` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -6,7 +6,7 @@
   "concepts": [
     "bindings"
   ],
-  "prompt": "Is a new `let` binding mutable or immutable by default?",
+  "prompt": "What is the default mutability of a `let` binding, and how do you change it?",
   "answer": "Immutable. `let x = 5;` binds the name once, and assigning to it again is a compile error, not a warning. You opt into change with `let mut x = 5;`.",
   "example": {
     "code": "let x = 5;\nx = 6;        // error E0384",

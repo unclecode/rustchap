@@ -1,0 +1,11 @@
+{
+  "id": "api-design.gotcha.as-ref-vs-borrow",
+  "kind": "gotcha",
+  "title": "Flexible string parameters using AsRef",
+  "concepts": [
+    "api-design"
+  ],
+  "prompt": "What advantage does `impl AsRef<str>` offer over `&str` for function parameters, and what is its main tradeoff?",
+  "answer": "Using `impl AsRef<str>` lets callers pass `&str`, `String`, or `&String` directly without explicitly calling `.as_str()` or borrowing. The tradeoff is monomorphization cost, which generates generic code for each distinct concrete type passed.",
+  "schema_version": 1
+}

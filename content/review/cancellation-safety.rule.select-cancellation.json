@@ -1,0 +1,11 @@
+{
+  "id": "cancellation-safety.rule.select-cancellation",
+  "kind": "rule",
+  "title": "Branch cancellation in select",
+  "concepts": [
+    "cancellation-safety"
+  ],
+  "prompt": "How does tokio select handle the futures of losing branches when one branch completes?",
+  "answer": "The futures for all losing branches are dropped immediately. Any progress made by losing branches is discarded unless their state was stored in outer variables before the select call. Operations that modify external state partially across yields are not cancellation safe.",
+  "schema_version": 1
+}

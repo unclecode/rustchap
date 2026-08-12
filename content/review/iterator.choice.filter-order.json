@@ -1,0 +1,11 @@
+{
+  "id": "iterator.choice.filter-order",
+  "kind": "choice",
+  "title": "Filter and Map Sequence",
+  "concepts": [
+    "iterator"
+  ],
+  "prompt": "How does swapping the order of filter and map affect execution on collection elements?",
+  "answer": "Filtering before mapping applies the transformation only to selected items, saving computations. Mapping before filtering transforms all items first, which can also change whether items pass subsequent filter conditions.",
+  "schema_version": 1
+}

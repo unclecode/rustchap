@@ -1,0 +1,11 @@
+{
+  "id": "unsafe-rust.choice.unsafe-fn-vs-block",
+  "kind": "choice",
+  "title": "Unsafe function boundary vs internal unsa...",
+  "concepts": [
+    "unsafe-rust"
+  ],
+  "prompt": "When should you mark a whole function unsafe instead of using an internal unsafe block?",
+  "answer": "Mark the function unsafe when callers must uphold preconditions to prevent undefined behavior. Use an internal unsafe block inside a safe function when the function validates all inputs itself.",
+  "schema_version": 1
+}

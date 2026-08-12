@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "repair-the-lifetime.018",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0075495ce055078017f4af4d298015286c11c3623023d8aa0ea4b2e720b4fd78": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "lifetime may not live long enough",
+          "slot_ids": [
+            "static_lifetime"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "589f59e8812f013cb43aa9eee7b6691420a86ed2006e61bc8d30b3f71db07351": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "9b5270d912488d9a4e328310e1c488a83f3851d4d5a55496202a752d0b178d0b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot return value referencing local variable `owned`",
+          "slot_ids": [
+            "dangling_temp"
+          ],
+          "rust_code": "E0515"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

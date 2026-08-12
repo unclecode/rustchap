@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "generics-and-dyn.009",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "861520320cb48655584f2e6309fd739c6e0b8d7f3c27e893e207fe6f932f6bf7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c34649aa0c9f6cbf2e85ea798fcd1d458b815c4b48b004293502cd702621f38f": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 1
+      },
+      "diagnostics": []
+    },
+    "e0ae452b164b6e5f6c8db09132a50b67006bea1cd7b0039621020a1aa897b7f4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

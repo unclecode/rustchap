@@ -1,0 +1,12 @@
+{
+  "id": "closures.rule.trait-hierarchy",
+  "kind": "rule",
+  "title": "The relationship between Fn, FnMut, and F...",
+  "concepts": [
+    "closures",
+    "traits"
+  ],
+  "prompt": "How do the `Fn`, `FnMut`, and `FnOnce` traits relate to each other in Rust's trait hierarchy?",
+  "answer": "`Fn` is a subtype of `FnMut`, which is a subtype of `FnOnce`. Every closure implementing `Fn` also implements `FnMut` and `FnOnce`. Higher bounds allow fewer closure body operations but give callers maximum flexibility.",
+  "schema_version": 1
+}

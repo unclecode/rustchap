@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.014",
+  "version": 1,
+  "title": "Where Clauses for Readable Bounds",
+  "track": "traits-and-bounds",
+  "concepts": [
+    "traits",
+    "generics"
+  ],
+  "difficulty": 1,
+  "goal": "Move complex trait bounds out of function parameter lists using where clauses.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Traits"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In languages with generics like Java or C++, long type bounds make function signatures hard to scan."
+      },
+      {
+        "kind": "code",
+        "code": "fn print_item<T: std::fmt::Display + Clone>(item: T) {\n    println!(\"{item}\");\n}",
+        "caption": "Inline bounds work well when the signature is short."
+      },
+      {
+        "kind": "prose",
+        "text": "When functions have multiple generic parameters or several bounds per type, inline syntax grows cluttered."
+      },
+      {
+        "kind": "prose",
+        "text": "Rust offers where clauses to separate generic types from their constraints."
+      },
+      {
+        "kind": "code",
+        "code": "fn show<T, U>(title: T, val: U) -> String\nwhere\n    T: std::fmt::Display,\n    U: std::fmt::Debug,\n{\n    format!(\"{title}: {val:?}\")\n}",
+        "caption": "where comes after the return type and before the body block."
+      },
+      {
+        "kind": "prose",
+        "text": "A where clause is purely syntactic layout. It expresses the exact same bounds as inline syntax without cluttering parameter lists."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Move complex trait bounds out of function parameter lists using where clauses."
+}

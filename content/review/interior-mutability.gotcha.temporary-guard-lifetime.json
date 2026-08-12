@@ -1,0 +1,12 @@
+{
+  "id": "interior-mutability.gotcha.temporary-guard-lifetime",
+  "kind": "gotcha",
+  "title": "Temporary guard lifetime in statements",
+  "concepts": [
+    "interior-mutability",
+    "borrow-scope"
+  ],
+  "prompt": "Why does `cell.borrow().len()` release its borrow immediately, while binding the guard with `let` keeps it held?",
+  "answer": "Without a let binding, temporary Ref guards drop at the end of the statement, freeing the cell. Assigning the guard to a variable extends its lifetime to the end of the enclosing block scope.",
+  "schema_version": 1
+}

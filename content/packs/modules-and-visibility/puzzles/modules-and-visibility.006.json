@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.006",
+  "version": 1,
+  "title": "Constructors and Invariants",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "visibility",
+    "structs",
+    "api-design"
+  ],
+  "difficulty": 2,
+  "goal": "Instantiate a struct with private fields using its constructor function.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "template": "mod bank {\n    pub struct Account {\n        balance: i64,\n    }\n\n    impl Account {\n        pub fn open(initial: i64) -> Account {\n            Account { balance: initial }\n        }\n\n        pub fn balance(&self) -> i64 {\n            self.balance\n        }\n    }\n}\n\nfn main() {\n    let acc = ⟦slot1⟧::⟦slot2⟧(100);\n    assert_eq!(acc.balance(), 100);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "bank",
+        "label": "type path",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "bank::Account"
+          },
+          {
+            "id": "sl2",
+            "text": "Account"
+          },
+          {
+            "id": "sl3",
+            "text": "bank"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "Account",
+        "label": "constructor function",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "open"
+          },
+          {
+            "id": "sl2",
+            "text": "Account"
+          },
+          {
+            "id": "sl3",
+            "text": "new"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_account_open() {\n    let acc = bank::Account::open(100);\n    assert_eq!(acc.balance(), 100);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Private fields prevent struct literal construction outside the module.",
+    "Call the associated constructor function on the struct type."
+  ],
+  "explanation": "Calling `bank::Account::open(100)` uses the public constructor function. Constructing a struct literal directly fails when any field is private. Calling `bank::Account` as a function fails with `E0423` because `Account` is a type name, not a function."
+}

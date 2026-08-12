@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.017",
+  "version": 1,
+  "title": "Return the Owner",
+  "track": "move-or-borrow",
+  "concepts": [
+    "borrow-scope",
+    "move",
+    "string-types"
+  ],
+  "difficulty": 2,
+  "goal": "Return text created inside a function without creating a dangling reference.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Comprehensive Rust: Borrowing"
+  },
+  "template": "fn make_header(name: &str) -> ⟦ret_ty⟧ {\n    let title = format!(\"User: {name}\");\n    ⟦ret_expr⟧\n}\n\nfn main() {\n    let header = make_header(\"Ferris\");\n    println!(\"{header}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "ret_ty",
+        "original": "&str",
+        "label": "return type",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "String"
+          },
+          {
+            "id": "re2",
+            "text": "&str"
+          },
+          {
+            "id": "re3",
+            "text": "&String"
+          }
+        ]
+      },
+      {
+        "id": "ret_expr",
+        "original": "title.as_str()",
+        "label": "return expression",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "title"
+          },
+          {
+            "id": "re2",
+            "text": "&title"
+          },
+          {
+            "id": "re3",
+            "text": "title.as_str()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn generates_header() {\n    assert_eq!(make_header(\"Ferris\"), \"User: Ferris\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at what happens to title when make_header returns.",
+    "A reference cannot outlive local stack data. Return the owned string directly."
+  ],
+  "explanation": "`title` is created inside `make_header` and dropped when the function returns. Returning `&title` or `title.as_str()` produces error `E0515` because the returned reference points to local memory that no longer exists. Returning `&str` or `&String` with `title` causes a type mismatch `E0308`. To pass the formatted text to the caller, set the return type to `String` and return `title` by value, transferring ownership."
+}

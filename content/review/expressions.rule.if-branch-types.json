@@ -1,0 +1,11 @@
+{
+  "id": "expressions.rule.if-branch-types",
+  "kind": "rule",
+  "title": "Matching branch types in if expressions",
+  "concepts": [
+    "expressions"
+  ],
+  "prompt": "What rule must both branches of an `if` expression satisfy when assigned to a variable?",
+  "answer": "Both the `if` block and the `else` block must evaluate to the exact same type. If they produce different types, the compiler generates error `E0308`.",
+  "schema_version": 1
+}

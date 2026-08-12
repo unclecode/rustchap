@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.015",
+  "version": 1,
+  "title": "Static Monomorphization over Dynamic Heap Allocations",
+  "track": "generics-and-dyn",
+  "concepts": [
+    "generics",
+    "traits"
+  ],
+  "difficulty": 3,
+  "goal": "Process uniform items without heap allocation or dynamic vtable overhead.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 3 Afternoon: Generics vs dyn"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "static_monomorphized",
+        "code": "trait Log {\n    fn msg(&self) -> &str;\n}\n\n#[derive(Clone)]\nstruct Entry(&'static str);\n\nimpl Log for Entry {\n    fn msg(&self) -> &str {\n        self.0\n    }\n}\n\nfn process(items: &[impl Log]) -> usize {\n    items.iter().map(|i| i.msg().len()).sum()\n}"
+      },
+      {
+        "id": "dynamic_boxing",
+        "code": "trait Log {\n    fn msg(&self) -> &str;\n}\n\n#[derive(Clone)]\nstruct Entry(&'static str);\n\nimpl Log for Entry {\n    fn msg(&self) -> &str {\n        self.0\n    }\n}\n\nfn process(items: &[impl Log]) -> usize {\n    let boxed: Vec<Box<dyn Log>> = items\n        .iter()\n        .map(|i| Box::new(i.clone()) as _)\n        .collect();\n    boxed.iter().map(|i| i.msg().len()).sum()\n}"
+      },
+      {
+        "id": "slice_coercion",
+        "code": "trait Log {\n    fn msg(&self) -> &str;\n}\n\n#[derive(Clone)]\nstruct Entry(&'static str);\n\nimpl Log for Entry {\n    fn msg(&self) -> &str {\n        self.0\n    }\n}\n\nfn process(items: &[impl Log]) -> usize {\n    let slice: &[dyn Log] = items;\n    slice.iter().map(|i| i.msg().len()).sum()\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn calculates_total_len() {\n    let items = vec![Entry(\"apple\"), Entry(\"banana\")];\n    assert_eq!(process(&items), 11);\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 2
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "When inputs share a uniform trait bound in a slice, static monomorphization processes items directly without cloning or heap allocation.",
+    "Slices of generic types `&[impl Trait]` cannot be directly cast to `&[dyn Trait]` or cloned without a `Clone` bound."
+  ],
+  "explanation": "Processing `&[impl Log]` directly uses monomorphized static dispatch and zero allocations. Attempting to clone `impl Log` elements into a `Box<dyn Log>` fails because `impl Log` does not implement `Clone`. Attempting to coerce `&[impl Log]` directly into `&[dyn Log]` fails because slice fat-pointer layouts differ."
+}

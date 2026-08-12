@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.008",
+  "version": 1,
+  "title": "Enum Privacy and Trait Scope",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "enums-basics",
+    "traits",
+    "visibility"
+  ],
+  "difficulty": 1,
+  "goal": "Understand enum visibility rules and trait method resolution.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Unlike structs, public enums expose all their variants and fields automatically."
+      },
+      {
+        "kind": "code",
+        "code": "pub enum Status {\n    Active,\n    Inactive,\n}",
+        "caption": "Both `Active` and `Inactive` are public because `Status` is public."
+      },
+      {
+        "kind": "prose",
+        "text": "You cannot make an individual enum variant private. Enums are all-or-nothing."
+      },
+      {
+        "kind": "code",
+        "code": "use std::fmt::Display;\n\nfn print_it<T: Display>(val: T) {\n    println!(\"{val}\");\n}",
+        "caption": "Traits must be imported into scope before calling their methods."
+      },
+      {
+        "kind": "prose",
+        "text": "If a trait is not in scope, Rust will not find its methods on a type even if the type implements the trait."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand enum visibility rules and trait method resolution."
+}

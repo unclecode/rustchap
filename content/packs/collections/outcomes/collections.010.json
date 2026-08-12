@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "collections.010",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "07ef6de6e820c766374ea570898de9ebc76d46c8840e52306a05ac4e16075866": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `{closure@main.rs:2:13}: RangeBounds<usize>` is not satisfied",
+          "slot_ids": [
+            "param"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "24965f9f2b1e4e6a047be9305143ea5d991fbc2e556690122907ef700d195eb1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `{closure@main.rs:2:13}: RangeBounds<usize>` is not satisfied",
+          "slot_ids": [
+            "param"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4733bbbefae7965bd137d71c6a49e094a929c83eae789f298e3ab5bc6a5fb985": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7e8bfa396d882f2de6dfaff46118d056b36237834c100f6833903ed3cb464867": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "closure is expected to take 2 arguments, but it takes 1 argument",
+          "slot_ids": [
+            "method"
+          ],
+          "rust_code": "E0593"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7f1c672d1d832c84bea495ddfcc8cae815b2d8f74114d0b1a3a7c93af11b6a72": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "closure is expected to take 2 arguments, but it takes 1 argument",
+          "slot_ids": [
+            "method"
+          ],
+          "rust_code": "E0593"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c5727287d305a241c1efc24748aa5a308720883e636e06828beb1d806fabd0c7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "closure is expected to take 2 arguments, but it takes 1 argument",
+          "slot_ids": [
+            "method"
+          ],
+          "rust_code": "E0593"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ca47d9363e0cc5579c43e4fddb7123c7cec9991d73f8ce85967392123db8d31d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "dd34706b9fbdacea1e7b7243a7aea7b12c63279f3914af053cae3d8c9d4d0430": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `{closure@main.rs:2:13}: RangeBounds<usize>` is not satisfied",
+          "slot_ids": [
+            "param"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e8531b071d27bd9938809c46f0b9da89ecc45b179ee58a3e75b3d623efe7c0f4": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    }
+  }
+}

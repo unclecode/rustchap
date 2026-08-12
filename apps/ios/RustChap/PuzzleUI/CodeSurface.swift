@@ -90,13 +90,24 @@ struct SlotChip: View {
 
     private var filled: Bool { selectedText != nil }
 
+    /// Roughly four monospace characters at the code font size, so the shortest
+    /// chip still reads as a chip and stays big enough to hit.
+    static let minWidth: CGFloat = 38
+    static let minHeight: CGFloat = 24
+
     var body: some View {
         Button(action: action) {
             Text(verbatim: selectedText ?? (slot.label ?? slot.id))
                 .font(codeFont.weight(.medium))
                 .foregroundStyle(chipForeground)
+                .lineLimit(1)
+                .fixedSize(horizontal: true, vertical: false)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 3)
+                // Operators and other one-character choices ("*", "?", "&")
+                // collapse to a sliver without this: too thin to read and too
+                // small to tap comfortably.
+                .frame(minWidth: SlotChip.minWidth, minHeight: SlotChip.minHeight)
                 .background(chipBackground, in: RoundedRectangle(cornerRadius: 6))
                 .overlay(
                     RoundedRectangle(cornerRadius: 6)
@@ -141,7 +152,17 @@ struct ChoiceTray: View {
                     onSelect(choice)
                 } label: {
                     HStack {
-                        CodeText(source: choice.text)
+                        // An empty choice is a real answer: "no keyword here"
+                        // (private instead of `pub`, no `;`, no lifetime, no
+                        // return type). Rendering it as code shows a blank row,
+                        // so name it instead. 13 puzzles rely on this.
+                        if choice.text.trimmingCharacters(in: .whitespaces).isEmpty {
+                            Text("nothing")
+                                .font(.callout.italic())
+                                .foregroundStyle(.secondary)
+                        } else {
+                            CodeText(source: choice.text)
+                        }
                         Spacer()
                         if choice.id == selectedChoiceId {
                             Image(systemName: "checkmark")

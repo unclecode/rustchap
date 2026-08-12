@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.011",
+  "version": 1,
+  "title": "Raw and Byte Strings",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types",
+    "slice"
+  ],
+  "difficulty": 1,
+  "goal": "Write raw string literals and binary byte slices.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from references/strings"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You use raw string literals in Python or C++ to avoid escaping backslashes. Rust provides raw string literals and byte string literals for the same purpose."
+      },
+      {
+        "kind": "code",
+        "code": "let raw = r\"C:\\notes\\new\";\nlet bytes = b\"hello\";",
+        "caption": "Raw strings ignore escapes. Byte strings are byte slices."
+      },
+      {
+        "kind": "prose",
+        "text": "Raw strings start with `r\"` or `r#\"` and end with `\"` or `\"#`. You add matching hashes on both ends when your text contains double quote characters."
+      },
+      {
+        "kind": "code",
+        "code": "let json = r#\"{\"status\": \"ok\"}\"#;\nlet header: &[u8] = b\"HTTP/1.1\";",
+        "caption": "Hashes allow inner quotes. The b prefix makes a byte slice."
+      },
+      {
+        "kind": "prose",
+        "text": "A byte string literal `b\"...\"` creates a byte slice `&[u8]`. It contains raw ASCII bytes rather than UTF-8 `&str` text."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Write raw string literals and binary byte slices."
+}

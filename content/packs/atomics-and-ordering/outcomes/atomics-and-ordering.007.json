@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "atomics-and-ordering.007",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "4a8d07491f70801f9e3c86f0410670f301a2f4505d479f09db41ee6aa3a4f3da": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 2 arguments but 4 arguments were supplied",
+          "slot_ids": [
+            "op"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `is_ok` found for unit type `()` in the current scope",
+          "slot_ids": [
+            "res"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "672f9567688b7b08d6b13b0a582ae207fdf3a999df352a575d7cdef201527cde": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 2 arguments but 4 arguments were supplied",
+          "slot_ids": [
+            "op"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `is_err` found for type `bool` in the current scope",
+          "slot_ids": [
+            "res"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6a65a5be9259f712bc566bf6bd82c1daceac6b74f10ea7d131d00964951fa2a6": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "75415deccfa26cd202c7993031b97ff14f95da5618d39f5e6817ca6fdd3d314b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 2 arguments but 4 arguments were supplied",
+          "slot_ids": [
+            "op"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `is_err` found for unit type `()` in the current scope",
+          "slot_ids": [
+            "res"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "aea9ab3c153a646876a561afa848bee4a702df08a360b34adf5535374b369c1a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 2 arguments but 4 arguments were supplied",
+          "slot_ids": [
+            "op"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `is_ok` found for type `bool` in the current scope",
+          "slot_ids": [
+            "res"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d42dfb3480de57d701d0d8a12364c62af55f93bf97ec94d9e3364bfaf0622662": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 2 arguments but 4 arguments were supplied",
+          "slot_ids": [
+            "op"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `unwrap_err` found for unit type `()` in the current scope",
+          "slot_ids": [
+            "res"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ddcf4837dd1e51d9c4025de356162d27e03e4f188bdff6865aaee5849dade5bb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 2 arguments but 4 arguments were supplied",
+          "slot_ids": [
+            "op"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `unwrap_err` found for type `bool` in the current scope",
+          "slot_ids": [
+            "res"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e80e5c78cffd76dcdb6dd0a98ac3f119e796e88b4fe4940c0ee380c7285507c4": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "f9e7c6df08a9b35dc0ef1bb39f7133c675472c274eaffe3a1d0e9994ac390375": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

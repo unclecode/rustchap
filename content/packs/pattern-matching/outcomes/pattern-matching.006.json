@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "pattern-matching.006",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "2cc98a8b8dc1cf76d2d1c322b441e277d98429b7f58eea1bd7b59a2a5af7fc1c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected field pattern, found `_`",
+          "slot_ids": [
+            "rest2"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "pattern does not mention field `latency_ms`",
+          "slot_ids": [
+            "rest1"
+          ],
+          "rust_code": "E0027"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "374967ea00062f07be4a2519880d6292c3c13ed278fcb7710df70ff9bde48a3e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected field pattern, found `_`",
+          "slot_ids": [
+            "rest1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected field pattern, found `_`",
+          "slot_ids": [
+            "rest2"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "45fe7e4a22136cfb56ec3a8d8048e1d2ea12dcb4a9310e6962aa61563707ab67": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected field pattern, found `_`",
+          "slot_ids": [
+            "rest1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "pattern does not mention field `latency_ms`",
+          "slot_ids": [
+            "rest2"
+          ],
+          "rust_code": "E0027"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "707f8322bd4893199ed9a248695e066a765b730b4fff3fc34b9ee711164222f7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected field pattern, found `_`",
+          "slot_ids": [
+            "rest2"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a65607819fe24565f1a2f295cddea3a7daee87a4f3e404adc4954399fa6c0e44": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    },
+    "b9982aa1ba2b62f5dcb4a964e817d1afb35303a0024575d58ccb23a6cf732683": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "pattern does not mention field `latency_ms`",
+          "slot_ids": [
+            "rest2"
+          ],
+          "rust_code": "E0027"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bdad2c917404eba4d47bf15aab91c526f00d1ac5678fdb25036b341ca149bdb9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "pattern does not mention field `latency_ms`",
+          "slot_ids": [
+            "rest1"
+          ],
+          "rust_code": "E0027"
+        },
+        {
+          "category": "compile_error",
+          "message": "pattern does not mention field `latency_ms`",
+          "slot_ids": [
+            "rest2"
+          ],
+          "rust_code": "E0027"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c52e1fd07f66dbc56d40d4ff528c88908bc62aad11bf7ac8408e983d058ea08b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected field pattern, found `_`",
+          "slot_ids": [
+            "rest1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fb1096d0fd89bb472c0eeb0bcd7d1b720560598df5be8f4e04fbb82964feb83e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "pattern does not mention field `latency_ms`",
+          "slot_ids": [
+            "rest1"
+          ],
+          "rust_code": "E0027"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

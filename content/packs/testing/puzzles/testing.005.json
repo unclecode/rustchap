@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "testing.005",
+  "version": 1,
+  "title": "Doc Tests and API Tests",
+  "track": "testing",
+  "concepts": [
+    "unit-testing",
+    "visibility"
+  ],
+  "difficulty": 1,
+  "goal": "Write executable documentation comments and integration tests.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Documentation Tests"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In Rust, code examples inside documentation comments double as executable tests. The test runner compiles and runs them automatically."
+      },
+      {
+        "kind": "code",
+        "code": "/// Adds one to a number.\n///\n/// ```\n/// assert_eq!(add_one(2), 3);\n/// ```\npub fn add_one(x: i32) -> i32 {\n    x + 1\n}",
+        "caption": "Doc comments use three slashes and triple backticks for code blocks."
+      },
+      {
+        "kind": "prose",
+        "text": "Doc tests act as external consumers of your crate API. They can only call items marked `pub`."
+      },
+      {
+        "kind": "prose",
+        "text": "Attempting to call a private function inside a doc test fails with compiler error `E0603`."
+      },
+      {
+        "kind": "code",
+        "code": "// tests/integration.rs\nuse my_crate::add_one;\n\n#[test]\nfn test_pub() {\n    assert_eq!(add_one(2), 3);\n}",
+        "caption": "Integration test files in tests/ can only access pub API items."
+      },
+      {
+        "kind": "prose",
+        "text": "Place integration tests in a root `tests/` directory. Use internal `#[cfg(test)]` modules for private implementation details."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Write executable documentation comments and integration tests."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "scoped-threads.gotcha.stack-borrowing",
+  "kind": "gotcha",
+  "title": "Borrowing stack data in scoped threads",
+  "concepts": [
+    "scoped-threads"
+  ],
+  "prompt": "Why can scoped threads borrow references from the parent stack without requiring Arc?",
+  "answer": "`thread::scope` guarantees that all spawned child threads finish and join before the scope function returns. Because no thread outlives the parent function frame, borrowing stack data remains memory safe.",
+  "schema_version": 1
+}

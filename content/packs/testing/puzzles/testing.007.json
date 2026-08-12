@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "testing.007",
+  "version": 1,
+  "title": "Result Assertions",
+  "track": "testing",
+  "concepts": [
+    "unit-testing"
+  ],
+  "difficulty": 2,
+  "goal": "Verify expected Result values inside test assertions.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Unit Tests"
+  },
+  "template": "fn validate_age(age: u32) -> Result<(), &'static str> {\n    if age >= 18 {\n        Ok(())\n    } else {\n        Err(\"underage\")\n    }\n}\n\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn check_underage() {\n        let res = validate_age(15);\n        ⟦slot1⟧!(res, ⟦slot2⟧);\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "assert",
+        "label": "macro name",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "assert_eq"
+          },
+          {
+            "id": "sl2",
+            "text": "assert"
+          },
+          {
+            "id": "sl3",
+            "text": "panic"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "Ok(())",
+        "label": "expected result",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Err(\"underage\")"
+          },
+          {
+            "id": "sl2",
+            "text": "Err(\"invalid\")"
+          },
+          {
+            "id": "sl3",
+            "text": "Ok(())"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_adult() {\n    assert!(validate_age(20).is_ok());\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Choose an assertion macro designed for equality comparisons.",
+    "Match the exact Result variant returned for an age under 18."
+  ],
+  "explanation": "`assert_eq!` compares two values and requires them to be equal. Passing `res` and `Err(\"underage\")` to `assert_eq!` verifies the returned `Result`. Plain `assert!` expects a `bool` condition as its first argument and fails with compiler error `E0308` when given a `Result`. Choosing `Ok(())` or `Err(\"invalid\")` causes assertion failures at runtime because `validate_age(15)` returns `Err(\"underage\")`."
+}

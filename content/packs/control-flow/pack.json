@@ -11,7 +11,15 @@
     "control-flow.004",
     "control-flow.005",
     "control-flow.006",
-    "control-flow.007"
+    "control-flow.007",
+    "control-flow.008",
+    "control-flow.009",
+    "control-flow.010",
+    "control-flow.011",
+    "control-flow.012",
+    "control-flow.013",
+    "control-flow.014",
+    "control-flow.015"
   ],
   "icon": "arrow.triangle.branch",
   "accent": "teal",

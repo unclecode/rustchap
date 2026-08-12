@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.013",
+  "version": 1,
+  "title": "C Layout and Pointer Arithmetic",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "ffi-basics",
+    "raw-pointers"
+  ],
+  "difficulty": 1,
+  "goal": "Understand C memory layout guarantees and raw pointer arithmetic.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Foreign Function Interface"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Rust reorders struct fields by default to optimize alignment. C compilers do not."
+      },
+      {
+        "kind": "code",
+        "code": "#[repr(C)]\nstruct Header {\n    version: u8,\n    flags: u16,\n}",
+        "caption": "The repr(C) attribute guarantees field order matches C."
+      },
+      {
+        "kind": "prose",
+        "text": "Raw pointer arithmetic with `ptr.add(n)` advances by `n` elements, not `n` bytes."
+      },
+      {
+        "kind": "code",
+        "code": "let data: [u32; 4] = [10, 20, 30, 40];\nlet ptr: *const u32 = data.as_ptr();\nlet val = unsafe { *ptr.add(1) };",
+        "caption": "add(1) steps forward by one u32 (4 bytes)."
+      },
+      {
+        "kind": "prose",
+        "text": "To step forward in raw byte counts, cast the pointer to `*const u8` first."
+      },
+      {
+        "kind": "code",
+        "code": "let byte_ptr = ptr as *const u8;\nlet b = unsafe { *byte_ptr.add(4) };",
+        "caption": "Casting to u8 pointer allows byte-level stepping."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand C memory layout guarantees and raw pointer arithmetic."
+}

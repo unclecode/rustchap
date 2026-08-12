@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "testing.006",
+  "version": 1,
+  "title": "Doc Test Visibility",
+  "track": "testing",
+  "concepts": [
+    "unit-testing",
+    "visibility"
+  ],
+  "difficulty": 2,
+  "goal": "Expose library functions properly so doc tests pass.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Documentation Tests"
+  },
+  "template": "pub mod math {\n    /// Calculates square of x.\n    ⟦slot1⟧ fn square(x: i32) -> i32 {\n        x * x\n    }\n}\n\n#[cfg(test)]\nmod tests {\n    use super::math;\n\n    #[test]\n    fn test_doc_example() {\n        ⟦slot2⟧;\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "pub",
+        "label": "visibility modifier",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "pub"
+          },
+          {
+            "id": "sl2",
+            "text": "/* private */"
+          },
+          {
+            "id": "sl3",
+            "text": "pub(self)"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "assert_eq!(math::square(4), 16)",
+        "label": "assertion statement",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "assert_eq!(math::square(4), 16)"
+          },
+          {
+            "id": "sl2",
+            "text": "assert_eq!(math::square(4), 0)"
+          },
+          {
+            "id": "sl3",
+            "text": "assert_eq!(math::square(\"4\"), 16)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_doc_target() {\n    assert_eq!(math::square(5), 25);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Doc tests compile as external consumers of your module or crate.",
+    "Select the visibility keyword that makes an item accessible outside its parent module."
+  ],
+  "explanation": "Documentation tests treat library code as external callers, requiring full `pub` visibility on items inside parent modules. Omitted visibility or `pub(self)` restricts access to `math` and produces compiler error `E0603` when called from outside `math`. Comparing `square(4)` to `0` fails assertion evaluation, and passing a string produces `E0308` type mismatch."
+}

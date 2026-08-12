@@ -1,0 +1,11 @@
+{
+  "id": "raw-pointers.syntax.raw-pointer-types",
+  "kind": "syntax",
+  "title": "Raw pointer type syntax",
+  "concepts": [
+    "raw-pointers"
+  ],
+  "prompt": "How do you write immutable and mutable raw pointer types in Rust?",
+  "answer": "Immutable raw pointers use the syntax `*const T`. Mutable raw pointers use the syntax `*mut T`. Unlike references, raw pointers carry no lifetime annotations and do not enforce aliasing rules automatically.",
+  "schema_version": 1
+}

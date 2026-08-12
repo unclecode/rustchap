@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.010",
+  "version": 1,
+  "title": "Clean the Lines",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types",
+    "iterator"
+  ],
+  "difficulty": 2,
+  "goal": "Assemble a pipeline that trims lines and filters out empty ones.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from references/strings"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn clean_lines(raw: &str) -> Vec<String> {\n    raw",
+    "blocks": [
+      {
+        "id": "lines",
+        "text": "\n        .lines()"
+      },
+      {
+        "id": "trim",
+        "text": "\n        .map(|line| line.trim())"
+      },
+      {
+        "id": "filter",
+        "text": "\n        .filter(|&line| !line.is_empty())"
+      },
+      {
+        "id": "to_string",
+        "text": "\n        .map(|line| line.to_string())"
+      },
+      {
+        "id": "collect",
+        "text": "\n        .collect()"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn cleans_input() {\n    let input = \"  first \\n   \\n second  \\n\";\n    assert_eq!(clean_lines(input), vec![\"first\", \"second\"]);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "Trimming must happen before filtering so whitespace lines become empty.",
+    "The filter pattern `|&line|` requires slice references before conversion to `String`."
+  ],
+  "explanation": "`lines()` yields string slices for each line. Mapping `trim()` strips surrounding whitespace while keeping item references as `&str`. Filtering with `|&line| !line.is_empty()` pattern matches `&&str` and discards empty slices. Mapping `to_string()` converts remaining slices into owned `String` values. Finally `collect()` gathers them into `Vec<String>`."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "drop-trait.gotcha.drop-reference",
+  "kind": "gotcha",
+  "title": "Passing a reference to std::mem::drop",
+  "concepts": [
+    "drop-trait",
+    "borrow"
+  ],
+  "prompt": "What happens when you pass a reference like `&T` into `std::mem::drop`?",
+  "answer": "Passing a reference to `std::mem::drop` only drops the reference itself, which is a no-op. The underlying value `T` remains alive and unchanged because `std::mem::drop` takes ownership of its argument.",
+  "schema_version": 1
+}

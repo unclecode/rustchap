@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.009",
+  "version": 1,
+  "title": "Resource Handles and Unlocking Early",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait",
+    "smart-pointers"
+  ],
+  "difficulty": 1,
+  "goal": "Learn how RAII guards release locks automatically and how to drop them early.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Rust uses RAII (Resource Acquisition Is Initialization). Types like MutexGuard hold locks and release them when dropped."
+      },
+      {
+        "kind": "code",
+        "code": "use std::sync::Mutex;\n\nfn add_one(m: &Mutex<u32>) {\n    let mut guard = m.lock().unwrap();\n    *guard += 1;\n    // guard drops here, unlocking Mutex\n}",
+        "caption": "The mutex lock is tied to the scope of guard."
+      },
+      {
+        "kind": "prose",
+        "text": "Holding a lock across long operations causes contention. You can unlock early using block scopes or `std::mem::drop`."
+      },
+      {
+        "kind": "code",
+        "code": "fn work(m: &Mutex<u32>) {\n    let mut guard = m.lock().unwrap();\n    *guard += 1;\n    std::mem::drop(guard);\n    // long computation runs unlocked\n}",
+        "caption": "std::mem::drop releases the mutex lock immediately."
+      },
+      {
+        "kind": "prose",
+        "text": "Restricting resource lifetimes prevents deadlocks and reduces memory footprint in performance critical loops."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn how RAII guards release locks automatically and how to drop them early."
+}

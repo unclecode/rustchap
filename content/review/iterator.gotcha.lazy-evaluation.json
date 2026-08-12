@@ -1,0 +1,11 @@
+{
+  "id": "iterator.gotcha.lazy-evaluation",
+  "kind": "gotcha",
+  "title": "Iterators do no work until consumed",
+  "concepts": [
+    "iterator"
+  ],
+  "prompt": "What happens when you call map or filter on an iterator without calling a consuming method like collect or sum?",
+  "answer": "Iterator adapters like `map` and `filter` are completely lazy. They build a new iterator struct without processing any elements. Work only happens when a consumer like `collect`, `sum`, or a `for` loop drives the iteration.",
+  "schema_version": 1
+}

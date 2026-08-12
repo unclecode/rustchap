@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.005",
+  "version": 1,
+  "title": "Converting Error Types",
+  "track": "errors-that-travel",
+  "concepts": [
+    "error-propagation",
+    "error-trait"
+  ],
+  "difficulty": 1,
+  "goal": "Understand how the try operator uses the From trait to convert error types automatically.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Error Handling"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Functions often execute multiple operations that return different error types. Reading a file produces `io::Error`, while parsing numbers produces `ParseIntError`."
+      },
+      {
+        "kind": "code",
+        "code": "use std::io;\n\nfn read_num() -> Result<i32, io::Error> {\n    let s = \"42\";\n    let n: i32 = s.parse()?;\n    Ok(n)\n}",
+        "caption": "Fails to compile because types do not match."
+      },
+      {
+        "kind": "prose",
+        "text": "The `?` operator expands to `return Err(From::from(err))` on error. It automatically converts error types if an implementation of `From` exists."
+      },
+      {
+        "kind": "code",
+        "code": "use std::num::ParseIntError;\n\nenum MyErr { Parse(ParseIntError) }\n\nimpl From<ParseIntError> for MyErr {\n    fn from(e: ParseIntError) -> Self {\n        MyErr::Parse(e)\n    }\n}",
+        "caption": "Implementing From enables automatic conversion with the try operator."
+      },
+      {
+        "kind": "prose",
+        "text": "If no `From` implementation exists, you can convert errors manually using `.map_err()`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand how the try operator uses the From trait to convert error types automatically."
+}

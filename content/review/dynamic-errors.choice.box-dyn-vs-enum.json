@@ -1,0 +1,11 @@
+{
+  "id": "dynamic-errors.choice.box-dyn-vs-enum",
+  "kind": "choice",
+  "title": "When to use Box dyn Error versus custom",
+  "concepts": [
+    "dynamic-errors"
+  ],
+  "prompt": "When should an application use Box<dyn `std::error::Error`> instead of a custom error enum?",
+  "answer": "Box<dyn Error> works best in binary applications and scripts where callers only report or display errors rather than matching on specific failure cases. Custom enums are better for public library APIs because they preserve exact error variants for caller pattern matching.",
+  "schema_version": 1
+}

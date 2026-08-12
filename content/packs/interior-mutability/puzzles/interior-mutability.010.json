@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.010",
+  "version": 1,
+  "title": "Swap Non-Copy Cells",
+  "track": "interior-mutability",
+  "concepts": [
+    "interior-mutability",
+    "string-types"
+  ],
+  "difficulty": 2,
+  "goal": "Exchange non-Copy values inside two Cell wrappers without taking or copying.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Cell methods"
+  },
+  "template": "use std::cell::Cell;\n\ntype NameCell = Cell<String>;\n\nfn swap_names(\n    a: &NameCell,\n    b: &NameCell,\n) {\n    a.⟦slot1⟧(⟦slot2⟧);\n}\n\nfn main() {\n    let n1 = Cell::new(\"A\".into());\n    let n2 = Cell::new(\"B\".into());\n    swap_names(&n1, &n2);\n    println!(\"{}, {}\",\n        n1.take(), n2.take());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "set",
+        "label": "cell operation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "swap"
+          },
+          {
+            "id": "sl2",
+            "text": "set"
+          },
+          {
+            "id": "sl3",
+            "text": "replace"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "b.get()",
+        "label": "argument",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "b"
+          },
+          {
+            "id": "sl2",
+            "text": "b.get()"
+          },
+          {
+            "id": "sl3",
+            "text": "b.take()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn swaps_strings() {\n    let a = Cell::new(String::from(\"hello\"));\n    let b = Cell::new(String::from(\"world\"));\n    swap_names(&a, &b);\n    assert_eq!(a.take(), \"world\");\n    assert_eq!(b.take(), \"hello\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "String does not implement Copy, so get() is not available on Cell<String>.",
+    "Cell provides a dedicated method to swap contents between two Cell instances directly."
+  ],
+  "explanation": "`Cell::swap` exchanges inner values directly in memory through shared references, working for any type regardless of whether it implements `Copy`. `b.get()` produces `E0599` because `String` is not `Copy`. Using `a.set(b.take())` or `a.replace(b.take())` moves the string out of `b` into `a`, but leaves `b` containing an empty string instead of completing the exchange."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "structs.gotcha.mut-self-required",
+  "kind": "gotcha",
+  "title": "Mutating struct fields in a method",
+  "concepts": [
+    "structs"
+  ],
+  "prompt": "Why does mutating a field inside a method require `&mut self` instead of `&self`?",
+  "answer": "Rust strictly enforces that shared references `&T` are immutable. To modify any field of a struct inside a method, the method must take an exclusive mutable borrow `&mut self`.",
+  "schema_version": 1
+}

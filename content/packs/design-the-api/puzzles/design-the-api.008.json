@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.008",
+  "version": 1,
+  "title": "Compile-Time Guarantees with Type-State",
+  "track": "design-the-api",
+  "concepts": [
+    "api-design",
+    "typestate-pattern"
+  ],
+  "difficulty": 1,
+  "goal": "Understand how to encode object state into generic type parameters.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from API Guidelines: Type Safety"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In object-oriented code, calling `send()` on an unauthenticated connection throws a runtime error. In Rust, you can make invalid states impossible to represent."
+      },
+      {
+        "kind": "code",
+        "code": "struct Unchecked;\nstruct Verified;\n\nstruct Token<State> {\n    raw: String,\n    state: State,\n}",
+        "caption": "Zero-sized structs act as type markers for state."
+      },
+      {
+        "kind": "prose",
+        "text": "You implement methods only for specific states. Method calls transition the object from one generic state type to another by consuming `self`."
+      },
+      {
+        "kind": "code",
+        "code": "impl Token<Unchecked> {\n    fn verify(self) -> Token<Verified> {\n        Token { raw: self.raw, state: Verified }\n    }\n}",
+        "caption": "Consuming self moves ownership to the new type-state."
+      },
+      {
+        "kind": "prose",
+        "text": "Attempting to call methods on the wrong state causes compile error `E0599`. The compiler prevents state bugs before your program runs."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand how to encode object state into generic type parameters."
+}

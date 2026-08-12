@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.error.refcell-already-borrowed",
+  "kind": "error",
+  "title": "RefCell already borrowed panic",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "What causes a runtime panic with the message already borrowed: BorrowMutError when using RefCell?",
+  "answer": "This panic occurs when calling borrow_mut() while another Ref or RefMut guard is still active in the same thread. Drop existing borrow guards or limit their lexical scope before requesting exclusive access.",
+  "schema_version": 1
+}

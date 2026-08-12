@@ -1,0 +1,11 @@
+{
+  "id": "lifetime.rule.purpose-of-annotations",
+  "kind": "rule",
+  "title": "Purpose of generic lifetime parameter ann...",
+  "concepts": [
+    "lifetime"
+  ],
+  "prompt": "What do lifetime annotations like `'a` actually tell the Rust compiler?",
+  "answer": "Lifetime annotations describe how the lifetime of output references relates to input references. They do not change how long any value lives at runtime. They allow the borrow checker to enforce memory safety across function boundaries.",
+  "schema_version": 1
+}

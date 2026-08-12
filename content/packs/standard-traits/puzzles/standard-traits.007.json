@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.007",
+  "version": 1,
+  "title": "Constructing Options with Default",
+  "track": "standard-traits",
+  "concepts": [
+    "standard-traits"
+  ],
+  "difficulty": 3,
+  "goal": "Choose the most efficient method for falling back to default values.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Standard Traits"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "lazy_default",
+        "code": "fn get_name(opt: Option<String>) -> String {\n    opt.unwrap_or_default()\n}"
+      },
+      {
+        "id": "fn_in_unwrap_or",
+        "code": "fn get_name(opt: Option<String>) -> String {\n    opt.unwrap_or(String::default)\n}"
+      },
+      {
+        "id": "eager_in_unwrap_or_else",
+        "code": "fn get_name(opt: Option<String>) -> String {\n    opt.unwrap_or_else(String::default())\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_get_name() {\n    assert_eq!(get_name(Some(String::from(\"alice\"))), \"alice\");\n    assert_eq!(get_name(None), \"\");\n}"
+    ],
+    "metrics": [
+      "clippy_warning_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clippy_warning_count",
+    "secondary": [],
+    "fluent": {
+      "clippy_warning_count": 1
+    },
+    "optimal": {
+      "clippy_warning_count": 0
+    }
+  },
+  "hints": [
+    "unwrap_or expects an owned value T, while unwrap_or_else expects a closure/function FnOnce() `-> T`.",
+    "unwrap_or_default cleanly constructs the Default value lazily without taking closure arguments."
+  ],
+  "explanation": "`opt.unwrap_or_default()` is the correct and idiomatic way to lazily construct a default value when an `Option` is `None`. `unwrap_or` expects an owned value, so passing `String::default` (a function item) fails type checking. `unwrap_or_else` expects a closure or function, so passing `String::default()` (an evaluated `String`) also causes a type error."
+}

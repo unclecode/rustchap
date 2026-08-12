@@ -5,12 +5,23 @@
   "description": "Cell, RefCell, and mutation through shared references - the runtime contract.",
   "toolchain": "1.97.1",
   "order": [
-    "interior-mutability.004",
     "interior-mutability.001",
     "interior-mutability.002",
-    "interior-mutability.003"
+    "interior-mutability.003",
+    "interior-mutability.004",
+    "interior-mutability.005",
+    "interior-mutability.006",
+    "interior-mutability.007",
+    "interior-mutability.008",
+    "interior-mutability.009",
+    "interior-mutability.010",
+    "interior-mutability.011",
+    "interior-mutability.012",
+    "interior-mutability.013",
+    "interior-mutability.014",
+    "interior-mutability.015"
   ],
   "icon": "lock.rotation",
   "accent": "brown",
-  "level": "advanced"
+  "level": "systems"
 }

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "remove-the-clone.012",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "7c4343c45d254319098ceaa4034e7b6e8884d6468a7747729c2d4e65dd339ff0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot return value referencing local variable `s`",
+          "slot_ids": [
+            "to_string_each"
+          ],
+          "rust_code": "E0515"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a0d88c39e6ef2c5e0da457642a6eeebba3c6706b348497f3bfe147c726b14d1c": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "a88c2714b4ca1daf7394e1c8c5f8e71315a795e63f7306ae8892cfc7cefacfc0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot return value referencing local variable `cloned`",
+          "slot_ids": [
+            "cloned"
+          ],
+          "rust_code": "E0515"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

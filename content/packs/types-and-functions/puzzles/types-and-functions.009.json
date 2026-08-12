@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.009",
+  "version": 1,
+  "title": "Sum Every Element",
+  "track": "types-and-functions",
+  "concepts": [
+    "primitive-types",
+    "loops"
+  ],
+  "difficulty": 2,
+  "goal": "Order the loop blocks to iterate over an array.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Arrays"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn sum_array(numbers: [i32; 4]) -> i32 {\n    let mut total = 0;",
+    "blocks": [
+      {
+        "id": "loop_header",
+        "text": "\n    for num in numbers {"
+      },
+      {
+        "id": "loop_body",
+        "text": "\n        total += num;"
+      },
+      {
+        "id": "loop_end",
+        "text": "\n    }"
+      }
+    ],
+    "fixed_suffix": "\n    total\n}\n\nfn main() {\n    println!(\"{}\", sum_array([1, 2, 3, 4]));\n}\n"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn sums_elements() {\n    assert_eq!(sum_array([1, 2, 3, 4]), 10);\n    assert_eq!(sum_array([10, 20, 30, 40]), 100);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 1
+    },
+    "optimal": {
+      "explicit_loops": 1
+    }
+  },
+  "hints": [
+    "The `for` keyword introduces element iteration.",
+    "Place the addition statement inside the curly braces of the loop."
+  ],
+  "explanation": "Rust `for` loops iterate directly over array elements without needing manual index counters. Placing `total += num;` inside the block accumulates each item in sequence before returning `total`."
+}

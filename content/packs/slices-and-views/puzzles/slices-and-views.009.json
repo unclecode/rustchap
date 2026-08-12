@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views.009",
+  "version": 1,
+  "title": "Invalidated View",
+  "track": "slices-and-views",
+  "concepts": [
+    "slice",
+    "borrow",
+    "mutability"
+  ],
+  "difficulty": 2,
+  "goal": "Compute the sum of a vector and append it without violating borrow rules.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from borrowck"
+  },
+  "template": "fn add_sum(v: &mut Vec<i32>) {\n    let view = &v[..];\n    let total: i32 = view.iter().sum();\n    ⟦push_stmt⟧;\n    println!(\"len: {}\", ⟦len_expr⟧);\n}\n\nfn main() {\n    let mut nums = vec![1, 2, 3];\n    add_sum(&mut nums);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "push_stmt",
+        "original": "v.push(total)",
+        "label": "push statement",
+        "choices": [
+          {
+            "id": "pu1",
+            "text": "v.push(total)"
+          },
+          {
+            "id": "pu2",
+            "text": "view.push(total)"
+          },
+          {
+            "id": "pu3",
+            "text": "v.push(view.sum())"
+          }
+        ]
+      },
+      {
+        "id": "len_expr",
+        "original": "view.len()",
+        "label": "length expression",
+        "choices": [
+          {
+            "id": "le1",
+            "text": "v.len()"
+          },
+          {
+            "id": "le2",
+            "text": "view.len()"
+          },
+          {
+            "id": "le3",
+            "text": "view.capacity()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn appends_sum() {\n    let mut v = vec![1, 2, 3];\n    add_sum(&mut v);\n    assert_eq!(v, vec![1, 2, 3, 6]);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Using view.len() on the last line keeps the immutable slice borrow active across v.push().",
+    "Query the vector v directly after pushing so the view borrow ends before mutation."
+  ],
+  "explanation": "Pushing to a vector can reallocate heap memory, which would leave slice views pointing to freed memory. Using view.len() after v.push() extends the immutable view borrow across a mutable push, triggering E0502. Querying v.len() allows the compiler to drop the view borrow immediately after calculating total. Slices carry no push or capacity methods, so view.push() and view.capacity() fail with E0599."
+}

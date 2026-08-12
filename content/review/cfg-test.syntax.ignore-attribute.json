@@ -1,0 +1,11 @@
+{
+  "id": "cfg-test.syntax.ignore-attribute",
+  "kind": "syntax",
+  "title": "Ignoring slow unit tests",
+  "concepts": [
+    "cfg-test"
+  ],
+  "prompt": "How do you prevent a specific unit test from running during standard cargo test execution?",
+  "answer": "Mark it with `#[ignore]` and it is skipped unless you run `cargo test -- --ignored`. You can give a reason in the attribute, which prints in the test output so nobody has to guess why it was skipped.",
+  "schema_version": 1
+}

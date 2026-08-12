@@ -1,0 +1,12 @@
+{
+  "id": "atomic-types.gotcha.shared-reference-mutation",
+  "kind": "gotcha",
+  "title": "Mutating atomic types through shared refe...",
+  "concepts": [
+    "atomic-types",
+    "interior-mutability"
+  ],
+  "prompt": "How do atomic types allow mutation when held behind a shared reference `&T`?",
+  "answer": "Atomic types use interior mutability backed by CPU atomic instructions. They bypass standard borrow rules safely because hardware prevents data races during updates.",
+  "schema_version": 1
+}

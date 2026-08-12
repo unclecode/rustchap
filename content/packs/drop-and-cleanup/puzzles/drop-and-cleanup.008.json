@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.008",
+  "version": 1,
+  "title": "Dropping Values vs References",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait",
+    "borrow"
+  ],
+  "difficulty": 2,
+  "goal": "Distinguish between dropping owned values and dropping references.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "template": "use std::sync::atomic::{AtomicBool, Ordering};\n\nstatic DROPPED: AtomicBool = AtomicBool::new(false);\n\nstruct Handle;\nimpl Drop for Handle {\n    fn drop(&mut self) {\n        DROPPED.store(true, Ordering::SeqCst);\n    }\n}\n\nfn check_drop(h: Handle) -> bool {\n    ⟦drop_op⟧;\n    DROPPED.load(Ordering::SeqCst)\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "drop_op",
+        "original": "std::mem::drop(&h)",
+        "label": "the drop operation",
+        "choices": [
+          {
+            "id": "dr1",
+            "text": "std::mem::drop(h)"
+          },
+          {
+            "id": "dr2",
+            "text": "std::mem::drop(&h)"
+          },
+          {
+            "id": "dr3",
+            "text": "h.drop()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_dropped() {\n    DROPPED.store(false, Ordering::SeqCst);\n    assert!(check_drop(Handle));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "References do not own the value they point to.",
+    "`std::mem::drop` on a reference only drops the reference, which does nothing."
+  ],
+  "explanation": "`std::mem::drop(h)` takes ownership of `h` and drops it immediately, setting `DROPPED` to `true`. Passing `&h` only drops the borrow reference, leaving `h` alive until function exit so `DROPPED` remains `false`. `h.drop()` fails with `E0040`."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "threads-basics.gotcha.move-keyword-required",
+  "kind": "gotcha",
+  "title": "Why threads require move closures",
+  "concepts": [
+    "threads-basics"
+  ],
+  "prompt": "Why does `thread::spawn` usually require a move closure when capturing local variables?",
+  "answer": "A spawned thread can run for an arbitrary duration and outlive the stack frame where it was created. Using move transfers ownership of captured variables so the thread does not hold dangling references.",
+  "schema_version": 1
+}

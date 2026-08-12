@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.003",
+  "version": 1,
+  "title": "Channels Across Threads",
+  "track": "threads-and-channels",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "difficulty": 2,
+  "goal": "Clone a channel sender to let multiple threads send messages to a single receiver.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Senders and Receivers"
+  },
+  "template": "use std::sync::mpsc;\nuse std::thread;\n\nfn sum_two_threads() -> i32 {\n    let (tx, rx) = mpsc::channel();\n    let tx2 = tx.⟦slot1⟧;\n\n    thread::spawn(move || {\n        tx.send(10).unwrap();\n    });\n\n    thread::spawn(move || {\n        tx2.send(20).unwrap();\n    });\n\n    ⟦slot2⟧ + rx.recv().unwrap()\n}\n\nfn main() {\n    println!(\"{}\", sum_two_threads());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "borrow()",
+        "label": "sender duplication method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "clone()"
+          },
+          {
+            "id": "sl2",
+            "text": "copy()"
+          },
+          {
+            "id": "sl3",
+            "text": "borrow()"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "rx.recv()",
+        "label": "receiving message",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "rx.recv().unwrap()"
+          },
+          {
+            "id": "sl2",
+            "text": "rx.read().unwrap()"
+          },
+          {
+            "id": "sl3",
+            "text": "rx.recv()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn sums_messages() {\n    assert_eq!(sum_two_threads(), 30);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "mpsc stands for Multi-Producer Single-Consumer. Sender implements Clone to allow multiple thread producers.",
+    "rx.recv() returns a Result that must be unwrapped before adding to another integer."
+  ],
+  "explanation": "`tx.clone()` creates a second `Sender` endpoint so both spawned threads can move an owned sender into their respective closures. `Sender` does not implement `Copy` or have a `borrow()` method, triggering `E0599`. `rx.recv()` blocks until a message arrives and returns `Result<i32, RecvError>`, which needs `.unwrap()` to yield an `i32`. Using `rx.recv()` directly without `.unwrap()` causes `E0369` for adding `Result` and `i32`. `rx.read()` does not exist on `Receiver`."
+}

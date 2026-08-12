@@ -46,6 +46,9 @@ jobs:
       - name: Review cards
         run: python3 tools/validate-review.py
 
+      - name: Writing style
+        run: python3 tools/check-style.py
+
   ios-build:
     runs-on: macos-latest
     steps:

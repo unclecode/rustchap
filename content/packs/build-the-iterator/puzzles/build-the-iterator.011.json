@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "build-the-iterator.011",
+  "version": 1,
+  "title": "Numbered Items",
+  "track": "build-the-iterator",
+  "concepts": [
+    "iterator",
+    "slice"
+  ],
+  "difficulty": 2,
+  "goal": "Pair each slice element with its zero-based index to create formatted strings.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Comprehensive Rust: Iterators"
+  },
+  "template": "fn indexed_labels(items: &[&str]) -> Vec<String> {\n    items\n        ⟦iter_source⟧\n        .map(⟦closure_arg⟧)\n        .collect()\n}\n\nfn main() {\n    let labels = indexed_labels(&[\"apple\", \"banana\"]);\n    println!(\"{labels:?}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "iter_source",
+        "original": ".enumerate()",
+        "label": "iterator creation",
+        "choices": [
+          {
+            "id": "it1",
+            "text": ".iter().enumerate()"
+          },
+          {
+            "id": "it2",
+            "text": ".enumerate()"
+          },
+          {
+            "id": "it3",
+            "text": ".iter()"
+          }
+        ]
+      },
+      {
+        "id": "closure_arg",
+        "original": "|(item, i)| format!(\"{i}: {item}\")",
+        "label": "closure argument",
+        "choices": [
+          {
+            "id": "cl1",
+            "text": "|(i, item)| format!(\"{i}: {item}\")"
+          },
+          {
+            "id": "cl2",
+            "text": "|(item, i)| format!(\"{i}: {item}\")"
+          },
+          {
+            "id": "cl3",
+            "text": "|i, item| format!(\"{i}: {item}\")"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn formats_with_indices() {\n    assert_eq!(indexed_labels(&[\"apple\", \"banana\"]), vec![\"0: apple\", \"1: banana\"]);\n}",
+      "#[test]\nfn handles_empty() {\n    assert_eq!(indexed_labels(&[]), Vec::<String>::new());\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "A slice does not have an enumerate method directly. You must turn it into an iterator first.",
+    "enumerate yields a tuple where the index comes first: (index, item)."
+  ],
+  "explanation": "`.iter().enumerate()` turns the slice into an iterator that yields `(usize, &&str)` pairs with the index in the first position. The closure `|(i, item)|` destructures this single tuple argument correctly. Calling `.enumerate()` directly on a slice fails with `E0599` because slices do not implement `Iterator`. Reversing the tuple pattern `|(item, i)|` places the item string where the integer index was expected, swapping the output to `\"apple: 0\"`. Writing `|i, item|` without parentheses tries to take two separate closure arguments instead of one tuple, triggering `E0593`."
+}

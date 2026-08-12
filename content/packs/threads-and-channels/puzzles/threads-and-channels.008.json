@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.008",
+  "version": 1,
+  "title": "Borrow Stack Data in Threads",
+  "track": "threads-and-channels",
+  "concepts": [
+    "scoped-threads",
+    "borrow"
+  ],
+  "difficulty": 2,
+  "goal": "Refactor thread spawning to borrow local slices instead of requiring static ownership.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Scoped Threads"
+  },
+  "template": "use std::thread;\n\nfn sum_halves(numbers: &[i32]) -> i32 {\n    let mid = numbers.len() / 2;\n    let (left, right) = numbers.split_at(mid);\n\n    ⟦slot1⟧(|s| {\n        let h1 = ⟦slot2⟧(|| left.iter().sum::<i32>());\n        let h2 = s.spawn(|| right.iter().sum::<i32>());\n        h1.join().unwrap() + h2.join().unwrap()\n    })\n}\n\nfn main() {\n    let nums = vec![1, 2, 3, 4, 5, 6];\n    println!(\"{}\", sum_halves(&nums));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "thread::spawn",
+        "label": "the scoping function",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "thread::scope"
+          },
+          {
+            "id": "sl2",
+            "text": "thread::spawn"
+          },
+          {
+            "id": "sl3",
+            "text": "std::panic::catch_unwind"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "thread::spawn",
+        "label": "the spawn method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "s.spawn"
+          },
+          {
+            "id": "sl2",
+            "text": "thread::spawn"
+          },
+          {
+            "id": "sl3",
+            "text": "thread::scope"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn calculates_sum() {\n    let nums = vec![1, 2, 3, 4, 5, 6];\n    assert_eq!(sum_halves(&nums), 21);\n}",
+      "#[test]\nfn works_on_empty() {\n    assert_eq!(sum_halves(&[]), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Standard `thread::spawn` requires 'static closures, which cannot borrow local variables from sum_halves.",
+    "Use `thread::scope` to create a scope context s, then call s.spawn to borrow stack variables."
+  ],
+  "explanation": "`thread::scope` guarantees that all child threads finish before the function exits. Calling s.spawn on the scope handle allows threads to borrow local variables like left without taking ownership. Plain `thread::spawn` fails with E0373 because it requires captured references to be 'static."
+}

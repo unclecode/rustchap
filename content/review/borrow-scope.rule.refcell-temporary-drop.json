@@ -1,0 +1,11 @@
+{
+  "id": "borrow-scope.rule.refcell-temporary-drop",
+  "kind": "rule",
+  "title": "RefCell temporary drop in method chains",
+  "concepts": [
+    "borrow-scope"
+  ],
+  "prompt": "How does statement scope affect RefCell borrow flags during chained method calls?",
+  "answer": "Chained calls create temporary guards that drop as soon as the statement completes. This allows subsequent lines in the same function to borrow the RefCell again safely.",
+  "schema_version": 1
+}

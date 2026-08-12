@@ -1,0 +1,11 @@
+{
+  "id": "generics.rule.weakest-bound",
+  "kind": "rule",
+  "title": "Selecting exact generic trait bounds",
+  "concepts": [
+    "generics"
+  ],
+  "prompt": "How should you decide which trait bounds to declare on a generic parameter?",
+  "answer": "Examine what methods and operations the function body invokes on the parameter. Declare only the bounds required by those operations to keep the API as reusable as possible.",
+  "schema_version": 1
+}

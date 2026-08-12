@@ -1,0 +1,11 @@
+{
+  "id": "borrow.error.move-out-of-ref-match",
+  "kind": "error",
+  "title": "Error E0507 when matching references",
+  "concepts": [
+    "borrow"
+  ],
+  "prompt": "Why does writing mut in a match arm pattern on a shared reference trigger error E0507?",
+  "answer": "Writing mut in a pattern arm overrides match ergonomics and attempts to move the value by value. Moving a non-Copy value out of a reference breaks ownership rules. Omit mut to allow match ergonomics to borrow the inner fields.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "string-types.gotcha.indexing-by-integer",
+  "kind": "gotcha",
+  "title": "Indexing string by integer",
+  "concepts": [
+    "string-types"
+  ],
+  "prompt": "Why does Rust prevent indexing a String directly with an integer like s[0]?",
+  "answer": "Rust strings are UTF-8 encoded, so individual characters can take between one and four bytes. Direct integer indexing in constant time would be unsafe or misleading. You must use the chars iterator or range slicing with byte offsets.",
+  "schema_version": 1
+}

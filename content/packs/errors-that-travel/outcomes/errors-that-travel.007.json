@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "errors-that-travel.007",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "27a32045925dddff312b3f151c976d4b12924759f6a891e9cb14523c0aaff089": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `map` found for reference `&[&str]` in the current scope",
+          "slot_ids": [
+            "map"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "321821348d739e384f7b37ce2965541fb49a39bd3247357a2b6ce54523bb17ef": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0
+      },
+      "diagnostics": []
+    },
+    "34e13b656c5e01f18aefb597679cf00f51e5d34a6a25efaea56a5cb28171ef8d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `sum` found for reference `&[&str]` in the current scope",
+          "slot_ids": [
+            "sum"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "785468ba1f7e9dee36126debd06e2f2d41cdcc7126bb73ce78e5134bf0b128d2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [
+            "sum"
+          ],
+          "rust_code": "E0282"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a4c9b765a5dbdddb95c779873713d4e9a5a0ac37a4af450c9c86b522c1d8ed09": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `sum` found for reference `&[&str]` in the current scope",
+          "slot_ids": [
+            "sum"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e006fa29e23c2cee28dd67ece8386989e8a4801e34f1aec39ab2a21cc5e3d6fe": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `map` found for reference `&[&str]` in the current scope",
+          "slot_ids": [
+            "map"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

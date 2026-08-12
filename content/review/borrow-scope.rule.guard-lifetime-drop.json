@@ -1,0 +1,11 @@
+{
+  "id": "borrow-scope.rule.guard-lifetime-drop",
+  "kind": "rule",
+  "title": "RefCell Guard Lifetimes",
+  "concepts": [
+    "borrow-scope"
+  ],
+  "prompt": "How long does a borrow guard created by borrow() or borrow_mut() remain active?",
+  "answer": "The guard remains active until the variable holding it goes out of scope or is explicitly dropped. Temporary guards created without binding to a variable drop at the end of their statement.",
+  "schema_version": 1
+}

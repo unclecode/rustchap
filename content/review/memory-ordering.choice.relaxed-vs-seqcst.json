@@ -1,0 +1,11 @@
+{
+  "id": "memory-ordering.choice.relaxed-vs-seqcst",
+  "kind": "choice",
+  "title": "Choosing between Relaxed and SeqCst order...",
+  "concepts": [
+    "memory-ordering"
+  ],
+  "prompt": "When is it safe to use `Ordering::Relaxed` instead of `Ordering::SeqCst`?",
+  "answer": "Use `Relaxed` when an atomic variable acts as an isolated counter and does not synchronize access to other memory. Use `SeqCst` when you require a single global execution order across multiple atomic variables.",
+  "schema_version": 1
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits",
+  "title": "Standard Traits",
+  "description": "From, Into, Default, Display, and the operator traits.",
+  "toolchain": "1.97.1",
+  "order": [
+    "standard-traits.001",
+    "standard-traits.002",
+    "standard-traits.003",
+    "standard-traits.004",
+    "standard-traits.005",
+    "standard-traits.006",
+    "standard-traits.007",
+    "standard-traits.008",
+    "standard-traits.009",
+    "standard-traits.010",
+    "standard-traits.011",
+    "standard-traits.012",
+    "standard-traits.013",
+    "standard-traits.014",
+    "standard-traits.015"
+  ],
+  "icon": "shippingbox.fill",
+  "accent": "mint",
+  "level": "everyday"
+}

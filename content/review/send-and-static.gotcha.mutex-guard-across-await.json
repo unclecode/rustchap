@@ -1,0 +1,12 @@
+{
+  "id": "send-and-static.gotcha.mutex-guard-across-await",
+  "kind": "gotcha",
+  "title": "Holding MutexGuard across await points",
+  "concepts": [
+    "send-and-static",
+    "async-await"
+  ],
+  "prompt": "Why does holding a standard MutexGuard across an await point make the surrounding future non-Send?",
+  "answer": "`std::sync::MutexGuard` does not implement Send because some operating systems require a mutex to be unlocked on the same thread that locked it. A multi-threaded async runtime can resume a future on a different thread after an await point. If a MutexGuard is alive across that yield, the future cannot be moved across threads and fails the Send bound.",
+  "schema_version": 1
+}

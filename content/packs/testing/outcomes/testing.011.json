@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "testing.011",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "06101d5a8eb12c4705039228cb4a4ec73427ab266981fa05929328fd772ae6fb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3647c852d0fcdec310628979e63792904177f9c7e9e744443447ec91debea4ac": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `u16: Termination` is not satisfied",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "42a1b3e0d4c02acc5bbb9e45058c0c0c3cfa772c095a3d77f7b04164ef936dee": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `u16: Termination` is not satisfied",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "46aa1e3dabbc9e659cb1f6e98d688fbfe2b4fda6f712ad921a0fd158e77fc339": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5b9de330e5855743f8d6e0bab27bc8873fe510507f63bc5d2f2d8d4086522cdf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `u16: Termination` is not satisfied",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6136c52401f3a8a6054f633aa3a2e6a9f48cb3707069fc8c619f9a8b1a9e517c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a217ecbae1323f25a641770643676a4d260e9f8a345eb3016053e3e6582ecef3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ba33b56b9eb071fdb3bc601cc61e890d5e9fcda20be2b118dc139308f3c7e1a1": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "eab8e860d6372b4684b06a2747e08be59029b32f766822f321236f09ff41e3c4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the `?` operator can only be used in a function that returns `Result` or `Option` (or another type that implements `FromResidual`)",
+          "slot_ids": [
+            "op"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

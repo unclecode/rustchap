@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.007",
+  "version": 1,
+  "title": "Pipeline Error Transformation",
+  "track": "errors-that-travel",
+  "concepts": [
+    "error-propagation",
+    "iterator"
+  ],
+  "difficulty": 2,
+  "goal": "Order iterator and result transformation calls to parse strings and accumulate results.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from comprehensive-rust"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "use std::num::ParseIntError;\n\nfn sum_strs(\n    inputs: &[&str],\n) -> Result<i32, ParseIntError> {\n    inputs",
+    "blocks": [
+      {
+        "id": "iter",
+        "text": "        .iter()"
+      },
+      {
+        "id": "map",
+        "text": "\n        .map(|s| s.parse::<i32>())"
+      },
+      {
+        "id": "sum",
+        "text": "\n        .sum()"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_sum() {\n    assert_eq!(sum_strs(&[\"10\", \"20\", \"30\"]), Ok(60));\n    assert!(sum_strs(&[\"10\", \"abc\"]).is_err());\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "Start by creating an iterator over the input slices.",
+    "Map each slice using parse, then collect or sum into a single Result."
+  ],
+  "explanation": "First, `.iter()` produces an iterator over string slices. Next, `.map()` converts each slice into a `Result<i32, ParseIntError>`. Finally, `.sum()` accumulates the iterator into a single `Result<i32, ParseIntError>`, short-circuiting on the first error encountered."
+}

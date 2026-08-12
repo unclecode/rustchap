@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.011",
+  "version": 1,
+  "title": "Sync Channels and Backpressure",
+  "track": "threads-and-channels",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "difficulty": 1,
+  "goal": "Understand how bounded channels block senders when full.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Bounded Channels"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You use `mpsc::sync_channel` when you need backpressure between threads. Standard `mpsc::channel` is unbounded and grows until memory runs out."
+      },
+      {
+        "kind": "code",
+        "code": "use std::sync::mpsc;\n\nlet (tx, rx) = mpsc::sync_channel(2);\ntx.send(1).unwrap();\ntx.send(2).unwrap();",
+        "caption": "sync_channel takes a maximum buffer capacity."
+      },
+      {
+        "kind": "prose",
+        "text": "When the buffer is full, calling `send` blocks the current thread until the receiver calls `recv` to clear space."
+      },
+      {
+        "kind": "prose",
+        "text": "Passing zero creates a rendezvous channel where every `send` blocks immediately until a receiving thread calls `recv`."
+      },
+      {
+        "kind": "code",
+        "code": "let (tx, rx) = mpsc::sync_channel(0);\n// tx.send(1) waits for rx.recv()",
+        "caption": "Zero capacity forces both threads to meet at the transfer point."
+      },
+      {
+        "kind": "prose",
+        "text": "Handling thread synchronization with async tasks uses a different channel type covered in the async deck later."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand how bounded channels block senders when full."
+}

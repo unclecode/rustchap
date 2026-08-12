@@ -1,0 +1,11 @@
+{
+  "id": "static-lifetime.gotcha.string-borrow-not-static",
+  "kind": "gotcha",
+  "title": "Borrowing local Strings as static references",
+  "concepts": [
+    "static-lifetime"
+  ],
+  "prompt": "Why does borrowing a local `String` variable with `&` fail when a function requires a `'static` reference?",
+  "answer": "A standard borrow `&s` ties the reference lifetime to the local stack frame where `s` lives. When the function ends, `s` is dropped, making any remaining reference dangling. String literals exist in binary storage, but dynamic strings require `Box::leak` to acquire `'static` lifetime.",
+  "schema_version": 1
+}

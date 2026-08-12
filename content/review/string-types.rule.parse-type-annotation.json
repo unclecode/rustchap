@@ -1,0 +1,11 @@
+{
+  "id": "string-types.rule.parse-type-annotation",
+  "kind": "rule",
+  "title": "Type annotations required for parse",
+  "concepts": [
+    "string-types"
+  ],
+  "prompt": "Why does calling `s.parse()` without a type annotation produce compiler error `E0282`?",
+  "answer": "`parse()` is generic over any target type that implements `FromStr`. Rust cannot infer whether you want an integer or a boolean, so you must annotate the variable type or use the turbofish form `s.parse::<i32>()`.",
+  "schema_version": 1
+}

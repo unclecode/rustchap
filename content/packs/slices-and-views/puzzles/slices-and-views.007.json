@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views.007",
+  "version": 1,
+  "title": "Slice Parameters",
+  "track": "slices-and-views",
+  "concepts": [
+    "slice",
+    "borrow",
+    "api-design"
+  ],
+  "difficulty": 1,
+  "goal": "Accept slice references in functions so callers can pass arrays, vectors, or subslices.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from references/slices"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In other languages you pass dynamic arrays everywhere. Beginners in Rust often write functions that demand `&Vec<T>` or `&String`."
+      },
+      {
+        "kind": "code",
+        "code": "fn sum(s: &[i32]) -> i32 {\n    s.iter().sum()\n}",
+        "caption": "&[i32] accepts arrays, vectors, and slices."
+      },
+      {
+        "kind": "prose",
+        "text": "Demanding `&Vec<T>` forces callers to allocate a heap vector even when they already have a fixed array. Accepting `&[T]` works for all three storage types."
+      },
+      {
+        "kind": "prose",
+        "text": "Rust automatically converts `&Vec<T>` to `&[T]` through deref coercion. The same principle applies to text. Prefer `&str` over `&String` in function signatures."
+      },
+      {
+        "kind": "code",
+        "code": "let arr = [1, 2, 3];\nlet vec = vec![1, 2, 3];\nsum(&arr);\nsum(&vec);",
+        "caption": "One signature handles stack arrays and heap vectors."
+      },
+      {
+        "kind": "prose",
+        "text": "Accepting slice references keeps your API flexible without forcing callers to make unwanted heap allocations."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Accept slice references in functions so callers can pass arrays, vectors, or subslices."
+}

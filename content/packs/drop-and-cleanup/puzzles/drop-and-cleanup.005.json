@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.005",
+  "version": 1,
+  "title": "Implementing the Drop Trait",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait",
+    "copy"
+  ],
+  "difficulty": 1,
+  "goal": "Learn how to implement custom drop logic and understand trait rules.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "To add custom destruction behavior to a type, implement the `Drop` trait from the standard library."
+      },
+      {
+        "kind": "code",
+        "code": "struct FileHandle(u32);\n\nimpl Drop for FileHandle {\n    fn drop(&mut self) {\n        println!(\"Closing handle {}\", self.0);\n    }\n}",
+        "caption": "The drop method takes &mut self to mutate or clean up state."
+      },
+      {
+        "kind": "prose",
+        "text": "Types that implement `Copy` cannot implement `Drop`. `Copy` types are duplicated implicitly by copying bits. Tracking individual destructors for copied memory is impossible."
+      },
+      {
+        "kind": "code",
+        "code": "// Error E0184:\n// Copy and Drop cannot be combined\n#[derive(Clone, Copy)]\nstruct Bad(u32);\n\nimpl Drop for Bad {\n    fn drop(&mut self) {}\n}",
+        "caption": "The compiler rejects types that are both Copy and Drop."
+      },
+      {
+        "kind": "prose",
+        "text": "When a struct drops, Rust runs its `Drop::drop` method first. After that method completes, Rust automatically drops each struct field."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn how to implement custom drop logic and understand trait rules."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "hashmap-basics.gotcha.str-lookup-owned-key",
+  "kind": "gotcha",
+  "title": "Querying HashMap with String Keys",
+  "concepts": [
+    "hashmap-basics",
+    "string-types"
+  ],
+  "prompt": "Why can you call map.get(\"key\") with a string slice on a HashMap<String, V> without allocating?",
+  "answer": "`HashMap` uses the `Borrow` trait for lookups, allowing `&str` references to query keys stored as owned `String`. You do not need to convert string slices with `.to_string()` just to look up values.",
+  "schema_version": 1
+}

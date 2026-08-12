@@ -1,0 +1,12 @@
+{
+  "id": "iterator.rule.collect-results",
+  "kind": "rule",
+  "title": "Collecting iterator of Results",
+  "concepts": [
+    "iterator",
+    "error-propagation"
+  ],
+  "prompt": "What happens when you collect an iterator of Result items into a single Result<Vec<T>, E>?",
+  "answer": "Collecting an iterator of Results processes items until it hits the first Err. If an Err occurs, iteration stops early and collect returns that Err. If all items succeed, collect returns Ok containing the gathered vector of values.",
+  "schema_version": 1
+}

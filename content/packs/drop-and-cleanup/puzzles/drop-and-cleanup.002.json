@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.002",
+  "version": 1,
+  "title": "Order of Destruction",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait"
+  ],
+  "difficulty": 1,
+  "goal": "Ensure values drop in the exact sequence expected by callers.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "template": "use std::sync::atomic::{AtomicU32, Ordering};\n\nstatic LOG: AtomicU32 = AtomicU32::new(0);\n\nstruct Tracker(u32);\nimpl Drop for Tracker {\n    fn drop(&mut self) {\n        let cur = LOG.load(Ordering::SeqCst);\n        LOG.store(cur * 10 + self.0, Ordering::SeqCst);\n    }\n}\n\nfn run_trace() -> u32 {\n    LOG.store(0, Ordering::SeqCst);\n    {\n        let _a = Tracker(1);\n        let _b = Tracker(2);\n        ⟦stmt⟧;\n    }\n    LOG.load(Ordering::SeqCst)\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "stmt",
+        "original": "std::mem::drop(_a)",
+        "label": "the early drop statement",
+        "choices": [
+          {
+            "id": "st1",
+            "text": "std::mem::drop(_a)"
+          },
+          {
+            "id": "st2",
+            "text": "()"
+          },
+          {
+            "id": "st3",
+            "text": "std::mem::drop(_b)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_order() {\n    assert_eq!(run_trace(), 12);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "By default, `_b` drops before `_a`, resulting in 21.",
+    "To make `_a` drop first, transfer its ownership early."
+  ],
+  "explanation": "`_b` normally drops before `_a` because local variables are destroyed in reverse declaration order. Calling `std::mem::drop(_a)` forces `_a` to drop first (appending 1), and then `_b` drops at the scope boundary (appending 2) to produce 12. Leaving `()` or dropping `_b` early both result in 21, which fails the expectation."
+}

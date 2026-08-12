@@ -1,0 +1,13 @@
+{
+  "id": "zero-copy.rule.iterator-map-as-str",
+  "kind": "rule",
+  "title": "Converting string references in iterators",
+  "concepts": [
+    "zero-copy",
+    "iterator",
+    "string-types"
+  ],
+  "prompt": "How do you convert an iterator over `&String` into an iterator over `&str` without allocating?",
+  "answer": "Use `.map(|s| s.as_str())` or `String::as_str` in the iterator pipeline. This yields lightweight borrowed slices referencing the existing heap buffers. Calling `.cloned()` or `.to_string()` instead copies byte contents into newly allocated strings.",
+  "schema_version": 1
+}

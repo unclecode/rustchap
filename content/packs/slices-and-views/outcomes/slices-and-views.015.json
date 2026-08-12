@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "slices-and-views.015",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "26971e510b39f42e46295ddc402f87fe1b9b0beb299ee90a59938c52af47e963": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `items[_]` as mutable more than once at a time",
+          "slot_ids": [
+            "action"
+          ],
+          "rust_code": "E0499"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2a535503e4065ea79021760f15ed9d1212a1b186e8f1eef1f9df71dd9e04942f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "45b66393284c9bbaf1b1cb27b09b45bdd088b9f2fb0040808b0f4df23273834a": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "56d9185cb23ca285cf166e4fbde071d5bc0c85fc2b8084e6e8409760fadd8854": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of type `[String]`, a non-copy slice",
+          "slot_ids": [
+            "action"
+          ],
+          "rust_code": "E0508"
+        },
+        {
+          "category": "move_error",
+          "message": "cannot move out of type `[String]`, a non-copy slice",
+          "slot_ids": [
+            "action"
+          ],
+          "rust_code": "E0508"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6995496ab555d616cdec4b5c5faeecf4d9960a7328c128634ffd39a9539fec08": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "move_error",
+          "message": "cannot move out of type `[String]`, a non-copy slice",
+          "slot_ids": [
+            "action"
+          ],
+          "rust_code": "E0508"
+        },
+        {
+          "category": "move_error",
+          "message": "cannot move out of type `[String]`, a non-copy slice",
+          "slot_ids": [
+            "action"
+          ],
+          "rust_code": "E0508"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6e8d7f6d921be42f143b2073d4712b98038cc18241de3dc6d80106ab56c6175f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7e266475cc9a012d0039f44aa660cb8e866b04a13931c89bfa7c227ede71a731": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "move_error",
+          "message": "cannot move out of type `[String]`, a non-copy slice",
+          "slot_ids": [
+            "action"
+          ],
+          "rust_code": "E0508"
+        },
+        {
+          "category": "move_error",
+          "message": "cannot move out of type `[String]`, a non-copy slice",
+          "slot_ids": [
+            "action"
+          ],
+          "rust_code": "E0508"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e79aae771602273c7e2d107fdcc7f326cfd2df6b832f8d51fff5009fb6921f49": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `items[_]` as mutable more than once at a time",
+          "slot_ids": [
+            "action"
+          ],
+          "rust_code": "E0499"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f6251d7afabaafc0643e4a788a9ef340676a7b50cdae561257b518d8775c79f0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `items[_]` as mutable more than once at a time",
+          "slot_ids": [
+            "action"
+          ],
+          "rust_code": "E0499"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

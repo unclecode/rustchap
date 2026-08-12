@@ -1,0 +1,12 @@
+{
+  "id": "raw-pointers.gotcha.converting-to-references",
+  "kind": "gotcha",
+  "title": "Converting raw pointers to references",
+  "concepts": [
+    "raw-pointers",
+    "borrow"
+  ],
+  "prompt": "What hidden risk exists when converting a raw pointer into a Rust reference?",
+  "answer": "Turning a raw pointer into a reference asserts that all borrowing invariants hold. The compiler assumes no other alias can mutate the memory while the reference lives. Violating this assumption causes immediate undefined behavior.",
+  "schema_version": 1
+}

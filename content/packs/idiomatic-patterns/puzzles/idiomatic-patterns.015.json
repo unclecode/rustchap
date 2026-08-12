@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.015",
+  "version": 1,
+  "title": "Compile-Time State Pipeline",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "builder-pattern",
+    "typestate-pattern"
+  ],
+  "difficulty": 3,
+  "goal": "Chain typestate transitions in order to build a configured HTTP request.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Typestate Pattern"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "struct NoUrl;\nstruct HasUrl;\n\nstruct RequestBuilder<S> {\n    url: String,\n    state: S,\n}\n\nimpl RequestBuilder<NoUrl> {\n    fn new() -> Self {\n        RequestBuilder {\n            url: String::new(),\n            state: NoUrl,\n        }\n    }\n    fn url(self, u: &str)\n        -> RequestBuilder<HasUrl>\n    {\n        RequestBuilder {\n            url: u.to_string(),\n            state: HasUrl,\n        }\n    }\n}\n\nimpl RequestBuilder<HasUrl> {\n    fn header(mut self, k: &str, v: &str)\n        -> Self\n    {\n        self.url.push_str(\" \");\n        self.url.push_str(k);\n        self.url.push_str(\"=\");\n        self.url.push_str(v);\n        self\n    }\n    fn send(self) -> String {\n        format!(\"GET {}\", self.url)\n    }\n}\n\nfn fetch_site() -> String {\n    RequestBuilder::new()",
+    "blocks": [
+      {
+        "id": "b1",
+        "text": "\n        .url(\"https://rust.lang\")"
+      },
+      {
+        "id": "b2",
+        "text": "\n        .header(\"Auth\", \"123\")"
+      },
+      {
+        "id": "b3",
+        "text": "\n        .send()"
+      }
+    ],
+    "fixed_suffix": "\n}\n\nfn main() {\n    let res = fetch_site();\n    assert_eq!(\n        res,\n        \"GET https://rust.lang Auth=123\"\n    );\n}\n"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_fetch() {\n    assert_eq!(fetch_site(), \"GET https://rust.lang Auth=123\");\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "The unconfigured `RequestBuilder<NoUrl>` must transition to `HasUrl` before headers can be added or requests sent.",
+    "`send()` consumes the builder and returns a `String`, so it must be the final method in the pipeline."
+  ],
+  "explanation": "The builder transitions from `RequestBuilder<NoUrl>` to `RequestBuilder<HasUrl>` when `.url()` is called. Calling `.header()` or `.send()` before `.url()` fails with `E0599` because those methods are only implemented for `RequestBuilder<HasUrl>`. Calling `.header()` after `.send()` fails with `E0599` because `.send()` returns a `String` which does not have builder methods."
+}

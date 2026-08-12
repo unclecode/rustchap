@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "drop-and-cleanup.002",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "5b2d357df296a5976700130ad257b59f83a2901e55541a5ec409413d75305903": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6bb872aa8cbf274c6ce251b290328df6886c4fbaa3babfa8326e8a509775922f": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e94d8d1a2ead11216c6e1f13d72c7db2cd7983973ca1eb040c4436d17341045f": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

@@ -227,6 +227,51 @@ carrying a value) and *Matching a Value* (`match` on plain values, no fall-throu
 exhaustiveness, `match` as an expression, and an explicit note that destructuring enums comes
 later). New concepts: `loops`, `match-basics`. This deck is the voice reference for the rebuild.
 
+**SIX-LEVEL STRUCTURE SHIPPED (2026-08-07)**: the whole curriculum shape is now visible in the
+app, with unbuilt decks showing as "Soon / In preparation" (the same placeholder pattern used
+for planned decks in phase 6). 30 decks across 6 levels: Foundations 6 · Ownership 5 ·
+Everyday Rust 6 · Abstraction 4 · Systems 5 · Mastery 4. Nine planned-empty decks:
+drop-and-cleanup, errors-that-travel, modules-and-visibility, standard-traits,
+threads-and-channels, idiomatic-patterns, testing, atomics-and-ordering, ffi-and-raw-pointers.
+Two app changes were needed: `ContentStore.visibleLevels` now keeps levels whose decks are all
+planned (otherwise Mastery vanished), and `Progression.isUnlocked` filters empty decks out of
+the gating chain (otherwise a planned deck mid-level — threads-and-channels sits between
+interior-mutability and async-and-send — would permanently block everything after it).
+NOTE: the Structs/Enums split from the plan is NOT applied yet; `structs-and-enums` stays
+whole until its content is rebuilt.
+
+**CURRICULUM BUILT OUT (2026-08-08): 477 nodes across 31 decks, every deck at the
+15-node bar** (18 for move-or-borrow, repair-the-lifetime, threads-and-channels,
+async-and-send). Up from 119 nodes that morning. Review cards went 42 -> 528 across 64
+concepts. Total model spend ~$2.
+
+Pipeline: `tools/generate-deck.py` drafts a deck from the Comprehensive Rust extract plus
+the curriculum map, converts through `tools/authoring.py`, compiles every submission with
+the linter, and feeds failures back for repair rounds. `tools/repair-content.py` does the
+same for already-committed content. Model comparison on 2026-08-07 (same prompt, same
+deck): **gemini-3.6-flash beat gemini-3.1-pro-preview and gpt-5.6-sol** on verified-puzzle
+rate at a quarter to an eighth of the cost, so Flash is the default for a measured reason.
+
+Hard-won rules now encoded in the tooling:
+
+- **A puzzle is broken iff it has zero solved OR not exactly one optimal.** Counting
+  `solved` is wrong: `best-solution` offers three programs that all run, and any
+  minimal-edit scored on `clone_count` accepts the cloning answer as solved-but-worse.
+  Getting this wrong sent 25 verified puzzles for "repair" and damaged them; git restored
+  every one, which is why content stays uncommitted until reviewed.
+- **Deliberate ties live in `ALLOWED_TIES`** in `tools/audit-progression.py`, and
+  `repair-content.py` parses that same list so there is one source, not two.
+- **Node numbering comes from the deck's own pack.json**, never the manifest. A stale
+  manifest count numbered new nodes over existing ones, duplicating ids and crashing the
+  app on a duplicate dictionary key.
+- **Test execution times out after 10s** (`crates/evaluator`). A concurrency puzzle can
+  deadlock by design — the mpsc "forgot to drop the sender" answer blocks forever — and
+  without the bound the linter waited with it, orphaning linters that burned CPU for hours.
+- **Large decks chunk at 6 nodes** and auto-split on truncation; 12-18 node decks overran
+  the output budget otherwise.
+- Style and review-card checks run **inside** the repair loop, imported from
+  `tools/check-style.py` so the generator cannot drift from the rule CI enforces.
+
 **Proposed build approach** (awaiting user go): manifest-driven and reproducible —
 `content/curriculum.json` declaring every planned deck (level, source segments, concepts,
 status); `tools/extract-source.py` pulling teaching points from the cloned CR repo into

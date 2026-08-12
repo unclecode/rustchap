@@ -1,0 +1,12 @@
+{
+  "id": "unions.rule.reading-requires-unsafe",
+  "kind": "rule",
+  "title": "Union field access rules",
+  "concepts": [
+    "unions",
+    "unsafe-rust"
+  ],
+  "prompt": "What safety requirement applies when constructing and reading Rust unions?",
+  "answer": "Constructing a union and writing to its fields are safe operations. Reading a field from a union requires an unsafe block because Rust cannot check which field is currently active.",
+  "schema_version": 1
+}

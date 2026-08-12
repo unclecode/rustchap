@@ -1,0 +1,11 @@
+{
+  "id": "mpsc-channels.rule.recv-blocking-behavior",
+  "kind": "rule",
+  "title": "When rx.recv unblocks or errors",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "prompt": "What causes rx.recv to unblock, and when does it return an Err?",
+  "answer": "It unblocks and returns Ok(val) when a message arrives in the channel. It returns an Err when all Sender handles have been dropped and no messages remain.",
+  "schema_version": 1
+}

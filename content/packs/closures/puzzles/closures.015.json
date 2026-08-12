@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "closures.015",
+  "version": 1,
+  "title": "Pipeline with Closures",
+  "track": "closures",
+  "concepts": [
+    "closures",
+    "iterator"
+  ],
+  "difficulty": 2,
+  "goal": "Arrange the iterator pipeline to filter short words and sum the remaining lengths.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from google/comprehensive-rust: closures exercise"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn total_long_lengths(words: &[&str]) -> usize {\n    words",
+    "blocks": [
+      {
+        "id": "iter",
+        "text": "\n        .iter()"
+      },
+      {
+        "id": "filter",
+        "text": "\n        .filter(|w| w.len() > 3)"
+      },
+      {
+        "id": "map",
+        "text": "\n        .map(|w| w.len())"
+      },
+      {
+        "id": "sum",
+        "text": "\n        .sum()"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn sums_long_word_lengths() {\n    let words = vec![\"apple\", \"cat\", \"banana\", \"dog\"];\n    assert_eq!(total_long_lengths(&words), 11);\n}",
+      "#[test]\nfn empty_words() {\n    assert_eq!(total_long_lengths(&[]), 0);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "A slice `&[&str]` must be converted into an iterator using `.iter()` before iterator methods can be called.",
+    "Filtering must operate on string slices before `.map()` converts each string into a `usize`."
+  ],
+  "explanation": "The pipeline must start with `.iter()` to produce an iterator of string slice references (`&&str`). Next, `.filter(|w| w.len() > 3)` keeps strings with more than 3 characters. After filtering, `.map(|w| w.len())` converts each string slice into a `usize`. Placing `.map` before `.filter` would turn elements into `usize`, causing `.filter` to fail with `E0599` because `usize` has no `.len()` method. Finally, `.sum()` consumes the iterator of integers."
+}

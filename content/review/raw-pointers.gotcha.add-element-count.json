@@ -1,0 +1,11 @@
+{
+  "id": "raw-pointers.gotcha.add-element-count",
+  "kind": "gotcha",
+  "title": "Pointer offset uses element count not bytes",
+  "concepts": [
+    "raw-pointers"
+  ],
+  "prompt": "How does pointer arithmetic with ptr.add(n) compute the new memory address?",
+  "answer": "The add method offsets the pointer by n elements of type T, multiplying n by the element size. To step by raw byte counts, you must first cast the pointer to a byte pointer like *const u8.",
+  "schema_version": 1
+}

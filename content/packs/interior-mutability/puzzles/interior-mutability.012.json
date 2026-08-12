@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.012",
+  "version": 1,
+  "title": "Projecting a Borrow Guard",
+  "track": "interior-mutability",
+  "concepts": [
+    "interior-mutability",
+    "string-types"
+  ],
+  "difficulty": 2,
+  "goal": "Return a Ref guard targeting a string field using `Ref::map`.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Interior Mutability: Ref::map"
+  },
+  "template": "use std::cell::{Ref, RefCell};\n\nstruct Data {\n    value: String,\n}\n\nfn get_val(c: &RefCell<Data>)\n    -> Ref<str>\n{\n    let guard = c.⟦slot1⟧();\n    Ref::map(guard, |d| ⟦slot2⟧)\n}\n\nfn main() {\n    let cell = RefCell::new(Data {\n        value: String::from(\"rust\"),\n    });\n    println!(\"{}\", get_val(&cell));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "borrow",
+        "label": "borrow method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "borrow"
+          },
+          {
+            "id": "sl2",
+            "text": "borrow_mut"
+          },
+          {
+            "id": "sl3",
+            "text": "try_borrow_mut"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "&d.value",
+        "label": "field reference",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "&d.value[..]"
+          },
+          {
+            "id": "sl2",
+            "text": "&d.value"
+          },
+          {
+            "id": "sl3",
+            "text": "d.value.clone()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn retrieves_field_slice() {\n    let cell = RefCell::new(Data { value: String::from(\"hello\") });\n    assert_eq!(&*get_val(&cell), \"hello\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "`Ref::map` expects a shared Ref<T> guard, not a RefMut<T> or a Result.",
+    "The return type is Ref<str>, so the mapping closure must produce a string slice &str."
+  ],
+  "explanation": "`Ref::map` transforms a `Ref<Data>` into a `Ref<str>` by consuming the original guard and storing a reference to `&d.value[..]`. Using `borrow_mut()` produces a `RefMut` which cannot be passed to `Ref::map` (error `E0308`). Returning `&d.value` yields a `Ref<String>` instead of `Ref<str>`, which causes a type mismatch error `E0308`."
+}

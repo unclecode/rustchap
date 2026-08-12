@@ -1,0 +1,11 @@
+{
+  "id": "match-basics.gotcha.no-fallthrough",
+  "kind": "gotcha",
+  "title": "Fallthrough behavior in match arms",
+  "concepts": [
+    "match-basics"
+  ],
+  "prompt": "How does Rust control flow behave after executing a matching arm in a `match` expression?",
+  "answer": "Rust never falls through to the next arm. The matching arm executes and the entire `match` expression finishes without needing `break`.",
+  "schema_version": 1
+}

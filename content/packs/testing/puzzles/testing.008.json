@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "testing.008",
+  "version": 1,
+  "title": "Returning Result from Tests",
+  "track": "testing",
+  "concepts": [
+    "unit-testing"
+  ],
+  "difficulty": 1,
+  "goal": "Learn how tests can return Result<(), E> to use the ? operator.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Unit Tests"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Unit tests do not have to return `()`. They can also return `Result<(), E>` where `E` implements `std::fmt::Debug`."
+      },
+      {
+        "kind": "code",
+        "code": "#[test]\nfn test_parse() -> Result<(), String> {\n    let val: i32 = \"42\".parse()\n        .map_err(|e| e.to_string())?;\n    assert_eq!(val, 42);\n    Ok(())\n}",
+        "caption": "Use ? inside tests to fail automatically on Err."
+      },
+      {
+        "kind": "prose",
+        "text": "Returning `Result` lets you use the `?` operator directly in test functions. If an operation evaluates to `Err`, `?` exits early and `cargo test` reports the failure."
+      },
+      {
+        "kind": "prose",
+        "text": "A test that returns `Result` must explicitly return `Ok(())` as its final value. Returning a value inside `Ok` like `Ok(42)` is a compiler error because test runners expect unit `()`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn how tests can return Result<(), E> to use the ? operator."
+}

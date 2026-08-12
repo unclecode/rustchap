@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime.009",
+  "version": 1,
+  "title": "Unlinking Multiple Inputs",
+  "track": "repair-the-lifetime",
+  "concepts": [
+    "lifetime",
+    "elision",
+    "borrow"
+  ],
+  "difficulty": 1,
+  "goal": "Disentangle lifetimes when a function only borrows from one input.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 3 Afternoon: Lifetimes"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You use multiple lifetime parameters when a function borrows from several inputs independently."
+      },
+      {
+        "kind": "code",
+        "code": "fn first<'a, 'b>(\n    x: &'a str,\n    _y: &'b str,\n) -> &'a str {\n    x\n}",
+        "caption": "'a ties the output to x, while _y uses 'b."
+      },
+      {
+        "kind": "prose",
+        "text": "Giving both arguments the same lifetime parameter forces the compiler to treat both inputs as borrowed for as long as the returned reference lives."
+      },
+      {
+        "kind": "prose",
+        "text": "Giving `_y` a separate lifetime parameter `'b` lets the caller drop or mutate `_y` while keeping the reference to `x`."
+      },
+      {
+        "kind": "prose",
+        "text": "Rust requires you to specify this when elision cannot determine which input is being returned."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Disentangle lifetimes when a function only borrows from one input."
+}

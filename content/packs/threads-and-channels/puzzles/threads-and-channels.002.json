@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.002",
+  "version": 1,
+  "title": "Move Ownership to Thread",
+  "track": "threads-and-channels",
+  "concepts": [
+    "threads-basics"
+  ],
+  "difficulty": 1,
+  "goal": "Move a local variable into a thread closure and handle the join result.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Plain Threads"
+  },
+  "template": "use std::thread;\n\nfn calculate_length(s: String) -> usize {\n    let handle = thread::spawn(⟦slot1⟧|| {\n        s.len()\n    });\n    handle.join()⟦slot2⟧\n}\n\nfn main() {\n    let len = calculate_length(String::from(\"rust\"));\n    println!(\"{len}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": " ",
+        "label": "closure ownership keyword",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "move "
+          },
+          {
+            "id": "sl2",
+            "text": " "
+          },
+          {
+            "id": "sl3",
+            "text": "async "
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "?",
+        "label": "unwrap result method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": ".unwrap()"
+          },
+          {
+            "id": "sl2",
+            "text": "?"
+          },
+          {
+            "id": "sl3",
+            "text": ".expect_err(\"failed\")"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn measures_length() {\n    assert_eq!(calculate_length(String::from(\"hello\")), 5);\n    assert_eq!(calculate_length(String::from(\"\")), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Spawned threads may outlive the function scope, so borrowed references are not allowed.",
+    "`JoinHandle::join` returns a Result, which must be unwrapped to retrieve the inner value."
+  ],
+  "explanation": "Adding `move` forces the closure to take full ownership of `s`, satisfying the `'static` requirement for `thread::spawn`. Omitting `move` causes `E0373` because `s` is borrowed. `async` is invalid closure syntax here. `.join()` returns `Result<usize, Box<dyn Any>>`, so calling `.unwrap()` extracts the returned length `5`. Using `?` fails to compile (`E0277`) because `calculate_length` returns `usize`, not `Result`."
+}

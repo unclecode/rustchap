@@ -1,0 +1,11 @@
+{
+  "id": "elision.rule.three-elision-rules",
+  "kind": "rule",
+  "title": "How Lifetime Elision Works",
+  "concepts": [
+    "elision"
+  ],
+  "prompt": "How does the compiler determine missing output lifetimes when a function has multiple input parameters?",
+  "answer": "It checks if one parameter is `&self` or `&mut self` and assigns its lifetime to the output. If no `self` exists and multiple input references are present, elision fails with `E0106`.",
+  "schema_version": 1
+}

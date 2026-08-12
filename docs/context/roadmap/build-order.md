@@ -198,7 +198,12 @@ then content." Update the checkboxes as steps complete; this fragment is the liv
       eight real content gaps, proposed a six-level structure. Pilot deck **Control Flow**
       shipped (7 nodes, 45 verified submissions) and approved as the voice reference. Details
       in [curriculum](../foundation/curriculum.md).
-- [ ] CONTENT REBUILD (approach proposed 2026-08-07, awaiting go): manifest + authoring
+- [x] CONTENT REBUILD (done 2026-08-08): 477 nodes across 31 decks, every deck at the
+      15-node bar; review cards 42 -> 528. See [curriculum](../foundation/curriculum.md).
+- [x] Headless release pipeline (2026-08-08): distribution certificate and profile created
+      through the API, manual signing, `tools/release-testflight.py` ships a build with no
+      Xcode or browser. See [release](../architecture/release.md).
+- [ ] SUPERSEDED - CONTENT REBUILD (approach proposed 2026-08-07, awaiting go): manifest + authoring
       library + style checker, then re-level to six tiers → fix Foundations (split Structs &
       Enums, rewrite four lectures) → Everyday gaps (Modules, Errors That Travel, Standard
       Traits) → Systems gaps (Threads & Channels, Drop, deepen Async and Unsafe) → Mastery

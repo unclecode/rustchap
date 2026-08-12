@@ -75,7 +75,7 @@
     "The pattern names the variant AND binds its fields - the names must match what the arm's body uses.",
     "Swapping x and y compiles perfectly. The test knows where you clicked."
   ],
-  "explanation": "Patterns destructure: Event::Click(x, y) tests the variant and binds both fields in one stroke. The wrong-arity pattern is rejected outright (E0023), the unqualified Key(c) doesn't resolve without a use - but the swapped Event::Click(y, x) compiles and lies: positions are meaning, and only the test notices the click reported mirror-imaged. Patterns are checked for shape by the compiler; for truth, by you.",
+  "explanation": "Patterns destructure: `Event::Click(x, y)` tests the variant and binds both fields in one stroke. The wrong-arity pattern is rejected outright (E0023), the unqualified Key(c) doesn't resolve without a use - but the swapped `Event::Click(y, x)` compiles and lies: positions are meaning, and only the test notices the click reported mirror-imaged. Patterns are checked for shape by the compiler; for truth, by you.",
   "prerequisites": [],
   "source": {
     "origin": "rustlings",

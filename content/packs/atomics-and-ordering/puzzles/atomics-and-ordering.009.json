@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.009",
+  "version": 1,
+  "title": "Lock-Free Pop Pipeline",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "atomic-types",
+    "unsafe-rust"
+  ],
+  "difficulty": 3,
+  "goal": "Order the atomic instructions in a lock-free stack pop routine.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "use std::sync::atomic::AtomicPtr;\nuse std::sync::atomic::Ordering;\n\nstruct Node { val: i32, next: *mut Node }\n\nfn pop(h: &AtomicPtr<Node>) -> Option<i32> {\n    let mut c = h.load(Ordering::Acquire);\n    loop {\n        if c.is_null() { return None; }",
+    "blocks": [
+      {
+        "id": "read_next",
+        "text": "\n        let n = unsafe { (*c).next };"
+      },
+      {
+        "id": "cas_call",
+        "text": "\n        let r = h.compare_exchange_weak("
+      },
+      {
+        "id": "cas_args1",
+        "text": "\n            c, n, Ordering::AcqRel,"
+      },
+      {
+        "id": "cas_args2",
+        "text": "\n            Ordering::Acquire);"
+      },
+      {
+        "id": "cas_match",
+        "text": "\n        match r {\n            Ok(_) => break,\n            Err(x) => c = x,\n        }"
+      }
+    ],
+    "fixed_suffix": "\n    }\n    let val = unsafe { (*Box::from_raw(c)).val };\n    Some(val)\n}\n\nfn main() {\n    let node = Box::into_raw(Box::new(Node {\n        val: 42,\n        next: std::ptr::null_mut(),\n    }));\n    let head = AtomicPtr::new(node);\n    assert_eq!(pop(&head), Some(42));\n    assert_eq!(pop(&head), None);\n}\n"
+  },
+  "evaluation": {
+    "tests": [],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 1
+    },
+    "optimal": {
+      "explicit_loops": 1
+    }
+  },
+  "hints": [
+    "Read the next pointer from the current node before attempting the atomic swap.",
+    "The compare_exchange_weak parameters are expected value, new value, success ordering, and failure ordering."
+  ],
+  "explanation": "To pop a node safely, you must first dereference `c` to read `(*c).next`. Next, call `compare_exchange_weak` to update the head pointer from `c` to `n`. Matching on the result allows the loop to exit on `Ok(_)` or update `c` to the newly loaded pointer `x` on `Err(x)`. Reordering the blocks breaks variable scope or creates syntax errors."
+}

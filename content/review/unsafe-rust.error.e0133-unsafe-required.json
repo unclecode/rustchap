@@ -1,0 +1,11 @@
+{
+  "id": "unsafe-rust.error.e0133-unsafe-required",
+  "kind": "error",
+  "title": "Error E0133 calling unsafe code",
+  "concepts": [
+    "unsafe-rust"
+  ],
+  "prompt": "Why does the compiler emit error E0133, and how do you fix it?",
+  "answer": "Error E0133 occurs when performing an unsafe operation outside an unsafe block. To fix it, verify that the operation's safety preconditions are met. Then wrap the call inside an unsafe block to acknowledge responsibility.",
+  "schema_version": 1
+}

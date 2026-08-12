@@ -1,0 +1,11 @@
+{
+  "id": "borrow.rule.aliasing-rule",
+  "kind": "rule",
+  "title": "The Aliasing Rule",
+  "concepts": [
+    "borrow"
+  ],
+  "prompt": "What borrowing combinations are allowed for a single value at any given point in code?",
+  "answer": "You can have any number of shared references &T to a value, or exactly one exclusive mutable reference &mut T. You can never have both active at the same time.",
+  "schema_version": 1
+}

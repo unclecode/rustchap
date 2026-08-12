@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "closures.006",
+  "version": 1,
+  "title": "Calling a Stored Closure",
+  "track": "closures",
+  "concepts": [
+    "closures",
+    "structs"
+  ],
+  "difficulty": 2,
+  "goal": "Fix the trait bound and invocation syntax for a struct field closure.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Closures"
+  },
+  "template": "struct Validator<F> {\n    check: F,\n}\n\nimpl<F: ⟦bound⟧> Validator<F> {\n    fn validate(&self, val: i32) -> bool {\n        ⟦call_field⟧\n    }\n}\n\nfn main() {\n    let v = Validator { check: |x| x > 0 };\n    println!(\"{}\", v.validate(5));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "bound",
+        "original": "Fn(i32)",
+        "label": "closure trait bound",
+        "choices": [
+          {
+            "id": "bo1",
+            "text": "Fn(i32) -> bool"
+          },
+          {
+            "id": "bo2",
+            "text": "Fn(i32)"
+          },
+          {
+            "id": "bo3",
+            "text": "fn(i32) -> bool"
+          }
+        ]
+      },
+      {
+        "id": "call_field",
+        "original": "self.check(val)",
+        "label": "field invocation syntax",
+        "choices": [
+          {
+            "id": "ca1",
+            "text": "(self.check)(val)"
+          },
+          {
+            "id": "ca2",
+            "text": "self.check(val)"
+          },
+          {
+            "id": "ca3",
+            "text": "self.check.call(val)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn validates() {\n    let v = Validator { check: |x| x % 2 == 0 };\n    assert!(v.validate(4));\n    assert!(!v.validate(3));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rust separates method resolution from field lookup.",
+    "Wrap the field access in parentheses to evaluate the field before calling it, and specify the return type in the bound."
+  ],
+  "explanation": "`(self.check)(val)` parenthesizes the field access so Rust evaluates `self.check` first and then invokes it as a function. Writing `self.check(val)` causes `E0599` because the compiler searches for a method named `check` on `Validator`. `Fn(i32) -> bool` specifies both argument and return types. Omitting `-> bool` defaults the expected return type to `()`, causing type mismatch `E0308`."
+}

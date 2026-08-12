@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "testing.012",
+  "version": 1,
+  "title": "Assertions Need Traits",
+  "track": "testing",
+  "concepts": [
+    "unit-testing",
+    "standard-traits",
+    "cmp-traits"
+  ],
+  "difficulty": 2,
+  "goal": "Ensure custom types work with assert_eq! by deriving necessary traits.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Unit Tests"
+  },
+  "template": "#[derive(⟦traits⟧)]\nstruct Player {\n    id: u32,\n    hp: u32,\n}\n\nfn make_player(id: u32) -> Player {\n    Player { id, hp: 100 }\n}\n\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_player() {\n        let p = make_player(1);\n        ⟦assert_stmt⟧;\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "traits",
+        "original": "Clone",
+        "label": "derived traits",
+        "choices": [
+          {
+            "id": "tr1",
+            "text": "Debug, PartialEq"
+          },
+          {
+            "id": "tr2",
+            "text": "PartialEq"
+          },
+          {
+            "id": "tr3",
+            "text": "Clone"
+          }
+        ]
+      },
+      {
+        "id": "assert_stmt",
+        "original": "assert!(p)",
+        "label": "assertion statement",
+        "choices": [
+          {
+            "id": "as1",
+            "text": "assert_eq!(p, Player { id: 1, hp: 100 })"
+          },
+          {
+            "id": "as2",
+            "text": "assert_eq!(p, Player { id: 1, hp: 0 })"
+          },
+          {
+            "id": "as3",
+            "text": "assert!(p)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn check_player() {\n    let p = make_player(2);\n    assert_eq!(p.id, 2);\n    assert_eq!(p.hp, 100);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "assert_eq! needs to check equality and format values on failure.",
+    "Derive both Debug and PartialEq for struct types compared with assert_eq!."
+  ],
+  "explanation": "`assert_eq!` requires both `PartialEq` to compare values and `Debug` to format failure output. Omitting `Debug` causes compiler error `E0277`. Passing `assert!(p)` causes error `E0308` because `assert!` requires a boolean expression rather than a struct."
+}

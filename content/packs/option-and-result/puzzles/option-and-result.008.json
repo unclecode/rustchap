@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "option-and-result.008",
+  "version": 1,
+  "title": "Bridging Option and Result",
+  "track": "option-and-result",
+  "concepts": [
+    "option",
+    "error-propagation"
+  ],
+  "difficulty": 1,
+  "goal": "Convert an Option into a Result when a missing value counts as an error.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Option and Result"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Functions in Rust use `Option` for missing values and `Result` for operations that can fail. Sometimes an `Option` needs to become a `Result` so an error can propagate."
+      },
+      {
+        "kind": "code",
+        "code": "let name = opt.ok_or(\"missing\")?;\n",
+        "caption": "ok_or converts None into an Err variant."
+      },
+      {
+        "kind": "prose",
+        "text": "`ok_or` turns `Some(v)` into `Ok(v)` and `None` into `Err(e)`. Once converted, the `?` operator can return early if the value was missing."
+      },
+      {
+        "kind": "prose",
+        "text": "If creating the error value allocates memory or takes work, use `ok_or_else` with a closure instead."
+      },
+      {
+        "kind": "code",
+        "code": "let user = opt.ok_or_else(|| {\n    format!(\"user {} missing\", id)\n})?;\n",
+        "caption": "ok_or_else evaluates the error lazily."
+      },
+      {
+        "kind": "prose",
+        "text": "Converting errors between different failure types is covered in the next section."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Convert an Option into a Result when a missing value counts as an error."
+}

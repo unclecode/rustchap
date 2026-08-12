@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime.013",
+  "version": 1,
+  "title": "Fixing Elision Ambiguity",
+  "track": "repair-the-lifetime",
+  "concepts": [
+    "elision",
+    "lifetime"
+  ],
+  "difficulty": 2,
+  "goal": "Disambiguate return lifetime when elision rule two fails due to multiple inputs.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 3 Afternoon: Lifetimes"
+  },
+  "template": "fn extract⟦g⟧(\n    _p: &str,\n    target: ⟦t⟧,\n) -> &'a str {\n    &target[..3]\n}\n\nfn main() {\n    let p = String::from(\"key\");\n    let t = String::from(\"12345\");\n    let res = extract(&p, &t);\n    println!(\"{res}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "g",
+        "original": "",
+        "label": "generic lifetime declaration",
+        "choices": [
+          {
+            "id": "g1",
+            "text": "<'a>"
+          },
+          {
+            "id": "g2",
+            "text": ""
+          },
+          {
+            "id": "g3",
+            "text": "<'b>"
+          }
+        ]
+      },
+      {
+        "id": "t",
+        "original": "&str",
+        "label": "target parameter type",
+        "choices": [
+          {
+            "id": "t1",
+            "text": "&'a str"
+          },
+          {
+            "id": "t2",
+            "text": "&str"
+          },
+          {
+            "id": "t3",
+            "text": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn extracts_prefix() {\n    let p = String::from(\"key\");\n    let t = String::from(\"12345\");\n    assert_eq!(extract(&p, &t), \"123\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The return type requires lifetime 'a.",
+    "Declare 'a on the function and apply it to target."
+  ],
+  "explanation": "With two input references, elision rule two cannot decide which parameter is returned, so returning `&'a str` requires declaring `<'a>` and binding `target: &'a str`. Leaving `<'a>` off produces undeclared lifetime error `E0261`. Leaving `target` as `&str` causes lifetime mismatch `E0621` because `target` gets an anonymous lifetime separate from `'a`. Passing `String` causes type mismatch `E0308`."
+}

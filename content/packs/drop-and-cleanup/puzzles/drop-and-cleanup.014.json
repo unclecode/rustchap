@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.014",
+  "version": 1,
+  "title": "Replacing State Before Drop",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait",
+    "standard-traits"
+  ],
+  "difficulty": 1,
+  "goal": "Learn how `std::mem::take` enables taking field ownership in `Drop`.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In languages like C++ or Java, destructors clean up resources by nulling out references or calling helper methods."
+      },
+      {
+        "kind": "code",
+        "code": "struct Logger {\n    buffer: Vec<String>,\n}\n\nimpl Drop for Logger {\n    fn drop(&mut self) {\n        // self.buffer cannot be moved out!\n    }\n}",
+        "caption": "`&mut self` prevents moving `buffer` out."
+      },
+      {
+        "kind": "prose",
+        "text": "Because `drop` takes `&mut self`, you cannot move non-`Copy` fields out of `self`. The compiler blocks this to keep the struct intact."
+      },
+      {
+        "kind": "prose",
+        "text": "To consume or flush a field during drop, replace it with an empty default value using `std::mem::take` or `std::mem::replace`."
+      },
+      {
+        "kind": "code",
+        "code": "impl Drop for Logger {\n    fn drop(&mut self) {\n        let items = std::mem::take(&mut self.buffer);\n        // items is now an owned Vec<String>\n    }\n}",
+        "caption": "`std::mem::take` replaces `buffer` with an empty vector."
+      },
+      {
+        "kind": "prose",
+        "text": "This leaves `self.buffer` in a valid empty state while giving you full ownership of the original data to process or flush."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn how `std::mem::take` enables taking field ownership in `Drop`."
+}

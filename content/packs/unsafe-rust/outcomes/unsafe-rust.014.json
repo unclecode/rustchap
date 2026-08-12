@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "unsafe-rust.014",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "043b7c80a67fbf147172d6deeaf9d4906ad9053c076e382f24b8dc10a281a90b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `dyn`",
+          "slot_ids": [
+            "impl_kw"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0f5b4fd569a7943b7aa168f4954a027f0a72f147daff7d9541d603ce352dd7cc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the trait `SafeBuffer` requires an `unsafe impl` declaration",
+          "slot_ids": [
+            "impl_kw"
+          ],
+          "rust_code": "E0200"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "206750e2a3eb3c2f3732e668661634f50fc42069dfcfa016417b9a7bf2ef6d29": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5761ce0debc3f8ba97630924cf2869f81bba05b6d1a1051187e861ac7fb7b1e1": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "5fc95388b9184de86a7a0e675820eff8e8f6b86ba0c0a26b6b23b8f48322e52b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `dyn`",
+          "slot_ids": [
+            "impl_kw"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6a77b11904344e343e24dc6619e2a89bf05a6e290095dd271d57bce5bf6c9e4f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `dyn`",
+          "slot_ids": [
+            "impl_kw"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "765f99ab16b78d33a1b4610512d93e330152c8654aff517a4a4a3ef6b2c5f5a9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the trait `SafeBuffer` requires an `unsafe impl` declaration",
+          "slot_ids": [
+            "impl_kw"
+          ],
+          "rust_code": "E0200"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bbfc2e35ffefa0bd5e1198e9c05fe806cda7a44aebeda43d1cc43df3f790923d": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c6ea7fdcbe74e6611afc88aa4b0945fa75dfb5c7b8e6db222bab8c60973f0291": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the trait `SafeBuffer` requires an `unsafe impl` declaration",
+          "slot_ids": [
+            "impl_kw"
+          ],
+          "rust_code": "E0200"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

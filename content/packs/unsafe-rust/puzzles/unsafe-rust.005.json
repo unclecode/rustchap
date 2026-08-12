@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust.005",
+  "version": 1,
+  "title": "Raw Pointers: References Without Rules",
+  "track": "unsafe-rust",
+  "concepts": [
+    "raw-pointers",
+    "unsafe-rust"
+  ],
+  "difficulty": 1,
+  "goal": "Understand how raw pointers differ from references and where unsafe is required.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Raw Pointers"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In C or C++, pointers can point anywhere, be null, or alias freely. Rust references `&T` and `&mut T` guarantee safety at compile time, but raw pointers `*const T` and `*mut T` behave like C pointers."
+      },
+      {
+        "kind": "code",
+        "code": "let mut x: i32 = 42;\nlet p1: *const i32 = &x;\nlet p2: *mut i32 = &raw mut x;",
+        "caption": "Creating raw pointers from references is completely safe."
+      },
+      {
+        "kind": "prose",
+        "text": "Creating a raw pointer does not require `unsafe`. You can create null pointers or cast references to pointers anywhere in safe Rust code."
+      },
+      {
+        "kind": "prose",
+        "text": "An `unsafe` block is required only when you dereference a raw pointer with `*ptr`. You promise the compiler that the pointer is non-null, aligned, and points to valid memory."
+      },
+      {
+        "kind": "code",
+        "code": "let val = unsafe { *p1 };\nunsafe { *p2 = 100; }",
+        "caption": "Dereferencing a raw pointer requires an unsafe block."
+      },
+      {
+        "kind": "prose",
+        "text": "Converting a raw pointer into a reference with `&*ptr` is dangerous. It asserts that all Rust reference rules hold, including aliasing and lifetime constraints."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand how raw pointers differ from references and where unsafe is required."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "deref-coercion.rule.ref-guard-deref",
+  "kind": "rule",
+  "title": "How Ref and RefMut Smart Pointers Work",
+  "concepts": [
+    "deref-coercion",
+    "interior-mutability"
+  ],
+  "prompt": "How do Ref and RefMut guards allow calling methods on the type wrapped inside a RefCell?",
+  "answer": "Ref implements Deref to the inner type, allowing shared method calls. RefMut implements both Deref and DerefMut, giving access to mutating methods. The compiler automatically inserts dereference calls when you invoke methods on the guard.",
+  "schema_version": 1
+}

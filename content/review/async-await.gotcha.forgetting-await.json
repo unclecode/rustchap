@@ -1,0 +1,11 @@
+{
+  "id": "async-await.gotcha.forgetting-await",
+  "kind": "gotcha",
+  "title": "Calling an async function without await",
+  "concepts": [
+    "async-await"
+  ],
+  "prompt": "What happens when you call an async function without attaching await to the result?",
+  "answer": "Calling an async function constructs and returns an inert future object without executing any code in its body. The function body only executes when an executor polls the returned future or when you evaluate it using await. Forgetting await usually results in a type mismatch error E0308 because the expression yields a future instead of the inner output type.",
+  "schema_version": 1
+}

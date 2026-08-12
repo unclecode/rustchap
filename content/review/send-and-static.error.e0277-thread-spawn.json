@@ -1,0 +1,11 @@
+{
+  "id": "send-and-static.error.e0277-thread-spawn",
+  "kind": "error",
+  "title": "Compiler error E0277 on thread spawn",
+  "concepts": [
+    "send-and-static"
+  ],
+  "prompt": "When `thread::spawn` fails with error E0277 regarding Send, what is the compiler telling you?",
+  "answer": "The compiler found a type captured by the thread closure that does not implement the Send trait. You must replace non-thread-safe types like Rc or RefCell with atomic equivalents like Arc or Mutex.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "io-traits.gotcha.read-lacks-lines",
+  "kind": "gotcha",
+  "title": "Why Read Lacks lines Method",
+  "concepts": [
+    "io-traits"
+  ],
+  "prompt": "Why does calling the lines method on a generic Read type fail to compile?",
+  "answer": "The `lines` method is defined on the `BufRead` trait rather than `Read`. Types implementing `Read` must be wrapped in `BufReader` to gain buffered methods like `lines`. This design keeps `Read` minimal while offering buffered operations separately.",
+  "schema_version": 1
+}

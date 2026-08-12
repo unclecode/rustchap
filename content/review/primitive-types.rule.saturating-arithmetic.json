@@ -1,0 +1,11 @@
+{
+  "id": "primitive-types.rule.saturating-arithmetic",
+  "kind": "rule",
+  "title": "Prevent integer overflow with saturating...",
+  "concepts": [
+    "primitive-types"
+  ],
+  "prompt": "How can you add two integers in Rust without triggering a panic on overflow?",
+  "answer": "Use explicit overflowing arithmetic methods like `saturating_add`. Calling `a.saturating_add(b)` caps the result at the maximum possible value for that integer type instead of panicking.",
+  "schema_version": 1
+}

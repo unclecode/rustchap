@@ -164,6 +164,9 @@ struct PuzzleScreen: View {
         .onAppear {
             resetToInitial()
             applyAutomationArguments()
+            // Remember where the player actually was, so relaunching offers a
+            // real resume instead of guessing from progress.
+            ResumePoint.record(puzzle.id)
         }
         .tutorButton {
             let record = ProgressRecorder.fetch(puzzleId: puzzle.id, in: modelContext)
@@ -328,6 +331,15 @@ struct PuzzleScreen: View {
                 if parts.count == 2 {
                     selections[String(parts[0])] = String(parts[1])
                 }
+            }
+        }
+        // `--tray <slotId>` opens that slot's choice tray on appear, so the
+        // tray can be screenshotted without a tap.
+        if let flag = args.firstIndex(of: "--tray"), args.indices.contains(flag + 1),
+           let slot = puzzle.interaction.slots?.first(where: { $0.id == args[flag + 1] }) {
+            Task {
+                try? await Task.sleep(for: .milliseconds(600))
+                activeSlot = slot
             }
         }
         if args.contains("--autorun"), canRun {

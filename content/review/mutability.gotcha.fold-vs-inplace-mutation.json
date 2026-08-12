@@ -1,0 +1,12 @@
+{
+  "id": "mutability.gotcha.fold-vs-inplace-mutation",
+  "kind": "gotcha",
+  "title": "Accumulating state without mutating outer...",
+  "concepts": [
+    "mutability",
+    "iterator"
+  ],
+  "prompt": "How does fold pass state across steps without requiring mutable outer variables?",
+  "answer": "`fold` takes an initial seed value and threads it through the step closure as an owned value. Each invocation returns the new state directly to the next step. Outer variables stay immutable because the state flows purely through function parameters and return values.",
+  "schema_version": 1
+}

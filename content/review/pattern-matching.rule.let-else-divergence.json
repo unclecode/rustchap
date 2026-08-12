@@ -1,0 +1,11 @@
+{
+  "id": "pattern-matching.rule.let-else-divergence",
+  "kind": "rule",
+  "title": "Divergent let else blocks",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "prompt": "What restriction does Rust place on the `else` block of a `let else` statement?",
+  "answer": "The `else` block must diverge, meaning its return type must be `!`. It must exit the current scope using `return`, `break`, `continue`, or `panic!`.",
+  "schema_version": 1
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility",
+  "title": "Modules & Visibility",
+  "description": "Organise code into modules and decide what the outside can see.",
+  "toolchain": "1.97.1",
+  "order": [
+    "modules-and-visibility.001",
+    "modules-and-visibility.002",
+    "modules-and-visibility.003",
+    "modules-and-visibility.004",
+    "modules-and-visibility.005",
+    "modules-and-visibility.006",
+    "modules-and-visibility.007",
+    "modules-and-visibility.008",
+    "modules-and-visibility.009",
+    "modules-and-visibility.010",
+    "modules-and-visibility.011",
+    "modules-and-visibility.012",
+    "modules-and-visibility.013",
+    "modules-and-visibility.014",
+    "modules-and-visibility.015"
+  ],
+  "icon": "folder.fill",
+  "accent": "gray",
+  "level": "everyday"
+}

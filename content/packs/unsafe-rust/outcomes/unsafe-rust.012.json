@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "unsafe-rust.012",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "061db97de68c83338ce60326de3591f5bdb6a06e7eed58ab422687b7ca67971d": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "19ecfde80f1b9b7ccc5f349a199f1923f9e2bbaaad986a8a023ffbf8cf5869ed": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "access to union field is unsafe and requires unsafe block",
+          "slot_ids": [
+            "field_access"
+          ],
+          "rust_code": "E0133"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3b15935fc8c8154ab1a5d5f7b113ec49a93eeb3ccde1c35c5c55c806367f5d22": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "access to union field is unsafe and requires unsafe block",
+          "slot_ids": [
+            "field_access"
+          ],
+          "rust_code": "E0133"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "54d38114ed768427b127b5b104b8b2ccb7b1c85b24835467d43b67b8feef0d53": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `val` found for union `Payload` in the current scope",
+          "slot_ids": [
+            "field_access"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "95ad507f2ebf085f5564aa4b7e0506be43b04fbafec665b37fd9859713a4320f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`if` may be missing an `else` clause",
+          "slot_ids": [
+            "block_start",
+            "field_access"
+          ],
+          "rust_code": "E0317"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c6e607f7511d41ddb72b6cc96e17c7228b48f8ec0289b20b17e3f3654701f654": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `val` found for union `Payload` in the current scope",
+          "slot_ids": [
+            "field_access"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d14f2cd47bf533390132c97144b097b1df88c37f43988e5e10935e4217246f5b": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d25c311847ef211a316088c162c17099b443a03166a6bc13b4a0f651575d8aa9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`if` may be missing an `else` clause",
+          "slot_ids": [
+            "block_start",
+            "field_access"
+          ],
+          "rust_code": "E0317"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ec304bb895eb7b9fbd7a31e9cb0f7b15b910a3293e77e22d3717efc903960d31": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `val` found for union `Payload` in the current scope",
+          "slot_ids": [
+            "field_access"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "enums-basics.rule.variant-payloads",
+  "kind": "rule",
+  "title": "Data carried by enum variants",
+  "concepts": [
+    "enums-basics"
+  ],
+  "prompt": "What kinds of payloads can individual variants of a Rust enum carry?",
+  "answer": "Variants can carry no data, unnamed tuple fields inside parentheses, or named struct fields inside curly braces. Each variant in the same enum can carry a different payload shape.",
+  "schema_version": 1
+}

@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "generics-and-dyn.013",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "078c15187b021bc1c26cc7e0ec9156011ed00d4a89ad8f4462d52deba379e2f4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "item1"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1ce55483089a2a1767bf5b5e083a19261f0ba96c3f947dbe2de1e2d5cfcdf0ee": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "33aa3f43f2dd57d470db5b77b5310cea23272b25cf1455fa4de48fc132afa499": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "item1"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "582cf7d8d86805f68bb0508980ca904ff78a8078cd2ee1a3042f427dc1617a30": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Work` cannot be known at compilation time",
+          "slot_ids": [
+            "elem_ty"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `iter` exists for reference `&[dyn Work]`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "item1"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Work` cannot be known at compilation time",
+          "slot_ids": [
+            "item1"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "650f3d11f5b32d1c5eaaf543b019837104731ce2a21517b808d2c8b165f8b7e6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Work` cannot be known at compilation time",
+          "slot_ids": [
+            "elem_ty"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `iter` exists for reference `&[dyn Work]`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "item1"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Work` cannot be known at compilation time",
+          "slot_ids": [
+            "item1"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "719f2c6b566c9c984f0f04306e12528cebc3c75e7e69ee32da25de22292c58ba": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "79a7c66a89b667f41c32ae815698951d62463de181f9ccbaca3096046f93b6bb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "814d8a5be7135149eda8591bd6295c4c1e46f6469d4b1862eac5c41a75d6bffd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Work` cannot be known at compilation time",
+          "slot_ids": [
+            "elem_ty"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `iter` exists for reference `&[dyn Work]`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Work` cannot be known at compilation time",
+          "slot_ids": [
+            "item1"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "item1"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b0055f35a655fba6afccf7b73310c1edde5a788e8ae7e071b8980244103a5367": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "traits.rule.supertraits",
+  "kind": "rule",
+  "title": "Supertraits demand base trait implementat...",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "What does declaring `trait Sub: Super` require from an implementer?",
+  "answer": "Any type implementing `Sub` must also implement `Super`. The compiler rejects the `Sub` implementation with error `E0277` if `Super` is missing.",
+  "schema_version": 1
+}

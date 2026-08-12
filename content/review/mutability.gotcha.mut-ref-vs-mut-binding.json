@@ -1,0 +1,11 @@
+{
+  "id": "mutability.gotcha.mut-ref-vs-mut-binding",
+  "kind": "gotcha",
+  "title": "Mutable Variables vs Mutable References",
+  "concepts": [
+    "mutability"
+  ],
+  "prompt": "How does declaring let mut x = &y differ from let x = &mut y?",
+  "answer": "let mut x = &y creates a mutable variable holding a read-only reference, meaning x can point to a different variable but y cannot be modified. let x = &mut y creates an immutable variable holding an exclusive reference, allowing modification of y through x.",
+  "schema_version": 1
+}

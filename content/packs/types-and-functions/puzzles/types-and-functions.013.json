@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.013",
+  "version": 1,
+  "title": "Types Do Not Coerce",
+  "track": "types-and-functions",
+  "concepts": [
+    "primitive-types"
+  ],
+  "difficulty": 1,
+  "goal": "Numeric types never convert automatically, and literals without explicit types infer from usage or adopt defaults.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Primitive Types"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In languages like Python or C, numbers convert automatically when combined. Rust never converts numeric types implicitly."
+      },
+      {
+        "kind": "code",
+        "code": "let x: i32 = 10;\nlet y: i64 = 20;\n// let z = x + y;\nlet z = x as i64 + y;",
+        "caption": "Mixing i32 and i64 without casting is error E0308."
+      },
+      {
+        "kind": "prose",
+        "text": "When you write an integer literal like `10`, Rust infers its type from how it is used. If nothing constrains it, Rust defaults integers to `i32` and floats to `f64`."
+      },
+      {
+        "kind": "code",
+        "code": "fn takes_u8(val: u8) {}\n\nlet a = 5;\ntakes_u8(a);",
+        "caption": "Rust infers the type of a from its argument position."
+      },
+      {
+        "kind": "prose",
+        "text": "To convert between primitive numeric types, use the `as` keyword explicitly. Type casting keeps numeric operations explicit and safe."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Numeric types never convert automatically, and literals without explicit types infer from usage or adopt defaults."
+}

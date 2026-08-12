@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.006",
+  "version": 1,
+  "title": "Name the Payload",
+  "track": "enums-and-matching",
+  "concepts": [
+    "enums-basics"
+  ],
+  "difficulty": 2,
+  "goal": "The running state carries a number. The arm has to say so.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Pattern Matching (Destructuring Enums)"
+  },
+  "template": "enum Status {\n    Idle,\n    Running(u32),\n    Done,\n}\n\nfn label(s: Status) -> &'static str {\n    match s {\n        Status::Idle => \"idle\",\n        ⟦arm⟧ => \"running\",\n        Status::Done => \"done\",\n    }\n}\n\nfn main() {\n    println!(\"{}\", label(Status::Running(7)));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "arm",
+        "original": "Status::Running",
+        "label": "the running arm",
+        "choices": [
+          {
+            "id": "ar1",
+            "text": "Status::Running(_)"
+          },
+          {
+            "id": "ar2",
+            "text": "Status::Running"
+          },
+          {
+            "id": "ar3",
+            "text": "Running(_)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn labels() {\n    assert_eq!(label(Status::Idle), \"idle\");\n    assert_eq!(label(Status::Running(7)), \"running\");\n    assert_eq!(label(Status::Done), \"done\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "`Running` carries a number, so the pattern has to account for it.",
+    "You do not need the number here, only a placeholder for it."
+  ],
+  "explanation": "`Running` carries a `u32`, so a pattern for it needs brackets. `Running(_)` says there is a value and you are ignoring it. Writing bare `Status::Running` treats a data-carrying variant as if it carried nothing, which the compiler rejects. Writing `Running(_)` without the type name only works after a `use` brings the variants into scope."
+}

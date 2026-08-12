@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.015",
+  "version": 1,
+  "title": "Match Arm Compatibility",
+  "track": "control-flow",
+  "concepts": [
+    "match-basics"
+  ],
+  "difficulty": 2,
+  "goal": "Return a score for each signal level, keeping all match arms on the same type.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  },
+  "template": "fn signal_score(level: i32) -> i32 {\n    match level {\n        1 => 10,\n        2 => 50,\n        _ => ⟦arm_val⟧,\n    }⟦semi⟧\n}\n\nfn main() {\n    println!(\"{}\", signal_score(3));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "arm_val",
+        "original": "{ 0; }",
+        "label": "default arm",
+        "choices": [
+          {
+            "id": "ar1",
+            "text": "0"
+          },
+          {
+            "id": "ar2",
+            "text": "{ 0; }"
+          },
+          {
+            "id": "ar3",
+            "text": "\"zero\""
+          }
+        ]
+      },
+      {
+        "id": "semi",
+        "original": ";",
+        "label": "match statement terminator",
+        "choices": [
+          {
+            "id": "se1",
+            "text": ""
+          },
+          {
+            "id": "se2",
+            "text": ";"
+          },
+          {
+            "id": "se3",
+            "text": "return;"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn scores() {\n    assert_eq!(signal_score(1), 10);\n    assert_eq!(signal_score(2), 50);\n    assert_eq!(signal_score(3), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Every arm in a match expression must evaluate to the same type.",
+    "A block ending with a semicolon yields the unit type (), not the number before it."
+  ],
+  "explanation": "`match` is an expression that produces a value. Every arm in a `match` must evaluate to the exact same type. Ending a block with a semicolon like `{ 0; }` yields `()` instead of `i32`. This causes error `E0308` because the arms have incompatible types. Placing a semicolon after the `match` turns the expression into a statement returning `()`, which breaks the function return type."
+}

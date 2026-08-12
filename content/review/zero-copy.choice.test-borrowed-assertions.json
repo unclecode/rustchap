@@ -1,0 +1,12 @@
+{
+  "id": "zero-copy.choice.test-borrowed-assertions",
+  "kind": "choice",
+  "title": "Comparing borrowed slice outputs in tests",
+  "concepts": [
+    "zero-copy",
+    "unit-testing"
+  ],
+  "prompt": "How should you assert equality between a function returning `Vec<&str>` and expected string literals in a unit test?",
+  "answer": "Compare the returned slice directly against an array of string references like `assert_eq!(names, [\"a\", \"b\"])`. This avoids allocating `String` instances or cloning data inside test assertions.",
+  "schema_version": 1
+}

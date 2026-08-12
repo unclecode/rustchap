@@ -1,0 +1,12 @@
+{
+  "id": "slice.rule.copy-element-indexing",
+  "kind": "rule",
+  "title": "Indexing slices of Copy types",
+  "concepts": [
+    "slice",
+    "primitive-types"
+  ],
+  "prompt": "What happens when you index a slice containing `i32` values versus a slice containing `String` values?",
+  "answer": "Indexing an `i32` slice returns a copied value because `i32` implements `Copy`. Indexing a `String` slice fails because `String` is non-`Copy` and cannot be moved out of a reference.",
+  "schema_version": 1
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "smart-pointers.013",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "23432b4ae430b4ecdf7fa7add87db628403dde73c040a44cf9a1d51f2ddc8f6e": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "817f83b86d66936dee45c67f244c9fd1cc05ba746177e44683ca49e0bab004b5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot borrow data in an `Rc` as mutable",
+          "slot_ids": [
+            "direct_push"
+          ],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9b8f95c2bcce8c9decdd0ee113073a54ba93cfcacabf140f7e5e36b417ac10c1": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

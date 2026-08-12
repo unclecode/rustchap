@@ -1,0 +1,11 @@
+{
+  "id": "standard-traits.gotcha.reference-equality",
+  "kind": "gotcha",
+  "title": "Comparing references compares values not...",
+  "concepts": [
+    "standard-traits"
+  ],
+  "prompt": "What does the == operator compare when used on two references in Rust?",
+  "answer": "The `==` operator automatically dereferences operands and compares their underlying values using `PartialEq::eq`. It does not compare memory addresses unless you explicitly call `std::ptr::eq`.",
+  "schema_version": 1
+}

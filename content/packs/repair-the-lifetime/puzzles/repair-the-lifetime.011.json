@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime.011",
+  "version": 1,
+  "title": "Selecting the Method Signature",
+  "track": "repair-the-lifetime",
+  "concepts": [
+    "lifetime",
+    "elision",
+    "structs"
+  ],
+  "difficulty": 2,
+  "goal": "Return a string view from a struct method without copying the data.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 3 Afternoon: Lifetimes"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "view",
+        "code": "struct Header<'a> {\n    title: &'a str,\n}\n\nimpl<'a> Header<'a> {\n    fn title(&self) -> &str {\n        self.title\n    }\n}"
+      },
+      {
+        "id": "dangling_borrow",
+        "code": "struct Header<'a> {\n    title: &'a str,\n}\n\nimpl<'a> Header<'a> {\n    fn title(&self) -> &str {\n        let s = self.title.to_string();\n        &s\n    }\n}"
+      },
+      {
+        "id": "unbound_lifetime",
+        "code": "struct Header<'a> {\n    title: &'a str,\n}\n\nimpl<'a> Header<'a> {\n    fn title<'b>(&self) -> &'b str {\n        self.title\n    }\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn header_title() {\n    let t = String::from(\"hello\");\n    let h = Header { title: &t };\n    assert_eq!(h.title(), \"hello\");\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Check whether the caller needs an owned String or a borrow.",
+    "Elision connects &self to the returned reference automatically."
+  ],
+  "explanation": "Lifetime elision rule three automatically ties the return reference `&str` to `&self`, which carries `'a`. Candidate 1 returns a view `&str` directly from `self.title` without any allocations or clones. Candidate 2 allocates a local `String` and attempts to return a reference to it, which fails to compile because the `String` is dropped at the end of the method. Candidate 3 introduces an unconstrained lifetime parameter `'b` that is not tied to `&self` or `'a`, leading to a compile error."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "traits.rule.fat-pointer-layout",
+  "kind": "rule",
+  "title": "Memory layout of trait objects",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "What two components make up a fat pointer to a trait object in Rust?",
+  "answer": "A fat pointer is double the size of a standard pointer. It contains one pointer to the underlying data on the heap and a second pointer to the vtable containing the trait methods for that specific type.",
+  "schema_version": 1
+}

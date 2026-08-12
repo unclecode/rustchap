@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.007",
+  "version": 1,
+  "title": "Fixed Dimensions",
+  "track": "types-and-functions",
+  "concepts": [
+    "primitive-types"
+  ],
+  "difficulty": 1,
+  "goal": "Match the array parameter type and shorthand initializer.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Arrays"
+  },
+  "template": "fn main() {\n    let scores = ⟦init⟧;\n    println!(\"{}\", total(scores));\n}\n\nfn total(arr: ⟦param_type⟧) -> i32 {\n    arr[0] + arr[1] + arr[2]\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "param_type",
+        "original": "[i32]",
+        "label": "parameter type",
+        "choices": [
+          {
+            "id": "pa1",
+            "text": "[i32]"
+          },
+          {
+            "id": "pa2",
+            "text": "[i32; 3]"
+          },
+          {
+            "id": "pa3",
+            "text": "[i32; 4]"
+          }
+        ]
+      },
+      {
+        "id": "init",
+        "original": "[10; 4]",
+        "label": "array initializer",
+        "choices": [
+          {
+            "id": "in1",
+            "text": "[10; 4]"
+          },
+          {
+            "id": "in2",
+            "text": "[10; 3]"
+          },
+          {
+            "id": "in3",
+            "text": "[10, 3]"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn sums_three() {\n    assert_eq!(total([1, 2, 3]), 6);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Array types require both element type and element count.",
+    "The function indexes three elements, so the type and call site must match length 3."
+  ],
+  "explanation": "In Rust, length is part of the array type. `[i32; 3]` describes an array of three `i32` values. Writing `[i32]` without a length produces error `E0277` because slice types do not have a fixed size known at compile time. Matching `[i32; 4]` against `[i32; 3]` causes `E0308` type mismatch."
+}

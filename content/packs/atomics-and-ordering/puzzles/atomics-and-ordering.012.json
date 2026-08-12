@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.012",
+  "version": 1,
+  "title": "Atomic Bit Flags",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "atomic-types"
+  ],
+  "difficulty": 2,
+  "goal": "Set a flag bit atomically and detect if it was previously set.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "template": "use std::sync::atomic::{AtomicU32, Ordering};\n\nconst FLAG_READY: u32 = 1;\n\nfn set_ready(flags: &AtomicU32) -> bool {\n    let prev = flags.⟦slot1⟧(FLAG_READY, Ordering::Relaxed);\n    ⟦slot2⟧\n}\n\nfn main() {\n    let status = AtomicU32::new(2);\n    assert_eq!(set_ready(&status), false);\n    assert_eq!(set_ready(&status), true);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "or",
+        "label": "atomic bitwise method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "fetch_or"
+          },
+          {
+            "id": "sl2",
+            "text": "or"
+          },
+          {
+            "id": "sl3",
+            "text": "store"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "prev == FLAG_READY",
+        "label": "flag evaluation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "(prev & FLAG_READY) != 0"
+          },
+          {
+            "id": "sl2",
+            "text": "(prev & FLAG_READY) == 0"
+          },
+          {
+            "id": "sl3",
+            "text": "prev == FLAG_READY"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_set_ready() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Atomic operations in Rust that mutate values start with the prefix `fetch_`.",
+    "Check whether the specific bit was non-zero in the previous value."
+  ],
+  "explanation": "`fetch_or` performs a bitwise OR operation atomically and returns the PREVIOUS value of the atomic integer. Bitwise ANDing `(prev & FLAG_READY) != 0` checks whether `FLAG_READY` was already set before `fetch_or` executed. `or` does not exist on `AtomicU32` and causes `E0599`. `store` returns unit `()` and replaces the entire integer instead of setting specific bits, causing `E0369`. Equality check `prev == FLAG_READY` fails if other flag bits are set."
+}

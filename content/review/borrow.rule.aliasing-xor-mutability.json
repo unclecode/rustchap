@@ -1,0 +1,11 @@
+{
+  "id": "borrow.rule.aliasing-xor-mutability",
+  "kind": "rule",
+  "title": "The aliasing rule for references",
+  "concepts": [
+    "borrow"
+  ],
+  "prompt": "What restriction does the borrow checker enforce regarding shared and mutable references to the same data?",
+  "answer": "You can have any number of shared references &T or exactly one mutable reference &mut T to a value at any given time. You can never have both active in the same scope.",
+  "schema_version": 1
+}

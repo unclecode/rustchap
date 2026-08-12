@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.010",
+  "version": 1,
+  "title": "Returning Generic Iterators",
+  "track": "generics-and-dyn",
+  "concepts": [
+    "generics",
+    "traits",
+    "iterator"
+  ],
+  "difficulty": 2,
+  "goal": "Order the lazy iterator pipeline returned as `impl Iterator`.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: impl Trait"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn process_numbers(nums: &[i32]) -> impl Iterator<Item = i32> + '_ {\n    nums",
+    "blocks": [
+      {
+        "id": "iter",
+        "text": "\n        .iter()"
+      },
+      {
+        "id": "filter",
+        "text": "\n        .filter(|&&x| x > 0)"
+      },
+      {
+        "id": "map",
+        "text": "\n        .map(|&x| x * 2)"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn processes_positives() {\n    let input = vec![-1, 2, -3, 4];\n    let result: Vec<i32> = process_numbers(&input).collect();\n    assert_eq!(result, vec![4, 8]);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 1
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "Slices do not implement filter directly. Convert the slice into an iterator first.",
+    "The closure in filter expects a reference to the iterator item type."
+  ],
+  "explanation": "Calling `.iter()` converts the slice reference into an iterator. Filtering positive values next ensures map only operates on positive elements. Returning `impl Iterator` avoids extra vector allocations."
+}

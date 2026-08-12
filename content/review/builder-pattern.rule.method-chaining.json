@@ -1,0 +1,11 @@
+{
+  "id": "builder-pattern.rule.method-chaining",
+  "kind": "rule",
+  "title": "Consuming self in builder methods",
+  "concepts": [
+    "builder-pattern"
+  ],
+  "prompt": "Why do idiomatic builder pattern methods take `mut self` by value and return `Self`?",
+  "answer": "Taking `mut self` by value allows methods to modify fields in place and return ownership of the updated builder. This enables fluid method chaining without borrowing conflicts and prevents re-using partially configured intermediate states.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "generics.gotcha.impl-type-parameters",
+  "kind": "gotcha",
+  "title": "Declaring type parameters on impl blocks",
+  "concepts": [
+    "generics"
+  ],
+  "prompt": "Why must you write impl<T> Container<T> rather than impl Container<T> when defining generic methods?",
+  "answer": "The leading <T> declares T as a generic type parameter for the implementation block. Without it, the compiler looks for a concrete type explicitly named T and raises compiler error E0412.",
+  "schema_version": 1
+}

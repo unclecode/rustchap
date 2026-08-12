@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.008",
+  "version": 1,
+  "title": "Associated Types",
+  "track": "traits-and-bounds",
+  "concepts": [
+    "traits"
+  ],
+  "difficulty": 1,
+  "goal": "Define placeholder types in traits that implementers supply.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Associated Types"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "An associated type is a placeholder type declared inside a trait. The implementer chooses the concrete type when implementing the trait."
+      },
+      {
+        "kind": "code",
+        "code": "trait Container {\n    type Item;\n    fn first(&self) -> Option<Self::Item>;\n}",
+        "caption": "type Item declares an associated type placeholder."
+      },
+      {
+        "kind": "prose",
+        "text": "You will notice this differs from generics. With generics, the caller picks the type. With associated types, the implementer picks it once per type."
+      },
+      {
+        "kind": "code",
+        "code": "impl Container for Vec<i32> {\n    type Item = i32;\n    fn first(&self) -> Option<i32> {\n        self.get(0).copied()\n    }\n}",
+        "caption": "Self::Item is set to i32 in the implementation."
+      },
+      {
+        "kind": "prose",
+        "text": "Standard library traits like `Iterator` and `Add` use associated types for their outputs."
+      },
+      {
+        "kind": "prose",
+        "text": "Next, you will specify an associated type on a custom trait."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Define placeholder types in traits that implementers supply."
+}

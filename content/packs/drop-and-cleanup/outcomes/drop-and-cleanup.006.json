@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "drop-and-cleanup.006",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "02ec8c28ad0a964cab5752544669423558fc3422a66333755b4b36d210752622": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the trait `Copy` cannot be implemented for this type; the type has a destructor",
+          "slot_ids": [],
+          "rust_code": "E0184"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "285c9b7feae9cde1c9186783af72994b84503950f5b9fcddf86011798a6cc155": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    },
+    "4901eb13c8ded26582819c502e69fa27e8da134ae68815f7c8b1509146c982e8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the trait `Copy` cannot be implemented for this type; the type has a destructor",
+          "slot_ids": [],
+          "rust_code": "E0184"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

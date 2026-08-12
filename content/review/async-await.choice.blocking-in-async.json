@@ -1,0 +1,11 @@
+{
+  "id": "async-await.choice.blocking-in-async",
+  "kind": "choice",
+  "title": "Offloading blocking CPU work",
+  "concepts": [
+    "async-await"
+  ],
+  "prompt": "How should long CPU computations or synchronous IO be handled inside an async runtime?",
+  "answer": "Synchronous work should be offloaded to a dedicated thread pool using spawn blocking. Calling thread sleep or synchronous file operations directly on an async task worker thread starves all other tasks co-located on that thread.",
+  "schema_version": 1
+}

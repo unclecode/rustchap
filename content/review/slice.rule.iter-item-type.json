@@ -1,0 +1,11 @@
+{
+  "id": "slice.rule.iter-item-type",
+  "kind": "rule",
+  "title": "Slice iter yields borrowed references",
+  "concepts": [
+    "slice"
+  ],
+  "prompt": "What item type does calling iter on a slice &[T] yield?",
+  "answer": "Calling `iter` on a slice `&[T]` yields shared references `&T` to each element. The original slice remains borrowed and intact for the lifetime of the iterator. Use `copied` or `cloned` to convert the stream of references into owned values.",
+  "schema_version": 1
+}

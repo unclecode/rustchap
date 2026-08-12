@@ -1,0 +1,11 @@
+{
+  "id": "unsafe-rust.gotcha.borrow-checker-still-active",
+  "kind": "gotcha",
+  "title": "Borrow checker inside unsafe blocks",
+  "concepts": [
+    "unsafe-rust"
+  ],
+  "prompt": "What happens to borrow checker enforcement inside an unsafe block?",
+  "answer": "The borrow checker remains fully active inside unsafe blocks. Unsafe only grants access to five specific extra capabilities such as dereferencing raw pointers. Standard reference aliasing and lifetime rules are never turned off.",
+  "schema_version": 1
+}

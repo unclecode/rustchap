@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "drop-and-cleanup.004",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "03372a98b1ea781bd953d625ef62f68843d3b4c2cc303b4369bc87051b698d4b": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    },
+    "14ddbf28caf3eccd6291d5e128b5a127bfd2258340a2ce006aa4576b068a48ba": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of `cfg` because it is borrowed",
+          "slot_ids": [
+            "check_step"
+          ],
+          "rust_code": "E0505"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5ef1a9b6e4cedfb101c2b3b8a10eb27b8df673029134972ad21f11ec89ceaf5e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "67a7d9207415eb478837b1809700664cd3c8a56d0dc15c350068c4da7b252a14": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8a5aeaa283b2f209f8161ed21671631cc8ac20091b32a410c92d3cac6cf04fad": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of `cfg` because it is borrowed",
+          "slot_ids": [
+            "check_step"
+          ],
+          "rust_code": "E0505"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8b0841799977310abc0b6e8dea67a8c64c3a11560940cd6b53b7fa694d2f61dc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of `cfg.port` because it is borrowed",
+          "slot_ids": [
+            "check_step"
+          ],
+          "rust_code": "E0505"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9823627ac12cfec11d3768744a70fc0278ebcfc51369076b192d7890c991248b": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9b4874f5b15e49dc70b5234f453d8df3d884adc3bfdf32f34ba1f582e9368bd5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of `cfg.port` because it is borrowed",
+          "slot_ids": [
+            "check_step"
+          ],
+          "rust_code": "E0505"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f15b12a588923159c3007e75b7e904ddf03daab30b91eef774c01fd16416f4e0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

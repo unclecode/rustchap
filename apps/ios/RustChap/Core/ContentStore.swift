@@ -67,9 +67,10 @@ final class ContentStore {
         packs.filter { Self.levelId(of: $0.pack) == levelId }
     }
 
-    /// Levels that actually have content — what the home selector shows.
+    /// Levels that have any deck at all, built or planned. Planned decks show
+    /// as "Soon", so the whole curriculum shape is visible from day one.
     var visibleLevels: [Level] {
-        levels.filter { level in packs(in: level.id).contains { !$0.puzzles.isEmpty } }
+        levels.filter { level in !packs(in: level.id).isEmpty }
     }
 
     init() {

@@ -1,0 +1,11 @@
+{
+  "id": "vec-basics.syntax.macro-vs-constructor",
+  "kind": "syntax",
+  "title": "Initializing a Vector with Elements",
+  "concepts": [
+    "vec-basics"
+  ],
+  "prompt": "How do you construct a vector pre-populated with initial values in one step?",
+  "answer": "Use the `vec!` macro with values inside brackets, such as `vec![1, 2, 3]`. This allocates a heap vector containing those initial elements.",
+  "schema_version": 1
+}

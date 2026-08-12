@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.007",
+  "version": 1,
+  "title": "Zero-Copy API Views",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "api-design",
+    "zero-copy",
+    "clone"
+  ],
+  "difficulty": 3,
+  "goal": "Expose internal data efficiently without extra heap allocations.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "borrowed",
+        "code": "mod internal {\n    pub struct Data {\n        pub name: String,\n    }\n}\n\npub use internal::Data;\n\npub fn get_name(d: &Data) -> &str {\n    &d.name\n}"
+      },
+      {
+        "id": "cloned",
+        "code": "mod internal {\n    pub struct Data {\n        pub name: String,\n    }\n}\n\npub use internal::Data;\n\npub fn get_name(d: &Data) -> String {\n    d.name.clone()\n}"
+      },
+      {
+        "id": "dangling",
+        "code": "mod internal {\n    pub struct Data {\n        pub name: String,\n    }\n}\n\npub use internal::Data;\n\npub fn get_name(d: &Data) -> &str {\n    let s = d.name.clone();\n    &s\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_get_name() {\n    let d = Data { name: String::from(\"rust\") };\n    let name: &str = get_name(&d);\n    assert_eq!(name, \"rust\");\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Returning a borrowed slice view avoids copying string data.",
+    "Returning a reference to a local variable created inside the function causes a borrowing error."
+  ],
+  "explanation": "Returning `&str` borrows from the input, so the caller keeps the original text and no allocation happens. Returning `String` is a type mismatch against the declared return type. Returning a reference to a local value is error `E0106`, because the local dies at the end of the function."
+}

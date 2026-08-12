@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.002",
+  "version": 1,
+  "title": "Strong Type Boundaries",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "newtype-pattern"
+  ],
+  "difficulty": 1,
+  "goal": "Prevent accidental ID mixing using a newtype wrapper.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Idiomatic Patterns"
+  },
+  "template": "struct UserId(u32);\n\nfn process_user(id: UserId) -> u32 {\n    ⟦slot2⟧\n}\n\nfn main() {\n    let user_id = ⟦slot1⟧;\n    let raw = process_user(user_id);\n    assert_eq!(raw, 42);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "42",
+        "label": "the input value",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "UserId(42)"
+          },
+          {
+            "id": "sl2",
+            "text": "42"
+          },
+          {
+            "id": "sl3",
+            "text": "42_u32"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "id",
+        "label": "the inner value extraction",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "id.0"
+          },
+          {
+            "id": "sl2",
+            "text": "id"
+          },
+          {
+            "id": "sl3",
+            "text": "*id"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_user_id() {\n    assert_eq!(process_user(UserId(42)), 42);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at the argument type required by process_user.",
+    "Tuple structs access their fields using zero-indexed numeric fields."
+  ],
+  "explanation": "Rust does not perform implicit conversions for newtypes. You must wrap the integer in `UserId(42)` when calling the function. Inside `process_user`, access the inner `u32` using field syntax `id.0`. Passing `42` directly fails with type mismatch `E0308`. Dereferencing with `*id` fails because tuple structs do not implement `Deref` by default."
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "ffi-and-raw-pointers.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "06dbe3d615ec83206db6c2ac694840c6abf12098b5188ef6eab81e9879515361": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type `{integer}` cannot be dereferenced",
+          "slot_ids": [
+            "ptr_expr"
+          ],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "compile_error",
+          "message": "dereference of raw pointer is unsafe and requires unsafe block",
+          "slot_ids": [
+            "read_expr"
+          ],
+          "rust_code": "E0133"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1a5197f7d518b31c1aa10381a8d5f55c847a0e4f86fef22e82849fccd90efdab": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "28d3b4754049b71cc79daf074ce399e539c92c3f21fd8c724f22762a9106fc58": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "read_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "type `{integer}` cannot be dereferenced",
+          "slot_ids": [
+            "ptr_expr"
+          ],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "56baf91635672a62d082a22375ec67c8034cb88d156945588d1c7523ce7aabe2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "dereference of raw pointer is unsafe and requires unsafe block",
+          "slot_ids": [
+            "read_expr"
+          ],
+          "rust_code": "E0133"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7f9b9eb25020902acb3f994166641b504ef8eeca45e97b83227dce12a7cea357": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "read_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `as_ptr` found for type `{integer}` in the current scope",
+          "slot_ids": [
+            "ptr_expr"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "87a0115e09b5e20c886edbc13547e169bb4dc7882705ef6a62a78101b67e74c9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "read_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e8725e9c122ffecca44bf10ef93ce67cdf1d326e9da4f173e832a7fc6224122a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `as_ptr` found for type `{integer}` in the current scope",
+          "slot_ids": [
+            "ptr_expr"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ef12df6ccf33e63e1067d70dcede42793cf49d249054b60855841c60a1ae0bd1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type `{integer}` cannot be dereferenced",
+          "slot_ids": [
+            "ptr_expr"
+          ],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fd35caca05f65f0dcda017f131243b60923fa54b44bc27289afa496923c3edde": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `as_ptr` found for type `{integer}` in the current scope",
+          "slot_ids": [
+            "ptr_expr"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "dereference of raw pointer is unsafe and requires unsafe block",
+          "slot_ids": [
+            "read_expr"
+          ],
+          "rust_code": "E0133"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

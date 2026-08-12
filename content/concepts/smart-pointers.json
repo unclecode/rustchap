@@ -6,7 +6,7 @@
   "summary": "Ownership beyond the stack: heap indirection, shared owners, and mutation checked at runtime.",
   "lecture": [
     "Box<T> is plain heap indirection with single ownership - the fix for recursive types (a List containing a List has infinite size; a List containing a Box<List> is one pointer, E0072 solved).",
-    "Rc<T> is shared ownership: reference-counted, cloned cheaply with Rc::clone(&x) (a counter bump, not a copy - write it prefix-style so it never looks like a deep clone). The data drops when the last owner does. Rc is single-threaded; Arc is its atomic sibling.",
+    "Rc<T> is shared ownership: reference-counted, cloned cheaply with `Rc::clone(&x)` (a counter bump, not a copy - write it prefix-style so it never looks like a deep clone). The data drops when the last owner does. Rc is single-threaded; Arc is its atomic sibling.",
     "Rc gives many owners but only shared access. RefCell<T> adds interior mutability: borrow() and borrow_mut() enforce the one-writer-XOR-many-readers rule at RUNTIME - a violation panics instead of failing to compile. Rc<RefCell<T>> is the classic shared-mutable combo; use it deliberately, not habitually.",
     "The ladder: own it (T) → box it (Box) → share it (Rc) → share and mutate it (Rc<RefCell>). Each rung costs a little more; stand on the lowest one that works."
   ],

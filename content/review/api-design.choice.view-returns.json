@@ -1,0 +1,12 @@
+{
+  "id": "api-design.choice.view-returns",
+  "kind": "choice",
+  "title": "Returning borrowed views versus owned values",
+  "concepts": [
+    "api-design",
+    "zero-copy"
+  ],
+  "prompt": "When should a public API function return &str instead of String?",
+  "answer": "Return `&str` when the result is a substring or view of data that the input borrow already owns. Returning `String` allocates fresh heap memory, which callers should only pay for when brand new data is constructed.",
+  "schema_version": 1
+}

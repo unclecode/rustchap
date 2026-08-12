@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.015",
+  "version": 1,
+  "title": "Preallocate the Buffer",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types"
+  ],
+  "difficulty": 2,
+  "goal": "Build a formatted tag string with minimal allocations.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from std-types/string"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "preallocated",
+        "code": "fn format_tags(tags: &[&str]) -> String {\n    let cap = tags.len() * 10;\n    let mut out = String::with_capacity(cap);\n    for tag in tags {\n        out.push('[');\n        out.push_str(tag);\n        out.push(']');\n    }\n    out\n}"
+      },
+      {
+        "id": "invalid_slice_add",
+        "code": "fn format_tags(tags: &[&str]) -> String {\n    let mut out = String::new();\n    for tag in tags {\n        let bracketed = \"[\" + tag + \"]\";\n        out.push_str(&bracketed);\n    }\n    out\n}"
+      },
+      {
+        "id": "format_wrong_delimiter",
+        "code": "fn format_tags(tags: &[&str]) -> String {\n    let mut out = String::new();\n    for tag in tags {\n        out = format!(\"{out}<{tag}>\");\n    }\n    out\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn formats_tags() {\n    let tags = vec![\"rust\", \"code\", \"fast\"];\n    assert_eq!(format_tags(&tags), \"[rust][code][fast]\");\n}",
+      "#[test]\nfn empty_tags() {\n    let tags: Vec<&str> = vec![];\n    assert_eq!(format_tags(&tags), \"\");\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Concatenating `&str` directly using `+` does not compile because `&str` does not implement `Add`.",
+    "`String::with_capacity` reserves memory upfront and `push_str` populates the buffer without unnecessary reallocations."
+  ],
+  "explanation": "`String::with_capacity` preallocates buffer capacity upfront. Constructing strings via direct `&str` concatenation leads to compilation errors, while using `format!` with wrong delimiters fails test assertions."
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views.011",
+  "version": 1,
+  "title": "Two Halves, Mutably",
+  "track": "slices-and-views",
+  "concepts": [
+    "slice",
+    "mutability",
+    "borrow"
+  ],
+  "difficulty": 2,
+  "goal": "Split a mutable slice into two halves and modify both without borrow conflicts.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from borrowck"
+  },
+  "template": "fn zero_ends(arr: &mut [i32]) {\n    let mid = arr.len() / 2;\n    let (left, right) = ⟦split_slot⟧;\n    left[0] = 0;\n    right[⟦idx_slot⟧] = 0;\n}\n\nfn main() {\n    let mut data = [1, 2, 3, 4];\n    zero_ends(&mut data);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "split_slot",
+        "original": "(&mut arr[..mid], &mut arr[mid..])",
+        "label": "slice split",
+        "choices": [
+          {
+            "id": "sp1",
+            "text": "arr.split_at_mut(mid)"
+          },
+          {
+            "id": "sp2",
+            "text": "(&mut arr[..mid], &mut arr[mid..])"
+          },
+          {
+            "id": "sp3",
+            "text": "arr.split_at(mid)"
+          }
+        ]
+      },
+      {
+        "id": "idx_slot",
+        "original": "right.len() - 1",
+        "label": "right index",
+        "choices": [
+          {
+            "id": "id1",
+            "text": "right.len() - 1"
+          },
+          {
+            "id": "id2",
+            "text": "right.len()"
+          },
+          {
+            "id": "id3",
+            "text": "0"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn zeroes_both_ends() {\n    let mut data = [1, 2, 3, 4];\n    zero_ends(&mut data);\n    assert_eq!(data, [0, 2, 3, 0]);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Indexing `arr` twice creates overlapping mutable borrows.",
+    "Use `split_at_mut` to divide a mutable slice into two separate mutable slices."
+  ],
+  "explanation": "Writing `(&mut arr[..mid], &mut arr[mid..])` directly fails with `E0499` because range indexing borrows `arr` mutably twice. `split_at_mut(mid)` safely partitions a single mutable reference into two non-overlapping sub-slices. `split_at(mid)` returns immutable slices, causing `E0596` when attempting mutation. Using `right.len()` panics at runtime from an out-of-bounds index."
+}

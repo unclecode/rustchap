@@ -1,0 +1,11 @@
+{
+  "id": "ffi-basics.syntax.c-string-literals",
+  "kind": "syntax",
+  "title": "C string literal syntax in Rust",
+  "concepts": [
+    "ffi-basics"
+  ],
+  "prompt": "What syntax produces a C-compatible string literal in Rust?",
+  "answer": "Prefix the string literal with c, such as c\"hello\". This creates a static CStr reference that includes an automatic trailing NUL byte.",
+  "schema_version": 1
+}

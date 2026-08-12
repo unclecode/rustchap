@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views.008",
+  "version": 1,
+  "title": "Flexibility Over Storage",
+  "track": "slices-and-views",
+  "concepts": [
+    "slice",
+    "borrow",
+    "api-design"
+  ],
+  "difficulty": 1,
+  "goal": "Change the function signature so it accepts fixed arrays as well as vectors.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from references/slices"
+  },
+  "template": "fn total(nums: ⟦type_slot⟧) -> i32 {\n    let mut sum = 0;\n    for &n in nums {\n        sum += n;\n    }\n    sum\n}\n\nfn main() {\n    let data = [10, 20, 30];\n    println!(\"{}\", ⟦call_slot⟧);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "type_slot",
+        "original": "&Vec<i32>",
+        "label": "parameter type",
+        "choices": [
+          {
+            "id": "ty1",
+            "text": "&[i32]"
+          },
+          {
+            "id": "ty2",
+            "text": "&Vec<i32>"
+          },
+          {
+            "id": "ty3",
+            "text": "[i32]"
+          }
+        ]
+      },
+      {
+        "id": "call_slot",
+        "original": "total(&data)",
+        "label": "function call",
+        "choices": [
+          {
+            "id": "ca1",
+            "text": "total(&data)"
+          },
+          {
+            "id": "ca2",
+            "text": "total(data)"
+          },
+          {
+            "id": "ca3",
+            "text": "total(data[..])"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn computes_total() {\n    let arr = [10, 20, 30];\n    assert_eq!(total(&arr), 60);\n    let vec = vec![1, 2, 3];\n    assert_eq!(total(&vec), 6);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "`&Vec<i32>` requires a heap vector. It rejects fixed arrays.",
+    "A slice reference `&[i32]` accepts both arrays and vectors."
+  ],
+  "explanation": "The type `&[i32]` borrows any integer sequence without caring if it lives in an array or a Vec. Demanding `&Vec<i32>` causes `E0308` when passing an array reference like `&data`. Using plain `[i32]` without a reference triggers `E0277` because slice sizes are not known at compile time. Passing `total(data)` by value fails because the function expects a reference."
+}

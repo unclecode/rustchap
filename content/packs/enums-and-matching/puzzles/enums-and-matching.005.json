@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.005",
+  "version": 1,
+  "title": "First Match",
+  "track": "enums-and-matching",
+  "concepts": [
+    "enums-basics"
+  ],
+  "difficulty": 2,
+  "goal": "Two commands. One carries a number, the other carries nothing.",
+  "template": "enum Command {\n    Add(i32),\n    Reset,\n}\n\nfn apply(total: i32, cmd: Command) -> i32 {\n    match cmd {\n        ⟦add_arm⟧ => total + n,\n        ⟦reset_arm⟧ => 0,\n    }\n}\n\nfn main() {\n    println!(\"{}\", apply(5, Command::Add(3)));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "add_arm",
+        "original": "Command::Add",
+        "label": "add pattern",
+        "choices": [
+          {
+            "id": "a1",
+            "text": "Command::Add"
+          },
+          {
+            "id": "a2",
+            "text": "Command::Add(n)"
+          },
+          {
+            "id": "a3",
+            "text": "Add(n)"
+          }
+        ]
+      },
+      {
+        "id": "reset_arm",
+        "original": "Command::Reset()",
+        "label": "reset pattern",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "Command::Reset()"
+          },
+          {
+            "id": "r2",
+            "text": "Command::Reset"
+          },
+          {
+            "id": "r3",
+            "text": "_ if false"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn applies() {\n    assert_eq!(apply(5, Command::Add(3)), 8);\n    assert_eq!(apply(9, Command::Reset), 0);\n    assert_eq!(apply(0, Command::Add(0)), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "One arm needs a name for the number it is given.",
+    "What should Reset produce?"
+  ],
+  "explanation": "`Command::Add(n)` binds the carried number to `n`, which the arm then adds to the total. `Command::Reset` carries nothing, so it has no brackets, and it produces zero. Both arms produce an `i32`, which they must, because the `match` is the function's return value.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings enums3"
+  }
+}

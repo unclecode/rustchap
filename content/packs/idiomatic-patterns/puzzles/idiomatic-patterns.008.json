@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.008",
+  "version": 1,
+  "title": "Recover State on Error",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "typestate-pattern",
+    "error-propagation"
+  ],
+  "difficulty": 2,
+  "goal": "Return the original value inside Err when a state transition fails.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from idiomatic/leveraging-the-type-system"
+  },
+  "template": "#[derive(Debug)]\npub struct Door { pub lock_code: u32 }\n#[derive(Debug)]\npub struct Unlocked { pub lock_code: u32 }\n\nimpl Door {\n    pub fn unlock(self, code: u32) -> Result<Unlocked, ⟦err_ty⟧> {\n        if self.lock_code == code {\n            Ok(Unlocked { lock_code: code })\n        } else {\n            Err(⟦err_val⟧)\n        }\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "err_ty",
+        "original": "Door",
+        "label": "the error type",
+        "choices": [
+          {
+            "id": "er1",
+            "text": "Door"
+          },
+          {
+            "id": "er2",
+            "text": "String"
+          },
+          {
+            "id": "er3",
+            "text": "()"
+          }
+        ]
+      },
+      {
+        "id": "err_val",
+        "original": "self",
+        "label": "the error payload",
+        "choices": [
+          {
+            "id": "er1",
+            "text": "self"
+          },
+          {
+            "id": "er2",
+            "text": "String::from(\"invalid\")"
+          },
+          {
+            "id": "er3",
+            "text": "()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn recovers_door_on_failed_unlock() {\n    let door = Door { lock_code: 77 };\n    let err = door.unlock(12);\n    let door = err.unwrap_err();\n    assert_eq!(door.lock_code, 77);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Think about what happens to ownership of the door if unlock fails.",
+    "Return the original self inside the Err variant so the caller gets it back."
+  ],
+  "explanation": "Returning `self` in `Err(self)` yields ownership of the original `Door` struct back to the caller when authentication fails. Returning a `String` or `()` consumes the door permanently and causes compile errors (`E0609`) when attempting to access `Door` fields on the returned error value in tests."
+}

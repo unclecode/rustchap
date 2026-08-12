@@ -1,0 +1,11 @@
+{
+  "id": "unit-testing.rule.result-returning-tests",
+  "kind": "rule",
+  "title": "Returning Result from test functions",
+  "concepts": [
+    "unit-testing"
+  ],
+  "prompt": "What signature change allows a unit test to use the `?` operator instead of calling `.unwrap()`?",
+  "answer": "Change the test function return type to `Result<(), E>` where `E` implements `std::fmt::Debug`. Returning `Ok(())` indicates success, while returning `Err(...)` causes the test to fail.",
+  "schema_version": 1
+}

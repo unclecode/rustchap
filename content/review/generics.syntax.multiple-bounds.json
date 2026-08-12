@@ -1,0 +1,11 @@
+{
+  "id": "generics.syntax.multiple-bounds",
+  "kind": "syntax",
+  "title": "Combining trait bounds with plus",
+  "concepts": [
+    "generics"
+  ],
+  "prompt": "How do you require a generic type to implement multiple traits?",
+  "answer": "Use the `+` operator between traits, such as `T: Display + Clone`. Commas or boolean operators are not valid syntax for combining bounds.",
+  "schema_version": 1
+}

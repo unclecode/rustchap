@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.gotcha.refcell-double-borrow-panic",
+  "kind": "gotcha",
+  "title": "RefCell double borrow runtime panic",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "Why does calling borrow_mut on a RefCell panic if a Ref guard is still in scope?",
+  "answer": "RefCell enforces Rust's aliasing rules at runtime using dynamic counters. Borrowing mutably while any shared borrow exists violates the single-writer or multiple-readers rule and causes a panic.",
+  "schema_version": 1
+}

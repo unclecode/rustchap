@@ -12,9 +12,16 @@
     "build-the-iterator.003",
     "build-the-iterator.004",
     "build-the-iterator.006",
-    "build-the-iterator.005"
+    "build-the-iterator.005",
+    "build-the-iterator.009",
+    "build-the-iterator.010",
+    "build-the-iterator.011",
+    "build-the-iterator.012",
+    "build-the-iterator.013",
+    "build-the-iterator.014",
+    "build-the-iterator.015"
   ],
   "icon": "point.3.connected.trianglepath.dotted",
   "accent": "cyan",
-  "level": "core"
+  "level": "everyday"
 }

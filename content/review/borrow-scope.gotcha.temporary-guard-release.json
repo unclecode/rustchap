@@ -1,0 +1,11 @@
+{
+  "id": "borrow-scope.gotcha.temporary-guard-release",
+  "kind": "gotcha",
+  "title": "RefCell Temporary Guard Dropping",
+  "concepts": [
+    "borrow-scope"
+  ],
+  "prompt": "Why does `cell.borrow().len()` allow a later `borrow_mut()`, when binding the guard to a variable does not?",
+  "answer": "The temporary guard in the first form is dropped at the end of that statement, so the borrow is over immediately. Binding it with `let` keeps the guard alive until the end of the block, and the borrow lives exactly as long as the guard.",
+  "schema_version": 1
+}

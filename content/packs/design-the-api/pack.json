@@ -8,9 +8,20 @@
     "design-the-api.004",
     "design-the-api.002",
     "design-the-api.001",
-    "design-the-api.003"
+    "design-the-api.003",
+    "design-the-api.005",
+    "design-the-api.006",
+    "design-the-api.007",
+    "design-the-api.008",
+    "design-the-api.009",
+    "design-the-api.010",
+    "design-the-api.011",
+    "design-the-api.012",
+    "design-the-api.013",
+    "design-the-api.014",
+    "design-the-api.015"
   ],
   "icon": "slider.horizontal.3",
   "accent": "teal",
-  "level": "advanced"
+  "level": "abstraction"
 }

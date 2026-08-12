@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views.012",
+  "version": 1,
+  "title": "Pair Sum Pipeline",
+  "track": "slices-and-views",
+  "concepts": [
+    "slice",
+    "iterator",
+    "zero-copy"
+  ],
+  "difficulty": 2,
+  "goal": "Arrange iterator operations on slice chunks to sum adjacent pairs.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from references/slices"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn pair_sums(data: &[i32]) -> Vec<i32> {\n    data",
+    "blocks": [
+      {
+        "id": "b1",
+        "text": "\n        .chunks(2)"
+      },
+      {
+        "id": "b2",
+        "text": "\n        .filter(|c| c.len() == 2)"
+      },
+      {
+        "id": "b3",
+        "text": "\n        .map(|c| c[0] + c[1])"
+      },
+      {
+        "id": "b4",
+        "text": "\n        .collect()"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn sums_pairs() {\n    assert_eq!(pair_sums(&[10, 20, 30, 40, 50]), vec![30, 70]);\n}",
+      "#[test]\nfn empty_input() {\n    assert_eq!(pair_sums(&[]), Vec::<i32>::new());\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "chunks(2) produces slice views of up to two elements.",
+    "Filter for full chunks of length 2 before mapping them to their sum."
+  ],
+  "explanation": "data.chunks(2) produces an iterator over sub-slices of length 2 (or 1 at the end). Filtering for c.len() == 2 ensures incomplete trailing chunks are dropped before map converts each sub-slice into an integer sum. Reordering map before filter causes type errors because map outputs integers, which lack a .len() method."
+}

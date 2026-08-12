@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "closures.007",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "16c63e3ddef80cd73ddf3dafae300d58ea55be2d83894ed20f29897ef8a63d15": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot borrow `f` as mutable, as it is not declared as mutable",
+          "slot_ids": [],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `count`, as it is not declared as mutable",
+          "slot_ids": [
+            "closure"
+          ],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "27a2357f4508bb38d4328753d8e35d58a21d9cc3cf6aa61ff09797c9fe6bdcec": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot borrow `f` as mutable, as it is not declared as mutable",
+          "slot_ids": [],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `count`, as it is not declared as mutable",
+          "slot_ids": [
+            "closure"
+          ],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "30899d33f5f64494567a42176a1360bfda2b5ccb271f93cfd1490732dd1f4519": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "use of moved value: `f`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `count`, as it is not declared as mutable",
+          "slot_ids": [
+            "closure"
+          ],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3d4b81ec972a9401f9108ca21f937f66eee42ea95c0bba4cf79c707d806c33d5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a closure that implements the `Fn` trait, but this closure only implements `FnMut`",
+          "slot_ids": [
+            "closure"
+          ],
+          "rust_code": "E0525"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "57ba42781d17f9f858df8a8833b00057516219cfba0fe686b05ea8350303818f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "use of moved value: `f`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `count`, as it is not declared as mutable",
+          "slot_ids": [
+            "closure"
+          ],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "80934129e78e59abe03e52b8fa49a4b0ddf1d93e5fc84c0b26b0f84d722d0f66": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot borrow `f` as mutable, as it is not declared as mutable",
+          "slot_ids": [],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ade9279e56bd4ab62e09b9bad34767b0e771d9e71ae11ddb9612404cc3658546": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "c5175bc750eddd5eb916a95bf0c80d0d35e22d08273335d9dafbe844bfbcd5b0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "use of moved value: `f`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d92a18b9e2a4e241c7da831029e07f20a78fe8b9579a9a74a7a7b6e59d1fa37a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a closure that implements the `Fn` trait, but this closure only implements `FnMut`",
+          "slot_ids": [
+            "closure"
+          ],
+          "rust_code": "E0525"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

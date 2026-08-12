@@ -1,0 +1,12 @@
+{
+  "id": "closures.error.fn-once-called-twice",
+  "kind": "error",
+  "title": "Calling an FnOnce closure multiple times",
+  "concepts": [
+    "closures",
+    "traits"
+  ],
+  "prompt": "What compiler error occurs when you attempt to invoke an FnOnce parameter twice inside a function?",
+  "answer": "The compiler emits E0382 for use of moved value. Calling an FnOnce closure moves the closure instance on the first call, rendering it unavailable for subsequent calls.",
+  "schema_version": 1
+}

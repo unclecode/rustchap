@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.007",
+  "version": 1,
+  "title": "Slice the Prefix",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types",
+    "slice"
+  ],
+  "difficulty": 2,
+  "goal": "Slice a string reference up to a byte offset safely without panicking.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from references/strings"
+  },
+  "template": "fn safe_prefix(s: &str, end_byte: usize) -> &str {\n    if end_byte <= s.len() && s.⟦check⟧ {\n        ⟦slice_expr⟧\n    } else {\n        \"\"\n    }\n}\n\nfn main() {\n    println!(\"{}\", safe_prefix(\"hello\", 2));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "check",
+        "original": "is_empty()",
+        "label": "boundary check",
+        "choices": [
+          {
+            "id": "ch1",
+            "text": "is_char_boundary(end_byte)"
+          },
+          {
+            "id": "ch2",
+            "text": "contains(end_byte)"
+          },
+          {
+            "id": "ch3",
+            "text": "is_empty()"
+          }
+        ]
+      },
+      {
+        "id": "slice_expr",
+        "original": "s[..end_byte]",
+        "label": "slice expression",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "&s[..end_byte]"
+          },
+          {
+            "id": "sl2",
+            "text": "s[..end_byte]"
+          },
+          {
+            "id": "sl3",
+            "text": "&s[end_byte]"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_safe_prefix() {\n    assert_eq!(safe_prefix(\"hello\", 2), \"he\");\n    assert_eq!(safe_prefix(\"🦀\", 1), \"\");\n    assert_eq!(safe_prefix(\"🦀\", 4), \"🦀\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Check if the offset falls on a UTF-8 character boundary before slicing.",
+    "Remember that slicing a string slice produces a borrowed view requiring `&`."
+  ],
+  "explanation": "`is_char_boundary(end_byte)` verifies that the offset falls between UTF-8 characters. Calling `contains` expects a character pattern and causes compiler error E0277. Calling `is_empty()` ignores the byte index and skips valid prefixes. Using `&s[..end_byte]` returns a `&str` view. Omitting `&` produces an unsized `str` value which triggers type errors."
+}

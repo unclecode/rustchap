@@ -1,0 +1,12 @@
+{
+  "id": "closures.gotcha.capturing-vs-function-pointers",
+  "kind": "gotcha",
+  "title": "Coercing closures to function pointers",
+  "concepts": [
+    "closures",
+    "traits"
+  ],
+  "prompt": "When can a closure be passed to a function that expects a raw function pointer `fn(A) -> B`?",
+  "answer": "A closure can coerce to a fn function pointer only if it captures no variables from its environment. As soon as a closure captures any variable, it requires state storage and cannot be represented as a bare function pointer.",
+  "schema_version": 1
+}

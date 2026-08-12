@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.007",
+  "version": 1,
+  "title": "Non-Panicking RefCell Access",
+  "track": "interior-mutability",
+  "concepts": [
+    "interior-mutability",
+    "option"
+  ],
+  "difficulty": 3,
+  "goal": "Inspect a RefCell safely without panicking when a borrow conflict occurs.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4: Interior Mutability"
+  },
+  "template": "use std::cell::RefCell;\n\nfn safe_read(cell: &RefCell<i32>) -> Option<i32> {\n    match cell.⟦slot1⟧() {\n        Ok(guard) => Some(⟦slot2⟧),\n        Err(_) => None,\n    }\n}\n\nfn main() {\n    let cell = RefCell::new(42);\n    let _b = cell.borrow_mut();\n    println!(\"{:?}\", safe_read(&cell));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "borrow",
+        "label": "borrow method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "try_borrow"
+          },
+          {
+            "id": "sl2",
+            "text": "borrow"
+          },
+          {
+            "id": "sl3",
+            "text": "try_borrow_mut"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "guard",
+        "label": "value expression",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "*guard"
+          },
+          {
+            "id": "sl2",
+            "text": "guard"
+          },
+          {
+            "id": "sl3",
+            "text": "&guard"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn reads_when_unborrowed() {\n    let cell = RefCell::new(42);\n    assert_eq!(safe_read(&cell), Some(42));\n}",
+      "#[test]\nfn handles_active_mut_borrow() {\n    let cell = RefCell::new(42);\n    let _guard = cell.borrow_mut();\n    assert_eq!(safe_read(&cell), None);\n}",
+      "#[test]\nfn allows_shared_borrow() {\n    let cell = RefCell::new(42);\n    let _guard = cell.borrow();\n    assert_eq!(safe_read(&cell), Some(42));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look for a RefCell method that returns a Result instead of panicking.",
+    "The guard object returned inside Ok must be dereferenced to obtain the inner i32."
+  ],
+  "explanation": "`try_borrow` returns a `Result` containing a shared guard or a borrow error when an exclusive borrow exists. Dereferencing `*guard` extracts the inner `i32` value from the guard. `borrow` returns a guard directly rather than a `Result`, causing type error `E0308` when matched against `Ok`. `try_borrow_mut` fails when other shared borrows exist."
+}

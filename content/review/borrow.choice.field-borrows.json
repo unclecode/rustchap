@@ -1,0 +1,12 @@
+{
+  "id": "borrow.choice.field-borrows",
+  "kind": "choice",
+  "title": "Borrowing struct fields individually",
+  "concepts": [
+    "borrow",
+    "structs"
+  ],
+  "prompt": "How do you inspect one string field of a struct without moving or cloning it?",
+  "answer": "Access the field with a reference, like `&user.name`. The borrow checker tracks field-level references independently from the outer struct. This lets you read field values while keeping the parent struct intact for future use.",
+  "schema_version": 1
+}

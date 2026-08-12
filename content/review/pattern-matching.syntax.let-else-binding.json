@@ -1,0 +1,12 @@
+{
+  "id": "pattern-matching.syntax.let-else-binding",
+  "kind": "syntax",
+  "title": "Pattern Matching Scope with Let Else",
+  "concepts": [
+    "pattern-matching",
+    "option"
+  ],
+  "prompt": "How does let-else simplify extracting values from Option compared to if-let?",
+  "answer": "A let-else statement extracts matched values directly into the outer scope without creating a nested block. It handles the failure case in an explicit diverging else block. This keeps the primary execution path unindented.",
+  "schema_version": 1
+}

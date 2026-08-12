@@ -1,0 +1,16 @@
+{
+  "id": "cancellation-safety",
+  "title": "Cancellation Safety",
+  "topic": "Concurrency",
+  "summary": "Dropping an incomplete future cancels its operation instantly and discards its local variables.",
+  "lecture": [
+    "In Rust, calling an async function or creating an async block returns a future state machine. If an executor or a select macro drops that future before it finishes, execution stops immediately at the last await point.",
+    "This behavior is called cancellation. Unlike threads or promises in other languages, cancelled Rust futures do not keep running in the background.",
+    "Any local state stored inside the cancelled future is dropped immediately. To preserve progress across cancellations, state must be stored in data structures outside the future."
+  ],
+  "example": {
+    "code": "let mut buf = Vec::new();\n// buf lives outside the select loop",
+    "caption": "State stored outside the future survives cancellation."
+  },
+  "schema_version": 1
+}

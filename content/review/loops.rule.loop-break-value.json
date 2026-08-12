@@ -1,0 +1,11 @@
+{
+  "id": "loops.rule.loop-break-value",
+  "kind": "rule",
+  "title": "Returning values from loop constructs",
+  "concepts": [
+    "loops"
+  ],
+  "prompt": "Which looping construct in Rust can return a non-trivial value, and how is it done?",
+  "answer": "Only `loop` can return a value directly into a variable. You pass the value to the `break` keyword like `break expression`.",
+  "schema_version": 1
+}

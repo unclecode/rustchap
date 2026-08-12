@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.011",
+  "version": 1,
+  "title": "Atomic Max Update",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "atomic-types"
+  ],
+  "difficulty": 2,
+  "goal": "Update an atomic counter to a new maximum using a compare-and-swap retry loop.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "template": "use std::sync::atomic::{AtomicI32, Ordering};\n\nfn update_max(val: &AtomicI32, extra: i32) {\n    let mut current = 0;\n    loop {\n        let new_val = current.max(extra);\n        match val.⟦slot1⟧(\n            current, new_val,\n            Ordering::Relaxed, Ordering::Relaxed,\n        ) {\n            Ok(_) => break,\n            Err(actual) => ⟦slot2⟧,\n        }\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "swap",
+        "label": "atomic CAS operation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "compare_exchange_weak"
+          },
+          {
+            "id": "sl2",
+            "text": "fetch_max"
+          },
+          {
+            "id": "sl3",
+            "text": "swap"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "break",
+        "label": "failure recovery",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "current = actual"
+          },
+          {
+            "id": "sl2",
+            "text": "current = extra"
+          },
+          {
+            "id": "sl3",
+            "text": "break"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_update_max() {\n    let a = AtomicI32::new(50);\n    update_max(&a, 100);\n    assert_eq!(a.load(Ordering::Relaxed), 100);\n    update_max(&a, 20);\n    assert_eq!(a.load(Ordering::Relaxed), 100);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look for the CAS method optimized for execution inside retry loops.",
+    "When compare_exchange_weak returns Err(actual), the expected variable must be updated to the actual current value."
+  ],
+  "explanation": "`compare_exchange_weak` is preferred inside loops because it allows spurious failures for better performance on architectures like ARM. When it returns `Err(actual)`, you must assign `current = actual` so the next iteration compares against the latest value. `swap` unconditionally replaces the value and takes 2 arguments, causing compile error `E0061`. `fetch_max` takes 2 arguments instead of 4, producing `E0061`. Assigning `current = extra` or breaking on `Err` fails to synchronize with the atomic target's current state, causing logic errors or infinite loops."
+}

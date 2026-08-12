@@ -1,0 +1,12 @@
+{
+  "id": "visibility.rule.enum-variant-visibility",
+  "kind": "rule",
+  "title": "Visibility Rules for Enum Variants",
+  "concepts": [
+    "visibility",
+    "enums-basics"
+  ],
+  "prompt": "How does variant visibility in enums differ from field visibility in structs?",
+  "answer": "Enum variants inherit the visibility of the enum itself. If an enum is marked `pub`, all of its variants and their inner fields are automatically public.",
+  "schema_version": 1
+}

@@ -1,0 +1,12 @@
+{
+  "id": "error-propagation.rule.let-else-divergence",
+  "kind": "rule",
+  "title": "Requirement for Let Else Divergence",
+  "concepts": [
+    "error-propagation",
+    "pattern-matching"
+  ],
+  "prompt": "Why must the else block of a let-else statement always diverge?",
+  "answer": "The let-else statement binds pattern variables in the surrounding scope when matching succeeds. If the pattern fails to match, control cannot continue to subsequent statements. The else block must therefore diverge using return, break, continue, or panic.",
+  "schema_version": 1
+}

@@ -1,0 +1,12 @@
+{
+  "id": "closures.rule.fn-trait-hierarchy",
+  "kind": "rule",
+  "title": "The three closure trait relationships",
+  "concepts": [
+    "closures",
+    "traits"
+  ],
+  "prompt": "How do the Fn, FnMut, and FnOnce closure traits relate to each other in Rust's trait hierarchy?",
+  "answer": "Fn is a subtrait of FnMut, which is a subtrait of FnOnce. Any closure implementing Fn can be used where FnMut or FnOnce is required, and any FnMut closure satisfies an FnOnce bound.",
+  "schema_version": 1
+}

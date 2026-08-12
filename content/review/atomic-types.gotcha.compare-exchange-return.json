@@ -1,0 +1,11 @@
+{
+  "id": "atomic-types.gotcha.compare-exchange-return",
+  "kind": "gotcha",
+  "title": "Result value of compare exchange on failure",
+  "concepts": [
+    "atomic-types"
+  ],
+  "prompt": "What does `compare_exchange` return inside its `Err` variant on failure?",
+  "answer": "It returns `Err(actual)` containing the value currently held by the atomic variable. This allows retrying loops to update expected values without performing an extra load.",
+  "schema_version": 1
+}

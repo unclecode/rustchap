@@ -1,0 +1,11 @@
+{
+  "id": "mpsc-channels.choice.mpsc-vs-shared-state",
+  "kind": "choice",
+  "title": "When to choose channels over mutexes",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "prompt": "When should you prefer mpsc channels over shared mutable memory with Mutex?",
+  "answer": "Channels are best when passing ownership of data or tasks between threads in a pipeline. Mutexes are better when multiple threads must continuously read and update a shared data structure in place.",
+  "schema_version": 1
+}

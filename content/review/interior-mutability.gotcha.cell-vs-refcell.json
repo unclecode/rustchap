@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.gotcha.cell-vs-refcell",
+  "kind": "gotcha",
+  "title": "Cell versus RefCell borrow rules",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "How do Cell and RefCell differ in when they enforce Rust's borrowing rules?",
+  "answer": "Cell avoids borrow checking entirely by copying or moving values in and out, which means it never panics at runtime. RefCell hands out dynamic references and enforces borrow rules at runtime, panicking if overlapping borrow limits are broken.",
+  "schema_version": 1
+}

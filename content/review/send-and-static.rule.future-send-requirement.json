@@ -1,0 +1,12 @@
+{
+  "id": "send-and-static.rule.future-send-requirement",
+  "kind": "rule",
+  "title": "When an async future implements Send",
+  "concepts": [
+    "send-and-static",
+    "async-await"
+  ],
+  "prompt": "What determines whether an auto-generated async future implements the Send trait?",
+  "answer": "An async function or block produces a compiler-generated state machine type. The future implements Send if and only if every local variable held in its state across an await point implements Send. If any value alive during a yield point is non-Send, the entire future becomes non-Send.",
+  "schema_version": 1
+}

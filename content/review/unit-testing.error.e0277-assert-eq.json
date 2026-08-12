@@ -1,0 +1,11 @@
+{
+  "id": "unit-testing.error.e0277-assert-eq",
+  "kind": "error",
+  "title": "Compiler error E0277 in test assertions",
+  "concepts": [
+    "unit-testing"
+  ],
+  "prompt": "What causes error E0277 when invoking assert_eq! on a custom struct?",
+  "answer": "Error E0277 occurs when the type being compared lacks either the Debug or PartialEq trait implementation. assert_eq! requires PartialEq to compare values and Debug to display them when the assertion fails. Adding derive(Debug, PartialEq) to the struct definition resolves the error.",
+  "schema_version": 1
+}

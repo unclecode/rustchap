@@ -1,0 +1,11 @@
+{
+  "id": "cancellation-safety.choice.persistent-buffer-location",
+  "kind": "choice",
+  "title": "Where to store cancellation persistent",
+  "concepts": [
+    "cancellation-safety"
+  ],
+  "prompt": "Where should you store a buffer if you need to accumulate data across cancelled select calls?",
+  "answer": "Declare the buffer variable outside the loop containing select. Passing a mutable reference into the future ensures data survives across iterations.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "dynamic-errors.choice.returning-result-from-main",
+  "kind": "choice",
+  "title": "Propagating errors from main",
+  "concepts": [
+    "dynamic-errors"
+  ],
+  "prompt": "How can you write main so that CLI error messages print automatically on failure without calling unwrap?",
+  "answer": "Set the main signature to return Result<(), Box<dyn `std::error::Error`>>. On failure, returning Err prints the error message to stderr and exits with a non-zero exit code.",
+  "schema_version": 1
+}

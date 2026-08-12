@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "move-or-borrow.011",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "4f7975a26f101aa17b1445f60453c3cff0578baad35c5ffb2b695c5441598ba2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`Option<&i32>` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "67eabe840c053043d3d90e6163a5b6b574fa87e3ac4849252283a73c33dc2745": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `unwrap` found for reference `&i32` in the current scope",
+          "slot_ids": [
+            "push_expr"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8b9b6cfe6cb94386fc37706daef8bcbd6104df7dd2efff77fa930bea933d9afc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `*nums` as mutable because it is also borrowed as immutable",
+          "slot_ids": [
+            "push_expr"
+          ],
+          "rust_code": "E0502"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a58a06b822515d767d4b63a62cc5794b36ac4955bd194e2f4807aa0a3f9106ca": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `unwrap` found for type `i32` in the current scope",
+          "slot_ids": [
+            "push_expr"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ae418062496fd6a3c0f36affca840edf165c1a44555c221bddb48032eb1ce2fd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot multiply `Option<&i32>` by `{integer}`",
+          "slot_ids": [
+            "push_expr"
+          ],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`Option<&i32>` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c34ba34ee2f9e917111698e6d14babfec3187251b89aae644db876445f5d3f3b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type `i32` cannot be dereferenced",
+          "slot_ids": [
+            "push_expr"
+          ],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c8d1a965de9c115201cb249781a455cee402e48c1570f1726a640c12954408e8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `*nums` as mutable because it is also borrowed as immutable",
+          "slot_ids": [
+            "push_expr"
+          ],
+          "rust_code": "E0502"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cd392bc5222b755e3e86bcae33e1a83be9ebfe38ae2be0e5bd2de3937f2ffc44": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "e5bb14e7efee02b7672cec48a9237a7dcae4817b1c618901992045c00a3db203": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type `Option<&i32>` cannot be dereferenced",
+          "slot_ids": [
+            "push_expr"
+          ],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`Option<&i32>` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.009",
+  "version": 1,
+  "title": "Boxing Custom Errors",
+  "track": "errors-that-travel",
+  "concepts": [
+    "dynamic-errors",
+    "error-trait"
+  ],
+  "difficulty": 2,
+  "goal": "Implement `std::error::Error` on a custom struct so it can be converted into Box<dyn Error>.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Error Handling"
+  },
+  "template": "use std::{fmt, error::Error};\n\n#[derive(Debug)]\nstruct ErrorA;\nimpl fmt::Display for ErrorA {\n    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result { write!(f, \"err\") }\n}\n\n⟦slot1⟧\n\nfn check() -> Result<(), Box<dyn Error>> {\n    Err(ErrorA)⟦slot2⟧\n}\n\nfn main() { let _ = check(); }\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "",
+        "label": "error trait implementation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "impl Error for ErrorA {}"
+          },
+          {
+            "id": "sl2",
+            "text": ""
+          },
+          {
+            "id": "sl3",
+            "text": "impl ErrorA {}"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "",
+        "label": "try propagation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "?"
+          },
+          {
+            "id": "sl2",
+            "text": ".unwrap()"
+          },
+          {
+            "id": "sl3",
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_process() {\n    assert!(check().is_err());\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Box<dyn Error> requires the trait `std::error::Error` to be implemented.",
+    "Implement the Error trait for ErrorA and propagate with the try operator."
+  ],
+  "explanation": "A type must explicitly implement `std::error::Error` to be boxed as `Box<dyn Error>`. Without `impl Error for ErrorA {}`, the compiler emits `E0277`. Once implemented, `Err(ErrorA)?` automatically converts `ErrorA` into `Box<dyn Error>` using `From`."
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.003",
+  "version": 1,
+  "title": "Navigating Up with Super",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "modules"
+  ],
+  "difficulty": 2,
+  "goal": "Call a function in the parent module from a child module.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "template": "mod outer {\n    fn parent_helper() -> i32 {\n        42\n    }\n\n    pub mod child {\n        pub fn get_value() -> i32 {\n            ⟦slot1⟧::⟦slot2⟧()\n        }\n    }\n}\n\nfn main() {\n    assert_eq!(outer::child::get_value(), 42);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "self",
+        "label": "scope prefix",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "super"
+          },
+          {
+            "id": "sl2",
+            "text": "self"
+          },
+          {
+            "id": "sl3",
+            "text": "crate"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "helper",
+        "label": "function name",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "parent_helper"
+          },
+          {
+            "id": "sl2",
+            "text": "helper"
+          },
+          {
+            "id": "sl3",
+            "text": "get_value"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_parent_call() {\n    assert_eq!(outer::child::get_value(), 42);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Child modules do not search parent scopes automatically.",
+    "`super::` navigates up to the enclosing parent module."
+  ],
+  "explanation": "`super::` moves up one level to the parent module `outer`. `crate::` looks in the root module, where `parent_helper` does not exist. `self::` looks inside `child`, causing a missing item error."
+}

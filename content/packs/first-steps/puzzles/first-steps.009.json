@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.009",
+  "version": 1,
+  "title": "Integer Overflow",
+  "track": "first-steps",
+  "concepts": [
+    "primitive-types"
+  ],
+  "difficulty": 1,
+  "goal": "Learn how Rust handles numeric overflow in debug vs release, and explicit methods.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1: Types and Values"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Arithmetic with basic operators like `+` and `*` checks for overflow in debug mode. If a calculation exceeds the type limit, the program panics at runtime."
+      },
+      {
+        "kind": "code",
+        "code": "let x: u8 = 255;\n// let y = x + 1; // panics in debug!",
+        "caption": "Basic addition panics on overflow in debug mode."
+      },
+      {
+        "kind": "prose",
+        "text": "In release mode, standard operators wrap around instead of panicking. To write code that behaves predictably in all builds, use explicit arithmetic methods."
+      },
+      {
+        "kind": "code",
+        "code": "let x: u8 = 255;\nlet a = x.saturating_add(1);\nlet b = x.wrapping_add(1);",
+        "caption": "Explicit methods define exact overflow behavior."
+      },
+      {
+        "kind": "prose",
+        "text": "`saturating_add` stays at the maximum value `u8::MAX`. `wrapping_add` wraps around to zero using modular arithmetic."
+      },
+      {
+        "kind": "code",
+        "code": "let (val, overflow) =\n    x.overflowing_add(1);",
+        "caption": "overflowing_add returns a tuple with an overflow flag."
+      },
+      {
+        "kind": "prose",
+        "text": "Error handling with `Option` when operations fail is covered in later decks."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn how Rust handles numeric overflow in debug vs release, and explicit methods."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "cfg-test.rule.cfg-attribute",
+  "kind": "rule",
+  "title": "Purpose of the cfg(test) attribute",
+  "concepts": [
+    "cfg-test"
+  ],
+  "prompt": "What does the `#[cfg(test)]` attribute do when building a Rust binary for production?",
+  "answer": "It conditionally excludes the annotated module or function from compilation unless running `cargo test`. This prevents test code from inflating production binaries.",
+  "schema_version": 1
+}

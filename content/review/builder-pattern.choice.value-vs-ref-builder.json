@@ -1,0 +1,11 @@
+{
+  "id": "builder-pattern.choice.value-vs-ref-builder",
+  "kind": "choice",
+  "title": "Choosing value or reference builder methods",
+  "concepts": [
+    "builder-pattern"
+  ],
+  "prompt": "When should a builder method consume `self` instead of borrowing `&mut self`?",
+  "answer": "Consuming `self` by value is preferred when builder methods transition state types or construct one-shot configurations. Borrowing `&mut self` is useful when reusing a single builder instance to construct multiple objects. Consuming `self` also eliminates explicit `mut` variable declarations at the call site.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "copy.gotcha.primitive-vs-custom",
+  "kind": "gotcha",
+  "title": "Copy semantics on custom structs",
+  "concepts": [
+    "copy"
+  ],
+  "prompt": "Why does a struct with only primitive fields move by default instead of copying?",
+  "answer": "Rust requires opt-in copy semantics for custom types. Adding `#[derive(Copy, Clone)]` enables bitwise duplication on assignment. Without that attribute, assignment transfers ownership even if every field is a primitive number.",
+  "schema_version": 1
+}

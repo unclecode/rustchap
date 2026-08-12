@@ -1,0 +1,11 @@
+{
+  "id": "memory-ordering.gotcha.invalid-store-load-orderings",
+  "kind": "gotcha",
+  "title": "Invalid Memory Orderings on Stores and Loads",
+  "concepts": [
+    "memory-ordering"
+  ],
+  "prompt": "What happens if you pass `Ordering::Acquire` to an atomic store or `Ordering::Release` to an atomic load?",
+  "answer": "The operation will panic at runtime. `Acquire` is only valid for load or read-modify-write operations, while `Release` is only valid for store or read-modify-write operations. Using the wrong ordering breaks the underlying CPU hardware synchronization contract.",
+  "schema_version": 1
+}

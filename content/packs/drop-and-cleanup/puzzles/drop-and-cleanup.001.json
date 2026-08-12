@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.001",
+  "version": 1,
+  "title": "Scope and Automatic Cleanup",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait",
+    "borrow-scope"
+  ],
+  "difficulty": 1,
+  "goal": "Understand how Rust automatically drops values when they go out of scope.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In languages with a garbage collector, memory cleanup happens in the background. In C++, destructors run when objects go out of scope. Rust uses a similar automatic mechanism called dropping."
+      },
+      {
+        "kind": "code",
+        "code": "{\n    let name = String::from(\"Rust\");\n    // name is active here\n}\n// name is dropped here",
+        "caption": "Scope braces define the exact lifetime of a value."
+      },
+      {
+        "kind": "prose",
+        "text": "When a variable goes out of scope, Rust calls its cleanup logic automatically. You do not write explicit calls to free memory or close handles."
+      },
+      {
+        "kind": "prose",
+        "text": "Local variables inside the same block are dropped in reverse order of declaration. The last variable created is the first variable dropped."
+      },
+      {
+        "kind": "code",
+        "code": "{\n    let a = String::from(\"first\");\n    let b = String::from(\"second\");\n}\n// b drops first, then a drops",
+        "caption": "Cleanup proceeds from bottom to top within a block."
+      },
+      {
+        "kind": "prose",
+        "text": "Manual early cleanup is done with `std::mem::drop`, which takes ownership and forces immediate drop at that line."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand how Rust automatically drops values when they go out of scope."
+}

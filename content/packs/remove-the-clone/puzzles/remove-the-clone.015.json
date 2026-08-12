@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "remove-the-clone.015",
+  "version": 1,
+  "title": "Borrowing from an Option",
+  "track": "remove-the-clone",
+  "concepts": [
+    "option",
+    "borrow",
+    "clone",
+    "deref-coercion"
+  ],
+  "difficulty": 2,
+  "goal": "Convert a borrowed Option<String> to Option<&str> without allocating or moving.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from memory-management/clone"
+  },
+  "template": "struct Config {\n    endpoint: Option<String>,\n}\n\nfn endpoint_str(cfg: &Config) -> Option<&str> {\n    cfg.endpoint.⟦slot1⟧\n}\n\nfn main() {\n    let cfg = Config {\n        endpoint: Some(String::from(\"api\")),\n    };\n    let ep = endpoint_str(⟦slot2⟧);\n    println!(\"{:?}: {}\", ep, cfg.endpoint.is_some());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "as_deref()",
+        "label": "Option transformation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "as_deref()"
+          },
+          {
+            "id": "sl2",
+            "text": "clone().as_deref()"
+          },
+          {
+            "id": "sl3",
+            "text": "unwrap().as_str()"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "&cfg",
+        "label": "argument to endpoint_str",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "&cfg"
+          },
+          {
+            "id": "sl2",
+            "text": "&cfg.clone()"
+          },
+          {
+            "id": "sl3",
+            "text": "cfg"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_endpoint() {\n    let cfg = Config { endpoint: Some(String::from(\"api\")) };\n    assert_eq!(endpoint_str(&cfg), Some(\"api\"));\n    assert!(cfg.endpoint.is_some());\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Cloning inside endpoint_str creates a temporary Option that gets dropped before the reference can be returned.",
+    "Option has a built-in method that converts &Option<String> to Option<&str> using Deref."
+  ],
+  "explanation": "`Option::as_deref` converts a reference to `Option<T>` into `Option<&T::Target>` using `Deref` coercion. This transforms `&Option<String>` into `Option<&str>` without allocating or moving. Calling `.clone().as_deref()` creates a temporary `String` whose borrow cannot outlive `endpoint_str`, triggering `E0515`. Calling `unwrap` tries to move the `String` out of a borrowed `Config`, triggering `E0507`. Passing `&cfg.clone()` borrows a temporary copy of `Config`, triggering `E0716` when `ep` is used later."
+}

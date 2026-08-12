@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "async-and-send.007",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0da18369f1747bed8ba7c4766f87cfe25bb443a87964c2e91a669b6fdc1e37f9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "async block may outlive the current function, but it borrows `s`, which is owned by the current function",
+          "slot_ids": [
+            "keyword"
+          ],
+          "rust_code": "E0373"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "251a9bd7fdf97921963938b9e3a6cd4b9acd3b7b6ac636e69c802d597bfb6a65": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`{closure@/var/folders/z7/2v9mp_7d0g387k4kjyjc9w4r0000gn/T/.tmpaXecfg/main.rs:4:5: 4:12}` is not a future",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "75f284791be138945a9bbfc902d399052eb6812b5483fa4a21a92daa2c44566a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`{closure@/var/folders/z7/2v9mp_7d0g387k4kjyjc9w4r0000gn/T/.tmpDahr6f/main.rs:4:5: 4:12}` is not a future",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7951b17c45ff034434f2e5c493d8edc3a914fedc7742822e27d035fd34fa7d5b": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    },
+    "79d17d4e5d6a4255c02fedda839a0cc5f5c4331ea30068e060e0e0e2979ecf31": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8750ffab1d1167fa27486c6f10ae37c8e28673287f66a00189b9d50d4f49354c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `{async block@/var/folders/z7/2v9mp_7d0g387k4kjyjc9w4r0000gn/T/.tmpb05T8z/main.rs:4:5: 4:10}` to be a future that resolves to `usize`, but it resolves to `&usize`",
+          "slot_ids": [],
+          "rust_code": "E0271"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "add8ca200118faad2c834b9f138376588911b2d946c8785ae1332778f351d907": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`{closure@/var/folders/z7/2v9mp_7d0g387k4kjyjc9w4r0000gn/T/.tmpmrSKdI/main.rs:4:5: 4:12}` is not a future",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c9b62d6724160f1658fb63b247d25bc92e713c6c559619107178a87fdfe43780": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `{async block@/var/folders/z7/2v9mp_7d0g387k4kjyjc9w4r0000gn/T/.tmpfWrh8e/main.rs:4:5: 4:15}` to be a future that resolves to `usize`, but it resolves to `&usize`",
+          "slot_ids": [],
+          "rust_code": "E0271"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d8a8a94653e20b69f59d2353ccac9b97b6c593eda4b7bfede0aa2160327228ef": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

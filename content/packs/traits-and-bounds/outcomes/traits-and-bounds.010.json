@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "traits-and-bounds.010",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "156a6b339a00c0d2094743753f895f550021006371d0a1e17609cc8d0cd62bac": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `log` found for reference `&T` in the current scope",
+          "slot_ids": [
+            "call_log_slot"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "242e889dd976700702f9448f720c9f57aa5919863fcf778936e491e83d35cf9e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `log_message`",
+          "slot_ids": [
+            "impl_loggable_slot"
+          ],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `log` found for reference `&T` in the current scope",
+          "slot_ids": [
+            "call_log_slot"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3ff2d4cb8d8d3ba1d15c2f495f0f96fe6b5c43ed78ccfa23d6e596d2a88997e4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Event: Loggable` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7fe8968fe9d309c768802c3d8dc47645376ee4fb3a74ff1dfc394f5b471ca6af": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `log_message`",
+          "slot_ids": [
+            "impl_loggable_slot"
+          ],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "attempted to take value of method `log_message` on type `&T`",
+          "slot_ids": [
+            "call_log_slot"
+          ],
+          "rust_code": "E0615"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a98c6da69706ff0ea6eb7b8eeea7ce49f93d73addb1a1d64464542a439fbefdf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "attempted to take value of method `log_message` on type `&T`",
+          "slot_ids": [
+            "call_log_slot"
+          ],
+          "rust_code": "E0615"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "adb32399a45afef63e4da42829aeb1a7145844f872e833ab2f683a078625b744": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Event: Loggable` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `log` found for reference `&T` in the current scope",
+          "slot_ids": [
+            "call_log_slot"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b37f8c9fd7698a30fa89f6296d46bd25a4c1ddf958688b4ee4ceeb99327a15fd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `log_message`",
+          "slot_ids": [
+            "impl_loggable_slot"
+          ],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cda4f94b9f46a0298fa5198a317712f6011f9139d8313c370cd7b638e9656878": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Event: Loggable` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "attempted to take value of method `log_message` on type `&T`",
+          "slot_ids": [
+            "call_log_slot"
+          ],
+          "rust_code": "E0615"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fa61204dd7be77e0a1b75f582eeee39a5129d03ff789d577e66c255665ee6b53": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    }
+  }
+}

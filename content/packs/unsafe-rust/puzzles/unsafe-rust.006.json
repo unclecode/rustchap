@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust.006",
+  "version": 1,
+  "title": "Pointer Creation vs Dereference",
+  "track": "unsafe-rust",
+  "concepts": [
+    "raw-pointers",
+    "unsafe-rust"
+  ],
+  "difficulty": 1,
+  "goal": "Convert a reference to a raw pointer and dereference it inside an unsafe block.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Raw Pointers"
+  },
+  "template": "fn read_and_modify(val: &mut i32) -> i32 {\n    let ptr: *mut i32 = ⟦slot1⟧;\n    unsafe {\n        *ptr += 10;\n    }\n    ⟦slot2⟧\n}\n\nfn main() {\n    let mut x = 5;\n    println!(\"{}\", read_and_modify(&mut x));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "val as i32",
+        "label": "pointer conversion",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "val as *mut i32"
+          },
+          {
+            "id": "sl2",
+            "text": "val as i32"
+          },
+          {
+            "id": "sl3",
+            "text": "*val as *mut i32"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "*ptr",
+        "label": "pointer dereference",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "unsafe { *ptr }"
+          },
+          {
+            "id": "sl2",
+            "text": "*ptr"
+          },
+          {
+            "id": "sl3",
+            "text": "unsafe { ptr }"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn modifies_via_pointer() {\n    let mut x = 5;\n    assert_eq!(read_and_modify(&mut x), 15);\n    assert_eq!(x, 15);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Casting a reference to a raw pointer is safe and uses standard casting syntax.",
+    "Reading memory behind a raw pointer requires dereferencing it inside an unsafe block."
+  ],
+  "explanation": "Converting a mutable reference `val` to a raw pointer `*mut i32` is safe Rust using `val as *mut i32`. Casting `val` directly to an integer or dereferencing `*val` first produces type conversion errors (`E0605`). Reading the value behind `ptr` requires dereferencing `*ptr` inside an `unsafe` block (`unsafe { *ptr }`). Doing `*ptr` outside `unsafe` triggers `E0133`, while returning `ptr` directly yields a raw pointer instead of `i32` (`E0308`)."
+}

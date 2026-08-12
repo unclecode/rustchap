@@ -1,0 +1,12 @@
+{
+  "id": "borrow.error.e0515-cloned-temporary",
+  "kind": "error",
+  "title": "E0515 returning reference to temporary",
+  "concepts": [
+    "borrow",
+    "clone"
+  ],
+  "prompt": "Why does calling .clone().as_deref() on a field inside a function trigger compiler error E0515?",
+  "answer": ".clone() creates a temporary owned value that is dropped when the function returns. Calling .as_deref() on that temporary creates a reference to data that will not exist after the function returns. You must borrow the original field directly instead.",
+  "schema_version": 1
+}

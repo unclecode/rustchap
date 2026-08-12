@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.008",
+  "version": 1,
+  "title": "Offload Without Cloning",
+  "track": "async-and-send",
+  "concepts": [
+    "async-await",
+    "clone"
+  ],
+  "difficulty": 2,
+  "goal": "Offload compute work to a blocking thread without redundant cloning.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Blocking Executor"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "zero_clone",
+        "code": "struct Data(Vec<u8>);\nasync fn sum_bytes(data: Data) -> u32 {\n    std::thread::spawn(move || {\n        data.0.iter().map(|&b| b as u32).sum()\n    }).join().unwrap()\n}"
+      },
+      {
+        "id": "extra_clone",
+        "code": "struct Data(Vec<u8>);\nasync fn sum_bytes(data: Data) -> u32 {\n    let copy = data.clone();\n    std::thread::spawn(move || {\n        copy.0.iter().map(|&b| b as u32).sum()\n    }).join().unwrap()\n}"
+      },
+      {
+        "id": "double_clone",
+        "code": "struct Data(Vec<u8>);\nasync fn sum_bytes(data: Data) -> u32 {\n    let copy1 = data.clone();\n    let copy2 = copy1.clone();\n    std::thread::spawn(move || {\n        copy2.0.iter().map(|&b| b as u32).sum()\n    }).join().unwrap()\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_sum() {\n    fn noop(_: *const ()) {}\n    fn clone(p: *const ()) -> std::task::RawWaker { std::task::RawWaker::new(p, &VTABLE) }\n    static VTABLE: std::task::RawWakerVTable = std::task::RawWakerVTable::new(clone, noop, noop, noop);\n    let waker = unsafe { std::task::Waker::from_raw(std::task::RawWaker::new(std::ptr::null(), &VTABLE)) };\n    let mut cx = std::task::Context::from_waker(&waker);\n    let mut fut = std::pin::pin!(sum_bytes(Data(vec![1, 2, 3])));\n    if let std::task::Poll::Ready(res) = fut.as_mut().poll(&mut cx) {\n        assert_eq!(res, 6);\n    } else {\n        panic!(\"future not ready\");\n    }\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "`thread::spawn` takes a move closure that accepts ownership of values directly.",
+    "The function receives data by value, so no clone call is necessary or valid on a non-Clone type."
+  ],
+  "explanation": "Since `sum_bytes` takes `data` by value, the `move` closure passed into `thread::spawn` directly takes ownership of `Data` without allocating or cloning. The other candidates attempt calling `.clone()`, which fails with `E0599` because `Data` does not implement `Clone`."
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels",
+  "title": "Threads & Channels",
+  "description": "Real threads, channels, Arc and Mutex, Send and Sync.",
+  "toolchain": "1.97.1",
+  "order": [
+    "threads-and-channels.001",
+    "threads-and-channels.002",
+    "threads-and-channels.003",
+    "threads-and-channels.004",
+    "threads-and-channels.005",
+    "threads-and-channels.006",
+    "threads-and-channels.007",
+    "threads-and-channels.008",
+    "threads-and-channels.009",
+    "threads-and-channels.010",
+    "threads-and-channels.011",
+    "threads-and-channels.012",
+    "threads-and-channels.013",
+    "threads-and-channels.014",
+    "threads-and-channels.015",
+    "threads-and-channels.016",
+    "threads-and-channels.017",
+    "threads-and-channels.018"
+  ],
+  "icon": "arrow.triangle.swap",
+  "accent": "cyan",
+  "level": "systems"
+}

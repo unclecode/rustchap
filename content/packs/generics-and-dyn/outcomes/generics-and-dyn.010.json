@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "generics-and-dyn.010",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1e7d8096c1741354d4177658bd6fa4b030931a0a97d98f838293efacb1d300a1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `filter` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "filter"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4f203d19beb7b09ecd36bdf1c094a75261b2a1352c202cdf3cc0ddaf1ad53eb7": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0
+      },
+      "diagnostics": []
+    },
+    "91d4369c0d3eaa0af2342ec58d6bfff1cfb39ac2a267a8b1951e2898dac9966c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "filter"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c3ce06dd8ba06ca929eb576a7f7d8c8ac825105c64c76db55725a63e22a22d2f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `filter` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "filter"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "dbdb9b771dd7b03bba2f1903c5b022da278f457546b9c8692f08999d2e986f75": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `map` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "map"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f76edf80a54690784d00366f1b43a14d08f77b029e33b2e9dce2972df822a114": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `map` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "map"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

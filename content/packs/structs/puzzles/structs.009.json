@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "id": "structs.009",
+  "version": 1,
+  "title": "Mutating Struct Fields",
+  "track": "structs",
+  "concepts": [
+    "structs",
+    "mutability"
+  ],
+  "difficulty": 1,
+  "goal": "Use &mut self to alter fields inside a method.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Methods and Traits"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You use mutable references in functions when you want to modify a value in place."
+      },
+      {
+        "kind": "code",
+        "code": "struct Score {\n    points: u32,\n}",
+        "caption": "Score holds a single integer field."
+      },
+      {
+        "kind": "prose",
+        "text": "To modify struct fields inside a method, the method must take &mut self as its receiver."
+      },
+      {
+        "kind": "code",
+        "code": "impl Score {\n    fn add(&mut self, bonus: u32) {\n        self.points += bonus;\n    }\n}",
+        "caption": "&mut self grants exclusive write access."
+      },
+      {
+        "kind": "prose",
+        "text": "Calling a &mut self method requires the instance variable itself to be declared with let mut."
+      },
+      {
+        "kind": "code",
+        "code": "let mut s = Score { points: 10 };\ns.add(5);",
+        "caption": "The caller binding must be mutable."
+      },
+      {
+        "kind": "prose",
+        "text": "If the caller variable is immutable, Rust stops the call with error E0596."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Use &mut self to alter fields inside a method."
+}

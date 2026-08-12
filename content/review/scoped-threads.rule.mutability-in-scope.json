@@ -1,0 +1,11 @@
+{
+  "id": "scoped-threads.rule.mutability-in-scope",
+  "kind": "rule",
+  "title": "Borrow rules inside thread scopes",
+  "concepts": [
+    "scoped-threads"
+  ],
+  "prompt": "What borrowing restriction applies when multiple scoped threads access the same local variable?",
+  "answer": "Standard borrowing rules still apply inside `thread::scope`. Multiple threads can hold shared immutable references to the same variable, but only one thread can hold a mutable reference at a time.",
+  "schema_version": 1
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "drop-and-cleanup.010",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "5e121505c3b99e817a0c6b1e9a10c5393439552e0e554d46cf717ebd075cbf3e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of `guard` because it is borrowed",
+          "slot_ids": [
+            "drop_while_borrowed"
+          ],
+          "rust_code": "E0505"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8c0f0872c6cea090cb00a217c77ffe9a42276807187e4f5151d651d1140ec816": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "d26aeb433a6a1a3997302e492c4bae9f2a734c4801bc872f4cf93ba5cb3172a0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `guard`",
+          "slot_ids": [
+            "use_after_drop"
+          ],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers.011",
+  "version": 1,
+  "title": "Exclusive Access to Shared Data",
+  "track": "smart-pointers",
+  "concepts": [
+    "smart-pointers",
+    "mutability"
+  ],
+  "difficulty": 1,
+  "goal": "Mutate data inside an Rc when ownership is unique or copy-on-write.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4: Smart Pointers"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "`Rc<T>` normally provides shared immutable access. You cannot get a `&mut T` directly from an `Rc<T>` because another handle might be reading it."
+      },
+      {
+        "kind": "code",
+        "code": "let mut num = Rc::new(42);\nif let Some(val) = Rc::get_mut(&mut num) {\n    *val += 1;\n}",
+        "caption": "get_mut returns Some(&mut T) only if count is 1."
+      },
+      {
+        "kind": "prose",
+        "text": "If there is only one `Rc` pointing to the data, `Rc::get_mut` returns `Some(&mut T)`. If other handles exist, it returns `None` to prevent data mutation under active sharing."
+      },
+      {
+        "kind": "prose",
+        "text": "When you need mutable access regardless of handle count, use `Rc::make_mut`. It checks the count and clones the inner data if shared so the current handle gets its own mutable copy."
+      },
+      {
+        "kind": "code",
+        "code": "let mut data = Rc::new(vec![1, 2]);\n// Clones vec if shared, then mutates\nRc::make_mut(&mut data).push(3);",
+        "caption": "make_mut clones on write when shared."
+      },
+      {
+        "kind": "prose",
+        "text": "This technique is called clone-on-write. It avoids cloning when the `Rc` is uniquely owned, paying the clone cost only when sharing actually occurs."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Mutate data inside an Rc when ownership is unique or copy-on-write."
+}

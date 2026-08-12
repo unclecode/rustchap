@@ -1,0 +1,12 @@
+{
+  "id": "raw-pointers.rule.from-raw-parts-requirements",
+  "kind": "rule",
+  "title": "Safety for slice from raw parts",
+  "concepts": [
+    "raw-pointers",
+    "slice"
+  ],
+  "prompt": "What conditions must be met before calling `std::slice::from_raw_parts`?",
+  "answer": "The pointer must be non-null and properly aligned for the element type. The memory range must be valid for reads for the given length, and no mutable references may overlap it.",
+  "schema_version": 1
+}

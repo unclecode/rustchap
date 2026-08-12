@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "id": "option-and-result.015",
+  "version": 1,
+  "title": "Guard Clauses with Let Else",
+  "track": "option-and-result",
+  "concepts": [
+    "option",
+    "error-propagation",
+    "pattern-matching"
+  ],
+  "difficulty": 2,
+  "goal": "Extract a valid age from input or return an error using let-else syntax.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Option and Result"
+  },
+  "template": "fn valid_age(s: &str) -> Result<u32, &'static str> {\n    let ⟦pattern⟧ = s.parse::<u32>().ok() ⟦fallback⟧;\n    if age >= 18 {\n        Ok(age)\n    } else {\n        Err(\"too young\")\n    }\n}\n\nfn main() {\n    println!(\"{:?}\", valid_age(\"20\"));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "pattern",
+        "original": "age",
+        "label": "match pattern",
+        "choices": [
+          {
+            "id": "pa1",
+            "text": "Some(age)"
+          },
+          {
+            "id": "pa2",
+            "text": "age"
+          },
+          {
+            "id": "pa3",
+            "text": "Ok(age)"
+          }
+        ]
+      },
+      {
+        "id": "fallback",
+        "original": "unwrap_or(0)",
+        "label": "else handling",
+        "choices": [
+          {
+            "id": "fa1",
+            "text": "else { return Err(\"invalid number\"); }"
+          },
+          {
+            "id": "fa2",
+            "text": "else { Err(\"invalid number\") }"
+          },
+          {
+            "id": "fa3",
+            "text": "unwrap_or(0)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn accepts_valid() {\n    assert_eq!(valid_age(\"20\"), Ok(20));\n}",
+      "#[test]\nfn rejects_young() {\n    assert_eq!(valid_age(\"15\"), Err(\"too young\"));\n}",
+      "#[test]\nfn rejects_garbage() {\n    assert_eq!(valid_age(\"abc\"), Err(\"invalid number\"));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The `ok()` method converts a `Result` into an `Option`.",
+    "In `let-else` syntax, the `else` block must diverge using `return`, `break`, `continue`, or panic."
+  ],
+  "explanation": "The `let Some(age)` statement extracts `age` into the outer scope. The `else` block must diverge because failure prevents binding `age`. Returning `Err(...)` diverges from the current function. Using `else { Err(...) }` fails to compile because the block evaluates to a value rather than diverging (`E0308`). Pattern `Ok(age)` fails because `ok()` returns `Option`, not `Result` (`E0308`)."
+}

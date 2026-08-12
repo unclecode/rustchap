@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers.005",
+  "version": 1,
+  "title": "Owned Trait Objects",
+  "track": "smart-pointers",
+  "concepts": [
+    "smart-pointers",
+    "traits"
+  ],
+  "difficulty": 1,
+  "goal": "Store dynamically sized types on the heap using Box<dyn Trait>.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Trait Objects"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In languages like Java or Python, collections hold objects of different subclasses naturally. In Rust, items in a vector must all have the exact same size at compile time."
+      },
+      {
+        "kind": "code",
+        "code": "trait Speaker {\n    fn speak(&self) -> &str;\n}",
+        "caption": "Different types implementing Speaker have different sizes."
+      },
+      {
+        "kind": "prose",
+        "text": "Because types implementing a trait vary in size, you cannot write `Vec<dyn Speaker>` directly. `dyn Speaker` is a dynamically sized type with no fixed size."
+      },
+      {
+        "kind": "code",
+        "code": "let items: Vec<Box<dyn Speaker>> = vec![\n    Box::new(Dog),\n    Box::new(Cat),\n];",
+        "caption": "Box gives every item a fixed pointer size on the stack."
+      },
+      {
+        "kind": "prose",
+        "text": "`Box<dyn Speaker>` stores each element on the heap and holds a fat pointer. A fat pointer contains two addresses: one to the heap data, and one to the vtable of methods."
+      },
+      {
+        "kind": "prose",
+        "text": "Dynamic dispatch through trait objects adds a small lookup cost at runtime. Generics with trait bounds avoid this cost, and are covered in the Generics vs dyn deck."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Store dynamically sized types on the heap using Box<dyn Trait>."
+}

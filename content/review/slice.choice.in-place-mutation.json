@@ -1,0 +1,12 @@
+{
+  "id": "slice.choice.in-place-mutation",
+  "kind": "choice",
+  "title": "Swapping elements in a mutable slice",
+  "concepts": [
+    "slice",
+    "mutability"
+  ],
+  "prompt": "How do you exchange two elements in a mutable slice without moving them out or allocating memory?",
+  "answer": "Call the `.swap(i, j)` method directly on the mutable slice. This method safely exchanges elements in place without taking ownership or violating aliasing rules.",
+  "schema_version": 1
+}

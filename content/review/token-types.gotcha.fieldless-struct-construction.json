@@ -1,0 +1,12 @@
+{
+  "id": "token-types.gotcha.fieldless-struct-construction",
+  "kind": "gotcha",
+  "title": "Direct instantiation of empty token structs",
+  "concepts": [
+    "token-types",
+    "visibility"
+  ],
+  "prompt": "What mistake allows external code to bypass token constructor functions for zero-sized structs?",
+  "answer": "Defining a public unit struct like `pub struct Token;` leaves no private fields. Any code can construct a unit struct value directly using its name without calling authorized constructors. Adding a private field prevents unauthorized direct instantiation.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "match-basics.gotcha.arm-types-must-match",
+  "kind": "gotcha",
+  "title": "All match arms yield same type",
+  "concepts": [
+    "match-basics"
+  ],
+  "prompt": "What happens when different arms of a match expression produce different types?",
+  "answer": "The compiler rejects the code with error `E0308`. Every arm in a `match` expression must evaluate to the exact same type, because the `match` itself evaluates to a single type.",
+  "schema_version": 1
+}

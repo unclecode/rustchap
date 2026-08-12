@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.014",
+  "version": 1,
+  "title": "Avoid the Double Allocation",
+  "track": "move-or-borrow",
+  "concepts": [
+    "borrow",
+    "clone",
+    "api-design"
+  ],
+  "difficulty": 2,
+  "goal": "Inspect slice elements without cloning or reallocating memory.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Ownership and Borrowing"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "borrowed",
+        "code": "struct Item {\n    name: String,\n    price: u32,\n}\n\nfn total_price(items: &[Item]) -> u32 {\n    items.iter().map(|item| item.price).sum()\n}"
+      },
+      {
+        "id": "cloned_items",
+        "code": "struct Item {\n    name: String,\n    price: u32,\n}\n\nfn total_price(items: &[Item]) -> u32 {\n    items.iter().cloned().map(|item| item.price).sum()\n}"
+      },
+      {
+        "id": "cloned_vec",
+        "code": "struct Item {\n    name: String,\n    price: u32,\n}\n\nfn total_price(items: &[Item]) -> u32 {\n    let mut sum = 0;\n    for item in items.to_vec() {\n        sum += item.price;\n    }\n    sum\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn calculates_sum() {\n    let items = vec![\n        Item { name: String::from(\"Book\"), price: 15 },\n        Item { name: String::from(\"Pen\"), price: 5 },\n    ];\n    assert_eq!(total_price(&items), 20);\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Look at whether any candidate clones items to read a u32 field.",
+    "u32 implements Copy, so reading item.price through &Item requires zero cloning."
+  ],
+  "explanation": "Iterating over a slice with items.iter() yields shared references &Item. Reading item.price (a u32) copies the integer directly without cloning the item or its heap-allocated String. Using .cloned() or to_vec() clones every Item and allocates heap memory for no benefit. Always borrow slices when you only need to read field data."
+}

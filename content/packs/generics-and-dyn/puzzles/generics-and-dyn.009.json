@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.009",
+  "version": 1,
+  "title": "Zero-Cost Trait Abstraction",
+  "track": "generics-and-dyn",
+  "concepts": [
+    "generics",
+    "traits"
+  ],
+  "difficulty": 2,
+  "goal": "Select the zero-cost generic signature over redundant allocations.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Generics vs dyn"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "generic_ref",
+        "code": "trait Summarize {\n    fn summary(&self) -> String;\n}\n\nstruct Article {\n    title: String,\n}\n\nimpl Summarize for Article {\n    fn summary(&self) -> String {\n        self.title.clone()\n    }\n}\n\nfn print_summary(item: &impl Summarize) -> String {\n    item.summary()\n}"
+      },
+      {
+        "id": "concrete_clone",
+        "code": "trait Summarize {\n    fn summary(&self) -> String;\n}\n\nstruct Article {\n    title: String,\n}\n\nimpl Summarize for Article {\n    fn summary(&self) -> String {\n        self.title.clone()\n    }\n}\n\nfn print_summary(item: &Article) -> String {\n    let copy = item.title.clone();\n    let temp = Article { title: copy };\n    temp.summary()\n}"
+      },
+      {
+        "id": "double_clone",
+        "code": "trait Summarize {\n    fn summary(&self) -> String;\n}\n\nstruct Article {\n    title: String,\n}\n\nimpl Summarize for Article {\n    fn summary(&self) -> String {\n        self.title.clone()\n    }\n}\n\nfn print_summary(item: &Article) -> String {\n    let copy1 = item.title.clone();\n    let copy2 = copy1.clone();\n    let temp = Article { title: copy2 };\n    temp.summary()\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "struct NewsFlash(&'static str);\n\nimpl Summarize for NewsFlash {\n    fn summary(&self) -> String {\n        self.0.to_string()\n    }\n}\n\n#[test]\nfn summarizes_any_trait_type() {\n    let n = NewsFlash(\"Rust News\");\n    assert_eq!(print_summary(&n), \"Rust News\");\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 2
+    },
+    "optimal": {
+      "clone_count": 1
+    }
+  },
+  "hints": [
+    "The item parameter already implements Summarize by reference.",
+    "Passing a generic trait reference accepts any implementing type without concrete struct coupling."
+  ],
+  "explanation": "Passing `&impl Summarize` accepts any type implementing `Summarize`. It operates directly by reference without requiring a concrete struct type. Candidates expecting `&Article` fail to compile when called with other summarizing types like `NewsFlash`."
+}

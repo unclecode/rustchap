@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.010",
+  "version": 1,
+  "title": "Block Values and Scopes",
+  "track": "control-flow",
+  "concepts": [
+    "expressions"
+  ],
+  "difficulty": 2,
+  "goal": "Return an integer from a block expression without leaking local variables.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  },
+  "template": "fn compute(base: i32) -> i32 {\n    let scaled = {\n        let factor = 3;\n        base * factor⟦s1⟧\n    };\n    scaled ⟦s2⟧\n}\n\nfn main() {\n    println!(\"{}\", compute(5));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "s1",
+        "original": ";",
+        "label": "block value",
+        "choices": [
+          {
+            "id": "s11",
+            "text": ";"
+          },
+          {
+            "id": "s12",
+            "text": ""
+          },
+          {
+            "id": "s13",
+            "text": " + factor;"
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "original": "+ factor",
+        "label": "outer addition",
+        "choices": [
+          {
+            "id": "s21",
+            "text": "+ factor"
+          },
+          {
+            "id": "s22",
+            "text": "+ 1"
+          },
+          {
+            "id": "s23",
+            "text": "+ 1;"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn computes_correctly() {\n    assert_eq!(compute(5), 16);\n    assert_eq!(compute(0), 1);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Check which block owns `factor`. It disappears at the closing brace.",
+    "The block must produce an `i32` into `scaled`."
+  ],
+  "explanation": "The last expression in a block becomes its value when written without a semicolon. `base * 3` evaluates to `15` and assigns it to `scaled`. `factor` lives only inside the block scope, so accessing it outside causes error `E0425`. Adding a semicolon to `scaled + 1;` makes the function return `()` instead of `i32`, causing error `E0308`."
+}

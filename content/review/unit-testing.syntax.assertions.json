@@ -1,0 +1,11 @@
+{
+  "id": "unit-testing.syntax.assertions",
+  "kind": "syntax",
+  "title": "Comparing values in unit test assertions",
+  "concepts": [
+    "unit-testing"
+  ],
+  "prompt": "What macros do you use to assert equality and inequality in Rust tests, and what happens when they fail?",
+  "answer": "Use `assert_eq!(a, b)` for equality and `assert_ne!(a, b)` for inequality. On failure, they panic and print both formatted values.",
+  "schema_version": 1
+}

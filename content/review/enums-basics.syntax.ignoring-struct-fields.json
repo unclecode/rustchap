@@ -1,0 +1,11 @@
+{
+  "id": "enums-basics.syntax.ignoring-struct-fields",
+  "kind": "syntax",
+  "title": "Ignoring unneeded struct variant fields",
+  "concepts": [
+    "enums-basics"
+  ],
+  "prompt": "How do you ignore unneeded fields when matching a struct variant of an enum?",
+  "answer": "Place two dots `..` inside the curly braces after the fields you need, as in `Variant { field, .. }`. Omitting fields without `..` results in compiler error `E0027`.",
+  "schema_version": 1
+}

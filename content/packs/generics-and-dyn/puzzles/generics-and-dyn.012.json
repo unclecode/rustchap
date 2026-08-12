@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.012",
+  "version": 1,
+  "title": "Object Safety and Trait Objects",
+  "track": "generics-and-dyn",
+  "concepts": [
+    "traits",
+    "generics"
+  ],
+  "difficulty": 1,
+  "goal": "Learn why some traits cannot be turned into dyn Trait objects.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 3 Afternoon: dyn Trait"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In Java or C++, any interface can be used as a reference type. In Rust, `dyn Trait` requires the trait to be object-safe."
+      },
+      {
+        "kind": "prose",
+        "text": "A trait is object-safe when all its methods can be placed in a single vtable. If a method returns `Self` or uses generic type parameters, the compiler cannot build a vtable because sizes depend on the concrete caller."
+      },
+      {
+        "kind": "code",
+        "code": "trait Duplicable {\n    fn duplicate(&self) -> Self;\n}",
+        "caption": "Returning Self prevents dynamic dispatch."
+      },
+      {
+        "kind": "prose",
+        "text": "When code attempts to build `dyn Duplicable`, Rust rejects it with error `E0038`. Use generics `T: Duplicable` instead when methods return `Self`."
+      },
+      {
+        "kind": "prose",
+        "text": "Dynamic dispatch trades monomorphized speed for runtime vtable lookup, but only for traits where method signatures are fixed and type-erased."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn why some traits cannot be turned into dyn Trait objects."
+}

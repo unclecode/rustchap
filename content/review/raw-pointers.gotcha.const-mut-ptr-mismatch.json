@@ -1,0 +1,12 @@
+{
+  "id": "raw-pointers.gotcha.const-mut-ptr-mismatch",
+  "kind": "gotcha",
+  "title": "Const pointer to mutable slice",
+  "concepts": [
+    "raw-pointers",
+    "slice"
+  ],
+  "prompt": "How does the compiler handle passing a const raw pointer to `slice::from_raw_parts_mut`?",
+  "answer": "The compiler rejects the call with a type mismatch error E0308. Creating a mutable slice requires a mutable raw pointer, preventing unintended mutation of constant memory.",
+  "schema_version": 1
+}

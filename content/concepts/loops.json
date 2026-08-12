@@ -6,7 +6,7 @@
   "summary": "Rust has three looping keywords: while, loop, and for.",
   "lecture": [
     "Rust has three looping keywords, and they work much like their equivalents in other languages. `while` repeats as long as its condition is true. `for` walks over anything iterable, most often a range like `1..5` or a collection. `loop` repeats forever until something breaks out of it.",
-    "`break` leaves the loop and `continue` skips to the next turn. What is different from many languages is that `break` can carry a value out of a `loop`, which makes `loop` the natural choice when you are searching for something and want the answer back.",
+    "`break` leaves the loop and `continue` skips to the next turn. One thing is different from most languages. A `break` inside `loop` can carry a value out, and that value becomes the result of the loop. This makes `loop` the natural choice when you are searching for something.",
     "A `for` loop over a collection borrows it by default when you write `for x in &items`. Writing `for x in items` consumes the collection instead. The ownership decks explain why, so for now prefer the borrowing form."
   ],
   "example": {

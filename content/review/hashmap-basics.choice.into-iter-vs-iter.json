@@ -1,0 +1,12 @@
+{
+  "id": "hashmap-basics.choice.into-iter-vs-iter",
+  "kind": "choice",
+  "title": "Constructing a map from owned tuples",
+  "concepts": [
+    "hashmap-basics",
+    "clone"
+  ],
+  "prompt": "When converting a Vec of owned tuples into a HashMap, why should you use into_iter instead of iter?",
+  "answer": "`into_iter()` moves the owned tuple keys and values directly into the map. `iter()` yields references, forcing you to clone key strings to satisfy map ownership.",
+  "schema_version": 1
+}

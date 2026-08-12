@@ -1,0 +1,11 @@
+{
+  "id": "traits.gotcha.from-vs-try-from",
+  "kind": "gotcha",
+  "title": "Choosing between From and TryFrom",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "When should an API implement `TryFrom` instead of `From` for type conversions?",
+  "answer": "Implement `TryFrom` whenever the conversion can fail or requires runtime validation. `From` promises infallible conversions that never panic, so fallible inputs must return a `Result` through `TryFrom`.",
+  "schema_version": 1
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.014",
+  "version": 1,
+  "title": "Trait Imports and Crate Visibility",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "visibility",
+    "traits"
+  ],
+  "difficulty": 1,
+  "goal": "Understand pub(crate) and why traits must be imported.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "The `pub` modifier makes an item completely public to all external crates. Use `pub(crate)` to share an item across your crate while hiding it from external users."
+      },
+      {
+        "kind": "code",
+        "code": "pub(crate) fn internal_helper() {\n    println!(\"crate-internal\");\n}",
+        "caption": "`pub(crate)` limits access to the current crate."
+      },
+      {
+        "kind": "prose",
+        "text": "Visibility also interacts with traits. To call a trait method on a type, that trait must be imported into the current scope."
+      },
+      {
+        "kind": "code",
+        "code": "use std::fmt::Display;\n\nfn print_val<T: Display>(val: T) {\n    println!(\"{val}\");\n}",
+        "caption": "The trait must be imported to use its methods or bounds."
+      },
+      {
+        "kind": "prose",
+        "text": "Even if a struct and its trait implementation are public, calling a trait method without importing the trait produces error `E0599`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand pub(crate) and why traits must be imported."
+}

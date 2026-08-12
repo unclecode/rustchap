@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "collections.006",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "166fc6aab68924409c36c11f86c55b9b79100a7910daa46b6d5e4c2090b77024": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "2036a96b0978617d3509cc2092fe099263822048e960e4023afd61d6459550c4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected token: `[`",
+          "slot_ids": [
+            "access"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `unwrap` found for type `i32` in the current scope",
+          "slot_ids": [
+            "unwrap_op"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4a7c0d5a99ab2d7e507827ad29d94d0936ffe1ddd2d6247476265da854cabfeb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected token: `[`",
+          "slot_ids": [
+            "access"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4bf41106f2812237cbf2052f06f71d9222d2050d089b4c9eb4c32dcac094881f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "unwrap_op"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6e0f056a8fbe8febf8657f1241fd63e949fdad334034556aa04d417a238eff64": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "unwrap_op"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a25f50df52df1c22df4c5d511453a2850b01c32571db16bcb49756c5dd2d26d2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "unwrap_op"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b43dbb7885d2912715051539b6793c8f43cb721fa8697a8735f2d4512ef0a2a7": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b5175744e77d766f2fe291165dd3efab8f534d2de3a5d9c83f69b282934a7709": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "unwrap_op"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f409f7fe2fb52e9a1ed038109d4911e9c4a2805334a1c980c71d9c5d1f1542d1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected token: `[`",
+          "slot_ids": [
+            "access"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`i32` is not an iterator",
+          "slot_ids": [
+            "unwrap_op"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

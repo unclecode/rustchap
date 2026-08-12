@@ -1,0 +1,11 @@
+{
+  "id": "slice.syntax.slicing-range-borrow",
+  "kind": "syntax",
+  "title": "Slicing syntax and lifetime inheritance",
+  "concepts": [
+    "slice"
+  ],
+  "prompt": "What lifetime does a slice created with range syntax `&data[..n]` receive?",
+  "answer": "The resulting slice inherits the lifetime of the borrow on `data`. Slicing does not copy underlying bytes or create new allocations. It creates a lightweight view valid for as long as `data` remains borrowed.",
+  "schema_version": 1
+}

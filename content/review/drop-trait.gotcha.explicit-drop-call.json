@@ -1,0 +1,11 @@
+{
+  "id": "drop-trait.gotcha.explicit-drop-call",
+  "kind": "gotcha",
+  "title": "Calling drop method directly",
+  "concepts": [
+    "drop-trait"
+  ],
+  "prompt": "Why does calling `val.drop()` directly produce compiler error E0040?",
+  "answer": "Rust forbids calling `Drop::drop` manually because the compiler drops the value when its scope ends, which would cause a double-free. To drop a value early, pass ownership to `std::mem::drop(val)` instead.",
+  "schema_version": 1
+}

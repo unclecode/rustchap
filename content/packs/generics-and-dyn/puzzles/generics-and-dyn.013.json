@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.013",
+  "version": 1,
+  "title": "Trait Objects in Slices",
+  "track": "generics-and-dyn",
+  "concepts": [
+    "traits",
+    "generics"
+  ],
+  "difficulty": 2,
+  "goal": "Store dynamic references in a slice using fat pointers.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 3 Afternoon: dyn Trait"
+  },
+  "template": "trait Work {\n    fn run(&self) -> i32;\n}\nstruct A;\nimpl Work for A {\n    fn run(&self) -> i32 { 1 }\n}\nstruct B;\nimpl Work for B {\n    fn run(&self) -> i32 { 2 }\n}\nfn total(xs: &[⟦elem_ty⟧]) -> i32 {\n    xs.iter().map(|i| i.run()).sum()\n}\nfn main() {\n    let res = total(&[⟦item1⟧, &B]);\n    assert_eq!(res, 3);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "elem_ty",
+        "original": "dyn Work",
+        "label": "element type",
+        "choices": [
+          {
+            "id": "el1",
+            "text": "&dyn Work"
+          },
+          {
+            "id": "el2",
+            "text": "dyn Work"
+          },
+          {
+            "id": "el3",
+            "text": "impl Work"
+          }
+        ]
+      },
+      {
+        "id": "item1",
+        "original": "A",
+        "label": "first element",
+        "choices": [
+          {
+            "id": "it1",
+            "text": "&A"
+          },
+          {
+            "id": "it2",
+            "text": "A"
+          },
+          {
+            "id": "it3",
+            "text": "Box::new(A)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn calculates_total() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "A slice requires elements with a known compile-time size.",
+    "References to trait objects `&dyn Work` are fat pointers with a fixed size."
+  ],
+  "explanation": "`&dyn Work` creates a slice of trait object references, where each reference is a fixed-size fat pointer containing data and vtable addresses. Writing `dyn Work` directly fails with `E0277` because bare trait objects are unsized and cannot live directly inside a slice. `impl Work` is rejected with `E0562` because `impl Trait` is not allowed in nested slice type positions. Passing unreferenced `A` fails with `E0308` due to a type mismatch against expected reference `&dyn Work`."
+}

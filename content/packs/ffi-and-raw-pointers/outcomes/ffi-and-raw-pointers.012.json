@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "ffi-and-raw-pointers.012",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0bb67d002d7c0b492dc801772e7560d972b484ee4ea0486e999d9e377d55397a": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "356410203a320da71f0cbefa7d42295fa44941e2920a03237496626dde9f6074": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "unsafe_blocks": 1
+      },
+      "diagnostics": []
+    },
+    "6aec2be4f175ba53d99b2b232deed26eba77fdce0461c566954bdbad60d2042e": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

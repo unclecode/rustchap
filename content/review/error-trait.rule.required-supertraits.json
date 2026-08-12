@@ -1,0 +1,11 @@
+{
+  "id": "error-trait.rule.required-supertraits",
+  "kind": "rule",
+  "title": "Traits required to implement std::error::...",
+  "concepts": [
+    "error-trait"
+  ],
+  "prompt": "Which two standard library traits must a custom type implement before it can implement `std::error::Error`?",
+  "answer": "A custom error type must implement both Debug and Display before implementing `std::error::Error`. Debug enables developer formatting, while Display provides user-facing error messages.",
+  "schema_version": 1
+}

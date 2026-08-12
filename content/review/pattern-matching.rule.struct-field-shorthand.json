@@ -1,0 +1,11 @@
+{
+  "id": "pattern-matching.rule.struct-field-shorthand",
+  "kind": "rule",
+  "title": "Struct variant field pattern shorthand",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "prompt": "How do you bind a struct variant field to a variable of the same name in a pattern?",
+  "answer": "Write just the field name inside braces, such as `Media::Video { id }`. This shorthand binds the value of field `id` to a local variable named `id`. You only need the full `field: var` syntax when renaming the variable.",
+  "schema_version": 1
+}

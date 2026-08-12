@@ -1,0 +1,11 @@
+{
+  "id": "async-await.gotcha.recursive-async-fn",
+  "kind": "gotcha",
+  "title": "Recursive Async Function Call Failures",
+  "concepts": [
+    "async-await"
+  ],
+  "prompt": "Why does an async function fail to compile when calling itself directly without dynamic dispatch?",
+  "answer": "An `async fn` desugars into an anonymous state machine type containing all local variables and nested futures. Direct recursion causes the future type to contain itself, creating an infinitely sized type at compile time. Wrapping the recursive call in `Box::pin` behind a trait object breaks the size cycle by storing the nested future on the heap.",
+  "schema_version": 1
+}

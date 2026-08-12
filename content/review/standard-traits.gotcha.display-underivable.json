@@ -1,0 +1,11 @@
+{
+  "id": "standard-traits.gotcha.display-underivable",
+  "kind": "gotcha",
+  "title": "Display trait cannot be derived",
+  "concepts": [
+    "standard-traits"
+  ],
+  "prompt": "Why can `Debug` be derived with `#[derive(Debug)]` while `Display` cannot?",
+  "answer": "Debug is a mechanical output designed for developers and diagnostic logging. Display represents user-facing text formatting, which requires intentional design choices and must be written manually.",
+  "schema_version": 1
+}

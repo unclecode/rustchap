@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime.018",
+  "version": 1,
+  "title": "Store a Slice in a Struct",
+  "track": "repair-the-lifetime",
+  "concepts": [
+    "lifetime",
+    "structs",
+    "zero-copy"
+  ],
+  "difficulty": 3,
+  "goal": "Choose the struct design that avoids cloning string data.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from google/comprehensive-rust struct-lifetimes"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "borrowed_view",
+        "code": "struct Header<'a> {\n    name: &'a str,\n}\n\nfn parse_header(line: &str) -> Header<'_> {\n    let name = line.split(':').next().unwrap_or(\"\");\n    Header { name }\n}"
+      },
+      {
+        "id": "dangling_temp",
+        "code": "struct Header<'a> {\n    name: &'a str,\n}\n\nfn parse_header(line: &str) -> Header<'_> {\n    let owned = line.split(':').next().unwrap_or(\"\").to_string();\n    Header { name: &owned }\n}"
+      },
+      {
+        "id": "static_lifetime",
+        "code": "struct Header<'a> {\n    name: &'a str,\n}\n\nfn parse_header(line: &str) -> Header<'static> {\n    let name = line.split(':').next().unwrap_or(\"\");\n    Header { name }\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn parses_header_name() {\n    let line = String::from(\"Content-Type: text/html\");\n    let h = parse_header(&line);\n    assert_eq!(h.name, \"Content-Type\");\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Check whether `Header` needs to own its data or if it can view `line`.",
+    "Storing `&'a str` avoids heap allocations entirely."
+  ],
+  "explanation": "`Header<'a>` holds a slice reference (`&'a str`) borrowed directly from `line`. Using `Header<'_>` in the return signature allows lifetime elision to connect `Header` to the lifetime of `line`. Candidate 2 creates a local owned `String` and returns a reference to it (`&owned`), which fails to compile because `owned` is dropped when `parse_header` returns. Candidate 3 requires `Header<'static>`, which fails to compile because `line` is borrowed with a non-static lifetime."
+}

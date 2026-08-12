@@ -1,0 +1,12 @@
+{
+  "id": "option.gotcha.as-deref-vs-clone",
+  "kind": "gotcha",
+  "title": "Option as_deref vs cloning",
+  "concepts": [
+    "option",
+    "clone"
+  ],
+  "prompt": "How do you convert an Option<String> reference into an Option<&str> without cloning the underlying string?",
+  "answer": "Call .as_deref() on the Option reference. It converts &Option<String> into Option<&str> by borrowing the inner value through deref coercion. This avoids allocating a new String.",
+  "schema_version": 1
+}

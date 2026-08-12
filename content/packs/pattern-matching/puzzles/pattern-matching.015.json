@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.015",
+  "version": 1,
+  "title": "Borrow Through Match",
+  "track": "pattern-matching",
+  "concepts": [
+    "pattern-matching",
+    "borrow",
+    "option"
+  ],
+  "difficulty": 3,
+  "goal": "Match on an Option reference without moving ownership.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Match Ergonomics"
+  },
+  "template": "fn inspect_label(opt: &Option<String>) -> usize {\n    match ⟦scrutinee⟧ {\n        ⟦pattern⟧ => s.len(),\n        None => 0,\n    }\n}\n\nfn main() {\n    let label = Some(String::from(\"rust\"));\n    println!(\"{}\", inspect_label(&label));\n    println!(\"{:?}\", label);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "scrutinee",
+        "original": "*opt",
+        "label": "match value",
+        "choices": [
+          {
+            "id": "sc1",
+            "text": "opt"
+          },
+          {
+            "id": "sc2",
+            "text": "*opt"
+          },
+          {
+            "id": "sc3",
+            "text": "&mut opt"
+          }
+        ]
+      },
+      {
+        "id": "pattern",
+        "original": "Some(mut s)",
+        "label": "some arm pattern",
+        "choices": [
+          {
+            "id": "pa1",
+            "text": "Some(s)"
+          },
+          {
+            "id": "pa2",
+            "text": "Some(mut s)"
+          },
+          {
+            "id": "pa3",
+            "text": "Some(&s)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn inspects_without_moving() {\n    let label = Some(String::from(\"rustchap\"));\n    assert_eq!(inspect_label(&label), 8);\n    assert_eq!(label, Some(String::from(\"rustchap\")));\n    assert_eq!(inspect_label(&None), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Pass the reference directly to match to enable match ergonomics.",
+    "Explicit mut bindings in pattern arms bypass ref mode and try to move the value."
+  ],
+  "explanation": "Matching on `opt` directly enables match ergonomics, binding `s` as `&String` without moving ownership. Dereferencing with `*opt` tries to move the `String` out of a reference, triggering `E0507`. Writing `Some(mut s)` disables reference binding mode and also triggers `E0507`."
+}

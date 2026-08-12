@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.014",
+  "version": 1,
+  "title": "Guarded Token Instantiation",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "token-types",
+    "visibility"
+  ],
+  "difficulty": 2,
+  "goal": "Ensure proof tokens can only be constructed by authorized module functions.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Token Types"
+  },
+  "template": "mod auth {\n    pub struct Permission { _guard: () }\n    pub fn login(pass: &str) -> Option<Permission> {\n        if pass == \"admin\" { Some(Permission { ⟦slot1⟧ }) }\n        else { None }\n    }\n}\n\nfn access_db(_p: ⟦slot2⟧) -> &'static str { \"granted\" }\n\nfn main() {\n    let token = auth::login(\"admin\").unwrap();\n    assert_eq!(access_db(token), \"granted\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "_guard",
+        "label": "the field initialization",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "_guard: ()"
+          },
+          {
+            "id": "sl2",
+            "text": "_guard"
+          },
+          {
+            "id": "sl3",
+            "text": "()"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "Permission",
+        "label": "the function parameter type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "auth::Permission"
+          },
+          {
+            "id": "sl2",
+            "text": "Permission"
+          },
+          {
+            "id": "sl3",
+            "text": "&auth::Permission"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_token_auth() {\n    let token = auth::login(\"admin\");\n    assert!(token.is_some());\n    assert_eq!(access_db(token.unwrap()), \"granted\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Initializing struct fields without a local variable in scope requires writing both the field name and its value.",
+    "Types defined inside a submodule must be qualified with the module path when referenced outside that module."
+  ],
+  "explanation": "Constructing `Permission` requires matching its private field structure `_guard: ()`. Using field init shorthand `_guard` fails with `E0425` because no variable named `_guard` exists in local scope. Outside the `auth` module, `Permission` must be qualified as `auth::Permission`. Unqualified `Permission` fails with `E0412` because it is not imported into current scope."
+}

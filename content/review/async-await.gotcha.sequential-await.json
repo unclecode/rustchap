@@ -1,0 +1,11 @@
+{
+  "id": "async-await.gotcha.sequential-await",
+  "kind": "gotcha",
+  "title": "Sequential await execution order",
+  "concepts": [
+    "async-await"
+  ],
+  "prompt": "Why do two sequential await calls fail to run concurrently?",
+  "answer": "The first await pauses the current function and drives its future to completion before the second statement ever executes. The second future is not even constructed or polled until the first finishes. Concurrent execution requires both futures to exist simultaneously and be polled together.",
+  "schema_version": 1
+}

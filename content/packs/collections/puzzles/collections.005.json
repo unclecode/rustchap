@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "id": "collections.005",
+  "version": 1,
+  "title": "Safe Indexing and Options",
+  "track": "collections",
+  "concepts": [
+    "vec-basics",
+    "hashmap-basics",
+    "option"
+  ],
+  "difficulty": 1,
+  "goal": "Learn how to query collections safely without panicking.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: HashMap and Vec"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In Python or Java, accessing an out-of-bounds index throws an exception at runtime. Rust arrays and vectors panic if you index past the end with `v[i]`."
+      },
+      {
+        "kind": "code",
+        "code": "let v = vec![10, 20];\nlet second = v[1];",
+        "caption": "Direct indexing panics when out of bounds."
+      },
+      {
+        "kind": "prose",
+        "text": "To check bounds safely, call `.get(index)` on a vector or `.get(key)` on a `HashMap`. Both return an `Option<&T>` containing `Some(&value)` or `None`."
+      },
+      {
+        "kind": "code",
+        "code": "let v = vec![10, 20];\nif let Some(val) = v.get(5) {\n    println!(\"{val}\");\n}",
+        "caption": ".get returns Option without panicking."
+      },
+      {
+        "kind": "prose",
+        "text": "Because `.get()` returns a reference `&T`, use `.copied()` or `.cloned()` on the `Option` if you need an owned copy of primitive types like integers."
+      },
+      {
+        "kind": "code",
+        "code": "let v = vec![10, 20];\nlet val = v.get(0)\n    .copied()\n    .unwrap_or(0);",
+        "caption": ".copied turns Option<&i32> into Option<i32>."
+      },
+      {
+        "kind": "prose",
+        "text": "Handling missing values and error unwrapping is explored in depth in the Option & Result deck later."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn how to query collections safely without panicking."
+}

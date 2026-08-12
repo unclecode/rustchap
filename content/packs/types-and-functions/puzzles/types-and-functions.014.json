@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.014",
+  "version": 1,
+  "title": "Convert Before Comparing",
+  "track": "types-and-functions",
+  "concepts": [
+    "primitive-types",
+    "expressions"
+  ],
+  "difficulty": 2,
+  "goal": "Calculate average speed by casting integer distance before floating-point division.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Primitive Types"
+  },
+  "template": "fn is_speeding(distance_meters: u32, seconds: u32, limit_m_s: f64) -> bool {\n    let speed = ⟦num_expr⟧ / seconds as f64;\n    speed ⟦cmp_op⟧ limit_m_s\n}\n\nfn main() {\n    println!(\"{}\", is_speeding(100, 4, 20.0));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "num_expr",
+        "original": "distance_meters",
+        "label": "numerator expression",
+        "choices": [
+          {
+            "id": "nu1",
+            "text": "distance_meters"
+          },
+          {
+            "id": "nu2",
+            "text": "distance_meters as f64"
+          },
+          {
+            "id": "nu3",
+            "text": "(distance_meters / seconds) as f64"
+          }
+        ]
+      },
+      {
+        "id": "cmp_op",
+        "original": ">=",
+        "label": "comparison operator",
+        "choices": [
+          {
+            "id": "cm1",
+            "text": ">="
+          },
+          {
+            "id": "cm2",
+            "text": ">"
+          },
+          {
+            "id": "cm3",
+            "text": "=="
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn checks_speeding() {\n    assert!(is_speeding(100, 4, 20.0));\n    assert!(!is_speeding(50, 2, 25.0));\n    assert!(is_speeding(95, 2, 47.0));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at the types on both sides of the division operator.",
+    "Convert distance to f64 before dividing so precision is not lost, and check strict inequality."
+  ],
+  "explanation": "In Rust, binary operators like `/` require both operands to be the exact same type. Dividing `distance_meters` (`u32`) by `seconds as f64` produces compiler error `E0277` because Rust will not silently convert integers to floating-point numbers. Casting `distance_meters as f64` before division computes the precise floating-point speed. Casting after integer division `(distance_meters / seconds) as f64` truncates fractional results before casting, causing test failures on non-exact division. Strictly exceeding the limit requires `>` rather than `>=`."
+}

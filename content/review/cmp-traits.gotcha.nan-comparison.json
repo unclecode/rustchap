@@ -1,0 +1,11 @@
+{
+  "id": "cmp-traits.gotcha.nan-comparison",
+  "kind": "gotcha",
+  "title": "Why Floats Omit Eq",
+  "concepts": [
+    "cmp-traits"
+  ],
+  "prompt": "Why do floating point types in Rust implement PartialEq but not Eq?",
+  "answer": "Floating point values include NaN, which is not equal to itself. The `Eq` trait guarantees reflexive equality where every value equals itself. Because floats break reflexivity, Rust restricts them to `PartialEq`.",
+  "schema_version": 1
+}

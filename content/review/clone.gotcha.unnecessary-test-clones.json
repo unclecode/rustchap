@@ -1,0 +1,12 @@
+{
+  "id": "clone.gotcha.unnecessary-test-clones",
+  "kind": "gotcha",
+  "title": "Cloning values inside test assertions",
+  "concepts": [
+    "clone",
+    "unit-testing"
+  ],
+  "prompt": "Why should you avoid calling `.clone()` on data structures when writing test assertions?",
+  "answer": "Rust's `assert_eq!` macro compares values by reference using `PartialEq`. Calling `.clone()` inside assertions creates unnecessary allocations and can hide lifetime or borrowing bugs in the code under test.",
+  "schema_version": 1
+}

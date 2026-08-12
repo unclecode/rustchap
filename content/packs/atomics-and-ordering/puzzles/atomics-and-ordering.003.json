@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.003",
+  "version": 1,
+  "title": "Compare and Swap",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "atomic-types"
+  ],
+  "difficulty": 2,
+  "goal": "Update an atomic value conditionally using compare_exchange.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "template": "use std::sync::atomic::AtomicI32;\nuse std::sync::atomic::Ordering;\n\nfn update(val: &AtomicI32) -> bool {\n    let current = val.load(Ordering::Relaxed);\n    let result = val.⟦method⟧(\n        current,\n        current + 10,\n        Ordering::Relaxed,\n        Ordering::Relaxed,\n    );\n    result.⟦check⟧\n}\n\nfn main() {\n    let a = AtomicI32::new(5);\n    assert!(update(&a));\n    assert_eq!(a.load(Ordering::Relaxed), 15);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "method",
+        "original": "swap",
+        "label": "the compare and swap method",
+        "choices": [
+          {
+            "id": "me1",
+            "text": "compare_exchange"
+          },
+          {
+            "id": "me2",
+            "text": "compare_and_swap"
+          },
+          {
+            "id": "me3",
+            "text": "swap"
+          }
+        ]
+      },
+      {
+        "id": "check",
+        "original": "unwrap()",
+        "label": "result inspection method",
+        "choices": [
+          {
+            "id": "ch1",
+            "text": "is_ok()"
+          },
+          {
+            "id": "ch2",
+            "text": "is_some()"
+          },
+          {
+            "id": "ch3",
+            "text": "unwrap()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_update() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "In modern Rust, conditional atomic updates use `compare_exchange` which takes current, new value, and two orderings.",
+    "`compare_exchange` returns a `Result<i32, i32>` containing either the old value on success or the actual value on failure."
+  ],
+  "explanation": "`compare_exchange` compares the atomic value with an expected value and updates it if equal. It returns a `Result<T, T>` where `Ok` holds the prior value on success and `Err` holds the current value on failure. Calling `is_ok()` converts the `Result` into a `bool`. `compare_and_swap` is deprecated and takes 3 arguments instead of 4, causing `E0061`. `swap` replaces the value unconditionally and takes 2 arguments. `unwrap()` returns an `i32` which fails type check `E0308` because the function returns `bool`. `is_some()` causes `E0599` because `Result` is not an `Option`."
+}

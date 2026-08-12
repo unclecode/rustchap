@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.002",
+  "version": 1,
+  "title": "Lossless Conversions",
+  "track": "standard-traits",
+  "concepts": [
+    "standard-traits"
+  ],
+  "difficulty": 1,
+  "goal": "Implement From to enable automatic Into conversion.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Standard Traits"
+  },
+  "template": "struct Seconds(u32);\n\nimpl From<u32> for Seconds {\n    fn from(s: u32) -> ⟦slot1⟧ {\n        Seconds(s)\n    }\n}\n\nfn main() {\n    let total: Seconds = ⟦slot2⟧;\n    assert_eq!(total.0, 60);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "u32",
+        "label": "return type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Self"
+          },
+          {
+            "id": "sl2",
+            "text": "u32"
+          },
+          {
+            "id": "sl3",
+            "text": "&Self"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "60_u32.from()",
+        "label": "conversion method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "60_u32.into()"
+          },
+          {
+            "id": "sl2",
+            "text": "60_u32.from()"
+          },
+          {
+            "id": "sl3",
+            "text": "Seconds::into(60)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_from_into() {\n    let s: Seconds = 120_u32.into();\n    assert_eq!(s.0, 120);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The from method must return the target struct type.",
+    "Implementing From automatically provides the into method on the source type."
+  ],
+  "explanation": "Implementing `From<u32>` requires `from` to return `Self` (which is `Seconds`). Once `From` is implemented, Rust automatically implements `Into<Seconds>` for `u32`, allowing `60_u32.into()`. Returning `u32` causes compiler error `E0308` because the return type does not match. Calling `60_u32.from()` causes `E0599` because `from` is an associated function on `From`, not a method on `u32`."
+}

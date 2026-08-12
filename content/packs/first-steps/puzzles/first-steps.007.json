@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.007",
+  "version": 1,
+  "title": "Strict Numeric Types",
+  "track": "first-steps",
+  "concepts": [
+    "primitive-types",
+    "expressions"
+  ],
+  "difficulty": 1,
+  "goal": "Fix type mismatches between integers and floats without losing precision.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1: Types and Values"
+  },
+  "template": "fn calculate_total(count: i32, price_per_unit: f64) -> f64 {\n    let subtotal = ⟦slot1⟧;\n    subtotal ⟦slot2⟧ 1.05\n}\n\nfn main() {\n    println!(\"Total: {}\", calculate_total(4, 2.5));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "count * price_per_unit",
+        "label": "subtotal calculation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "count as f64 * price_per_unit"
+          },
+          {
+            "id": "sl2",
+            "text": "count * price_per_unit"
+          },
+          {
+            "id": "sl3",
+            "text": "count * price_per_unit as i32"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "+",
+        "label": "tax operator",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "*"
+          },
+          {
+            "id": "sl2",
+            "text": "+"
+          },
+          {
+            "id": "sl3",
+            "text": "-"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn computes_total() {\n    assert!((calculate_total(4, 2.5) - 10.5).abs() < 1e-6);\n    assert!((calculate_total(10, 1.0) - 10.5).abs() < 1e-6);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rust does not allow multiplying an i32 directly by an f64.",
+    "Convert count to f64 using the as keyword, then multiply by the tax rate."
+  ],
+  "explanation": "Rust requires both sides of a binary arithmetic operation to share the exact same numeric type. Multiplying `count` (`i32`) by `price_per_unit` (`f64`) triggers `E0308`. Casting `count as f64` ensures both operands are `f64`, and multiplying by `1.05` applies the 5% tax correctly."
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.008",
+  "version": 1,
+  "title": "Building Strings",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types"
+  ],
+  "difficulty": 1,
+  "goal": "Learn how to format dynamic text and pre-allocate string buffers.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from references/strings"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You can build owned strings dynamically with the `format!` macro. It works like `println!`, but returns a new `String` instead of printing."
+      },
+      {
+        "kind": "code",
+        "code": "let name = \"Ferris\";\nlet msg = format!(\"Hello {name}!\");",
+        "caption": "format! creates a new owned String."
+      },
+      {
+        "kind": "prose",
+        "text": "When building a string piece by piece, calling `String::new()` reallocates memory as it grows. If you know the capacity needed, use `String::with_capacity`."
+      },
+      {
+        "kind": "code",
+        "code": "let mut s = String::with_capacity(10);\ns.push_str(\"hello\");",
+        "caption": "Allocates space for 10 bytes up front."
+      },
+      {
+        "kind": "prose",
+        "text": "Raw string literals let you write quotes and backslashes without escaping. Write `r#\"...\"#` to include raw text directly."
+      },
+      {
+        "kind": "code",
+        "code": "let path = r\"C:\\Program Files\";\nlet json = r#\"{\"key\": \"val\"}\"#;",
+        "caption": "Raw strings ignore escape sequences."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn how to format dynamic text and pre-allocate string buffers."
+}

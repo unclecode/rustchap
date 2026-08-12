@@ -1,0 +1,11 @@
+{
+  "id": "cmp-traits.choice.ord-vs-partialord",
+  "kind": "choice",
+  "title": "Choosing Ord Over PartialOrd",
+  "concepts": [
+    "cmp-traits"
+  ],
+  "prompt": "What requirement forces a generic container type to demand an Ord trait bound?",
+  "answer": "Data structures like `BTreeMap` require a total ordering to keep keys in a deterministic tree. `PartialOrd` is insufficient because missing comparisons could break tree invariants. `Ord` guarantees every pair of elements can be strictly ordered.",
+  "schema_version": 1
+}

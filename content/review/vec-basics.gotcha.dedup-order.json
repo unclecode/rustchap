@@ -1,0 +1,11 @@
+{
+  "id": "vec-basics.gotcha.dedup-order",
+  "kind": "gotcha",
+  "title": "How dedup handles duplicate elements",
+  "concepts": [
+    "vec-basics"
+  ],
+  "prompt": "Why does calling dedup on an unsorted Vec fail to remove all duplicate values?",
+  "answer": "`dedup` only removes consecutive identical elements. If duplicate items are separated by other values, `dedup` misses them. You must sort the vector before calling `dedup` to remove every duplicate.",
+  "schema_version": 1
+}

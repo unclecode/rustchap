@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.009",
+  "version": 1,
+  "title": "Enum Variant Visibility",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "enums-basics",
+    "visibility"
+  ],
+  "difficulty": 2,
+  "goal": "Pattern match on public enum variants across module boundaries.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "template": "mod status {\n    pub enum State {\n        Open(i32),\n        Closed,\n    }\n}\n\nfn check(s: status::State) -> i32 {\n    match s {\n        status::State::⟦slot1⟧(n) => n,\n        status::State::⟦slot2⟧ => 0,\n    }\n}\n\nfn main() {\n    assert_eq!(check(status::State::Open(5)), 5);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "open",
+        "label": "first variant",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Open"
+          },
+          {
+            "id": "sl2",
+            "text": "open"
+          },
+          {
+            "id": "sl3",
+            "text": "pub Open"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "closed",
+        "label": "second variant",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Closed"
+          },
+          {
+            "id": "sl2",
+            "text": "closed"
+          },
+          {
+            "id": "sl3",
+            "text": "pub Closed"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_check_state() {\n    assert_eq!(check(status::State::Open(5)), 5);\n    assert_eq!(check(status::State::Closed), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Public enums make all of their variants public automatically.",
+    "Variant names must match exact PascalCase capitalization."
+  ],
+  "explanation": "Enum variants inherit the public visibility of their enum type. You do not write `pub` on individual variants. Writing lower-case variant names like `open` produces `E0532` because patterns are case-sensitive."
+}

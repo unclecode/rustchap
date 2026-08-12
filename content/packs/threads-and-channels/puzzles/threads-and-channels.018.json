@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.018",
+  "version": 1,
+  "title": "Share Receiver Across Workers",
+  "track": "threads-and-channels",
+  "concepts": [
+    "mpsc-channels",
+    "arc-and-mutex"
+  ],
+  "difficulty": 3,
+  "goal": "Share a single Receiver endpoint across multiple worker threads.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Channels & Shared State"
+  },
+  "template": "use std::sync::mpsc::{channel, Receiver};\nuse std::sync::{Arc, Mutex};\nuse std::thread;\n\nfn receive_two(rx: Receiver<i32>) -> i32 {\n    let rx = ⟦slot1⟧;\n    let mut handles = Vec::new();\n    for _ in 0..2 {\n        let rx_ref = ⟦slot2⟧;\n        handles.push(thread::spawn(move || {\n            rx_ref.lock().unwrap().recv().unwrap_or(0)\n        }));\n    }\n    let mut sum = 0;\n    for h in handles { sum += h.join().unwrap(); }\n    sum\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "rx",
+        "label": "wrapper",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Arc::new(Mutex::new(rx))"
+          },
+          {
+            "id": "sl2",
+            "text": "Mutex::new(rx)"
+          },
+          {
+            "id": "sl3",
+            "text": "rx"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "rx",
+        "label": "reference handle",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Arc::clone(&rx)"
+          },
+          {
+            "id": "sl2",
+            "text": "&rx"
+          },
+          {
+            "id": "sl3",
+            "text": "rx"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn reads_both() {\n    let (tx, rx) = channel();\n    tx.send(10).unwrap();\n    tx.send(20).unwrap();\n    assert_eq!(receive_two(rx), 30);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "mpsc Receiver is single-consumer and does not implement Clone.",
+    "To share a Receiver across thread boundaries, combine Arc for shared ownership and Mutex for mutual exclusion."
+  ],
+  "explanation": "`mpsc::Receiver` does not implement Clone, so it cannot be passed to multiple threads directly. Wrapping it in Mutex provides thread-safe interior mutability, and wrapping that Mutex in Arc permits multiple threads to hold reference handles. Borrowing &rx fails the 'static lifetime requirement on `thread::spawn`, while moving rx directly fails with E0382 on the second loop iteration."
+}

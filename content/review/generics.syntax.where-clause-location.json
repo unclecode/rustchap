@@ -1,0 +1,11 @@
+{
+  "id": "generics.syntax.where-clause-location",
+  "kind": "syntax",
+  "title": "Where clause placement",
+  "concepts": [
+    "generics"
+  ],
+  "prompt": "Where does a where clause belong in a generic function declaration?",
+  "answer": "A where clause comes directly after the return type and before the opening brace of the function body. It lists type parameters and their trait bounds separated by commas.",
+  "schema_version": 1
+}

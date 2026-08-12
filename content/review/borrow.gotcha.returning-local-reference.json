@@ -1,0 +1,11 @@
+{
+  "id": "borrow.gotcha.returning-local-reference",
+  "kind": "gotcha",
+  "title": "Returning references to function local va...",
+  "concepts": [
+    "borrow"
+  ],
+  "prompt": "Why does returning a reference to a local variable inside a function cause compiler error E0515?",
+  "answer": "Local variables are dropped at the end of the function scope. Returning a reference to a dropped variable creates a dangling pointer. To fix this, return the owned value directly instead of a reference.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "structs.syntax.field-shorthand-destructuring",
+  "kind": "syntax",
+  "title": "Struct pattern field shorthand",
+  "concepts": [
+    "structs"
+  ],
+  "prompt": "How do you bind a struct field to a local variable with the exact same name during pattern matching?",
+  "answer": "Write the field name directly inside the pattern without a colon, such as `Point { x, y }`. This shorthand binds the struct's `x` and `y` fields to local variables named `x` and `y`.",
+  "schema_version": 1
+}

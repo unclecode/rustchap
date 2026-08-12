@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.012",
+  "version": 1,
+  "title": "Escape Free Paths",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types"
+  ],
+  "difficulty": 1,
+  "goal": "Write Windows paths and JSON strings without escaping quotes or backslashes.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from references/strings"
+  },
+  "template": "fn path() -> &'static str {\n    ⟦slot1⟧\n}\n\nfn raw_json() -> &'static str {\n    ⟦slot2⟧\n}\n\nfn main() {\n    println!(\"{}\", path());\n    println!(\"{}\", raw_json());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "\"C:\\notes\\new\"",
+        "label": "the path string",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "r\"C:\\notes\\new\""
+          },
+          {
+            "id": "sl2",
+            "text": "\"C:\\notes\\new\""
+          },
+          {
+            "id": "sl3",
+            "text": "'C:\\notes\\new'"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "\"{\"status\": \"ok\"}\"",
+        "label": "the JSON string",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "r#\"{\"status\": \"ok\"}\"#"
+          },
+          {
+            "id": "sl2",
+            "text": "r\"{\"status\": \"ok\"}\""
+          },
+          {
+            "id": "sl3",
+            "text": "\"{\"status\": \"ok\"}\""
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_path() {\n    assert_eq!(path(), \"C:\\\\notes\\\\new\");\n}",
+      "#[test]\nfn test_json() {\n    assert_eq!(raw_json(), \"{\\\"status\\\": \\\"ok\\\"}\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Normal string literals parse \\n as a newline character.",
+    "Raw strings need hashes around quotes when double quotes appear inside the text."
+  ],
+  "explanation": "`r\"C:\\notes\\new\"` prevents `\\n` from turning into a newline. `\"C:\\notes\\new\"` contains an embedded newline, so the equality test fails. `'C:\\notes\\new'` fails to compile because single quotes denote single character literals, yielding `E0308`. For JSON, `r#\"{\"status\": \"ok\"}\"#` uses hashes to allow quotes inside without escaping. `r\"{\"status\": \"ok\"}\"` and `\"{\"status\": \"ok\"}\"` cause syntax errors because unescaped quotes break string boundaries."
+}

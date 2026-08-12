@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.014",
+  "version": 1,
+  "title": "Lazy Initialization with OnceCell",
+  "track": "interior-mutability",
+  "concepts": [
+    "interior-mutability",
+    "option"
+  ],
+  "difficulty": 2,
+  "goal": "Initialize a cached slice on demand using OnceCell.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Interior Mutability: OnceCell"
+  },
+  "template": "use std::cell::OnceCell;\n\nstruct Buffer {\n    raw: OnceCell<Vec<u8>>,\n}\n\nimpl Buffer {\n    fn bytes(&self) -> &[u8] {\n        self.raw.⟦slot1⟧(|| ⟦slot2⟧)\n    }\n}\n\nfn main() {\n    let b = Buffer {\n        raw: OnceCell::new(),\n    };\n    println!(\"{:?}\", b.bytes());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "get",
+        "label": "initialization method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "get_or_init"
+          },
+          {
+            "id": "sl2",
+            "text": "get"
+          },
+          {
+            "id": "sl3",
+            "text": "set"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "Some(vec![1, 2, 3])",
+        "label": "initial value",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "vec![1, 2, 3]"
+          },
+          {
+            "id": "sl2",
+            "text": "&[1, 2, 3]"
+          },
+          {
+            "id": "sl3",
+            "text": "Some(vec![1, 2, 3])"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn initializes_once() {\n    let b = Buffer { raw: OnceCell::new() };\n    assert_eq!(b.bytes(), &[1, 2, 3]);\n    assert_eq!(b.bytes(), &[1, 2, 3]);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "`OnceCell::get_or_init` takes an initialization closure that runs only if the cell is empty.",
+    "The closure must return the inner type Vec<u8> directly."
+  ],
+  "explanation": "`OnceCell::get_or_init` initializes the cell on first access using the closure and returns `&Vec<u8>`, which derefs to `&[u8]`. Plain `get()` does not take an initialization closure (`E0061`). Returning `Some(...)` or `&[...]` violates the expected return type `Vec<u8>` for the initialization closure (`E0308`)."
+}

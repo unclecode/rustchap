@@ -1,0 +1,11 @@
+{
+  "id": "cfg-test.gotcha.super-imports",
+  "kind": "gotcha",
+  "title": "Scope access in cfg test modules",
+  "concepts": [
+    "cfg-test"
+  ],
+  "prompt": "Why does a nested unit test module need `use super::*;` at the top?",
+  "answer": "A `mod tests` block is its own namespace and cannot see the parent module's items automatically. The glob import pulls everything from the file above it into scope, so the tests can call the functions they are testing.",
+  "schema_version": 1
+}

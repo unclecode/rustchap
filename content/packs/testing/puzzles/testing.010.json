@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "testing.010",
+  "version": 1,
+  "title": "Tests Returning Result",
+  "track": "testing",
+  "concepts": [
+    "unit-testing",
+    "error-propagation"
+  ],
+  "difficulty": 1,
+  "goal": "Return a Result from test functions to use the question mark operator cleanly.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Unit Tests"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "By default, test functions return `()` and fail by panicking. You can also define a test function that returns `Result<(), E>`."
+      },
+      {
+        "kind": "code",
+        "code": "#[test]\nfn test_parse() -> Result<(), String> {\n    let n: i32 = \"42\"\n        .parse()\n        .map_err(|e| e.to_string())?;\n    assert_eq!(n, 42);\n    Ok(())\n}",
+        "caption": "Returning Result allows using ? inside test functions."
+      },
+      {
+        "kind": "prose",
+        "text": "When a test returns `Err(...)`, Cargo counts it as a test failure. You do not need to call `.unwrap()` or `.expect()` everywhere."
+      },
+      {
+        "kind": "prose",
+        "text": "The error type `E` must implement the `std::fmt::Debug` trait so Cargo can print the failure details."
+      },
+      {
+        "kind": "code",
+        "code": "#[test]\nfn test_file() -> Result<(), String> {\n    let val = check()\n        .map_err(|e| e.to_string())?;\n    assert_eq!(val, 10);\n    Ok(())\n}",
+        "caption": "The test passes on Ok(()) and fails when returning an Err value."
+      },
+      {
+        "kind": "prose",
+        "text": "You cannot combine `#[should_panic]` with a test function that returns `Result`. The compiler rejects this combination."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Return a Result from test functions to use the question mark operator cleanly."
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.013",
+  "version": 1,
+  "title": "Capture and Destructure with At",
+  "track": "pattern-matching",
+  "concepts": [
+    "pattern-matching",
+    "match-basics"
+  ],
+  "difficulty": 2,
+  "goal": "Test a score range while binding the score to a variable name.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Match"
+  },
+  "template": "fn classify_score(score: u32) -> String {\n    match score {\n        ⟦high_pat⟧ => format!(\"high score: {s}\"),\n        ⟦rest_pat⟧ => format!(\"other: {val}\"),\n    }\n}\n\nfn main() {\n    println!(\"{}\", classify_score(95));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "high_pat",
+        "original": "s if 90..=100",
+        "label": "high score pattern",
+        "choices": [
+          {
+            "id": "hi1",
+            "text": "s @ 90..=100"
+          },
+          {
+            "id": "hi2",
+            "text": "s if 90..=100"
+          },
+          {
+            "id": "hi3",
+            "text": "90..=100(s)"
+          }
+        ]
+      },
+      {
+        "id": "rest_pat",
+        "original": "val if val < 90",
+        "label": "catch-all pattern",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "val"
+          },
+          {
+            "id": "re2",
+            "text": "_"
+          },
+          {
+            "id": "re3",
+            "text": "val if val < 90"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn classifies() {\n    assert_eq!(classify_score(95), \"high score: 95\");\n    assert_eq!(classify_score(50), \"other: 50\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Use the @ symbol to bind a name to the value while testing a range pattern.",
+    "A fallback arm with an if guard cannot satisfy compiler exhaustiveness."
+  ],
+  "explanation": "`s @ 90..=100` binds `s` to the score if it falls within the range. Writing `s if 90..=100` puts a range into an `if` guard, failing with `E0308` because guards require a boolean. Adding an `if` guard to the second arm leaves numbers over 100 uncovered, failing exhaustiveness with `E0004`."
+}

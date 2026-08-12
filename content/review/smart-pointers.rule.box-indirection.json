@@ -1,0 +1,11 @@
+{
+  "id": "smart-pointers.rule.box-indirection",
+  "kind": "rule",
+  "title": "How Box enables recursive types",
+  "concepts": [
+    "smart-pointers"
+  ],
+  "prompt": "How does wrapping a recursive enum variant in `Box` allow the compiler to calculate the size of the type?",
+  "answer": "`Box<T>` stores the inner value on the heap and keeps only a pointer on the stack. Because pointers always have a fixed size regardless of what they point to, `Box` turns infinite inline recursion into a single fixed-size indirection.",
+  "schema_version": 1
+}

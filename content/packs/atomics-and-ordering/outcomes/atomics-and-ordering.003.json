@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "atomics-and-ordering.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1b31f900f773c53102325ee495991fa9bbad8b9016417e9a9941e130c17efd22": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "check"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "43c7021d58c78e14eeaff29104cb1a66be76f20b4cfaac9a6edaac491ba533d7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 2 arguments but 4 arguments were supplied",
+          "slot_ids": [
+            "method"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `is_some` found for type `i32` in the current scope",
+          "slot_ids": [
+            "check"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5cd051bf22a36bad42d2dc9c0b0437adb9c12934af2e03489004c560f44f87fc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 2 arguments but 4 arguments were supplied",
+          "slot_ids": [
+            "method"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `unwrap` found for type `i32` in the current scope",
+          "slot_ids": [
+            "check"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5dc44c4e04cad67e98b1edd01a5a9527aaf0219b704d6ad7e4fa03fd53489201": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 2 arguments but 4 arguments were supplied",
+          "slot_ids": [
+            "method"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `is_ok` found for type `i32` in the current scope",
+          "slot_ids": [
+            "check"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ac823ffb74a10b3161fb79a65b9a68879e8a234aeba2f7603b7c3e537a88ea2f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 3 arguments but 4 arguments were supplied",
+          "slot_ids": [
+            "method"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `is_some` found for type `i32` in the current scope",
+          "slot_ids": [
+            "check"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b6152b44e2650682d9390b0f809bf8e142c3d22fec535097617bf7baef2db7c3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 3 arguments but 4 arguments were supplied",
+          "slot_ids": [
+            "method"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `unwrap` found for type `i32` in the current scope",
+          "slot_ids": [
+            "check"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bf46fbfb360577beba8133a3d366bda06b3f9e7be0ee9bc8dd4b11a9f41d64bb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 3 arguments but 4 arguments were supplied",
+          "slot_ids": [
+            "method"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `is_ok` found for type `i32` in the current scope",
+          "slot_ids": [
+            "check"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c27e03364312396952487aaa055b790ed535b3d084629817d2b735e040ff13f2": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "fdb6638a2fe1e449301b9c1d0c471bb9fc47e351fb2fa4fe8d6667f6b3d43bca": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `is_some` found for enum `Result<T, E>` in the current scope",
+          "slot_ids": [
+            "check"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

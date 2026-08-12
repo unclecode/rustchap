@@ -1,0 +1,11 @@
+{
+  "id": "send-and-static.rule.send-vs-sync",
+  "kind": "rule",
+  "title": "Difference between Send and Sync traits",
+  "concepts": [
+    "send-and-static"
+  ],
+  "prompt": "What is the core difference between the Send and Sync traits in Rust?",
+  "answer": "`Send` means a type can safely transfer ownership to another thread. `Sync` means a type can safely share references across threads. A type `T` is `Sync` if and only if `&T` is `Send`.",
+  "schema_version": 1
+}

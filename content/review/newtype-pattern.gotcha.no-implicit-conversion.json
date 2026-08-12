@@ -1,0 +1,11 @@
+{
+  "id": "newtype-pattern.gotcha.no-implicit-conversion",
+  "kind": "gotcha",
+  "title": "Newtypes do not convert implicitly",
+  "concepts": [
+    "newtype-pattern"
+  ],
+  "prompt": "What happens when you pass a raw integer to a function expecting a single-element tuple struct wrapper around that integer?",
+  "answer": "The Rust compiler rejects it with type mismatch error `E0308`. Newtypes are distinct types at compile time and require explicit construction or conversion traits like `From`.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "enums-basics.gotcha.exhaustive-matching",
+  "kind": "gotcha",
+  "title": "Exhaustive requirement for enum matching",
+  "concepts": [
+    "enums-basics"
+  ],
+  "prompt": "What happens when you add a new variant to an enum that is already matched in several places?",
+  "answer": "The compiler rejects every match expression that does not cover the new variant with error `E0004`. This prevents unhandled cases at compile time. You must either add a match arm for the new variant or use a wildcard arm.",
+  "schema_version": 1
+}

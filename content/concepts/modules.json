@@ -1,0 +1,16 @@
+{
+  "id": "modules",
+  "title": "Modules and Paths",
+  "topic": "Abstraction",
+  "summary": "Modules group items into namespaces, establish privacy boundaries, and structure code.",
+  "lecture": [
+    "Modules group related functions, structs, and sub-modules under a single namespace.",
+    "Items inside a module are private by default to everything outside that module.",
+    "Use `crate::`, `super::`, and `self::` to navigate paths across module hierarchies."
+  ],
+  "example": {
+    "code": "mod foo {\n    pub fn bar() {}\n}",
+    "caption": "A public function inside a module."
+  },
+  "schema_version": 1
+}

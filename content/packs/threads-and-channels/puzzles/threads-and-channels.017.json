@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.017",
+  "version": 1,
+  "title": "Channel Pipeline Sequence",
+  "track": "threads-and-channels",
+  "concepts": [
+    "mpsc-channels",
+    "iterator"
+  ],
+  "difficulty": 2,
+  "goal": "Arrange the iterator pipeline stages to process incoming channel messages.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Channels"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "use std::sync::mpsc;\nuse std::thread;\n\nfn run_pipeline(items: Vec<i32>) -> Vec<i32> {\n    let (tx, rx) = mpsc::channel();",
+    "blocks": [
+      {
+        "id": "spawn",
+        "text": "\n    thread::spawn(move || {\n        items.into_iter().for_each(|x| {\n            tx.send(x * 2).unwrap();\n        });\n    });"
+      },
+      {
+        "id": "iter",
+        "text": "\n    rx.into_iter()"
+      },
+      {
+        "id": "filter",
+        "text": "\n        .filter(|x| *x > 5)"
+      },
+      {
+        "id": "collect",
+        "text": "\n        .collect()"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_pipeline() {\n    assert_eq!(run_pipeline(vec![1, 2, 3, 4]), vec![6, 8]);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 1
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "The producer thread must be spawned to move tx before rx consumes messages.",
+    "rx.into_iter() transforms the receiver into an iterator that can be chained into .filter() and .collect()."
+  ],
+  "explanation": "Spawning the worker thread moves tx so that when all items are sent, tx is dropped and rx knows no more messages will arrive. Converting rx into an iterator via rx.into_iter() allows adapter methods like .filter() and terminal method .collect() to process all incoming data cleanly without explicit loop constructs."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "static-lifetime.rule.static-str-literals",
+  "kind": "rule",
+  "title": "The Static Lifetime Rule",
+  "concepts": [
+    "static-lifetime"
+  ],
+  "prompt": "What data inherently satisfies the `'static` lifetime requirement?",
+  "answer": "String literals and constants baked into the program binary satisfy `'static`. Values created on the stack or allocated in functions do not qualify.",
+  "schema_version": 1
+}

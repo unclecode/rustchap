@@ -1,0 +1,12 @@
+{
+  "id": "dynamic-errors.gotcha.display-required",
+  "kind": "gotcha",
+  "title": "Custom errors in Box dyn Error",
+  "concepts": [
+    "dynamic-errors",
+    "error-trait"
+  ],
+  "prompt": "Why does returning a custom struct as Box<dyn `std::error::Error`> require implementing Display, and what error occurs if you omit it?",
+  "answer": "The `std::error::Error` trait requires Display as a supertrait so the error can be formatted for users. Omitting Display causes E0277 because Box<dyn Error> cannot convert types that do not satisfy the Error trait bounds.",
+  "schema_version": 1
+}

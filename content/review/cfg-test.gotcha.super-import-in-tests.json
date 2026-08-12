@@ -1,0 +1,11 @@
+{
+  "id": "cfg-test.gotcha.super-import-in-tests",
+  "kind": "gotcha",
+  "title": "Scope inside test modules",
+  "concepts": [
+    "cfg-test"
+  ],
+  "prompt": "Why does calling an outer module function inside `mod tests` cause compiler error E0425 without an explicit import?",
+  "answer": "In Rust, nested modules do not automatically inherit names from their parent scope. You must add `use super::*;` inside the `mod tests` block to bring parent items into scope.",
+  "schema_version": 1
+}

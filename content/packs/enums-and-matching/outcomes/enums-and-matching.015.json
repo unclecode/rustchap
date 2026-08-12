@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "enums-and-matching.015",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1230d5e445a5d9855d65f036795956db75620dbd24127e87687e6cbc35e46505": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `=>`, `if`, or `|`, found `&&`",
+          "slot_ids": [
+            "guard"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "22f7a2ce9fedccd9cfee26aa507fa5cdee7e41b692aa35bcfcd835828b21e9b4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `=>`, `if`, or `|`, found `&&`",
+          "slot_ids": [
+            "guard"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2870a5245a675eedcf0ef5641fe5c229a88905169372d7b4df62ac9b98d4cfa3": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "4cb83bfb6a759a80974de599d4694cd2d372d34f5dbcd7673300aa8638acb559": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "variable `Finished` is not bound in all patterns",
+          "slot_ids": [
+            "fallback"
+          ],
+          "rust_code": "E0408"
+        },
+        {
+          "category": "compile_error",
+          "message": "variable `Pending` is not bound in all patterns",
+          "slot_ids": [
+            "fallback"
+          ],
+          "rust_code": "E0408"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "guard"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5670ab16b6074e765f8518ed03f542d9279ae8931bd13620fa1c6e9774e2915b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "guard"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "78a7c46780a030db6a59712c2a88d0ad10a4efc7b8742be1e34794d6f461e800": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "variable `Finished` is not bound in all patterns",
+          "slot_ids": [
+            "fallback"
+          ],
+          "rust_code": "E0408"
+        },
+        {
+          "category": "compile_error",
+          "message": "variable `Pending` is not bound in all patterns",
+          "slot_ids": [
+            "fallback"
+          ],
+          "rust_code": "E0408"
+        },
+        {
+          "category": "compile_error",
+          "message": "pattern binding `Pending` is named the same as one of the variants of the type `Status`",
+          "slot_ids": [
+            "fallback"
+          ],
+          "rust_code": "E0170"
+        },
+        {
+          "category": "compile_error",
+          "message": "pattern binding `Finished` is named the same as one of the variants of the type `Status`",
+          "slot_ids": [
+            "fallback"
+          ],
+          "rust_code": "E0170"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors; 3 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a89fe2701d92b7b43db3e307c9802345d3e30d78d24d11146fe792e401c7b010": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `=>`, `if`, or `|`, found `&&`",
+          "slot_ids": [
+            "guard"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ad32c5bf2933f66c8640b2f68046089b8add26fa981e4b5674786d95e207989f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-exhaustive patterns: `Status::Finished` not covered",
+          "slot_ids": [],
+          "rust_code": "E0004"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d9b1851a07c2f6bb582df0b1fdf3dd89158a51698cfe55d7413eaf13223f0b25": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "guard"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

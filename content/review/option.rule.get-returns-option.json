@@ -1,0 +1,12 @@
+{
+  "id": "option.rule.get-returns-option",
+  "kind": "rule",
+  "title": "Option Return Types from Collections",
+  "concepts": [
+    "option",
+    "vec-basics"
+  ],
+  "prompt": "What type does v.get(index) return, and how do you extract an owned primitive value from it?",
+  "answer": "`v.get(index)` returns `Option<&T>`, holding a reference to the element. Call `.copied()` to turn `Option<&T>` into `Option<T>`, then `.unwrap_or(default)` to extract the owned value.",
+  "schema_version": 1
+}

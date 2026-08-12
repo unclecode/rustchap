@@ -1,0 +1,12 @@
+{
+  "id": "primitive-types.rule.tuple-arity",
+  "kind": "rule",
+  "title": "Tuples with fixed types and sizes",
+  "concepts": [
+    "primitive-types",
+    "tuples"
+  ],
+  "prompt": "How are tuple types declared in Rust and can their length change at runtime?",
+  "answer": "Tuple types list their element types in parentheses, like `(i32, bool)`. Their length and element types are fixed at compile time and cannot change.",
+  "schema_version": 1
+}

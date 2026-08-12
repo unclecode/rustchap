@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.011",
+  "version": 1,
+  "title": "The Aliasing Trap",
+  "track": "move-or-borrow",
+  "concepts": [
+    "borrow",
+    "mutability",
+    "borrow-scope"
+  ],
+  "difficulty": 2,
+  "goal": "Avoid mutating a collection while holding a reference to an element.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Borrow Checking"
+  },
+  "template": "fn duplicate_first(nums: &mut Vec<i32>) {\n    if nums.is_empty() { return; }\n    let val = ⟦val_expr⟧;\n    nums.push(⟦push_expr⟧);\n    println!(\"{val}\");\n}\n\nfn main() {\n    let mut v = vec![10, 20];\n    duplicate_first(&mut v);\n    println!(\"{v:?}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "val_expr",
+        "original": "&nums[0]",
+        "label": "value expression",
+        "choices": [
+          {
+            "id": "va1",
+            "text": "nums[0]"
+          },
+          {
+            "id": "va2",
+            "text": "&nums[0]"
+          },
+          {
+            "id": "va3",
+            "text": "nums.get(0)"
+          }
+        ]
+      },
+      {
+        "id": "push_expr",
+        "original": "*val * 2",
+        "label": "push argument",
+        "choices": [
+          {
+            "id": "pu1",
+            "text": "val * 2"
+          },
+          {
+            "id": "pu2",
+            "text": "*val * 2"
+          },
+          {
+            "id": "pu3",
+            "text": "val.unwrap() * 2"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn duplicates() {\n    let mut v = vec![3, 7];\n    duplicate_first(&mut v);\n    assert_eq!(v, vec![3, 7, 6]);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "i32 implements Copy, so reading a primitive number by value copies it and ends any borrow.",
+    "Holding a reference like &nums[0] across nums.push() causes E0502 when the reference is used later."
+  ],
+  "explanation": "Assigning `nums[0]` directly copies the `i32` value into `val`, so no borrow of `nums` remains active when `nums.push()` is called. Using `&nums[0]` or `nums.get(0)` creates a shared reference that lingers until `println!(\"{val}\")`, causing `E0502` when `nums.push()` attempts a mutable borrow. Calling `*val` on `i32` fails with `E0614` because primitive integers cannot be dereferenced. Calling `.unwrap()` on `i32` or `&i32` fails with `E0599` because they lack an `unwrap` method. Multiplying `Option<&i32>` directly fails with `E0369`."
+}

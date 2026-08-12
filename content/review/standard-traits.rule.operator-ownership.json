@@ -1,0 +1,11 @@
+{
+  "id": "standard-traits.rule.operator-ownership",
+  "kind": "rule",
+  "title": "Operator traits take operands by value",
+  "concepts": [
+    "standard-traits"
+  ],
+  "prompt": "Why does using the addition operator + on custom non-Copy types consume the operands?",
+  "answer": "The `Add` trait method signature `fn add(self, rhs: Rhs)` takes `self` by value. If you want to keep ownership of the variables, you must implement `Add` for reference types like `&T`.",
+  "schema_version": 1
+}

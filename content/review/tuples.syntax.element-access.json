@@ -1,0 +1,11 @@
+{
+  "id": "tuples.syntax.element-access",
+  "kind": "syntax",
+  "title": "Accessing elements in a tuple",
+  "concepts": [
+    "tuples"
+  ],
+  "prompt": "How do you access the elements of a tuple in Rust?",
+  "answer": "Use dot notation with zero-based numeric indices, such as `tuple.0` or `tuple.1`. Square bracket indexing like `tuple[0]` does not work on tuples.",
+  "schema_version": 1
+}

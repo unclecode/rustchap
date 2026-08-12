@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "async-and-send.013",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0455227f6dd9a861e192bdaa83f252f25edd172593662ccd7af9dd9f412cb01c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 0 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "method"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0d69d63a1ba884098d95385ce6ebdae116fc548ced01be11443f167eec95a963": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `items` in this scope",
+          "slot_ids": [
+            "receiver"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "123690b7baf94ba73b9221541646c71fdff2593e0c1378d45f7e6f4c2fe0491a": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3ee17f84c0eb2ba183ad7e6125a0a9365dfea6e5b011203c646eb1ddbbecbdcc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `items` in this scope",
+          "slot_ids": [
+            "receiver"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "436464b5432440aa206efb82a6293f086b06ec31fad96862e1698338daeebad4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 0 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "method"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "57187b326d947ffd205212d9e6365b8ebdf9b30781b975af3a7eb7acaea132aa": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `items` in this scope",
+          "slot_ids": [
+            "receiver"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "84b4b0e4139fc58ee67a661fe6f0ca84198068b31e2ad12128601c9c17a9c88e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`i32` is not an iterator",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c01c99e6e25436916ec6ab66b347d94b31bcd4d3d7764ee7717ead96372b459c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`i32` is not an iterator",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e1acd33bafc514f2bb542fc03e8f9d5cc277eed9628d79c0807a201c57f99d88": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    }
+  }
+}

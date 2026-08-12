@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.gotcha.refcell-borrow-conflict",
+  "kind": "gotcha",
+  "title": "RefCell Overlapping Borrows at Runtime",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "What happens when you call borrow_mut() on a RefCell while a Ref read guard is still active in the same scope?",
+  "answer": "The call panics at runtime with an already borrowed error. RefCell enforces Rust borrow rules dynamically instead of at compile time. You must ensure the read guard is dropped before requesting a mutable guard.",
+  "schema_version": 1
+}

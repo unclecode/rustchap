@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.012",
+  "version": 1,
+  "title": "Explicit Parameters",
+  "track": "first-steps",
+  "concepts": [
+    "functions",
+    "primitive-types"
+  ],
+  "difficulty": 2,
+  "goal": "Fix a function signature by declaring explicit parameter and return types.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1: Functions"
+  },
+  "template": "fn clamp(value: ⟦slot1⟧, min: i32, max: i32) -> ⟦slot2⟧ {\n    if value < min {\n        min\n    } else if value > max {\n        max\n    } else {\n        value\n    }\n}\n\nfn main() {\n    println!(\"Clamped: {}\", clamp(15, 0, 10));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "_",
+        "label": "value parameter type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "i32"
+          },
+          {
+            "id": "sl2",
+            "text": "_"
+          },
+          {
+            "id": "sl3",
+            "text": "i64"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "()",
+        "label": "return type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "i32"
+          },
+          {
+            "id": "sl2",
+            "text": "()"
+          },
+          {
+            "id": "sl3",
+            "text": "bool"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn clamps_value() {\n    assert_eq!(clamp(15, 0, 10), 10);\n    assert_eq!(clamp(-5, 0, 10), 0);\n    assert_eq!(clamp(5, 0, 10), 5);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Function parameter types cannot be wildcards or inferred.",
+    "The function returns an integer result from min, max, or value."
+  ],
+  "explanation": "Rust strictly requires explicit type annotations for all function parameters and return types. Using `_` for parameter types is invalid syntax in item signatures. Setting `value: i64` causes type mismatch errors `E0308` when compared against `min: i32`. Declaring `value: i32` and `-> i32` completes a valid signature."
+}

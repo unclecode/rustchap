@@ -1,0 +1,11 @@
+{
+  "id": "unit-testing.syntax.custom-failure-message",
+  "kind": "syntax",
+  "title": "Custom error messages in assertions",
+  "concepts": [
+    "unit-testing"
+  ],
+  "prompt": "How do you add a custom failure message with format arguments to assert_eq!",
+  "answer": "Append format arguments after the two values being compared inside the macro call. Write assert_eq!(a, b, \"expected {}, got {}\", expected, actual). The custom message prints only when the assertion fails.",
+  "schema_version": 1
+}

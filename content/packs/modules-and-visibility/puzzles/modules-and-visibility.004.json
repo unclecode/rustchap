@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.004",
+  "version": 1,
+  "title": "Struct Field Privacy",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "visibility",
+    "structs"
+  ],
+  "difficulty": 2,
+  "goal": "Expose specific struct fields across module boundaries.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "template": "mod config {\n    pub struct Server {\n        ⟦slot1⟧ host: String,\n        pub port: u16,\n    }\n\n    impl Server {\n        pub fn new(host: &str, port: u16) -> Self {\n            Server { host: host.to_string(), port }\n        }\n    }\n}\n\nfn main() {\n    let s = config::Server::new(\"localhost\", 8080);\n    println!(\"{}:{}\", s.⟦slot2⟧, s.port);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "",
+        "label": "field visibility",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "pub"
+          },
+          {
+            "id": "sl2",
+            "text": ""
+          },
+          {
+            "id": "sl3",
+            "text": "pub(self)"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "host()",
+        "label": "field access",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "host"
+          },
+          {
+            "id": "sl2",
+            "text": "get_host"
+          },
+          {
+            "id": "sl3",
+            "text": "host()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_server_host() {\n    let s = config::Server::new(\"localhost\", 8080);\n    assert_eq!(s.host, \"localhost\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "A public struct keeps its fields private unless each field is explicitly marked public.",
+    "Access fields directly by name without parentheses."
+  ],
+  "explanation": "Fields in a `pub` struct remain private unless marked `pub` individually. Accessing private field `host` causes compiler error `E0616`. Method syntax like `s.host()` fails with `E0615` because `host` is a field name, not a method."
+}

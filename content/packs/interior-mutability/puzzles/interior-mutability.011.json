@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.011",
+  "version": 1,
+  "title": "Narrowing the Guard",
+  "track": "interior-mutability",
+  "concepts": [
+    "interior-mutability",
+    "borrow-scope"
+  ],
+  "difficulty": 1,
+  "goal": "Learn how `Ref::map` and `RefMut::map` project borrow guards into nested struct fields.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Interior Mutability: Ref::map"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "A `RefCell` borrow guard locks the entire wrapped structure. If another part of your program needs a different field, holding the outer guard prevents access."
+      },
+      {
+        "kind": "code",
+        "code": "use std::cell::{Ref, RefCell};\n\nstruct User {\n    name: String,\n    age: u32,\n}\n\nlet cell = RefCell::new(User {\n    name: \"Amy\".into(),\n    age: 30,\n});",
+        "caption": "A struct wrapped inside a RefCell."
+      },
+      {
+        "kind": "prose",
+        "text": "`Ref::map` takes an existing `Ref<T>` and a closure picking a field. It consumes the outer guard and yields a `Ref<U>` tied only to that field."
+      },
+      {
+        "kind": "code",
+        "code": "let guard = cell.borrow();\nlet name: Ref<str> =\n    Ref::map(guard, |u| &u.name[..]);\nassert_eq!(&*name, \"Amy\");",
+        "caption": "Ref::map narrows the Ref guard to just the name slice."
+      },
+      {
+        "kind": "prose",
+        "text": "`RefMut::map` operates identically for exclusive borrows. The wrapped `RefCell` remains borrowed dynamically until the mapped guard goes out of scope."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn how `Ref::map` and `RefMut::map` project borrow guards into nested struct fields."
+}

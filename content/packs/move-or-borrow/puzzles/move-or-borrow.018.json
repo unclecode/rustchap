@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.018",
+  "version": 1,
+  "title": "Flush the Buffer",
+  "track": "move-or-borrow",
+  "concepts": [
+    "borrow",
+    "mutability",
+    "move",
+    "structs"
+  ],
+  "difficulty": 2,
+  "goal": "Extract the buffer contents while leaving the struct in a valid state.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Comprehensive Rust: Memory Management"
+  },
+  "template": "struct Logger {\n    buffer: String,\n}\n\nimpl Logger {\n    fn flush(&mut self) -> String {\n        ⟦take_fn⟧(⟦take_arg⟧)\n    }\n}\n\nfn main() {\n    let mut log = Logger { buffer: String::from(\"hello\") };\n    let msg = log.flush();\n    println!(\"{msg}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "take_fn",
+        "original": "Clone::clone",
+        "label": "function",
+        "choices": [
+          {
+            "id": "ta1",
+            "text": "std::mem::take"
+          },
+          {
+            "id": "ta2",
+            "text": "std::mem::drop"
+          },
+          {
+            "id": "ta3",
+            "text": "Clone::clone"
+          }
+        ]
+      },
+      {
+        "id": "take_arg",
+        "original": "&self.buffer",
+        "label": "argument",
+        "choices": [
+          {
+            "id": "ta1",
+            "text": "&mut self.buffer"
+          },
+          {
+            "id": "ta2",
+            "text": "&self.buffer"
+          },
+          {
+            "id": "ta3",
+            "text": "self.buffer"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn flushes_buffer() {\n    let mut log = Logger { buffer: String::from(\"hello\") };\n    let msg = log.flush();\n    assert_eq!(msg, \"hello\");\n    assert_eq!(log.buffer, \"\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Moving self.buffer directly fails with E0507 because self is behind a reference.",
+    "Look for a standard library function that takes a mutable reference, steals its value, and leaves an empty String behind."
+  ],
+  "explanation": "`std::mem::take(&mut self.buffer)` takes ownership of the buffer string and leaves an empty string in `self.buffer`. Moving `self.buffer` directly fails with `E0507` because you cannot move out of a reference. Passing `&self.buffer` to `std::mem::take` fails with `E0308` because `take` requires a mutable reference. Using `Clone::clone` compiles but fails the test because it leaves the original text in `log.buffer` instead of clearing it. `std::mem::drop` returns `()` which violates the `String` return type."
+}

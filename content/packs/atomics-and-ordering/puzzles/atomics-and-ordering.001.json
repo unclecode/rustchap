@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.001",
+  "version": 1,
+  "title": "Atomic Primitives",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "atomic-types",
+    "interior-mutability"
+  ],
+  "difficulty": 1,
+  "goal": "Share and mutate primitive types across threads without a Mutex.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Atomic types like `AtomicBool` and `AtomicI32` provide thread-safe interior mutability. You will recognise atomic variables from C++ or Java."
+      },
+      {
+        "kind": "code",
+        "code": "use std::sync::atomic::AtomicI32;\nuse std::sync::atomic::Ordering;\n\nlet count = AtomicI32::new(0);\ncount.fetch_add(1, Ordering::Relaxed);",
+        "caption": "fetch_add mutates through a shared reference &AtomicI32."
+      },
+      {
+        "kind": "prose",
+        "text": "Unlike standard primitive types, atomic types allow mutation through a shared reference `&T`. You do not need `&mut` or a `Mutex`."
+      },
+      {
+        "kind": "prose",
+        "text": "Every atomic operation requires an explicit `Ordering` argument. Memory orderings are covered later in this deck."
+      },
+      {
+        "kind": "code",
+        "code": "let val = count.load(Ordering::Relaxed);\nassert_eq!(val, 1);",
+        "caption": "load returns a copy of the primitive value inside."
+      },
+      {
+        "kind": "prose",
+        "text": "Atomic types only exist for primitives and raw pointers. Complex structs still require a `Mutex` or `RwLock`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Share and mutate primitive types across threads without a Mutex."
+}

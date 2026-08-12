@@ -1,0 +1,11 @@
+{
+  "id": "structs.rule.self-dot-explicit",
+  "kind": "rule",
+  "title": "Referencing fields inside struct methods",
+  "concepts": [
+    "structs"
+  ],
+  "prompt": "How do you access a field of a struct inside one of its `impl` methods?",
+  "answer": "You must explicitly write `self.field_name`. Unlike C++ or Java, Rust never implicitly brings struct fields into scope without the `self.` prefix.",
+  "schema_version": 1
+}

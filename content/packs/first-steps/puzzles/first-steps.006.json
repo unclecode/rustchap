@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.006",
+  "version": 1,
+  "title": "Types Are Explicit",
+  "track": "first-steps",
+  "concepts": [
+    "primitive-types"
+  ],
+  "difficulty": 1,
+  "goal": "Understand how Rust infers primitive types and why it never converts them automatically.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1: Types and Values"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You know numbers and booleans from other languages. In Rust, every integer and float has an exact bit width like `i32` or `f64`."
+      },
+      {
+        "kind": "code",
+        "code": "let x: i32 = 42;\nlet y: f64 = 3.14;",
+        "caption": "Bit widths are part of the type name."
+      },
+      {
+        "kind": "prose",
+        "text": "When you omit the type annotation, Rust infers it from context. Unannotated integer literals default to `i32` and float literals default to `f64`."
+      },
+      {
+        "kind": "code",
+        "code": "let a = 10;\nlet b = 2.5;",
+        "caption": "Integer literals default to i32 and floats to f64."
+      },
+      {
+        "kind": "prose",
+        "text": "Rust never implicitly converts primitive types for you. Adding an `i32` to an `f64` or a `u8` is a compile error `E0308`."
+      },
+      {
+        "kind": "code",
+        "code": "let x: i32 = 10;\nlet y: f64 = x as f64;",
+        "caption": "Explicit conversion uses the as keyword."
+      },
+      {
+        "kind": "prose",
+        "text": "Type casting with `as` converts primitive values. Converting user defined types and smart pointers is covered in later decks."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand how Rust infers primitive types and why it never converts them automatically."
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.014",
+  "version": 1,
+  "title": "Concurrency vs Sequential Await",
+  "track": "async-and-send",
+  "concepts": [
+    "async-await"
+  ],
+  "difficulty": 1,
+  "goal": "Sequential await pauses execution step by step, while concurrent execution polls multiple futures together.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Futures"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Awaiting a future pauses the current function until that future completes. If you await two futures one after the other, they run in sequence, not at the same time."
+      },
+      {
+        "kind": "code",
+        "code": "let a = fetch_a().await;\nlet b = fetch_b().await;",
+        "caption": "Sequential .await runs tasks one after another."
+      },
+      {
+        "kind": "prose",
+        "text": "To run futures concurrently on an executor, both futures must exist at the same time and be polled together."
+      },
+      {
+        "kind": "prose",
+        "text": "Combining futures into a single execution step lets the executor make progress on whichever one is ready. Sequential awaits delay starting the second future until the first is completely finished."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Sequential await pauses execution step by step, while concurrent execution polls multiple futures together."
+}

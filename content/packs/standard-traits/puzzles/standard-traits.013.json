@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.013",
+  "version": 1,
+  "title": "Abstracting Byte Streams",
+  "track": "standard-traits",
+  "concepts": [
+    "io-traits"
+  ],
+  "difficulty": 1,
+  "goal": "Read from and write to any byte source or destination using Read and Write.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Standard Traits"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You interact with files, sockets, and in-memory buffers through the `Read` and `Write` traits. They behave like stream interfaces in other languages."
+      },
+      {
+        "kind": "code",
+        "code": "use std::io::{Read, Result};\n\nfn count_bytes<R: Read>(\n    mut r: R,\n) -> Result<usize> {\n    let mut buf = Vec::new();\n    r.read_to_end(&mut buf)?;\n    Ok(buf.len())\n}",
+        "caption": "R accepts any type that implements Read."
+      },
+      {
+        "kind": "prose",
+        "text": "The `Write` trait works the same way for outputs. Byte vectors and slices implement these traits directly."
+      },
+      {
+        "kind": "code",
+        "code": "use std::io::{Result, Write};\n\nfn log<W: Write>(\n    w: &mut W,\n    msg: &str,\n) -> Result<()> {\n    w.write_all(msg.as_bytes())\n}",
+        "caption": "Pass a mutable reference to write into a buffer."
+      },
+      {
+        "kind": "prose",
+        "text": "Because `Write` methods take a mutable reference, passing `&mut Vec<u8>` allows writing repeatedly without losing ownership of the buffer."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Read from and write to any byte source or destination using Read and Write."
+}

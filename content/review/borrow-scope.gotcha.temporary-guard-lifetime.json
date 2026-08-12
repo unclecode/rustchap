@@ -1,0 +1,12 @@
+{
+  "id": "borrow-scope.gotcha.temporary-guard-lifetime",
+  "kind": "gotcha",
+  "title": "RefCell Guard Lifetime in Let Bindings",
+  "concepts": [
+    "borrow-scope",
+    "interior-mutability"
+  ],
+  "prompt": "How does assigning a RefCell borrow to a named variable differ from calling a method on it in a single statement?",
+  "answer": "A named variable keeps the Ref or RefMut guard alive until the end of its enclosing block. A single-statement call like cell.borrow().len() drops the guard at the semicolon. Holding named guards too long is the primary cause of RefCell panics.",
+  "schema_version": 1
+}

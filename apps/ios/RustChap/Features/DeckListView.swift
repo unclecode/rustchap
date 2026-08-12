@@ -6,12 +6,16 @@ import SwiftData
 import SwiftUI
 
 struct DeckListView: View {
+    @Binding var path: [Route]
     @Environment(ContentStore.self) private var store
     @Environment(SyncService.self) private var sync
     @Query private var progress: [PuzzleProgressRecord]
     @State private var showProfile = false
     @State private var showMarkdownPreview = false
     @AppStorage("selectedLevel") private var selectedLevel = ""
+    // Same key ResumePoint writes. Reading it through AppStorage means
+    // dismissing the banner updates the view straight away.
+    @AppStorage("lastPuzzleId") private var lastPuzzleId = ""
 
     /// The first unlocked, incomplete, non-empty deck — where the player is.
     private var currentDeckId: String? {
@@ -35,6 +39,91 @@ struct DeckListView: View {
         return visible.first?.id ?? "core"
     }
 
+    /// Where to send the player back to, based on the last node they opened.
+    ///
+    /// If they left mid-puzzle, that puzzle. If they SOLVED it and then closed
+    /// the app -- which is the normal way to stop -- the next unsolved node in
+    /// the same deck, because "where I was" means "the next thing to do", not a
+    /// puzzle already finished. Hiding the row on solve made it vanish exactly
+    /// when it was most wanted, which is why it looked broken.
+    ///
+    /// Deliberately does not require the deck to be unlocked: if you were in a
+    /// puzzle you should be able to get back to it.
+    private var resumePuzzle: ContentStore.LoadedPuzzle? {
+        let id = lastPuzzleId
+        guard !id.isEmpty,
+              let last = store.allPuzzles.first(where: { $0.id == id })
+        else { return nil }
+        let solved = Progression.solvedIds(progress)
+        if !solved.contains(id) { return last }
+        guard let deck = store.packs.first(where: { $0.id == last.puzzle.track }),
+              let index = deck.puzzles.firstIndex(where: { $0.id == id })
+        else { return nil }
+        // the next unsolved node after it, then anything unsolved before it
+        return deck.puzzles[(index + 1)...].first { !solved.contains($0.id) }
+            ?? deck.puzzles.first { !solved.contains($0.id) }
+    }
+
+    @ViewBuilder
+    private func resumeRow(_ loaded: ContentStore.LoadedPuzzle) -> some View {
+        let deckId = loaded.puzzle.track
+        let deckTitle = store.packs.first { $0.id == deckId }?.pack.title
+        HStack(spacing: 12) {
+            Button {
+                // Push the deck first so Back goes to the puzzle list rather
+                // than all the way home.
+                path = [.deck(deckId), .puzzle(loaded.id)]
+                lastPuzzleId = ""          // one-time: using it consumes it
+            } label: {
+                HStack(spacing: 12) {
+                    Image(systemName: "arrow.uturn.left.circle.fill")
+                        .font(.title2)
+                        .foregroundStyle(.tint)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(loaded.id == lastPuzzleId
+                             ? "Pick up where you left off"
+                             : "Carry on from here")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Text(loaded.puzzle.title)
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(.primary)
+                        if let deckTitle {
+                            Text(deckTitle)
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    Spacer(minLength: 0)
+                }
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+
+            Button {
+                lastPuzzleId = ""
+            } label: {
+                Image(systemName: "xmark")
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(.secondary)
+                    .padding(8)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel("Dismiss")
+        }
+        .padding(.leading, 14)
+        .padding(.trailing, 6)
+        .padding(.vertical, 12)
+        .background(.tint.opacity(0.10), in: RoundedRectangle(cornerRadius: 14))
+        .overlay(
+            RoundedRectangle(cornerRadius: 14)
+                .strokeBorder(.tint.opacity(0.30), lineWidth: 1)
+        )
+        .padding(.horizontal)
+        .padding(.bottom, 4)
+    }
+
     private let columns = [
         GridItem(.flexible(), spacing: 12),
         GridItem(.flexible(), spacing: 12),
@@ -46,6 +135,9 @@ struct DeckListView: View {
                 Text("Content failed to load: \(error)")
                     .foregroundStyle(.red)
                     .padding(.horizontal)
+            }
+            if let resume = resumePuzzle {
+                resumeRow(resume)
             }
             if store.visibleLevels.count > 1 {
                 levelChips

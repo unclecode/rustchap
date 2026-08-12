@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.014",
+  "version": 1,
+  "title": "Capacity and Growth",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types"
+  ],
+  "difficulty": 1,
+  "goal": "Understand preallocation and heap reallocation in String.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from std-types/string"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You know dynamic array buffers in Go or Java allocate extra space to avoid copying memory on every append. `String` in Rust works the same way."
+      },
+      {
+        "kind": "code",
+        "code": "let mut s = String::with_capacity(10);\nprintln!(\"{}\", s.capacity());",
+        "caption": "with_capacity reserves byte storage upfront."
+      },
+      {
+        "kind": "prose",
+        "text": "Calling `String::new()` creates a string with zero capacity. Appending text with `push_str` reallocates heap memory whenever length exceeds capacity."
+      },
+      {
+        "kind": "code",
+        "code": "let mut s = String::with_capacity(6);\ns.push_str(\"hello \");\ns.push('!');",
+        "caption": "Pushing within capacity avoids extra allocations."
+      },
+      {
+        "kind": "prose",
+        "text": "Length is the number of bytes stored right now. Capacity is the total number of bytes reserved before a new allocation takes place."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand preallocation and heap reallocation in String."
+}

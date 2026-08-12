@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.011",
+  "version": 1,
+  "title": "Heterogeneous Trait Returns",
+  "track": "generics-and-dyn",
+  "concepts": [
+    "generics",
+    "traits",
+    "smart-pointers"
+  ],
+  "difficulty": 3,
+  "goal": "Return different types implementing the same trait from conditional branches.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: dyn Trait"
+  },
+  "template": "trait Pet {\n    fn talk(&self) -> &'static str;\n}\n\nstruct Dog;\nstruct Cat;\n\nimpl Pet for Dog {\n    fn talk(&self) -> &'static str { \"woof\" }\n}\n\nimpl Pet for Cat {\n    fn talk(&self) -> &'static str { \"meow\" }\n}\n\nfn make_pet(is_dog: bool) -> ⟦ret_ty⟧ {\n    if is_dog {\n        ⟦dog_expr⟧\n    } else {\n        Box::new(Cat)\n    }\n}\n\nfn main() {\n    let p = make_pet(true);\n    println!(\"{}\", p.talk());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "ret_ty",
+        "original": "impl Pet",
+        "label": "return type",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "Box<dyn Pet>"
+          },
+          {
+            "id": "re2",
+            "text": "impl Pet"
+          },
+          {
+            "id": "re3",
+            "text": "dyn Pet"
+          }
+        ]
+      },
+      {
+        "id": "dog_expr",
+        "original": "Dog",
+        "label": "if branch value",
+        "choices": [
+          {
+            "id": "do1",
+            "text": "Box::new(Dog)"
+          },
+          {
+            "id": "do2",
+            "text": "Dog"
+          },
+          {
+            "id": "do3",
+            "text": "&Dog"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn returns_dog_and_cat() {\n    assert_eq!(make_pet(true).talk(), \"woof\");\n    assert_eq!(make_pet(false).talk(), \"meow\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "impl Trait requires every branch to yield the exact same concrete type at compile time.",
+    "Box<dyn Pet> converts both Dog and Cat into uniform heap pointers with vtables."
+  ],
+  "explanation": "`impl Trait` requires a single concrete return type determined statically. Returning `Dog` in one branch and `Cat` in another causes `E0308` because they are distinct types. Wrapping both inside `Box<dyn Pet>` yields a uniform pointer type carrying dynamic dispatch tables. Returning bare `dyn Pet` causes `E0277` because trait objects are unsized and cannot be returned by value."
+}

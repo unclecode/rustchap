@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "structs.012",
+  "version": 1,
+  "title": "Efficient Formatting",
+  "track": "structs",
+  "concepts": [
+    "structs",
+    "clone"
+  ],
+  "difficulty": 2,
+  "goal": "Select the method implementation that formats output without unnecessary field clones.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Methods and Traits"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "format_macro",
+        "code": "struct User {\n    first: String,\n    last: String,\n}\n\nimpl User {\n    fn full_name(&self) -> String {\n        format!(\"{} {}\", self.first, self.last)\n    }\n}"
+      },
+      {
+        "id": "move_concat",
+        "code": "struct User {\n    first: String,\n    last: String,\n}\n\nimpl User {\n    fn full_name(&self) -> String {\n        let mut s = self.first;\n        s.push(' ');\n        s.push_str(&self.last);\n        s\n    }\n}"
+      },
+      {
+        "id": "add_op",
+        "code": "struct User {\n    first: String,\n    last: String,\n}\n\nimpl User {\n    fn full_name(&self) -> String {\n        self.first + \" \" + &self.last\n    }\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn gets_full_name() {\n    let u = User { first: String::from(\"Ada\"), last: String::from(\"Lovelace\") };\n    assert_eq!(u.full_name(), \"Ada Lovelace\");\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 2
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "The `format!` macro borrows string arguments without needing ownership.",
+    "Fields behind `&self` cannot be moved or passed to operators requiring ownership."
+  ],
+  "explanation": "Using `format!` borrows fields from `&self` without taking ownership or cloning. Moving fields directly like `self.first` fails to compile with E0507 because `self` is behind a shared reference. The `+` operator on `String` also requires taking ownership of the left operand, which is forbidden through `&self`."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "primitive-types.error.e0277-numeric-division",
+  "kind": "error",
+  "title": "Dividing integer by float error",
+  "concepts": [
+    "primitive-types"
+  ],
+  "prompt": "What causes error E0277 when dividing two numeric variables in Rust, and how do you resolve it?",
+  "answer": "Error E0277 occurs when dividing variables of different types, such as dividing an integer by a float. Resolving it requires casting one variable with as so both sides of the division operator have identical types.",
+  "schema_version": 1
+}

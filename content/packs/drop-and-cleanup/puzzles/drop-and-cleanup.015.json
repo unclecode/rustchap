@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.015",
+  "version": 1,
+  "title": "Flush Buffer on Drop",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait",
+    "zero-copy",
+    "clone"
+  ],
+  "difficulty": 2,
+  "goal": "Extract owned field data inside a `Drop` implementation efficiently.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "take_flush",
+        "code": "struct Output {\n    data: Vec<u8>,\n}\n\nimpl Drop for Output {\n    fn drop(&mut self) {\n        let items = std::mem::take(&mut self.data);\n        let _ = items;\n    }\n}"
+      },
+      {
+        "id": "direct_move",
+        "code": "struct Output {\n    data: Vec<u8>,\n}\n\nimpl Drop for Output {\n    fn drop(&mut self) {\n        let items = self.data;\n        let _ = items;\n    }\n}"
+      },
+      {
+        "id": "deref_move",
+        "code": "struct Output {\n    data: Vec<u8>,\n}\n\nimpl Drop for Output {\n    fn drop(&mut self) {\n        let items = *self.data;\n        let _ = items;\n    }\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_drop_output() {\n    let _out = Output { data: vec![1, 2, 3] };\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Look at how `self.data` is accessed inside `drop(&mut self)`.",
+    "The `std::mem::take` function leaves an empty vector in place. It transfers ownership without cloning."
+  ],
+  "explanation": "`std::mem::take(&mut self.data)` extracts the vector without cloning. It replaces `self.data` with an empty default vector. Moving `self.data` directly fails to compile because `drop` only has a mutable reference."
+}

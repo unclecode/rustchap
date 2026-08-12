@@ -1,0 +1,11 @@
+{
+  "id": "enums-basics.syntax.pattern-or-operator",
+  "kind": "syntax",
+  "title": "Syntax for matching multiple variants",
+  "concepts": [
+    "enums-basics"
+  ],
+  "prompt": "How do you combine multiple enum variants into a single match arm without repeating the arm body?",
+  "answer": "Use the single pipe operator `|` between patterns in the match arm header. Do not use double pipe `||` because that is reserved for logical OR expressions. Ensure every variant separated by `|` binds the exact same variable names.",
+  "schema_version": 1
+}

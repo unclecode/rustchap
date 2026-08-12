@@ -1,0 +1,11 @@
+{
+  "id": "traits.gotcha.dyn-slice-indirection",
+  "kind": "gotcha",
+  "title": "Slices of dyn Trait vs impl Trait",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "Why is &[dyn Trait] valid as a parameter type while &[`impl Trait`] is rejected by the compiler?",
+  "answer": "`&[dyn Trait]` is a slice of trait object fat pointers, where every reference has a known uniform size. `impl Trait` is not allowed inside slice type position because `impl Trait` is only permitted for top-level function arguments or return types.",
+  "schema_version": 1
+}

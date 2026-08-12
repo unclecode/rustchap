@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "generics-and-dyn.015",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "2a901c09ead30bf7ec946b0473b575c6f087ffb1ae005caeadb4f7b95ab77366": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "slice_coercion"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `iter` exists for reference `&[dyn Log]`, but its trait bounds were not satisfied",
+          "slot_ids": [
+            "slice_coercion"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Log` cannot be known at compilation time",
+          "slot_ids": [
+            "slice_coercion"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "60b2ab63fc586571d86b177c80a6fe218185c45c206336cc96283454dea49e61": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "81b7666d0fe806c34a682bfcb7d2db03f8b21a69f0b6137e63c86cdf8a705e3c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `&impl Log: Log` is not satisfied",
+          "slot_ids": [
+            "dynamic_boxing"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "newtype-pattern.rule.underlying-methods-not-inherited",
+  "kind": "rule",
+  "title": "Newtypes do not inherit methods",
+  "concepts": [
+    "newtype-pattern"
+  ],
+  "prompt": "What methods and operators are available on a newtype struct out of the box?",
+  "answer": "None of the underlying type's methods or operators are inherited automatically. You must explicitly implement traits or forward methods on the wrapper struct.",
+  "schema_version": 1
+}

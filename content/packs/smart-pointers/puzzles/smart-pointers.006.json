@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers.006",
+  "version": 1,
+  "title": "Box the Trait",
+  "track": "smart-pointers",
+  "concepts": [
+    "smart-pointers",
+    "traits"
+  ],
+  "difficulty": 2,
+  "goal": "Store heterogenous types inside a vector using owned trait objects.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Trait Objects"
+  },
+  "template": "trait Render {\n    fn render(&self) -> String;\n}\n\nstruct Text(&'static str);\nimpl Render for Text {\n    fn render(&self) -> String {\n        self.0.into()\n    }\n}\n\nfn render_all(items: &[⟦elem_ty⟧]) -> String {\n    items.iter().map(|i| i.render()).collect()\n}\n\nfn main() {\n    let items: Vec<Box<dyn Render>> = vec![\n        ⟦item_expr⟧,\n    ];\n    println!(\"{}\", render_all(&items));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "elem_ty",
+        "original": "dyn Render",
+        "label": "element type",
+        "choices": [
+          {
+            "id": "el1",
+            "text": "Box<dyn Render>"
+          },
+          {
+            "id": "el2",
+            "text": "dyn Render"
+          },
+          {
+            "id": "el3",
+            "text": "Render"
+          }
+        ]
+      },
+      {
+        "id": "item_expr",
+        "original": "Text(\"hi\")",
+        "label": "item expression",
+        "choices": [
+          {
+            "id": "it1",
+            "text": "Box::new(Text(\"hi\"))"
+          },
+          {
+            "id": "it2",
+            "text": "Text(\"hi\")"
+          },
+          {
+            "id": "it3",
+            "text": "&Text(\"hi\")"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn renders() {\n    let items: Vec<Box<dyn Render>> = vec![Box::new(Text(\"hello\"))];\n    assert_eq!(render_all(&items), \"hello\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "`dyn Render` has an unknown size at compile time, so slice elements must wrap it in indirection.",
+    "The items vector expects owned trait objects wrapped in `Box`."
+  ],
+  "explanation": "`dyn Render` is a dynamically sized type. It cannot be placed directly into a slice without indirection. Plain `Render` is rejected because traits are not concrete types. Wrapping the trait object in `Box` gives it a fixed size. Each element passed into the vector must be constructed with `Box::new(Text(...))`."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "atomic-types.rule.fetch-add-return-value",
+  "kind": "rule",
+  "title": "Return value of fetch operations",
+  "concepts": [
+    "atomic-types"
+  ],
+  "prompt": "What value does `fetch_add` return when called on an atomic integer?",
+  "answer": "It returns the previous value held by the atomic variable prior to addition. To compute the new value you must add the increment to the returned result.",
+  "schema_version": 1
+}

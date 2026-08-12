@@ -1,0 +1,11 @@
+{
+  "id": "smart-pointers.error.e0277-dst-vec",
+  "kind": "error",
+  "title": "Size not known at compile time error",
+  "concepts": [
+    "smart-pointers"
+  ],
+  "prompt": "What causes error `E0277` when attempting to put `dyn Trait` into a struct or vector?",
+  "answer": "Error `E0277` occurs because `dyn Trait` is a dynamically sized type whose size is unknown at compile time. Rust requires types stored directly in vectors or struct fields to have a constant size. You must wrap the trait object in a pointer like `Box<dyn Trait>` or `&dyn Trait`.",
+  "schema_version": 1
+}

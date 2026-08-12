@@ -1,0 +1,11 @@
+{
+  "id": "slice.choice.prefer-slice-params",
+  "kind": "choice",
+  "title": "Prefer slice parameters over owned collec...",
+  "concepts": [
+    "slice"
+  ],
+  "prompt": "Why should a read-only function parameter prefer `&[T]` over `&Vec<T>`?",
+  "answer": "Accepting `&[T]` allows callers to pass stack arrays, vectors, or subslices without force-allocating. Deref coercion converts `&Vec<T>` to `&[T]` automatically.",
+  "schema_version": 1
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "structs.015",
+  "version": 1,
+  "title": "Mutate in Place",
+  "track": "structs",
+  "concepts": [
+    "structs",
+    "mutability"
+  ],
+  "difficulty": 2,
+  "goal": "Increment a counter field inside a method without losing ownership.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Methods and Traits"
+  },
+  "template": "struct Counter {\n    value: u32,\n}\n\nimpl Counter {\n    fn inc(⟦receiver⟧) {\n        ⟦body⟧\n    }\n}\n\nfn main() {\n    let mut c = Counter { value: 5 };\n    c.inc();\n    println!(\"{}\", c.value);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "receiver",
+        "original": "&self",
+        "label": "method receiver",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "&mut self"
+          },
+          {
+            "id": "re2",
+            "text": "&self"
+          },
+          {
+            "id": "re3",
+            "text": "self"
+          }
+        ]
+      },
+      {
+        "id": "body",
+        "original": "value += 1;",
+        "label": "increment statement",
+        "choices": [
+          {
+            "id": "bo1",
+            "text": "self.value += 1;"
+          },
+          {
+            "id": "bo2",
+            "text": "value += 1;"
+          },
+          {
+            "id": "bo3",
+            "text": "self.value++;"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn increments() {\n    let mut c = Counter { value: 5 };\n    c.inc();\n    assert_eq!(c.value, 6);\n    c.inc();\n    assert_eq!(c.value, 7);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Mutating a struct requires exclusive access to self.",
+    "Fields must be explicitly prefixed with self, and Rust has no ++ operator."
+  ],
+  "explanation": "`&mut self` provides exclusive mutable access to the struct, allowing fields to be updated in place. `&self` fails with error `E0596` because shared references are read-only. `self` takes ownership, causing error `E0382` on subsequent uses of the counter. Inside the body, Rust requires `self.` to access fields and does not support `++`."
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.005",
+  "version": 1,
+  "title": "Consume State on Transition",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "typestate-pattern"
+  ],
+  "difficulty": 2,
+  "goal": "Enforce one-way state transitions by taking ownership of self.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Idiomatic Patterns"
+  },
+  "template": "struct Clean { name: String }\nstruct Dirty { name: String }\nstruct Buffer<S> { state: S }\n\nimpl Buffer<Clean> {\n    fn fill(⟦slot1⟧) -> Buffer<Dirty> {\n        Buffer { state: Dirty { name: ⟦slot2⟧ } }\n    }\n}\n\nfn main() {\n    let buf = Buffer { state: Clean { name: String::from(\"data\") } };\n    let _dirty = buf.fill();\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "&self",
+        "label": "the receiver parameter",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "self"
+          },
+          {
+            "id": "sl2",
+            "text": "&self"
+          },
+          {
+            "id": "sl3",
+            "text": "&mut self"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "self.state",
+        "label": "the inner string expression",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "self.state.name"
+          },
+          {
+            "id": "sl2",
+            "text": "self.state"
+          },
+          {
+            "id": "sl3",
+            "text": "self"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_transition() {\n    let buf = Buffer { state: Clean { name: String::from(\"test\") } };\n    let dirty = buf.fill();\n    assert_eq!(dirty.state.name, \"test\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "To move non-Copy fields out of the old state, the receiver must take ownership.",
+    "The Dirty struct expects a String field matching the inner name type."
+  ],
+  "explanation": "Typestate transition methods must take `self` by value to consume the original state. Taking `&self` or `&mut self` fails with error `E0507` because you cannot move non-Copy fields out of a reference. Passing `self.state` or `self` into the `name` field produces type mismatch error `E0308`."
+}

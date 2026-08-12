@@ -8,9 +8,20 @@
     "closures.004",
     "closures.001",
     "closures.002",
-    "closures.003"
+    "closures.003",
+    "closures.005",
+    "closures.006",
+    "closures.007",
+    "closures.008",
+    "closures.009",
+    "closures.010",
+    "closures.011",
+    "closures.012",
+    "closures.013",
+    "closures.014",
+    "closures.015"
   ],
   "icon": "curlybraces",
   "accent": "yellow",
-  "level": "core"
+  "level": "abstraction"
 }

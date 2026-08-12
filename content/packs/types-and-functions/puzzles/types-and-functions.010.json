@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.010",
+  "version": 1,
+  "title": "Numbers and Overflow",
+  "track": "types-and-functions",
+  "concepts": [
+    "primitive-types"
+  ],
+  "difficulty": 1,
+  "goal": "Learn integer types and safe arithmetic methods.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Values and Variables"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Rust provides signed integer types like `i32` and unsigned types like `u8`. Integer literals without type annotations default to `i32`."
+      },
+      {
+        "kind": "code",
+        "code": "let count: u8 = 200;\nlet default_num = 42;",
+        "caption": "count is an 8-bit unsigned integer. default_num is i32."
+      },
+      {
+        "kind": "prose",
+        "text": "Rust never converts integer types implicitly. Mixing different integer types in expressions causes error `E0308`."
+      },
+      {
+        "kind": "code",
+        "code": "let score: u8 = 250;\nlet total = score.saturating_add(10);",
+        "caption": "saturating_add stays at 255 instead of overflowing."
+      },
+      {
+        "kind": "prose",
+        "text": "Standard arithmetic operators like `+` panic on overflow in debug builds. Explicit methods like `saturating_add` define safe behavior at boundary conditions."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn integer types and safe arithmetic methods."
+}

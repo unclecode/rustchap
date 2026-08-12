@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.014",
+  "version": 1,
+  "title": "Publishing Data with Acquire Release",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "memory-ordering"
+  ],
+  "difficulty": 2,
+  "goal": "Synchronize shared data across threads using valid Release store and Acquire load orderings.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "template": "use std::sync::atomic::{AtomicBool, AtomicI32, Ordering};\n\nfn publish(data: &AtomicI32, ready: &AtomicBool, val: i32) {\n    data.store(val, Ordering::Relaxed);\n    ready.store(true, Ordering::⟦slot1⟧);\n}\n\nfn consume(data: &AtomicI32, ready: &AtomicBool) -> Option<i32> {\n    if ready.load(Ordering::⟦slot2⟧) {\n        Some(data.load(Ordering::Relaxed))\n    } else {\n        None\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "Acquire",
+        "label": "store ordering",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Release"
+          },
+          {
+            "id": "sl2",
+            "text": "Acquire"
+          },
+          {
+            "id": "sl3",
+            "text": "AcqRel"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "Release",
+        "label": "load ordering",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Acquire"
+          },
+          {
+            "id": "sl2",
+            "text": "Release"
+          },
+          {
+            "id": "sl3",
+            "text": "AcqRel"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_publish_consume() {\n    let data = AtomicI32::new(0);\n    let ready = AtomicBool::new(false);\n    publish(&data, &ready, 42);\n    assert_eq!(consume(&data, &ready), Some(42));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Stores publish changes to memory and require Release ordering.",
+    "Loads observe published changes and require Acquire ordering."
+  ],
+  "explanation": "Publishing data safely requires pairing a `Release` store with an `Acquire` load. The `Release` store ensures all prior writes in that thread are visible to any thread that performs an `Acquire` load on the same atomic flag. Passing `Ordering::Acquire` or `Ordering::AcqRel` to `store()`, or `Ordering::Release` or `Ordering::AcqRel` to `load()`, causes a runtime panic because those orderings are invalid for single-direction memory operations."
+}

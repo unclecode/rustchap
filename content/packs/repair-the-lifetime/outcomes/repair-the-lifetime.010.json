@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "repair-the-lifetime.010",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "05dc6da9694686c184055e0dc8967d25ebf66774371cf5c312a0497301d74fd9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `tag` as mutable because it is also borrowed as immutable",
+          "slot_ids": [],
+          "rust_code": "E0502"
+        },
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `tag` as mutable because it is also borrowed as immutable",
+          "slot_ids": [],
+          "rust_code": "E0502"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "82db6a927100d423a38ccd01b298e034a57730280745480c5c0fc67b8f3208bc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'b`",
+          "slot_ids": [
+            "t1"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8e2f0615db7841101ac3ad203a9db879df24e08363156a0173a1a3951bb13174": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "explicit lifetime required in the type of `s`",
+          "slot_ids": [],
+          "rust_code": "E0621"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9282deb96ae247bcd0fb74771c634ae4a190e6b80dd357395e3bc75d50c7920f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "lifetime_error",
+          "message": "explicit lifetime required in the type of `s`",
+          "slot_ids": [],
+          "rust_code": "E0621"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9a0a354cb083faf2f1b3233f557efbfbd016a6d94ec00a3e1f974cf0a26cdb7b": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "b92f32d2657760490b5fea08d7850accf93927b69fa212a1a617da4128ec2078": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'b`",
+          "slot_ids": [
+            "t1"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b94f26d6c36fac03583140ab0babf5e04c8ff5d1755ffeafc25b39c50aab04cf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e6af894c734d0569445f6a7c3a4376ddabd6b5732ccc907dd6cfbfa0b6d4eda3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'b`",
+          "slot_ids": [
+            "t1"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f53e2e8143c7da86903997df4d8c4f6d6fa4b4bc2aa5ae6acaf6d1e1915eb8b9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "explicit lifetime required in the type of `s`",
+          "slot_ids": [],
+          "rust_code": "E0621"
+        },
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `tag` as mutable because it is also borrowed as immutable",
+          "slot_ids": [],
+          "rust_code": "E0502"
+        },
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `tag` as mutable because it is also borrowed as immutable",
+          "slot_ids": [],
+          "rust_code": "E0502"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.007",
+  "version": 1,
+  "title": "Double Capabilities",
+  "track": "traits-and-bounds",
+  "concepts": [
+    "traits",
+    "generics"
+  ],
+  "difficulty": 2,
+  "goal": "Constrain a generic function with multiple trait bounds using the plus syntax.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Supertraits"
+  },
+  "template": "use std::fmt::Display;\n\nfn duplicate_and_print<T: ⟦bounds_slot⟧>(item: &T) -> String {\n    let copy = (*item).clone();\n    format!(\"{copy}\")\n}\n\nfn main() {\n    let val = ⟦val_slot⟧;\n    println!(\"{}\", duplicate_and_print(&val));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "bounds_slot",
+        "original": "Display",
+        "label": "trait bounds",
+        "choices": [
+          {
+            "id": "bo1",
+            "text": "Display + Clone"
+          },
+          {
+            "id": "bo2",
+            "text": "Display"
+          },
+          {
+            "id": "bo3",
+            "text": "Clone"
+          }
+        ]
+      },
+      {
+        "id": "val_slot",
+        "original": "vec![1, 2, 3]",
+        "label": "input value",
+        "choices": [
+          {
+            "id": "va1",
+            "text": "String::from(\"rust\")"
+          },
+          {
+            "id": "va2",
+            "text": "vec![1, 2, 3]"
+          },
+          {
+            "id": "va3",
+            "text": "()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn duplicates_and_prints() {\n    let s = String::from(\"test\");\n    assert_eq!(duplicate_and_print(&s), \"test\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The generic function body clones the item and formats it.",
+    "Multiple bounds are combined using the + symbol in Rust."
+  ],
+  "explanation": "The function body dereferences and clones `item`, then formats `copy`. This requires both `Clone` and `Display`. In Rust, multiple trait bounds use `+` syntax like `Display + Clone`. Passing `Display` alone fails with `E0277` on `(*item).clone()`. Passing `Clone` alone fails with `E0277` on `format!`. Passing `vec![1, 2, 3]` or `()` fails with `E0277` because neither type implements `Display`."
+}

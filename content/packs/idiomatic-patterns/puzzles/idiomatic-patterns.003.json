@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.003",
+  "version": 1,
+  "title": "Extend Foreign Strings",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "extension-traits"
+  ],
+  "difficulty": 2,
+  "goal": "Add a custom helper method to str using an extension trait.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Idiomatic Patterns"
+  },
+  "template": "trait IsShort {\n    fn is_short(&self) -> bool;\n}\n\n⟦slot1⟧ IsShort for str {\n    fn is_short(&self) -> bool {\n        self.len() < 5\n    }\n}\n\nfn check(s: &str) -> bool {\n    s.⟦slot2⟧()\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "impl str for",
+        "label": "the implementation keyword",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "impl"
+          },
+          {
+            "id": "sl2",
+            "text": "impl str for"
+          },
+          {
+            "id": "sl3",
+            "text": "trait"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "len",
+        "label": "the extension method call",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "is_short"
+          },
+          {
+            "id": "sl2",
+            "text": "is_empty"
+          },
+          {
+            "id": "sl3",
+            "text": "len"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_extension() {\n    assert!(check(\"hi\"));\n    assert!(!check(\"hello world\"));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Implementing a trait for a type uses the impl Trait for Type syntax.",
+    "Call the new method defined in your trait on the string slice."
+  ],
+  "explanation": "To extend a standard type like `str`, implement a local trait using `impl IsShort for str`. Inherent implementations on foreign types are prohibited by the orphan rule and produce error `E0116`. Calling `len` causes a type mismatch `E0308` because `check` returns a boolean while `len` returns an integer."
+}

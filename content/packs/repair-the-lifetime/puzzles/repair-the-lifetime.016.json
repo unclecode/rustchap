@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime.016",
+  "version": 1,
+  "title": "Isolate the Returned Borrow",
+  "track": "repair-the-lifetime",
+  "concepts": [
+    "lifetime",
+    "borrow",
+    "mutability"
+  ],
+  "difficulty": 2,
+  "goal": "Unlink an unused input reference so the caller can mutate it after the function call.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from google/comprehensive-rust borrow-one"
+  },
+  "template": "fn first_word<'a, 'b>(\n    s: ⟦slot1⟧,\n    _delim: ⟦slot2⟧,\n) -> &'a str {\n    s.split(' ').next().unwrap_or(\"\")\n}\n\nfn main() {\n    let text = String::from(\"hello world\");\n    let mut delim = String::from(\" \");\n    let word = first_word(&text, &delim);\n    delim.clear();\n    println!(\"{word}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "&'a str",
+        "label": "first argument type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "&'a str"
+          },
+          {
+            "id": "sl2",
+            "text": "&'b str"
+          },
+          {
+            "id": "sl3",
+            "text": "String"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "&'a str",
+        "label": "second argument type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "&'b str"
+          },
+          {
+            "id": "sl2",
+            "text": "&'a str"
+          },
+          {
+            "id": "sl3",
+            "text": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn extracts_and_allows_mutation() {\n    let text = String::from(\"rust language\");\n    let mut d = String::from(\" \");\n    let w = first_word(&text, &d);\n    d.clear();\n    assert_eq!(w, \"rust\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at `delim.clear()`. Why does the compiler think `delim` is still borrowed?",
+    "The return value only comes from `s`. `_delim` needs a separate lifetime parameter so its borrow ends immediately after the call."
+  ],
+  "explanation": "Giving both parameters the lifetime `'a` forces `delim` to remain borrowed for as long as `word` is alive, causing `E0502` when calling `delim.clear()`. Giving `_delim` its own lifetime parameter `'b` unlinks it from the returned slice so its borrow ends when `first_word` returns. Using `&'b str` for `s` fails because the return type promises lifetime `'a`, which does not match `'b`. Using `String` causes `E0308` type mismatch because the caller passes string references."
+}

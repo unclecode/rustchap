@@ -1,0 +1,11 @@
+{
+  "id": "mutability.gotcha.iter-mut-ref",
+  "kind": "gotcha",
+  "title": "Dereferencing mutable loop variables",
+  "concepts": [
+    "mutability"
+  ],
+  "prompt": "Why does x *= 2 fail when x is produced by iter_mut?",
+  "answer": "`iter_mut()` yields mutable references of type `&mut T`. The multiplication operator cannot be applied directly to a reference, so you must write `*x *= 2` to dereference first.",
+  "schema_version": 1
+}

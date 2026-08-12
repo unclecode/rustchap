@@ -1,0 +1,11 @@
+{
+  "id": "smart-pointers.gotcha.box-dyn-trait",
+  "kind": "gotcha",
+  "title": "Storing trait objects in collections",
+  "concepts": [
+    "smart-pointers"
+  ],
+  "prompt": "Why can you not store `Vec<dyn Trait>` directly, and how does `Box` solve this?",
+  "answer": "Every type implementing a trait can have a different size in memory, but vector elements must all have the same known size at compile time. Placing the trait object inside `Box<dyn Trait>` converts it into a fat pointer with a fixed size. The vector stores these pointer handles on the stack while the data lives on the heap.",
+  "schema_version": 1
+}

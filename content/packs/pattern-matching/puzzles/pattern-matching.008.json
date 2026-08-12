@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.008",
+  "version": 1,
+  "title": "Guards and Early Exit",
+  "track": "pattern-matching",
+  "concepts": [
+    "pattern-matching",
+    "match-basics"
+  ],
+  "difficulty": 1,
+  "goal": "Refine pattern matches with guards and simplify unwrapping with let else.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Pattern Matching"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Match guards add extra `if` conditions to pattern arms. The arm matches only if the pattern matches and the guard expression evaluates to true."
+      },
+      {
+        "kind": "code",
+        "code": "match num {\n    x if x < 0 => println!(\"neg: {x}\"),\n    x if x % 2 == 0 => println!(\"even\"),\n    x => println!(\"odd: {x}\"),\n}",
+        "caption": "If a guard fails, matching continues to the next arm."
+      },
+      {
+        "kind": "prose",
+        "text": "This is different from an `if` expression inside the arm body. If an arm body executes and its `if` condition fails, control does not fall through to later match arms."
+      },
+      {
+        "kind": "prose",
+        "text": "When you want to bind a pattern or return early on mismatch, use `let else`. It keeps happy-path code unindented."
+      },
+      {
+        "kind": "code",
+        "code": "let Some(count) = opt else {\n    return 0;\n};",
+        "caption": "The `else` block must diverge using return, break, continue, or panic!."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Refine pattern matches with guards and simplify unwrapping with let else."
+}

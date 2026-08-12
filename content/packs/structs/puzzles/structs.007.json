@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "structs.007",
+  "version": 1,
+  "title": "Associated Functions",
+  "track": "structs",
+  "concepts": [
+    "structs"
+  ],
+  "difficulty": 1,
+  "goal": "Functions inside an impl block without self create constructors or utility functions.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Methods and Traits"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In C++ or Java, static methods belong to the type itself."
+      },
+      {
+        "kind": "code",
+        "code": "struct Point {\n    x: i32,\n    y: i32,\n}",
+        "caption": "Point groups two coordinates together."
+      },
+      {
+        "kind": "prose",
+        "text": "Functions in an `impl` block without a `self` parameter are associated functions."
+      },
+      {
+        "kind": "code",
+        "code": "impl Point {\n    fn new(x: i32, y: i32) -> Self {\n        Self { x, y }\n    }\n}",
+        "caption": "Self inside impl is an alias for Point."
+      },
+      {
+        "kind": "prose",
+        "text": "Call associated functions with double colons like `Point::new(1, 2)`. The `Self` keyword refers to the type inside the `impl` block."
+      },
+      {
+        "kind": "code",
+        "code": "let origin = Point::new(0, 0);",
+        "caption": "Double colons access items on the type."
+      },
+      {
+        "kind": "prose",
+        "text": "Associated functions often serve as constructors. Rust has no automatic initializers or constructor keywords."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Functions inside an impl block without self create constructors or utility functions."
+}

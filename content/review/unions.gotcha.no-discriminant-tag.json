@@ -1,0 +1,11 @@
+{
+  "id": "unions.gotcha.no-discriminant-tag",
+  "kind": "gotcha",
+  "title": "Unions omit discriminant tags",
+  "concepts": [
+    "unions"
+  ],
+  "prompt": "Why does reading a union field require an unsafe block in Rust?",
+  "answer": "Rust unions do not store a tag indicating which variant is active. The compiler cannot verify if the memory contains a valid value for the requested type. The developer must guarantee that reading the field is sound.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "borrow-scope.rule.non-lexical-lifetimes",
+  "kind": "rule",
+  "title": "Borrow Scopes and Non Lexical Lifetimes",
+  "concepts": [
+    "borrow-scope"
+  ],
+  "prompt": "How long does a borrow remain active in modern Rust?",
+  "answer": "A borrow lasts from where it is created until its last actual use in code, not necessarily to the end of the scope block. This allows code to borrow a value mutably immediately after its last read through a shared reference.",
+  "schema_version": 1
+}

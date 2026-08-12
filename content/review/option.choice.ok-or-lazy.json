@@ -1,0 +1,11 @@
+{
+  "id": "option.choice.ok-or-lazy",
+  "kind": "choice",
+  "title": "Eager versus lazy Option defaults",
+  "concepts": [
+    "option"
+  ],
+  "prompt": "When should you use ok_or_else or unwrap_or_else instead of ok_or or unwrap_or?",
+  "answer": "Use `unwrap_or` or `ok_or` when the default or error value is a cheap primitive or literal. Reach for `_else` methods with a closure whenever creating the value allocates memory or computes a heavy result.",
+  "schema_version": 1
+}

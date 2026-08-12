@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.015",
+  "version": 1,
+  "title": "Zero-Copy Configuration Lookup",
+  "track": "design-the-api",
+  "concepts": [
+    "api-design",
+    "zero-copy",
+    "traits"
+  ],
+  "difficulty": 3,
+  "goal": "Find a configuration entry without allocating memory or looping manually.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Comprehensive Rust: Day 4"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "zero_copy",
+        "code": "struct Setting {\n    key: String,\n    val: String,\n}\n\nfn find_setting<'a>(items: &'a [Setting], key: &str) -> Option<&'a str> {\n    items.iter()\n        .find(|s| s.key == key)\n        .map(|s| s.val.as_str())\n}"
+      },
+      {
+        "id": "field_clone",
+        "code": "struct Setting {\n    key: String,\n    val: String,\n}\n\nfn find_setting(items: &[Setting], key: &str) -> Option<String> {\n    items.iter()\n        .find(|s| s.key == key)\n        .map(|s| s.val.clone())\n}"
+      },
+      {
+        "id": "dangling_borrow",
+        "code": "struct Setting {\n    key: String,\n    val: String,\n}\n\nfn find_setting<'a>(items: &'a [Setting], key: &str) -> Option<&'a str> {\n    let found = items.iter().find(|s| s.key == key)?;\n    let temp = found.val.clone();\n    Some(temp.as_str())\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn finds_key() {\n    let items = vec![Setting { key: String::from(\"host\"), val: String::from(\"localhost\") }];\n    let res: Option<&str> = find_setting(&items, \"host\");\n    assert_eq!(res, Some(\"localhost\"));\n}",
+      "#[test]\nfn missing_key() {\n    let items = vec![Setting { key: String::from(\"host\"), val: String::from(\"localhost\") }];\n    let res: Option<&str> = find_setting(&items, \"port\");\n    assert_eq!(res, None);\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "The string slice already exists inside the slice of settings.",
+    "Return an `Option<&'a str>` tied to the lifetime of the input slice to eliminate allocations."
+  ],
+  "explanation": "The `zero_copy` candidate returns `Option<&'a str>`, yielding a view into memory already owned by the input slice with zero heap allocations. Returning `Option<String>` creates unnecessary clones and violates zero-copy API expectations. Returning a reference to a temporary local clone fails compilation due to dangling references."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "unsafe-rust.rule.five-superpowers",
+  "kind": "rule",
+  "title": "The five unsafe superpowers",
+  "concepts": [
+    "unsafe-rust"
+  ],
+  "prompt": "What operations are unlocked inside an unsafe block in Rust?",
+  "answer": "Unsafe blocks allow dereferencing raw pointers and calling unsafe functions. They also allow accessing mutable statics, reading union fields, and implementing unsafe traits. No other language rules are changed or relaxed.",
+  "schema_version": 1
+}

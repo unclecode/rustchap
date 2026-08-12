@@ -1,0 +1,11 @@
+{
+  "id": "functions.rule.parameter-type-annotations",
+  "kind": "rule",
+  "title": "Type annotations on function parameters",
+  "concepts": [
+    "functions"
+  ],
+  "prompt": "Why must every function parameter in Rust have an explicit type annotation?",
+  "answer": "Rust does not infer parameter types across function boundaries. Requiring explicit type annotations on parameters keeps function contracts clear and prevents changes inside a body from breaking callers implicitly.",
+  "schema_version": 1
+}

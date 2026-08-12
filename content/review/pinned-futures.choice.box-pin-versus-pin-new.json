@@ -1,0 +1,11 @@
+{
+  "id": "pinned-futures.choice.box-pin-versus-pin-new",
+  "kind": "choice",
+  "title": "Choosing Between Box Pin And Pin New",
+  "concepts": [
+    "pinned-futures"
+  ],
+  "prompt": "When should you use `Box::pin` instead of `Pin::new` on an async block or future?",
+  "answer": "`Pin::new` requires the wrapped type to implement `Unpin`, which promises the type can safely move. Most compiler-generated async blocks are `!Unpin` because they contain self-references across await points. `Box::pin` allocates the future on the heap and safely pins `!Unpin` types without requiring unsafe code.",
+  "schema_version": 1
+}

@@ -1,0 +1,3779 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "atomics-and-ordering.009",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0282b756372f4f3a9c2537d9f88b510e885f20cf89317efc8e8956d9a31a716f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "031056a4e1c80ae7e7068243d4315062446bcebdb8e200b75c0ea6f6a412dfa5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `Ordering`",
+          "slot_ids": [
+            "cas_args2"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 2 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "042b73f8badf03d713a57c8e499669982f86a4d08e1b82d429231cad9a1f4dd9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0762da68fde9ffbc60998ccf1bbb763f785f209b3f768344c80f04aef9d54c62": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0ddc89ccfe76616c939ccea268dd751ec18caaaaed6349cbfa3fa8ed4de31e05": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `n` in this scope",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 5 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0e9c85f2156ebb136dc97966159893bf9826361b5f656515e2493dd406b5fb83": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0ecb268d7b640d357cdc3ca975bbac9b8a51be14f8bcd9d0f5d2d563d1c1f91a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1036276c7bb39ad83ccd6ae8b2b360d2bd64ede9292b60363a6289b0a76db4e9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "10929b3ec4355abe2181eadecd8a5a5648b7489c2a181c49d12d9ea70ed83997": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 5 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1161ba1722016a4eb305cc8ce5727dbf2123dbfa49024bff090e035f11a748ba": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1185159268779aa8be5569ba07d9c3a81475ae0aa0deb88ed7344f8dfacd9ea6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "13427f80bc7238ae35dfa43ed81f35cc9cb444a7467cc48e39f0f412811345be": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found keyword `let`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `n` in this scope",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 6 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 7 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1342b6e18784b46dacbfe77a6ec9e623f320c5f0b0cf3a6dca3350ffce08e857": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "175a0e46526751a3af1ee74e66ef332b65663bc2560eebfe36d3d7b4643be10b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "17743c141369e0a51f08ce5e72c7a3d03861b46a80cf72ce4ebf9d6e87d9a0ce": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "17be5b5173c22fe7ba04e2217542bfaa6796c9a55f84e514ee2b954d5be11e4d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "183e3e2a06aa84cd73f489cc89928fcd582dd0066ad263699725b54875da9b9e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1cbf9102065c9eef1aac7fa125a835bb7a668dc24089218bcc25094165508aa2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1d1fa171096575e6c668f3bc72ae726bda75e928db1714d10c00540447eb3830": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1e86076c0e81e387fcb5962d17517ede270282863ce92248cd8b3909d64c37d4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1ecf1ee07c421a1a9c8215133c05862d6f471e7e9bbd7ab094c43cca7574040e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "208c40ee4fd312438e0518f38a5b70e5c44cb8a68cd3e83b9910331388df8531": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `c`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 6 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "22025a0d6b832d8cdbe6d421c8ce9ac2339ed43a5d49d393c32579e9cd12d879": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "259302d03d949d06968eb03ae59cf42d39ab8bf847dc566d17f18cac30cee41e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "26dff5900d73ecf4845e0b44d7307bb8da9446ad194fb30d2e947eea6297bf3f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "270b68f890a59d24f38803d4ac386693f7b32b3b7ffdd6cc645da7bb0ca7c5ea": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2a44e09c55c2fb55fa6430f973c36e59f6934be1d4b0979e3cbbb3de4a06da33": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2c00a343133b836027c7acb3aa8bf972b696a7ac544e6298e02735121298b984": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "32316dd56866e082706ba99993854611501f49116612002bb67fd68d71d70e82": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "32670ef6103b1fcd72e93a1445421e774c534343a973fcb4e01ef92c718d3de8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 2 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "335fc77b49e1cefabcfec64adb577efac429d86886cfacfc56f644a7fe97a72e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "338e64a2f245f1a2685e311186d8727aa09bf8de2667654f624d5e810ba70cb1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "34044975c297fe06540001f82ec31433d06766737596b61fcd08e1afd0fd6572": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "35d8a408f4cf68dc164011d4c466972dcbe9cf0e33223b7ff92733ba1205a596": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "363751d0742d32a4179d7c7abb40a6e6a06f859614d90ad452afc22126615363": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3ae1b34cbbd120060b115b7097c21deacb87b5ddc53bedcd4c7c1ce4fcf1e91b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3c33575b01e7a7dc9768921080b9a12697e8c95b8c2eeae6c72bb3e14b3510a3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3e9a5656b7ba82041396989be035b7d5701580c599916cea8a52a700d5516c51": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "405fb496e9d8d94ffb4041fc004bc935af305cbf77f187c7db05edb3cd539f86": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `c`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 5 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "42be76926067a997f44c84dabe3ebbe8d79f05af19d70342173a4a54a4e97718": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4641e36adfa722e0fc160e158b3867a5c1439cc82efb4dc933910c554109d1bd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4660ef0df2fc4b0112420566145a1e89d5e51a8d3ec6a7eaed258f65113666ae": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4a49367b20af0a2e2316dd8e8da3c946b079e69661947afa481bbb497672533c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4a8bbd09f8c029bf29e3344806a1290a197a34cf1009b72c08dd2ced64779318": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4a96997144bfb94052519a26d5d07bef2c9a4225a04064ffe6824b3440f3b368": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "500766dd8c5081bb461436818dd541e297b63f0a0aa50c0df1b2f274bfc6935c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "51798e3ae75052561f3829e90c4b9502c18bfe46fe825f88f8d66c938c157f63": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "553357923284ad7776b6cfa1152d47970f7ac50284040cd62bddc443b37dabbd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5901329ff613615b94c632769bd9726680009a8e1a480aad51d64447b88a92b5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5a85811895d4f9cfb70f10cfa4a328a497cd4bac92bf7d836d368f1679187040": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "60ff48b4f88582c95542926b33d8165369a120440364fefc3a131119c7de175a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "615ec213d039bce98c6eccd267ef559f9a8647bb035872fadce4925c44b0889e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "636e0c5aaa5eaced02ef5ee35bfcbe32fbe488c9be691a219e3bca6d15a3df07": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6634cdfaded91459c60aac3eae4205cfa6565a850c6cac530650b1f7c2493202": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found keyword `let`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 6 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "694ae03ddda96915ae539339c1c5258f9847395b7352da70690b9b8d1f12fcd9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6d8baa0f4b28eb44fca09b9c8da2f377c2fba3cfcd4feb545d792a56b9bd91bc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `n` in this scope",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "700e5485ae4455d17fb30a0a6287de39f03a52f858691655fc5ea77dc8b99bbd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "795e7ae1df845a075962e1e927b7bf5941ec0202d0f6dddfa6ab389d91e6d42a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "796a13b1b08a4321e2c553079be00f42773650ac002accbdd7472736d28e624f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7b278a5c590658ca4cdf1fce0e1f194c328120f60cfc28bd52749151849434e0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `c`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `n` in this scope",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 5 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7c4f48f69f65632dc7072893e02fc0bb56a289dba34b72b885a8b79bb260d3a0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7df2a1c92e855c8dea54f5440e351c528a3a97569039ffa004feb285e7e6ed4e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "80d5ee7b466175f43928cbd7bad72297f2e8f9df3646980253d4c30dc08a3d77": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `n` in this scope",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 5 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "823ff7e064040ceb356c3b31fa855651d013209904b28f617541abca74bfb04d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "83addc197bd49e42d42acc7afcc1c4103faaa474b3d34eac06b6e0c02afeccc4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "855d3ed91762cb42a4288bfe94a1fc9fe2d97a199e5e213dde1e07c26aaba36a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "85a1e61a24a7b090117c98dcd14ce194acb75e9972b78d33b0df27f6a8d03360": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "89cc0bf114b8d46b5463b7108889d298770fffda485024b5b00efc671125282f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8a09871c85985ceb68735fe27933a547c2ddfff67ae45874cf4885ae54a06066": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8be01c34bc70ff679955c9f57c7495d411e2a52ff78db92b2842436fd6b86a65": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8c3f06287228d55c5786751298d54fdf3bee1cd27f8927316586ac29d9d8b50b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8d9aa23f58acea69786f9b6a3b62af68abbab0e93c567d584d532c9eb69cdc52": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9249b3abecd3a31f4ff5eef546e0be1d6d9a9117fba55f798263f6b41ee2cfe7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "94c3fe544e998100999eb9b8fbc0e5a8b4ce755d40b579d648af04865caa86de": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9a740289a371164ace4b667a9a05f88d638c7d5ff0e7481ea3d94e0e793f15dc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 2 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a0b0cbdaf891e5361368b2a33738622c3b2daa2491d35090bc56b23cea513352": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a376925478545b38f3a70b34f1d053fc7b1b55a38c343f42dd19dd15562b45bb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a45e0edb5d512c05bc713c44908129d478798cb5a2fb7ea79de07218816cfc4a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a4722dc53aa317bc5102a6504d3fe0768ef08f02f2a8560f68464aa2613bfdf9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `n` in this scope",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a58f25602a34d6bd5b25d100c4f1dbdda6530731967b80c2cdfa359be0d8ca70": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `Ordering`",
+          "slot_ids": [
+            "cas_args2"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `n` in this scope",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 5 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a6a1d494bf216749dbca96194f1f12ed1a85506fa9da896a31b93c929d314548": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a7af4cce366fe0841a19a1f98c0aa8da8b3f224d2a2300eed953776b60aa9a70": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a811be3e07a1690d804558b7f954412aaa417240ff6476e5188efe3640ef3eec": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `Ordering`",
+          "slot_ids": [
+            "cas_args2"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 2 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a82db50585ea5aeb6e4a6a5ace734b19647e10c12a6dadf725ca76a8d17a3e2a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a9709e65814986c55f7c76d6ffdd1ae1938f8388d516e7640a1219aa3d7e591c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `Ordering`",
+          "slot_ids": [
+            "cas_args2"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 2 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ac8097d7530d7c130cfdcad5ac28db8c54235077516ae2fdcf8b159925c00b8a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ae59819e2950837054c2c1cb46f3123afef019b4f31d261dc52f0a524ee7abb8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ae845ad11ef3ed0bf7eec7a0c8199efda2eb4be4b781822411462e5559980aff": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "aec5a22fc770d0b91093ba6bbef420aefc6decd1c6de97dbad1dcaa1d7e64215": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `Ordering`",
+          "slot_ids": [
+            "cas_args2"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 3 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 7 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b49461ab2358107515e95be0b5dcd911ac08bded18561913e34abf3e774c5c87": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b6092a9f25b8ed926fb6a97488a34aadbdc18f7d343eaf3be3565ec65140f246": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b6dfc6f99ee22244ee7288d8934265232e06eafc144d917bff1e7aba9c965795": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b9e136301382695d62f65a90217a9dbbec1f98ca10a461796f95e753bd37babc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bc1e3f8d2628dcd756d37914d95d9537121a303d8c0e38815dbcf864d484c4ce": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `c`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `n` in this scope",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 6 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 7 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bc4dc35e1cc2c7f855d59ee28b9ffd753947fce46c649fa596a9b35c971faf3b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c3cdf5d225b4b31dc9aeacc5c252433cb4d42481d786e61071ce3733de012725": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c4ae319fd63da485edcb9b3f92d1376e8f8f55ea999731451560c51564a56794": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 5 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c4fd17e1e6b63e158d4a3a8dc95b3c8668dc93270d7260c9a6e0886e763996bc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `Ordering`",
+          "slot_ids": [
+            "cas_args2"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `n` in this scope",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 6 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c521bdeba71274a56dfede429d84860e147dddf7d4eff5ce58faec616995c6a8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c52b3d8864c680e634cf81f6d137c0d5aa46450a5da65e21be2dfca0a8773695": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found keyword `let`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 3 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 7 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c69d86d2e67020db18dee86e9405dc400a8afb5af82210fb1054159706da10f0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 2 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c87ec6e7ce1ae05667ef13a722557ceb3ced476e6d7bd1d802dee55244bd61cd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c8a739c41ff0d83c88e6b80eb6c3d46529395061d7360bc53f402668b2ea9e07": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c939675c781f829f739cc2514d42b56192c60a0c4f0bb540c859f94fd511bf78": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `;`",
+          "slot_ids": [
+            "read_next"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `Ordering`",
+          "slot_ids": [
+            "cas_args2"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 6 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cdcb10dde6d52f6e88e26620f6306215e25945edc3d12e461348a0b821f99b13": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0
+      },
+      "diagnostics": []
+    },
+    "df0af80be1a6257052b5d275b4a4359ce460752e7614572885a8ebd2471c8648": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `n` in this scope",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "df8a38648d2a5f68fd4bc22e41274a0bbb6ede7f4ce00ab055e02a2c275e859c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "df9b5a3394d9d2021898e2747989f34e250e9249ca3162b210374134fc8cf17d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "dfd63eeb270951ffc12a006b06271b4ea5b96f92145b7a6774b826f2d5bb9844": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e0067c6722b1451d19512252dfb92513bf947ae0e2ee6d108944a7998c79184a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e9879f99e93de2cf27acd5f61e51dd6e8729d0f3d6dec0c831f36c470c87e4b9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ea2dfac7d3d48cd6110150c59ce196d5a33f1c128f60bcf90c64c82959d9759b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "eb815f9402822d5a1a447f814db3123a43138acc2d2073285f3584077704c239": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`",
+          "slot_ids": [
+            "cas_args1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ed65bfeff5f9e93b1099a8d1a372fc61ab9e4a5561fac359500dd0e4f928a898": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ee549c82b5b134819e736a99ad080bbed5f8a7daf507da0d724ee80930b292de": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f19f1b0922a83d10ec528dd840a340fe3d7f12f6efc98eff010602483e74f503": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `)`, `,`, `.`, `?`, or an operator, found `Ordering`",
+          "slot_ids": [
+            "cas_args2"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `r` in this scope",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cas_match"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 4 arguments but 5 arguments were supplied",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f1dc15602c73bfa23ef53d0a69132a6b788744b052cae92eaae78d8de66521a9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f360d43a7c3f61baaa236c9350634862f22e616ffe507f943a7b29bdf732f220": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f824bb14e91fef4865419bce0b5c8526ff1e3df22fd685716bc11a8119a70524": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f8f8aa86a09e2042affce3e84695afd0d5b903fa812ff87b49e5d351758ceb96": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "mismatched closing delimiter: `}`",
+          "slot_ids": [
+            "cas_call"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "unexpected closing delimiter: `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

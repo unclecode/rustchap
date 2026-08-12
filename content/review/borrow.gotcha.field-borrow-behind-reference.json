@@ -1,0 +1,12 @@
+{
+  "id": "borrow.gotcha.field-borrow-behind-reference",
+  "kind": "gotcha",
+  "title": "Borrowing Option field behind reference",
+  "concepts": [
+    "borrow",
+    "option"
+  ],
+  "prompt": "Why does unwrap fail on a struct field when the struct is passed by reference?",
+  "answer": "unwrap takes ownership of self and attempts to move the inner value out. Moving a field out of a struct behind a reference violates memory safety and triggers compiler error E0507. You must inspect or borrow the value with as_ref or as_deref instead.",
+  "schema_version": 1
+}

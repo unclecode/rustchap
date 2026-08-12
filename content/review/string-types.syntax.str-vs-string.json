@@ -1,0 +1,11 @@
+{
+  "id": "string-types.syntax.str-vs-string",
+  "kind": "syntax",
+  "title": "Difference between String and str",
+  "concepts": [
+    "string-types"
+  ],
+  "prompt": "What is the key structural difference between `String` and `str` in memory?",
+  "answer": "`String` is an owned, growable heap buffer holding a pointer, length, and capacity. `str` is an unsized string slice usually accessed behind a reference `&str` holding a pointer and length. `&str` acts as a view into string data owned elsewhere.",
+  "schema_version": 1
+}

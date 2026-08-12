@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.006",
+  "version": 1,
+  "title": "Ignore Unused Fields",
+  "track": "pattern-matching",
+  "concepts": [
+    "pattern-matching",
+    "structs"
+  ],
+  "difficulty": 2,
+  "goal": "Extract the status code from a response while ignoring payload data.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Pattern Matching"
+  },
+  "template": "struct Response {\n    code: u16,\n    payload: String,\n    latency_ms: u64,\n}\n\nfn status(r: Response) -> &'static str {\n    match r {\n        Response { code: 200, ⟦rest1⟧ } => \"ok\",\n        Response { code: 404, ⟦rest2⟧ } => \"not found\",\n        _ => \"error\",\n    }\n}\n\nfn main() {\n    let r = Response { code: 200, payload: String::new(), latency_ms: 1 };\n    println!(\"{}\", status(r));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "rest1",
+        "original": "payload: _",
+        "label": "first ignore pattern",
+        "choices": [
+          {
+            "id": "re1",
+            "text": ".."
+          },
+          {
+            "id": "re2",
+            "text": "payload: _"
+          },
+          {
+            "id": "re3",
+            "text": "_"
+          }
+        ]
+      },
+      {
+        "id": "rest2",
+        "original": "..",
+        "label": "second ignore pattern",
+        "choices": [
+          {
+            "id": "re1",
+            "text": ".."
+          },
+          {
+            "id": "re2",
+            "text": "_"
+          },
+          {
+            "id": "re3",
+            "text": "payload: _"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn tests_status() {\n    assert_eq!(status(Response { code: 200, payload: String::from(\"a\"), latency_ms: 5 }), \"ok\");\n    assert_eq!(status(Response { code: 404, payload: String::from(\"b\"), latency_ms: 10 }), \"not found\");\n    assert_eq!(status(Response { code: 500, payload: String::from(\"c\"), latency_ms: 1 }), \"error\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rust requires struct patterns to mention all fields or explicitly ignore the rest.",
+    "The `..` operator ignores all remaining fields in a struct pattern."
+  ],
+  "explanation": "`..` in a struct pattern tells the compiler to ignore all unmentioned fields. Writing `payload: _` ignores only the `payload` field, leaving `latency_ms` unmentioned and causing `E0027`. A plain wildcard `_` is invalid syntax inside a struct destructuring pattern."
+}

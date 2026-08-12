@@ -1,0 +1,11 @@
+{
+  "id": "slice.gotcha.cannot-move-out",
+  "kind": "gotcha",
+  "title": "Moving elements out of a slice",
+  "concepts": [
+    "slice"
+  ],
+  "prompt": "Why does indexing a slice of owned objects like String with `let s = slice[0]` fail to compile?",
+  "answer": "A slice does not own the underlying elements. Moving an element out would leave uninitialized memory inside the original collection. Rust prevents this at compile time with error `E0507`.",
+  "schema_version": 1
+}

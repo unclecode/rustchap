@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.006",
+  "version": 1,
+  "title": "Take and Replace",
+  "track": "interior-mutability",
+  "concepts": [
+    "interior-mutability",
+    "string-types"
+  ],
+  "difficulty": 2,
+  "goal": "Swap a String stored inside a Cell without requiring Copy.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4: Interior Mutability"
+  },
+  "template": "use std::cell::Cell;\n\nfn swap_message(cell: &Cell<String>, new_msg: String) -> String {\n    let old = ⟦slot1⟧;\n    ⟦slot2⟧;\n    old\n}\n\nfn main() {\n    let c = Cell::new(String::from(\"first\"));\n    let prev = swap_message(&c, String::from(\"second\"));\n    println!(\"{} -> {}\", prev, c.take());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "cell.get()",
+        "label": "extract expression",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "cell.take()"
+          },
+          {
+            "id": "sl2",
+            "text": "cell.get()"
+          },
+          {
+            "id": "sl3",
+            "text": "cell.replace(new_msg)"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "cell.take()",
+        "label": "update statement",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "cell.set(new_msg)"
+          },
+          {
+            "id": "sl2",
+            "text": "cell.set(&new_msg)"
+          },
+          {
+            "id": "sl3",
+            "text": "cell.take()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn swaps_strings() {\n    let cell = Cell::new(String::from(\"alpha\"));\n    let old = swap_message(&cell, String::from(\"beta\"));\n    assert_eq!(old, \"alpha\");\n    assert_eq!(cell.take(), \"beta\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Cell does not offer get() when T is not Copy, error E0277.",
+    "Use a method that takes ownership of the current String, then set the replacement."
+  ],
+  "explanation": "Cell works with non-`Copy` types like `String`, but `get` requires `Copy` because it duplicates the value. `take` replaces the contents with `Default::default()` and moves the original `String` out. `set` then puts the new `String` into the cell. Using `replace` in slot 1 moves `new_msg`, causing error `E0382` when slot 2 tries to use `new_msg` again."
+}

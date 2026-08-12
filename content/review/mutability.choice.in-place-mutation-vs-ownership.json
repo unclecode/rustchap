@@ -1,0 +1,11 @@
+{
+  "id": "mutability.choice.in-place-mutation-vs-ownership",
+  "kind": "choice",
+  "title": "Passing &mut T Versus Taking T",
+  "concepts": [
+    "mutability"
+  ],
+  "prompt": "When should a function parameter take &mut T instead of taking T by value?",
+  "answer": "Take &mut T when the function needs to modify existing data in place and the caller needs to keep using that data afterward. Take T by value when the function takes full ownership or stores the data in a container.",
+  "schema_version": 1
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.013",
+  "version": 1,
+  "title": "Constructing Types with Builders",
+  "track": "design-the-api",
+  "concepts": [
+    "api-design",
+    "builder-pattern"
+  ],
+  "difficulty": 1,
+  "goal": "Use the builder pattern to construct complex types with safe defaults and optional parameters.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Comprehensive Rust: Day 4"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In Java or Python, constructors often use optional arguments or method overloading. Rust does not have default arguments or function overloading, so complex types use the builder pattern."
+      },
+      {
+        "kind": "code",
+        "code": "let config = ServerBuilder::new()\n    .port(8080)\n    .tls(true)\n    .build();",
+        "caption": "Method chaining builds a configuration step by step."
+      },
+      {
+        "kind": "prose",
+        "text": "The builder struct holds temporary configuration state. Each builder method consumes `self` or borrows `&mut self` and returns `self` or `&mut self` to allow chaining."
+      },
+      {
+        "kind": "prose",
+        "text": "Consuming `self` by value in builder methods prevents re-using a partially configured builder in an invalid state."
+      },
+      {
+        "kind": "code",
+        "code": "pub fn port(mut self, p: u16) -> Self {\n    self.port = p;\n    self\n}",
+        "caption": "By-value builder methods consume and return Self."
+      },
+      {
+        "kind": "prose",
+        "text": "The final `build()` method consumes the builder and returns the finished type, validating all fields before returning."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Use the builder pattern to construct complex types with safe defaults and optional parameters."
+}

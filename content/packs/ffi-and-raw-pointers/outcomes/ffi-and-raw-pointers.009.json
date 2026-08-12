@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "ffi-and-raw-pointers.009",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "37c7324130235aa0703e425f89d322be9157da4651c3ded6bdf2b34c518321b2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `.`, `;`, `?`, `}`, or an operator, found keyword `if`",
+          "slot_ids": [
+            "check_null"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "61c19c717b3bdec7704d5e31e7c547fc1f34f6569bd2fb13fc187bd787653426": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "tests failed",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "69c581edee043c6e68c180a1e5ee1ce83741c94cbc56f8a69cc03bc1b82504ca": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `.`, `;`, `?`, `}`, or an operator, found keyword `if`",
+          "slot_ids": [
+            "check_null"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6fdd46f00eac3ffc00d5afb38c37cec2e168b429f4d57d435da889405a87205b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `.`, `;`, `?`, `}`, or an operator, found keyword `let`",
+          "slot_ids": [
+            "deref_ptr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b05aff672f883324f71b5a2bec42826b4cd545130a7e82e5b59f8482d81d0c34": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `.`, `;`, `?`, `}`, or an operator, found keyword `let`",
+          "slot_ids": [
+            "deref_ptr"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cc749b66533d0f828518d9378d05595af40c23eaf8f2ec2994c988939029d053": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

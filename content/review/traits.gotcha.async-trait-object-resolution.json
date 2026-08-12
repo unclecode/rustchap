@@ -1,0 +1,11 @@
+{
+  "id": "traits.gotcha.async-trait-object-resolution",
+  "kind": "gotcha",
+  "title": "Dynamic dispatch with async traits",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "What compiler error occurs when attempting to create a dyn Trait object for a trait with standard async fn methods?",
+  "answer": "The compiler rejects the trait object because methods returning impl Trait or opaque async types are not object safe. You will see error E0782 or an object safety violation naming the async method.",
+  "schema_version": 1
+}

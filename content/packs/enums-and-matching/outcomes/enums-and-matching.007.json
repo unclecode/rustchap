@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "enums-and-matching.007",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "143862a1f0223bec3f2fb64df3ad6ed656008bf8edd2b79b40c2f0a736816c22": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    },
+    "29571266980875c86c55bfa7801335fa3c0e4e10be8eaa326e38a4d32899fd4e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "right curly brace `}` before `else` in a `let...else` statement not allowed",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected struct, variant or union type, found local variable `e`",
+          "slot_ids": [],
+          "rust_code": "E0574"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `n` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "`else` clause of `let...else` does not diverge",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "36a1d28bbf95ef582438e206990d4133d7757c8da088b5f1e1698da45e5aaa84": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found keyword `else`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `n` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "`match` arm with no body",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

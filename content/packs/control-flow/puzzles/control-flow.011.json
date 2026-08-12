@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.011",
+  "version": 1,
+  "title": "Skip the Odds",
+  "track": "control-flow",
+  "concepts": [
+    "loops"
+  ],
+  "difficulty": 2,
+  "goal": "Skip odd numbers and accumulate only even values in a loop.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  },
+  "template": "fn sum_evens(max: i32) -> i32 {\n    let mut sum = 0;\n    for i in 1..=max {\n        if i % 2 != 0 {\n            ⟦s1⟧;\n        }\n        sum ⟦s2⟧;\n    }\n    sum\n}\n\nfn main() {\n    println!(\"{}\", sum_evens(5));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "s1",
+        "original": "break",
+        "label": "loop control",
+        "choices": [
+          {
+            "id": "s11",
+            "text": "break"
+          },
+          {
+            "id": "s12",
+            "text": "continue"
+          },
+          {
+            "id": "s13",
+            "text": "return"
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "original": "= i",
+        "label": "accumulator",
+        "choices": [
+          {
+            "id": "s21",
+            "text": "= i"
+          },
+          {
+            "id": "s22",
+            "text": "+= i"
+          },
+          {
+            "id": "s23",
+            "text": "+= 1"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn sums_only_evens() {\n    assert_eq!(sum_evens(5), 6);\n    assert_eq!(sum_evens(6), 12);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "`break` exits the entire loop on the first odd number.",
+    "Choose the keyword that skips the rest of the current iteration."
+  ],
+  "explanation": "`continue` skips the remaining statements in the current turn and jumps to the next iteration. `break` terminates the loop entirely, which would stop the sum on the first odd number. Using `return` would exit the entire function immediately."
+}

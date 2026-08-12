@@ -1,0 +1,11 @@
+{
+  "id": "enums-basics.syntax.payload-binding",
+  "kind": "syntax",
+  "title": "Destructuring enum variant payloads",
+  "concepts": [
+    "enums-basics"
+  ],
+  "prompt": "How do you access the data stored inside an enum variant when matching on it?",
+  "answer": "Write variable names inside parentheses after the variant name in a match pattern. The compiler binds those variables to the variant payload for the duration of that match arm. Unnamed wildcards like an underscore ignore the payload.",
+  "schema_version": 1
+}

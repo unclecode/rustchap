@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "threads-and-channels.016",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "4bc3f72e224ad5692e5bc2b4accb82f4ca3e3c3d445e91bd75b6f9bb268909da": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "use of moved value: `data`",
+          "slot_ids": [
+            "move_borrow"
+          ],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "60886f33d316824beb71e9ae685ab1dacafe885361b45ba79e7002c2b1dc1b3d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "closure may outlive the current function, but it borrows `data`, which is owned by the current function",
+          "slot_ids": [
+            "unscoped_borrow"
+          ],
+          "rust_code": "E0373"
+        },
+        {
+          "category": "compile_error",
+          "message": "closure may outlive the current function, but it borrows `data`, which is owned by the current function",
+          "slot_ids": [
+            "unscoped_borrow"
+          ],
+          "rust_code": "E0373"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "93a51dd95a229a5d4cb6889a9d6bc51a736c79201d30533523eedd70db827f80": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

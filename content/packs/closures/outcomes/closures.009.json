@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "closures.009",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "02a4fb04a25c81b14040831ba687b4c254e18a691d6b94c918d05b7b262f8dab": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found keyword `ref`",
+          "slot_ids": [
+            "closure_kw"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "12e0b1ef769dd5a17a526bbc22e4d44070d3515603668eeec00f665f8a0d7957": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "closure_kw"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "25ee4800d3d771cc9392386ae8d5f80df1912b6fad0259023a21b35f67926dfa": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a type, found a trait",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0782"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2be63da66048500ac1f7a3c1a278f56011778cc269ce30f2468350d0ce1b5e9d": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "48492d0d72599e924f57a348635f54741ecbe8cdc06222851de0b48d279f19c1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "538b05eb641ee2d839f814f3ddd6d9b237dcc9d7abd1e1bd0c053966708a3e5b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found keyword `ref`",
+          "slot_ids": [
+            "closure_kw"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ab2bc1185cc0c081501b1f2d4b460b095e60e07cf6931a7d979a15e18ebe9bc7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a type, found a trait",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0782"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c507ff4023a894b5a462299792a975cdcd1d143e40af376942a2fd750294449d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "closure may outlive the current function, but it borrows `factor`, which is owned by the current function",
+          "slot_ids": [],
+          "rust_code": "E0373"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "edc28b227f07a6f3591190021326d2df5dbaa84921ddbd55b027eb4db9b5716e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found keyword `ref`",
+          "slot_ids": [
+            "closure_kw"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected a type, found a trait",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0782"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

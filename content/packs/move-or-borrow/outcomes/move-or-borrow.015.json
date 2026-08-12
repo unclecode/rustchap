@@ -1,0 +1,635 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "move-or-borrow.015",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "013177a55e5a08fba52cf6a8e352c68038a4b6779628d8e099c73f9ebb7bcb16": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `items`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `head` in this scope",
+          "slot_ids": [
+            "copy_val"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "16b0fa8a8d01172df82106b3172afdd000292d91af0b80c19d923b422767a597": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `items`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1ac4e2e0922f184fa3e99e035d41ae51247a0f9dfffede9864261a210fb111aa": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `head` in this scope",
+          "slot_ids": [
+            "copy_val"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1bd2d98c8048fc720de75f912b6e309ea9ba6229e3f98f09e3bf644e5e729b36": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `*items` as mutable because it is also borrowed as immutable",
+          "slot_ids": [
+            "mutate"
+          ],
+          "rust_code": "E0502"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "258de5ab6303e927537c1cd6ceb6878978e631377caa3e55876da384e02120d1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `head` in this scope",
+          "slot_ids": [
+            "copy_val"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3457750f930cea29e145d19e4d70536dfb7a6e295b7090405d4609b1e66f37e3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `head` in this scope",
+          "slot_ids": [
+            "copy_val"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "52e7485e9c64214142edbf1c75fd81c66cf05a7a1f8d479c10584f480b68b64a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6038d82c3a5d6fe9332b39805d7f7024de803fb4865291e18a114a0521bcd01f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6e05ca05eb8d1fc8f1c50601750851a0cb1dd86f4137de8f6e1c6b1fe571051e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `items`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `head` in this scope",
+          "slot_ids": [
+            "copy_val"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7572a13c2af19422ca049d23a69475a7f7fe27b738bed9d841853f16761394cf": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7cfc08c0fa40cf60aba9e90ceb342f8d8dd5a7ffd3fe91b59b9f64fa545ac592": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `items`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8688104256e75f51a7969536849f057a9f7917ac639be81128e4c7dbf5ed4e7b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `items`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "879e0f792e38ba5108f27847dc6f9ccc9428f5765bdb28f473212ca051561ec1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "87f0bf3be9de8f273e7177f4f2c711b24650e5930881c3843966f88becdceb4d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `items`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `head` in this scope",
+          "slot_ids": [
+            "copy_val"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9edf72f66b1a3c0502a3386788280f306c21bb709c023bbec931b37e3c47012a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "aa8909a2fa2b395fd13227a5f61ba6fe7eb745a9527d61bac231dcdbaa2588ba": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `head` in this scope",
+          "slot_ids": [
+            "copy_val"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "abc91b86ebe2f60df722ab38fb445427c625257c22275c2ad5714814b6557d4b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `head` in this scope",
+          "slot_ids": [
+            "copy_val"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b1fae12056405091823ed4e1fa3628a03b06d511e0912be038a7f8e2da57191c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `head` in this scope",
+          "slot_ids": [
+            "copy_val"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b9c7024f3c9208197e39f9a37c1d7764e50f571ce9eebf9547c4ec41df7e9317": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0
+      },
+      "diagnostics": []
+    },
+    "c315c2a87a3a3b43b49bace47ba5d227c8cc0decc131d686cdd7c5df9936af99": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `head` in this scope",
+          "slot_ids": [
+            "copy_val"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c31ce855c7e9b5ce30b9d6d192771846e93dc8913c654543a7427fead4fb260e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ce3cfaf120bb2089ceb844b3516fb748f74aa30980462b6f56128e295d33890e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `head` in this scope",
+          "slot_ids": [
+            "copy_val"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d07022078f2d2287c164b405fd5dd89ca97f934847bfa4f22e35caffe5cd7928": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f56066dd178568760a4bf27de8ce666b6f45092492a955e903ec027c4dd4d939": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `head` in this scope",
+          "slot_ids": [
+            "copy_val"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

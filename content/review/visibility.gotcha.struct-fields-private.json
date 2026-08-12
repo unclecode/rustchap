@@ -1,0 +1,12 @@
+{
+  "id": "visibility.gotcha.struct-fields-private",
+  "kind": "gotcha",
+  "title": "Struct Field Privacy vs Struct Privacy",
+  "concepts": [
+    "visibility",
+    "structs"
+  ],
+  "prompt": "What happens to struct fields when you mark a struct as pub?",
+  "answer": "Marking a struct as `pub` makes the type visible, but its fields remain private by default. You must add `pub` to each field individually if you want outer modules to access them directly.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "memory-ordering.error.invalid-store-ordering",
+  "kind": "error",
+  "title": "Panics from invalid memory orderings",
+  "concepts": [
+    "memory-ordering"
+  ],
+  "prompt": "What happens at runtime if you pass `Ordering::Acquire` to an atomic `store` method?",
+  "answer": "The program panics at runtime with an invalid memory ordering error. Atomic stores only accept `Relaxed`, `Release`, or `SeqCst` orderings.",
+  "schema_version": 1
+}

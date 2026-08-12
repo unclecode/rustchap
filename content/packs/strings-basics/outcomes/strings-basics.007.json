@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "strings-basics.007",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "014ce6b600c49e137f28ed64efa97cf21f3c6adc59e7908a6915ad33def967cc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "slice_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "09e6f9190218e5a36c791d65bddab8f6289a1beb33c19f74eedb5bc031aa0785": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `usize: Pattern` is not satisfied",
+          "slot_ids": [
+            "check"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the type `str` cannot be indexed by `usize`",
+          "slot_ids": [
+            "slice_expr"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "21fc09009f1d84cfde320ee8f2a2d822e31bb3ff0f41df3995d3b7a04a1d9544": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "30ac29476c233437690ef4e61717aeae4b1c587b7f80d5b50eaa550f22138c15": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "3b6a5e3ff3078089be57441d10edc375aa3226cf13ac7acdd6ea86801bf444d6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the type `str` cannot be indexed by `usize`",
+          "slot_ids": [
+            "slice_expr"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7c7e43d654e9b68c5e178cccb7161899d5c30ebae3cddd4ee2c4167e4dd5f31f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `usize: Pattern` is not satisfied",
+          "slot_ids": [
+            "check"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "slice_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9659b806a02ab95113a0857c84dc8c63b0ffb42bdf8c407ddf7537d70ebf53b8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "slice_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b000a8a79e2e321c789c86c791fad10eeec3cad8d31eff94d6e4e8128a106096": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `usize: Pattern` is not satisfied",
+          "slot_ids": [
+            "check"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "eaef2fecce47ad9dd5ff23f917456c9e4eb2c1515911496f767c1cc30f9ffe25": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the type `str` cannot be indexed by `usize`",
+          "slot_ids": [
+            "slice_expr"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

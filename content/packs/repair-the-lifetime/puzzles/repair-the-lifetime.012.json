@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime.012",
+  "version": 1,
+  "title": "The Elision Rules",
+  "track": "repair-the-lifetime",
+  "concepts": [
+    "elision",
+    "lifetime",
+    "functions"
+  ],
+  "difficulty": 1,
+  "goal": "Learn the three rules Rust uses to fill in omitted lifetimes.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 3 Afternoon: Lifetimes"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You omit lifetime annotations in most functions because the compiler fills them in automatically."
+      },
+      {
+        "kind": "code",
+        "code": "fn identity(x: &str) -> &str {\n    x\n}",
+        "caption": "The compiler automatically expands this to include 'a."
+      },
+      {
+        "kind": "prose",
+        "text": "Rule one gives every omitted reference parameter its own lifetime parameter."
+      },
+      {
+        "kind": "prose",
+        "text": "Rule two assigns that lifetime to all output references if there is exactly one input lifetime parameter."
+      },
+      {
+        "kind": "prose",
+        "text": "Rule three assigns the lifetime of `&self` or `&mut self` to all output references when calling a method."
+      },
+      {
+        "kind": "prose",
+        "text": "If multiple input references exist and none is `self`, elision fails and produces `E0106`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn the three rules Rust uses to fill in omitted lifetimes."
+}

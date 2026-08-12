@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "structs.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0ac0cd742a5e03db800cd9aadf0640bd1689c91db81954a3f5fc54b3bbf7bc41": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 8 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5de4006ef29f756074e1163636ef88a20944d533b36726c95a681e00a6013d6e": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    },
+    "e105ad87a7098fa34b243e4e3cc5ba634ac95c5f02925ca4957e1378d2b1a1b2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no field `0` on type `Meters`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `0` on type `Meters`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected function, tuple struct or tuple variant, found struct `Meters`",
+          "slot_ids": [],
+          "rust_code": "E0423"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected function, tuple struct or tuple variant, found struct `Meters`",
+          "slot_ids": [],
+          "rust_code": "E0423"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected function, tuple struct or tuple variant, found struct `Meters`",
+          "slot_ids": [],
+          "rust_code": "E0423"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `0` on type `Meters`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected function, tuple struct or tuple variant, found struct `Meters`",
+          "slot_ids": [],
+          "rust_code": "E0423"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected function, tuple struct or tuple variant, found struct `Meters`",
+          "slot_ids": [],
+          "rust_code": "E0423"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `0` on type `Meters`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected function, tuple struct or tuple variant, found struct `Meters`",
+          "slot_ids": [],
+          "rust_code": "E0423"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected function, tuple struct or tuple variant, found struct `Meters`",
+          "slot_ids": [],
+          "rust_code": "E0423"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `0` on type `Meters`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 12 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

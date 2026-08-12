@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "option-and-result.014",
+  "version": 1,
+  "title": "All or Nothing with Collect",
+  "track": "option-and-result",
+  "concepts": [
+    "option",
+    "error-propagation",
+    "iterator"
+  ],
+  "difficulty": 2,
+  "goal": "Turn a collection of string inputs into a single Result of numbers using iterators.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Option and Result"
+  },
+  "template": "fn parse_all(inputs: &[&str]) -> Result<Vec<i32>, std::num::ParseIntError> {\n    inputs.iter().map(|s| ⟦parse_op⟧)⟦coll_op⟧\n}\n\nfn main() {\n    println!(\"{:?}\", parse_all(&[\"10\", \"20\", \"30\"]));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "parse_op",
+        "original": "s.parse::<i32>().unwrap()",
+        "label": "parse transformation",
+        "choices": [
+          {
+            "id": "pa1",
+            "text": "s.parse::<i32>()"
+          },
+          {
+            "id": "pa2",
+            "text": "s.parse::<i32>().unwrap()"
+          },
+          {
+            "id": "pa3",
+            "text": "s.parse::<i32>().ok()"
+          }
+        ]
+      },
+      {
+        "id": "coll_op",
+        "original": ".collect::<Vec<_>>()",
+        "label": "collector",
+        "choices": [
+          {
+            "id": "co1",
+            "text": ".collect()"
+          },
+          {
+            "id": "co2",
+            "text": ".collect::<Vec<_>>()"
+          },
+          {
+            "id": "co3",
+            "text": ".collect().unwrap()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn parses_valid() {\n    assert_eq!(parse_all(&[\"10\", \"20\"]), Ok(vec![10, 20]));\n}",
+      "#[test]\nfn stops_on_first_error() {\n    assert!(parse_all(&[\"10\", \"bad\"]).is_err());\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "FromIterator is implemented for Result<Vec<T>, E> directly.",
+    "Do not extract values inside the map closure. Let collect handle early return when an error occurs."
+  ],
+  "explanation": "`s.parse::<i32>()` returns `Result<i32, ParseIntError>`. Standard library `FromIterator` allows collecting `Iterator<Item = Result<T, E>>` into `Result<Vec<T>, E>`. If any item is `Err`, iteration halts and returns that error. Choice `s.parse::<i32>().unwrap()` panics on invalid text instead of returning a `Result`. Choice `.collect::<Vec<_>>()` produces `Vec<Result<i32, ParseIntError>>`, which violates the return type signature (`E0308`)."
+}

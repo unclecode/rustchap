@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.003",
+  "version": 1,
+  "title": "Explicit Drop Syntax",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait"
+  ],
+  "difficulty": 1,
+  "goal": "Use `std::mem::drop` instead of calling destructor methods directly.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "template": "struct Buffer {\n    data: Vec<u8>,\n}\n\nimpl Drop for Buffer {\n    fn drop(&mut self) {\n        self.data.clear();\n    }\n}\n\nfn cleanup(buf: Buffer) {\n    ⟦drop_call⟧;\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "drop_call",
+        "original": "buf.drop()",
+        "label": "the drop call",
+        "choices": [
+          {
+            "id": "dr1",
+            "text": "std::mem::drop(buf)"
+          },
+          {
+            "id": "dr2",
+            "text": "buf.drop()"
+          },
+          {
+            "id": "dr3",
+            "text": "Drop::drop(&mut buf)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_cleanup() {\n    let b = Buffer { data: vec![1, 2] };\n    cleanup(b);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "Rust forbids explicit calls to `Drop::drop` methods.",
+    "Pass the owned value to a standard memory function instead."
+  ],
+  "explanation": "Calling `buf.drop()` or `Drop::drop(&mut buf)` fails with `E0040` because direct calls would lead to double-free errors when the variable scope ends. `std::mem::drop(buf)` takes ownership of `buf`, allowing it to fall out of scope inside the function body safely."
+}

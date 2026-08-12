@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "closures.007",
+  "version": 1,
+  "title": "Calling Closures Repeatedly",
+  "track": "closures",
+  "concepts": [
+    "closures",
+    "generics",
+    "traits"
+  ],
+  "difficulty": 3,
+  "goal": "Choose the correct bound and closure for repeated execution without mutation.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Closures"
+  },
+  "template": "fn apply_twice<F>(x: i32, f: F) -> i32\nwhere\n    F: ⟦bound⟧,\n{\n    f(x) + f(x)\n}\n\nfn main() {\n    let count = 10;\n    let calc = ⟦closure⟧;\n    println!(\"{}\", apply_twice(5, calc));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "bound",
+        "original": "FnMut(i32) -> i32",
+        "label": "closure trait bound",
+        "choices": [
+          {
+            "id": "bo1",
+            "text": "Fn(i32) -> i32"
+          },
+          {
+            "id": "bo2",
+            "text": "FnOnce(i32) -> i32"
+          },
+          {
+            "id": "bo3",
+            "text": "FnMut(i32) -> i32"
+          }
+        ]
+      },
+      {
+        "id": "closure",
+        "original": "|n| { count += 1; n + count }",
+        "label": "closure expression",
+        "choices": [
+          {
+            "id": "cl1",
+            "text": "|n| n + count"
+          },
+          {
+            "id": "cl2",
+            "text": "|n| { count += 1; n + count }"
+          },
+          {
+            "id": "cl3",
+            "text": "move |n| { count += 1; n + count }"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn applies() {\n    let c = 10;\n    let calc = |n| n + c;\n    assert_eq!(apply_twice(5, calc), 30);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Calling a closure through an `FnMut` bound requires the parameter itself to be declared as `mut f`.",
+    "To call `f` twice without `mut f`, the parameter must satisfy `Fn`, meaning the closure cannot mutate captures."
+  ],
+  "explanation": "`Fn(i32) -> i32` allows calling `f` multiple times through shared references (`&f`), so `f` does not need to be declared `mut f`. The `FnOnce` bound fails with `E0382` because the first call consumes `f`. The `FnMut` bound fails with `E0596` because calling an `FnMut` closure requires a mutable variable `mut f`. Closures that mutate `count` implement `FnMut` but not `Fn`, leading to `E0525` when passed to `Fn` bounds."
+}

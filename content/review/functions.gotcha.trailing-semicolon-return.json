@@ -1,0 +1,11 @@
+{
+  "id": "functions.gotcha.trailing-semicolon-return",
+  "kind": "gotcha",
+  "title": "Trailing semicolon changes return type",
+  "concepts": [
+    "functions"
+  ],
+  "prompt": "What happens to a function return value if you add a semicolon to its final line?",
+  "answer": "Adding a semicolon turns the final expression into a statement, which evaluates to the unit type (). If the function signature specifies a return type like i32, the compiler fails with error E0308.",
+  "schema_version": 1
+}

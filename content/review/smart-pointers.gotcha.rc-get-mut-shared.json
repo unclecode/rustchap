@@ -1,0 +1,11 @@
+{
+  "id": "smart-pointers.gotcha.rc-get-mut-shared",
+  "kind": "gotcha",
+  "title": "Mutating Rc contents via get_mut",
+  "concepts": [
+    "smart-pointers"
+  ],
+  "prompt": "When does `Rc::get_mut` return None instead of a mutable reference to the inner value?",
+  "answer": "`Rc::get_mut` returns None whenever the strong reference count is greater than one. Direct mutation through Rc requires unique unshared ownership, which is why shared mutation requires interior mutability types like RefCell.",
+  "schema_version": 1
+}

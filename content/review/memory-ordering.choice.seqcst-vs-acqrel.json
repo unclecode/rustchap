@@ -1,0 +1,11 @@
+{
+  "id": "memory-ordering.choice.seqcst-vs-acqrel",
+  "kind": "choice",
+  "title": "SeqCst versus Acquire Release",
+  "concepts": [
+    "memory-ordering"
+  ],
+  "prompt": "When should you choose `Ordering::SeqCst` over `Ordering::Acquire` and `Ordering::Release`?",
+  "answer": "Use `SeqCst` when you need a single globally consistent order of atomic operations across all threads. Acquire and Release only synchronize memory operations between pairs of threads. `SeqCst` prevents store-load reordering across multiple atomic variables, but incurs higher hardware cost on weak memory platforms.",
+  "schema_version": 1
+}

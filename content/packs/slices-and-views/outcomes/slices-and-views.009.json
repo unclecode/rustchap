@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "slices-and-views.009",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "13b4747a745d4e0174a9023a2a8ed54118b52c19f970fe349118fed3f4bc6606": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `push` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "push_stmt"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "17e25980a6ca98b0c8fb922184739b2ccbe649bbc8b6c75ef75361b540cda6e7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `sum` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "push_stmt"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `capacity` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "len_expr"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2e8b5b9f0ab76d4b3711672b44a31cae7971bec3458651fb96405553154513fa": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    },
+    "3c06a047abf5d8f8ee39d187000f08e755476dc90c9c9bd2a3d406def8c2dac8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `capacity` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "len_expr"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "658de66c141ab5a33616cb8c3f3847a9c5013e0a6b5d30b2524fba6793d255a2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `sum` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "push_stmt"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9e7ea65eae570c80bca547303a5abe298bad093c88ef1357fac01f6f714ab2d2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "borrow_conflict",
+          "message": "cannot borrow `*v` as mutable because it is also borrowed as immutable",
+          "slot_ids": [
+            "push_stmt"
+          ],
+          "rust_code": "E0502"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a953c6444ade180fdae088cb711faede033dfdbe9f7f5df1ca92925e41244b11": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `push` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "push_stmt"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `capacity` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "len_expr"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d0938737306f0ee1ecb15c14fe89bbc62acd0825e861b2d38560c9a398bc5e9a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `push` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "push_stmt"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e16f12b8dd17941fd53b2209b31bea05bb9b9fde1b21f65cf94e4041271f151a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `sum` found for reference `&[i32]` in the current scope",
+          "slot_ids": [
+            "push_stmt"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

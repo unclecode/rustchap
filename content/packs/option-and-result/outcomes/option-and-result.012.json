@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "option-and-result.012",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "becd3f060ca9815251fcc4803db4be2d80d75388efc17ea8aaffa6fd59b8fc25": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "preallocated"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d066b01585ca640855b89a2e898299b1d76e9e83a1e7cd00313a55dc8daa6fbf": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ef4d72ee4c2bf55bc24f3ef018fcf85aa861317f4845b46a8a17780f8543b555": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clippy_warning_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

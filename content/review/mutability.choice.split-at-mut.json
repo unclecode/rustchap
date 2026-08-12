@@ -1,0 +1,11 @@
+{
+  "id": "mutability.choice.split-at-mut",
+  "kind": "choice",
+  "title": "Split mutable slices with split_at_mut",
+  "concepts": [
+    "mutability"
+  ],
+  "prompt": "How do you safely obtain two non-overlapping mutable views into the same array or vector?",
+  "answer": "Use the `split_at_mut(mid)` method. It safely divides one mutable slice into two disjoint mutable sub-slices that can be edited at the same time.",
+  "schema_version": 1
+}

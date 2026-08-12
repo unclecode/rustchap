@@ -1,0 +1,11 @@
+{
+  "id": "loops.gotcha.continue-versus-break",
+  "kind": "gotcha",
+  "title": "Difference between break and continue",
+  "concepts": [
+    "loops"
+  ],
+  "prompt": "What is the difference between `break` and `continue` inside a loop body?",
+  "answer": "`break` exits the loop entirely. `continue` skips the remaining code in the current iteration and starts the next turn immediately.",
+  "schema_version": 1
+}

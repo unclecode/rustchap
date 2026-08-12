@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "option-and-result.012",
+  "version": 1,
+  "title": "Avoid Eager Allocations",
+  "track": "option-and-result",
+  "concepts": [
+    "option",
+    "api-design"
+  ],
+  "difficulty": 3,
+  "goal": "Pick the implementation that avoids evaluating the fallback computation when a value is present.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Option and Result"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "eager",
+        "code": "fn get_server(env_var: Option<&str>, fallback: impl FnOnce() -> String) -> String {\n    env_var.map(String::from).unwrap_or(fallback())\n}"
+      },
+      {
+        "id": "lazy",
+        "code": "fn get_server(env_var: Option<&str>, fallback: impl FnOnce() -> String) -> String {\n    env_var.map(String::from).unwrap_or_else(fallback)\n}"
+      },
+      {
+        "id": "preallocated",
+        "code": "fn get_server(env_var: Option<&str>, fallback: impl FnOnce() -> String) -> String {\n    env_var.map(String::from).unwrap_or(fallback)\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn uses_env_var_without_calling_fallback() {\n    assert_eq!(get_server(Some(\"10.0.0.1\"), || panic!(\"evaluated eagerly\")), \"10.0.0.1\");\n}",
+      "#[test]\nfn uses_fallback_when_none() {\n    assert_eq!(get_server(None, || String::from(\"127.0.0.1\")), \"127.0.0.1\");\n}"
+    ],
+    "metrics": [
+      "clippy_warning_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clippy_warning_count",
+    "secondary": [],
+    "fluent": {
+      "clippy_warning_count": 1
+    },
+    "optimal": {
+      "clippy_warning_count": 0
+    }
+  },
+  "hints": [
+    "In Rust, function arguments passed to methods like `unwrap_or` are evaluated before the method is invoked.",
+    "Look for `unwrap_or_else`, which accepts a closure and defers its execution until `None` is encountered."
+  ],
+  "explanation": "Method arguments in Rust are evaluated eagerly before calling the function. Passing `fallback()` to `unwrap_or` invokes the closure immediately even when `env_var` is `Some`. Passing the closure itself to `unwrap_or` fails to compile because `unwrap_or` expects a `String`, not a function. Using `unwrap_or_else` defers execution until `env_var` is `None`."
+}

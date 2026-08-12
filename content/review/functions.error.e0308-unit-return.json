@@ -1,0 +1,11 @@
+{
+  "id": "functions.error.e0308-unit-return",
+  "kind": "error",
+  "title": "Trailing semicolon turns expression into...",
+  "concepts": [
+    "functions"
+  ],
+  "prompt": "What causes error E0308 when a function's last line looks like `x + 1;`?",
+  "answer": "The trailing semicolon converts the expression into a statement, making the block return the unit type `()` instead of the integer. Removing the semicolon lets the expression evaluate as the return value.",
+  "schema_version": 1
+}

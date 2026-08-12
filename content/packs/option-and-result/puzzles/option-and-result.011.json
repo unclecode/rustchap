@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "option-and-result.011",
+  "version": 1,
+  "title": "Lazy Evaluation and Early Exit",
+  "track": "option-and-result",
+  "concepts": [
+    "option",
+    "api-design"
+  ],
+  "difficulty": 1,
+  "goal": "Avoid unnecessary work by using lazy evaluation methods.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Option and Result"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Methods like `unwrap_or` and `ok_or` evaluate their arguments immediately. Passing a function call as an argument runs that code every time, even when the value exists."
+      },
+      {
+        "kind": "code",
+        "code": "let val = opt.unwrap_or(fallback());\n",
+        "caption": "fallback runs even when opt is Some."
+      },
+      {
+        "kind": "prose",
+        "text": "Companion methods ending in `_else` accept a closure instead. The compiler only runs the closure when the fallback is actually needed."
+      },
+      {
+        "kind": "code",
+        "code": "let val = opt.unwrap_or_else(|| {\n    fallback()\n});\n",
+        "caption": "The closure runs only when opt is None."
+      },
+      {
+        "kind": "prose",
+        "text": "Use eager methods for plain literals. Use `_else` methods whenever creating the fallback allocates memory or performs work."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Avoid unnecessary work by using lazy evaluation methods."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "modules.syntax.super-path-navigation",
+  "kind": "syntax",
+  "title": "Navigating parent modules with super",
+  "concepts": [
+    "modules"
+  ],
+  "prompt": "How does a child module reference an item located in its immediate parent module?",
+  "answer": "Prefix the path with `super::`. This moves up one module level from the current scope, similar to `..` in a filesystem directory path.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "unit-testing.gotcha.should-panic-attribute",
+  "kind": "gotcha",
+  "title": "Expecting panics in unit tests",
+  "concepts": [
+    "unit-testing"
+  ],
+  "prompt": "How do you configure a Rust unit test to pass only when the function under test panics?",
+  "answer": "Annotate the test function with both `#[test]` and `#[should_panic]`. You can also add `(expected = \"text\")` to verify that the panic message contains a specific substring.",
+  "schema_version": 1
+}

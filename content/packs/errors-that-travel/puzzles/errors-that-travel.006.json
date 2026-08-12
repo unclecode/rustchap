@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.006",
+  "version": 1,
+  "title": "Mapping Errors with map_err",
+  "track": "errors-that-travel",
+  "concepts": [
+    "error-propagation",
+    "error-trait"
+  ],
+  "difficulty": 2,
+  "goal": "Transform error types manually when From is not implemented.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Error Handling"
+  },
+  "template": "use std::num::ParseIntError;\n\n#[derive(Debug, PartialEq)]\nenum AppError {\n    InvalidNumber,\n}\n\nfn parse_id(s: &str) -> Result<i32, AppError> {\n    let id = s\n        .parse::<i32>()\n        ⟦slot1⟧⟦slot2⟧;\n    Ok(id)\n}\n\nfn main() {\n    let _ = parse_id(\"123\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "",
+        "label": "error mapping",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": ".map_err(|_| AppError::InvalidNumber)"
+          },
+          {
+            "id": "sl2",
+            "text": ""
+          },
+          {
+            "id": "sl3",
+            "text": ".unwrap_or(AppError::InvalidNumber)"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "",
+        "label": "try propagation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "?"
+          },
+          {
+            "id": "sl2",
+            "text": ""
+          },
+          {
+            "id": "sl3",
+            "text": ".unwrap()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_parse() {\n    assert_eq!(parse_id(\"42\"), Ok(42));\n    assert_eq!(parse_id(\"abc\"), Err(AppError::InvalidNumber));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "ParseIntError does not convert to AppError automatically.",
+    "Use map_err to convert ParseIntError into AppError before using the try operator."
+  ],
+  "explanation": "Because `AppError` does not implement `From<ParseIntError>`, the `?` operator cannot convert the error automatically (`E0277`). Using `.map_err()` converts `ParseIntError` into `AppError::InvalidNumber` before `?` propagates it."
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "testing.013",
+  "version": 1,
+  "title": "Ignoring Tests and Compiler Lints",
+  "track": "testing",
+  "concepts": [
+    "unit-testing",
+    "cfg-test"
+  ],
+  "difficulty": 1,
+  "goal": "Control test execution with ignore attributes and lint control attributes.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Compiler Lints"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Not all tests should run on every `cargo test` invocation. Heavy or slow tests can be marked with `#[ignore]`."
+      },
+      {
+        "kind": "code",
+        "code": "#[test]\n#[ignore = \"expensive\"]\nfn heavy_test() {\n    assert_eq!(heavy_calc(), 42);\n}",
+        "caption": "#[ignore] skips the test unless cargo test is run with -- --ignored."
+      },
+      {
+        "kind": "prose",
+        "text": "The Rust compiler and Clippy provide lints to detect potential bugs and style issues. You can configure lints using attributes."
+      },
+      {
+        "kind": "prose",
+        "text": "Use `#[allow(lint_name)]` to suppress a specific warning, or `#[deny(lint_name)]` to turn a warning into a hard build error."
+      },
+      {
+        "kind": "code",
+        "code": "#[deny(clippy::cast_possible_truncation)]\nfn scale(val: u32) -> u16 {\n    val as u16\n}",
+        "caption": "#[deny] turns a warning into a hard compile error if the lint triggers."
+      },
+      {
+        "kind": "prose",
+        "text": "Attributes can be attached to individual functions, blocks, or modules to control lints locally."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Control test execution with ignore attributes and lint control attributes."
+}

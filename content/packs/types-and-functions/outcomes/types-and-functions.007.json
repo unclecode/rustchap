@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "types-and-functions.007",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "3a0c8123bbc43dae99a179c8914856093990fc1e4dbd1c08d326b608337088af": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "5b2609613fac3caa84ffd6eef14ecc524e89ffc0a7c3c67e7870ef82b15bb3b8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "700ad571a8f7c184a9e93989edb6be55aef78e7a5984ba17a8dc0595ebbd7ed3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `[i32]` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `[i32]` cannot be known at compilation time",
+          "slot_ids": [
+            "param_type"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `[i32]` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "780bb887c3a3d38cd15e9853d4e98c4e2aa1cbccbbdc9cd1d960c5bee3c33b2a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `[i32]` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `[i32]` cannot be known at compilation time",
+          "slot_ids": [
+            "param_type"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `[i32]` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7858742a2b642ae84162956029d58338fe3842c25cebf2b5755f9c93416162ba": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7b671ce2c727cd663bf9dc0c6dff71540cbe3be8bbf8e9451ea49d4e6767ed03": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `[i32]` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `[i32]` cannot be known at compilation time",
+          "slot_ids": [
+            "param_type"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `[i32]` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8ca2824059af8889748833ab3ae7ba6a8e2e89360c6b2ba097d7d9c606cf2b44": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a2e0933c2683002d7df6b6358ca7431cab644ffb8c357b8cda3a03f9f057acec": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a959ef8e82e29b2871b43398b77cd34f6d3d7bc317856b446bd5b6655f2c8138": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

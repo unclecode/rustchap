@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "collections.012",
+  "version": 1,
+  "title": "In-Place Vector Mutation",
+  "track": "collections",
+  "concepts": [
+    "vec-basics",
+    "mutability",
+    "borrow"
+  ],
+  "difficulty": 1,
+  "goal": "Modify elements in a vector directly without reallocating.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Vec"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Vector mutation in other languages often uses index assignment in loops. In Rust, direct index assignment inside a loop repeatedly checks bounds and can conflict with borrowing rules."
+      },
+      {
+        "kind": "code",
+        "code": "let mut nums = vec![1, 2, 3];\nfor x in &mut nums {\n    *x *= 2;\n}",
+        "caption": "&mut iterates mutable references to elements."
+      },
+      {
+        "kind": "prose",
+        "text": "Iterating over `&mut nums` yields a mutable reference to each element. Dereference with `*x` to modify the actual value inside the vector."
+      },
+      {
+        "kind": "prose",
+        "text": "To remove elements based on a condition, use `retain` instead of calling `remove` inside a loop. Calling `remove` while looping shifts indices and causes borrow conflicts."
+      },
+      {
+        "kind": "code",
+        "code": "let mut nums = vec![1, 2, 3, 4];\nnums.retain(|x| x % 2 == 0);",
+        "caption": "retain keeps elements matching the predicate."
+      },
+      {
+        "kind": "prose",
+        "text": "Modifying elements with mutable references and `retain` avoids extra vector allocations."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Modify elements in a vector directly without reallocating."
+}

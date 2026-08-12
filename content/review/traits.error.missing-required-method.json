@@ -1,0 +1,11 @@
+{
+  "id": "traits.error.missing-required-method",
+  "kind": "error",
+  "title": "Missing required trait method E0046",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "Why does the compiler emit error E0046 when implementing a trait for a struct?",
+  "answer": "Error E0046 occurs when an impl block omits one or more required trait methods that lack default implementations. Default methods can be skipped, but all non-default methods declared by the trait must be provided.",
+  "schema_version": 1
+}

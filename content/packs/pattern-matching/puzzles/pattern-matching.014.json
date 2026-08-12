@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.014",
+  "version": 1,
+  "title": "Match Ergonomics and References",
+  "track": "pattern-matching",
+  "concepts": [
+    "pattern-matching",
+    "borrow"
+  ],
+  "difficulty": 1,
+  "goal": "Match on references without moving ownership of non-Copy fields.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Match Ergonomics"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Matching on a value by value moves its non-`Copy` fields out of the container."
+      },
+      {
+        "kind": "code",
+        "code": "let opt = Some(String::from(\"hi\"));\nmatch opt {\n    Some(s) => println!(\"{s}\"),\n    None => {},\n}",
+        "caption": "s receives ownership of the String."
+      },
+      {
+        "kind": "prose",
+        "text": "Matching on a reference `&opt` triggers match ergonomics. Rust automatically binds matched fields as shared references."
+      },
+      {
+        "kind": "code",
+        "code": "let opt = Some(String::from(\"hi\"));\nmatch &opt {\n    Some(s) => println!(\"{s}\"),\n    None => {},\n}",
+        "caption": "s is bound as &String automatically."
+      },
+      {
+        "kind": "prose",
+        "text": "You do not need to write `ref s` manually. Match ergonomics works through references to keep data borrowed."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Match on references without moving ownership of non-Copy fields."
+}

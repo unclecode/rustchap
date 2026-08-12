@@ -1,0 +1,11 @@
+{
+  "id": "closures.rule.fn-once-single-call",
+  "kind": "rule",
+  "title": "Why FnOnce closures can only be called once",
+  "concepts": [
+    "closures"
+  ],
+  "prompt": "Why can a function bound by `FnOnce` only invoke its closure argument a single time?",
+  "answer": "Calling an `FnOnce` closure consumes the closure by value along with any owned values it captured. Attempting a second call causes compiler error `E0382` because the closure state has already been moved.",
+  "schema_version": 1
+}

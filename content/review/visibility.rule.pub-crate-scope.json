@@ -1,0 +1,11 @@
+{
+  "id": "visibility.rule.pub-crate-scope",
+  "kind": "rule",
+  "title": "Crate restricted visibility with pub crate",
+  "concepts": [
+    "visibility"
+  ],
+  "prompt": "How do you make a module item accessible across all submodules in your project while preventing external crates from using it?",
+  "answer": "Annotate the item with `pub(crate)`. This restricts visibility to the current crate root and keeps the item hidden from external dependencies.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "slice.gotcha.byte-string-type",
+  "kind": "gotcha",
+  "title": "Byte string literals produce byte slices",
+  "concepts": [
+    "slice"
+  ],
+  "prompt": "What type is created by a byte string literal like `b\"hello\"`?",
+  "answer": "A byte string literal creates a byte array reference `&'static [u8; N]`, which coerces to a byte slice `&[u8]`. It represents raw ASCII or binary bytes rather than UTF-8 string text.",
+  "schema_version": 1
+}

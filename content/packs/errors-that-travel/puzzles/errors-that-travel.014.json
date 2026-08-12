@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.014",
+  "version": 1,
+  "title": "Custom Error Trait Bounds",
+  "track": "errors-that-travel",
+  "concepts": [
+    "dynamic-errors",
+    "error-trait"
+  ],
+  "difficulty": 2,
+  "goal": "Implement `std::error::Error` on a custom struct to allow dynamic boxing.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Error Handling"
+  },
+  "template": "use std::error::Error;\nuse std::fmt;\n\n#[derive(Debug)]\nstruct BadHeader;\n\nimpl fmt::Display for BadHeader {\n    fn fmt(\n        &self,\n        f: &mut fmt::Formatter,\n    ) -> fmt::Result {\n        write!(f, \"bad header\")\n    }\n}\n\nimpl ⟦slot1⟧ for ⟦slot2⟧ {}\n\nfn check() -> Result<(), Box<dyn Error>> {\n    Err(BadHeader)?;\n    Ok(())\n}\n\nfn main() {\n    let _ = check();\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "fmt::Display",
+        "label": "trait name",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Error"
+          },
+          {
+            "id": "sl2",
+            "text": "fmt::Display"
+          },
+          {
+            "id": "sl3",
+            "text": "fmt::Formatter"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "BadHeader",
+        "label": "target type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "BadHeader"
+          },
+          {
+            "id": "sl2",
+            "text": "Box<dyn Error>"
+          },
+          {
+            "id": "sl3",
+            "text": "&BadHeader"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_check() {\n    let res = check();\n    assert!(res.is_err());\n    assert_eq!(res.unwrap_err().to_string(), \"bad header\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at the return type of check. It returns a boxed dynamic Error trait object.",
+    "To convert BadHeader into Box<dyn Error> with ?, BadHeader must explicitly implement the Error trait."
+  ],
+  "explanation": "impl Error for BadHeader {} satisfies the trait bound for Box<dyn Error>, allowing ? to convert BadHeader automatically via From. Re-implementing `fmt::Display` triggers E0119 because Display is already implemented. Using `fmt::Formatter` triggers E0405 because Formatter is a struct, not a trait."
+}

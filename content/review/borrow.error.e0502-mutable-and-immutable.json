@@ -1,0 +1,11 @@
+{
+  "id": "borrow.error.e0502-mutable-and-immutable",
+  "kind": "error",
+  "title": "Reading Error E0502",
+  "concepts": [
+    "borrow"
+  ],
+  "prompt": "What does error `E0502` mean, and how do you fix it?",
+  "answer": "You tried to mutate a value while an active immutable borrow still exists. Fix it by dropping or ending the immutable borrow before mutating.",
+  "schema_version": 1
+}

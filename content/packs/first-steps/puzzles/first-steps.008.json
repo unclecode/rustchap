@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.008",
+  "version": 1,
+  "title": "Downstream Inference",
+  "track": "first-steps",
+  "concepts": [
+    "primitive-types",
+    "bindings"
+  ],
+  "difficulty": 2,
+  "goal": "Satisfy type constraints when passing bindings to functions expecting specific primitive types.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1: Types and Values"
+  },
+  "template": "fn takes_u8(x: u8) -> u8 {\n    x.saturating_add(1)\n}\n\nfn takes_u32(x: u32) -> u32 {\n    x + 100\n}\n\nfn run(value: u32) -> (u8, u32) {\n    let val = ⟦slot1⟧;\n    (takes_u8(⟦slot2⟧), takes_u32(val))\n}\n\nfn main() {\n    let (a, b) = run(200);\n    println!(\"{a}, {b}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "value as u8",
+        "label": "binding expression",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "value"
+          },
+          {
+            "id": "sl2",
+            "text": "value as u8"
+          },
+          {
+            "id": "sl3",
+            "text": "value as u64"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "val",
+        "label": "argument conversion",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "val as u8"
+          },
+          {
+            "id": "sl2",
+            "text": "val"
+          },
+          {
+            "id": "sl3",
+            "text": "val as u32"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn processes_both() {\n    assert_eq!(run(200), (201, 300));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at what type takes_u32 requires for val.",
+    "If val is u32, takes_u8 still needs a u8 argument."
+  ],
+  "explanation": "`takes_u32(val)` forces `val` to be `u32`. Binding `val = value` retains the `u32` type without conversion. When passing `val` to `takes_u8`, you must explicitly convert it with `val as u8`. Setting `val = value as u8` causes `takes_u32(val)` to fail with `E0308` because `val` is now `u8` instead of `u32`."
+}

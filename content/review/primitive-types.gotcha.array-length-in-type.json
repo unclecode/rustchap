@@ -1,0 +1,11 @@
+{
+  "id": "primitive-types.gotcha.array-length-in-type",
+  "kind": "gotcha",
+  "title": "Array length is part of array type",
+  "concepts": [
+    "primitive-types"
+  ],
+  "prompt": "How does Rust treat two array types of different lengths, such as `[i32; 3]` and `[i32; 4]`?",
+  "answer": "Array length is part of the array type in Rust. Arrays of different lengths are completely distinct types, so passing `[i32; 4]` where `[i32; 3]` is expected causes a compile-time type mismatch.",
+  "schema_version": 1
+}

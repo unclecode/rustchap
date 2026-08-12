@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers.014",
+  "version": 1,
+  "title": "Leaking Heap Data for Static Lifetimes",
+  "track": "smart-pointers",
+  "concepts": [
+    "smart-pointers",
+    "static-lifetime"
+  ],
+  "difficulty": 1,
+  "goal": "Convert a heap allocation into a `'static` reference with `Box::leak`.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4: Smart Pointers"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Rust references with a `'static` lifetime live for the entire duration of the program. String literals like `\"hello\"` have `'static` lifetime because they are stored in the compiled binary."
+      },
+      {
+        "kind": "code",
+        "code": "let s: &'static str = \"compiled in\";",
+        "caption": "String literals are embedded in binary."
+      },
+      {
+        "kind": "prose",
+        "text": "Sometimes you construct data dynamically at runtime. You may need `'static` references to it without keeping an owning variable."
+      },
+      {
+        "kind": "prose",
+        "text": "`Box::leak` takes ownership of a `Box<T>`. It skips running the destructor and returns a `&'static mut T` reference."
+      },
+      {
+        "kind": "code",
+        "code": "let config = String::from(\"port=8080\");\nlet b = Box::new(config);\nlet static_ref: &'static str = Box::leak(b);",
+        "caption": "Box::leak turns heap memory into static."
+      },
+      {
+        "kind": "prose",
+        "text": "The heap allocation is never reclaimed. Use `Box::leak` intentionally for program-wide values initialized once at startup."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Convert a heap allocation into a `'static` reference with `Box::leak`."
+}

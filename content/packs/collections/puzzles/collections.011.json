@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "id": "collections.011",
+  "version": 1,
+  "title": "Transform and Collect",
+  "track": "collections",
+  "concepts": [
+    "vec-basics",
+    "iterator"
+  ],
+  "difficulty": 2,
+  "goal": "Filter even numbers from a slice, double them, and collect into a Vec.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Vec"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn double_evens(\n    values: &[i32],\n) -> Vec<i32> {\n    values",
+    "blocks": [
+      {
+        "id": "iter",
+        "text": "\n        .iter()"
+      },
+      {
+        "id": "filt",
+        "text": "\n        .filter(|&&x| x % 2 == 0)"
+      },
+      {
+        "id": "map",
+        "text": "\n        .map(|&x| x * 2)"
+      },
+      {
+        "id": "coll",
+        "text": "\n        .collect()"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn processes_correctly() {\n    assert_eq!(double_evens(&[1, 2, 3, 4]), vec![4, 8]);\n    assert_eq!(double_evens(&[5, 7]), Vec::<i32>::new());\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "A slice must be turned into an iterator with .iter() before iterator adapters can be called.",
+    "Filter the even numbers first before doubling them, otherwise odd numbers doubled will also become even."
+  ],
+  "explanation": "The pipeline must start with `.iter()` to create an iterator over the slice. `.filter()` selects only the even numbers. `.map()` doubles those selected numbers. Finally, `.collect()` turns the iterator back into a `Vec<i32>`. Doubling before filtering produces wrong results because doubling an odd number makes it even."
+}

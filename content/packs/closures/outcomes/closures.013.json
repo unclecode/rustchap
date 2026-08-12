@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "closures.013",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "70c89860a218ef5d73dfe028c176c18de96cb8227a7a83e86625069682a0ee82": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a890733544197a9db56d6e6820e0c2adee60798c177985156d7289a2c14565ca": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "b9af84482f9229f74bc77b7aa85c156aef8435add01ef516dab3993b061c3104": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of unstable library feature `fn_traits`",
+          "slot_ids": [
+            "invalid_method_call"
+          ],
+          "rust_code": "E0658"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "invalid_method_call"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers.010",
+  "version": 1,
+  "title": "Inspect the Parent Node",
+  "track": "smart-pointers",
+  "concepts": [
+    "smart-pointers",
+    "interior-mutability"
+  ],
+  "difficulty": 3,
+  "goal": "Chain weak pointer upgrade and interior mutability borrowing in sequence.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Weak and RefCell"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "use std::cell::RefCell;\nuse std::rc::{Rc, Weak};\n\nstruct Node {\n    val: i32,\n}\n\nfn read_weak_val(weak: &Weak<RefCell<Node>>) -> Option<i32> {\n    let rc = weak",
+    "blocks": [
+      {
+        "id": "upg",
+        "text": "\n        .upgrade()?;"
+      },
+      {
+        "id": "cell",
+        "text": "\n    let cell = rc"
+      },
+      {
+        "id": "bor",
+        "text": "\n        .borrow();"
+      },
+      {
+        "id": "ret",
+        "text": "\n    Some(cell.val)"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn reads_val() {\n    let node = Rc::new(RefCell::new(Node { val: 99 }));\n    let weak = Rc::downgrade(&node);\n    assert_eq!(read_weak_val(&weak), Some(99));\n}",
+      "#[test]\nfn handles_dropped() {\n    let weak;\n    {\n        let node = Rc::new(RefCell::new(Node { val: 50 }));\n        weak = Rc::downgrade(&node);\n    }\n    assert_eq!(read_weak_val(&weak), None);\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Upgrade the Weak pointer to an Rc first using .upgrade()?.",
+    "Borrow the RefCell inside the returned Rc handle to reach the struct field."
+  ],
+  "explanation": "Accessing data inside Weak<RefCell<Node>> requires two steps in exact order. First, call .upgrade()? on the Weak pointer to attempt upgrading it to Rc<RefCell<Node>>. If the referenced memory was already dropped, ? returns None immediately. Second, call .borrow() on the resulting Rc handle to acquire a read reference to the RefCell inner value. Attempting to call .borrow() directly on Weak fails with E0599."
+}

@@ -1,0 +1,16 @@
+{
+  "id": "unions",
+  "title": "Unions",
+  "topic": "Data shapes",
+  "summary": "Unions allow multiple fields to share the same memory location, requiring unsafe code to access.",
+  "lecture": [
+    "In C and C++, unions allow different fields to occupy the exact same memory location.",
+    "Rust supports unions with the union keyword. Unlike enums, unions do not store a discriminant tag to indicate which field is currently active.",
+    "Writing to a union field is safe, but reading any field requires an unsafe block because Rust cannot guarantee the data matches the requested field type."
+  ],
+  "example": {
+    "code": "#[repr(C)]\nunion Val {\n    i: u32,\n    f: f32,\n}\nlet v = Val { i: 42 };\nlet x = unsafe { v.i };",
+    "caption": "Reading a field requires unsafe."
+  },
+  "schema_version": 1
+}

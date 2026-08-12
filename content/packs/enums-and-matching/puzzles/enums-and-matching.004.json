@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.004",
+  "version": 1,
+  "title": "Reading an Enum Back",
+  "track": "enums-and-matching",
+  "concepts": [
+    "enums-basics",
+    "match-basics"
+  ],
+  "difficulty": 1,
+  "goal": "match tells you which variant you have, and hands you its data.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Pattern Matching"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You met `match` in the Control Flow deck, where it compared a plain value against a list of options. On an enum it does one more thing. It also hands you the data the variant is carrying."
+      },
+      {
+        "kind": "code",
+        "code": "match cmd {\n    Command::Add(n) => total + n,\n    Command::SetName(s) => { name = s; total }\n    Command::Reset => 0,\n}",
+        "caption": "n and s are the data, pulled out of the variant."
+      },
+      {
+        "kind": "prose",
+        "text": "The name inside the brackets is yours to choose. It binds to whatever that variant is carrying, and it only exists inside that arm."
+      },
+      {
+        "kind": "prose",
+        "text": "The exhaustiveness rule now earns its keep. A `match` on an enum has to cover every variant, and the compiler counts them. Miss one and you get error `E0004` before the code ever runs."
+      },
+      {
+        "kind": "prose",
+        "text": "That check is worth more than it looks. Add a variant to the enum six months from now, and every `match` that forgot about it becomes a compile error instead of a bug in production."
+      },
+      {
+        "kind": "prose",
+        "text": "You can still write `_` as a catch-all, but on an enum it is usually the wrong choice. It silences exactly the error you want."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "match tells you which variant you have, and hands you its data."
+}

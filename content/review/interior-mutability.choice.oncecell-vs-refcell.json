@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.choice.oncecell-vs-refcell",
+  "kind": "choice",
+  "title": "Choosing OnceCell for Lazy State",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "When should you use OnceCell instead of RefCell for a shared value behind &self?",
+  "answer": "Use OnceCell when a value is written exactly once during initialization and never modified again. OnceCell avoids tracking ongoing borrow counts after initialization, so subsequent reads carry no runtime guard overhead.",
+  "schema_version": 1
+}

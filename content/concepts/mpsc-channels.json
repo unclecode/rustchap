@@ -1,0 +1,16 @@
+{
+  "id": "mpsc-channels",
+  "title": "Multi-Producer Single-Consumer Channels",
+  "topic": "Concurrency",
+  "summary": "Send values across thread boundaries using Sender and Receiver pairs.",
+  "lecture": [
+    "Channels transfer ownership of values across threads without shared memory locking.",
+    "Calling `mpsc::channel` creates a paired Sender and Receiver. Sender implements Clone so multiple threads can produce messages.",
+    "Receiver cannot be cloned. Calling rx.recv blocks until a message arrives or returns an Err when all senders drop."
+  ],
+  "example": {
+    "code": "let (tx, rx) = mpsc::channel();\ntx.send(42).unwrap();\nlet val = rx.recv().unwrap();",
+    "caption": "Send a message and receive it on the main thread."
+  },
+  "schema_version": 1
+}

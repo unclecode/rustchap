@@ -1,8 +1,34 @@
 {
   "levels": [
-    { "id": "foundations", "title": "Foundations", "tagline": "Rust from zero, for programmers." },
-    { "id": "core", "title": "Core", "tagline": "Ownership instincts: the heart of Rust." },
-    { "id": "advanced", "title": "Advanced", "tagline": "Traits, generics, pointers, async, unsafe." },
-    { "id": "mastery", "title": "Mastery", "tagline": "The deep end: atomics, macros, FFI." }
+    {
+      "id": "foundations",
+      "title": "Foundations",
+      "tagline": "Rust from zero, for programmers."
+    },
+    {
+      "id": "ownership",
+      "title": "Ownership",
+      "tagline": "The model that makes Rust Rust."
+    },
+    {
+      "id": "everyday",
+      "title": "Everyday Rust",
+      "tagline": "What you actually write all day."
+    },
+    {
+      "id": "abstraction",
+      "title": "Abstraction",
+      "tagline": "Closures, traits, generics, and good APIs."
+    },
+    {
+      "id": "systems",
+      "title": "Systems",
+      "tagline": "Pointers, sharing, threads, and unsafe."
+    },
+    {
+      "id": "mastery",
+      "title": "Mastery",
+      "tagline": "The deep end."
+    }
   ]
 }

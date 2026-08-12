@@ -1,0 +1,11 @@
+{
+  "id": "iterator.gotcha.enumerate-tuple-order",
+  "kind": "gotcha",
+  "title": "Tuple order in enumerate",
+  "concepts": [
+    "iterator"
+  ],
+  "prompt": "What tuple structure does .enumerate() yield, and how does its field order compare to Go or Python?",
+  "answer": "Rust's .enumerate() yields a tuple of (index, item) with the usize index first. This matches Python's enumerate, but closure destructuring requires parentheses around the tuple pattern |(i, item)|.",
+  "schema_version": 1
+}

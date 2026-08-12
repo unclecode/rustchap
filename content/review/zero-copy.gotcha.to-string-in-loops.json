@@ -1,0 +1,12 @@
+{
+  "id": "zero-copy.gotcha.to-string-in-loops",
+  "kind": "gotcha",
+  "title": "Hidden allocations with to_string",
+  "concepts": [
+    "zero-copy",
+    "string-types"
+  ],
+  "prompt": "What performance penalty does calling `.to_string()` on a string literal inside a loop incur?",
+  "answer": "Each loop iteration allocates new heap memory and copies string bytes into a fresh `String` object. If the recipient only reads string contents, change its parameter to `&str` so you can pass the literal directly with zero heap allocations.",
+  "schema_version": 1
+}

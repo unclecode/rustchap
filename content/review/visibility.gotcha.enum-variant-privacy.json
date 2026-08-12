@@ -1,0 +1,12 @@
+{
+  "id": "visibility.gotcha.enum-variant-privacy",
+  "kind": "gotcha",
+  "title": "Enum variants inherit enum visibility",
+  "concepts": [
+    "visibility",
+    "enums-basics"
+  ],
+  "prompt": "How do you control the visibility of individual variants inside a public enum?",
+  "answer": "You cannot set visibility on individual enum variants. If an enum is public, all of its variants and their inner data are automatically public.",
+  "schema_version": 1
+}

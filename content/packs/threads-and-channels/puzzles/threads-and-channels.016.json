@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.016",
+  "version": 1,
+  "title": "Shared Data Strategy",
+  "track": "threads-and-channels",
+  "concepts": [
+    "scoped-threads",
+    "clone"
+  ],
+  "difficulty": 2,
+  "goal": "Pick the zero-allocation approach for processing stack data across spawned threads.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Scoped Threads"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "scoped_borrow",
+        "code": "use std::thread;\n\nfn sum_parallel(data: Vec<i32>) -> i32 {\n    thread::scope(|s| {\n        let h1 = s.spawn(|| data[0]);\n        let h2 = s.spawn(|| data[1]);\n        h1.join().unwrap() + h2.join().unwrap()\n    })\n}"
+      },
+      {
+        "id": "unscoped_borrow",
+        "code": "use std::thread;\n\nfn sum_parallel(data: Vec<i32>) -> i32 {\n    let h1 = thread::spawn(|| data[0]);\n    let h2 = thread::spawn(|| data[1]);\n    h1.join().unwrap() + h2.join().unwrap()\n}"
+      },
+      {
+        "id": "move_borrow",
+        "code": "use std::thread;\n\nfn sum_parallel(data: Vec<i32>) -> i32 {\n    let h1 = thread::spawn(move || data[0]);\n    let h2 = thread::spawn(move || data[1]);\n    h1.join().unwrap() + h2.join().unwrap()\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_sum() {\n    assert_eq!(sum_parallel(vec![10, 20]), 30);\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 0
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Standard `std::thread::spawn` requires closures with 'static lifetimes.",
+    "`thread::scope` guarantees spawned threads join before exiting, permitting references to stack variables without cloning."
+  ],
+  "explanation": "`thread::scope` guarantees child threads finish before the scope returns, allowing elements from data to be safely borrowed without allocations or clones. Standard `thread::spawn` fails to compile when borrowing stack data because it requires 'static ownership. Using move on multiple standard spawns transfers ownership on the first thread, making subsequent moves invalid."
+}

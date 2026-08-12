@@ -1,0 +1,12 @@
+{
+  "id": "unsafe-rust.gotcha.atomic-ptr-deref",
+  "kind": "gotcha",
+  "title": "Safety requirements for atomic pointer op...",
+  "concepts": [
+    "unsafe-rust",
+    "atomic-types"
+  ],
+  "prompt": "Which operations on `AtomicPtr` require an `unsafe` block in Rust?",
+  "answer": "Loading, storing, and swapping the raw pointer itself are safe methods. Dereferencing the loaded raw pointer to access memory requires an `unsafe` block.",
+  "schema_version": 1
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "structs",
+  "title": "Structs",
+  "description": "Group related values under one name, then give the type behavior.",
+  "toolchain": "1.97.1",
+  "order": [
+    "structs.001",
+    "structs.002",
+    "structs.003",
+    "structs.004",
+    "structs.005",
+    "structs.006",
+    "structs.007",
+    "structs.008",
+    "structs.009",
+    "structs.010",
+    "structs.011",
+    "structs.012",
+    "structs.013",
+    "structs.014",
+    "structs.015"
+  ],
+  "icon": "square.grid.2x2",
+  "accent": "yellow",
+  "level": "foundations"
+}

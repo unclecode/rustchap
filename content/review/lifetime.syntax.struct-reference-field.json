@@ -1,0 +1,11 @@
+{
+  "id": "lifetime.syntax.struct-reference-field",
+  "kind": "syntax",
+  "title": "Reference Fields in Structs",
+  "concepts": [
+    "lifetime"
+  ],
+  "prompt": "How do you declare a struct field that holds a reference?",
+  "answer": "Add a generic lifetime parameter to the struct definition. Use that same lifetime on the reference field, as in `struct View<'a> { text: &'a str }`.",
+  "schema_version": 1
+}

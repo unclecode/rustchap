@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "async-and-send.018",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "03626f3b4732b1e8d996183508817d1039ed6ab7ce88ba5ba0c2013270ca10f1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `unwrap` found for opaque type `impl Future<Output = i32>` in the current scope",
+          "slot_ids": [
+            "await_expr"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "595d37e9da76f48085cf170f4ed9ebf018ff29ff155bdd3f86e867a78f300265": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot add `std::sync::MutexGuard<'_, i32>` to `impl Future<Output = i32>`",
+          "slot_ids": [],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "631e438f87e95ea09294bd82b4a0bfa92b214d561409ebefe1c8052ce6a6cf60": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "cannot add `std::sync::MutexGuard<'_, i32>` to `i32`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6b38b8dd2bf11e982b8bf6c6b8527b2b33b332a5992492e7d61e52cf08c071ab": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "cannot add `&mut i32` to `i32`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6b5a7c18fa35aed051b48e122ba852cfb70e15df642b484097576a809b5cee85": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot add `i32` to `impl Future<Output = i32>`",
+          "slot_ids": [],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "97ac366951004f990068b63cdeb37bd9f3ffb5bba4da0e59e5fcb347107b7d04": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `unwrap` found for opaque type `impl Future<Output = i32>` in the current scope",
+          "slot_ids": [
+            "await_expr"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ba754c2715730e218e1c854671d817ac34d3a2520c9ed867dc498a3f40c840cf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot add `&mut i32` to `impl Future<Output = i32>`",
+          "slot_ids": [],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c6e9d5d418a3a104b05c7170e0349c6a762b280266824a0b0a068c836f8f33df": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "e57378cc6cfda6ea0a97f191716aed5680ccbd70829af69726637d0723b4ef96": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `unwrap` found for opaque type `impl Future<Output = i32>` in the current scope",
+          "slot_ids": [
+            "await_expr"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

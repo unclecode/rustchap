@@ -1,0 +1,11 @@
+{
+  "id": "arc-and-mutex.rule.poisoned-mutex",
+  "kind": "rule",
+  "title": "Poisoned mutex error handling",
+  "concepts": [
+    "arc-and-mutex"
+  ],
+  "prompt": "What happens when a thread panics while holding a Mutex lock?",
+  "answer": "The Mutex becomes poisoned to indicate that protected data might be inconsistent. Subsequent lock calls return an Err containing a PoisonError, which still allows recovery of the underlying data via into_inner.",
+  "schema_version": 1
+}

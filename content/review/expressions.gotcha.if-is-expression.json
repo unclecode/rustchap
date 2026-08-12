@@ -1,0 +1,11 @@
+{
+  "id": "expressions.gotcha.if-is-expression",
+  "kind": "gotcha",
+  "title": "If branches must match return type",
+  "concepts": [
+    "expressions"
+  ],
+  "prompt": "Why must both branches of an `if` expression produce the same type in Rust?",
+  "answer": "`if` is an expression that evaluates to a value. Because Rust is statically typed, the compiler must know the type of that value at compile time regardless of which branch executes.",
+  "schema_version": 1
+}

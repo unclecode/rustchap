@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.013",
+  "version": 1,
+  "title": "Atomic Fences and Total Order",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "memory-ordering"
+  ],
+  "difficulty": 1,
+  "goal": "Decouple synchronization from variables and understand sequential consistency.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In C++ and Java, memory fences synchronize non-atomic operations across threads. Rust provides `fence` to decouple memory synchronization from atomic variables."
+      },
+      {
+        "kind": "code",
+        "code": "use std::sync::atomic::{fence, Ordering};\n\nDATA.store(42, Ordering::Relaxed);\nfence(Ordering::Release);\nREADY.store(true, Ordering::Relaxed);",
+        "caption": "Release fence prevents preceding writes from moving down."
+      },
+      {
+        "kind": "prose",
+        "text": "A `Release` fence paired with an `Acquire` fence in another thread establishes a synchronization barrier."
+      },
+      {
+        "kind": "prose",
+        "text": "In contrast, `Ordering::SeqCst` enforces a single globally agreed ordering of atomic operations across all threads."
+      },
+      {
+        "kind": "code",
+        "code": "val.store(1, Ordering::SeqCst);\nlet x = val.load(Ordering::SeqCst);",
+        "caption": "SeqCst enforces a global total order across threads."
+      },
+      {
+        "kind": "prose",
+        "text": "`Ordering::SeqCst` is the safest default, but incurs extra instruction overhead on weak memory hardware like ARM."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Decouple synchronization from variables and understand sequential consistency."
+}

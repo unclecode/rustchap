@@ -1,0 +1,11 @@
+{
+  "id": "send-and-static.rule.send-requirement",
+  "kind": "rule",
+  "title": "Send permits moving data across threads",
+  "concepts": [
+    "send-and-static"
+  ],
+  "prompt": "What guarantee does the Send trait provide when moving data into a spawned thread or task?",
+  "answer": "Send indicates that ownership of a type can be transferred safely across thread boundaries. Types that use non-atomic shared state like Rc or RefCell do not implement Send.",
+  "schema_version": 1
+}

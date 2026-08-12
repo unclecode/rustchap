@@ -1,0 +1,11 @@
+{
+  "id": "cancellation-safety.gotcha.dropped-future-state",
+  "kind": "gotcha",
+  "title": "Dropped futures discard local variables",
+  "concepts": [
+    "cancellation-safety"
+  ],
+  "prompt": "What happens to local variables inside an async block when its future is cancelled by select?",
+  "answer": "When a future is dropped before completion, all local variables held within that future frame are immediately dropped. Any state not saved outside the future is lost.",
+  "schema_version": 1
+}

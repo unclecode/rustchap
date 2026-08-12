@@ -1,0 +1,13 @@
+{
+  "id": "string-types.choice.returning-string-views",
+  "kind": "choice",
+  "title": "Returning string slices from functions",
+  "concepts": [
+    "string-types",
+    "borrow",
+    "elision"
+  ],
+  "prompt": "When should a function return `&str` instead of `String`?",
+  "answer": "Return `&str` when the output points to string bytes already owned by an input argument. Lifetime elision ties the returned slice to the borrowed input automatically. Return `String` only when creating new text or transferring detached ownership.",
+  "schema_version": 1
+}

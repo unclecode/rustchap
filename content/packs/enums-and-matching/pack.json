@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching",
+  "title": "Enums & Matching",
+  "description": "A value that is one of several, and how to read it back.",
+  "toolchain": "1.97.1",
+  "order": [
+    "enums-and-matching.001",
+    "enums-and-matching.002",
+    "enums-and-matching.003",
+    "enums-and-matching.004",
+    "enums-and-matching.005",
+    "enums-and-matching.006",
+    "enums-and-matching.007",
+    "enums-and-matching.008",
+    "enums-and-matching.009",
+    "enums-and-matching.010",
+    "enums-and-matching.011",
+    "enums-and-matching.012",
+    "enums-and-matching.013",
+    "enums-and-matching.014",
+    "enums-and-matching.015"
+  ],
+  "icon": "arrow.triangle.pull",
+  "accent": "orange",
+  "level": "foundations"
+}

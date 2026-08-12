@@ -57,7 +57,7 @@
     "The only operation the body performs on T is `>`. Which trait provides comparison operators?",
     "Display is for printing - main prints, but the FUNCTION never does."
   ],
-  "explanation": "Monomorphized generics ask for capabilities via bounds, and the body defines the ask: `item > max` desugars to PartialOrd::gt, so T: PartialOrd is necessary and sufficient - the compiler stamps out an i32 version and a &str version at zero runtime cost. Display fails because comparison isn't printing (even though main happens to print the results - bounds serve the body, not the caller). This is THE generics reflex: capabilities in, one implementation out.",
+  "explanation": "Monomorphized generics ask for capabilities via bounds, and the body defines the ask: `item > max` desugars to `PartialOrd::gt`, so T: PartialOrd is necessary and sufficient - the compiler stamps out an i32 version and a &str version at zero runtime cost. Display fails because comparison isn't printing (even though main happens to print the results - bounds serve the body, not the caller). This is THE generics reflex: capabilities in, one implementation out.",
   "prerequisites": [],
   "source": {
     "origin": "rustlings",

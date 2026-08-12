@@ -1,0 +1,11 @@
+{
+  "id": "traits.gotcha.default-method-signature",
+  "kind": "gotcha",
+  "title": "Overriding trait default methods",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "What happens when you override a trait default method with a different parameter type or receiver?",
+  "answer": "The compiler rejects the implementation. Overridden methods must match the exact signature defined in the trait, including receiver types like &self or &mut self. Changing receiver mutability causes E0186 or E0185.",
+  "schema_version": 1
+}

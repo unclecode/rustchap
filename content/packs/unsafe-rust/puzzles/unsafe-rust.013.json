@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust.013",
+  "version": 1,
+  "title": "Unsafe Traits: Contracts for Types",
+  "track": "unsafe-rust",
+  "concepts": [
+    "traits",
+    "unsafe-rust"
+  ],
+  "difficulty": 1,
+  "goal": "Learn why some traits require the unsafe keyword during implementation.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Unsafe Rust: Implementing Unsafe Traits"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You know traits define shared behavior. Some traits also carry memory safety guarantees that the compiler cannot check automatically."
+      },
+      {
+        "kind": "code",
+        "code": "/// Safety: layout has no padding.\npub unsafe trait BytePod {}",
+        "caption": "Marking a trait unsafe defines a contract for implementors."
+      },
+      {
+        "kind": "prose",
+        "text": "To implement an unsafe trait, you must add the `unsafe` keyword before `impl`. Leaving it off causes compiler error `E0200`."
+      },
+      {
+        "kind": "code",
+        "code": "// SAFETY: u32 has no padding.\nunsafe impl BytePod for u32 {}",
+        "caption": "The unsafe keyword acknowledges that you verified the safety contract."
+      },
+      {
+        "kind": "prose",
+        "text": "Calling methods on an unsafe trait does not require an `unsafe` block. The safety obligation is handled entirely when the trait is implemented."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn why some traits require the unsafe keyword during implementation."
+}

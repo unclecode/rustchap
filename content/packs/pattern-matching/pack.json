@@ -8,9 +8,20 @@
     "pattern-matching.004",
     "pattern-matching.001",
     "pattern-matching.002",
-    "pattern-matching.003"
+    "pattern-matching.003",
+    "pattern-matching.005",
+    "pattern-matching.006",
+    "pattern-matching.007",
+    "pattern-matching.008",
+    "pattern-matching.009",
+    "pattern-matching.010",
+    "pattern-matching.011",
+    "pattern-matching.012",
+    "pattern-matching.013",
+    "pattern-matching.014",
+    "pattern-matching.015"
   ],
   "icon": "puzzlepiece.fill",
   "accent": "mint",
-  "level": "core"
+  "level": "everyday"
 }

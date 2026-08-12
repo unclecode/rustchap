@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "closures.010",
+  "version": 1,
+  "title": "Function Pointers and Traits",
+  "track": "closures",
+  "concepts": [
+    "closures",
+    "generics"
+  ],
+  "difficulty": 2,
+  "goal": "Accept a closure parameter in a generic function.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Closures"
+  },
+  "template": "fn select_matching<F>(\n    items: &[i32],\n    ⟦param_decl⟧,\n) -> Vec<i32>\nwhere\n    F: ⟦bound_spec⟧,\n{\n    items\n        .iter()\n        .copied()\n        .filter(|&x| predicate(x))\n        .collect()\n}\n\nfn main() {\n    let limit = 10;\n    let result = select_matching(\n        &[5, 12, 8, 15],\n        |x| x < limit,\n    );\n    println!(\"{:?}\", result);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "param_decl",
+        "original": "predicate: fn(i32) -> bool",
+        "label": "parameter declaration",
+        "choices": [
+          {
+            "id": "pa1",
+            "text": "predicate: F"
+          },
+          {
+            "id": "pa2",
+            "text": "predicate: fn(i32) -> bool"
+          },
+          {
+            "id": "pa3",
+            "text": "predicate: impl Fn(i32) -> bool"
+          }
+        ]
+      },
+      {
+        "id": "bound_spec",
+        "original": "fn(i32) -> bool",
+        "label": "trait bound",
+        "choices": [
+          {
+            "id": "bo1",
+            "text": "Fn(i32) -> bool"
+          },
+          {
+            "id": "bo2",
+            "text": "fn(i32) -> bool"
+          },
+          {
+            "id": "bo3",
+            "text": "FnOnce(i32) -> bool"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn filters_items() {\n    let limit = 10;\n    let res = select_matching(&[3, 15, 8, 20], |x| x < limit);\n    assert_eq!(res, vec![3, 8]);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Determine if `fn(i32) -> bool` is a trait bound or a concrete function pointer type.",
+    "The parameter needs the generic type `F`, and `filter` invokes the predicate repeatedly, requiring `Fn`."
+  ],
+  "explanation": "Generic functions accept closures by declaring a type parameter `F` and constraining it with a closure trait like `F: Fn(i32) -> bool`. `fn(i32) -> bool` is a function pointer type, not a trait bound. Using it as a bound triggers `E0404`. Typing the parameter as `fn(i32) -> bool` rejects closures that capture local state like `limit` with `E0308`. Using `FnOnce` fails because `.filter()` calls the closure for every element in the slice. That requires calling it more than once."
+}

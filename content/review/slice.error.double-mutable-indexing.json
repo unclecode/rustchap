@@ -1,0 +1,12 @@
+{
+  "id": "slice.error.double-mutable-indexing",
+  "kind": "error",
+  "title": "Borrowing two elements mutably at once",
+  "concepts": [
+    "slice",
+    "borrow"
+  ],
+  "prompt": "What error occurs when attempting `let a = &mut slice[0]` and `let b = &mut slice[1]` in the same scope, and why?",
+  "answer": "The compiler raises error `E0499` for borrowing `slice` as mutable more than once. Indexing calls a method that borrows the whole slice mutably, so Rust cannot statically verify that the two indices do not overlap.",
+  "schema_version": 1
+}

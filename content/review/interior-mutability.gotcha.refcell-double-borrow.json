@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.gotcha.refcell-double-borrow",
+  "kind": "gotcha",
+  "title": "Borrowing RefCell Mutably While Reading",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "What happens at runtime if you call borrow_mut on a RefCell while a Ref guard for that cell is still in scope?",
+  "answer": "The program panics immediately with a borrow error. RefCell tracks borrows dynamically at runtime instead of compile time. It enforces the rule that you cannot have a mutable reference alongside any other reference.",
+  "schema_version": 1
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "remove-the-clone.012",
+  "version": 1,
+  "title": "Zero-Allocation Search",
+  "track": "remove-the-clone",
+  "concepts": [
+    "string-types",
+    "borrow",
+    "zero-copy",
+    "clone"
+  ],
+  "difficulty": 2,
+  "goal": "Pick the implementation that searches a string list without cloning strings.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Strings"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "borrowed",
+        "code": "fn find_prefix<'a>(items: &'a [String], prefix: &str) -> Option<&'a str> {\n    for item in items {\n        if item.starts_with(prefix) {\n            return Some(item.as_str());\n        }\n    }\n    None\n}"
+      },
+      {
+        "id": "cloned",
+        "code": "fn find_prefix<'a>(items: &'a [String], prefix: &str) -> Option<&'a str> {\n    for item in items {\n        if item.starts_with(prefix) {\n            let cloned = item.clone();\n            return Some(cloned.as_str());\n        }\n    }\n    None\n}"
+      },
+      {
+        "id": "to_string_each",
+        "code": "fn find_prefix<'a>(items: &'a [String], prefix: &str) -> Option<&'a str> {\n    for item in items {\n        let s = item.to_string();\n        if s.starts_with(prefix) {\n            return Some(&s);\n        }\n    }\n    None\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_search() {\n    let items = vec![String::from(\"apple\"), String::from(\"banana\")];\n    let result: Option<&str> = find_prefix(&items, \"ba\");\n    assert_eq!(result, Some(\"banana\"));\n    assert_eq!(find_prefix(&items, \"cz\"), None);\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Returning Option<&str> allows borrowing directly from the input slice.",
+    "Converting or cloning strings inside the loop creates temporary values that cannot be returned by reference."
+  ],
+  "explanation": "Returning `Option<&'a str>` allows borrowing a view into the input slice with zero heap allocations. Cloning the item or calling `to_string()` creates a local variable inside the loop. Returning a reference to a local variable triggers `E0515` because the local value is dropped when the function returns."
+}

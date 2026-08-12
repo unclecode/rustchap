@@ -53,10 +53,10 @@
     }
   },
   "hints": [
-    "The wildcard works today. Now imagine adding Status::Suspended next month - which version tells you every place to update?",
+    "The wildcard works today. Now imagine adding `Status::Suspended` next month - which version tells you every place to update?",
     "Name the variant. Exhaustiveness checking is the feature; _ turns it off."
   ],
-  "explanation": "Both Status::Banned and _ compile, pass, and rank equally here - Rust cannot measure future-proofing. The difference appears next month: with named variants, adding Status::Suspended makes every match a compile error listing exactly what to update; the wildcard swallows new variants silently - 'blocked' forever, wrongly. (Status::Blocked doesn't exist; the compiler catches pattern typos too, E0599.) Prefer naming what you handle; treat _ as a deliberate decision, not a habit.",
+  "explanation": "Both `Status::Banned` and _ compile, pass, and rank equally here - Rust cannot measure future-proofing. The difference appears next month: with named variants, adding `Status::Suspended` makes every match a compile error listing exactly what to update; the wildcard swallows new variants silently - 'blocked' forever, wrongly. (`Status::Blocked` doesn't exist; the compiler catches pattern typos too, E0599.) Prefer naming what you handle; treat _ as a deliberate decision, not a habit.",
   "prerequisites": [
     "pattern-matching.001"
   ],

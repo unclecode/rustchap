@@ -1,0 +1,12 @@
+{
+  "id": "closures.gotcha.field-call-parentheses",
+  "kind": "gotcha",
+  "title": "Calling a closure stored in a struct field",
+  "concepts": [
+    "closures",
+    "structs"
+  ],
+  "prompt": "How do you call a closure stored in a struct field, and why does standard method call syntax fail?",
+  "answer": "You must wrap the field in parentheses like `(self.field)(arg)`. Standard method call syntax `self.field(arg)` fails with `E0599` because Rust searches for a method named `field` rather than calling the closure inside the field.",
+  "schema_version": 1
+}

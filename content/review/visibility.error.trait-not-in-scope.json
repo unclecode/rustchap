@@ -1,0 +1,12 @@
+{
+  "id": "visibility.error.trait-not-in-scope",
+  "kind": "error",
+  "title": "Trait methods require trait import",
+  "concepts": [
+    "visibility",
+    "traits"
+  ],
+  "prompt": "Why does calling a public method on a public type fail with error `E0599` when the method comes from a trait?",
+  "answer": "Rust requires trait definitions to be in scope at the call site before calling their methods. Bringing the trait into scope with a `use` statement resolves error `E0599`.",
+  "schema_version": 1
+}

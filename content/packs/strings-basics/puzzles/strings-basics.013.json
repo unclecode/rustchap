@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.013",
+  "version": 1,
+  "title": "Parse the Port",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types",
+    "primitive-types"
+  ],
+  "difficulty": 2,
+  "goal": "Parse a string into a number and handle the return value correctly.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from std-types/string"
+  },
+  "template": "fn parse_port(s: &str) -> u16 {\n    let p = s.parse⟦type_spec⟧()⟦unwrap_step⟧;\n    p\n}\n\nfn main() {\n    println!(\"{}\", parse_port(\"8080\"));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "type_spec",
+        "original": "::<u16>",
+        "label": "type parameter",
+        "choices": [
+          {
+            "id": "ty1",
+            "text": "::<u16>"
+          },
+          {
+            "id": "ty2",
+            "text": "::<&str>"
+          },
+          {
+            "id": "ty3",
+            "text": "::<u32>"
+          }
+        ]
+      },
+      {
+        "id": "unwrap_step",
+        "original": ".unwrap()",
+        "label": "unwrap result",
+        "choices": [
+          {
+            "id": "un1",
+            "text": ".unwrap()"
+          },
+          {
+            "id": "un2",
+            "text": ""
+          },
+          {
+            "id": "un3",
+            "text": "?"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn parses_valid_port() {\n    assert_eq!(parse_port(\"8080\"), 8080);\n    assert_eq!(parse_port(\"80\"), 80);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The `parse` method is generic and requires explicit type parameters or annotations.",
+    "Calling `parse` returns a `Result` that must be unwrapped to produce the number."
+  ],
+  "explanation": "`s.parse::<u16>()` specifies the target type as `u16`. Calling `.unwrap()` extracts the inner `u16` from the `Result`. Using `::<&str>` fails because `&str` does not implement `FromStr`. Using `::<u32>` causes error E0308 because the function returns `u16`. Omitting `.unwrap()` returns a `Result` instead of a primitive number. Using `?` causes error E0277 because the function does not return `Result`."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "pattern-matching.gotcha.or-pattern-bindings",
+  "kind": "gotcha",
+  "title": "Variable names in OR patterns",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "prompt": "Why does an OR pattern like `A(x) | B(y)` fail to compile even if `x` and `y` have the exact same type?",
+  "answer": "Every branch of an OR pattern must bind the exact same set of variable names. The arm body executes regardless of which variant matched, so it requires one consistent variable name to access. Rename `y` to `x` in the second pattern so both sides produce `x`.",
+  "schema_version": 1
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers.007",
+  "version": 1,
+  "title": "Deref Coercion",
+  "track": "smart-pointers",
+  "concepts": [
+    "smart-pointers",
+    "deref-coercion"
+  ],
+  "difficulty": 2,
+  "goal": "Pass boxed values directly into functions expecting borrowed references.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Box Deref"
+  },
+  "template": "fn count_words(text: &str) -> usize {\n    text.split_whitespace().count()\n}\n\nfn main() {\n    let b1: Box<str> = Box::from(\"hello world\");\n    let c1 = count_words(⟦pass1⟧);\n    let b2 = Box::new(String::from(\"one two three\"));\n    let c2 = count_words(⟦pass2⟧);\n    println!(\"{c1} {c2}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "pass1",
+        "original": "*b1",
+        "label": "boxed str argument",
+        "choices": [
+          {
+            "id": "pa1",
+            "text": "&b1"
+          },
+          {
+            "id": "pa2",
+            "text": "*b1"
+          },
+          {
+            "id": "pa3",
+            "text": "b1"
+          }
+        ]
+      },
+      {
+        "id": "pass2",
+        "original": "*b2",
+        "label": "boxed string argument",
+        "choices": [
+          {
+            "id": "pa1",
+            "text": "&b2"
+          },
+          {
+            "id": "pa2",
+            "text": "*b2"
+          },
+          {
+            "id": "pa3",
+            "text": "b2"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn counts() {\n    let b1: Box<str> = Box::from(\"a b c\");\n    assert_eq!(count_words(&b1), 3);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rust automatically coerces references to smart pointers into references to their target type.",
+    "Dereferencing *b1 attempts to move the unsized str value out of the box."
+  ],
+  "explanation": "Rust implements Deref for Box, allowing deref coercion to convert &Box<str> or &Box<String> automatically into &str when passing arguments to count_words. Attempting to dereference *b1 fails because str is dynamically sized and cannot be moved (E0277). Passing b1 without borrowing produces a type mismatch error (E0308) because count_words expects &str rather than an owned Box."
+}

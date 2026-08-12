@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.004",
+  "version": 1,
+  "title": "Avoid Unnecessary Allocations",
+  "track": "errors-that-travel",
+  "concepts": [
+    "error-propagation"
+  ],
+  "difficulty": 2,
+  "goal": "Choose the solution that parses strings without allocating heap memory.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from comprehensive-rust"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "idiomatic_try",
+        "code": "use std::num::ParseIntError;\n\nfn parse_port(\n    s: &str,\n) -> Result<u16, ParseIntError> {\n    let port = s.parse::<u16>()?;\n    Ok(port)\n}"
+      },
+      {
+        "id": "missing_ok",
+        "code": "use std::num::ParseIntError;\n\nfn parse_port(\n    s: &str,\n) -> Result<u16, ParseIntError> {\n    let port = s.parse::<u16>()?;\n    port\n}"
+      },
+      {
+        "id": "unwrap_panic",
+        "code": "use std::num::ParseIntError;\n\nfn parse_port(\n    s: &str,\n) -> Result<u16, ParseIntError> {\n    Ok(s.parse::<u16>().unwrap())\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_ports() {\n    assert_eq!(parse_port(\"8080\"), Ok(8080));\n    assert!(parse_port(\"invalid\").is_err());\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Parsing can run directly on a string slice without copying it.",
+    "Propagating with `?` unwraps the success value, which must then be wrapped in `Ok(...)`."
+  ],
+  "explanation": "The idiomatic Rust approach parses directly from the `&str` slice using `?` to early-return errors and wraps the unpacked port in `Ok(...)`. Returning a raw integer directly causes a type mismatch with `Result`, while calling `.unwrap()` panics on invalid input instead of propagating errors."
+}

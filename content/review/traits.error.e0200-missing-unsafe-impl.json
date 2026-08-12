@@ -1,0 +1,12 @@
+{
+  "id": "traits.error.e0200-missing-unsafe-impl",
+  "kind": "error",
+  "title": "Compiler Error E0200",
+  "concepts": [
+    "traits",
+    "unsafe-rust"
+  ],
+  "prompt": "What causes error E0200 when implementing a trait?",
+  "answer": "Error E0200 happens when you implement an unsafe trait without adding the unsafe keyword before impl. The compiler requires explicit acknowledgment of the trait safety contract.",
+  "schema_version": 1
+}

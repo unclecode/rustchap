@@ -1,0 +1,12 @@
+{
+  "id": "closures.gotcha.returned-closure-move",
+  "kind": "gotcha",
+  "title": "Why returning closures require move",
+  "concepts": [
+    "closures",
+    "move"
+  ],
+  "prompt": "Why must a closure returned from a function use the move keyword when capturing local variables?",
+  "answer": "Local variables are dropped when the outer function returns. Without `move`, the closure would hold dangling references to stack memory that no longer exists. `move` forces the closure to take ownership of those variables so they live inside the closure.",
+  "schema_version": 1
+}

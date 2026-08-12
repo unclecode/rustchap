@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.004",
+  "version": 1,
+  "title": "Dropping Borrowed Data",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait",
+    "borrow"
+  ],
+  "difficulty": 2,
+  "goal": "Avoid dropping an owner while active references to it still exist.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "template": "struct Config {\n    port: String,\n}\n\nfn inspect(cfg: Config) -> usize {\n    let port_ref = &cfg.port;\n    ⟦check_step⟧;\n    port_ref.len() ⟦finish_step⟧\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "check_step",
+        "original": "std::mem::drop(cfg)",
+        "label": "owner check",
+        "choices": [
+          {
+            "id": "ch1",
+            "text": "let _ = &port_ref"
+          },
+          {
+            "id": "ch2",
+            "text": "std::mem::drop(cfg)"
+          },
+          {
+            "id": "ch3",
+            "text": "std::mem::drop(cfg.port)"
+          }
+        ]
+      },
+      {
+        "id": "finish_step",
+        "original": "+ 0",
+        "label": "return expression",
+        "choices": [
+          {
+            "id": "fi1",
+            "text": "+ 0"
+          },
+          {
+            "id": "fi2",
+            "text": "+ port_ref.len()"
+          },
+          {
+            "id": "fi3",
+            "text": ";"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_inspect() {\n    let cfg = Config { port: String::from(\"8080\") };\n    assert_eq!(inspect(cfg), 4);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "You cannot move or drop an owner while a reference borrows its field.",
+    "Keep the owner alive until all active borrows are no longer used."
+  ],
+  "explanation": "Dropping `cfg` via `std::mem::drop(cfg)` or `std::mem::drop(cfg.port)` fails with E0505/E0507 because `cfg` is currently borrowed by `port_ref`. `let _ = &port_ref` keeps the owner alive while reading through `port_ref`. `port_ref.len() + 0` evaluates to `4`, matching the expected return value."
+}

@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "standard-traits.009",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "174596bbfdbd859cd7867d3040822840bd478770450ef5a1b86b17e07e8db775": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `lines` found for type parameter `R` in the current scope",
+          "slot_ids": [
+            "method"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "32642adef9821f1eef67eb47789f7ebf60e63fb6c57a08d9fed08621480fb325": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`&mut R` is not an iterator",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "362375b20b68a3c3f216303eec027eb2c94de68457099cc81116f08582a8499c": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "3f144b9d8e4e02aefd6f811665e6e0f116f06bd10cb88bfbde808900a5f4a8b3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot borrow `reader` as mutable, as it is not declared as mutable",
+          "slot_ids": [
+            "wrap"
+          ],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "59d49cd231be2cb27f6de94c0e2c9ddf20178c9d2fd65ffea64764d9fd5b1f0f": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "618bf1c91137c0a9460f2329f36f0e6efd9fb2cc87409c944bd7d29e2e609fda": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the method `lines` exists for mutable reference `&mut R`, but its trait bounds were not satisfied",
+          "slot_ids": [
+            "method"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7554994fd34dc2117fddb5c3cdd47acd82056ce65e7a393a5cf60cf5a4cc4e24": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`&mut R` is not an iterator",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "94675c7ab82054fe6d45a1b8eddfa01f912564f0d9bc68b7c0c313917994b607": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e24bc37197ace00613efb5baaedac014e114ee0c08736a3c2d1a2460c2e2d28f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`&mut BufReader<R>` is not an iterator",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

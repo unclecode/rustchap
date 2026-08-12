@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.012",
+  "version": 1,
+  "title": "Accept Any String View",
+  "track": "design-the-api",
+  "concepts": [
+    "api-design",
+    "traits"
+  ],
+  "difficulty": 2,
+  "goal": "Make a function accept both string slices and owned strings cleanly using AsRef.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Comprehensive Rust: Day 4"
+  },
+  "template": "fn print_label(text: ⟦param_type⟧) {\n    println!(\"{}\", text.⟦conv_method⟧);\n}\n\nfn main() {\n    let s = String::from(\"item\");\n    print_label(&s);\n    print_label(\"static\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "param_type",
+        "original": "String",
+        "label": "parameter type",
+        "choices": [
+          {
+            "id": "pa1",
+            "text": "impl AsRef<str>"
+          },
+          {
+            "id": "pa2",
+            "text": "String"
+          },
+          {
+            "id": "pa3",
+            "text": "&String"
+          }
+        ]
+      },
+      {
+        "id": "conv_method",
+        "original": "as_str()",
+        "label": "conversion method",
+        "choices": [
+          {
+            "id": "co1",
+            "text": "as_ref()"
+          },
+          {
+            "id": "co2",
+            "text": "to_string()"
+          },
+          {
+            "id": "co3",
+            "text": "as_str()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn works() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look for a trait that provides reference-to-reference conversions.",
+    "The parameter should implement `AsRef<str>`, and trait methods convert references."
+  ],
+  "explanation": "`impl AsRef<str>` accepts any type that can be borrowed as a string slice, including `&str`, `String`, and `&String`. Calling `.as_ref()` on the parameter produces a `&str` view. Choosing `String` causes type mismatches `E0308` when callers pass string slices or references. Calling `.as_str()` fails with `E0599` because generic type parameters do not inherit concrete struct methods."
+}

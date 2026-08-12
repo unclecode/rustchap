@@ -1,0 +1,11 @@
+{
+  "id": "standard-traits.gotcha.from-impl-gives-into",
+  "kind": "gotcha",
+  "title": "From implementation automatically provide...",
+  "concepts": [
+    "standard-traits"
+  ],
+  "prompt": "What happens when you implement the From trait for a custom type?",
+  "answer": "Implementing `From<T> for U` automatically provides an implementation of `Into<U> for T`. You should almost always implement `From` instead of `Into` directly.",
+  "schema_version": 1
+}

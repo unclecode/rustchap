@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.005",
+  "version": 1,
+  "title": "Bytes and Characters",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types"
+  ],
+  "difficulty": 1,
+  "goal": "Understand why string indexing is not simple in Rust.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from std-types/string"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In Python or Java, indexing a string `s[0]` returns the first character. Rust does not allow `s[0]` on strings because UTF-8 characters vary in byte length."
+      },
+      {
+        "kind": "code",
+        "code": "let hello = \"hello\";\nlet ferris = \"🦀\";",
+        "caption": "hello is 5 bytes. ferris is 4 bytes."
+      },
+      {
+        "kind": "prose",
+        "text": "The method `len()` returns length in bytes, not character count. For the crab emoji, `len()` is 4, but character count is 1."
+      },
+      {
+        "kind": "code",
+        "code": "let b = ferris.len();\nlet c = ferris.chars().count();",
+        "caption": "len counts bytes. chars counts Unicode values."
+      },
+      {
+        "kind": "prose",
+        "text": "To get individual characters, use the `chars()` iterator. To borrow a portion as a `&str`, use range slicing like `&s[0..2]` with valid UTF-8 byte boundaries."
+      },
+      {
+        "kind": "code",
+        "code": "let slice = &hello[0..2];\nlet c = hello.chars().nth(0);",
+        "caption": "Range slicing uses byte offsets."
+      },
+      {
+        "kind": "prose",
+        "text": "Slicing across a character boundary panics at runtime. The iterator `chars()` is always safe."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand why string indexing is not simple in Rust."
+}

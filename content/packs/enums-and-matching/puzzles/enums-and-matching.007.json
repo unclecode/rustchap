@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.007",
+  "version": 1,
+  "title": "Just One Case",
+  "track": "enums-and-matching",
+  "concepts": [
+    "enums-basics",
+    "match-basics"
+  ],
+  "difficulty": 2,
+  "goal": "Only one variant matters here. Write it without a full match.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Pattern Matching (Let Control Flow)"
+  },
+  "template": "enum Event {\n    Click(i32),\n    Close,\n}\n\nfn button(e: Event) -> i32 {\n    ⟦kw⟧ Event::Click(n) = e {\n        n\n    } else {\n        0\n    }\n}\n\nfn main() {\n    println!(\"{}\", button(Event::Click(2)));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "kw",
+        "original": "let",
+        "label": "the keyword",
+        "choices": [
+          {
+            "id": "kw1",
+            "text": "if let"
+          },
+          {
+            "id": "kw2",
+            "text": "let"
+          },
+          {
+            "id": "kw3",
+            "text": "match"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn buttons() {\n    assert_eq!(button(Event::Click(2)), 2);\n    assert_eq!(button(Event::Close), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "A plain `let` has to match every time, and this pattern cannot.",
+    "There is a form of `let` that is allowed to fail."
+  ],
+  "explanation": "`if let` runs the block when the pattern matches and takes the `else` branch when it does not, so it is the short form of a `match` with one interesting arm. A plain `let` must always match, and `Event::Click(n)` does not match a `Close`, so the compiler rejects it as a refutable pattern. `match` needs its own arm syntax and does not fit this shape. Reach for `if let` when one variant matters and the rest do not."
+}

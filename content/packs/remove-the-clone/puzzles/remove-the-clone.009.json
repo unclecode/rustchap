@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "remove-the-clone.009",
+  "version": 1,
+  "title": "Point on the Stack",
+  "track": "remove-the-clone",
+  "concepts": [
+    "copy",
+    "clone",
+    "structs"
+  ],
+  "difficulty": 1,
+  "goal": "Enable bitwise copy on a small struct to remove unnecessary clone calls.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Copy Types"
+  },
+  "template": "#[derive(⟦attr_slot⟧)]\nstruct Pos {\n    x: i32,\n    y: i32,\n}\n\nfn print_pos(p: Pos) {\n    println!(\"{},{}\", p.x, p.y);\n}\n\nfn main() {\n    let p1 = Pos { x: 10, y: 20 };\n    print_pos(⟦arg_slot⟧);\n    print_pos(p1);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "attr_slot",
+        "original": "Clone",
+        "label": "derive attribute",
+        "choices": [
+          {
+            "id": "at1",
+            "text": "Copy, Clone"
+          },
+          {
+            "id": "at2",
+            "text": "Clone"
+          },
+          {
+            "id": "at3",
+            "text": "Debug"
+          }
+        ]
+      },
+      {
+        "id": "arg_slot",
+        "original": "p1",
+        "label": "argument passed",
+        "choices": [
+          {
+            "id": "ar1",
+            "text": "p1"
+          },
+          {
+            "id": "ar2",
+            "text": "&p1"
+          },
+          {
+            "id": "ar3",
+            "text": "p1.as_ref()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_main() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Deriving Copy allows p1 to be duplicated automatically on assignment or function calls.",
+    "When a type is Copy, passing p1 directly duplicates it without moving ownership."
+  ],
+  "explanation": "Deriving `Copy` alongside `Clone` enables bitwise copy semantics for small value types like `Pos`. Passing `p1` by value then copies bytes instead of moving ownership, so `p1` remains valid for subsequent calls without calling `.clone()`. Passing `&p1` causes type mismatch `E0308` because `print_pos` expects an owned `Pos`."
+}

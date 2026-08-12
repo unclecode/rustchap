@@ -1,0 +1,12 @@
+{
+  "id": "generics.rule.weakest-bound-principle",
+  "kind": "rule",
+  "title": "Selecting generic trait bounds",
+  "concepts": [
+    "generics",
+    "traits"
+  ],
+  "prompt": "How should you choose trait bounds for a generic parameter in a function?",
+  "answer": "Require only the minimum capabilities used by the function body. Demanding unnecessary bounds like Clone when the body only prints limits callers needlessly and causes E0277 for types lacking those bounds.",
+  "schema_version": 1
+}

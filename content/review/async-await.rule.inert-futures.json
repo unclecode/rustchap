@@ -1,0 +1,11 @@
+{
+  "id": "async-await.rule.inert-futures",
+  "kind": "rule",
+  "title": "Calling async fn does not execute code",
+  "concepts": [
+    "async-await"
+  ],
+  "prompt": "What happens when you call an async function without applying .await or passing it to an executor?",
+  "answer": "Calling an async function constructs and returns a future state machine without executing any function body code. The work only begins when an executor polls the returned future.",
+  "schema_version": 1
+}

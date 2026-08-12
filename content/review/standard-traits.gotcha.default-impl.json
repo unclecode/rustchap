@@ -1,0 +1,11 @@
+{
+  "id": "standard-traits.gotcha.default-impl",
+  "kind": "gotcha",
+  "title": "Default trait versus inherent constructors",
+  "concepts": [
+    "standard-traits"
+  ],
+  "prompt": "When should you derive `Default` instead of writing an inherent `new` method?",
+  "answer": "Derive `Default` when every field should take its type's standard zero or default value. Generic code calling `T::default()` requires the `Default` trait, which an inherent `new()` method does not provide.",
+  "schema_version": 1
+}

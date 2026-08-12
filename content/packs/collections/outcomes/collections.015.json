@@ -1,0 +1,459 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "collections.015",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0732acb070367d9806863783ecfb7ab0184173e5ea4d9417bf40e081050bfbe3": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "107fcfc1cff685675f3f9f2ad5cd60b490417e8823348ee663aaa85e292d043a": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0
+      },
+      "diagnostics": []
+    },
+    "174b423c98744e824418b9a2f54478ff1832832c83c05b8b1d3cf18a2513a640": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "sort"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "25a209e811b7aba2cd348fc8b25e29fff3a26f9f394d7699b7e91060d746f6bb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "sort"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "350a17675d3280f1b5f2a28f49b410cfa093a8c29bb26275ab4a6f00d79c85e4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "sort"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4f48950c412507682000ad01906c3777293cb5241abca17421bbbba746ac16c8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "dedup"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6a3611305377e92d1d19943e9c77a2450a62c5ea554a54362a5f21d5a688a13e": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6db613fe55b5ec4f711135b8d288f3ba33801952ef9c1762d0f8fe8a9f2b2503": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "sort"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "702e8660d4ba81f834627ca982bce5a5dd830293a6cc4a868740575a40049633": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "780146032b29a7d8a6aab3b6a2cd032c9526a5636e6fa4f97980a63a6dfa6bd6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "dedup"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7ba68a8f21d8f4c8fe7c56a55c15409b966ced4c5bc4b8ad23ac757416821615": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "80a9507ad8917199561eb2c372f66914ce5fbb56de69e30ae9b8d885416a6186": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "dedup"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "81ac8b5c4ca9d1a6430cedc87f1247f99812a14e7c28e65f65aacdec720d6e0d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "sort"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8af4167566879f2414e69ea0e060d5d7fe4d38491b5afb43af11b8329c0d2885": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "pop"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "93c25b7b4562faefe1e90527c28ee461e665168fdd5c2864fa5486ef9ae59b8c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "dedup"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "940530f0702e96ed7ce4b51cc8661db58811e3370f2504ee56d6d0782118a413": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "sort"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9c6f347749db79fd0aae5897c4c3b93f3f27a21399e22c7b0a394c926634c869": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "pop"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a7611d46525f20590e95b14d499ff25b965f2d91c23363c3ab78637181901c41": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "pop"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b83a181267a1be6b10b664e247080f8272f90c57dd39025ace2a653968a33ee0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "pop"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c265622d47d6238ed2f535020febd6740e703b41267c54a489f195d892b9cd49": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "pop"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d706bcb1612f039725229eebd1c26825e7ec8b4e864f2cc10edbd08a8ac35712": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "dedup"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e7eda64f69273f55a7eeabd1bae4ef68e0cfa5e5b4991eb89462ed7db947c4a7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "pop"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f6337c9f417de99b9f71fe2eea2461dd279ae0f781d1106fb5bbb80ec1602636": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `values`",
+          "slot_ids": [
+            "dedup"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f8a5c3bacf7cfb76298b15f7084e5c1b7760e0e6898e70a082108ae5ee6d39de": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

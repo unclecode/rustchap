@@ -1,0 +1,12 @@
+{
+  "id": "smart-pointers.choice.rc-make-mut",
+  "kind": "choice",
+  "title": "Choosing between Rc clone and make_mut",
+  "concepts": [
+    "smart-pointers",
+    "clone"
+  ],
+  "prompt": "When should you use `Rc::make_mut` instead of explicitly cloning the inner value before mutating?",
+  "answer": "`Rc::make_mut` provides copy-on-write behavior by checking the reference count at runtime. If the `Rc` has only one owner, `Rc::make_mut` gives mutable access to the existing allocation without cloning. It only clones the inner value when the pointer is actively shared with other handles.",
+  "schema_version": 1
+}

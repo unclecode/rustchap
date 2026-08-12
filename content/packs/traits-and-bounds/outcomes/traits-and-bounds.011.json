@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "traits-and-bounds.011",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "87de258abe704053da652c8cdb6575877736dcd528323e5572c0916a0a3a825d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "missing_derive_error"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c5ad3c83ab7d3ec9e62b075eaf46e0614b4c4221648cdf14cdc583c7fefcece9": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 1
+      },
+      "diagnostics": []
+    },
+    "e0a2a94db6ef59ba00d7882f3a84dd4db3b4890157c3f727921f8d92cdcab404": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of `cfg.endpoint` which is behind a shared reference",
+          "slot_ids": [
+            "manual_move_error"
+          ],
+          "rust_code": "E0507"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

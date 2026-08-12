@@ -1,0 +1,11 @@
+{
+  "id": "error-propagation.gotcha.mismatched-return-types",
+  "kind": "gotcha",
+  "title": "Using try in functions returning mismatch...",
+  "concepts": [
+    "error-propagation"
+  ],
+  "prompt": "Why does using the try operator ? inside a function that returns () or Option produce a compiler error when operating on a Result?",
+  "answer": "The try operator can only return an error variant compatible with the enclosing function signature. A function returning () or Option cannot return a `Result::Err`. The compiler triggers error E0277 because the try trait is not implemented for that return combination.",
+  "schema_version": 1
+}

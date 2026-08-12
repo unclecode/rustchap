@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering",
+  "title": "Atomics & Ordering",
+  "description": "Atomic types and what memory ordering actually promises.",
+  "toolchain": "1.97.1",
+  "order": [
+    "atomics-and-ordering.001",
+    "atomics-and-ordering.002",
+    "atomics-and-ordering.003",
+    "atomics-and-ordering.004",
+    "atomics-and-ordering.005",
+    "atomics-and-ordering.006",
+    "atomics-and-ordering.007",
+    "atomics-and-ordering.008",
+    "atomics-and-ordering.009",
+    "atomics-and-ordering.010",
+    "atomics-and-ordering.011",
+    "atomics-and-ordering.012",
+    "atomics-and-ordering.013",
+    "atomics-and-ordering.014",
+    "atomics-and-ordering.015"
+  ],
+  "icon": "bolt.horizontal.fill",
+  "accent": "yellow",
+  "level": "mastery"
+}

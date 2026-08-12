@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "async-and-send.017",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "43b4ae094ebb4c86627f61e51189639475b719f5e15db243c5667619a6b3610f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "method `call` has an incompatible type for trait",
+          "slot_ids": [],
+          "rust_code": "E0053"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "body_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `poll` found for mutable reference `&mut dyn std::future::Future<Output = i32>` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9614dc088b30f6cfe0a01a6d07eb9af7ca4179dc352a1d33571c234df795c2ca": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "body_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9fee992c42903328b09afb7e91991097252b08aec9fd0c5e10c9df57e662a57d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "body_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a2e04e2c21a2cbc021a0f8fa3cbef39cf3ebd307f0a97291e3cebf6509775409": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "body_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "the trait `Service` is not dyn compatible",
+          "slot_ids": [],
+          "rust_code": "E0038"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "aa7314639a9dfa847c22c5fa6f7e2c98962fdd3fdcad1375f8e523983f860ea7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "body_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "the trait `Service` is not dyn compatible",
+          "slot_ids": [],
+          "rust_code": "E0038"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "aba9e80b40034a831fc7482377141f5b8a02fb4135188be34fe5095552a37f3f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "method `call` has an incompatible type for trait",
+          "slot_ids": [],
+          "rust_code": "E0053"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "body_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `poll` found for mutable reference `&mut dyn std::future::Future<Output = i32>` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b7698d56b4eae2e9c61b5c5a8ef5d570a9a3d27d04851288926b04e8ec836bfa": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "method `call` has an incompatible type for trait",
+          "slot_ids": [],
+          "rust_code": "E0053"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `poll` found for mutable reference `&mut dyn std::future::Future<Output = i32>` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "eddc3421b69447018ddfef5e0c0cc3ec4107eb6cdfb75c80dd06a970163e0a06": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "fdd0ef986fef991d6d67ab92868cf6938219cc5a98f75ab667b83dd7f5b5dd19": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the trait `Service` is not dyn compatible",
+          "slot_ids": [],
+          "rust_code": "E0038"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

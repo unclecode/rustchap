@@ -1,0 +1,16 @@
+{
+  "id": "bounded-channels",
+  "title": "Bounded Sync Channels",
+  "topic": "Concurrency",
+  "summary": "Synchronous channels limit queue size and block senders when full.",
+  "lecture": [
+    "Standard Rust channels are unbounded, growing indefinitely as messages are sent. A bounded channel created with `mpsc::sync_channel` has a fixed capacity.",
+    "Calling send on a full bounded channel blocks the sending thread until the receiving thread reads a message. This creates backpressure between producers and consumers.",
+    "You can use try_send to fail immediately instead of blocking when the channel buffer is at capacity."
+  ],
+  "example": {
+    "code": "let (tx, rx) = mpsc::sync_channel(1);\ntx.send(42).unwrap();",
+    "caption": "sync_channel creates a bounded sender and receiver."
+  },
+  "schema_version": 1
+}

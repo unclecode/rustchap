@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.error.already-borrowed",
+  "kind": "error",
+  "title": "Handling Already Borrowed RefCell Panics",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "How can you attempt to mutate a RefCell without risking a panic if it might already be borrowed?",
+  "answer": "Call try_borrow_mut instead of borrow_mut. It returns a Result containing the RefMut guard on success or a BorrowMutError on failure. This lets your code handle borrow conflicts gracefully.",
+  "schema_version": 1
+}

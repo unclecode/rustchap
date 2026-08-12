@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.008",
+  "version": 1,
+  "title": "Dynamic Error Types",
+  "track": "errors-that-travel",
+  "concepts": [
+    "dynamic-errors",
+    "error-trait"
+  ],
+  "difficulty": 1,
+  "goal": "Use Box<dyn Error> to return multiple distinct error types from one function.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Error Handling"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "When writing application logic, functions often encounter different error types that do not share a common enum."
+      },
+      {
+        "kind": "code",
+        "code": "type Errs =\n    Box<dyn std::error::Error>;\nfn run() -> Result<(), Errs> {\n    let _ = \"12\".parse::<i32>()?;\n    Ok(())\n}",
+        "caption": "Box<dyn Error> erases concrete error types."
+      },
+      {
+        "kind": "prose",
+        "text": "`Box<dyn Error>` is a trait object that can hold any error implementing `std::error::Error`."
+      },
+      {
+        "kind": "prose",
+        "text": "The `?` operator automatically boxes errors when the function return type is `Result<T, Box<dyn Error>>`."
+      },
+      {
+        "kind": "code",
+        "code": "fn main()\n  -> Result<(), Box<dyn std::error::Error>> {\n    let n = \"5\".parse::<i32>()?;\n    Ok(())\n}",
+        "caption": "Main returning dynamic error allows standard try operator usage."
+      },
+      {
+        "kind": "prose",
+        "text": "This simplifies application code but makes error matching harder for callers."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Use Box<dyn Error> to return multiple distinct error types from one function."
+}

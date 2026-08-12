@@ -1,0 +1,11 @@
+{
+  "id": "typestate-pattern.choice.failed-transition-recovery",
+  "kind": "choice",
+  "title": "Preserving state on fallible transitions",
+  "concepts": [
+    "typestate-pattern"
+  ],
+  "prompt": "How should a fallible typestate transition function handle error returns?",
+  "answer": "The function should return Result<NewState, OldState> with the original struct inside the Err variant. This preserves ownership of the data so the caller can retry or recover when a transition fails.",
+  "schema_version": 1
+}

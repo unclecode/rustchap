@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "id": "structs.004",
+  "version": 1,
+  "title": "Methods on Your Type",
+  "track": "structs",
+  "concepts": [
+    "structs"
+  ],
+  "difficulty": 1,
+  "goal": "Behavior goes in an impl block, and the first parameter decides who keeps the value.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Methods and Traits"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Behavior goes in an `impl` block next to the type. Inside it, a method takes `self` as its first parameter, which is how the caller's value gets in."
+      },
+      {
+        "kind": "prose",
+        "text": "There are two forms you need now, and the choice is not style. It decides whether the caller still owns the value afterwards."
+      },
+      {
+        "kind": "code",
+        "code": "impl User {\n    fn greet(&self) -> String {\n        format!(\"hi {}\", self.name)\n    }\n\n    fn into_name(self) -> String {\n        self.name\n    }\n}",
+        "caption": "&self borrows. self takes the value away."
+      },
+      {
+        "kind": "prose",
+        "text": "`&self` borrows the value for the length of the call. The caller keeps it, so you can call the method as many times as you want."
+      },
+      {
+        "kind": "prose",
+        "text": "`self` takes the value into the method. After one call the caller no longer has it, and a second call is error `E0382`. Use this form only when the method really does consume the value, such as turning it into something else."
+      },
+      {
+        "kind": "prose",
+        "text": "When in doubt use `&self`. The ownership decks explain why this rule exists at all."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Behavior goes in an impl block, and the first parameter decides who keeps the value."
+}

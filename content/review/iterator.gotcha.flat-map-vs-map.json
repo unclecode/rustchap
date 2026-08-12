@@ -1,0 +1,11 @@
+{
+  "id": "iterator.gotcha.flat-map-vs-map",
+  "kind": "gotcha",
+  "title": "Flat map flattens nested iterators",
+  "concepts": [
+    "iterator"
+  ],
+  "prompt": "What error occurs when you use map instead of flat_map on a closure that returns an iterator?",
+  "answer": "The compiler produces type error `E0308` because `map` creates an iterator yielding inner iterators rather than individual elements. Downstream adapters receive an iterator item type instead of the inner value type. Using `flat_map` flattens the nested stream lazily into a single sequence.",
+  "schema_version": 1
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.014",
+  "version": 1,
+  "title": "C Memory Layout",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "ffi-basics",
+    "raw-pointers"
+  ],
+  "difficulty": 2,
+  "goal": "Pass a struct across FFI with guaranteed C layout and byte conversion.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Foreign Function Interface"
+  },
+  "template": "⟦attr_slot⟧\nstruct Color { r: u8, g: u32, b: u8 }\n\nfn red_channel(ptr: *const Color) -> u8 {\n    unsafe {\n        let byte_ptr = ptr as ⟦cast_slot⟧;\n        *byte_ptr\n    }\n}\n\nfn main() {\n    let c = Color { r: 255, g: 0, b: 0 };\n    println!(\"{}\", red_channel(&c as *const Color));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "attr_slot",
+        "original": "#[repr(Rust)]",
+        "label": "layout attribute",
+        "choices": [
+          {
+            "id": "at1",
+            "text": "#[repr(C)]"
+          },
+          {
+            "id": "at2",
+            "text": "#[repr(Rust)]"
+          },
+          {
+            "id": "at3",
+            "text": "#[repr(packed_c)]"
+          }
+        ]
+      },
+      {
+        "id": "cast_slot",
+        "original": "u8",
+        "label": "pointer cast",
+        "choices": [
+          {
+            "id": "ca1",
+            "text": "*const u8"
+          },
+          {
+            "id": "ca2",
+            "text": "*const u32"
+          },
+          {
+            "id": "ca3",
+            "text": "u8"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn reads_red_byte() {\n    let c = Color { r: 255, g: 0, b: 0 };\n    assert_eq!(red_channel(&c as *const Color), 255);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 3
+    },
+    "optimal": {
+      "token_edits": 3
+    }
+  },
+  "hints": [
+    "Use `#[repr(C)]` to force C-compatible field layout.",
+    "Cast the struct pointer to *const u8 to inspect byte offset 0."
+  ],
+  "explanation": "`ptr as *const u8` reinterprets the address as a byte pointer, which is what reading raw bytes needs. Casting a pointer straight to `u8` is an invalid cast and fails with `E0606`."
+}

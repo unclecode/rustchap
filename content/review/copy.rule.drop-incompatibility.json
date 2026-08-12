@@ -1,0 +1,12 @@
+{
+  "id": "copy.rule.drop-incompatibility",
+  "kind": "rule",
+  "title": "Copy trait and Drop trait",
+  "concepts": [
+    "copy",
+    "drop-trait"
+  ],
+  "prompt": "What happens when you try to derive Copy on a type that implements Drop?",
+  "answer": "The compiler rejects the type with error `E0184`. `Copy` types perform simple bitwise duplication, which conflicts with custom cleanup logic in `Drop`. Types managing heap resources like `String` can implement `Clone` but never `Copy`.",
+  "schema_version": 1
+}

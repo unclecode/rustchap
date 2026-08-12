@@ -1,0 +1,11 @@
+{
+  "id": "atomic-types.gotcha.compare-exchange-weak",
+  "kind": "gotcha",
+  "title": "Compare Exchange Weak in Loops",
+  "concepts": [
+    "atomic-types"
+  ],
+  "prompt": "Why should you prefer compare_exchange_weak over compare_exchange inside a retry loop?",
+  "answer": "`compare_exchange_weak` can fail spuriously even when the atomic value matches the expected value. On architectures like ARM, this allows the CPU to use a more efficient instruction sequence. Inside a loop, spurious failures are retried automatically, so the weak variant offers better performance.",
+  "schema_version": 1
+}

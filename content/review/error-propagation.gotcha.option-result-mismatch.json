@@ -1,0 +1,12 @@
+{
+  "id": "error-propagation.gotcha.option-result-mismatch",
+  "kind": "gotcha",
+  "title": "Using question mark on Option inside Result",
+  "concepts": [
+    "error-propagation",
+    "option"
+  ],
+  "prompt": "What happens when you use the question mark operator on an Option inside a function that returns Result?",
+  "answer": "The compiler rejects the code with E0277 because the try operator cannot automatically convert Option into Result. You must convert the Option first using methods like ok_or or ok_or_else before applying question mark.",
+  "schema_version": 1
+}

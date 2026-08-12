@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.011",
+  "version": 1,
+  "title": "Irrefutable Patterns and Ignoring",
+  "track": "pattern-matching",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "difficulty": 1,
+  "goal": "Unpack tuples and arrays while ignoring unneeded elements.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Irrefutable Patterns"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You unpack tuples or arrays in Python and JavaScript with simple assignment. Rust uses `let` statements to destructure compound types."
+      },
+      {
+        "kind": "code",
+        "code": "let (x, y) = (10, 20);\nlet [a, b] = [1, 2];",
+        "caption": "let matches the shape on the right."
+      },
+      {
+        "kind": "prose",
+        "text": "A `let` pattern must be irrefutable. That means it must match every possible value of the type, or the compiler stops with `E0005`."
+      },
+      {
+        "kind": "code",
+        "code": "let [first, .., last] = [1, 2, 3, 4];",
+        "caption": ".. ignores any number of middle elements."
+      },
+      {
+        "kind": "prose",
+        "text": "Use `_` to ignore a single element. Use `..` to ignore all remaining elements between items."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Unpack tuples and arrays while ignoring unneeded elements."
+}

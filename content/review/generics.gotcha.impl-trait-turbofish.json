@@ -1,0 +1,11 @@
+{
+  "id": "generics.gotcha.impl-trait-turbofish",
+  "kind": "gotcha",
+  "title": "Why impl Trait prevents turbofish",
+  "concepts": [
+    "generics"
+  ],
+  "prompt": "Why can you not use turbofish syntax `::<T>` on a function argument declared as `impl Trait`?",
+  "answer": "`impl Trait` in argument position creates an anonymous generic parameter with no name you can specify. If a caller needs to provide the generic argument explicitly using turbofish, the function signature must define a named generic parameter `<T: Trait>`.",
+  "schema_version": 1
+}

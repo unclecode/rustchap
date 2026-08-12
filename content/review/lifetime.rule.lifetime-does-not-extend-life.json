@@ -1,0 +1,11 @@
+{
+  "id": "lifetime.rule.lifetime-does-not-extend-life",
+  "kind": "rule",
+  "title": "Lifetime Annotations Do Not Extend Life",
+  "concepts": [
+    "lifetime"
+  ],
+  "prompt": "Why does adding a lifetime annotation to a local variable fail to prevent dangling references?",
+  "answer": "Lifetime annotations describe reference relationships to the compiler. They never change when a value is created or destroyed at runtime.",
+  "schema_version": 1
+}

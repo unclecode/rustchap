@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.013",
+  "version": 1,
+  "title": "Moving Fields from Droppable Structs",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait",
+    "structs",
+    "move"
+  ],
+  "difficulty": 2,
+  "goal": "Access a struct field safely when the struct implements Drop.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "template": "struct Buffer {\n    name: String,\n}\n\nimpl Drop for Buffer {\n    fn drop(&mut self) {}\n}\n\nfn get_name_length(buf: Buffer) -> usize {\n    let name = ⟦field_access⟧;\n    ⟦return_expr⟧\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "field_access",
+        "original": "buf.name",
+        "label": "field expression",
+        "choices": [
+          {
+            "id": "fi1",
+            "text": "&buf.name"
+          },
+          {
+            "id": "fi2",
+            "text": "buf.name"
+          },
+          {
+            "id": "fi3",
+            "text": "*buf.name"
+          }
+        ]
+      },
+      {
+        "id": "return_expr",
+        "original": "name.len()",
+        "label": "return expression",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "name.len()"
+          },
+          {
+            "id": "re2",
+            "text": "name.clear()"
+          },
+          {
+            "id": "re3",
+            "text": "Drop::drop(&mut name)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_length() {\n    let b = Buffer { name: String::from(\"hello\") };\n    assert_eq!(get_name_length(b), 5);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rust must keep the entire struct valid so its Drop implementation can run.",
+    "Borrow the field instead of moving it out."
+  ],
+  "explanation": "Because `Buffer` implements `Drop`, moving `buf.name` directly triggers `E0509` because partial moves leave the struct incomplete when `drop` runs. Borrowing `&buf.name` allows reading its length safely. Dereferencing `*buf.name` causes `E0614`, `clear()` on `&String` fails with `E0596` due to immutability, and explicit `Drop::drop` calls are forbidden by `E0040`."
+}

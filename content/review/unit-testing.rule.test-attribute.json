@@ -1,0 +1,11 @@
+{
+  "id": "unit-testing.rule.test-attribute",
+  "kind": "rule",
+  "title": "How Rust identifies unit test functions",
+  "concepts": [
+    "unit-testing"
+  ],
+  "prompt": "What attribute must be placed above a function for the test runner to execute it, and how does Rust determine if the test passed?",
+  "answer": "Functions are marked with the `#[test]` attribute. A test passes if the function completes without panicking or returns `Ok(())`.",
+  "schema_version": 1
+}

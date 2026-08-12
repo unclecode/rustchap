@@ -1,0 +1,11 @@
+{
+  "id": "pattern-matching.rule.ignore-with-rest",
+  "kind": "rule",
+  "title": "Ignoring multiple elements in patterns",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "prompt": "How do you ignore multiple remaining elements when destructuring a tuple or array?",
+  "answer": "Use the double dot operator inside the destructuring pattern. For example, let [first, .., last] extracts only the boundary items of an array. The single underscore wildcard ignores only one item.",
+  "schema_version": 1
+}

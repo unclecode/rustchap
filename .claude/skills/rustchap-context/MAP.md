@@ -10,6 +10,7 @@ Regenerate via `scripts/build-map.py`.
 
 | Source file | Documented in |
 |---|---|
+| `.github/workflows/ci.yml` | architecture/release.md |
 | `apps/ios/RustChap.xcodeproj/project.pbxproj` | architecture/ios-app.md |
 | `apps/ios/RustChap/Core/APIClient.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/Core/ContentStore.swift` | architecture/ios-app.md |
@@ -32,6 +33,7 @@ Regenerate via `scripts/build-map.py`.
 | `apps/ios/RustChap/PuzzleUI/RustLexer.swift` | architecture/ios-app.md |
 | `apps/ios/RustChap/RustChapApp.swift` | architecture/ios-app.md |
 | `apps/ios/Support/Info.plist` | architecture/ios-app.md |
+| `apps/ios/build/ExportOptions.plist` | architecture/release.md |
 | `content/packs/index.json` | foundation/curriculum.md |
 | `crates/evaluator/src/bin/evaluate.rs` | architecture/evaluation.md |
 | `crates/evaluator/src/lib.rs` | architecture/evaluation.md |
@@ -53,6 +55,7 @@ Regenerate via `scripts/build-map.py`.
 | `tools/dev-db.sh` | architecture/backend.md |
 | `tools/puzzle-linter/src/lib.rs` | architecture/evaluation.md |
 | `tools/puzzle-linter/src/main.rs` | architecture/evaluation.md |
+| `tools/release-testflight.py` | architecture/release.md |
 
 ## Fragment → sources
 
@@ -62,6 +65,7 @@ Regenerate via `scripts/build-map.py`.
 | `architecture/evaluation.md` | `lib.rs`, `metrics.rs`, `rustc_json.rs`, `evaluate.rs`, `ops.rs`, `lib.rs`, `main.rs`, `outcomes.schema.json` |
 | `architecture/ios-app.md` | `project.pbxproj`, `RustChapApp.swift`, `Models.swift`, `ContentStore.swift`, `LocalEvaluator.swift`, `DeckListView.swift`, `TrackListView.swift`, `Progression.swift`, `PuzzleScreen.swift`, `ResultView.swift`, `RustLexer.swift`, `CodeSurface.swift`, `ConceptView.swift`, `APIClient.swift`, `ProgressStore.swift`, `Keychain.swift`, `SyncService.swift`, `TutorService.swift`, `TutorProbe.swift`, `TutorSheet.swift`, `ProfileView.swift`, `Info.plist` |
 | `architecture/puzzle-format.md` | `puzzle.schema.json`, `pack.schema.json`, `outcomes.schema.json`, `concept.schema.json`, `lib.rs`, `types.rs`, `template.rs`, `ops.rs`, `validate.rs` |
+| `architecture/release.md` | `release-testflight.py`, `ExportOptions.plist`, `ci.yml` |
 | `foundation/core-loop.md` | _(no source files — narrative/reference)_ |
 | `foundation/curriculum.md` | `index.json` |
 | `foundation/interaction-types.md` | _(no source files — narrative/reference)_ |

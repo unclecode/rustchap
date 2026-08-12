@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.015",
+  "version": 1,
+  "title": "Atomic Pointer Swap",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "atomic-types",
+    "raw-pointers"
+  ],
+  "difficulty": 3,
+  "goal": "Atomically replace a raw pointer inside an AtomicPtr and retrieve the previous pointer.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "template": "use std::sync::atomic::{AtomicPtr, Ordering};\n\nfn replace(target: &AtomicPtr<i32>, val: &mut i32) -> *mut i32 {\n    let raw = ⟦slot1⟧;\n    target.⟦slot2⟧(raw, Ordering::Relaxed)\n}\n\nfn main() {\n    let (mut old, mut new) = (100, 200);\n    let ptr = AtomicPtr::new(&mut old);\n    let prev = replace(&ptr, &mut new);\n    unsafe { assert_eq!((*prev, *ptr.load(Ordering::Relaxed)), (100, 200)); }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "*val",
+        "label": "pointer conversion",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "val as *mut i32"
+          },
+          {
+            "id": "sl2",
+            "text": "*val"
+          },
+          {
+            "id": "sl3",
+            "text": "val as *const i32"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "store",
+        "label": "atomic swap operation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "swap"
+          },
+          {
+            "id": "sl2",
+            "text": "store"
+          },
+          {
+            "id": "sl3",
+            "text": "load"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_replace() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Convert references to mutable raw pointers using explicit pointer casting.",
+    "Use the atomic operation that returns the previous pointer value while storing a new one."
+  ],
+  "explanation": "`val as *mut i32` turns the exclusive borrow into the raw pointer `AtomicPtr` stores, and `swap` writes the new pointer while handing back the old one. `*val` dereferences to an `i32`, which is not a pointer at all. `store` returns nothing, so the function has no value to give back, and `load` ignores the pointer you pass it."
+}

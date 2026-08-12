@@ -1,0 +1,11 @@
+{
+  "id": "raw-pointers.syntax.null-pointer-creation",
+  "kind": "syntax",
+  "title": "Creating null pointers in Rust",
+  "concepts": [
+    "raw-pointers"
+  ],
+  "prompt": "How do you create a null raw pointer in idiomatic Rust?",
+  "answer": "Use `std::ptr::null()` for an immutable null pointer or `std::ptr::null_mut()` for a mutable null pointer. Do not cast zero integers directly.",
+  "schema_version": 1
+}

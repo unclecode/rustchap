@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "drop-and-cleanup.015",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "5eec24d8f12a8895efa2d55bf89ba928b57b2402d26d817be76211ea098a4735": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `[u8]` cannot be known at compilation time",
+          "slot_ids": [
+            "deref_move"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "633f20513ba0388f50363757c58084d4681095888eab986d9be60b8bad1e94b1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of `self.data` which is behind a mutable reference",
+          "slot_ids": [
+            "direct_move"
+          ],
+          "rust_code": "E0507"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "913168a08a6cf901b733866beb1387c3d7581e0776c65660158ca6fdb53d2b9a": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

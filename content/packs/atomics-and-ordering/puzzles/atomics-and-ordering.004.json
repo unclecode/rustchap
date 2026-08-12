@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.004",
+  "version": 1,
+  "title": "Atomic Flag Switch",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "atomic-types"
+  ],
+  "difficulty": 2,
+  "goal": "Set a boolean flag and retrieve the previous state in one atomic step.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "template": "use std::sync::atomic::AtomicBool;\nuse std::sync::atomic::Ordering;\n\nfn try_lock(flag: &AtomicBool) -> bool {\n    let previous = flag.⟦slot1⟧(true, Ordering::Relaxed);\n    ⟦slot2⟧\n}\n\nfn main() {\n    let lock = AtomicBool::new(false);\n    assert_eq!(try_lock(&lock), true);\n    assert_eq!(try_lock(&lock), false);\n}\n",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": null,
+        "label": "atomic method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "swap"
+          },
+          {
+            "id": "sl2",
+            "text": "store"
+          },
+          {
+            "id": "sl3",
+            "text": "compare_exchange"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": null,
+        "label": "return logic",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "!previous"
+          },
+          {
+            "id": "sl2",
+            "text": "previous"
+          },
+          {
+            "id": "sl3",
+            "text": "previous == true"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_flag() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look for a method that unconditionally stores a new value and returns the old value.",
+    "The lock is acquired when the previous state was false."
+  ],
+  "explanation": "`swap` sets the new value and returns the previous boolean value in a single atomic instruction. If `previous` was `false`, the caller successfully acquired the lock, so `!previous` evaluates to `true`. `store` returns unit `()`, which causes type error `E0600` when applying the logical NOT `!` operator. `compare_exchange` requires 4 arguments and fails to compile with `E0061` when called with 2 arguments. Returning `previous` directly inverted the boolean condition, making the test fail."
+}

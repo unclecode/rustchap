@@ -1,0 +1,16 @@
+{
+  "id": "error-trait",
+  "title": "The Error Trait",
+  "topic": "Errors and absence",
+  "summary": "The `std::error::Error` trait marks types that represent error conditions.",
+  "lecture": [
+    "Rust uses the `std::error::Error` trait to identify custom types as errors.",
+    "To implement Error, a type must also implement Display and Debug.",
+    "This trait provides description methods and allows errors to be converted into trait objects."
+  ],
+  "example": {
+    "code": "#[derive(Debug)]\nstruct MyError;\nimpl std::fmt::Display for MyError {\n    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {\n        write!(f, \"failed\")\n    }\n}\nimpl std::error::Error for MyError {}",
+    "caption": "Display prints human output while Error marks the type."
+  },
+  "schema_version": 1
+}

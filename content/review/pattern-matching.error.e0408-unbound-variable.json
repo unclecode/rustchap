@@ -1,0 +1,11 @@
+{
+  "id": "pattern-matching.error.e0408-unbound-variable",
+  "kind": "error",
+  "title": "Compiler error E0408 explained",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "prompt": "What causes error `E0408` during pattern matching, and how do you resolve it?",
+  "answer": "Error `E0408` occurs when an OR pattern binds a variable in one branch that is missing from another branch. The compiler cannot guarantee that variable exists when the arm body runs. You resolve it by binding identical variable names across all branches of the OR pattern.",
+  "schema_version": 1
+}

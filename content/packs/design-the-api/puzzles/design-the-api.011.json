@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.011",
+  "version": 1,
+  "title": "Flexible Inputs with AsRef",
+  "track": "design-the-api",
+  "concepts": [
+    "api-design",
+    "traits"
+  ],
+  "difficulty": 1,
+  "goal": "Accept any string-like type using the AsRef trait without forcing ownership.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Comprehensive Rust: Day 4"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In languages like TypeScript or Python, a function accepting a string handles both string literals and heap strings automatically. In Rust, `&str` and `String` are distinct types, but `AsRef<str>` unifies them."
+      },
+      {
+        "kind": "code",
+        "code": "fn log(msg: impl AsRef<str>) {\n    println!(\"{}\", msg.as_ref());\n}",
+        "caption": "impl AsRef<str> accepts both &str and String."
+      },
+      {
+        "kind": "prose",
+        "text": "The `AsRef` trait provides cheap reference-to-reference conversion. When a function takes `impl AsRef<str>`, the caller can pass `&str`, `String`, or `&String` directly."
+      },
+      {
+        "kind": "prose",
+        "text": "This avoids forcing callers to call `.as_str()` or `&` at every call site. The conversion happens via `msg.as_ref()` inside the function body."
+      },
+      {
+        "kind": "code",
+        "code": "log(\"literal\");\nlet s = String::from(\"owned\");\nlog(s);",
+        "caption": "Callers pass owned or borrowed strings without boilerplate."
+      },
+      {
+        "kind": "prose",
+        "text": "Generic conversion parameters add a small monomorphization cost to your binary. For private helper functions, `&str` remains the simpler choice."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Accept any string-like type using the AsRef trait without forcing ownership."
+}

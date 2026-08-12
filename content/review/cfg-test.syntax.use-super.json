@@ -1,0 +1,11 @@
+{
+  "id": "cfg-test.syntax.use-super",
+  "kind": "syntax",
+  "title": "Importing outer scope into test modules",
+  "concepts": [
+    "cfg-test"
+  ],
+  "prompt": "Why is `use super::*;` required at the top of a `mod tests` module?",
+  "answer": "Modules in Rust introduce a new scope and do not automatically inherit parent items. `use super::*;` explicitly brings all parent items into the test scope.",
+  "schema_version": 1
+}

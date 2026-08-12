@@ -1,0 +1,11 @@
+{
+  "id": "match-basics.gotcha.guards-and-exhaustiveness",
+  "kind": "gotcha",
+  "title": "Match guards and pattern exhaustiveness",
+  "concepts": [
+    "match-basics"
+  ],
+  "prompt": "Why does adding a match guard to a wildcard arm still cause compiler error `E0004` if no unguarded fallback exists?",
+  "answer": "The compiler cannot evaluate runtime boolean conditions in match guards. It treats guarded arms as potentially failing, so an unguarded fallback pattern like `_` is required for exhaustiveness.",
+  "schema_version": 1
+}

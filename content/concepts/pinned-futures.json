@@ -1,0 +1,16 @@
+{
+  "id": "pinned-futures",
+  "title": "Pinned Futures",
+  "topic": "Concurrency",
+  "summary": "A pinned pointer guarantees a future will not move in memory while being polled.",
+  "lecture": [
+    "Async functions compile into state machines that can hold internal pointers to their own fields.",
+    "Moving such a future in memory would invalidate those internal references and corrupt data.",
+    "Wrapping the future reference in Pin prevents move operations and makes polling safe."
+  ],
+  "example": {
+    "code": "let mut fut = Box::pin(async_fn());",
+    "caption": "Pin locks memory location."
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.006",
+  "version": 1,
+  "title": "Declaring Generic Impls",
+  "track": "generics-and-dyn",
+  "concepts": [
+    "generics"
+  ],
+  "difficulty": 2,
+  "goal": "Fix the impl declaration so the struct supports generic and type-specific methods.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Generics"
+  },
+  "template": "struct Hold<T> {\n    val: T,\n}\n\nimpl⟦s1⟧ Hold<T> {\n    fn new(val: T) -> Self {\n        Hold { val }\n    }\n}\n\nimpl Hold<⟦s2⟧> {\n    fn speak(&self) -> &str {\n        &self.val\n    }\n}\n\nfn main() {\n    let h1 = Hold::new(42);\n    let h2 = Hold::new(String::from(\"hi\"));\n    println!(\"{} {}\", h1.val, h2.speak());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "s1",
+        "original": "",
+        "label": "impl generic parameters",
+        "choices": [
+          {
+            "id": "s11",
+            "text": "<T>"
+          },
+          {
+            "id": "s12",
+            "text": ""
+          },
+          {
+            "id": "s13",
+            "text": "<T: Copy>"
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "original": "T",
+        "label": "specific type parameter",
+        "choices": [
+          {
+            "id": "s21",
+            "text": "String"
+          },
+          {
+            "id": "s22",
+            "text": "T"
+          },
+          {
+            "id": "s23",
+            "text": "i32"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn holds_generic_and_string() {\n    let h1 = Hold::new(100);\n    let h2 = Hold::new(String::from(\"hello\"));\n    assert_eq!(h1.val, 100);\n    assert_eq!(h2.speak(), \"hello\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The compiler needs to know whether T in impl Hold<T> is a generic variable or a specific concrete struct.",
+    "To target a method specifically to Hold<String>, place String inside Hold<...>."
+  ],
+  "explanation": "`impl<T>` brings the generic parameter `T` into scope for the implementation block. Omitting `<T>` causes `E0412` because Rust treats `T` as an undeclared concrete type. Adding `Copy` to `s1` fails with `E0277` because `String` is not `Copy`. Explicitly using `impl Hold<String>` defines `.speak()` exclusively for `Hold<String>`, whereas placing `i32` causes `E0308` because `&i32` cannot be returned as `&str`."
+}

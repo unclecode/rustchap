@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.015",
+  "version": 1,
+  "title": "The Accidental Unit",
+  "track": "first-steps",
+  "concepts": [
+    "expressions",
+    "functions"
+  ],
+  "difficulty": 2,
+  "goal": "Return an integer from an if expression without accidentally turning an arm into the unit type.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Functions and Control Flow"
+  },
+  "template": "fn absolute(n: i32) -> i32 {\n    if n < 0 {\n        ⟦neg_arm⟧\n    } else {\n        ⟦pos_arm⟧\n    }\n}\n\nfn main() {\n    println!(\"{}\", absolute(-5));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "neg_arm",
+        "original": "-n;",
+        "label": "negative arm expression",
+        "choices": [
+          {
+            "id": "ne1",
+            "text": "-n"
+          },
+          {
+            "id": "ne2",
+            "text": "-n;"
+          },
+          {
+            "id": "ne3",
+            "text": "0 - n;"
+          }
+        ]
+      },
+      {
+        "id": "pos_arm",
+        "original": "n;",
+        "label": "positive arm expression",
+        "choices": [
+          {
+            "id": "po1",
+            "text": "n"
+          },
+          {
+            "id": "po2",
+            "text": "n;"
+          },
+          {
+            "id": "po3",
+            "text": "0"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn calculates_absolute() {\n    assert_eq!(absolute(-5), 5);\n    assert_eq!(absolute(5), 5);\n    assert_eq!(absolute(0), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Check the semicolon at the end of each block inside the `if` branches.",
+    "A semicolon turns an expression into a statement that returns `()`. The function promises an `i32`."
+  ],
+  "explanation": "In Rust, `if` is an expression that yields the value of whichever block executes. Omitting the trailing semicolon in `-n` and `n` allows those blocks to evaluate to `i32`. Adding a semicolon like `-n;` turns the expression into a statement that evaluates to `()`, triggering error E0308 because both arms must produce `i32`. Choosing `0` compiles but fails the test when `n` is positive."
+}

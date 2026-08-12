@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "unsafe-rust.010",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "189345068cf7545ed00ebaf1859a3714bd06ba42568714027d60a6a0b598c729": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "call to unsafe function `CStr::from_ptr` is unsafe and requires unsafe block",
+          "slot_ids": [
+            "missing_unsafe"
+          ],
+          "rust_code": "E0133"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b2e16e8246ee41006652b794b8bbda008a13c7cbb3cf61ed232e6d01a6e25252": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "unsafe_blocks": 1
+      },
+      "diagnostics": []
+    },
+    "f6ca23b067a16d8843036da307690ca23df0aadd90b00e34b532453790d9b010": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "tests failed",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "collections.014",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "29a77395974670e533c95e38a44cffd54c7f27c23354002e1a01721a3343c87c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "borrow_loop"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "381245f73c2a8aa04347070e860ca5804cedbbbd26c87e5c758b6dae7783c669": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "e4834324df6e407af8894f88478b73cba8098801b29f4819ea54068da71b7fbb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "a value of type `HashMap<String, i32>` cannot be built from an iterator over elements of type `&(String, i32)`",
+          "slot_ids": [
+            "iter_without_move"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

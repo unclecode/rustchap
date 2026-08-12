@@ -1,0 +1,12 @@
+{
+  "id": "borrow-scope.rule.reverse-drop-order",
+  "kind": "rule",
+  "title": "Variables drop in reverse declaration order",
+  "concepts": [
+    "borrow-scope",
+    "drop-trait"
+  ],
+  "prompt": "In what order does Rust drop local variables declared in the same block scope?",
+  "answer": "Local variables drop in reverse order of declaration within a block scope. The variable declared last is the first one dropped when execution reaches the closing brace.",
+  "schema_version": 1
+}

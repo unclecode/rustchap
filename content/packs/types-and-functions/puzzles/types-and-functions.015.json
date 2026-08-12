@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.015",
+  "version": 1,
+  "title": "Inferred from Usage",
+  "track": "types-and-functions",
+  "concepts": [
+    "primitive-types",
+    "functions"
+  ],
+  "difficulty": 2,
+  "goal": "Pass integer literals into functions and allow type inference to determine their concrete width.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Primitive Types"
+  },
+  "template": "fn process_sensor(raw: u16) -> u16 {\n    raw * 2\n}\n\nfn check_threshold(val: u16, max: u16) -> bool {\n    val > max\n}\n\nfn main() {\n    let base = ⟦base_val⟧;\n    let limit = ⟦limit_val⟧;\n    let reading = process_sensor(base);\n    println!(\"{}\", check_threshold(reading, limit));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "base_val",
+        "original": "500_i32",
+        "label": "base value",
+        "choices": [
+          {
+            "id": "ba1",
+            "text": "500_i32"
+          },
+          {
+            "id": "ba2",
+            "text": "500"
+          },
+          {
+            "id": "ba3",
+            "text": "500_u8"
+          }
+        ]
+      },
+      {
+        "id": "limit_val",
+        "original": "1000_f64",
+        "label": "limit value",
+        "choices": [
+          {
+            "id": "li1",
+            "text": "1000_f64"
+          },
+          {
+            "id": "li2",
+            "text": "1000"
+          },
+          {
+            "id": "li3",
+            "text": "1000_i16"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn checks_reading() {\n    assert!(check_threshold(process_sensor(600), 1000));\n    assert!(!check_threshold(process_sensor(400), 1000));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Check the parameter types required by process_sensor and check_threshold.",
+    "Unannotated integer literals adapt to expected function parameters without explicit type suffixes."
+  ],
+  "explanation": "Rust uses type inference to determine the type of unannotated integer literals like `500` and `1000`. Because `process_sensor` takes `u16` and `check_threshold` takes `u16`, the compiler infers `base` and `limit` as `u16` automatically. Annotating literals with explicit suffix types like `_i32`, `_u8`, or `_f64` creates rigid types that clash with the function signatures, causing `E0308` type mismatch errors."
+}

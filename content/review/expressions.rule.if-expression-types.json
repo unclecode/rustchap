@@ -1,0 +1,11 @@
+{
+  "id": "expressions.rule.if-expression-types",
+  "kind": "rule",
+  "title": "Type consistency in if expressions",
+  "concepts": [
+    "expressions"
+  ],
+  "prompt": "What restriction does Rust place on the types produced by branches of an `if` expression?",
+  "answer": "Every branch in an `if` expression must produce values of the exact same type. If one branch produces `i32` and another produces `()`, the compiler rejects the code with E0308.",
+  "schema_version": 1
+}

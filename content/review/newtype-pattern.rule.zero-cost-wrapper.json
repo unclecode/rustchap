@@ -1,0 +1,11 @@
+{
+  "id": "newtype-pattern.rule.zero-cost-wrapper",
+  "kind": "rule",
+  "title": "Performance overhead of newtype wrappers",
+  "concepts": [
+    "newtype-pattern"
+  ],
+  "prompt": "What runtime performance overhead does a single-field newtype struct introduce?",
+  "answer": "A single-field newtype struct has identical memory layout and ABI to the underlying type. The compiler optimizes the wrapper away completely during compilation, providing type safety at zero runtime cost.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "raw-pointers.gotcha.element-count-not-bytes",
+  "kind": "gotcha",
+  "title": "Element count versus byte size in slice p...",
+  "concepts": [
+    "raw-pointers"
+  ],
+  "prompt": "When calling `slice::from_raw_parts`, what does the second argument specify?",
+  "answer": "The second argument is the number of elements in the slice, not the size in bytes. Passing a byte count to a multi-byte element type reads past valid memory.",
+  "schema_version": 1
+}

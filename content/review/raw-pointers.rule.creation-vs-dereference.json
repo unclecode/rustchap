@@ -1,0 +1,11 @@
+{
+  "id": "raw-pointers.rule.creation-vs-dereference",
+  "kind": "rule",
+  "title": "Creating versus dereferencing raw pointers",
+  "concepts": [
+    "raw-pointers"
+  ],
+  "prompt": "Which raw pointer operations require an unsafe block and which do not?",
+  "answer": "Creating raw pointers from references or integers is completely safe. Dereferencing raw pointers to read or write memory requires an unsafe block. The caller must guarantee the pointer is valid, aligned, and non-null.",
+  "schema_version": 1
+}

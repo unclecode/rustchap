@@ -1,0 +1,11 @@
+{
+  "id": "newtype-pattern.rule.zero-cost-abstraction",
+  "kind": "rule",
+  "title": "Runtime overhead of single element tuple...",
+  "concepts": [
+    "newtype-pattern"
+  ],
+  "prompt": "How does the Rust compiler represent a single field tuple struct in memory at runtime?",
+  "answer": "A single field tuple struct has the exact same memory representation and alignment as the wrapped type. The compiler optimizes away the wrapper, making newtypes a zero cost abstraction.",
+  "schema_version": 1
+}

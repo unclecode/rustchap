@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "generics-and-dyn.011",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "47d48852f37d79a4f2a803510a0e2b317711a02cd07e04656266d5abe6d9f7c3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "`if` and `else` have incompatible types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4aad091f67366cb7d7cb6bcf4654ea6203a38a7f3b375af0dbc0f1b10c14b127": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "return type cannot be a trait object without pointer indirection",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0746"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Pet` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `(dyn Pet + 'static)` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `(dyn Pet + 'static)` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5eb128668dad8524aedaeaf5f586e05c68f867f3efb05dca1de4fd485e8f458d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "`if` and `else` have incompatible types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "61be14c9740c67920e0bf68c8b8d7ddb4369c54d73992bcd15ad34481d96c687": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "dog_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "66656c997d9cda149d8f5c23f788ed55d7ed4e5955acc72b8eb3f0b052705a41": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "dog_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6c9b87d15100ef57600dc0bfc82e098893a3de1b41dd554ec411b0bfe69f4fbb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "return type cannot be a trait object without pointer indirection",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0746"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Pet` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `(dyn Pet + 'static)` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `(dyn Pet + 'static)` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6dd581bd8bcd99dc656bb48eb71e0adb4c7188e2af916658d2af0f0be1370cfb": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "a532b64ab92285ecf96d220c9d384f7f815a15492621c3a53dcc1024d190e339": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "return type cannot be a trait object without pointer indirection",
+          "slot_ids": [
+            "ret_ty"
+          ],
+          "rust_code": "E0746"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `dyn Pet` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `(dyn Pet + 'static)` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the size for values of type `(dyn Pet + 'static)` cannot be known at compilation time",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c1acbc24e73b64c91dda112453864087173e4fd0190b17dc2f67beab9ebc6740": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "`if` and `else` have incompatible types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

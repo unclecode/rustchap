@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "structs.gotcha.associated-fn-syntax",
+  "kind": "gotcha",
+  "title": "Associated functions are called on the type",
+  "concepts": [
+    "structs"
+  ],
+  "prompt": "How do associated functions differ from methods in Rust, and how are they called?",
+  "answer": "Associated functions are defined inside an `impl` block without a `self` parameter, meaning they belong to the type itself rather than a specific instance. They are invoked using double colons like `Point::new(1, 2)` instead of dot syntax. They are commonly used as constructors since Rust lacks dedicated constructor keywords."
+}

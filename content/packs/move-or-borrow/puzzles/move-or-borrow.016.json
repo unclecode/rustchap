@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.016",
+  "version": 1,
+  "title": "Local References Cannot Escape",
+  "track": "move-or-borrow",
+  "concepts": [
+    "borrow-scope",
+    "borrow",
+    "move"
+  ],
+  "difficulty": 1,
+  "goal": "Understand why references cannot outlive the function that created their data.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Comprehensive Rust: Borrowing & Memory Management"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In garbage-collected languages, returning a reference to an object created inside a function keeps the object alive on the heap. In Rust, local variables live on the stack and are dropped when the function returns."
+      },
+      {
+        "kind": "code",
+        "code": "fn create_title() -> &String {\n    let title = String::from(\"Rust\");\n    &title // error E0515: returns local reference\n}",
+        "caption": "Borrowing local data fails because title is dropped at the closing brace."
+      },
+      {
+        "kind": "prose",
+        "text": "If you return a reference to `title`, that reference becomes dangling the instant `create_title` finishes. Rust detects this at compile time and stops you with error `E0515`."
+      },
+      {
+        "kind": "prose",
+        "text": "To hand data to a caller, move the owned value out instead of lending it. Returning `String` transfers ownership without copying any heap memory."
+      },
+      {
+        "kind": "code",
+        "code": "fn create_title() -> String {\n    let title = String::from(\"Rust\");\n    title // ownership moves to caller\n}",
+        "caption": "Returning the owned String moves the heap pointer to the caller."
+      },
+      {
+        "kind": "prose",
+        "text": "The same rule applies when modifying struct fields through a mutable reference. You cannot move a field out directly, but you can replace it using helper functions like `std::mem::take`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand why references cannot outlive the function that created their data."
+}

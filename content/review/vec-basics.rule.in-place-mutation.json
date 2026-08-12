@@ -1,0 +1,12 @@
+{
+  "id": "vec-basics.rule.in-place-mutation",
+  "kind": "rule",
+  "title": "Mutating vector items during iteration",
+  "concepts": [
+    "vec-basics",
+    "borrow"
+  ],
+  "prompt": "How do you modify elements of a vector in place during a for loop?",
+  "answer": "Iterate over mutable references using `for x in &mut v` or `v.iter_mut()`. Inside the loop, dereference each item with `*x` to assign new values directly to the vector memory.",
+  "schema_version": 1
+}

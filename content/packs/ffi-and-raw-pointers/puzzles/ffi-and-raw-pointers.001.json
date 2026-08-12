@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.001",
+  "version": 1,
+  "title": "Raw Pointers",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "raw-pointers",
+    "unsafe-rust"
+  ],
+  "difficulty": 1,
+  "goal": "Understand raw pointers and why dereferencing requires unsafe.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Unsafe Rust: Raw Pointers"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Rust references always point to valid memory. Raw pointers do not carry this guarantee."
+      },
+      {
+        "kind": "code",
+        "code": "let val: i32 = 42;\nlet raw_ptr: *const i32 = &val;",
+        "caption": "Creating a raw pointer from a reference is safe."
+      },
+      {
+        "kind": "prose",
+        "text": "Immutable raw pointers use `*const T`. Mutable raw pointers use `*mut T`. Creating them is safe."
+      },
+      {
+        "kind": "prose",
+        "text": "The compiler does not check if raw pointers are valid. Dereferencing them requires an `unsafe` block."
+      },
+      {
+        "kind": "code",
+        "code": "let val: i32 = 42;\nlet raw_ptr: *const i32 = &val;\nlet num = unsafe { *raw_ptr };",
+        "caption": "Dereferencing a raw pointer requires unsafe."
+      },
+      {
+        "kind": "prose",
+        "text": "Dereferencing invalid pointers causes undefined behavior. You are responsible for memory safety inside `unsafe` blocks."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand raw pointers and why dereferencing requires unsafe."
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.012",
+  "version": 1,
+  "title": "Default Trait Methods",
+  "track": "traits-and-bounds",
+  "concepts": [
+    "traits"
+  ],
+  "difficulty": 1,
+  "goal": "Traits can provide default method implementations that rely on required methods.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Traits"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You will recognise default methods from default interface methods in Java or C#."
+      },
+      {
+        "kind": "code",
+        "code": "trait Notifier {\n    fn user(&self) -> &str;\n    fn notify(&self) -> String {\n        format!(\"Alert for {}\", self.user())\n    }\n}",
+        "caption": "user is required. notify has a default implementation."
+      },
+      {
+        "kind": "prose",
+        "text": "A trait can implement a method using its other required methods. Implementing types only need to provide the missing required methods."
+      },
+      {
+        "kind": "prose",
+        "text": "Implementing types can also override default methods when custom behavior is needed."
+      },
+      {
+        "kind": "code",
+        "code": "struct Guest;\nimpl Notifier for Guest {\n    fn user(&self) -> &str {\n        \"guest\"\n    }\n}",
+        "caption": "Guest gets notify for free without writing it."
+      },
+      {
+        "kind": "prose",
+        "text": "Overriding a default method uses the exact same signature in the impl block. Leaving out a required method causes error E0046."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Traits can provide default method implementations that rely on required methods."
+}

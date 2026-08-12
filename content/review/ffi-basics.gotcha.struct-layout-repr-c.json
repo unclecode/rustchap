@@ -1,0 +1,11 @@
+{
+  "id": "ffi-basics.gotcha.struct-layout-repr-c",
+  "kind": "gotcha",
+  "title": "Rust struct layout is not C compatible by",
+  "concepts": [
+    "ffi-basics"
+  ],
+  "prompt": "Why must structs passed across FFI be annotated with `#[repr(C)]`?",
+  "answer": "Rust reorders struct fields by default to minimize padding and optimize size. C compilers preserve declared field order, so `#[repr(C)]` is required to match C memory layout.",
+  "schema_version": 1
+}

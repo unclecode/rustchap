@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "strings-basics.006",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1a760109998a928f6efb94b21a842b6e8a47ab75c1a48f279a3ee2b7821742f8": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2cb79a0a67ec75a5d6bccdbdd2714c7d90b2c013592e0bdc76be1802afd77fda": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected token: `[`",
+          "slot_ids": [
+            "char_op"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the type `str` cannot be indexed by `usize`",
+          "slot_ids": [
+            "char_op"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4885a5f465abe2192f96f71ccbe19ba5fbe0822e323c313e006694651496d3bb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected token: `[`",
+          "slot_ids": [
+            "char_op"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the type `str` cannot be indexed by `usize`",
+          "slot_ids": [
+            "char_op"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "62fa5aca16a130b1bda24af5434a16ece811cf364ccdeef0c8de7bbbdf212646": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6dd1f3505c1c0773bbe9222000473dbeb0faf6f9fac906bf99cbebfdd86e1571": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the type `str` cannot be indexed by `usize`",
+          "slot_ids": [
+            "char_op"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "77b8c7b6c057e86de0581a061de80a47198a899b3057654a9a857777e05fd40d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the type `str` cannot be indexed by `usize`",
+          "slot_ids": [
+            "char_op"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7d8ef1ae4c27a28402dd316d859e2d8efb25d00e2b3b8f81bce540315bd0a0da": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the type `str` cannot be indexed by `usize`",
+          "slot_ids": [
+            "char_op"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bde4cb5e00cae1a0299835fe5a0d2f59df707f3bdcbf3be2145b382ee3feb5e6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected token: `[`",
+          "slot_ids": [
+            "char_op"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the type `str` cannot be indexed by `usize`",
+          "slot_ids": [
+            "char_op"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d01690d206ae14b7dcf6e36d8ca307b6a1f3f066d723f3f3005fb559142ed844": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    }
+  }
+}

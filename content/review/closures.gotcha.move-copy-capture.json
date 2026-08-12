@@ -1,0 +1,12 @@
+{
+  "id": "closures.gotcha.move-copy-capture",
+  "kind": "gotcha",
+  "title": "Using move closures with Copy types",
+  "concepts": [
+    "closures",
+    "copy"
+  ],
+  "prompt": "What happens to an `i32` variable captured by a `move` closure?",
+  "answer": "Because `i32` implements `Copy`, using `move` creates a copy of the variable inside the closure scope. Mutating or accessing the variable inside the closure operates on the copy, leaving the original outer variable untouched.",
+  "schema_version": 1
+}

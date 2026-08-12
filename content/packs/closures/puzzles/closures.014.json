@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "closures.014",
+  "version": 1,
+  "title": "Capturing vs Trait Bounds",
+  "track": "closures",
+  "concepts": [
+    "closures",
+    "traits",
+    "generics"
+  ],
+  "difficulty": 3,
+  "goal": "Enforce the correct Fn trait bound for a closure parameter that is invoked repeatedly.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from google/comprehensive-rust: closures traits"
+  },
+  "template": "fn apply_twice<F: ⟦bound⟧>(\n    val: i32,\n    f: F,\n) -> i32 {\n    let _ = f(val);\n    f(val)\n}\n\nfn main() {\n    let mut factor = 3;\n    let tag = String::from(\"multiply\");\n    let calc = ⟦closure_expr⟧;\n    let res = apply_twice(5, calc);\n    assert_eq!(res, 15);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "bound",
+        "original": "Fn(i32) -> i32",
+        "label": "closure trait bound",
+        "choices": [
+          {
+            "id": "bo1",
+            "text": "Fn(i32) -> i32"
+          },
+          {
+            "id": "bo2",
+            "text": "FnOnce(i32) -> i32"
+          },
+          {
+            "id": "bo3",
+            "text": "FnMut(i32) -> i32"
+          }
+        ]
+      },
+      {
+        "id": "closure_expr",
+        "original": "|x| x * factor",
+        "label": "closure expression",
+        "choices": [
+          {
+            "id": "cl1",
+            "text": "|x| x * factor"
+          },
+          {
+            "id": "cl2",
+            "text": "move |x| { drop(tag); x * factor }"
+          },
+          {
+            "id": "cl3",
+            "text": "|x| { factor += 1; x * factor }"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn applies_twice() {\n    let factor = 3;\n    let calc = |x: i32| x * factor;\n    assert_eq!(apply_twice(5, calc), 15);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "`apply_twice` invokes `f` two times without mutable binding, which requires a closure that implements `Fn`.",
+    "Capturing environmental variables immutably satisfies `Fn`, whereas moving or mutating captured state yields `FnOnce` or `FnMut`."
+  ],
+  "explanation": "`apply_twice` calls `f(val)` twice without requiring `mut f`. The trait bound must be `Fn(i32) -> i32`. Choosing `FnOnce` triggers `E0382` because calling an `FnOnce` closure consumes `f` on the first call. Choosing `FnMut` triggers `E0596` because calling an `FnMut` closure requires `mut f: F`. The closure `|x| x * factor` borrows `factor` immutably and satisfies `Fn`. The second choice drops `tag`, consuming captured state and making it `FnOnce`. The third choice mutates `factor`, making it `FnMut` rather than `Fn`."
+}

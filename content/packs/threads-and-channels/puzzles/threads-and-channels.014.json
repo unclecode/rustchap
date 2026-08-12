@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.014",
+  "version": 1,
+  "title": "Understanding Sync and Send",
+  "track": "threads-and-channels",
+  "concepts": [
+    "send-and-static"
+  ],
+  "difficulty": 1,
+  "goal": "Learn how Send and Sync control thread safety at compile time.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Send and Sync"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In Rust, thread safety is governed by two marker traits named `Send` and `Sync`. The compiler uses them to prevent data races before your code runs."
+      },
+      {
+        "kind": "code",
+        "code": "let message = String::from(\"hello\");\nstd::thread::spawn(move || {\n    println!(\"{message}\");\n});",
+        "caption": "Types like String implement Send and can be moved into another thread."
+      },
+      {
+        "kind": "prose",
+        "text": "`Send` indicates that a value can transfer ownership to another thread. Most Rust types implement `Send` automatically if all their fields implement `Send`."
+      },
+      {
+        "kind": "prose",
+        "text": "`Sync` indicates that a value can be shared across threads through an immutable reference. A type `T` is `Sync` if and only if `&T` is `Send`."
+      },
+      {
+        "kind": "code",
+        "code": "use std::sync::Mutex;\nfn share<T: Sync>(val: &T) {}\nlet lock = Mutex::new(42);\nshare(&lock);",
+        "caption": "Mutex wraps a Send type and makes it Sync by controlling concurrent access."
+      },
+      {
+        "kind": "prose",
+        "text": "Types like `Rc` implement neither `Send` nor `Sync` because their reference counter is not atomic. Multi-threaded code must use `Arc` and `Mutex` instead."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn how Send and Sync control thread safety at compile time."
+}

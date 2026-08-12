@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.010",
+  "version": 1,
+  "title": "Retrieve Results from Threads",
+  "track": "threads-and-channels",
+  "concepts": [
+    "threads-basics"
+  ],
+  "difficulty": 2,
+  "goal": "Join thread handles and extract their returned computation values.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Plain Threads"
+  },
+  "template": "use std::thread;\n\nfn sum_threads() -> i32 {\n    let mut handles = Vec::new();\n    for i in 1..=3 {\n        handles.push(thread::spawn(move || i * 10));\n    }\n    let mut sum = 0;\n    for handle in handles {\n        sum += handle.⟦slot1⟧().⟦slot2⟧();\n    }\n    sum\n}\n\nfn main() {\n    println!(\"{}\", sum_threads());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "spawn",
+        "label": "handle operation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "join"
+          },
+          {
+            "id": "sl2",
+            "text": "spawn"
+          },
+          {
+            "id": "sl3",
+            "text": "finish"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "unwrap_err",
+        "label": "result operation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "unwrap"
+          },
+          {
+            "id": "sl2",
+            "text": "unwrap_err"
+          },
+          {
+            "id": "sl3",
+            "text": "as_ref"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn computes_sum() {\n    assert_eq!(sum_threads(), 60);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look for the method on JoinHandle that waits for the thread to complete.",
+    "Join returns a Result because the thread could panic. Extract the success value."
+  ],
+  "explanation": "`thread::spawn` returns a JoinHandle<T> where T is the closure return type. Calling handle.join() blocks until the thread finishes and returns `std::thread::Result`<T>. Using unwrap extracts the inner T value. Methods like spawn or finish do not exist on JoinHandle, and unwrap_err returns the panic payload rather than the thread return value."
+}

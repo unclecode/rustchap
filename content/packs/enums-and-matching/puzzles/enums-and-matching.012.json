@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.012",
+  "version": 1,
+  "title": "Just One Variant",
+  "track": "enums-and-matching",
+  "concepts": [
+    "enums-basics",
+    "pattern-matching"
+  ],
+  "difficulty": 2,
+  "goal": "Extract payload from a single enum variant using if let.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Pattern Matching"
+  },
+  "template": "enum Config {\n    Port(u16),\n    Disabled,\n}\n\nfn get_port(cfg: Config) -> u16 {\n    ⟦if_let_stmt⟧ {\n        p\n    } ⟦else_branch⟧\n}\n\nfn main() {\n    let c = Config::Port(3000);\n    println!(\"{}\", get_port(c));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "if_let_stmt",
+        "original": "let Config::Port(p) = cfg",
+        "label": "if let statement",
+        "choices": [
+          {
+            "id": "if1",
+            "text": "if let Config::Port(p) = cfg"
+          },
+          {
+            "id": "if2",
+            "text": "let Config::Port(p) = cfg"
+          },
+          {
+            "id": "if3",
+            "text": "if Config::Port(p) == cfg"
+          }
+        ]
+      },
+      {
+        "id": "else_branch",
+        "original": "else 8080",
+        "label": "else branch",
+        "choices": [
+          {
+            "id": "el1",
+            "text": "else { 8080 }"
+          },
+          {
+            "id": "el2",
+            "text": "else 8080"
+          },
+          {
+            "id": "el3",
+            "text": "else { \"8080\" }"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn extracts_port() {\n    assert_eq!(get_port(Config::Port(3000)), 3000);\n    assert_eq!(get_port(Config::Disabled), 8080);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Use the `if let` construct when matching a refutable pattern on a single variant.",
+    "Block braces `{}` are mandatory for both `if` and `else` branches in Rust."
+  ],
+  "explanation": "`if let Config::Port(p) = cfg` tests if `cfg` matches `Config::Port` and binds `p` inside the block. A plain `let` pattern must be irrefutable (matching all possible values of the type), so writing `let Config::Port(p) = cfg` triggers `E0005`. Rust requires block braces `{}` after `else`, so `else 8080` fails to parse. Both branches must produce the same return type (`u16`), making string `\"8080\"` fail with `E0308`."
+}

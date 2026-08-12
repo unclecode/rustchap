@@ -1,0 +1,11 @@
+{
+  "id": "modules.syntax.super-path",
+  "kind": "syntax",
+  "title": "Referencing Parent Scope with Super",
+  "concepts": [
+    "modules"
+  ],
+  "prompt": "How do you refer to an item in the parent module from inside a nested module?",
+  "answer": "Use the `super::` prefix in the item path. This moves one level up in the module hierarchy, similar to `..` in a filesystem path.",
+  "schema_version": 1
+}

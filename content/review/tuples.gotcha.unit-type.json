@@ -1,0 +1,12 @@
+{
+  "id": "tuples.gotcha.unit-type",
+  "kind": "gotcha",
+  "title": "What the empty tuple represents",
+  "concepts": [
+    "tuples",
+    "primitive-types"
+  ],
+  "prompt": "What is the unit type in Rust and when does it appear?",
+  "answer": "The empty tuple `()` is called the unit type and has a single value `()`. Functions without an explicit return type implicitly return `()`, and statements ending with semicolons evaluate to `()`.",
+  "schema_version": 1
+}

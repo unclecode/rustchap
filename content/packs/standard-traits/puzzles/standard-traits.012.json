@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.012",
+  "version": 1,
+  "title": "Sorting Floating Point Slices",
+  "track": "standard-traits",
+  "concepts": [
+    "cmp-traits",
+    "traits"
+  ],
+  "difficulty": 3,
+  "goal": "Sort a slice of float values using partial_cmp.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Standard Traits"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "use std::cmp::Ordering;\n\nfn sort_floats(values: &mut [f64]) {\n    values",
+    "blocks": [
+      {
+        "id": "b1",
+        "text": "\n        .sort_by(|a, b|"
+      },
+      {
+        "id": "b2",
+        "text": "\n            a.partial_cmp(b)"
+      },
+      {
+        "id": "b3",
+        "text": "\n            .unwrap_or(Ordering::Equal))"
+      }
+    ],
+    "fixed_suffix": ";\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn sorts_floats() {\n    let mut data = vec![3.0, 1.0, 2.0];\n    sort_floats(&mut data);\n    assert_eq!(data, vec![1.0, 2.0, 3.0]);\n}",
+      "#[test]\nfn handles_nan() {\n    let mut data = vec![2.0, f64::NAN, 1.0];\n    sort_floats(&mut data);\n    assert_eq!(data[0], 2.0);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "`[f64]` does not implement `Ord`, so `.sort()` is unavailable.",
+    "Use `.sort_by` with `partial_cmp` and fall back when `partial_cmp` returns `None`."
+  ],
+  "explanation": "Slices of floating-point numbers do not implement `.sort()` because `f64` lacks the `Ord` trait due to `NaN`. Using `.sort_by` allows custom comparison logic using `.partial_cmp(b)`. Calling `.unwrap_or(Ordering::Equal)` handles any `None` values caused by `NaN`, providing a fallback ordering that compiles safely."
+}

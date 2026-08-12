@@ -1,0 +1,11 @@
+{
+  "id": "unit-testing.gotcha.result-payload",
+  "kind": "gotcha",
+  "title": "Returning non-unit values in test Result",
+  "concepts": [
+    "unit-testing"
+  ],
+  "prompt": "What happens if a test function returns `Result<i32, String>` instead of `Result<(), String>`?",
+  "answer": "The code fails to compile with error `E0277`. Test functions must implement the `Termination` trait, which is only implemented for `Result<(), E>`, not for arbitrary payload types.",
+  "schema_version": 1
+}

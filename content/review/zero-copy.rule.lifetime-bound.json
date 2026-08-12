@@ -1,0 +1,11 @@
+{
+  "id": "zero-copy.rule.lifetime-bound",
+  "kind": "rule",
+  "title": "Returned slice views tie to input lifetimes",
+  "concepts": [
+    "zero-copy"
+  ],
+  "prompt": "How does lifetime elision handle a function that takes `&str` and returns `&str`?",
+  "answer": "When a function takes a single input reference, Rust automatically ties the output reference lifetime to that input. The returned view cannot outlive the input data.",
+  "schema_version": 1
+}

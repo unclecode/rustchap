@@ -1,0 +1,11 @@
+{
+  "id": "cancellation-safety.rule.select-losing-branch",
+  "kind": "rule",
+  "title": "Select drops losing branches immediately",
+  "concepts": [
+    "cancellation-safety"
+  ],
+  "prompt": "How does `tokio::select` handle branches that did not finish first?",
+  "answer": "The select macro drops the futures of all losing branches as soon as the winning branch completes. The uncompleted branches stop running instantly at their last await point.",
+  "schema_version": 1
+}

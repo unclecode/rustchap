@@ -1,0 +1,12 @@
+{
+  "id": "vec-basics.choice.retain-vs-for-loop",
+  "kind": "choice",
+  "title": "In-Place Vector Filtering",
+  "concepts": [
+    "vec-basics",
+    "mutability"
+  ],
+  "prompt": "Why does removing items inside a for loop fail, and what method should you use instead?",
+  "answer": "Iterating over a vector borrows it, preventing concurrent mutation like `.remove()` due to borrow checks. Use `.retain()` with a predicate closure to keep or discard elements in place safely.",
+  "schema_version": 1
+}

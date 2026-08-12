@@ -1,0 +1,11 @@
+{
+  "id": "modules.error.e0603-private-module",
+  "kind": "error",
+  "title": "Reading Error E0603 Private Module",
+  "concepts": [
+    "modules"
+  ],
+  "prompt": "What causes error E0603 when referencing an item in another module?",
+  "answer": "Error `E0603` occurs when you attempt to access an item or sub-module that is private. To fix it, mark the target item or module with `pub`.",
+  "schema_version": 1
+}

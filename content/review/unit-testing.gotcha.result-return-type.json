@@ -1,0 +1,11 @@
+{
+  "id": "unit-testing.gotcha.result-return-type",
+  "kind": "gotcha",
+  "title": "Returning Result from test functions",
+  "concepts": [
+    "unit-testing"
+  ],
+  "prompt": "How can you use the question mark operator inside a test function without unwrapping every Result?",
+  "answer": "You can declare the test function to return `Result<(), E>`. If an error occurs and is propagated with `?`, the test fails cleanly.",
+  "schema_version": 1
+}

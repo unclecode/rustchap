@@ -1,0 +1,11 @@
+{
+  "id": "borrow.error.e0502-collection-mutation",
+  "kind": "error",
+  "title": "Collection mutation conflicts with outsta...",
+  "concepts": [
+    "borrow"
+  ],
+  "prompt": "What causes error `E0502` when pushing elements to a vector while keeping a slice reference to it?",
+  "answer": "Pushing to a vector requires an exclusive mutable reference because reallocation could relocate buffer elements. This conflicts with any active immutable slice references.",
+  "schema_version": 1
+}

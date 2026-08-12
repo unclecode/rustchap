@@ -1,0 +1,12 @@
+{
+  "id": "token-types.rule.private-field-protection",
+  "kind": "rule",
+  "title": "Preventing external token struct",
+  "concepts": [
+    "token-types",
+    "visibility"
+  ],
+  "prompt": "How do you prevent external crates or modules from constructing a token struct directly?",
+  "answer": "Include at least one private field inside the struct definition, such as `_private: ()`. Even if the struct type itself is public, code outside the module cannot construct it without access to all private fields. External code must call an authorized constructor function provided by the module.",
+  "schema_version": 1
+}

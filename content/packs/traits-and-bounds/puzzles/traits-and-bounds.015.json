@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.015",
+  "version": 1,
+  "title": "Clean Signature with Where",
+  "track": "traits-and-bounds",
+  "concepts": [
+    "traits",
+    "generics"
+  ],
+  "difficulty": 2,
+  "goal": "Apply where clauses to grant required capabilities to generic parameters.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Traits"
+  },
+  "template": "use std::fmt::*;\nstruct Header(&'static str);\nimpl Display for Header {\n    fn fmt(&self, f: &mut Formatter) -> Result { write!(f, \"{}\", self.0) }\n}\n#[derive(Debug)] struct Data(i32);\nstruct Unformatted(i32);\n\nfn summarize<T, U>(h: T, d: U) -> String ⟦slot1⟧ {\n    format!(\"{h}: {:?}\", d)\n}\n\nfn main() {\n    let s = summarize(Header(\"Info\"), ⟦slot2⟧);\n    assert_eq!(s, \"Info: Data(42)\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "where T: Debug, U: Debug",
+        "label": "where clause",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "where T: Display, U: Debug"
+          },
+          {
+            "id": "sl2",
+            "text": "where T: Debug, U: Debug"
+          },
+          {
+            "id": "sl3",
+            "text": "where T: Display, U: Display"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "Header(\"42\")",
+        "label": "second argument",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Data(42)"
+          },
+          {
+            "id": "sl2",
+            "text": "Header(\"42\")"
+          },
+          {
+            "id": "sl3",
+            "text": "Unformatted(42)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_summarize() {\n    let s = summarize(Header(\"Test\"), Data(99));\n    assert_eq!(s, \"Test: Data(99)\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The format string uses {} for h and {:?} for d.",
+    "Header implements Display while Data implements Debug."
+  ],
+  "explanation": "The function body formats `h` with `{}` and `d` with `{:?}`. This requires `T: Display` and `U: Debug` in the where clause. Requiring `T: Debug` fails with `E0277` because `Header` only implements `Display`. Requiring `U: Display` fails with `E0277` inside `summarize` because `{:?}` needs `Debug`. Passing `Header(\"42\")` or `Unformatted(42)` as `d` fails with `E0277` because neither implements `Debug`."
+}

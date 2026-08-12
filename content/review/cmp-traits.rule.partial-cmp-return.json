@@ -1,0 +1,11 @@
+{
+  "id": "cmp-traits.rule.partial-cmp-return",
+  "kind": "rule",
+  "title": "Return Type of PartialOrd",
+  "concepts": [
+    "cmp-traits"
+  ],
+  "prompt": "What type does the partial_cmp method return and why?",
+  "answer": "The `partial_cmp` method returns `Option<Ordering>`. It returns `None` when two values cannot be compared, such as comparing a number with NaN. Code must explicitly handle the `None` case to extract an ordering.",
+  "schema_version": 1
+}

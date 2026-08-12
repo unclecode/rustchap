@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "remove-the-clone.010",
+  "version": 1,
+  "title": "The Last Use Move",
+  "track": "remove-the-clone",
+  "concepts": [
+    "move",
+    "clone",
+    "borrow"
+  ],
+  "difficulty": 2,
+  "goal": "Recognize that the final call taking ownership does not need to clone.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Move Semantics"
+  },
+  "template": "fn consume_log(msg: String) {\n    println!(\"logged: {msg}\");\n}\n\nfn main() {\n    let note = String::from(\"audit pass\");\n    consume_log(⟦first_call⟧);\n    consume_log(⟦second_call⟧);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "first_call",
+        "original": "note",
+        "label": "first call argument",
+        "choices": [
+          {
+            "id": "fi1",
+            "text": "note.clone()"
+          },
+          {
+            "id": "fi2",
+            "text": "note"
+          },
+          {
+            "id": "fi3",
+            "text": "&note"
+          }
+        ]
+      },
+      {
+        "id": "second_call",
+        "original": "note",
+        "label": "second call argument",
+        "choices": [
+          {
+            "id": "se1",
+            "text": "note"
+          },
+          {
+            "id": "se2",
+            "text": "&note"
+          },
+          {
+            "id": "se3",
+            "text": "*note"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_logging() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The first call must clone because note is needed afterwards.",
+    "On the second call, note is never used again, so moving ownership is free."
+  ],
+  "explanation": "The first call must clone `note` because the variable is accessed again later. On the second call, `note` reaches its final use. Moving ownership directly into `consume_log` avoids a redundant heap allocation. Passing `&note` produces type mismatch `E0308` because `consume_log` requires an owned `String`."
+}

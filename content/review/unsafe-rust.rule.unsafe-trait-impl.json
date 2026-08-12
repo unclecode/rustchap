@@ -1,0 +1,12 @@
+{
+  "id": "unsafe-rust.rule.unsafe-trait-impl",
+  "kind": "rule",
+  "title": "Implementing unsafe traits",
+  "concepts": [
+    "unsafe-rust",
+    "traits"
+  ],
+  "prompt": "Why must an unsafe trait be implemented using the unsafe impl syntax?",
+  "answer": "An unsafe trait requires the implementor to uphold specific safety invariants that the compiler cannot check. Using unsafe impl explicitly acknowledges that the implementation guarantees those invariants.",
+  "schema_version": 1
+}

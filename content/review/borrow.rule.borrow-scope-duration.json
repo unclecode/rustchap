@@ -1,0 +1,11 @@
+{
+  "id": "borrow.rule.borrow-scope-duration",
+  "kind": "rule",
+  "title": "How long a reference borrow lasts",
+  "concepts": [
+    "borrow"
+  ],
+  "prompt": "How does the Rust borrow checker determine when a reference borrow ends?",
+  "answer": "A borrow lasts until the last time the reference is used in code. This is known as non-lexical lifetimes. Once a reference is no longer used, the borrow ends and the underlying value can be borrowed again or mutated.",
+  "schema_version": 1
+}

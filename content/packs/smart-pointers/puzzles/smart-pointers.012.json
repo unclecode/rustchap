@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers.012",
+  "version": 1,
+  "title": "Uniquely Owned Rc",
+  "track": "smart-pointers",
+  "concepts": [
+    "smart-pointers",
+    "mutability"
+  ],
+  "difficulty": 2,
+  "goal": "Mutate an Rc inner value when no other references exist.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4: Smart Pointers"
+  },
+  "template": "use std::rc::Rc;\n\nfn try_increment(num: &mut Rc<i32>, share: bool) -> bool {\n    let _other = if share { Some(⟦slot2⟧) } else { None };\n    if let Some(inner) = ⟦slot1⟧ {\n        *inner += 1;\n        true\n    } else {\n        false\n    }\n}\n\nfn main() {\n    let mut num = Rc::new(42);\n    println!(\"{}\", try_increment(&mut num, false));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "Some(num)",
+        "label": "access inner mutable reference",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Rc::get_mut(num)"
+          },
+          {
+            "id": "sl2",
+            "text": "Some(num)"
+          },
+          {
+            "id": "sl3",
+            "text": "num.as_mut()"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "*num",
+        "label": "create shared reference",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Rc::clone(num)"
+          },
+          {
+            "id": "sl2",
+            "text": "*num"
+          },
+          {
+            "id": "sl3",
+            "text": "num"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn updates_only_when_unique() {\n    let mut num = Rc::new(42);\n    assert!(try_increment(&mut num, false));\n    assert_eq!(*num, 43);\n    assert!(!try_increment(&mut num, true));\n    assert_eq!(*num, 43);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rc does not allow mutating inner values directly because another handle might be reading.",
+    "`Rc::get_mut` succeeds only when the strong reference count is exactly 1."
+  ],
+  "explanation": "`Rc::get_mut` checks the reference count at runtime. It returns `Some(&mut T)` only when the `Rc` is uniquely owned. Trying `Some(num)` attempts to add `1` directly to `Rc<i32>`, causing `E0368`. Calling `num.as_mut()` fails with `E0599` because `Rc` does not implement `AsMut`. Trying `*num` fails with `E0507` because moving out of a mutable reference is forbidden. Passing `num` directly fails with `E0308` due to a type mismatch."
+}

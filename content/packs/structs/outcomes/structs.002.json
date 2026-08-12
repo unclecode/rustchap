@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "structs.002",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0eec8f0316c774152cd4336d1baf39c39c282c9fda9975e7ced756b8c235fa7e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "Rust has no postfix increment operator",
+          "slot_ids": [
+            "bumped"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "struct `Order` has no field named `base`",
+          "slot_ids": [
+            "rest"
+          ],
+          "rust_code": "E0560"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "397ce9e76f0419142052aa258ba5bf061457770af427048f37deb23d604d5bfd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `count` in this scope",
+          "slot_ids": [
+            "bumped"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "struct `Order` has no field named `base`",
+          "slot_ids": [
+            "rest"
+          ],
+          "rust_code": "E0560"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4e11cac69f6e609ef92f36685559edb1b4718757114ec213e1261499b34ae43c": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "533ae6fcbca5ec92b30e0c2a50c3892ce5cfc2305ec912afa3af102d4cea2fd7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "Rust has no postfix increment operator",
+          "slot_ids": [
+            "bumped"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "54fb2ac68f7ec8b85abb23ebf8840e2ffa0e2bdf9676499703c67cb45dd959e7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing field `express` in initializer of `Order`",
+          "slot_ids": [],
+          "rust_code": "E0063"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "92f1b7b346d68b769948c9d400a81645a30d4c3dd4ac0a52bc243c67fbf028db": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "struct `Order` has no field named `base`",
+          "slot_ids": [
+            "rest"
+          ],
+          "rust_code": "E0560"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9d518ecefbcdc72ea7ba0b99718cf80d0f0ae702497dbd5cff4ccd9515b76504": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `count` in this scope",
+          "slot_ids": [
+            "bumped"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "missing field `express` in initializer of `Order`",
+          "slot_ids": [],
+          "rust_code": "E0063"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a68f8e8648e929dbd978b9483f16f1451a3644a641a83778961f68b756e9f356": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "Rust has no postfix increment operator",
+          "slot_ids": [
+            "bumped"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f51d9c916346f7f19cd2b22838bdc68e4a1b5586ca3a27f3a454d080d4ed5400": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `count` in this scope",
+          "slot_ids": [
+            "bumped"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

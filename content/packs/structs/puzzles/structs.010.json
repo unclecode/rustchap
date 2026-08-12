@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "structs.010",
+  "version": 1,
+  "title": "Mutate in Place",
+  "track": "structs",
+  "concepts": [
+    "structs",
+    "mutability"
+  ],
+  "difficulty": 2,
+  "goal": "Declare the method receiver and caller binding to allow mutation.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Methods and Traits"
+  },
+  "template": "struct BankAccount {\n    balance: u32,\n}\n\nimpl BankAccount {\n    fn deposit(⟦receiver⟧, amount: u32) {\n        self.balance += amount;\n    }\n}\n\nfn main() {\n    ⟦binding⟧ account = BankAccount { balance: 100 };\n    account.deposit(50);\n    println!(\"{}\", account.balance);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "receiver",
+        "original": "&self",
+        "label": "method receiver",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "&mut self"
+          },
+          {
+            "id": "re2",
+            "text": "&self"
+          },
+          {
+            "id": "re3",
+            "text": "mut self"
+          }
+        ]
+      },
+      {
+        "id": "binding",
+        "original": "let",
+        "label": "variable binding",
+        "choices": [
+          {
+            "id": "bi1",
+            "text": "let mut"
+          },
+          {
+            "id": "bi2",
+            "text": "let"
+          },
+          {
+            "id": "bi3",
+            "text": "const"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn deposits_money() {\n    let mut account = BankAccount { balance: 100 };\n    account.deposit(50);\n    assert_eq!(account.balance, 150);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The method modifies self.balance directly.",
+    "A caller binding must permit mutable borrows."
+  ],
+  "explanation": "&mut self borrows the struct mutably so its fields can be updated. The variable holding the struct must also be declared with let mut, or calling a mutable method fails with error E0596. Shared references &self cannot mutate fields, causing error E0594. Taking mut self moves ownership into the function and consumes the struct, making subsequent reads in main fail with error E0382."
+}

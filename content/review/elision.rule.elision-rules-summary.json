@@ -1,0 +1,11 @@
+{
+  "id": "elision.rule.elision-rules-summary",
+  "kind": "rule",
+  "title": "Rules governing automatic lifetime elision",
+  "concepts": [
+    "elision"
+  ],
+  "prompt": "How does the Rust compiler assign elided lifetimes to function inputs and outputs?",
+  "answer": "Each un-annotated reference argument gets its own distinct lifetime parameter. If there is exactly one input lifetime parameter, that lifetime is assigned to all output references. If there are multiple input lifetimes and one is `&self` or `&mut self`, the lifetime of `self` is assigned to all output references.",
+  "schema_version": 1
+}

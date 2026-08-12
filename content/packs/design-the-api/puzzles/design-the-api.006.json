@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.006",
+  "version": 1,
+  "title": "Slice over Vector",
+  "track": "design-the-api",
+  "concepts": [
+    "api-design",
+    "slice"
+  ],
+  "difficulty": 1,
+  "goal": "Change the function signature to accept array references and vectors without allocating.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from API Guidelines: Flexibility"
+  },
+  "template": "fn sum(items: ⟦param⟧) -> i32 {\n    items.iter().sum()\n}\n\nfn main() {\n    let numbers = [10, 20, 30];\n    let total = sum(⟦arg⟧);\n    println!(\"{total}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "param",
+        "original": "&Vec<i32>",
+        "label": "parameter type",
+        "choices": [
+          {
+            "id": "pa1",
+            "text": "&[i32]"
+          },
+          {
+            "id": "pa2",
+            "text": "&Vec<i32>"
+          },
+          {
+            "id": "pa3",
+            "text": "Vec<i32>"
+          }
+        ]
+      },
+      {
+        "id": "arg",
+        "original": "numbers.to_vec()",
+        "label": "argument passing",
+        "choices": [
+          {
+            "id": "ar1",
+            "text": "&numbers"
+          },
+          {
+            "id": "ar2",
+            "text": "numbers.to_vec()"
+          },
+          {
+            "id": "ar3",
+            "text": "numbers"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_sum() {\n    assert_eq!(sum(&[10, 20, 30]), 60);\n    assert_eq!(sum(&vec![1, 2]), 3);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at the type of `numbers` in `main`. It is a fixed-size array, not a `Vec`.",
+    "Use slice borrowing `&[i32]` so both arrays and vectors coerce smoothly."
+  ],
+  "explanation": "`&[i32]` accepts references to fixed arrays like `[i32; 3]` as well as references to `Vec<i32>` via deref coercion. Using `&Vec<i32>` forces fixed array owners to call `.to_vec()`, causing an unnecessary heap allocation. Passing `Vec<i32>` transfers ownership, which is even more restrictive. Design read-only collection parameters as slices."
+}

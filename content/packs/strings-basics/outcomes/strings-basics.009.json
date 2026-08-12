@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "strings-basics.009",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "7ed83493c51b3a1b1f0a68b752cf8d88b1f94d9adb9813e3fbe5e7df229db71a": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "988f30924338cfafec3d4d144ac87a62ba55208d786154f3b92a3cd592797875": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f48bb3061657bc1c054cf22f55a819fd6261952d4492ff85aa9e693012734a3b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot add `&str` to `&str`",
+          "slot_ids": [
+            "concat_invalid"
+          ],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

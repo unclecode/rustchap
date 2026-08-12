@@ -1,0 +1,11 @@
+{
+  "id": "builder-pattern.gotcha.immutable-self-mutation",
+  "kind": "gotcha",
+  "title": "Mutating fields behind immutable self",
+  "concepts": [
+    "builder-pattern"
+  ],
+  "prompt": "Why does defining a builder method with `&self` prevent updating internal fields?",
+  "answer": "An immutable reference `&self` forbids mutating any field of the struct. The compiler emits error `E0594` when trying to assign to a field behind `&self`. Declarations must use `mut self` or `&mut self` to enable field mutation.",
+  "schema_version": 1
+}

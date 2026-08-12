@@ -1,0 +1,12 @@
+{
+  "id": "smart-pointers.choice.rc-refcell-combination",
+  "kind": "choice",
+  "title": "Combining Rc and RefCell for shared state",
+  "concepts": [
+    "smart-pointers",
+    "interior-mutability"
+  ],
+  "prompt": "Why do Rust programs combine Rc with RefCell when sharing mutable data in a single thread?",
+  "answer": "Rc provides multiple shared owners for a value, but only grants immutable shared references to its contents. Wrapping the inner value in RefCell restores controlled dynamic mutability behind those shared Rc handles.",
+  "schema_version": 1
+}

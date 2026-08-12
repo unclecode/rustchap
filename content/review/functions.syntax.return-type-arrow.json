@@ -1,0 +1,11 @@
+{
+  "id": "functions.syntax.return-type-arrow",
+  "kind": "syntax",
+  "title": "Declaring function return types",
+  "concepts": [
+    "functions"
+  ],
+  "prompt": "How do you specify the return type of a function in its signature?",
+  "answer": "Place an arrow `->` followed by the type after the parameter list. Omitting the arrow means the function returns the unit type `()`.",
+  "schema_version": 1
+}

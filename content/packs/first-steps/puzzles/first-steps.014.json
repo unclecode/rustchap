@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.014",
+  "version": 1,
+  "title": "Unpack the Pair",
+  "track": "first-steps",
+  "concepts": [
+    "tuples",
+    "primitive-types"
+  ],
+  "difficulty": 2,
+  "goal": "Extract coordinate values from a tuple using positional dot indexing.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Tuples"
+  },
+  "template": "fn distance_sq(point: (i32, i32)) -> i32 {\n    let x = point⟦x_slot⟧;\n    let y = point⟦y_slot⟧;\n    x * x + y * y\n}\n\nfn main() {\n    let p = (3, 4);\n    println!(\"dist sq: {}\", distance_sq(p));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "x_slot",
+        "original": "[0]",
+        "label": "x coordinate access",
+        "choices": [
+          {
+            "id": "x_1",
+            "text": ".0"
+          },
+          {
+            "id": "x_2",
+            "text": "[0]"
+          },
+          {
+            "id": "x_3",
+            "text": ".x"
+          }
+        ]
+      },
+      {
+        "id": "y_slot",
+        "original": "[1]",
+        "label": "y coordinate access",
+        "choices": [
+          {
+            "id": "y_1",
+            "text": ".1"
+          },
+          {
+            "id": "y_2",
+            "text": "[1]"
+          },
+          {
+            "id": "y_3",
+            "text": ".y"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn calculates_distance() {\n    assert_eq!(distance_sq((3, 4)), 25);\n    assert_eq!(distance_sq((0, 0)), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rust tuples do not use square brackets for indexing like arrays.",
+    "Use dot notation with zero-based numeric indices like `.0` and `.1`."
+  ],
+  "explanation": "Tuples use dot notation with zero-based indices like `point.0` and `point.1` to access elements. Square brackets like `point[0]` fail with E0608 because tuples do not implement the `Index` trait. Named fields like `point.x` fail with E0609 because tuples have no named fields."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "iterator.choice.collect-result-vs-loop",
+  "kind": "choice",
+  "title": "Iterator Collect vs Manual Loop for Results",
+  "concepts": [
+    "iterator",
+    "error-propagation"
+  ],
+  "prompt": "When converting a slice of strings to numbers, why prefer collect over a manual loop?",
+  "answer": "Using collect on an iterator of Result values turns element-wise parsing into a single all-or-nothing operation. It avoids mutable vector accumulation and manual match boilerplate. The standard library handles early termination automatically.",
+  "schema_version": 1
+}

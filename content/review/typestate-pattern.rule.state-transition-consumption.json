@@ -1,0 +1,11 @@
+{
+  "id": "typestate-pattern.rule.state-transition-consumption",
+  "kind": "rule",
+  "title": "Consuming values during typestate",
+  "concepts": [
+    "typestate-pattern"
+  ],
+  "prompt": "How does taking `self` by value prevent using an object after a state transition?",
+  "answer": "Taking `self` by value moves ownership of the state struct into the transition method. Once moved, the borrow checker prevents further access to the original variable with error `E0382`. Returning a new type represents the next state safely.",
+  "schema_version": 1
+}

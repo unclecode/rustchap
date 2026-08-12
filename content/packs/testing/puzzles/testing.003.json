@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "testing.003",
+  "version": 1,
+  "title": "Testing Panics",
+  "track": "testing",
+  "concepts": [
+    "unit-testing"
+  ],
+  "difficulty": 2,
+  "goal": "Verify that invalid function calls cause a panic as expected.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Unit Tests"
+  },
+  "template": "fn divide(a: i32, b: i32) -> i32 {\n    if b == 0 {\n        panic!(\"divide by zero\");\n    }\n    a / b\n}\n\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    ⟦slot1⟧\n    fn test_zero_divisor() {\n        ⟦slot2⟧;\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "#[test]\n    #[should_panic(expected = \"divide by zero\")]",
+        "label": "test attributes",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "#[test]\n    #[should_panic(expected = \"divide by zero\")]"
+          },
+          {
+            "id": "sl2",
+            "text": "#[test]"
+          },
+          {
+            "id": "sl3",
+            "text": "#[test]\n    #[should_panic(expected = \"invalid input\")]"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "divide(10, 0)",
+        "label": "test logic",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "divide(10, 0)"
+          },
+          {
+            "id": "sl2",
+            "text": "panic!(\"other panic\")"
+          },
+          {
+            "id": "sl3",
+            "text": "divide(10, \"0\")"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn divide_normal() {\n    assert_eq!(divide(10, 2), 5);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "A function needs an attribute to mark it as a test, plus an attribute specifying it must panic.",
+    "Call the function with arguments that trigger the exact panic message."
+  ],
+  "explanation": "`#[should_panic(expected = \"...\")]` asserts that running the test causes a panic containing the expected text. Plain `#[test]` without `#[should_panic]` fails the test run when `divide(10, 0)` panics. Specifying an expected string like `\"invalid input\"` fails when the actual panic message is `\"divide by zero\"`."
+}

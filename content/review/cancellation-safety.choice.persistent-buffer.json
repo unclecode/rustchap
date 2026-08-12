@@ -1,0 +1,11 @@
+{
+  "id": "cancellation-safety.choice.persistent-buffer",
+  "kind": "choice",
+  "title": "Store cancellation state in outer structs",
+  "concepts": [
+    "cancellation-safety"
+  ],
+  "prompt": "How do you make an async read operation cancellation-safe across select! loops?",
+  "answer": "Store the read buffer in an outer struct or variable that outlives the select! expression. Passing a mutable reference to the persistent buffer prevents partial reads from being discarded when dropped.",
+  "schema_version": 1
+}

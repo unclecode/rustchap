@@ -1,0 +1,11 @@
+{
+  "id": "standard-traits.choice.unwrap-or-default-efficiency",
+  "kind": "choice",
+  "title": "Prefer unwrap or default over eager defau...",
+  "concepts": [
+    "standard-traits"
+  ],
+  "prompt": "Why is opt.unwrap_or_default() preferred over opt.unwrap_or(`String::default()`)?",
+  "answer": "The method `unwrap_or_default()` evaluates the default lazily only if the `Option` is `None`. Passing `String::default()` to `unwrap_or()` eagerly constructs and allocates the default value on every invocation.",
+  "schema_version": 1
+}

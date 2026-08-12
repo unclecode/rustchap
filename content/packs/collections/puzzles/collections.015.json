@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "collections.015",
+  "version": 1,
+  "title": "Deduplicate and Trim",
+  "track": "collections",
+  "concepts": [
+    "vec-basics",
+    "mutability"
+  ],
+  "difficulty": 2,
+  "goal": "Sort elements, remove duplicates, and drop the highest element.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Vec"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn clean_and_trim(mut values: Vec<i32>) -> Vec<i32> {\n",
+    "blocks": [
+      {
+        "id": "sort",
+        "text": "    values.sort();\n"
+      },
+      {
+        "id": "dedup",
+        "text": "    values.dedup();\n"
+      },
+      {
+        "id": "pop",
+        "text": "    values.pop();\n"
+      },
+      {
+        "id": "ret",
+        "text": "    values"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn trims_highest() {\n    assert_eq!(clean_and_trim(vec![5, 1, 5, 2]), vec![1, 2]);\n}",
+      "#[test]\nfn handles_duplicates() {\n    assert_eq!(clean_and_trim(vec![4, 4, 4, 3]), vec![3]);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "dedup only collapses adjacent duplicate elements.",
+    "pop removes the last element of the vector after sorting and deduplicating."
+  ],
+  "explanation": "dedup() only removes consecutive duplicates, so sort() must run first to group identical items together. pop() then removes the final and largest element from the deduplicated list before returning values."
+}

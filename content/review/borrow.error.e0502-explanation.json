@@ -1,0 +1,11 @@
+{
+  "id": "borrow.error.e0502-explanation",
+  "kind": "error",
+  "title": "Diagnostics for Borrow Conflicts",
+  "concepts": [
+    "borrow"
+  ],
+  "prompt": "What does compiler error E0502 mean, and how do you resolve it?",
+  "answer": "Error E0502 occurs when code attempts to borrow a value as mutable while a shared borrow is still active. To fix it, finish using the shared reference before creating the mutable borrow, or copy the required data first.",
+  "schema_version": 1
+}

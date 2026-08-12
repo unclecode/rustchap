@@ -1,0 +1,11 @@
+{
+  "id": "unit-testing.gotcha.assert-eq-traits",
+  "kind": "gotcha",
+  "title": "Trait requirements for assert_eq",
+  "concepts": [
+    "unit-testing"
+  ],
+  "prompt": "What traits must both arguments implement when using assert_eq! in a unit test?",
+  "answer": "Both arguments must implement PartialEq to compare equality and Debug to format failure messages. If either trait is missing, the compiler rejects the macro call with error E0277. Derive Debug and PartialEq on custom structs used in test assertions.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "string-types.choice.with-capacity-performance",
+  "kind": "choice",
+  "title": "Preallocate string storage with capacity",
+  "concepts": [
+    "string-types"
+  ],
+  "prompt": "When should you construct a string with `String::with_capacity` instead of `String::new`?",
+  "answer": "Use `String::with_capacity` when you know or can estimate the byte length of the resulting string before building it. This allocates heap memory once, avoiding costly intermediate allocations as text is appended.",
+  "schema_version": 1
+}

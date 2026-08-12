@@ -1,0 +1,11 @@
+{
+  "id": "raw-pointers.choice.mut-vs-const-ptr",
+  "kind": "choice",
+  "title": "Choosing between *const T and *mut T",
+  "concepts": [
+    "raw-pointers"
+  ],
+  "prompt": "When should you use *const T versus *mut T for raw pointer types?",
+  "answer": "Use *const T when reading memory without modifying it. Use *mut T when writing to memory, because assigning through *const T produces compiler error E0594.",
+  "schema_version": 1
+}

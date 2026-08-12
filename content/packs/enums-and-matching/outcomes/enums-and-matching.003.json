@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "enums-and-matching.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "205375c1bf9c00578cdd7c59fe9eb3b7606d86dd632b0a268de3e5a49bcb1467": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `(`, `,`, `=`, `{`, or `}`, found `:`",
+          "slot_ids": [
+            "payload"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "59bf770a103ee84de1ec5402a3014932ceb28f21f1add84226b1696cdf59d539": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    },
+    "ef507a5d70b6eeff64ee679937acf163e9c6e5ee4874c30bd055691f672f6f4a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected tuple struct or tuple variant, found unit variant `Event::Click`",
+          "slot_ids": [],
+          "rust_code": "E0532"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected function, found `Event`",
+          "slot_ids": [],
+          "rust_code": "E0618"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected function, found `Event`",
+          "slot_ids": [],
+          "rust_code": "E0618"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

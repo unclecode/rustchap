@@ -1,0 +1,11 @@
+{
+  "id": "iterator.rule.laziness-execution",
+  "kind": "rule",
+  "title": "Iterators do nothing until consumed",
+  "concepts": [
+    "iterator"
+  ],
+  "prompt": "Why does chaining iterator adapters perform no work until a consumer like collect or sum is called?",
+  "answer": "Iterator adapters are lazy and only construct a state machine describing the transformation. No elements are processed until a consuming method calls `next` on the pipeline. This allows the compiler to optimize multi-step chains into efficient loops without intermediate allocations.",
+  "schema_version": 1
+}

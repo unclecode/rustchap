@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup",
+  "title": "Drop & Cleanup",
+  "description": "What happens when a value goes out of scope.",
+  "toolchain": "1.97.1",
+  "order": [
+    "drop-and-cleanup.001",
+    "drop-and-cleanup.002",
+    "drop-and-cleanup.003",
+    "drop-and-cleanup.004",
+    "drop-and-cleanup.005",
+    "drop-and-cleanup.006",
+    "drop-and-cleanup.007",
+    "drop-and-cleanup.008",
+    "drop-and-cleanup.009",
+    "drop-and-cleanup.010",
+    "drop-and-cleanup.011",
+    "drop-and-cleanup.012",
+    "drop-and-cleanup.013",
+    "drop-and-cleanup.014",
+    "drop-and-cleanup.015"
+  ],
+  "icon": "trash.circle.fill",
+  "accent": "brown",
+  "level": "ownership"
+}

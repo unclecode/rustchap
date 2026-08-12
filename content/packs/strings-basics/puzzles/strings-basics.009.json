@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.009",
+  "version": 1,
+  "title": "Format the Message",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types"
+  ],
+  "difficulty": 2,
+  "goal": "Construct a dynamic log message with minimal memory allocations.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from references/strings"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "format_macro",
+        "code": "fn format_log(level: &str, msg: &str) -> String {\n    format!(\"[{level}] {msg}\")\n}"
+      },
+      {
+        "id": "concat_invalid",
+        "code": "fn format_log(level: &str, msg: &str) -> String {\n    \"[\" + level + \"] \" + msg\n}"
+      },
+      {
+        "id": "to_string_miss_brackets",
+        "code": "fn format_log(level: &str, msg: &str) -> String {\n    level.to_string() + \" \" + msg\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn tests_log() {\n    assert_eq!(format_log(\"INFO\", \"ready\"), \"[INFO] ready\");\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "String slice concatenation with `+` does not compile because `+` requires an owned `String` on the left.",
+    "The `format!` macro constructs the formatted output directly without extra conversions."
+  ],
+  "explanation": "`format!(\"[{level}] {msg}\")` constructs the target string directly in a single step. Direct `+` concatenation on `&str` slices fails to compile because the `+` operator requires an owned `String` as the left operand."
+}

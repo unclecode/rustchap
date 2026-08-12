@@ -1,0 +1,12 @@
+{
+  "id": "async-await.error.e0277-future-not-send",
+  "kind": "error",
+  "title": "Reading compiler error E0277 on spawned",
+  "concepts": [
+    "async-await",
+    "send-and-static"
+  ],
+  "prompt": "What cause should you look for when `tokio::spawn` fails with compiler error E0277 stating a future is not Send?",
+  "answer": "This error indicates that a variable held across an await point does not implement Send. Look at the diagnostic output to identify the exact local variable and await line causing the issue. Fix it by dropping non-Send values before awaiting, extracting the inner value, or replacing non-Send types like Rc or std MutexGuard with Arc or async-aware primitives.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "primitive-types.rule.literal-type-inference",
+  "kind": "rule",
+  "title": "Default integer and float types",
+  "concepts": [
+    "primitive-types"
+  ],
+  "prompt": "Which concrete types does Rust assign to integer and floating-point literals when no explicit type annotation is provided?",
+  "answer": "Unconstrained integer literals default to i32 in Rust. Unconstrained floating-point literals default to f64. If a literal is passed into a function, Rust infers its specific width from the parameter type instead.",
+  "schema_version": 1
+}

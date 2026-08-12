@@ -1,0 +1,11 @@
+{
+  "id": "pattern-matching.choice.if-let-vs-match",
+  "kind": "choice",
+  "title": "Choosing between match and if let",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "prompt": "When should you use `if let` instead of a full `match` expression?",
+  "answer": "Use `if let` when you only care about matching one specific variant and ignoring all others. Use `match` when you need to handle multiple variants or enforce exhaustive handling of every case.",
+  "schema_version": 1
+}

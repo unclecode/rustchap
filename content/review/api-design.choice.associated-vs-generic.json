@@ -1,0 +1,11 @@
+{
+  "id": "api-design.choice.associated-vs-generic",
+  "kind": "choice",
+  "title": "Associated types versus generic parameters",
+  "concepts": [
+    "api-design"
+  ],
+  "prompt": "When should a trait use an associated type instead of a generic type parameter?",
+  "answer": "Use an associated type when there is exactly one logical target type per implementation, like `Iterator::Item`. Use generic parameters when a single type can implement the trait for multiple input types, like `Add<Rhs>`.",
+  "schema_version": 1
+}

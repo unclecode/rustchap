@@ -1,0 +1,11 @@
+{
+  "id": "match-basics.error.match-guard-exhaustiveness",
+  "kind": "error",
+  "title": "Match guards and compiler exhaustiveness",
+  "concepts": [
+    "match-basics"
+  ],
+  "prompt": "Why can adding an if guard to a match arm cause error E0004 non-exhaustive patterns?",
+  "answer": "The compiler cannot prove at compile time whether a match guard condition evaluates to true. An arm with a guard is not counted toward covering every possible value of the type. You must provide a fallback arm without a guard to satisfy exhaustiveness.",
+  "schema_version": 1
+}

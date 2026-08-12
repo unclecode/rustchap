@@ -1,0 +1,12 @@
+{
+  "id": "modules.gotcha.re-export-visibility",
+  "kind": "gotcha",
+  "title": "Re-exporting items with pub use",
+  "concepts": [
+    "modules",
+    "visibility"
+  ],
+  "prompt": "What happens when you write `use inner::Item;` inside a module without the `pub` keyword?",
+  "answer": "The imported item becomes accessible only within that module. Outside callers cannot access `Item` through that module path unless you prefix the import with `pub use`.",
+  "schema_version": 1
+}

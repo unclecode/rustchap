@@ -1,0 +1,11 @@
+{
+  "id": "slice.gotcha.into-iter-deref",
+  "kind": "gotcha",
+  "title": "IntoIterator on slice reference borrows",
+  "concepts": [
+    "slice"
+  ],
+  "prompt": "What item type do you get when iterating over &Vec<T> with a for loop?",
+  "answer": "Iterating over `&Vec<T>` calls `IntoIterator` on the reference, which yields shared references `&T`. The vector is borrowed for the duration of the loop and remains usable afterwards. Iterating over an owned `Vec<T>` consumes the vector and yields owned `T` items.",
+  "schema_version": 1
+}

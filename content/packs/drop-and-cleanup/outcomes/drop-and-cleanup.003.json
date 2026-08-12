@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "drop-and-cleanup.003",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "567f1fdbc7ee070ec3caeb89cb82e27f01f1b9c23d3c0e87de06aa99e929f960": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "explicit use of destructor method",
+          "slot_ids": [
+            "drop_call"
+          ],
+          "rust_code": "E0040"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "85f04abee76a9560ea785c86aed7015f5905dd9462484a91c21697c834119a8f": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    },
+    "bf4721ff2e173a8c6b0cbc3567f8f26c78599497345e0b66c3a26c5cd394ac10": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "explicit use of destructor method",
+          "slot_ids": [
+            "drop_call"
+          ],
+          "rust_code": "E0040"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

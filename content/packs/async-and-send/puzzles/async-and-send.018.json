@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.018",
+  "version": 1,
+  "title": "Don't Hold the Guard",
+  "track": "async-and-send",
+  "concepts": [
+    "send-and-static",
+    "async-await"
+  ],
+  "difficulty": 2,
+  "goal": "Extract the value from the Mutex before awaiting so the future stays Send.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from concurrency/async-pitfalls"
+  },
+  "template": "use std::sync::Mutex;\n\nasync fn fetch() -> i32 { 10 }\n\nasync fn update(m: &Mutex<i32>) -> i32 {\n    let val = ⟦guard_expr⟧;\n    let data = fetch()⟦await_expr⟧;\n    data + val\n}\n\nfn assert_send<T: Send>(_t: T) {}\n\nfn main() {\n    let m = Mutex::new(5);\n    assert_send(update(&m));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "guard_expr",
+        "original": "m.lock().unwrap()",
+        "label": "mutex value extraction",
+        "choices": [
+          {
+            "id": "gu1",
+            "text": "*m.lock().unwrap()"
+          },
+          {
+            "id": "gu2",
+            "text": "m.lock().unwrap()"
+          },
+          {
+            "id": "gu3",
+            "text": "&mut *m.lock().unwrap()"
+          }
+        ]
+      },
+      {
+        "id": "await_expr",
+        "original": ".unwrap()",
+        "label": "await fetch call",
+        "choices": [
+          {
+            "id": "aw1",
+            "text": ".await"
+          },
+          {
+            "id": "aw2",
+            "text": ".unwrap()"
+          },
+          {
+            "id": "aw3",
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_update() {\n    let m = Mutex::new(5);\n    let fut = update(&m);\n    assert_send(fut);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "`std::sync::MutexGuard` does not implement Send, so keeping it alive across .await poisons the future.",
+    "Dereference *m.lock().unwrap() immediately to copy the i32 and drop the MutexGuard at the end of the statement."
+  ],
+  "explanation": "Holding a `std::sync::MutexGuard` across an .await makes the future non-Send because MutexGuard cannot cross thread boundaries (E0277). Dereferencing *m.lock().unwrap() copies the inner i32 into val and drops the MutexGuard at the end of the let statement before fetch() is called. Trying to take a mutable reference &mut *m.lock().unwrap() fails with E0716 because the temporary MutexGuard drops while borrowed. Calling .unwrap() on a future fails with E0599 because futures are not Results."
+}

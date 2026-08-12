@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "option-and-result.009",
+  "version": 1,
+  "title": "Bridge the Gap",
+  "track": "option-and-result",
+  "concepts": [
+    "option",
+    "error-propagation"
+  ],
+  "difficulty": 2,
+  "goal": "Convert an Option to a Result and propagate the error when value is missing.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Option and Result"
+  },
+  "template": "fn get_user(id: u32) -> Option<String> {\n    if id == 1 { Some(String::from(\"Alice\")) } else { None }\n}\n\nfn fetch_name(id: u32) -> Result<String, &'static str> {\n    let name = get_user(id)⟦slot1⟧⟦slot2⟧;\n    Ok(name)\n}\n\nfn main() {\n    println!(\"{:?}\", fetch_name(1));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "",
+        "label": "conversion",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": ".ok_or(\"user not found\")"
+          },
+          {
+            "id": "sl2",
+            "text": ""
+          },
+          {
+            "id": "sl3",
+            "text": ".expect(\"user not found\")"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "",
+        "label": "propagation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "?"
+          },
+          {
+            "id": "sl2",
+            "text": ""
+          },
+          {
+            "id": "sl3",
+            "text": ".unwrap()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn finds_user() {\n    assert_eq!(fetch_name(1), Ok(String::from(\"Alice\")));\n}",
+      "#[test]\nfn reports_missing() {\n    assert_eq!(fetch_name(2), Err(\"user not found\"));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The function returns a Result, but get_user returns an Option.",
+    "Turn None into Err with ok_or before applying the ? operator."
+  ],
+  "explanation": "Applying `?` directly to `Option` inside a function returning `Result` causes compiler error `E0277`. Calling `ok_or` converts `Option<String>` into `Result<String, &str>`, allowing `?` to unwrap `Ok` or return early with `Err`."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "pattern-matching.gotcha.variable-shadowing",
+  "kind": "gotcha",
+  "title": "Match arms shadow outer variables",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "prompt": "What happens when you write an existing variable name directly inside a match arm pattern?",
+  "answer": "The pattern creates a new variable binding that shadows the existing one and matches any value. It does not compare the matched value against the outer variable. To compare equality with an outer variable, use a match guard.",
+  "schema_version": 1
+}

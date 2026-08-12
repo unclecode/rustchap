@@ -1,0 +1,11 @@
+{
+  "id": "expressions.rule.implicit-return-value",
+  "kind": "rule",
+  "title": "Last Expression Return Values",
+  "concepts": [
+    "expressions"
+  ],
+  "prompt": "How does a Rust block evaluate to a value without an explicit return statement?",
+  "answer": "A block evaluates to its final expression if that expression lacks a trailing semicolon. Adding a semicolon turns the expression into a statement, which evaluates to the unit type `()` instead.",
+  "schema_version": 1
+}

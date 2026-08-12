@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.005",
+  "version": 1,
+  "title": "Encapsulation and Constructors",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "visibility",
+    "structs",
+    "api-design"
+  ],
+  "difficulty": 1,
+  "goal": "Enforce invariants by hiding struct fields behind constructor functions.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You hide implementation details inside a module by keeping struct fields private."
+      },
+      {
+        "kind": "code",
+        "code": "pub struct Counter {\n    count: u32,\n}\n\nimpl Counter {\n    pub fn new() -> Self {\n        Counter { count: 0 }\n    }\n}",
+        "caption": "Private field `count` cannot be modified directly from outside."
+      },
+      {
+        "kind": "prose",
+        "text": "Outside code cannot construct a struct directly using literal syntax if any field is private."
+      },
+      {
+        "kind": "code",
+        "code": "// Fails outside module:\n// let c = Counter { count: 5 };",
+        "caption": "Direct struct literal instantiation fails when fields are private."
+      },
+      {
+        "kind": "prose",
+        "text": "Provide public constructor functions like `new` or methods to safely expose and modify internal state."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Enforce invariants by hiding struct fields behind constructor functions."
+}

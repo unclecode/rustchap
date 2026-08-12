@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "build-the-iterator.012",
+  "version": 1,
+  "title": "Flattening Nested Data",
+  "track": "build-the-iterator",
+  "concepts": [
+    "iterator"
+  ],
+  "difficulty": 1,
+  "goal": "Collapse nested collections into a single continuous iterator stream.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 3 Afternoon: Iterators"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "When an operation produces a collection for each item, `.map()` creates nested iterators. You will recognise this shape from nested loops in other languages."
+      },
+      {
+        "kind": "code",
+        "code": "let words = vec![\"hi\", \"rust\"];\nlet chars: Vec<char> = words\n    .iter()\n    .flat_map(|w| w.chars())\n    .collect();",
+        "caption": "flat_map combines mapping and flattening into one adapter."
+      },
+      {
+        "kind": "prose",
+        "text": "Using `.map()` here produces an iterator of iterators. Downstream adapters would receive inner `Chars` iterators instead of individual `char` items, triggering type mismatch error `E0308`."
+      },
+      {
+        "kind": "prose",
+        "text": "`.flat_map()` calls the closure on each element and flattens the resulting inner iterators into a single continuous stream. You will recognise `flat_map` from `flatMap` in JavaScript or Java."
+      },
+      {
+        "kind": "code",
+        "code": "let grid = vec![vec![1, 2], vec![3, 4]];\nlet flat: Vec<i32> = grid\n    .into_iter()\n    .flatten()\n    .collect();",
+        "caption": "flatten works when items are already iterable."
+      },
+      {
+        "kind": "prose",
+        "text": "If items are already collections, use `.flatten()` directly. Iterators are lazy, so flattening does not allocate intermediate vectors for each inner stream."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Collapse nested collections into a single continuous iterator stream."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "extension-traits.syntax.in-scope-trait",
+  "kind": "syntax",
+  "title": "Requirement for using extension trait met...",
+  "concepts": [
+    "extension-traits"
+  ],
+  "prompt": "What must external code do before calling a method defined in an extension trait?",
+  "answer": "The calling module must import the extension trait into scope using a use statement. If the trait is not in scope, the compiler cannot resolve method calls on foreign instances.",
+  "schema_version": 1
+}

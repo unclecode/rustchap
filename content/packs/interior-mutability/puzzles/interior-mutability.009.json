@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.009",
+  "version": 1,
+  "title": "Shared List Append",
+  "track": "interior-mutability",
+  "concepts": [
+    "interior-mutability",
+    "smart-pointers",
+    "vec-basics"
+  ],
+  "difficulty": 2,
+  "goal": "Mutate a vector wrapped in Rc and RefCell through a shared handle.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Rc and RefCell"
+  },
+  "template": "use std::cell::RefCell;\nuse std::rc::Rc;\n\ntype SharedVec = Rc<RefCell<Vec<i32>>>;\n\nfn append(list: &SharedVec, val: i32) {\n    list.⟦slot1⟧().⟦slot2⟧(val);\n}\n\nfn main() {\n    let list =\n        Rc::new(RefCell::new(vec![1]));\n    let copy = Rc::clone(&list);\n    append(&list, 2);\n    println!(\"{:?}\", copy.borrow());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "borrow",
+        "label": "borrow method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "borrow_mut"
+          },
+          {
+            "id": "sl2",
+            "text": "borrow"
+          },
+          {
+            "id": "sl3",
+            "text": "get_mut"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "push",
+        "label": "vector method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "push"
+          },
+          {
+            "id": "sl2",
+            "text": "clear"
+          },
+          {
+            "id": "sl3",
+            "text": "clone"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn appends_to_shared() {\n    let list = Rc::new(RefCell::new(vec![10]));\n    let alias = Rc::clone(&list);\n    append(&list, 20);\n    assert_eq!(*alias.borrow(), vec![10, 20]);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Shared borrow() returns Ref<T>, which only grants immutable access.",
+    "To modify the inner Vec, you must request an exclusive RefMut guard via borrow_mut()."
+  ],
+  "explanation": "`borrow_mut()` returns a `RefMut` guard that allows calling mutating methods like `push()` on the vector. Calling `borrow()` produces an immutable `Ref` guard, causing `E0599` when attempting to call `push()`. Calling `get_mut()` fails because `Rc` does not grant unique ownership when shared handles exist. `clear()` compiles with `borrow_mut()` but wipes the list, while `clone()` duplicates the vector without mutating the original."
+}

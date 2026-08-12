@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime.014",
+  "version": 1,
+  "title": "Holding Views in Structs",
+  "track": "repair-the-lifetime",
+  "concepts": [
+    "lifetime",
+    "structs",
+    "borrow"
+  ],
+  "difficulty": 3,
+  "goal": "Connect the lifetime parameter of a struct to its reference field and method output.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 3 Afternoon: Lifetimes"
+  },
+  "template": "struct Parser⟦g_struct⟧ {\n    source: ⟦ty_field⟧,\n}\n\nimpl<'a> Parser<'a> {\n    fn peek(&self) -> &'a str {\n        self.source\n    }\n}\n\nfn main() {\n    let doc = String::from(\"hello\");\n    let p = Parser { source: &doc };\n    println!(\"{}\", p.peek());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "g_struct",
+        "original": "",
+        "label": "struct generic parameters",
+        "choices": [
+          {
+            "id": "g_1",
+            "text": "<'a>"
+          },
+          {
+            "id": "g_2",
+            "text": "<'b>"
+          },
+          {
+            "id": "g_3",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "ty_field",
+        "original": "&str",
+        "label": "field type",
+        "choices": [
+          {
+            "id": "ty1",
+            "text": "&'a str"
+          },
+          {
+            "id": "ty2",
+            "text": "&str"
+          },
+          {
+            "id": "ty3",
+            "text": "String"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn parses_peek() {\n    let doc = String::from(\"hello\");\n    let p = Parser { source: &doc };\n    assert_eq!(p.peek(), \"hello\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Every struct holding a reference must declare a generic lifetime parameter.",
+    "The struct parameter 'a must match the field's reference lifetime."
+  ],
+  "explanation": "Structs holding references must declare generic lifetime parameters like `struct Parser<'a>` and apply them to fields like `source: &'a str`. Leaving the generic off causes `E0106` (missing lifetime specifier) or `E0107` (wrong number of lifetime arguments in impl). Declaring `<'b>` while using `&'a str` produces undeclared lifetime `E0261`. Using `String` as the field type causes type mismatch `E0308` when returning `&'a str` in `peek`."
+}

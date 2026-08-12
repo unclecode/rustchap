@@ -1,0 +1,11 @@
+{
+  "id": "tuples.gotcha.array-vs-tuple-syntax",
+  "kind": "gotcha",
+  "title": "Bracket destructuring fails on tuples",
+  "concepts": [
+    "tuples"
+  ],
+  "prompt": "What error occurs if you try to destructure a tuple using square brackets `[a, b]`?",
+  "answer": "Square brackets match array patterns, not tuples. Matching a tuple with square brackets produces compiler error E0529 because the pattern shape does not match the tuple type.",
+  "schema_version": 1
+}

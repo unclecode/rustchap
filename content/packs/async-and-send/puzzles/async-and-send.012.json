@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.012",
+  "version": 1,
+  "title": "Cancellation in Async Rust",
+  "track": "async-and-send",
+  "concepts": [
+    "cancellation-safety"
+  ],
+  "difficulty": 1,
+  "goal": "Dropping a future cancels execution at the current await point.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Cancellation"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In Rust, dropping a future immediately cancels it. If a future is waiting at an `.await` point and gets dropped, execution stops right there."
+      },
+      {
+        "kind": "code",
+        "code": "let fut = fetch_data();\n// Dropping fut cancels fetch_data at its current .await\ndrop(fut);",
+        "caption": "Dropping a future discards its internal state machine."
+      },
+      {
+        "kind": "prose",
+        "text": "When a future is dropped, all local variables currently stored inside its state machine are dropped as well. No cleanup code after the `.await` will ever run."
+      },
+      {
+        "kind": "prose",
+        "text": "This makes cancellation fast and clean, but it requires care. If an `async fn` holds partial state in local variables across an `.await`, that state is lost when cancelled. Keep persistent state in struct fields outside the `async fn`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Dropping a future cancels execution at the current await point."
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers",
+  "title": "FFI & Raw Pointers",
+  "description": "Calling C, raw pointers, and holding up your end of the contract.",
+  "toolchain": "1.97.1",
+  "order": [
+    "ffi-and-raw-pointers.001",
+    "ffi-and-raw-pointers.002",
+    "ffi-and-raw-pointers.003",
+    "ffi-and-raw-pointers.004",
+    "ffi-and-raw-pointers.005",
+    "ffi-and-raw-pointers.006",
+    "ffi-and-raw-pointers.007",
+    "ffi-and-raw-pointers.008",
+    "ffi-and-raw-pointers.009",
+    "ffi-and-raw-pointers.010",
+    "ffi-and-raw-pointers.011",
+    "ffi-and-raw-pointers.012",
+    "ffi-and-raw-pointers.013",
+    "ffi-and-raw-pointers.014",
+    "ffi-and-raw-pointers.015"
+  ],
+  "icon": "arrow.left.arrow.right.square.fill",
+  "accent": "red",
+  "level": "mastery"
+}

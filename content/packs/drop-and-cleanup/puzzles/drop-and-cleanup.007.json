@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.007",
+  "version": 1,
+  "title": "Field Destruction Order",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait",
+    "structs"
+  ],
+  "difficulty": 2,
+  "goal": "Arrange struct fields to match expected destruction order.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "template": "use std::sync::atomic::{AtomicU32, Ordering};\n\nstatic LOG: AtomicU32 = AtomicU32::new(0);\n\nstruct FieldA;\nimpl Drop for FieldA {\n    fn drop(&mut self) {\n        let cur = LOG.load(Ordering::SeqCst);\n        LOG.store(cur * 10 + 1, Ordering::SeqCst);\n    }\n}\n\nstruct FieldB;\nimpl Drop for FieldB {\n    fn drop(&mut self) {\n        let cur = LOG.load(Ordering::SeqCst);\n        LOG.store(cur * 10 + 2, Ordering::SeqCst);\n    }\n}\n\nstruct Container {\n    ⟦f1⟧: FieldA,\n    ⟦f2⟧: FieldB,\n}\n\nfn run_container() -> u32 {\n    LOG.store(0, Ordering::SeqCst);\n    {\n        let _c = Container {\n            a: FieldA,\n            b: FieldB,\n        };\n    }\n    LOG.load(Ordering::SeqCst)\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "f1",
+        "original": "b",
+        "label": "first field name",
+        "choices": [
+          {
+            "id": "f11",
+            "text": "a"
+          },
+          {
+            "id": "f12",
+            "text": "b"
+          },
+          {
+            "id": "f13",
+            "text": "c"
+          }
+        ]
+      },
+      {
+        "id": "f2",
+        "original": "a",
+        "label": "second field name",
+        "choices": [
+          {
+            "id": "f21",
+            "text": "b"
+          },
+          {
+            "id": "f22",
+            "text": "a"
+          },
+          {
+            "id": "f23",
+            "text": "d"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_field_drop_order() {\n    assert_eq!(run_container(), 12);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Struct fields drop in top-to-bottom declaration order.",
+    "Match field names with their expected types in the struct body."
+  ],
+  "explanation": "Struct fields drop in declaration order (top to bottom). Declaring `a: FieldA` first and `b: FieldB` second causes `FieldA` to drop first (1) and `FieldB` second (2), yielding 12. Swapping the field names causes a type mismatch `E0308` during initialization. Duplicate field names fail with `E0124`."
+}

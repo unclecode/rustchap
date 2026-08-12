@@ -1,0 +1,11 @@
+{
+  "id": "expressions.rule.block-tail-value",
+  "kind": "rule",
+  "title": "Blocks evaluate to their tail expression",
+  "concepts": [
+    "expressions"
+  ],
+  "prompt": "What determines the value produced by a block enclosed in curly braces?",
+  "answer": "A block evaluates to its last expression if that expression lacks a trailing semicolon. If the last line ends with a semicolon, or if the block is empty, the block evaluates to unit `()`.",
+  "schema_version": 1
+}

@@ -1,0 +1,12 @@
+{
+  "id": "static-lifetime.error.e0515-dangling-local",
+  "kind": "error",
+  "title": "Reading Error E0515",
+  "concepts": [
+    "static-lifetime",
+    "borrow"
+  ],
+  "prompt": "Why does returning `&str` from a function creating a local `String` cause error `E0515`?",
+  "answer": "The local `String` is dropped when the function returns, leaving the reference pointing to freed memory. Return the owned `String` instead of a reference.",
+  "schema_version": 1
+}

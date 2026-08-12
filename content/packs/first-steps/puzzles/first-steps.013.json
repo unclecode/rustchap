@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.013",
+  "version": 1,
+  "title": "Compound Data: Tuples",
+  "track": "first-steps",
+  "concepts": [
+    "tuples",
+    "primitive-types"
+  ],
+  "difficulty": 1,
+  "goal": "Group values of different types into a tuple and recognize the unit type.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Tuples"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You often need to group a fixed number of values together without defining a full struct. A tuple combines multiple values of different types into one compound value."
+      },
+      {
+        "kind": "code",
+        "code": "let point: (i32, f64) = (10, 3.14);",
+        "caption": "Parentheses enclose both the type signature and the literal tuple."
+      },
+      {
+        "kind": "prose",
+        "text": "Tuple elements are accessed by position using dot notation with zero-based indices. You write `point.0` for the first item and `point.1` for the second."
+      },
+      {
+        "kind": "code",
+        "code": "let x = point.0;\nlet y = point.1;",
+        "caption": "Indexing uses dot syntax, not square brackets."
+      },
+      {
+        "kind": "prose",
+        "text": "An empty tuple `()` is a special type called the unit type. It has exactly one value, also written `()`."
+      },
+      {
+        "kind": "prose",
+        "text": "Functions without an explicit return type arrow implicitly return `()`. A statement ending in a semicolon also evaluates to `()`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Group values of different types into a tuple and recognize the unit type."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "error-propagation.error.mismatched-error-types",
+  "kind": "error",
+  "title": "Handling mismatched error types",
+  "concepts": [
+    "error-propagation"
+  ],
+  "prompt": "What error code appears when using question mark on an error type that does not convert to the function return type?",
+  "answer": "The compiler emits `E0277` because the target error type does not implement `From` for the source error type. You can transform the error type explicitly using `.map_err()` before using the question mark.",
+  "schema_version": 1
+}

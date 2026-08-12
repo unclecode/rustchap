@@ -8,9 +8,20 @@
     "generics-and-dyn.004",
     "generics-and-dyn.001",
     "generics-and-dyn.002",
-    "generics-and-dyn.003"
+    "generics-and-dyn.003",
+    "generics-and-dyn.005",
+    "generics-and-dyn.006",
+    "generics-and-dyn.007",
+    "generics-and-dyn.008",
+    "generics-and-dyn.009",
+    "generics-and-dyn.010",
+    "generics-and-dyn.011",
+    "generics-and-dyn.012",
+    "generics-and-dyn.013",
+    "generics-and-dyn.014",
+    "generics-and-dyn.015"
   ],
   "icon": "cube.transparent",
   "accent": "indigo",
-  "level": "advanced"
+  "level": "abstraction"
 }

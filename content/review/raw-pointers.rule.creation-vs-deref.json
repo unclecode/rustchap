@@ -1,0 +1,11 @@
+{
+  "id": "raw-pointers.rule.creation-vs-deref",
+  "kind": "rule",
+  "title": "Creating raw pointers is safe",
+  "concepts": [
+    "raw-pointers"
+  ],
+  "prompt": "Which operation on raw pointers is safe, and which operation requires unsafe?",
+  "answer": "Creating raw pointers by casting references or integers is safe because no memory is accessed. Dereferencing a raw pointer with *ptr requires unsafe because the compiler cannot verify validity.",
+  "schema_version": 1
+}

@@ -1,0 +1,16 @@
+{
+  "id": "io-traits",
+  "title": "I/O Traits",
+  "topic": "Abstraction",
+  "summary": "Traits like Read, Write, and BufRead for abstract byte input and output.",
+  "lecture": [
+    "Rust abstracts over data sources and sinks using the Read and Write traits from `std::io`.",
+    "Types implementing Read supply bytes into caller-provided buffers, while Write accepts bytes from callers.",
+    "BufRead adds buffered reading capabilities, enabling line-by-line iteration over any input stream."
+  ],
+  "example": {
+    "code": "use std::io::{Read, Result};\n\nfn first_byte<R: Read>(mut r: R) -> Result<u8> {\n    let mut buf = [0u8; 1];\n    r.read_exact(&mut buf)?;\n    Ok(buf[0])\n}",
+    "caption": "Read operates on mutable buffers."
+  },
+  "schema_version": 1
+}

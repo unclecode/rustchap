@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "enums-and-matching.009",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "05482a519b667966c534e126bc81ee743c7c29fc94d0f9eae652dab91d00dedc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `y` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected tuple struct or tuple variant, found unit variant `Command::Reset`",
+          "slot_ids": [
+            "reset_pattern"
+          ],
+          "rust_code": "E0532"
+        },
+        {
+          "category": "compile_error",
+          "message": "pattern does not mention field `y`",
+          "slot_ids": [
+            "click_pattern"
+          ],
+          "rust_code": "E0027"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0800b56473183d70c197452b44feb4db07849f068cdbd53b075d328476cafae0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected tuple struct or tuple variant, found struct variant `Command::Click`",
+          "slot_ids": [
+            "click_pattern"
+          ],
+          "rust_code": "E0164"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2484efd5e287a8f9dd6ab33a0d47cb9ffc9afa355503cfde6ceaf9730a1e69d6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected tuple struct or tuple variant, found unit variant `Command::Reset`",
+          "slot_ids": [
+            "reset_pattern"
+          ],
+          "rust_code": "E0532"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "348f3e139971652a82cfee9335d915aa4ed624f66e9b892f92c87dd5d3183a6a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected tuple struct or tuple variant, found unit variant `Command::Reset`",
+          "slot_ids": [
+            "reset_pattern"
+          ],
+          "rust_code": "E0532"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4353d724218f0f08f861711142f0bf79541ec0cbc42b0520e4fbd48ac895f5db": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `y` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "pattern does not mention field `y`",
+          "slot_ids": [
+            "click_pattern"
+          ],
+          "rust_code": "E0027"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "97b56da1e4418245039b89a5a001a334186a07b62fc08c76e7dcd52a4be68fa8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected tuple struct or tuple variant, found unit variant `Command::Reset`",
+          "slot_ids": [
+            "reset_pattern"
+          ],
+          "rust_code": "E0532"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected tuple struct or tuple variant, found struct variant `Command::Click`",
+          "slot_ids": [
+            "click_pattern"
+          ],
+          "rust_code": "E0164"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b1e641e8cf0e7764a2eaf3760319b7231203ed845e45081ff9606ba50b9a4aa3": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "b5169afc8d29e39eb6e3affd1bf96fe6be8a62f0f3d74840a46c76cfdec0c7c0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected tuple struct or tuple variant, found unit variant `Command::Reset`",
+          "slot_ids": [
+            "reset_pattern"
+          ],
+          "rust_code": "E0532"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected tuple struct or tuple variant, found struct variant `Command::Click`",
+          "slot_ids": [
+            "click_pattern"
+          ],
+          "rust_code": "E0164"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e01eb8941a4de64dc9439145f9a6eb21a72b308a9854c223176ca3925af88574": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `y` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected tuple struct or tuple variant, found unit variant `Command::Reset`",
+          "slot_ids": [
+            "reset_pattern"
+          ],
+          "rust_code": "E0532"
+        },
+        {
+          "category": "compile_error",
+          "message": "pattern does not mention field `y`",
+          "slot_ids": [
+            "click_pattern"
+          ],
+          "rust_code": "E0027"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

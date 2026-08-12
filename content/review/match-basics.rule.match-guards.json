@@ -1,0 +1,11 @@
+{
+  "id": "match-basics.rule.match-guards",
+  "kind": "rule",
+  "title": "How match guards filter patterns",
+  "concepts": [
+    "match-basics"
+  ],
+  "prompt": "How do match guards affect whether a match arm is selected?",
+  "answer": "A match guard adds an extra boolean condition using `if` after the pattern. The arm is selected only if the pattern matches and the guard evaluates to true. If the guard evaluates to false, pattern matching continues to subsequent arms.",
+  "schema_version": 1
+}

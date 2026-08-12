@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.015",
+  "version": 1,
+  "title": "Distinguish Send and Sync Bounds",
+  "track": "threads-and-channels",
+  "concepts": [
+    "send-and-static",
+    "generics"
+  ],
+  "difficulty": 3,
+  "goal": "Apply correct Send and Sync trait bounds to generic functions.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Send and Sync"
+  },
+  "template": "use std::thread;\n\nfn spawn_value<T: ⟦slot1⟧ + 'static>(val: T) -> thread::JoinHandle<T> {\n    thread::spawn(move || val)\n}\nfn spawn_ref<T: ⟦slot2⟧ + 'static>(val: &'static T) -> thread::JoinHandle<()> {\n    thread::spawn(move || { let _ref = val; })\n}\n\nfn main() {\n    let handle = spawn_value(String::from(\"hi\"));\n    assert_eq!(handle.join().unwrap(), \"hi\");\n    static NUM: i32 = 42;\n    spawn_ref(&NUM).join().unwrap();\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "Send",
+        "label": "the thread-moving bound",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Send"
+          },
+          {
+            "id": "sl2",
+            "text": "Sync"
+          },
+          {
+            "id": "sl3",
+            "text": "Copy"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "Sync",
+        "label": "the thread-sharing bound",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Sync"
+          },
+          {
+            "id": "sl2",
+            "text": "Send"
+          },
+          {
+            "id": "sl3",
+            "text": "Sized"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn tests_bounds() {\n    let handle = spawn_value(String::from(\"test\"));\n    assert_eq!(handle.join().unwrap(), \"test\");\n    static VAL: i32 = 100;\n    spawn_ref(&VAL).join().unwrap();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 0
+    },
+    "optimal": {
+      "token_edits": 0
+    }
+  },
+  "hints": [
+    "Moving an owned value into `std::thread::spawn` requires T: Send.",
+    "Moving a reference &'static T into `std::thread::spawn` requires &'static T to be Send, which is true if and only if T: Sync."
+  ],
+  "explanation": "Send allows moving ownership of a value into another thread. Sync allows sharing references (&T) across thread boundaries because &T is Send if and only if T is Sync. T: Sync does not imply T: Send for owned values, and T: Send does not make sending references (&T) safe."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "standard-traits.gotcha.from-provides-into",
+  "kind": "gotcha",
+  "title": "implementing from automatically provides",
+  "concepts": [
+    "standard-traits"
+  ],
+  "prompt": "Which conversion trait should you implement for custom types, and why?",
+  "answer": "You should implement `From<T>` rather than `Into<U>`. Implementing `From<T>` automatically gives your type the corresponding `Into<U>` implementation for free.",
+  "schema_version": 1
+}

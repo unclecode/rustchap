@@ -1,0 +1,16 @@
+{
+  "id": "visibility",
+  "title": "Visibility and Encapsulation",
+  "topic": "Abstraction",
+  "summary": "Struct fields and functions are private by default, requiring pub to be exposed.",
+  "lecture": [
+    "In Rust, items and struct fields are private to their module by default.",
+    "Making a struct `pub` does not make its fields public. Each field needs `pub` explicitly.",
+    "Enums are different. When an enum is public, all of its variants and fields are public."
+  ],
+  "example": {
+    "code": "pub struct Point {\n    pub x: i32,\n    y: i32,\n}",
+    "caption": "Field x is public, field y is private."
+  },
+  "schema_version": 1
+}

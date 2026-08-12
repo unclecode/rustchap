@@ -1,0 +1,11 @@
+{
+  "id": "ffi-basics.gotcha.cstr-vs-str",
+  "kind": "gotcha",
+  "title": "Passing C strings versus Rust string slices",
+  "concepts": [
+    "ffi-basics"
+  ],
+  "prompt": "Why can you not pass a standard Rust &str directly to a C function expecting a char pointer?",
+  "answer": "Rust strings are not NUL-terminated and store their length separately. C functions expect a NUL-terminated sequence of bytes, represented in Rust by CStr or CString.",
+  "schema_version": 1
+}

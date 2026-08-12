@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "closures.010",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "07de4e69a7c0340d74491f67875dd44a88cb01f90965e974a0c9e74045d19816": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected identifier, found keyword `fn`",
+          "slot_ids": [
+            "bound_spec"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "456117b25d1ffad6ac1e387f9df0b677cfecc9c6aab3d9e9dd5e55b34ce9fd35": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "63168fc062359a1b1c59731a17a4a33c8d95fe7ce730911567ebd0b350d7215f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of `predicate`, a captured variable in an `FnMut` closure",
+          "slot_ids": [],
+          "rust_code": "E0507"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "70576c9336942a47d9d54b1ad4ae38846d29dfbeaf7cec58e18c1369e4aa76cf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [],
+          "rust_code": "E0283"
+        },
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [],
+          "rust_code": "E0283"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7798760fe4fda9aad63825e4776b87e9ae11e856a8daeb1b365c7b20bd8942dd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [],
+          "rust_code": "E0283"
+        },
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [],
+          "rust_code": "E0283"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8a2e1cf64adc45c2d70db6eabeabad6c0f1eae57117c4233ff4944a60d7d61ac": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected identifier, found keyword `fn`",
+          "slot_ids": [
+            "bound_spec"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bd70134e39b3172707e14a4d90afa0e6c350758802bb7c107ea37850233a2351": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c7c190c9d4c03319b561ceca0411100afcc50ae234a7c8eea05179c1fa15652e": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "eb90fb7e35832db758f8c32bb648cab28be1d296cd791a7fd7988024ac6b3a58": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected identifier, found keyword `fn`",
+          "slot_ids": [
+            "bound_spec"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [],
+          "rust_code": "E0283"
+        },
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [],
+          "rust_code": "E0283"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

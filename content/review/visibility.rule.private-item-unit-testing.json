@@ -1,0 +1,11 @@
+{
+  "id": "visibility.rule.private-item-unit-testing",
+  "kind": "rule",
+  "title": "Testing private functions in Rust",
+  "concepts": [
+    "visibility"
+  ],
+  "prompt": "How do Rust unit tests gain access to private helper functions without making them public?",
+  "answer": "Unit tests are placed inside an inline submodule annotated with `#[cfg(test)]` within the same source file. Because Rust permits parent items to be accessed by child modules via `super`, private functions remain private to external users while remaining testable.",
+  "schema_version": 1
+}

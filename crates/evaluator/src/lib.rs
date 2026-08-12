@@ -12,8 +12,16 @@ pub mod metrics;
 pub mod rustc_json;
 
 use std::collections::BTreeMap;
+use std::io::Read;
 use std::path::PathBuf;
-use std::process::Command;
+use std::process::{Command, Stdio};
+use std::time::{Duration, Instant};
+
+/// A submission's tests get this long to finish. Concurrency puzzles can
+/// deadlock by design: a channel receiver blocks until every sender is dropped,
+/// so the "forgot to drop the sender" answer hangs forever. Without a bound the
+/// linter waits with it.
+const TEST_TIMEOUT: Duration = Duration::from_secs(10);
 
 use puzzle_schema::{
     Diagnostic, EvalResult, EvalStatus, Metric, Operation, Puzzle, Rank, Scoring,
@@ -129,9 +137,48 @@ pub fn evaluate(
     }
 
     if has_tests {
-        let run = Command::new(&bin_path).current_dir(dir.path()).output()?;
-        if !run.status.success() {
-            let stdout = String::from_utf8_lossy(&run.stdout);
+        let mut child = Command::new(&bin_path)
+            .current_dir(dir.path())
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped())
+            .spawn()?;
+
+        let started = Instant::now();
+        let exit = loop {
+            if let Some(status) = child.try_wait()? {
+                break Some(status);
+            }
+            if started.elapsed() > TEST_TIMEOUT {
+                let _ = child.kill();
+                let _ = child.wait();
+                break None;
+            }
+            std::thread::sleep(Duration::from_millis(20));
+        };
+
+        let Some(status) = exit else {
+            return Ok(EvalResult {
+                status: EvalStatus::TestFailure,
+                rank: None,
+                metrics: BTreeMap::new(),
+                diagnostics: vec![Diagnostic {
+                    category: "test_timeout".into(),
+                    message: format!(
+                        "tests did not finish within {}s — the program deadlocks or \
+                         loops forever",
+                        TEST_TIMEOUT.as_secs()
+                    ),
+                    slot_ids: vec![],
+                    rust_code: None,
+                }],
+            });
+        };
+
+        if !status.success() {
+            let mut stdout = String::new();
+            if let Some(mut out) = child.stdout.take() {
+                let _ = out.read_to_string(&mut stdout);
+            }
             let summary = stdout
                 .lines()
                 .find(|l| l.starts_with("test result:"))

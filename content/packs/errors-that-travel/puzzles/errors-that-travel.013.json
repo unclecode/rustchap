@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.013",
+  "version": 1,
+  "title": "Erased Error Types",
+  "track": "errors-that-travel",
+  "concepts": [
+    "dynamic-errors",
+    "error-trait"
+  ],
+  "difficulty": 1,
+  "goal": "Return any error type using Box dyn Error without creating custom enums.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Error Handling"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In Java or Go, functions can return a general interface like `Exception` or `error`. In Rust, `Box<dyn std::error::Error>` plays this role."
+      },
+      {
+        "kind": "code",
+        "code": "type ErrBox =\n    Box<dyn std::error::Error>;\n\nfn read_num(\n    p: &str,\n) -> Result<i32, ErrBox> {\n    let s =\n        std::fs::read_to_string(p)?;\n    let n = s.trim().parse::<i32>()?;\n    Ok(n)\n}",
+        "caption": "Different error types convert into Box dyn Error automatically."
+      },
+      {
+        "kind": "prose",
+        "text": "The try operator calls `From::from` on errors. The standard library provides a blanket `From` implementation that boxes any type implementing `std::error::Error`."
+      },
+      {
+        "kind": "code",
+        "code": "use std::fmt;\n\n#[derive(Debug)]\nstruct BadHeader;\n\nimpl fmt::Display for BadHeader {\n    fn fmt(\n        &self,\n        f: &mut fmt::Formatter,\n    ) -> fmt::Result {\n        write!(f, \"invalid header\")\n    }\n}\n\nimpl std::error::Error for BadHeader {}",
+        "caption": "Implementing Display and Error enables standard boxing."
+      },
+      {
+        "kind": "prose",
+        "text": "Dynamic errors simplify code in binaries and scripts. Libraries usually prefer explicit enums so callers can match on specific errors."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Return any error type using Box dyn Error without creating custom enums."
+}

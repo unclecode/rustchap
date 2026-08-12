@@ -1,0 +1,11 @@
+{
+  "id": "enums-basics.rule.variant-data",
+  "kind": "rule",
+  "title": "How enum variants store data",
+  "concepts": [
+    "enums-basics"
+  ],
+  "prompt": "How do enum variants differ from constants or C style enums in Rust?",
+  "answer": "Rust enum variants can each carry different payloads of data. One variant can hold an integer, another a `String`, and another can hold nothing. The compiler manages the storage and discriminant automatically.",
+  "schema_version": 1
+}

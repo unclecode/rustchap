@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.015",
+  "version": 1,
+  "title": "Parse and Transform Errors",
+  "track": "errors-that-travel",
+  "concepts": [
+    "error-propagation",
+    "error-trait"
+  ],
+  "difficulty": 2,
+  "goal": "Chain trimming, string parsing, and error mapping in the correct order.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Error Handling"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn parse_port(\n    input: &str,\n) -> Result<u16, String> {\n    input",
+    "blocks": [
+      {
+        "id": "trim",
+        "text": "\n        .trim()"
+      },
+      {
+        "id": "parse",
+        "text": "\n        .parse::<u16>()"
+      },
+      {
+        "id": "map_err",
+        "text": "\n        .map_err(|e| e.to_string())"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_parse_valid() {\n    assert_eq!(parse_port(\" 8080 \\n\"), Ok(8080));\n}",
+      "#[test]\nfn test_parse_invalid() {\n    assert!(parse_port(\"abc\").is_err());\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "The input starts as a raw string slice &str.",
+    "Clean whitespace first, parse into a Result second, and map any parsing error last."
+  ],
+  "explanation": "`.parse::<u16>()` turns a `&str` into a `Result<u16, ParseIntError>`, and `?` unwraps it or returns the error. Without the turbofish the compiler cannot tell which numeric type you want."
+}

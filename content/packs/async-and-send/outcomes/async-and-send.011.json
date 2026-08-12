@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "async-and-send.011",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0e09f0b892809fab1617d8cb7199c6e6db9e9456e0fda2222e418687d8fd5dab": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "10bea0da391d5e5649ba68e63b43bb6bc8710e4b975616a741282c3f312703c7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `buf` in this scope",
+          "slot_ids": [
+            "target"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "284498609c13a728f8c3b02aec09ce3e8f30c4c6f869705038fee117717dada7": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 0
+      },
+      "diagnostics": []
+    },
+    "37c823779af4aa01d100cc3d27bdc846164165abbd1b2ca747aa3731ebfdcc4d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `buf` in this scope",
+          "slot_ids": [
+            "target"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "49792dd7e37aca59f5cec8a023a80015a35841512d32e7b63f322db954dff4c7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`mut` must be followed by a named binding",
+          "slot_ids": [
+            "target"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [
+            "target",
+            "action"
+          ],
+          "rust_code": "E0282"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected a pattern, found an expression",
+          "slot_ids": [
+            "target",
+            "action"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4a1473ae2dba6f1c25ef8120f417d0ea0cd039924f11434b7adb9936848093a2": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "66ca9ef9867f496a17fcd988de3361961b9bcd140f51e7fe6e7e7fc0dcbaea36": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`mut` must be followed by a named binding",
+          "slot_ids": [
+            "target"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [
+            "target",
+            "action"
+          ],
+          "rust_code": "E0282"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected a pattern, found an expression",
+          "slot_ids": [
+            "target",
+            "action"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6d8f1aa83df83bbb33585a6bf73e9a3910cf7b807c428d4c649294e368676983": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`mut` must be followed by a named binding",
+          "slot_ids": [
+            "target"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [
+            "target",
+            "action"
+          ],
+          "rust_code": "E0282"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected a pattern, found an expression",
+          "slot_ids": [
+            "target",
+            "action"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c3bba6bea1ca91bfc12823317f4f3a22f2ae9937e95ce80f1aa3198a87f5ff03": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `buf` in this scope",
+          "slot_ids": [
+            "target"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

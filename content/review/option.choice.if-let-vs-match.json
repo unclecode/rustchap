@@ -1,0 +1,11 @@
+{
+  "id": "option.choice.if-let-vs-match",
+  "kind": "choice",
+  "title": "Choosing if let over match",
+  "concepts": [
+    "option"
+  ],
+  "prompt": "When should you prefer `if let` over a full `match` expression on an `Option`?",
+  "answer": "Prefer `if let` when you only need to handle one variant, such as `Some(x)`, and ignore or do trivial work for `None`. It eliminates boilerplate while preserving pattern matching safety.",
+  "schema_version": 1
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.009",
+  "version": 1,
+  "title": "Type-Safe Builder Steps",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "builder-pattern",
+    "generics"
+  ],
+  "difficulty": 2,
+  "goal": "Enforce required configuration steps using type states before calling build.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from idiomatic/leveraging-the-type-system"
+  },
+  "template": "struct NoHost;\nstruct Host(String);\n\nstruct Builder<S> {\n    host: S,\n}\n\nimpl Builder<NoHost> {\n    fn new() -> Self {\n        Builder { host: NoHost }\n    }\n    fn host(\n        self,\n        h: &str,\n    ) -> ⟦ret_ty⟧ {\n        Builder {\n            host: Host(h.into()),\n        }\n    }\n}\n\nimpl Builder<⟦build_st⟧> {\n    fn build(self) -> String {\n        self.host.0\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "ret_ty",
+        "original": "Self",
+        "label": "return type of host()",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "Builder<Host>"
+          },
+          {
+            "id": "re2",
+            "text": "Self"
+          },
+          {
+            "id": "re3",
+            "text": "Builder<NoHost>"
+          }
+        ]
+      },
+      {
+        "id": "build_st",
+        "original": "NoHost",
+        "label": "state required for build()",
+        "choices": [
+          {
+            "id": "bu1",
+            "text": "Host"
+          },
+          {
+            "id": "bu2",
+            "text": "NoHost"
+          },
+          {
+            "id": "bu3",
+            "text": "S"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn builds_when_host_set() {\n    let b = Builder::new()\n        .host(\"example.com\");\n    assert_eq!(b.build(), \"example.com\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The host method transitions the builder from NoHost to Host.",
+    "The build method should only be available when the state is Host."
+  ],
+  "explanation": "The `host()` method returns `Builder<Host>` after populating the field. Implementing `build()` specifically for `Builder<Host>` guarantees at compile time that `build()` cannot be called before `host()` has provided the required string. `NoHost` has no field `.0`, so attempting to implement `build()` on `Builder<NoHost>` causes a compiler error."
+}

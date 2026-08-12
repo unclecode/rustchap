@@ -1,0 +1,11 @@
+{
+  "id": "cancellation-safety.gotcha.select-dropping-futures",
+  "kind": "gotcha",
+  "title": "Cancelled select branches drop local state",
+  "concepts": [
+    "cancellation-safety"
+  ],
+  "prompt": "What happens to in-flight state when a branch in `tokio::select`! is cancelled?",
+  "answer": "When one branch in select! completes, all other branch futures are immediately dropped. Any unsaved state or buffer stored inside those dropped futures is lost.",
+  "schema_version": 1
+}

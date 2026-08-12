@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "testing.015",
+  "version": 1,
+  "title": "Testing Result with Messages",
+  "track": "testing",
+  "concepts": [
+    "unit-testing",
+    "option"
+  ],
+  "difficulty": 3,
+  "goal": "Assert on Result values while providing descriptive failure messages.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Unit Tests"
+  },
+  "template": "fn find(id: u32) -> Result<i32, &'static str> {\n    if id == 1 { Ok(10) } else { Err(\"not found\") }\n}\n\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_find() {\n        ⟦slot1⟧;\n        ⟦slot2⟧;\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "assert_eq!(find(1), 10, \"found user 1\")",
+        "label": "success case assertion",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "assert_eq!(find(1), Ok(10), \"found user 1\")"
+          },
+          {
+            "id": "sl2",
+            "text": "assert_eq!(find(1), 10, \"found user 1\")"
+          },
+          {
+            "id": "sl3",
+            "text": "assert_eq!(find(1), Some(10), \"found user 1\")"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "assert!(find(2).is_ok(), \"missing user 2\")",
+        "label": "failure case assertion",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "assert_eq!(find(2), Err(\"not found\"), \"missing user 2\")"
+          },
+          {
+            "id": "sl2",
+            "text": "assert!(find(2).is_ok(), \"missing user 2\")"
+          },
+          {
+            "id": "sl3",
+            "text": "assert_eq!(find(2), Ok(0), \"missing user 2\")"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn check_find() {\n    assert_eq!(find(1), Ok(10));\n    assert_eq!(find(2), Err(\"not found\"));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "find returns Result<i32, &'static str>, so comparisons must match the Result wrapper.",
+    "assert_eq! accepts custom message string literals after the expected value."
+  ],
+  "explanation": "`find(1)` returns `Result<i32, &'static str>`, so comparing it directly to integer `10` or `Some(10)` produces compiler error `E0308` due to mismatched types. `assert!(find(2).is_ok())` compiles but fails at runtime because `find(2)` returns `Err(\"not found\")`. `assert_eq!(find(1), Ok(10), ...)` and `assert_eq!(find(2), Err(\"not found\"), ...)` correctly match both variants."
+}

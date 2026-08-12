@@ -1,0 +1,12 @@
+{
+  "id": "move.rule.closure-capture-by-value",
+  "kind": "rule",
+  "title": "How move affects closure captures",
+  "concepts": [
+    "move",
+    "closures"
+  ],
+  "prompt": "How does the move keyword change how a closure captures variables from its environment?",
+  "answer": "By default, a closure borrows variables from its outer scope using the weakest access its body requires. Adding `move` forces the closure to take ownership of all captured variables by moving or copying them into the closure structure. This allows the closure to outlive the scope where it was created.",
+  "schema_version": 1
+}

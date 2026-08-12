@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.015",
+  "version": 1,
+  "title": "Sequential Borrow Scopes",
+  "track": "interior-mutability",
+  "concepts": [
+    "interior-mutability",
+    "borrow-scope"
+  ],
+  "difficulty": 3,
+  "goal": "Order operations so the RefCell write guard is dropped before reading.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Interior Mutability: Borrow Scopes"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "use std::cell::RefCell;\n\nfn push_and_count(\n    cell: &RefCell<Vec<i32>>,\n    val: i32,\n) -> usize {\n",
+    "blocks": [
+      {
+        "id": "b1",
+        "text": "    let mut guard = cell.borrow_mut();"
+      },
+      {
+        "id": "b2",
+        "text": "\n    guard.push(val);"
+      },
+      {
+        "id": "b3",
+        "text": "\n    drop(guard);"
+      },
+      {
+        "id": "b4",
+        "text": "\n    cell.borrow().len()"
+      }
+    ],
+    "fixed_suffix": "\n}\n\nfn main() {\n    let cell = RefCell::new(vec![10]);\n    println!(\"{}\", push_and_count(&cell, 20));\n}\n"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn pushes_and_counts_safely() {\n    let cell = RefCell::new(vec![1, 2]);\n    assert_eq!(push_and_count(&cell, 3), 3);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "The write guard must be acquired before pushing into the vector.",
+    "The write guard must be dropped before calling borrow() to avoid a dynamic borrow conflict."
+  ],
+  "explanation": "To mutate and then read a `RefCell`, you must release the mutable guard before acquiring a shared guard. Placing `cell.borrow().len()` before `drop(guard)` triggers a dynamic borrow conflict and panics at runtime with `AlreadyBorrowed`. Executing the read before the write returns the old length before the push, causing test failures."
+}

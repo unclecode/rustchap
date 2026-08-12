@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "ffi-and-raw-pointers.007",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "07df035fda87d5617f30b4840d791d835b895b4509589fb842ad5262ad247fd2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "call_slot"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1f70bdf5a8e1ff58a61ce7b6d35d6eece018ddc4272fa4fe3b17ee2b3e9a34d7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "call_slot"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2982eee3045805200f3697dc2831bb272e2eaeda786012909af570387facb7e0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "decl_slot"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `abs` in this scope",
+          "slot_ids": [
+            "call_slot"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6e7098a3713d4d7e54f8cfa71797435f6e441d32795890b480a8b8a7672cf4b9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "decl_slot"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `abs` in this scope",
+          "slot_ids": [
+            "call_slot"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "85bde084227487c8dd8a81831b91e80fedc1a8ef6d86ca0f67ea07ba3ca8a0e0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "decl_slot"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `abs` in this scope",
+          "slot_ids": [
+            "call_slot"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8653d3e51b81377f82771366aade1782291bbebe773ca45586e2bdee7e6040ca": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "call_slot"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a83fb88ad861475a33f900dbf51eed9997ab88f8245458829b1d39cbf8f93fb0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "call to unsafe function `abs` is unsafe and requires unsafe block",
+          "slot_ids": [
+            "call_slot"
+          ],
+          "rust_code": "E0133"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ddc20fcbd7a4f2233522e52a4e84ac185b8e9fad0d0397ebac3b0e76952ab31f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "call_slot"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e13eee8660998ec666c3561633e7741de9c369c4d1177e9cf5266ce53455ac37": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    }
+  }
+}

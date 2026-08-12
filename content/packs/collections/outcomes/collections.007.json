@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "collections.007",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1443815c4a97cd45b557dccedf784bf11775710db3874d45ab7174683dd892fd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `String: Borrow<&str>` is not satisfied",
+          "slot_ids": [
+            "lookup"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "unwrap_val"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "774adced7897a5125b17e2c2937e178af1252bbcb1e2c23d724566ad7d5d613d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected token: `[`",
+          "slot_ids": [
+            "lookup"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`i32` is not an iterator",
+          "slot_ids": [
+            "unwrap_val"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9cd7b4d9fbbd4e489ef43abcc204fa8a5234d4b542172124db1dcfa17e150afb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `String: Borrow<&str>` is not satisfied",
+          "slot_ids": [
+            "lookup"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "unwrap_val"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a19763c60473bbfd4e4dcdbbe9017f9fafa3d646909a0ff44e099bb8296b48f7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "unwrap_val"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bd49bc2006c8af836de40b99e82c7e10b0779dc7287098214d23c59f41ef5dcf": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "d14498c2e3ff6971a7e65cea24ebb348cd2553c5545d227518da04a83b328eaf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected token: `[`",
+          "slot_ids": [
+            "lookup"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `unwrap` found for type `i32` in the current scope",
+          "slot_ids": [
+            "unwrap_val"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e9d5af795c2994556f30fa48ea5d9c9da8366087967f7ca95bfbfb2a4e13a263": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected token: `[`",
+          "slot_ids": [
+            "lookup"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`i32` is not an iterator",
+          "slot_ids": [
+            "unwrap_val"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f526293736a3e63e8302bd3d8c02610f33873ed823819f9149fbea8976cd4c41": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "unwrap_val"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fe529c6bee5a1e74970d1b71b451fa76fe89d47eb5aad7219d68b46de6d296a9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `String: Borrow<&str>` is not satisfied",
+          "slot_ids": [
+            "lookup"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

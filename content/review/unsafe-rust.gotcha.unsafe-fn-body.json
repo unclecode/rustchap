@@ -1,0 +1,11 @@
+{
+  "id": "unsafe-rust.gotcha.unsafe-fn-body",
+  "kind": "gotcha",
+  "title": "Unsafe functions still need unsafe blocks",
+  "concepts": [
+    "unsafe-rust"
+  ],
+  "prompt": "Why does dereferencing a raw pointer inside an unsafe fn still require an unsafe block in modern Rust?",
+  "answer": "Marking a function unsafe declares its interface contract to callers. It does not automatically grant permission for unsafe operations inside the function body. Explicit unsafe blocks pinpoint the exact operations that bypass compiler safety checks.",
+  "schema_version": 1
+}

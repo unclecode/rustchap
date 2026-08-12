@@ -96,7 +96,7 @@
     "String demands every caller manufacture ownership; &String rejects literals outright.",
     "&str accepts &owned by deref coercion AND \"ferris\" directly - the narrowest type serves the most callers."
   ],
-  "explanation": "The String parameter taxes both callers: the owned side must clone (or lose `owned` for the final println), the literal side must allocate a String::from. &String fixes one caller and abandons the other - literals aren't &String. &str serves everyone: &owned coerces, \"ferris\" just works, nothing allocates. Parameter types are pricing policy for your callers - charge the minimum.",
+  "explanation": "The String parameter taxes both callers: the owned side must clone (or lose `owned` for the final println), the literal side must allocate a `String::from`. &String fixes one caller and abandons the other - literals aren't &String. &str serves everyone: &owned coerces, \"ferris\" just works, nothing allocates. Parameter types are pricing policy for your callers - charge the minimum.",
   "prerequisites": [],
   "source": {
     "origin": "rustlings",

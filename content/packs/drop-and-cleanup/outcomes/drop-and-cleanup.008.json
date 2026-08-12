@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "drop-and-cleanup.008",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "09789179afcbe33775db13d4e9f0c60883034e15dd402522bf21925670dbbeb2": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9aa45e00b7ebcb2732fa23286b192018cc99ff5725d6d4690035611125f553e8": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 1
+      },
+      "diagnostics": []
+    },
+    "c2afd160da402bbc87da81f5e4b3dea8bac9f619905bc602c57338d89daa7671": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "explicit use of destructor method",
+          "slot_ids": [
+            "drop_op"
+          ],
+          "rust_code": "E0040"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

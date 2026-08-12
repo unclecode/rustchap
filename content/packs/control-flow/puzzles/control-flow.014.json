@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "control-flow.014",
+  "version": 1,
+  "title": "Clean Collatz Step",
+  "track": "control-flow",
+  "concepts": [
+    "functions",
+    "expressions"
+  ],
+  "difficulty": 3,
+  "goal": "Implement the Collatz step cleanly without redundant mutable variables.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Control Flow Basics"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "idiomatic",
+        "code": "fn collatz_step(n: u32) -> u32 {\n    if n % 2 == 0 {\n        n / 2\n    } else {\n        3 * n + 1\n    }\n}"
+      },
+      {
+        "id": "missing_plus_one",
+        "code": "fn collatz_step(n: u32) -> u32 {\n    let mut result = n;\n    if result % 2 == 0 {\n        result /= 2;\n    } else {\n        result *= 3;\n    }\n    result\n}"
+      },
+      {
+        "id": "semicolon_mismatch",
+        "code": "fn collatz_step(n: u32) -> u32 {\n    if n % 2 == 0 {\n        n / 2;\n    } else {\n        3 * n + 1\n    }\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn calculates_collatz() {\n    assert_eq!(collatz_step(6), 3);\n    assert_eq!(collatz_step(11), 34);\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "In Rust, `if` is an expression that returns a value directly.",
+    "Eliminate temporary `mut` bindings and ensure branch expressions do not end with semicolons."
+  ],
+  "explanation": "Because `if` is an expression in Rust, its result can be returned directly from the function without mutable bindings or explicit `return` statements. Adding a trailing semicolon to an `if` branch changes its return type to `()`, causing a compilation mismatch."
+}

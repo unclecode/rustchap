@@ -1,0 +1,11 @@
+{
+  "id": "mpsc-channels.gotcha.sync-send-blocking",
+  "kind": "gotcha",
+  "title": "Bounded sync channel behavior when full",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "prompt": "How does send behave differently between `mpsc::channel` and `mpsc::sync_channel` when the buffer is full?",
+  "answer": "Unbounded `mpsc::channel`'s send never blocks and always allocates memory. Bounded sync_channel's send blocks the calling thread until space becomes available.",
+  "schema_version": 1
+}

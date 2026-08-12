@@ -1,0 +1,11 @@
+{
+  "id": "bindings.rule.immutability-by-default",
+  "kind": "rule",
+  "title": "Binding Immutability by Default",
+  "concepts": [
+    "bindings"
+  ],
+  "prompt": "What is the default mutability of variable bindings in Rust, and how do you allow changes?",
+  "answer": "Bindings are immutable by default in Rust. You must explicitly add the `mut` keyword when declaring a binding with `let mut` to allow reassigning its value.",
+  "schema_version": 1
+}

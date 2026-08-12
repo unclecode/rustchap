@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.015",
+  "version": 1,
+  "title": "Join Two Futures",
+  "track": "async-and-send",
+  "concepts": [
+    "async-await"
+  ],
+  "difficulty": 2,
+  "goal": "Sequence the dependent async operations so step one feeds into step two.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Futures"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "async fn step_one() -> i32 { 21 }\nasync fn step_two(input: i32) -> i32 { input * 2 }\n\nasync fn run_pipeline() -> i32 {",
+    "blocks": [
+      {
+        "id": "b1",
+        "text": "\n    let x = step_one().await;"
+      },
+      {
+        "id": "b2",
+        "text": "\n    let y = step_two(x).await;"
+      },
+      {
+        "id": "b3",
+        "text": "\n    y"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn runs_pipeline_correctly() {\n    fn noop(_: *const ()) {}\n    fn clone(p: *const ()) -> std::task::RawWaker { std::task::RawWaker::new(p, &VTABLE) }\n    static VTABLE: std::task::RawWakerVTable = std::task::RawWakerVTable::new(clone, noop, noop, noop);\n    let waker = unsafe { std::task::Waker::from_raw(std::task::RawWaker::new(std::ptr::null(), &VTABLE)) };\n    let mut cx = std::task::Context::from_waker(&waker);\n    let mut fut = std::pin::pin!(run_pipeline());\n    if let std::task::Poll::Ready(val) = fut.as_mut().poll(&mut cx) {\n        assert_eq!(val, 42);\n    } else {\n        panic!(\"future not ready\");\n    }\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "Look at where x is defined and where it is passed as an argument.",
+    "An async result must be awaited before its value can be passed into the next step."
+  ],
+  "explanation": "The pipeline requires step_one to complete first so its result `x` can be passed to step_two. Placing `step_two(x)` before `let x` produces error `E0425` because `x` is not yet defined in scope. Returning `y` before it is computed similarly fails compilation."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "closures.syntax.struct-closure-field",
+  "kind": "syntax",
+  "title": "Defining a struct field that holds a closure",
+  "concepts": [
+    "closures",
+    "structs",
+    "generics"
+  ],
+  "prompt": "How do you define a struct field that holds an arbitrary closure?",
+  "answer": "Because every closure has a unique unnamable type, the struct must be generic over a type parameter `F` (for example `struct Handler<F> { func: F }`). The closure trait constraints are placed on the `impl` block or generic bounds.",
+  "schema_version": 1
+}

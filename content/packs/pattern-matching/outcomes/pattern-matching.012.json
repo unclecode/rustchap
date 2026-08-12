@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "pattern-matching.012",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0cce9706bd2250259c3a404a3903a19d72e4193fba9d80968a66012a847abe4f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "pattern requires 3 elements but array has 4",
+          "slot_ids": [
+            "ignore"
+          ],
+          "rust_code": "E0527"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0ec4913a9360d8768d71775195216cf2545e6dac91b5f45a186638a982d1d0f7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "refutable pattern in local binding",
+          "slot_ids": [
+            "ignore"
+          ],
+          "rust_code": "E0005"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "148f23fb0ea8509df8c5e1ad3695e7b2c3e3b24e58491b0d74510a91b1a29491": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3671e089be71ce1a848742d57420e44529b69ca925bd0bd12b5eca4bd535545f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected `...`",
+          "slot_ids": [
+            "ignore"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "38622b318869f216e472f566281903afabec45ab617cc1f0c34969f12d895742": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "refutable pattern in local binding",
+          "slot_ids": [
+            "ignore"
+          ],
+          "rust_code": "E0005"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4f40ceadf91363f1c3a1a064162cad93f6ca9d75729084aa8107b261ef66b8db": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected `...`",
+          "slot_ids": [
+            "ignore"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "refutable pattern in local binding",
+          "slot_ids": [
+            "ignore"
+          ],
+          "rust_code": "E0005"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "88b516fbd6974bd2139f8ff6ffb9031f8f90f88d43c818040dc2a0171054ace5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "pattern requires 3 elements but array has 4",
+          "slot_ids": [
+            "ignore"
+          ],
+          "rust_code": "E0527"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b8d45d3a0c3c815a0c10bad7b88abe10d58ecda9245de285a7cb97a5f748140c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected `...`",
+          "slot_ids": [
+            "ignore"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fa4cc810cc6c531c12bc96b58d0dc1714ce7399981530e13b62e5228c5c07485": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    }
+  }
+}

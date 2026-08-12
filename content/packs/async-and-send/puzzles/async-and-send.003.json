@@ -58,7 +58,7 @@
     "A future remembers every local it holds across an .await - those locals ARE the future's state.",
     "Rc's reference count isn't atomic, so an Rc-holding future can't be Send. Arc is the thread-safe twin."
   ],
-  "explanation": "requires_send stands in for tokio::spawn: multithreaded executors demand Send futures. The future's state is whatever lives across an .await - hold an Rc there and the entire future becomes !Send (E0277, with the compiler pointing at exactly which value and which await). Arc is the atomic twin: same sharing, Send-safe, future crosses threads freely. This diagnosis - 'future is not Send, held across await' - is the single most common async compile error in real Rust; now you can read it. (Cell<i32> is Send too - but it isn't a pointer: there's nothing to deref, E0614. Wrappers earn their place by what they provide.)",
+  "explanation": "requires_send stands in for `tokio::spawn`: multithreaded executors demand Send futures. The future's state is whatever lives across an .await - hold an Rc there and the entire future becomes !Send (E0277, with the compiler pointing at exactly which value and which await). Arc is the atomic twin: same sharing, Send-safe, future crosses threads freely. This diagnosis - 'future is not Send, held across await' - is the single most common async compile error in real Rust; now you can read it. (Cell<i32> is Send too - but it isn't a pointer: there's nothing to deref, E0614. Wrappers earn their place by what they provide.)",
   "prerequisites": [
     "async-and-send.001"
   ],

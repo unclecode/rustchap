@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.011",
+  "version": 1,
+  "title": "Returning Result from Main",
+  "track": "errors-that-travel",
+  "concepts": [
+    "error-propagation",
+    "dynamic-errors"
+  ],
+  "difficulty": 2,
+  "goal": "Allow main to propagate errors directly with the try operator by returning a Result.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Error Handling"
+  },
+  "template": "use std::error::Error;\n\nfn run_app(s: &str) -> ⟦slot1⟧ {\n    let n = s.parse::<i32>()⟦slot2⟧;\n    println!(\"{n}\");\n    Ok(())\n}\n\nfn main() {\n    let _ = run_app(\"123\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "()",
+        "label": "return type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Result<(), Box<dyn Error>>"
+          },
+          {
+            "id": "sl2",
+            "text": "()"
+          },
+          {
+            "id": "sl3",
+            "text": "Result<(), String>"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": ".unwrap()",
+        "label": "try propagation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "?"
+          },
+          {
+            "id": "sl2",
+            "text": ".unwrap()"
+          },
+          {
+            "id": "sl3",
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_run() {\n    assert!(run_app(\"123\").is_ok());\n    assert!(run_app(\"abc\").is_err());\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "To use the try operator, the function return type must be a compatible Result.",
+    "Box<dyn Error> accepts any standard error type returned by the try operator."
+  ],
+  "explanation": "Returning `Result<(), Box<dyn Error>>` allows using the `?` operator to propagate errors cleanly. Using `()` prevents using `?` (`E0277`). Using `.unwrap()` panics on invalid input instead of returning an `Err` result."
+}

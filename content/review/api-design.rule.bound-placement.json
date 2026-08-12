@@ -1,0 +1,11 @@
+{
+  "id": "api-design.rule.bound-placement",
+  "kind": "rule",
+  "title": "Avoiding over-constraining generic APIs",
+  "concepts": [
+    "api-design"
+  ],
+  "prompt": "Why is adding unused trait bounds to a generic function considered poor API design?",
+  "answer": "Unused bounds restrict callers without giving any benefit to the function body. Requiring unnecessary capabilities like `Clone` prevents types that are not cloneable from using the function.",
+  "schema_version": 1
+}

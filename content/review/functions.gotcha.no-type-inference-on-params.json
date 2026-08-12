@@ -1,0 +1,11 @@
+{
+  "id": "functions.gotcha.no-type-inference-on-params",
+  "kind": "gotcha",
+  "title": "Function parameters need explicit type an...",
+  "concepts": [
+    "functions"
+  ],
+  "prompt": "Why does Rust require explicit type annotations on function parameters?",
+  "answer": "Rust does not infer types across function boundaries. Requiring explicit types keeps function signatures clear as self-contained documentation and prevents type inference changes in one body from breaking callers elsewhere.",
+  "schema_version": 1
+}

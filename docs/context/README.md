@@ -23,6 +23,7 @@ covers (frontmatter `sources:`). Regenerate this index with
 | [Evaluation pipeline](architecture/evaluation.md) | living | lib.rs, metrics.rs, rustc_json.rs, evaluate.rs, … |
 | [iOS app](architecture/ios-app.md) | living | project.pbxproj, RustChapApp.swift, Models.swift, ContentStore.swift, … |
 | [Puzzle format and content pipeline](architecture/puzzle-format.md) | living | puzzle.schema.json, pack.schema.json, outcomes.schema.json, concept.schema.json, … |
+| [Signing, release, and TestFlight distribution](architecture/release.md) | shipped | release-testflight.py, ExportOptions.plist, ci.yml |
 
 ## Roadmap — scope and build order
 

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.005",
+  "version": 1,
+  "title": "Memory Ordering",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "memory-ordering"
+  ],
+  "difficulty": 1,
+  "goal": "Understand how memory orderings control instruction reordering across threads.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "CPUs and compilers reorder memory instructions for performance. Memory orderings in Rust define which reorderings are forbidden across threads."
+      },
+      {
+        "kind": "code",
+        "code": "use std::sync::atomic::Ordering;\n\nlet r = Ordering::Relaxed;\nlet a = Ordering::Acquire;\nlet rel = Ordering::Release;",
+        "caption": "The Ordering enum lives in std::sync::atomic."
+      },
+      {
+        "kind": "prose",
+        "text": "`Ordering::Relaxed` guarantees atomic read or write, but imposes no memory ordering constraints relative to other memory operations."
+      },
+      {
+        "kind": "prose",
+        "text": "`Ordering::Release` on a store operation ensures all preceding memory writes become visible to another thread when it performs an `Ordering::Acquire` load."
+      },
+      {
+        "kind": "code",
+        "code": "// Thread 1:\nDATA.store(42, Ordering::Relaxed);\nREADY.store(true, Ordering::Release);\n\n// Thread 2:\nif READY.load(Ordering::Acquire) {\n    assert_eq!(DATA.load(Ordering::Relaxed), 42);\n}",
+        "caption": "Release store pairs with Acquire load to synchronize memory."
+      },
+      {
+        "kind": "prose",
+        "text": "`Ordering::SeqCst` enforces sequential consistency globally across all threads, but carries higher runtime cost on architectures like ARM."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand how memory orderings control instruction reordering across threads."
+}

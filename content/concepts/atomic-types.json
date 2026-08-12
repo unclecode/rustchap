@@ -1,0 +1,16 @@
+{
+  "id": "atomic-types",
+  "title": "Atomic Types",
+  "topic": "Concurrency",
+  "summary": "Thread-safe primitive types that support atomic operations without mutexes.",
+  "lecture": [
+    "Atomic types like `AtomicBool`, `AtomicI32`, and `AtomicUsize` provide thread-safe interior mutability.",
+    "They allow concurrent modification through shared references without needing a `Mutex`.",
+    "Every operation on an atomic type requires an explicit memory ordering parameter."
+  ],
+  "example": {
+    "code": "use std::sync::atomic::{AtomicI32, Ordering};\nlet a = AtomicI32::new(0);\na.fetch_add(1, Ordering::Relaxed);",
+    "caption": "fetch_add mutates the value through &AtomicI32."
+  },
+  "schema_version": 1
+}

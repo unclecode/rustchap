@@ -1,0 +1,11 @@
+{
+  "id": "string-types.error.e0608-str-indexing",
+  "kind": "error",
+  "title": "Error E0608 on string index",
+  "concepts": [
+    "string-types"
+  ],
+  "prompt": "What causes compiler error E0608 when working with string variables?",
+  "answer": "Error E0608 occurs when attempting to index a string slice using a single integer. Slicing requires a range of byte indices or the chars iterator. Replacing integer indexing with chars().nth(i) resolves the error.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "typestate-pattern.choice.enum-vs-typestate",
+  "kind": "choice",
+  "title": "Selecting typestates over runtime enum flags",
+  "concepts": [
+    "typestate-pattern"
+  ],
+  "prompt": "Why choose distinct state types over an enum field for complex state machines?",
+  "answer": "Distinct types make invalid state operations impossible at compile time by controlling which methods exist on each type. An enum field requires runtime pattern matching and dynamic error handling for invalid operations. Typestates eliminate invalid method calls before code ever runs.",
+  "schema_version": 1
+}

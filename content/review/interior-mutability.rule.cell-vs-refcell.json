@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.rule.cell-vs-refcell",
+  "kind": "rule",
+  "title": "When to choose Cell vs RefCell",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "When should you prefer Cell over RefCell for interior mutability?",
+  "answer": "Prefer Cell for Copy types because get and set move whole values without borrow guards or runtime panic checks. Use RefCell when wrapping non-Copy types where you need references into the stored value.",
+  "schema_version": 1
+}

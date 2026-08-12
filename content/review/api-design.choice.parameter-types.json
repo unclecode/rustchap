@@ -1,0 +1,11 @@
+{
+  "id": "api-design.choice.parameter-types",
+  "kind": "choice",
+  "title": "Choosing parameter types for public APIs",
+  "concepts": [
+    "api-design"
+  ],
+  "prompt": "When designing a public API, why should you prefer `&str` and `&[T]` over `&String` and `&Vec<T>` as parameter types?",
+  "answer": "Slices like `&str` and `&[T]` accept both owned collections and borrowed views without requiring allocation or conversion at the call site. Types like `&String` or `&Vec<T>` force callers to own that specific heap container, rejecting string literals and fixed-size arrays.",
+  "schema_version": 1
+}

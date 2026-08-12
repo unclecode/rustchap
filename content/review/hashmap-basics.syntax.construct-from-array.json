@@ -1,0 +1,11 @@
+{
+  "id": "hashmap-basics.syntax.construct-from-array",
+  "kind": "syntax",
+  "title": "Creating HashMap from Literals",
+  "concepts": [
+    "hashmap-basics"
+  ],
+  "prompt": "How do you build a HashMap directly from an array of key-value tuples without a loop?",
+  "answer": "Pass an array of tuples to `HashMap::from([(\"a\", 1), (\"b\", 2)])`. This constructs the map directly without needing explicit loops or `insert` calls.",
+  "schema_version": 1
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.009",
+  "version": 1,
+  "title": "Destructure Named Fields",
+  "track": "enums-and-matching",
+  "concepts": [
+    "enums-basics",
+    "match-basics"
+  ],
+  "difficulty": 2,
+  "goal": "Match on a struct variant and extract its named coordinates.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Pattern Matching"
+  },
+  "template": "enum Command {\n    Click { x: i32, y: i32 },\n    Reset,\n}\n\nfn total(cmd: Command) -> i32 {\n    match cmd {\n        ⟦click_pattern⟧ => x + y,\n        ⟦reset_pattern⟧ => 0,\n    }\n}\n\nfn main() {\n    println!(\"{}\", total(Command::Click { x: 3, y: 4 }));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "click_pattern",
+        "original": "Command::Click(x, y)",
+        "label": "click pattern",
+        "choices": [
+          {
+            "id": "cl1",
+            "text": "Command::Click { x, y }"
+          },
+          {
+            "id": "cl2",
+            "text": "Command::Click(x, y)"
+          },
+          {
+            "id": "cl3",
+            "text": "Command::Click { x }"
+          }
+        ]
+      },
+      {
+        "id": "reset_pattern",
+        "original": "Command::Reset()",
+        "label": "reset pattern",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "Command::Reset"
+          },
+          {
+            "id": "re2",
+            "text": "Command::Reset()"
+          },
+          {
+            "id": "re3",
+            "text": "Command::Reset(_)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn total_click() {\n    assert_eq!(total(Command::Click { x: 3, y: 4 }), 7);\n    assert_eq!(total(Command::Reset), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The variant `Command::Click` uses curly braces.",
+    "Struct variants require curly braces in patterns. Unit variants use no braces."
+  ],
+  "explanation": "Matching a struct variant requires curly braces with matching field names. The pattern `Command::Click { x, y }` binds both `x` and `y`. Using parentheses like `Command::Click(x, y)` triggers error E0023. Omitting `y` in `Command::Click { x }` triggers error E0027. Unit variants like `Command::Reset` require no braces or parentheses. The pattern `Command::Reset()` triggers error E0532."
+}

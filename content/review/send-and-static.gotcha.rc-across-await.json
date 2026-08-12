@@ -1,0 +1,11 @@
+{
+  "id": "send-and-static.gotcha.rc-across-await",
+  "kind": "gotcha",
+  "title": "Rc across await breaks Send bound",
+  "concepts": [
+    "send-and-static"
+  ],
+  "prompt": "Why does holding an Rc across an .await point prevent a future from being spawned on multithreaded runtimes?",
+  "answer": "Multithreaded executors require spawned futures to implement Send so they can move between worker threads. Rc is not thread-safe, so holding an Rc across .await makes the entire future !Send.",
+  "schema_version": 1
+}

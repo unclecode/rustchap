@@ -1,0 +1,11 @@
+{
+  "id": "traits.gotcha.dyn-trait-indirection",
+  "kind": "gotcha",
+  "title": "Why bare dyn Trait cannot be stored directly",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "Why can you not store or return a bare dyn Trait value without a pointer?",
+  "answer": "A bare dyn Trait is unsized because concrete implementors have different memory sizes. Rust requires known sizes for variables and return values, so trait objects require indirection like &dyn Trait or Box<dyn Trait>.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "standard-traits.choice.derive-vs-manual",
+  "kind": "choice",
+  "title": "Deriving standard traits over manual code",
+  "concepts": [
+    "standard-traits"
+  ],
+  "prompt": "What compiler check warns when you write a manual `Default` implementation that matches the derived behavior?",
+  "answer": "Clippy flags manual implementations with `derivable_impls`. Deriving mechanical traits like `Default` or `Clone` reduces boilerplate and keeps code maintainable.",
+  "schema_version": 1
+}

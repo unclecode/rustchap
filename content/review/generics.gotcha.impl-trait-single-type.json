@@ -1,0 +1,11 @@
+{
+  "id": "generics.gotcha.impl-trait-single-type",
+  "kind": "gotcha",
+  "title": "Returning impl Trait across multiple bran...",
+  "concepts": [
+    "generics"
+  ],
+  "prompt": "Why does returning `impl Trait` from an if-else expression fail when branches return different concrete types?",
+  "answer": "`impl Trait` represents one hidden concrete type chosen at compile time. Even if both branches implement the trait, returning different types causes compiler error E0308 because the return type is not uniform.",
+  "schema_version": 1
+}

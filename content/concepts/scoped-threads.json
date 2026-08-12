@@ -1,0 +1,16 @@
+{
+  "id": "scoped-threads",
+  "title": "Scoped Threads",
+  "topic": "Concurrency",
+  "summary": "`thread::scope` guarantees all spawned threads finish before the scope ends, allowing threads to borrow stack data.",
+  "lecture": [
+    "Standard threads created with `thread::spawn` must own their data or hold 'static references because the parent frame might end while the thread is running.",
+    "`thread::scope` introduces a bounded scope. All threads spawned on the scope handle are guaranteed to join before `thread::scope` returns.",
+    "Because the child threads cannot outlive the scope, they can safely borrow non-'static data from the surrounding stack frame according to standard Rust borrowing rules."
+  ],
+  "example": {
+    "code": "let s = \"hello\";\nthread::scope(|scope| {\n    scope.spawn(|| println!(\"{s}\"));\n});",
+    "caption": "The thread borrows s without cloning or moving."
+  },
+  "schema_version": 1
+}

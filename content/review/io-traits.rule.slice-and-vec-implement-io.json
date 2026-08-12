@@ -1,0 +1,11 @@
+{
+  "id": "io-traits.rule.slice-and-vec-implement-io",
+  "kind": "rule",
+  "title": "byte vectors and slices as io sources",
+  "concepts": [
+    "io-traits"
+  ],
+  "prompt": "Which standard in-memory byte types implement `std::io::Read` and `std::io::Write`?",
+  "answer": "Byte slices `&[u8]` implement `Read`. Mutable byte vectors `Vec<u8>` and mutable slices `&mut [u8]` implement `Write`.",
+  "schema_version": 1
+}

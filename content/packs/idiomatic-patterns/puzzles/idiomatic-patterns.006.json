@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.006",
+  "version": 1,
+  "title": "Automatic Resource Cleanup",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "drop-trait",
+    "zero-copy"
+  ],
+  "difficulty": 3,
+  "goal": "Clear a shared buffer automatically using an RAII guard struct.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Idiomatic Patterns"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "raii_guard",
+        "code": "struct BufferGuard<'a>(&'a mut String);\n\nimpl<'a> Drop for BufferGuard<'a> {\n    fn drop(&mut self) {\n        self.0.clear();\n    }\n}\n\nfn reset_and_use(s: &mut String) {\n    let guard = BufferGuard(s);\n    guard.0.push_str(\"active\");\n}"
+      },
+      {
+        "id": "clone_temp",
+        "code": "fn reset_and_use(s: &mut String) {\n    let mut temp = s.clone();\n    temp.push_str(\"active\");\n}"
+      },
+      {
+        "id": "double_clone",
+        "code": "fn reset_and_use(s: &mut String) {\n    let temp = s.clone();\n    let mut temp2 = temp.clone();\n    temp2.push_str(\"active\");\n    *s = temp2;\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_cleans_up() {\n    let mut s = String::from(\"data\");\n    reset_and_use(&mut s);\n    assert_eq!(s, \"\");\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Implementing Drop allows a struct to run cleanup logic automatically when it goes out of scope.",
+    "Borrowing the String mutably avoids allocating or copying heap data."
+  ],
+  "explanation": "The RAII guard pattern implements `Drop` to run cleanup logic automatically when the guard goes out of scope. This requires zero heap allocations or clones. Cloning strings to handle temporary state incurs extra allocations and unnecessary heap copies, and failing to clear the input buffer directly leaves old data around."
+}

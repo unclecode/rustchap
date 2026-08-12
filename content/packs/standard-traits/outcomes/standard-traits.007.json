@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "standard-traits.007",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0f63d4f014d8c795830c1b3bb2a34aa3790c2186d7bb5f672e22dca874136d41": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "fn_in_unwrap_or"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "988aaf371b7f24bbf7b75e802d95eaa88f9f4d7357b648d585a038d290137dd1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "expected a `FnOnce()` closure, found `String`",
+          "slot_ids": [
+            "eager_in_unwrap_or_else"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ca9b51f71a8c040440e9a5ae06b11d54f95c18cc4c5999848106df5a993abcbe": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clippy_warning_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "newtype-pattern",
+  "title": "Newtype Pattern",
+  "topic": "Data shapes",
+  "summary": "Wrap existing types in single-element tuple structs to enforce strict type checking.",
+  "lecture": [
+    "A newtype is a wrapper around an existing primitive or structure, defined as a tuple struct with one field.",
+    "Unlike type aliases, newtypes create a completely distinct type at compile time. The compiler prevents accidental parameter swapping and wrong assignments.",
+    "At runtime, the wrapper has zero memory overhead because Rust strips the tuple struct during optimization."
+  ],
+  "example": {
+    "code": "struct UserId(u32);\nlet id = UserId(42);",
+    "caption": "UserId wraps a u32 into a distinct type."
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,16 @@
+{
+  "id": "extension-traits",
+  "title": "Extension Traits",
+  "topic": "Abstraction",
+  "summary": "Add new methods to foreign types by defining and implementing a local trait.",
+  "lecture": [
+    "Rust orphan rules prohibit implementing inherent methods directly on types from external crates or standard library.",
+    "To add methods to foreign types, define a trait in your crate and implement that trait for the target type.",
+    "Bringing the extension trait into scope enables calling the new method using standard dot notation."
+  ],
+  "example": {
+    "code": "trait IsShort {\n    fn is_short(&self) -> bool;\n}\nimpl IsShort for str {\n    fn is_short(&self) -> bool {\n        self.len() < 5\n    }\n}",
+    "caption": "Extend str with a custom trait method."
+  },
+  "schema_version": 1
+}

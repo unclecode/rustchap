@@ -1,0 +1,11 @@
+{
+  "id": "pinned-futures.rule.dyn-trait-boxed-future",
+  "kind": "rule",
+  "title": "Async methods on trait objects",
+  "concepts": [
+    "pinned-futures"
+  ],
+  "prompt": "Why must async trait methods return Pin Box dyn Future when used with trait objects?",
+  "answer": "Each async function returns a unique un-namable type created by the compiler. Trait objects require a single uniform return type across all implementations. Wrapping the future in Pin Box dyn Future provides a fixed pointer size that dynamic dispatch requires.",
+  "schema_version": 1
+}

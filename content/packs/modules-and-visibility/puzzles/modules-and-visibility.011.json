@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.011",
+  "version": 1,
+  "title": "Re-exporting Module Items",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "modules",
+    "visibility"
+  ],
+  "difficulty": 1,
+  "goal": "Expose nested items at the module root using re-exports.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You import symbols into a module scope with `use`. Adding `pub` before `use` re-exports that symbol for external callers."
+      },
+      {
+        "kind": "code",
+        "code": "mod internal {\n    pub struct Config;\n}\n\npub use internal::Config;",
+        "caption": "`pub use` makes `Config` accessible directly from this module."
+      },
+      {
+        "kind": "prose",
+        "text": "Re-exporting hides complex folder structures from consumers. Callers import clean paths without knowing your internal module organization."
+      },
+      {
+        "kind": "code",
+        "code": "// Callers write this:\nuse my_crate::Config;\n\n// Instead of this:\n// use my_crate::internal::Config;",
+        "caption": "Callers use the shorter top-level path."
+      },
+      {
+        "kind": "prose",
+        "text": "Without `pub`, a `use` statement brings a symbol in privately. Outer callers cannot reach private imports and will trigger `E0603`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Expose nested items at the module root using re-exports."
+}

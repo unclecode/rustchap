@@ -1,0 +1,11 @@
+{
+  "id": "arc-and-mutex.syntax.lock-guard-scope",
+  "kind": "syntax",
+  "title": "Releasing Mutex lock guard early",
+  "concepts": [
+    "arc-and-mutex"
+  ],
+  "prompt": "How do you release a Mutex lock before a spawned thread finishes executing?",
+  "answer": "A Mutex lock is released automatically when its MutexGuard is dropped at the end of its scope. You can enclose the locked operation in an explicit block or call drop on the guard explicitly.",
+  "schema_version": 1
+}

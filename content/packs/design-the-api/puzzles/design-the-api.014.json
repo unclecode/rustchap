@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.014",
+  "version": 1,
+  "title": "Chain the Builder",
+  "track": "design-the-api",
+  "concepts": [
+    "api-design",
+    "builder-pattern"
+  ],
+  "difficulty": 2,
+  "goal": "Implement consuming builder methods that allow fluid method chaining.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Comprehensive Rust: Day 4"
+  },
+  "template": "struct Request { url: String, timeout: u64 }\nstruct Builder { url: String, timeout: u64 }\n\nimpl Builder {\n    fn new(u: &str) -> Self {\n        Self { url: u.to_string(), timeout: 30 }\n    }\n    fn timeout(⟦self_param⟧, t: u64) -> ⟦ret_type⟧ {\n        self.timeout = t;\n        self\n    }\n    fn build(self) -> Request {\n        Request { url: self.url, timeout: self.timeout }\n    }\n}\n\nfn main() {\n    let r = Builder::new(\"a\").timeout(60).build();\n    assert_eq!(r.timeout, 60);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "self_param",
+        "original": "&self",
+        "label": "self parameter",
+        "choices": [
+          {
+            "id": "se1",
+            "text": "mut self"
+          },
+          {
+            "id": "se2",
+            "text": "&self"
+          },
+          {
+            "id": "se3",
+            "text": "&mut self"
+          }
+        ]
+      },
+      {
+        "id": "ret_type",
+        "original": "()",
+        "label": "return type",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "Self"
+          },
+          {
+            "id": "re2",
+            "text": "&Self"
+          },
+          {
+            "id": "re3",
+            "text": "()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn builds() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Method chaining requires returning ownership of the updated builder.",
+    "The method must take `mut self` by value and return `Self`."
+  ],
+  "explanation": "Consuming builder methods take `mut self` by value, modify fields in place, and return `self` as `Self`. This passes owned builders down the call chain into `.build()`. Taking `&self` fails with `E0594` because immutable references cannot mutate fields. Returning `()` breaks the pipeline with `E0599` because `()` lacks a `.build()` method."
+}

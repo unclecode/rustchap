@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers.009",
+  "version": 1,
+  "title": "Upgrade the Weak Link",
+  "track": "smart-pointers",
+  "concepts": [
+    "smart-pointers",
+    "option"
+  ],
+  "difficulty": 2,
+  "goal": "Safely access shared data through a Weak pointer handle.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Weak upgrade"
+  },
+  "template": "use std::rc::{Rc, Weak};\n\nstruct Node {\n    value: i32,\n    parent: Weak<Node>,\n}\n\nfn parent_val(n: &Node) -> Option<i32> {\n    let p = ⟦upgrade_expr⟧?;\n    Some(p.value)\n}\n\nfn main() {\n    let p = Rc::new(Node { value: 10, parent: Weak::new() });\n    let c = Node { value: 5, parent: ⟦downgrade_expr⟧ };\n    println!(\"{:?}\", parent_val(&c));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "upgrade_expr",
+        "original": "n.parent",
+        "label": "upgrade expression",
+        "choices": [
+          {
+            "id": "up1",
+            "text": "n.parent.upgrade()"
+          },
+          {
+            "id": "up2",
+            "text": "n.parent"
+          },
+          {
+            "id": "up3",
+            "text": "n.parent.borrow()"
+          }
+        ]
+      },
+      {
+        "id": "downgrade_expr",
+        "original": "Rc::clone(&p)",
+        "label": "downgrade expression",
+        "choices": [
+          {
+            "id": "do1",
+            "text": "Rc::downgrade(&p)"
+          },
+          {
+            "id": "do2",
+            "text": "Rc::clone(&p)"
+          },
+          {
+            "id": "do3",
+            "text": "p"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn gets_parent_val() {\n    let p = Rc::new(Node { value: 42, parent: Weak::new() });\n    let c = Node { value: 7, parent: Rc::downgrade(&p) };\n    assert_eq!(parent_val(&c), Some(42));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Weak pointers cannot access inner fields directly and must be upgraded to `Rc` first.",
+    "`Rc::downgrade` converts a reference to an `Rc` into a `Weak` pointer."
+  ],
+  "explanation": "Weak pointers do not keep data alive. They must be converted to an `Option<Rc<T>>` using `.upgrade()` before reading inner fields. Passing `n.parent` directly to the `?` operator fails with `E0308` because `Weak<Node>` is not an `Option`. Calling `.borrow()` produces `E0599` because `borrow` is a method on `RefCell`. In `main`, the `parent` field expects a `Weak<Node>` handle. It is created using `Rc::downgrade(&p)` rather than cloning the strong `Rc`."
+}

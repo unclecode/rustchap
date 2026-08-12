@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.015",
+  "version": 1,
+  "title": "Cast and Drain",
+  "track": "move-or-borrow",
+  "concepts": [
+    "borrow",
+    "mutability",
+    "borrow-scope"
+  ],
+  "difficulty": 3,
+  "goal": "Order statements so a borrowed value is copied before mutating the vector.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Borrow Checking"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn update_head(items: &mut Vec<String>) -> Option<String> {\n    if items.is_empty() {\n        return None;\n    }",
+    "blocks": [
+      {
+        "id": "borrow",
+        "text": "\n    let head = &items[0];"
+      },
+      {
+        "id": "copy_val",
+        "text": "\n    let old = head.clone();"
+      },
+      {
+        "id": "mutate",
+        "text": "\n    items[0] = String::from(\"updated\");"
+      },
+      {
+        "id": "return_val",
+        "text": "\n    Some(old)"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn updates_head_and_returns_old() {\n    let mut items = vec![String::from(\"first\"), String::from(\"second\")];\n    let res = update_head(&mut items);\n    assert_eq!(res, Some(String::from(\"first\")));\n    assert_eq!(items[0], \"updated\");\n    assert_eq!(items[1], \"second\");\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "You cannot mutate items while head holds a reference to it.",
+    "Clone the value from head first so the borrow ends before items[0] is assigned."
+  ],
+  "explanation": "The shared borrow head must be cloned into old before items[0] can be modified. Placing the assignment items[0] = ... between head and head.clone() causes E0502 because items cannot be mutably borrowed while head is active. Reordering the assignment before head causes the function to return the updated string instead of the original, failing the test assertions."
+}

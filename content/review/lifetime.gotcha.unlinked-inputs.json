@@ -1,0 +1,11 @@
+{
+  "id": "lifetime.gotcha.unlinked-inputs",
+  "kind": "gotcha",
+  "title": "Multiple inputs sharing one lifetime anno...",
+  "concepts": [
+    "lifetime"
+  ],
+  "prompt": "What happens when you give two separate input reference parameters the same lifetime parameter `'a` in a function signature?",
+  "answer": "The compiler assumes the returned borrow depends on both inputs. Both input arguments stay borrowed for as long as the return value is in use. This prevents mutating or dropping either input during that scope even if the function only actually returned data from one of them.",
+  "schema_version": 1
+}

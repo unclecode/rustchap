@@ -1,0 +1,11 @@
+{
+  "id": "mpsc-channels.rule.rx-iterator-termination",
+  "kind": "rule",
+  "title": "Receiver iterator termination condition",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "prompt": "When does an mpsc Receiver iterator finish producing items in a loop?",
+  "answer": "The Receiver iterator terminates when every Sender endpoint is dropped and all queued messages have been consumed. If any Sender remains alive in any thread, the loop will block indefinitely waiting for new messages.",
+  "schema_version": 1
+}

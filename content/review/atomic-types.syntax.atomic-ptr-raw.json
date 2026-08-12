@@ -1,0 +1,11 @@
+{
+  "id": "atomic-types.syntax.atomic-ptr-raw",
+  "kind": "syntax",
+  "title": "Storing Pointers in AtomicPtr",
+  "concepts": [
+    "atomic-types"
+  ],
+  "prompt": "How do you store a mutable reference inside an AtomicPtr in Rust?",
+  "answer": "You must convert the reference into a raw pointer using the `as` keyword. `AtomicPtr` operates on raw pointers like `*mut T` rather than standard Rust references. The conversion ensures explicit handling of pointer semantics and lifetimes.",
+  "schema_version": 1
+}

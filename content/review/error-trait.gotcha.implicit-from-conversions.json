@@ -1,0 +1,11 @@
+{
+  "id": "error-trait.gotcha.implicit-from-conversions",
+  "kind": "gotcha",
+  "title": "Automatic error conversion requirements",
+  "concepts": [
+    "error-trait"
+  ],
+  "prompt": "What trait implementation must exist for the try operator to convert an inner error type Into a function return error type?",
+  "answer": "The outer error type must implement From<InnerError>. The try operator automatically invokes `From::from` on the error before returning. If From is not implemented, the compiler raises error E0277.",
+  "schema_version": 1
+}

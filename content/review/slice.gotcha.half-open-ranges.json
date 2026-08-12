@@ -1,0 +1,11 @@
+{
+  "id": "slice.gotcha.half-open-ranges",
+  "kind": "gotcha",
+  "title": "Slice range end index is exclusive",
+  "concepts": [
+    "slice"
+  ],
+  "prompt": "Why does the slice range index expression `&a[1..4]` yield three elements instead of four?",
+  "answer": "Rust ranges are half-open, meaning the start index is inclusive and the end index is exclusive. The length of `1..4` is `4 - 1 = 3` elements.",
+  "schema_version": 1
+}

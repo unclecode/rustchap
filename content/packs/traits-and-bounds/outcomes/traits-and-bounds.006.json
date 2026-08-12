@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "traits-and-bounds.006",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "36f053bdbbfa0b731f41d1e4f8e5d3cdf45653ca573b295f1e4feb10143baa70": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a type, found a trait",
+          "slot_ids": [
+            "impl_head"
+          ],
+          "rust_code": "E0782"
+        },
+        {
+          "category": "compile_error",
+          "message": "attempted to take value of method `render` on type `&T`",
+          "slot_ids": [
+            "call_method"
+          ],
+          "rust_code": "E0615"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Button: Render` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Button: Render` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "44d874176f53971ab8612f8c41d5d978fa6505e91444c011c865bbfbd0596ca3": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "5c8cd83b31cddcae0d44a4a5f57f2595f9b0a18c5d417bc0f3e6df61abde7ce6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the method `to_string` exists for reference `&T`, but its trait bounds were not satisfied",
+          "slot_ids": [
+            "call_method"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "61f13ba315508840537795d6b88dd50ed91aeffe6bc4d6b0afdac50d791a1136": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the method `to_string` exists for reference `&T`, but its trait bounds were not satisfied",
+          "slot_ids": [
+            "call_method"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Button: Render` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Button: Render` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7c9b4b33c64ad912be42bf7252efac9d159a938d5833753204c5179c63e3f3cc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "attempted to take value of method `render` on type `&T`",
+          "slot_ids": [
+            "call_method"
+          ],
+          "rust_code": "E0615"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Button: Render` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Button: Render` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8ee9370414f32199be310fda7cc9e39c86abed5f87fc1ad971a4d30a125f790e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "attempted to take value of method `render` on type `&T`",
+          "slot_ids": [
+            "call_method"
+          ],
+          "rust_code": "E0615"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "aa7e742973a8b0a839bb2daa64ac0d9b5ae4abaede8d7d6a565e617dfb6c6886": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a type, found a trait",
+          "slot_ids": [
+            "impl_head"
+          ],
+          "rust_code": "E0782"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `to_string` exists for reference `&T`, but its trait bounds were not satisfied",
+          "slot_ids": [
+            "call_method"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Button: Render` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Button: Render` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "afd8e5e3c0ec728dcf827e04714e9068d3fae4bb87137c116dda322f72e83c45": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Button: Render` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Button: Render` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f38f20841c54b7a49032855f1b0e2351c9a8d0d12de28af793f750fe40c9d585": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a type, found a trait",
+          "slot_ids": [
+            "impl_head"
+          ],
+          "rust_code": "E0782"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Button: Render` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Button: Render` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

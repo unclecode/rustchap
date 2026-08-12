@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.005",
+  "version": 1,
+  "title": "Generic Structs and Impl Blocks",
+  "track": "generics-and-dyn",
+  "concepts": [
+    "generics"
+  ],
+  "difficulty": 1,
+  "goal": "Define data structures and methods that work across any type.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Generics"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You know generic classes from Java or C++ templates. In Rust, generic structs group fields whose types are decided when instantiated."
+      },
+      {
+        "kind": "code",
+        "code": "struct Container<T> {\n    value: T,\n}",
+        "caption": "<T> introduces the generic type parameter on the struct."
+      },
+      {
+        "kind": "prose",
+        "text": "When adding methods to a generic struct, you write `impl<T> Container<T>`. The first `<T>` declares the type parameter for the block."
+      },
+      {
+        "kind": "code",
+        "code": "impl<T> Container<T> {\n    fn new(value: T) -> Self {\n        Container { value }\n    }\n}",
+        "caption": "The first <T> tells Rust that T is a generic parameter, not a concrete type."
+      },
+      {
+        "kind": "prose",
+        "text": "Declaring `<T>` on `impl` allows defining methods for any `T`. You can also write `impl Container<i32>` to define methods available only for `i32`."
+      },
+      {
+        "kind": "code",
+        "code": "impl Container<i32> {\n    fn double(&self) -> i32 {\n        self.value * 2\n    }\n}",
+        "caption": "Methods in this block only exist when T is i32."
+      },
+      {
+        "kind": "prose",
+        "text": "Leaving off the first `<T>` causes compiler error `E0412` because Rust looks for a concrete type named `T`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Define data structures and methods that work across any type."
+}

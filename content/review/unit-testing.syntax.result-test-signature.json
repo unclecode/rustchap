@@ -1,0 +1,11 @@
+{
+  "id": "unit-testing.syntax.result-test-signature",
+  "kind": "syntax",
+  "title": "Signature for test functions returning er...",
+  "concepts": [
+    "unit-testing"
+  ],
+  "prompt": "How do you write the signature of a test function that propagates errors using `?`?",
+  "answer": "Write `#[test] fn test_name() -> Result<(), ErrorType>`. Use `?` on fallible calls inside the body and return `Ok(())` as the final expression.",
+  "schema_version": 1
+}

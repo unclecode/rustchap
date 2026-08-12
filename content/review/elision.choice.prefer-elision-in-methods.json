@@ -1,0 +1,11 @@
+{
+  "id": "elision.choice.prefer-elision-in-methods",
+  "kind": "choice",
+  "title": "When to Omit Method Lifetimes",
+  "concepts": [
+    "elision"
+  ],
+  "prompt": "When should you leave return lifetimes implicit in struct method signatures?",
+  "answer": "Omit annotations whenever the method returns data borrowed from `self`. Elision rule three automatically connects the returned reference to `&self`.",
+  "schema_version": 1
+}

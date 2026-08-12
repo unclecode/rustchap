@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.010",
+  "version": 1,
+  "title": "Mutate in Place",
+  "track": "move-or-borrow",
+  "concepts": [
+    "borrow",
+    "mutability"
+  ],
+  "difficulty": 1,
+  "goal": "Modify data inside a function using a mutable reference.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Borrowing"
+  },
+  "template": "fn add_suffix(s: ⟦param_ty⟧) {\n    s.push_str(\"!\");\n}\n\nfn main() {\n    let mut msg = String::from(\"Hello\");\n    add_suffix(⟦arg⟧);\n    println!(\"{msg}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "param_ty",
+        "original": "&String",
+        "label": "parameter type",
+        "choices": [
+          {
+            "id": "pa1",
+            "text": "&mut String"
+          },
+          {
+            "id": "pa2",
+            "text": "&String"
+          },
+          {
+            "id": "pa3",
+            "text": "String"
+          }
+        ]
+      },
+      {
+        "id": "arg",
+        "original": "&msg",
+        "label": "argument",
+        "choices": [
+          {
+            "id": "ar1",
+            "text": "&mut msg"
+          },
+          {
+            "id": "ar2",
+            "text": "&msg"
+          },
+          {
+            "id": "ar3",
+            "text": "msg"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn mutates_string() {\n    let mut msg = String::from(\"Hello\");\n    add_suffix(&mut msg);\n    assert_eq!(msg, \"Hello!\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The function add_suffix modifies s in place with .push_str().",
+    "To modify data through a reference, both the function parameter and the argument must use &mut."
+  ],
+  "explanation": "&mut String creates an exclusive mutable reference, allowing add_suffix to modify msg in place without taking ownership. Using &String produces E0596 because shared references cannot be mutated. Passing msg by value without borrowing moves ownership into add_suffix, leaving msg in main invalid and causing E0382 if read later."
+}

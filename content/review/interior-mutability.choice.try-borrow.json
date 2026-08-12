@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.choice.try-borrow",
+  "kind": "choice",
+  "title": "Choosing try_borrow over borrow",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "When should you call try_borrow instead of borrow on a RefCell?",
+  "answer": "Call `try_borrow` when a borrow conflict might occur and panicking is unacceptable. It returns a `Result` containing the guard or a borrow error, allowing the caller to handle active borrows gracefully.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "borrow-scope.gotcha.guard-in-loop",
+  "kind": "gotcha",
+  "title": "RefCell guard active across loop iterations",
+  "concepts": [
+    "borrow-scope"
+  ],
+  "prompt": "What runtime error occurs if you store a RefCell borrow_mut guard in a variable outside a loop that borrows the same cell inside?",
+  "answer": "The outer variable keeps the exclusive borrow active for every loop iteration. The inner borrow attempt detects the existing lock and triggers an already borrowed panic at runtime.",
+  "schema_version": 1
+}

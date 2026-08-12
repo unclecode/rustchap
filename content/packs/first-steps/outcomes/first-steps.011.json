@@ -1,0 +1,663 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "first-steps.011",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "02c7237983e1bbde4b866f3e25bcbd29e6f4c0ad3db6b56e2f96cd24124a2d20": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "03697f66362a799f1de1fa43c7a2fa195e5f3a00fd19addb2fe473203add7981": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "count"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `count` in this scope",
+          "slot_ids": [
+            "denom"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "077c0e938fd5e77639b12199f872ce84c52dbd0e0374d47872f417a02cc51c59": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `else`, `{`, or an operator, found `a`",
+          "slot_ids": [
+            "sum"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0be236dc0bf46a735d4b529cb925f1d65425480c4c5691e8a832958dd998039f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `count` in this scope",
+          "slot_ids": [
+            "denom"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0d20db36d8a0ff7e49fa282c8f4834d5c1429fefed2840b39f1039f9353c70c3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "11b09cb0be8f60e65711d50809fc330c32bb3e7959d31700941c5b05e69929aa": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "count"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `sum` in this scope",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `count` in this scope",
+          "slot_ids": [
+            "denom"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "11b5cd62617c5da4d0777d49684e3a9ecebc6eb4b93f7326259372b4add33a88": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "count"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `a`",
+          "slot_ids": [
+            "sum"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "26229535eeef2fe3e551b1e2cba6cf011582bb4bfdb24bf3b91b9cb3fb86599b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "count"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3a38edc0b2cb07306962f1828467a9dcba629065297873c410eedc0b83293eb9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "count"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3efaecd3ae9f023ada3bb0506d3dac25eafdfd85c6306da9e3b77ff6891370e7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "465517ab813d5e0e7cff099dc600f1f6de6621ab6c6100483f77d9975dce1f65": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "count"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5298590a7e15d221307090f9ff7aa156895bd48fff2b863eb9a55355e90fc3d5": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0
+      },
+      "diagnostics": []
+    },
+    "548d80f1871077e143ac36b809f8b57bc25d4e5bd5b1c49139899b4c06203af2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `sum` in this scope",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `count` in this scope",
+          "slot_ids": [
+            "denom"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6542eb6535c0b407456abed24f9621b1f6b998a491b4348d60389e499b2b7f63": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "count"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "890de60b547cb85aa177224e971f10dfd6d2152920f7c164b3aabae0a0b4a09f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "count"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `a`",
+          "slot_ids": [
+            "sum"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "89bf195051a349413ce67915f3af49c8c5e356d1066cb04fde13df17aa40f2e9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "count"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `sum` in this scope",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "932e21891e6fd403b9ba048d452b7b36e8050a9d76ae2c432b470e0059e4a0b1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "count"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `a`",
+          "slot_ids": [
+            "sum"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `sum` in this scope",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9fa5edee0c8af659205856829e231dfaf9ec2034071778e4ec220e85c43892ea": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `else`, `{`, or an operator, found `a`",
+          "slot_ids": [
+            "sum"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a803efc877829495fb907862ae183d31d6f67275a15b14d16d84fd9563ccf833": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `sum` in this scope",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cda0980015f9ec49202f2389bbd51fbe84634695dc38c2dc52057f098aea8e52": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `sum` in this scope",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d5f7167f6a8dc0ffd09fbddf1b326233c8b41f9bcc4a0192298b9a82b88d2754": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `count` in this scope",
+          "slot_ids": [
+            "denom"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e88a933bf4cdfb762639032be9f5f0c4cc8a0b4716a7332d091b7ad271bc29dd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `.`, `::`, `;`, `?`, `else`, `{`, or an operator, found `a`",
+          "slot_ids": [
+            "sum"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fa1abdc41f6ad679208c48b4717307efdc5acdad9075ed7f8051a57a156a89bb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `sum` in this scope",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `count` in this scope",
+          "slot_ids": [
+            "denom"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ff3f3dd7d210530cc0041013d884f2070ecc37af98892c086257653ef7a71b1d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `let` statement",
+          "slot_ids": [
+            "count"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

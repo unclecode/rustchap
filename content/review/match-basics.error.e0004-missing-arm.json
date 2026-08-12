@@ -1,0 +1,11 @@
+{
+  "id": "match-basics.error.e0004-missing-arm",
+  "kind": "error",
+  "title": "Reading error code E0004",
+  "concepts": [
+    "match-basics"
+  ],
+  "prompt": "What causes compiler error E0004, and how do you resolve it?",
+  "answer": "Error `E0004` occurs when a match expression fails to cover all possible values of the input type. You resolve it by adding match arms for the missing variants or adding a wildcard arm at the end.",
+  "schema_version": 1
+}

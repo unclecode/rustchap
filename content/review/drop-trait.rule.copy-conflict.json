@@ -1,0 +1,12 @@
+{
+  "id": "drop-trait.rule.copy-conflict",
+  "kind": "rule",
+  "title": "Implementing Drop on Copy types",
+  "concepts": [
+    "drop-trait",
+    "copy"
+  ],
+  "prompt": "Why does the Rust compiler forbid implementing both `Copy` and `Drop` on the same type?",
+  "answer": "Types that implement `Copy` are duplicated via simple memory copies without tracking individual ownership. Because Rust cannot determine which copy is the original owner, allowing `Drop` on `Copy` types would lead to ambiguous destructor execution.",
+  "schema_version": 1
+}

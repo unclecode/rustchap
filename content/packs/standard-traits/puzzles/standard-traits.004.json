@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.004",
+  "version": 1,
+  "title": "Overloading Operators",
+  "track": "standard-traits",
+  "concepts": [
+    "standard-traits"
+  ],
+  "difficulty": 1,
+  "goal": "Understand how Rust implements arithmetic operators using `std::ops` traits.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Standard Traits"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You overload operators in Rust by implementing traits from `std::ops`. The `+` operator corresponds to the `Add` trait."
+      },
+      {
+        "kind": "code",
+        "code": "use std::ops::Add;\n\nimpl Add for Point {\n    type Output = Point;\n    fn add(self, rhs: Point) -> Point {\n        Point(self.0 + rhs.0)\n    }\n}",
+        "caption": "Add takes ownership of self and rhs."
+      },
+      {
+        "kind": "prose",
+        "text": "The `add` method takes `self` by value. Using `+` on a non-`Copy` type moves the value into the operation."
+      },
+      {
+        "kind": "code",
+        "code": "impl Add for &Point {\n    type Output = Point;\n    fn add(self, rhs: &Point) -> Point {\n        Point(self.0 + rhs.0)\n    }\n}",
+        "caption": "Implement Add for references to avoid moving."
+      },
+      {
+        "kind": "prose",
+        "text": "To keep ownership of your values, implement `Add` for reference types like `&Point`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand how Rust implements arithmetic operators using `std::ops` traits."
+}

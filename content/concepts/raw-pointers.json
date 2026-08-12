@@ -1,0 +1,16 @@
+{
+  "id": "raw-pointers",
+  "title": "Raw Pointers",
+  "topic": "Unsafe",
+  "summary": "Raw pointers bypass borrow checker rules and require explicit unsafe blocks to dereference.",
+  "lecture": [
+    "Raw pointers (*const T and *mut T) are primitive pointer types in Rust similar to C pointers.",
+    "Creating raw pointers from references or integers is completely safe in Rust code.",
+    "Dereferencing raw pointers to read or write memory is unsafe and requires explicit unsafe blocks."
+  ],
+  "example": {
+    "code": "let x = 42;\nlet ptr: *const i32 = &x;\nlet val = unsafe { *ptr };",
+    "caption": "Creating raw pointers is safe, but reading them requires unsafe."
+  },
+  "schema_version": 1
+}

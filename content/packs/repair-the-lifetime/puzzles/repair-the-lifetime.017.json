@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime.017",
+  "version": 1,
+  "title": "Zero-Copy Slicing in Parsers",
+  "track": "repair-the-lifetime",
+  "concepts": [
+    "lifetime",
+    "slice",
+    "zero-copy"
+  ],
+  "difficulty": 2,
+  "goal": "Annotate a slice parser signature so returned byte slices are linked to the input slice.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from google/comprehensive-rust exercise"
+  },
+  "template": "fn take_header<'a>(data: ⟦slot1⟧) -> (⟦slot2⟧, &'a [u8]) {\n    if data.len() < 4 {\n        (&[], data)\n    } else {\n        (&data[..4], &data[4..])\n    }\n}\n\nfn main() {\n    let bytes = [1, 2, 3, 4, 5, 6];\n    let (hdr, rest) = take_header(&bytes);\n    println!(\"{}, {}\", hdr.len(), rest.len());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "&[u8]",
+        "label": "input data slice type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "&'a [u8]"
+          },
+          {
+            "id": "sl2",
+            "text": "&[u8]"
+          },
+          {
+            "id": "sl3",
+            "text": "&'static [u8]"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "&str",
+        "label": "header element return type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "&'a [u8]"
+          },
+          {
+            "id": "sl2",
+            "text": "&'static [u8]"
+          },
+          {
+            "id": "sl3",
+            "text": "&str"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn splits_bytes() {\n    let input = vec![10, 20, 30, 40, 50];\n    let (h, r) = take_header(&input);\n    assert_eq!(h, &[10, 20, 30, 40]);\n    assert_eq!(r, &[50]);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The returned slices borrow their bytes directly from `data`. How do you tie `data` to the output?",
+    "The generic parameter `'a` is declared on the function. Match `data` and the first element of the return tuple to `'a`."
+  ],
+  "explanation": "Connecting `data: &'a [u8]` and `&'a [u8]` in the return type tells the borrow checker that both returned slices borrow from `data`. Omitting `'a` from `data` leaves `'a` unconstrained by function inputs. Demanding `'static` fails with `E0597` because local variables in `main` do not live for the entire program. Using `&str` causes `E0308` because the function operates on byte slices (`&[u8]`), not string slices."
+}

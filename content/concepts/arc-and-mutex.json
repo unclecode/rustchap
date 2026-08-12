@@ -1,0 +1,16 @@
+{
+  "id": "arc-and-mutex",
+  "title": "Arc and Mutex",
+  "topic": "Concurrency",
+  "summary": "Share mutable data safely across multiple threads using atomic reference counting and mutual exclusion.",
+  "lecture": [
+    "Sharing data across threads requires both multi-ownership and synchronization.",
+    "Arc provides atomic reference counting so multiple threads can own the same allocation. Mutex provides interior mutability and ensures only one thread can access the underlying data at a time.",
+    "Together, Arc<Mutex<T>> is the standard pattern for shared, mutable state in multi-threaded Rust."
+  ],
+  "example": {
+    "code": "let data = Arc::new(Mutex::new(0));\nlet d = Arc::clone(&data);\n*d.lock().unwrap() += 1;",
+    "caption": "Clone the Arc to share ownership, lock the Mutex to mutate."
+  },
+  "schema_version": 1
+}

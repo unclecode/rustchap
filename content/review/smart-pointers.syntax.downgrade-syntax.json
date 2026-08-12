@@ -1,0 +1,11 @@
+{
+  "id": "smart-pointers.syntax.downgrade-syntax",
+  "kind": "syntax",
+  "title": "Creating a Weak pointer from Rc",
+  "concepts": [
+    "smart-pointers"
+  ],
+  "prompt": "How do you construct a `Weak` pointer from an existing `Rc` handle?",
+  "answer": "Call `Rc::downgrade(&handle)` passing a reference to the `Rc`. This increments the weak reference count without affecting the strong count.",
+  "schema_version": 1
+}

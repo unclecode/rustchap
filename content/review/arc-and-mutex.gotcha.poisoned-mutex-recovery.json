@@ -1,0 +1,11 @@
+{
+  "id": "arc-and-mutex.gotcha.poisoned-mutex-recovery",
+  "kind": "gotcha",
+  "title": "Recovering data from a poisoned Mutex",
+  "concepts": [
+    "arc-and-mutex"
+  ],
+  "prompt": "What happens when a thread panics while holding a Mutex lock, and how do you access the protected data?",
+  "answer": "When a thread panics while holding a lock, the `Mutex` becomes poisoned. Calling `lock()` on a poisoned mutex returns a `PoisonError`. Calling `into_inner()` on that error extracts the `MutexGuard` so you can recover the protected data.",
+  "schema_version": 1
+}

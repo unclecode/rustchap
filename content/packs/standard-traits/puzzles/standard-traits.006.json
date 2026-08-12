@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.006",
+  "version": 1,
+  "title": "Comparing References",
+  "track": "standard-traits",
+  "concepts": [
+    "standard-traits"
+  ],
+  "difficulty": 2,
+  "goal": "Understand that comparison operators on references compare values.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Standard Traits"
+  },
+  "template": "#[derive(Debug)]\nstruct User {\n    id: u32,\n}\n\nimpl PartialEq for User {\n    fn eq(&self, other: &Self) -> bool {\n        self.id == other.id\n    }\n}\n\nfn main() {\n    let u1 = User { id: 42 };\n    let u2 = User { id: 42 };\n    let is_same = ⟦slot1⟧ ⟦slot2⟧ &u2;\n    assert!(is_same);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "*u1",
+        "label": "left hand reference",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "&u1"
+          },
+          {
+            "id": "sl2",
+            "text": "u1"
+          },
+          {
+            "id": "sl3",
+            "text": "*u1"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "eq",
+        "label": "comparison operator",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "=="
+          },
+          {
+            "id": "sl2",
+            "text": "==="
+          },
+          {
+            "id": "sl3",
+            "text": "eq"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_ref_cmp() {\n    let a = User { id: 10 };\n    let b = User { id: 10 };\n    assert!(&a == &b);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rust's == operator automatically dereferences references to invoke `PartialEq::eq`.",
+    "Both sides of == must have matching reference types."
+  ],
+  "explanation": "When `==` is used on references `&u1 == &u2`, Rust dereferences them and calls `PartialEq::eq`, comparing underlying values. Using `u1 == &u2` causes type mismatch `E0308`. Dereferencing `*u1` fails with `E0614` because `u1` is a value, not a reference. JavaScript's `===` operator is not valid Rust syntax."
+}

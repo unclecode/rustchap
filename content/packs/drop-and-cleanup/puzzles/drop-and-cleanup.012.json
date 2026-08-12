@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.012",
+  "version": 1,
+  "title": "The Underscore Drop Bug",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait",
+    "bindings"
+  ],
+  "difficulty": 2,
+  "goal": "Ensure a guard stays alive across the critical section.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "template": "use std::sync::atomic::{AtomicU32, Ordering::SeqCst};\nstatic LOG: AtomicU32 = AtomicU32::new(0);\n\nfn push(v: u32) {\n    LOG.store(LOG.load(SeqCst) * 10 + v, SeqCst);\n}\n\nstruct Guard;\nimpl Guard {\n    fn enter() -> Self { push(1); Guard }\n}\nimpl Drop for Guard {\n    fn drop(&mut self) { push(2); }\n}\n\nfn do_work() {\n    let ⟦slot1⟧ = Guard::enter();\n    ⟦slot2⟧;\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "_",
+        "label": "guard variable binding",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "_guard"
+          },
+          {
+            "id": "sl2",
+            "text": "_"
+          },
+          {
+            "id": "sl3",
+            "text": "()"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "push(3)",
+        "label": "critical section action",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "push(3)"
+          },
+          {
+            "id": "sl2",
+            "text": "drop(_guard)"
+          },
+          {
+            "id": "sl3",
+            "text": "push(\"3\")"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_guard_order() {\n    LOG.store(0, SeqCst);\n    do_work();\n    assert_eq!(LOG.load(SeqCst), 132);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Check when the guard drops relative to push(3).",
+    "An underscore wildcard pattern `_` drops the right-hand value instantly."
+  ],
+  "explanation": "Binding to `_guard` keeps the `Guard` instance alive until `do_work` ends, giving log order 1 (enter), 3 (push), then 2 (drop on exit) for a total of 132. Using `let _ =` drops the guard immediately on line 13 before `push(3)` runs, producing 123. Referencing `_guard` when unbound causes `E0425`, and passing a string to `push` causes `E0308`."
+}

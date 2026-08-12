@@ -1,0 +1,11 @@
+{
+  "id": "zero-copy.choice.slices-vs-owned-strings",
+  "kind": "choice",
+  "title": "Slices versus owned strings in structs",
+  "concepts": [
+    "zero-copy"
+  ],
+  "prompt": "When should a struct store string slices `&'a str` instead of owned `String` fields?",
+  "answer": "Store `&'a str` when creating short-lived views or parsers that process existing data without needing to modify or outlive the source buffer. This avoids heap allocations and memory copies. Store `String` when the struct must own its data independently.",
+  "schema_version": 1
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "id": "structs.011",
+  "version": 1,
+  "title": "Compile-Time Constants",
+  "track": "structs",
+  "concepts": [
+    "structs",
+    "primitive-types"
+  ],
+  "difficulty": 1,
+  "goal": "Declare global constants with const and know when to use static.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: User-Defined Types"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You use constants in C++ or Java to give fixed values names across your program."
+      },
+      {
+        "kind": "code",
+        "code": "const MAX_PLAYERS: u32 = 10;",
+        "caption": "const requires an explicit type annotation."
+      },
+      {
+        "kind": "prose",
+        "text": "Values marked const are evaluated at compile time and inlined wherever they are used. They have no fixed memory address."
+      },
+      {
+        "kind": "code",
+        "code": "static SERVER_NAME: &str = \"Alpha\";",
+        "caption": "static has a fixed location in memory."
+      },
+      {
+        "kind": "prose",
+        "text": "Use static when you need object identity or a fixed location in memory. Otherwise, preferred practice is const."
+      },
+      {
+        "kind": "code",
+        "code": "const fn double(x: u32) -> u32 {\n    x * 2\n}\nconst LIMIT: u32 = double(5);",
+        "caption": "const fn can execute at compile time."
+      },
+      {
+        "kind": "prose",
+        "text": "Omitting type annotations on const or static is a compiler error because global types are never inferred."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Declare global constants with const and know when to use static."
+}

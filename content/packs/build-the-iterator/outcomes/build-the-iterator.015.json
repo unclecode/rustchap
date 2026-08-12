@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "build-the-iterator.015",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "13ccffe33033af3fb9e5b329011f2662ac811eb833f6180286525108aca96cb3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "expected a `FnMut(&i32)` closure, found `({integer}, {integer})`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "`if` and `else` have incompatible types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 1 argument but 2 arguments were supplied",
+          "slot_ids": [
+            "iter_method"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "iter_method",
+            "acc_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "35436c7614860ff8a45bdb4b2a9ed7afd49ef29e43e6f7edd1cc6fbdb9fb2abe": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot add `i32` to `&mut {integer}`",
+          "slot_ids": [
+            "acc_expr"
+          ],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "iter_method",
+            "acc_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7b28c12cd2e2c1eb4f39858f7efe8360a20c4b9caf3434a0d7029c356f10a780": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot add `i32` to `&mut {integer}`",
+          "slot_ids": [
+            "acc_expr"
+          ],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot add `{integer}` to `&mut {integer}`",
+          "slot_ids": [
+            "acc_expr"
+          ],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "iter_method",
+            "acc_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "84fa0c152733609799294ce5a320e409f5d09c1b5bac1d2bd1b19ba008377e88": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8f4620e12d51ffff12565ee4e821c56ccc488a7a95163c0f5404d6ecb4fa9def": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "expected a `FnMut(&i32)` closure, found `({integer}, {integer})`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 1 argument but 2 arguments were supplied",
+          "slot_ids": [
+            "iter_method"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "iter_method",
+            "acc_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a05825cd760786c08555f8415b755d603ed2dfbfedf01da6584ff580cbef3290": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "acc_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "aead0cb6d14f79df2d0425629d98764bcedddef86875462e0238bc32a6b63aa8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "expected a `FnMut(&i32)` closure, found `({integer}, {integer})`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "this method takes 1 argument but 2 arguments were supplied",
+          "slot_ids": [
+            "iter_method"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "iter_method",
+            "acc_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bfe5519d05ad1e2af69177161e6e12705962ada2affb761c16b76617162945e7": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "dd26ed4cf52db2106f167cc044502ee6ba42b07c53f499be73e4dd2eb11135a7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "binary assignment operation `+=` cannot be applied to type `&mut {integer}`",
+          "slot_ids": [
+            "acc_expr"
+          ],
+          "rust_code": "E0368"
+        },
+        {
+          "category": "compile_error",
+          "message": "binary assignment operation `+=` cannot be applied to type `&mut {integer}`",
+          "slot_ids": [
+            "acc_expr"
+          ],
+          "rust_code": "E0368"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "acc_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "iter_method",
+            "acc_expr"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

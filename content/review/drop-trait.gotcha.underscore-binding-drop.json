@@ -1,0 +1,12 @@
+{
+  "id": "drop-trait.gotcha.underscore-binding-drop",
+  "kind": "gotcha",
+  "title": "Underscore binding immediately drops temp...",
+  "concepts": [
+    "drop-trait",
+    "bindings"
+  ],
+  "prompt": "What happens to a value when bound to `let _ = ...` versus `let _guard = ...`?",
+  "answer": "`let _ = ...` does not bind the value to a variable, so Rust drops it immediately on that line. In contrast, `let _guard = ...` binds the value to `_guard`, keeping it alive until the end of the surrounding block scope.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "ffi-basics.rule.unsafe-extern-blocks",
+  "kind": "rule",
+  "title": "Declaring safe and unsafe foreign functions",
+  "concepts": [
+    "ffi-basics"
+  ],
+  "prompt": "How do you declare external C functions in Rust 1.82 and later?",
+  "answer": "Declare foreign functions inside an unsafe extern \"C\" block. Functions without safety preconditions are marked with safe fn, while functions taking raw pointers must be marked with unsafe fn.",
+  "schema_version": 1
+}

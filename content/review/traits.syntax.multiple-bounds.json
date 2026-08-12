@@ -1,0 +1,11 @@
+{
+  "id": "traits.syntax.multiple-bounds",
+  "kind": "syntax",
+  "title": "Combining multiple trait bounds on a generic",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "How do you specify that a generic type parameter must implement both Display and Clone?",
+  "answer": "Combine trait bounds using the plus operator, such as T: Display + Clone. You can also place this in a where clause as where T: Display + Clone.",
+  "schema_version": 1
+}

@@ -1,0 +1,12 @@
+{
+  "id": "functions.error.e0308-unit-mismatch",
+  "kind": "error",
+  "title": "E0308 on implicit unit return",
+  "concepts": [
+    "functions",
+    "expressions"
+  ],
+  "prompt": "You see error E0308 stating expected `i32` but found `()`. What is a common cause in a function body?",
+  "answer": "A common cause is putting a trailing semicolon on the final expression of the function. That turns the return value into `()`, which mismatches the declared `i32` return type.",
+  "schema_version": 1
+}

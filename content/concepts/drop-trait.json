@@ -1,0 +1,16 @@
+{
+  "id": "drop-trait",
+  "title": "The Drop Trait",
+  "topic": "Ownership",
+  "summary": "Custom logic executed automatically when a value goes out of scope.",
+  "lecture": [
+    "When a value goes out of scope in Rust, its destructor runs automatically to release resources such as heap memory, file descriptors, or locks.",
+    "You can implement the `Drop` trait for custom types to specify cleanup actions in its `drop` method.",
+    "Rust guarantees that `drop` is called exactly once when the value falls out of scope, preventing resource leaks without needing a garbage collector."
+  ],
+  "example": {
+    "code": "impl Drop for Secret {\n    fn drop(&mut self) {\n        self.zeroize();\n    }\n}",
+    "caption": "Custom drop logic runs when Secret goes out of scope."
+  },
+  "schema_version": 1
+}

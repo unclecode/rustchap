@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "drop-and-cleanup.007",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0759f3c072c862879e686fe043389f68090a06fdc98afd3d8f6853d19223408e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "struct `Container` has no field named `a`",
+          "slot_ids": [],
+          "rust_code": "E0560"
+        },
+        {
+          "category": "compile_error",
+          "message": "struct `Container` has no field named `b`",
+          "slot_ids": [],
+          "rust_code": "E0560"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0fc5286654f434d27a1c02615f2505861b245444a89bd200435bfdf97183bdf8": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "1def31b41990248c686dd5a263cedbab4c75981edbf4dbab5dbc7513a42f5cc9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "373c6673a5ba22cdee852a90e33721d09c150d8c545126659e8d8c3017af0a33": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "struct `Container` has no field named `b`",
+          "slot_ids": [],
+          "rust_code": "E0560"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "45ca504bb1c988847b67282456dde7b8e7ee99a9791cb268fcdc943d24e85fe7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "field `b` is already declared",
+          "slot_ids": [
+            "f2"
+          ],
+          "rust_code": "E0124"
+        },
+        {
+          "category": "compile_error",
+          "message": "struct `Container` has no field named `a`",
+          "slot_ids": [],
+          "rust_code": "E0560"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5d31f9b4a4baa4eec7435e2ff8cdf355d0a036974781fe429ce7e35109c187de": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "struct `Container` has no field named `a`",
+          "slot_ids": [],
+          "rust_code": "E0560"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6fe58c61e2eb968d5bc5b285a952e09c92fdd663767d7f24d86f9749836d3e6b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "struct `Container` has no field named `a`",
+          "slot_ids": [],
+          "rust_code": "E0560"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cd256ce1692256797cb25e9e21312ab8744dbdbb02f5cb4826c3f8f8854c2b6a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "field `a` is already declared",
+          "slot_ids": [
+            "f2"
+          ],
+          "rust_code": "E0124"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "struct `Container` has no field named `b`",
+          "slot_ids": [],
+          "rust_code": "E0560"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e7dad52d14552fb7eba6d56c609a600cf1cfd32636e5ca6f4c52dd81ea8e6445": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "struct `Container` has no field named `b`",
+          "slot_ids": [],
+          "rust_code": "E0560"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

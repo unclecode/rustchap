@@ -1,0 +1,11 @@
+{
+  "id": "borrow-scope.gotcha.return-local-ref",
+  "kind": "gotcha",
+  "title": "Returning a local reference",
+  "concepts": [
+    "borrow-scope"
+  ],
+  "prompt": "Why does the Rust compiler reject returning a reference to a variable created inside a function?",
+  "answer": "Local variables are dropped when the function frame is popped off the stack. Returning a reference to local data would leave a dangling pointer to freed memory. Return the owned value directly so ownership moves to the caller.",
+  "schema_version": 1
+}

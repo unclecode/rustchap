@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.005",
+  "version": 1,
+  "title": "Cell Without Copy",
+  "track": "interior-mutability",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "difficulty": 1,
+  "goal": "Move non-Copy values in and out of a Cell safely.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4: Interior Mutability"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "`Cell<T>` does not require `T` to be `Copy`. For non-`Copy` types like `String`, `Cell::get` is unavailable because it cannot copy the inner value."
+      },
+      {
+        "kind": "code",
+        "code": "use std::cell::Cell;\n\nlet cell = Cell::new(\"hello\".to_string());\n// error[E0277]: String: Copy is not satisfied\n// let s = cell.get();",
+        "caption": "get() demands Copy because it returns a value copy."
+      },
+      {
+        "kind": "prose",
+        "text": "To inspect or modify non-`Copy` data in a `Cell`, you move values in and out instead. `Cell::take` replaces the inner value with default data and returns the old value."
+      },
+      {
+        "kind": "code",
+        "code": "use std::cell::Cell;\n\nlet cell = Cell::new(\"hello\".to_string());\nlet old = cell.take();\ncell.set(String::from(\"world\"));",
+        "caption": "take() leaves String::default() and moves old out."
+      },
+      {
+        "kind": "prose",
+        "text": "You can also use `Cell::replace` to swap in a new value and receive the old one in one step. No reference is ever handed out, so borrow rules are never violated."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Move non-Copy values in and out of a Cell safely."
+}

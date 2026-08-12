@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.015",
+  "version": 1,
+  "title": "Fallible Conversions with TryFrom",
+  "track": "standard-traits",
+  "concepts": [
+    "standard-traits"
+  ],
+  "difficulty": 2,
+  "goal": "Convert integer types safely when values might exceed the target range.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Standard Traits"
+  },
+  "template": "fn to_u8(val: i32) -> Result<u8, &'static str> {\n    let small: u8 = val\n        .⟦slot1⟧\n        .map_err(|_| \"out of range\")⟦slot2⟧;\n    Ok(small)\n}\n\nfn main() {\n    assert_eq!(to_u8(250), Ok(250));\n    assert_eq!(to_u8(300), Err(\"out of range\"));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "into()",
+        "label": "conversion method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "try_into()"
+          },
+          {
+            "id": "sl2",
+            "text": "into()"
+          },
+          {
+            "id": "sl3",
+            "text": "as u8"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": ".unwrap()",
+        "label": "error propagation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "?"
+          },
+          {
+            "id": "sl2",
+            "text": ".unwrap()"
+          },
+          {
+            "id": "sl3",
+            "text": ".unwrap_or(0)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn converts_valid() {\n    assert_eq!(to_u8(0), Ok(0));\n    assert_eq!(to_u8(255), Ok(255));\n}\n#[test]\nfn rejects_out_of_bounds() {\n    assert_eq!(to_u8(-1), Err(\"out of range\"));\n    assert_eq!(to_u8(256), Err(\"out of range\"));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Converting from i32 to u8 can fail if the value is negative or larger than 255.",
+    "Propagate the Err variant early out of the function when conversion fails."
+  ],
+  "explanation": "`TryInto` performs fallible conversions and returns a `Result` containing the target type or an error. Infallible `into()` triggers `E0277` because Rust prevents implicit or unsafe integer truncation. Direct casting with `as u8` produces a `u8` without a `Result`, so calling `map_err` on it fails with `E0599`."
+}

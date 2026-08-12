@@ -1,0 +1,12 @@
+{
+  "id": "api-design.rule.type-coercion-slices",
+  "kind": "rule",
+  "title": "Deref coercion for vector references",
+  "concepts": [
+    "api-design",
+    "slice"
+  ],
+  "prompt": "How does Rust handle passing a &Vec<T> to a function expecting &[T]?",
+  "answer": "Rust applies deref coercion automatically from `&Vec<T>` to `&[T]`. The conversion costs nothing at runtime and requires no explicit conversion methods at the call site.",
+  "schema_version": 1
+}

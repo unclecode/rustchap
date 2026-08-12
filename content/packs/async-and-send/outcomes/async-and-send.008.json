@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "async-and-send.008",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "861520320cb48655584f2e6309fd739c6e0b8d7f3c27e893e207fe6f932f6bf7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `clone` found for struct `Data` in the current scope",
+          "slot_ids": [
+            "double_clone"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a76521d9896afde3c62db6aadaccbc4f2d6332973cf65cc5cc4a77d73b727cab": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "cea74047480767a439c27c66239945a96c072270011e12584e89dc236b6c7827": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `clone` found for struct `Data` in the current scope",
+          "slot_ids": [
+            "extra_clone"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

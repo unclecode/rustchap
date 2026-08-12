@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.002",
+  "version": 1,
+  "title": "Atomic Increment",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "atomic-types",
+    "interior-mutability"
+  ],
+  "difficulty": 1,
+  "goal": "Increment a shared atomic counter from a spawned thread.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "template": "use std::sync::atomic::AtomicI32;\nuse std::sync::atomic::Ordering;\nuse std::sync::Arc;\nuse std::thread;\n\nfn main() {\n    let counter = Arc::new(AtomicI32::new(5));\n    let c = Arc::clone(&counter);\n    thread::spawn(move || {\n        c.⟦op⟧(1, Ordering::Relaxed);\n    }).join().unwrap();\n    assert_eq!(counter.⟦ld⟧(Ordering::Relaxed), 6);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "op",
+        "original": "add",
+        "label": "the atomic mutation method",
+        "choices": [
+          {
+            "id": "op1",
+            "text": "fetch_add"
+          },
+          {
+            "id": "op2",
+            "text": "add"
+          },
+          {
+            "id": "op3",
+            "text": "store"
+          }
+        ]
+      },
+      {
+        "id": "ld",
+        "original": "get",
+        "label": "the atomic read method",
+        "choices": [
+          {
+            "id": "ld1",
+            "text": "load"
+          },
+          {
+            "id": "ld2",
+            "text": "get"
+          },
+          {
+            "id": "ld3",
+            "text": "into_inner"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_increment() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Atomic methods in Rust start with `fetch_` when performing math operations.",
+    "To read the value from a shared atomic reference, use `load`."
+  ],
+  "explanation": "`fetch_add` atomically adds a value to the atomic integer through a shared reference `&AtomicI32` and returns the previous value. Method `add` does not exist on `AtomicI32` and causes compiler error `E0599`. `store` replaces the atomic value instead of adding to it, making the counter equal 1 instead of 6. Reading the value requires `load`. Method `get` does not exist on atomic types, and `into_inner` requires move ownership of the atomic variable, which fails behind an `Arc`."
+}

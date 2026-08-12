@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.003",
+  "version": 1,
+  "title": "Creating vs Reading Pointers",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "raw-pointers",
+    "unsafe-rust"
+  ],
+  "difficulty": 1,
+  "goal": "Obtain a raw pointer safely and dereference it inside an unsafe block.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Unsafe Rust: Raw Pointers"
+  },
+  "template": "fn read_val(ptr: *const i32) -> i32 {\n    ⟦read_expr⟧\n}\n\nfn main() {\n    let x = 42;\n    let ptr = ⟦ptr_expr⟧;\n    println!(\"{}\", read_val(ptr));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "read_expr",
+        "original": "*ptr",
+        "label": "read pointer",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "unsafe { *ptr }"
+          },
+          {
+            "id": "re2",
+            "text": "*ptr"
+          },
+          {
+            "id": "re3",
+            "text": "unsafe { ptr }"
+          }
+        ]
+      },
+      {
+        "id": "ptr_expr",
+        "original": "*x as *const i32",
+        "label": "create pointer",
+        "choices": [
+          {
+            "id": "pt1",
+            "text": "&x as *const i32"
+          },
+          {
+            "id": "pt2",
+            "text": "x.as_ptr()"
+          },
+          {
+            "id": "pt3",
+            "text": "*x as *const i32"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn reads_value() {\n    let x = 42;\n    assert_eq!(read_val(&x as *const i32), 42);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Casting a reference `&x` to a raw pointer `*const i32` is safe.",
+    "Dereferencing the pointer is the step that requires `unsafe`."
+  ],
+  "explanation": "Casting references to raw pointers is completely safe in Rust. The dangerous operation is dereferencing `*ptr`, which requires an `unsafe` block (`E0133`). You cannot cast an integer directly to a raw pointer without `as` conversions from `usize` (`E0606`)."
+}

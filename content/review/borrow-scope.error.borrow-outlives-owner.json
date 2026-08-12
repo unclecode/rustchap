@@ -1,0 +1,11 @@
+{
+  "id": "borrow-scope.error.borrow-outlives-owner",
+  "kind": "error",
+  "title": "Scope Duration and Lifetimes",
+  "concepts": [
+    "borrow-scope"
+  ],
+  "prompt": "What causes a reference to outlive the borrowed value, and how does the compiler reject it?",
+  "answer": "A reference outlives its value if the referenced variable goes out of scope while the reference is still stored or read. The compiler detects that the reference points to dropped stack memory and rejects the program with error E0597.",
+  "schema_version": 1
+}

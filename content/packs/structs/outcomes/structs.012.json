@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "structs.012",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "7ed83493c51b3a1b1f0a68b752cf8d88b1f94d9adb9813e3fbe5e7df229db71a": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "c3948d1cf6cdd9a76c5401491654f5c68e1bbb70009cbac8a890a1be02a5a6ab": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of `self.first` which is behind a shared reference",
+          "slot_ids": [
+            "move_concat"
+          ],
+          "rust_code": "E0507"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c645aac8fff668f253d5bb41974149ba514136bf12a3d1bfc036b21da5c20b48": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of `self.first` which is behind a shared reference",
+          "slot_ids": [
+            "add_op"
+          ],
+          "rust_code": "E0507"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

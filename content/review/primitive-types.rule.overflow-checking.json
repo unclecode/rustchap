@@ -1,0 +1,11 @@
+{
+  "id": "primitive-types.rule.overflow-checking",
+  "kind": "rule",
+  "title": "Integer Overflow Behavior",
+  "concepts": [
+    "primitive-types"
+  ],
+  "prompt": "What happens when an integer arithmetic operation overflows in Rust?",
+  "answer": "Standard arithmetic operators panic on overflow in debug mode and wrap around in release mode. For consistent behavior across builds, use explicit methods like `saturating_add` or `wrapping_add`.",
+  "schema_version": 1
+}

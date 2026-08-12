@@ -1,0 +1,11 @@
+{
+  "id": "error-propagation.gotcha.question-mark-return",
+  "kind": "gotcha",
+  "title": "Propagating errors with question mark",
+  "concepts": [
+    "error-propagation"
+  ],
+  "prompt": "What happens when you apply the question mark operator to an Err variant?",
+  "answer": "The question mark operator executes an early return from the enclosing function. It unwraps `Ok` values directly and forwards `Err` values immediately to the caller.",
+  "schema_version": 1
+}

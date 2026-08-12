@@ -1,0 +1,11 @@
+{
+  "id": "cancellation-safety.gotcha.drop-on-cancel",
+  "kind": "gotcha",
+  "title": "Future cancellation drops local state",
+  "concepts": [
+    "cancellation-safety"
+  ],
+  "prompt": "What happens to local variables inside an async function when its future is dropped before completion?",
+  "answer": "All local variables stored inside the future state machine are dropped immediately. Execution halts at the last await point, and no cleanup code after that await point runs. Persistent state must be stored in external data structures rather than function locals.",
+  "schema_version": 1
+}

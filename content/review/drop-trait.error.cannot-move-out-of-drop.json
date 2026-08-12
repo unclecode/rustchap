@@ -1,0 +1,12 @@
+{
+  "id": "drop-trait.error.cannot-move-out-of-drop",
+  "kind": "error",
+  "title": "Error E0509 moving fields from droppable",
+  "concepts": [
+    "drop-trait",
+    "structs"
+  ],
+  "prompt": "What causes error `E0509` when accessing a field of a struct that implements `Drop`?",
+  "answer": "Rust prevents moving fields out of types that implement `Drop` because destruction requires the whole struct to remain intact. Borrow the field with a reference or replace its content using `std::mem::take` instead of moving it.",
+  "schema_version": 1
+}

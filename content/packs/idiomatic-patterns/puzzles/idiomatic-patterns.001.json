@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.001",
+  "version": 1,
+  "title": "Newtypes and Extension Traits",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "newtype-pattern",
+    "extension-traits"
+  ],
+  "difficulty": 1,
+  "goal": "Wrap types for safety and add methods to external types.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Idiomatic Patterns"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You know primitive types like integer and string in Java or Go. In Rust, wrapping a primitive in a tuple struct creates a completely distinct type."
+      },
+      {
+        "kind": "code",
+        "code": "struct UserId(u32);\nstruct OrderId(u32);\n\nfn process(user: UserId) {}",
+        "caption": "UserId and OrderId cannot be swapped by accident."
+      },
+      {
+        "kind": "prose",
+        "text": "The compiler rejects passing a raw `u32` or an `OrderId` to `process`. This pattern costs nothing at runtime because the wrapper disappears during compilation."
+      },
+      {
+        "kind": "prose",
+        "text": "You may also want to add methods to existing standard types like `str`. Writing an `impl` directly on a foreign type fails with error `E0116`."
+      },
+      {
+        "kind": "code",
+        "code": "trait IsValid {\n    fn is_valid(&self) -> bool;\n}\n\nimpl IsValid for str {\n    fn is_valid(&self) -> bool {\n        !self.is_empty()\n    }\n}",
+        "caption": "Define a trait in your crate to extend standard types."
+      },
+      {
+        "kind": "prose",
+        "text": "This rule is called the orphan rule. To add a method to a foreign type, define a local trait in your crate and implement that trait for the type."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Wrap types for safety and add methods to external types."
+}

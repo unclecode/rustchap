@@ -1,0 +1,11 @@
+{
+  "id": "scoped-threads.gotcha.spawn-vs-scope-spawn",
+  "kind": "gotcha",
+  "title": "s.spawn versus thread::spawn",
+  "concepts": [
+    "scoped-threads"
+  ],
+  "prompt": "What happens if you call `thread::spawn` inside a `thread::scope` closure instead of s.spawn?",
+  "answer": "Calling `thread::spawn` creates an un-scoped thread that requires captured variables to be 'static. To borrow stack data bound to the scope, you must call spawn on the scope argument passed into the closure.",
+  "schema_version": 1
+}

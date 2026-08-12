@@ -5,13 +5,26 @@
   "description": "Futures, ownership across .await, and what Send really promises.",
   "toolchain": "1.97.1",
   "order": [
-    "async-and-send.004",
     "async-and-send.001",
-    "async-and-send.005",
     "async-and-send.002",
-    "async-and-send.003"
+    "async-and-send.003",
+    "async-and-send.004",
+    "async-and-send.005",
+    "async-and-send.006",
+    "async-and-send.007",
+    "async-and-send.008",
+    "async-and-send.009",
+    "async-and-send.010",
+    "async-and-send.011",
+    "async-and-send.012",
+    "async-and-send.013",
+    "async-and-send.014",
+    "async-and-send.015",
+    "async-and-send.016",
+    "async-and-send.017",
+    "async-and-send.018"
   ],
   "icon": "paperplane.fill",
   "accent": "blue",
-  "level": "advanced"
+  "level": "systems"
 }

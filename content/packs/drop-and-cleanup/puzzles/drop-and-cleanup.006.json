@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.006",
+  "version": 1,
+  "title": "Copy Meets Drop",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait",
+    "copy"
+  ],
+  "difficulty": 2,
+  "goal": "Resolve compiler conflicts between Copy derivations and Drop implementations.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "template": "⟦derive_attr⟧\nstruct Point {\n    x: i32,\n    y: i32,\n}\n\nimpl Drop for Point {\n    fn drop(&mut self) {}\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "derive_attr",
+        "original": "#[derive(Clone, Copy)]",
+        "label": "the derives",
+        "choices": [
+          {
+            "id": "de1",
+            "text": "#[derive(Clone)]"
+          },
+          {
+            "id": "de2",
+            "text": "#[derive(Clone, Copy)]"
+          },
+          {
+            "id": "de3",
+            "text": "#[derive(Copy)]"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_point() {\n    let p = Point { x: 1, y: 2 };\n    assert_eq!(p.x, 1);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "`Copy` values undergo bitwise copying without tracking ownership.",
+    "Remove `Copy` so the type relies on move semantics and explicit `Drop`."
+  ],
+  "explanation": "`Copy` and `Drop` are mutually exclusive in Rust. Deriving `Copy` causes error `E0184` because bitwise copying leaves no owner boundary to run destructors deterministically. Removing `Copy` while keeping `Clone` allows the compiler to manage moves and execute `Drop` correctly."
+}

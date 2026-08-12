@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "structs.014",
+  "version": 1,
+  "title": "Field Mutability Belongs to the Binding",
+  "track": "structs",
+  "concepts": [
+    "structs",
+    "mutability"
+  ],
+  "difficulty": 2,
+  "goal": "Make a struct field editable by declaring the variable binding mutable.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: User-Defined Types"
+  },
+  "template": "struct Point {\n    ⟦x_decl⟧,\n    y: i32,\n}\n\nfn shift(p: Point, dx: i32) -> Point {\n    let ⟦binding⟧ = p;\n    p.x += dx;\n    p\n}\n\nfn main() {\n    let p = Point { x: 1, y: 2 };\n    let p2 = shift(p, 5);\n    println!(\"{}, {}\", p2.x, p2.y);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "x_decl",
+        "original": "mut x: i32",
+        "label": "field definition",
+        "choices": [
+          {
+            "id": "x_1",
+            "text": "x: i32"
+          },
+          {
+            "id": "x_2",
+            "text": "mut x: i32"
+          },
+          {
+            "id": "x_3",
+            "text": "pub mut x: i32"
+          }
+        ]
+      },
+      {
+        "id": "binding",
+        "original": "p",
+        "label": "variable binding",
+        "choices": [
+          {
+            "id": "bi1",
+            "text": "mut p"
+          },
+          {
+            "id": "bi2",
+            "text": "p"
+          },
+          {
+            "id": "bi3",
+            "text": "&mut p"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn shifts_point() {\n    let p = Point { x: 1, y: 2 };\n    let shifted = shift(p, 10);\n    assert_eq!(shifted.x, 11);\n    assert_eq!(shifted.y, 2);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rust does not allow `mut` on individual field definitions in a struct.",
+    "To modify a struct field, the variable holding the struct must be declared mutable with `let mut`."
+  ],
+  "explanation": "In Rust, mutability is a property of the variable binding (`let mut`), not individual struct fields. You cannot write `mut x: i32` inside a struct definition. Writing `let p = p;` creates an immutable binding, causing error `E0594` when mutating `p.x`. Writing `let &mut p = p;` fails with `E0308` due to a type mismatch against `Point`."
+}

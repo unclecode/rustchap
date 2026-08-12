@@ -1,0 +1,11 @@
+{
+  "id": "enums-basics.gotcha.struct-variant-syntax",
+  "kind": "gotcha",
+  "title": "Matching on struct enum variants",
+  "concepts": [
+    "enums-basics"
+  ],
+  "prompt": "How does pattern matching syntax differ between tuple variants and struct variants in Rust enums?",
+  "answer": "Tuple variants use parentheses like `Variant(x)` to match fields positionally. Struct variants use curly braces like `Variant { x, y }` to match fields by name. Mixing the two syntax forms results in compiler error `E0023`.",
+  "schema_version": 1
+}

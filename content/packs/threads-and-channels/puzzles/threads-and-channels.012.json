@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.012",
+  "version": 1,
+  "title": "Non-Blocking Sync Send",
+  "track": "threads-and-channels",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "difficulty": 2,
+  "goal": "Attempt non-blocking sends on a bounded sync channel without deadlocking.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Bounded Channels"
+  },
+  "template": "use std::sync::mpsc;\n\nfn send_messages() -> (Result<(), mpsc::TrySendError<i32>>, Result<(), mpsc::TrySendError<i32>>) {\n    let (tx, _rx) = mpsc::sync_channel(0);\n    let r1 = tx.⟦slot1⟧(10);\n    let r2 = tx.⟦slot2⟧(20);\n    (r1, r2)\n}\n\nfn main() {\n    let _ = send_messages();\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "send",
+        "label": "first send operation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "try_send"
+          },
+          {
+            "id": "sl2",
+            "text": "send"
+          },
+          {
+            "id": "sl3",
+            "text": "push"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "send",
+        "label": "second send operation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "try_send"
+          },
+          {
+            "id": "sl2",
+            "text": "send"
+          },
+          {
+            "id": "sl3",
+            "text": "push"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn detects_full_buffer() {\n    let (r1, r2) = send_messages();\n    assert!(matches!(r1, Err(mpsc::TrySendError::Full(10))));\n    assert!(matches!(r2, Err(mpsc::TrySendError::Full(20))));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Calling send on a zero-capacity channel without a receiver will block or return SendError.",
+    "try_send returns a TrySendError directly when the channel buffer is full without blocking."
+  ],
+  "explanation": "`SyncSender::try_send` attempts to place a message in the channel buffer non-blocking, returning Err(`TrySendError::Full(val)`) if space is unavailable. `SyncSender::send` returns SendError<T>, which does not match the TrySendError return type. push is not a method on channel senders."
+}

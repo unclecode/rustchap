@@ -1,0 +1,11 @@
+{
+  "id": "mpsc-channels.rule.rendezvous-channel",
+  "kind": "rule",
+  "title": "Sync channel with zero capacity",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "prompt": "What is a rendezvous channel in Rust and how does it synchronize threads?",
+  "answer": "A sync_channel created with capacity 0 is a rendezvous channel. Every send blocks until a receiver thread calls recv, transferring data synchronously.",
+  "schema_version": 1
+}

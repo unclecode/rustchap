@@ -1,0 +1,11 @@
+{
+  "id": "builder-pattern.rule.method-chaining-receiver",
+  "kind": "rule",
+  "title": "Receiver type for builder pattern methods",
+  "concepts": [
+    "builder-pattern"
+  ],
+  "prompt": "What receiver type should builder methods take to allow fluid method chaining by value?",
+  "answer": "Builder methods should take `mut self` by value. This allows the method to mutate internal fields and return ownership of `Self` back to the caller. Callers can then chain multiple method calls sequentially.",
+  "schema_version": 1
+}

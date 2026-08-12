@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "structs.008",
+  "version": 1,
+  "title": "Build with Associated Functions",
+  "track": "structs",
+  "concepts": [
+    "structs"
+  ],
+  "difficulty": 1,
+  "goal": "Create a constructor using Self and call it with double colons.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Methods and Traits"
+  },
+  "template": "struct Counter {\n    value: u32,\n}\n\nimpl Counter {\n    fn zero() -> ⟦ret_type⟧ {\n        Self { value: 0 }\n    }\n}\n\nfn main() {\n    let c = ⟦call_expr⟧;\n    println!(\"{}\", c.value);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "ret_type",
+        "original": "self",
+        "label": "return type",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "Self"
+          },
+          {
+            "id": "re2",
+            "text": "self"
+          },
+          {
+            "id": "re3",
+            "text": "()"
+          }
+        ]
+      },
+      {
+        "id": "call_expr",
+        "original": "Counter.zero()",
+        "label": "call expression",
+        "choices": [
+          {
+            "id": "ca1",
+            "text": "Counter::zero()"
+          },
+          {
+            "id": "ca2",
+            "text": "Counter.zero()"
+          },
+          {
+            "id": "ca3",
+            "text": "Counter::zero"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn creates_zero() {\n    let c = Counter::zero();\n    assert_eq!(c.value, 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at the keyword that aliases the current type inside an `impl` block.",
+    "Associated functions belong to the type, not an instance."
+  ],
+  "explanation": "`Self` in return position refers to the `Counter` type being implemented. Associated functions have no `self` parameter. Call them with double colons like `Counter::zero()`. Dot notation requires an instance. Using lowercase `self` as a return type causes error E0412 because `self` is a value keyword."
+}

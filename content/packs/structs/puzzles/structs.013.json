@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "structs.013",
+  "version": 1,
+  "title": "Destructure Tuple Struct",
+  "track": "structs",
+  "concepts": [
+    "structs"
+  ],
+  "difficulty": 3,
+  "goal": "Extract tuple struct fields using pattern matching and proper dereferencing.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: User-Defined Types"
+  },
+  "template": "struct Color(u8, u8, u8);\n\nfn multiply_red(c: &Color, factor: u8) -> Color {\n    let ⟦pat⟧ = ⟦val_expr⟧;\n    Color(r * factor, g, b)\n}\n\nfn main() {\n    let c = Color(10, 20, 30);\n    let c2 = multiply_red(&c, 2);\n    println!(\"{}, {}, {}\", c2.0, c2.1, c2.2);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "pat",
+        "original": "(r, g, b)",
+        "label": "pattern syntax",
+        "choices": [
+          {
+            "id": "pa1",
+            "text": "Color(r, g, b)"
+          },
+          {
+            "id": "pa2",
+            "text": "(r, g, b)"
+          },
+          {
+            "id": "pa3",
+            "text": "Color(r)"
+          }
+        ]
+      },
+      {
+        "id": "val_expr",
+        "original": "c",
+        "label": "value expression",
+        "choices": [
+          {
+            "id": "va1",
+            "text": "*c"
+          },
+          {
+            "id": "va2",
+            "text": "c"
+          },
+          {
+            "id": "va3",
+            "text": "&c"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn multiplies() {\n    let c = Color(10, 20, 30);\n    let c2 = multiply_red(&c, 2);\n    assert_eq!(c2.0, 20);\n    assert_eq!(c2.1, 20);\n    assert_eq!(c2.2, 30);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Tuple structs require their type name when pattern matching.",
+    "c is a reference, but you need copied u8 values for multiplication."
+  ],
+  "explanation": "Destructuring a tuple struct requires the type name Color(r, g, b). Matching without the name causes type mismatch error E0308 because a tuple is not a struct. Dereferencing *c copies the three primitive u8 values out of the reference. Matching c directly without dereferencing binds r as a shared reference &u8, causing error E0369 when multiplying &u8 by u8."
+}

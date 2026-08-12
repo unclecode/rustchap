@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "build-the-iterator.009",
+  "version": 1,
+  "title": "Collecting Beyond Vectors",
+  "track": "build-the-iterator",
+  "concepts": [
+    "iterator",
+    "error-propagation"
+  ],
+  "difficulty": 1,
+  "goal": "Turn an iterator of Results into a single Result containing a collection.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Comprehensive Rust: Iterators"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In languages like Python or JavaScript, collecting items into a list is a fixed operation. In Rust, `.collect()` is generic and works for many target types."
+      },
+      {
+        "kind": "code",
+        "code": "let nums: Vec<i32> = (1..=3).collect();\nlet set: HashSet<i32> = (1..=3).collect();",
+        "caption": "The target type tells collect what to build."
+      },
+      {
+        "kind": "prose",
+        "text": "You can also specify the type using turbofish syntax `.collect::<Vec<_>>()`. This is useful when chaining methods without an explicit variable binding."
+      },
+      {
+        "kind": "code",
+        "code": "let res: Result<Vec<i32>, _> = strings\n    .iter()\n    .map(|s| s.parse::<i32>())\n    .collect();",
+        "caption": "Collecting an iterator of Results stops at the first Err."
+      },
+      {
+        "kind": "prose",
+        "text": "When iterating over `Result` items, collecting into `Result<Vec<T>, E>` unwraps every `Ok` into the vector. If any item is `Err`, iteration stops early and that `Err` is returned."
+      },
+      {
+        "kind": "prose",
+        "text": "Collecting into `HashMap` and `BTreeMap` is covered in the Collections deck."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Turn an iterator of Results into a single Result containing a collection."
+}

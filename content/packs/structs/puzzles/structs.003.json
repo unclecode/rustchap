@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "structs.003",
+  "version": 1,
+  "title": "One Field, New Type",
+  "track": "structs",
+  "concepts": [
+    "structs"
+  ],
+  "difficulty": 2,
+  "goal": "Wrap a number so the compiler stops treating it as just a number.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: User-Defined Types (Tuple Structs)"
+  },
+  "template": "struct Meters⟦decl⟧\n\nfn add(a: Meters, b: Meters) -> Meters {\n    Meters(a.0 + b.0)\n}\n\nfn main() {\n    let total = add(Meters(3), Meters(4));\n    println!(\"{}\", total.0);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "decl",
+        "original": " { value: i32 }",
+        "label": "the body",
+        "choices": [
+          {
+            "id": "de1",
+            "text": "(i32);"
+          },
+          {
+            "id": "de2",
+            "text": "(f64);"
+          },
+          {
+            "id": "de3",
+            "text": " { value: i32 }"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn adds() {\n    assert_eq!(add(Meters(3), Meters(4)).0, 7);\n    assert_eq!(add(Meters(0), Meters(0)).0, 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "The code builds one with `Meters(3)` and reads it with `.0`.",
+    "`Meters(3)` hands the field a whole number."
+  ],
+  "explanation": "A struct written `struct Meters(i32);` is a tuple struct. Its field has no name, so you build it like a function call and read it with `.0`. The named form `{ value: i32 }` has to be built with `Meters { value: 3 }` instead, so the calls here stop compiling. Choosing `f64` breaks too, because `Meters(3)` hands it a whole number. This one-field wrapper is called a newtype. It is how you stop a length being mistaken for a weight. Both are numbers, but they are no longer the same type."
+}

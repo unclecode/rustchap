@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "collections.013",
+  "version": 1,
+  "title": "Mutate in Place",
+  "track": "collections",
+  "concepts": [
+    "vec-basics",
+    "mutability",
+    "borrow"
+  ],
+  "difficulty": 2,
+  "goal": "Multiply all odd numbers in a vector by 3 in place.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Vec"
+  },
+  "template": "fn triple_odds(nums: &mut Vec<i32>) {\n    for x in ⟦iter_ref⟧ {\n        if *x % 2 != 0 {\n            ⟦deref_op⟧;\n        }\n    }\n}\n\nfn main() {\n    let mut v = vec![1, 2, 3, 4, 5];\n    triple_odds(&mut v);\n    println!(\"{:?}\", v);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "iter_ref",
+        "original": "&nums",
+        "label": "iteration reference",
+        "choices": [
+          {
+            "id": "it1",
+            "text": "&nums"
+          },
+          {
+            "id": "it2",
+            "text": "nums.iter_mut()"
+          },
+          {
+            "id": "it3",
+            "text": "nums.clone()"
+          }
+        ]
+      },
+      {
+        "id": "deref_op",
+        "original": "x *= 3",
+        "label": "mutation expression",
+        "choices": [
+          {
+            "id": "de1",
+            "text": "x *= 3"
+          },
+          {
+            "id": "de2",
+            "text": "*x *= 3"
+          },
+          {
+            "id": "de3",
+            "text": "*x = 3"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn triples_only_odds() {\n    let mut v = vec![1, 2, 3, 4, 5];\n    triple_odds(&mut v);\n    assert_eq!(v, vec![3, 2, 9, 4, 15]);\n}",
+      "#[test]\nfn handles_empty() {\n    let mut v = Vec::<i32>::new();\n    triple_odds(&mut v);\n    assert_eq!(v, Vec::<i32>::new());\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "&nums yields immutable references. You need a method that yields mutable references.",
+    "x is a reference type. You must dereference it before performing arithmetic assignment."
+  ],
+  "explanation": "nums.iter_mut() yields mutable references &mut i32 to each item in the vector. To modify the value behind a reference, dereference it with *x *= 3. Iterating over &nums gives immutable references, producing E0594 when attempting to write. Omitting the dereference operator * causes E0368 because *= cannot operate on reference types directly."
+}

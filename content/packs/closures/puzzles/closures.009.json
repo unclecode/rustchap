@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "closures.009",
+  "version": 1,
+  "title": "Return the Factory",
+  "track": "closures",
+  "concepts": [
+    "closures",
+    "move"
+  ],
+  "difficulty": 2,
+  "goal": "Return a closure that retains its captured scale factor.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Closures"
+  },
+  "template": "fn make_multiplier(\n    factor: i32,\n) -> ⟦ret_type⟧ {\n    ⟦closure_kw⟧ |x| x * factor\n}\n\nfn main() {\n    let double = make_multiplier(2);\n    println!(\"{}\", double(5));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "ret_type",
+        "original": "fn(i32) -> i32",
+        "label": "return type",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "impl Fn(i32) -> i32"
+          },
+          {
+            "id": "re2",
+            "text": "fn(i32) -> i32"
+          },
+          {
+            "id": "re3",
+            "text": "Fn(i32) -> i32"
+          }
+        ]
+      },
+      {
+        "id": "closure_kw",
+        "original": "",
+        "label": "capture mode",
+        "choices": [
+          {
+            "id": "cl1",
+            "text": "move"
+          },
+          {
+            "id": "cl2",
+            "text": ""
+          },
+          {
+            "id": "cl3",
+            "text": "ref"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn multiplies() {\n    let triple = make_multiplier(3);\n    assert_eq!(triple(4), 12);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at what happens to local variables when make_multiplier finishes executing.",
+    "A returning closure must take ownership of captured variables with move, and its type is written with impl Fn."
+  ],
+  "explanation": "Returning a closure requires `move` so the closure takes ownership of `factor`. Without `move`, the closure attempts to borrow `factor` from a stack frame that is about to be destroyed, causing `E0373`. The return type must be written as `impl Fn(i32) -> i32` because every closure has an unnameable type. Writing `fn(i32) -> i32` fails with `E0308` because function pointers cannot store captured state. Bare `Fn(i32) -> i32` fails with `E0782` because traits are not concrete types."
+}

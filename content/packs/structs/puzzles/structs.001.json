@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "structs.001",
+  "version": 1,
+  "title": "Grouping Values",
+  "track": "structs",
+  "concepts": [
+    "structs"
+  ],
+  "difficulty": 1,
+  "goal": "Put related values under one name, and build one.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: User-Defined Types"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "A struct groups several values under one name. You will know the idea as a struct in C or Go, or as a small class with no inheritance."
+      },
+      {
+        "kind": "code",
+        "code": "struct User {\n    name: String,\n    age: u32,\n}\n\nlet u = User {\n    name: String::from(\"amy\"),\n    age: 30,\n};",
+        "caption": "Every field is named and typed."
+      },
+      {
+        "kind": "prose",
+        "text": "When you build one you must fill in every field. Rust has no half-built value and no implicit null, so leaving one out is error `E0063`."
+      },
+      {
+        "kind": "prose",
+        "text": "You read a field with a dot, the same as in most languages. Writing to one needs the binding to be `mut`."
+      },
+      {
+        "kind": "code",
+        "code": "println!(\"{}\", u.name);\n\nlet mut u = u;\nu.age = 31;",
+        "caption": "Reading is free. Writing needs mut."
+      },
+      {
+        "kind": "prose",
+        "text": "When most fields come from an existing value, `..base` fills in the rest. It has to come last, and it consumes `base` unless every field it copies is a simple value."
+      },
+      {
+        "kind": "code",
+        "code": "let older = User {\n    age: 40,\n    ..u\n};",
+        "caption": "age is new, name comes from u."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Put related values under one name, and build one."
+}

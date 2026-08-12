@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "idiomatic-patterns.008",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "20cc36990254bc17246583a31f9727fe1fdbb1a93499d77747a36f6997a8eaa4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "err_val"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `lock_code` on type `String`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3d75ae36131c3b0c7b094484ecedc8fb8c24309431b32c4bfb6ad6ddf2d0510e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "err_val"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4d53e94133cd8c1d54d9b0bc01f3504e2725dc109f16e92db05d21cb0d1c020d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "err_val"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `lock_code` on type `()`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "53f3017780453cb8278d59cbca2c51eb3e62bcff5308661eb0fca324a83a243c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no field `lock_code` on type `String`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6435217a17ed6865ea85990e00323e917b12d40ea144e8025e3c988ea835fbf2": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 0
+      },
+      "diagnostics": []
+    },
+    "7d9c5830131d2cee95e265e243955e27f09e020802ba89ac4587698ef8f9cf39": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "err_val"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `lock_code` on type `()`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8c45cf46b3e9cc22551bf7cc6d541cfbdc973bb01fd640e923bc09d0dd084db0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "err_val"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "db238d5a8ebd10ed52c2f043e26d1d098812b87b2c55cc05eed2463f21804bad": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no field `lock_code` on type `()`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e1e0c040fd0114c7107d6c14eed3b92b5daea547a8f9775e79d21e8d2678b85f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "err_val"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `lock_code` on type `String`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

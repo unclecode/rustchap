@@ -1,0 +1,11 @@
+{
+  "id": "match-basics.gotcha.shadowing-in-arm",
+  "kind": "gotcha",
+  "title": "Variable names in match arms",
+  "concepts": [
+    "match-basics"
+  ],
+  "prompt": "What happens when you write an existing variable name inside a match pattern arm?",
+  "answer": "The match arm creates a new binding that shadows the existing variable instead of comparing equality. The arm will match any value and bind it to that name. Use match guards or constants to check against existing variables.",
+  "schema_version": 1
+}

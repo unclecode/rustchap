@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.010",
+  "version": 1,
+  "title": "Parent Trait Bounds",
+  "track": "traits-and-bounds",
+  "concepts": [
+    "traits"
+  ],
+  "difficulty": 3,
+  "goal": "Satisfy a supertrait requirement by implementing both the base trait and sub-trait.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Supertraits"
+  },
+  "template": "trait Loggable {\n    fn log_message(&self) -> String;\n}\ntrait Audit: Loggable {\n    fn audit_code(&self) -> u32;\n}\nstruct Event { id: u32 }\n\n⟦impl_loggable_slot⟧\n\nimpl Audit for Event {\n    fn audit_code(&self) -> u32 { self.id }\n}\nfn process<T: Audit>(item: &T) -> String {\n    format!(\"[{}] {}\", item.audit_code(), item.⟦call_log_slot⟧)\n}\nfn main() {\n    let e = Event { id: 101 };\n    println!(\"{}\", process(&e));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "impl_loggable_slot",
+        "original": "// no impl Loggable",
+        "label": "supertrait implementation",
+        "choices": [
+          {
+            "id": "im1",
+            "text": "impl Loggable for Event {\n    fn log_message(&self) -> String { \"system_event\".to_string() }\n}"
+          },
+          {
+            "id": "im2",
+            "text": "// no impl Loggable"
+          },
+          {
+            "id": "im3",
+            "text": "impl Loggable for Event {}"
+          }
+        ]
+      },
+      {
+        "id": "call_log_slot",
+        "original": "log_message",
+        "label": "method call",
+        "choices": [
+          {
+            "id": "ca1",
+            "text": "log_message()"
+          },
+          {
+            "id": "ca2",
+            "text": "log_message"
+          },
+          {
+            "id": "ca3",
+            "text": "log()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn audits_event() {\n    let e = Event { id: 42 };\n    assert_eq!(process(&e), \"[42] system_event\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Audit requires Loggable as a supertrait, so Event must implement Loggable explicitly.",
+    "Trait methods require method call parentheses."
+  ],
+  "explanation": "Because `Audit` has supertrait `Loggable`, any struct implementing `Audit` must also implement `Loggable`. Omitting `impl Loggable for Event` causes `E0277`. Omitting the `log_message` body inside `impl Loggable` causes `E0046`. Calling `item.log_message()` invokes the supertrait method. Omitting parentheses causes `E0615`, and calling `log()` causes `E0599` because no such method exists."
+}

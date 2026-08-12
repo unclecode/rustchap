@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "structs.005",
+  "version": 1,
+  "title": "Field and Method",
+  "track": "structs",
+  "concepts": [
+    "structs"
+  ],
+  "difficulty": 1,
+  "goal": "Give User a typed field, then read it in the method without taking it away.",
+  "template": "struct User {\n    ⟦field⟧,\n}\n\nimpl User {\n    fn shout(&self) -> String {\n        ⟦expr⟧\n    }\n}\n\nfn main() {\n    let u = User { name: String::from(\"ferris\") };\n    println!(\"{}\", u.shout());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "field",
+        "original": "name",
+        "label": "field declaration",
+        "choices": [
+          {
+            "id": "f1",
+            "text": "name"
+          },
+          {
+            "id": "f2",
+            "text": "name: String"
+          },
+          {
+            "id": "f3",
+            "text": "String name"
+          }
+        ]
+      },
+      {
+        "id": "expr",
+        "original": "self.name.to_uppercase()",
+        "label": "method body",
+        "choices": [
+          {
+            "id": "e1",
+            "text": "self.name.to_uppercase()"
+          },
+          {
+            "id": "e2",
+            "text": "name.to_uppercase()"
+          },
+          {
+            "id": "e3",
+            "text": "self.name"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn shouts() {\n    let u = User { name: String::from(\"ferris\") };\n    assert_eq!(u.shout(), \"FERRIS\");\n    assert_eq!(u.shout(), \"FERRIS\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "A field needs a name and a type.",
+    "The method is called on a value the caller still wants afterwards."
+  ],
+  "explanation": "A field is written `name: Type`, so `name: String` declares one. The method then takes `&self`, which borrows the user for the call and leaves the caller holding it. Taking `self` would compile here but would consume the user, and the caller could never use it again.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings structs1/structs3"
+  }
+}

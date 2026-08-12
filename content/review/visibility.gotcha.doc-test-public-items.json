@@ -1,0 +1,11 @@
+{
+  "id": "visibility.gotcha.doc-test-public-items",
+  "kind": "gotcha",
+  "title": "Doc test visibility requirements",
+  "concepts": [
+    "visibility"
+  ],
+  "prompt": "Why do documentation code blocks fail to compile when demonstrating private functions?",
+  "answer": "Doc tests are compiled as separate external crates that consume your library API. They can only access items marked `pub`, so attempting to call private or `pub(crate)` items in doc tests triggers compiler error E0603.",
+  "schema_version": 1
+}

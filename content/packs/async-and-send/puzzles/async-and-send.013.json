@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.013",
+  "version": 1,
+  "title": "Preserving State Across Yields",
+  "track": "async-and-send",
+  "concepts": [
+    "cancellation-safety",
+    "async-await"
+  ],
+  "difficulty": 2,
+  "goal": "Store accumulated work in struct state so partial progress is not lost if interrupted.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Cancellation"
+  },
+  "template": "struct Tracker {\n    pub items: Vec<i32>,\n}\n\nimpl Tracker {\n    async fn record(&mut self, val: i32) {\n        ⟦receiver⟧.⟦method⟧(val);\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "receiver",
+        "original": "items",
+        "label": "the destination vector",
+        "choices": [
+          {
+            "id": "rc1",
+            "text": "self.items"
+          },
+          {
+            "id": "rc2",
+            "text": "items"
+          },
+          {
+            "id": "rc3",
+            "text": "Vec::new()"
+          }
+        ]
+      },
+      {
+        "id": "method",
+        "original": "push",
+        "label": "vector method",
+        "choices": [
+          {
+            "id": "mt1",
+            "text": "push"
+          },
+          {
+            "id": "mt2",
+            "text": "extend"
+          },
+          {
+            "id": "mt3",
+            "text": "capacity"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn records_to_tracker() {\n    fn noop(_: *const ()) {}\n    fn clone(p: *const ()) -> std::task::RawWaker { std::task::RawWaker::new(p, &VTABLE) }\n    static VTABLE: std::task::RawWakerVTable = std::task::RawWakerVTable::new(clone, noop, noop, noop);\n    let waker = unsafe { std::task::Waker::from_raw(std::task::RawWaker::new(std::ptr::null(), &VTABLE)) };\n    let mut cx = std::task::Context::from_waker(&waker);\n    let mut t = Tracker { items: vec![] };\n    {\n        let mut fut = std::pin::pin!(t.record(42));\n        let _ = fut.as_mut().poll(&mut cx);\n    }\n    assert_eq!(t.items, vec![42]);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "Look at how struct fields are accessed inside impl methods.",
+    "Without explicit self qualification, the compiler looks for a local variable named items."
+  ],
+  "explanation": "To persist state across async boundaries, write to struct fields via `self.items`. Writing `items` without `self.` triggers `E0425` because no local variable by that name exists in scope. Calling `extend(val)` fails with `E0277` because `i32` does not implement `IntoIterator`."
+}

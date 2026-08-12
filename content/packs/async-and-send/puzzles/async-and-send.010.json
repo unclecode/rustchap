@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.010",
+  "version": 1,
+  "title": "Pin Before Awaiting Reference",
+  "track": "async-and-send",
+  "concepts": [
+    "pinned-futures",
+    "async-await"
+  ],
+  "difficulty": 3,
+  "goal": "Pin a non-Unpin future before taking a mutable reference to await it.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Pin"
+  },
+  "template": "use std::{future::Future, marker::PhantomPinned, pin::Pin, task::{Context, Poll}};\n\nstruct Delay(PhantomPinned);\nimpl Future for Delay {\n    type Output = &'static str;\n    fn poll(self: Pin<&mut Self>, _: &mut Context<'_>) -> Poll<Self::Output> {\n        Poll::Ready(\"done\")\n    }\n}\n\nasync fn timed_work() -> &'static str {\n    let fut = Delay(PhantomPinned);\n    let ⟦binding⟧ = ⟦initializer⟧;\n    pinned_var.await\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "binding",
+        "original": "pinned_var",
+        "label": "variable binding",
+        "choices": [
+          {
+            "id": "bi1",
+            "text": "pinned_var"
+          },
+          {
+            "id": "bi2",
+            "text": "&pinned_var"
+          },
+          {
+            "id": "bi3",
+            "text": "(pinned_var,)"
+          }
+        ]
+      },
+      {
+        "id": "initializer",
+        "original": "Box::new(fut)",
+        "label": "initializer expression",
+        "choices": [
+          {
+            "id": "in1",
+            "text": "Box::pin(fut)"
+          },
+          {
+            "id": "in2",
+            "text": "Box::new(fut)"
+          },
+          {
+            "id": "in3",
+            "text": "Pin::new(&mut fut)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_timed_work() {\n    fn noop(_: *const ()) {}\n    fn clone(p: *const ()) -> std::task::RawWaker { std::task::RawWaker::new(p, &VTABLE) }\n    static VTABLE: std::task::RawWakerVTable = std::task::RawWakerVTable::new(clone, noop, noop, noop);\n    let waker = unsafe { std::task::Waker::from_raw(std::task::RawWaker::new(std::ptr::null(), &VTABLE)) };\n    let mut cx = std::task::Context::from_waker(&waker);\n    let mut fut = std::pin::pin!(timed_work());\n    if let std::task::Poll::Ready(res) = fut.as_mut().poll(&mut cx) {\n        assert_eq!(res, \"done\");\n    } else {\n        panic!(\"future not ready\");\n    }\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "Delay contains PhantomPinned so it is !Unpin, which prevents awaiting Box<Delay>.",
+    "Use `Box::pin(fut)` to heap-allocate and pin the future inside Pin<Box<Delay>>."
+  ],
+  "explanation": "`Box::pin(fut)` moves the future to the heap and pins it there, which is what a `!Unpin` future needs before it can be awaited through a variable. `Box::new(fut)` only heap-allocates: `Box<F>` is a `Future` only when `F` is `Unpin`, and `PhantomPinned` makes this one not. `Pin::new` is for types that are already `Unpin`, so it is rejected with `E0277` for the same reason."
+}

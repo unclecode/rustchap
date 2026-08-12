@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "structs.015",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "22a59e334c80d2f2da1b5f56ce64ffd2bd09e7a6132ee0c5ca3ed35b560bcbb5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `self.value`, as `self` is not declared as mutable",
+          "slot_ids": [
+            "body"
+          ],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `c`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `c`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `c`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "25163d1e597cd7ba762470f77eb555eb0e3661f4de1019e53b77e9e1152eec14": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "40369953110d98787b98c432183ad4328ca3268efe45811dbd3e7d9da5c14883": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `self.value`, which is behind a `&` reference",
+          "slot_ids": [
+            "body"
+          ],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6a77cbd2273e463bf9688339aa09fbcf6b8de986c291fd0ffc541c1d4dde81f5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `value` in this scope",
+          "slot_ids": [
+            "body"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7c7cd17f7136677e0ff4c194d98f616cfed3d461b84a288ba5b693b901485ee4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "Rust has no postfix increment operator",
+          "slot_ids": [
+            "body"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8b58c5372e66c5bcd94db2bcfa6002e4c778300ff51396bda772567f77aa5a8c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "Rust has no postfix increment operator",
+          "slot_ids": [
+            "body"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8ef2f72d86316d07a9460dc551fe856b1d7e753f1c6c4e4cd0e2afee1957aefd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "Rust has no postfix increment operator",
+          "slot_ids": [
+            "body"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `c`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `c`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `c`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a15fed7a6c83691c6251551507e5ea7062c2fad83488eb7c7ca0f9491c6ed31e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `value` in this scope",
+          "slot_ids": [
+            "body"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d1e7ed6aa9c07fc1c4f47cfcd29089d1397b56eaffcbe94bc04ee5164ce29525": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `value` in this scope",
+          "slot_ids": [
+            "body"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `c`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `c`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `c`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

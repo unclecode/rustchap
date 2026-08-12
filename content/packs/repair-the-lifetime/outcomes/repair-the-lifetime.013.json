@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "repair-the-lifetime.013",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "04959782052f25132072128599cbbbc06f12c4e5d61a9e16364843b6e897f771": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "19873683adfa680b6848b73f14f288deeee7ae51eec27ab95b4aa588c13f2f62": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "273965271e1b1127cb205510d9c1bea43150b1c216eac679a25dee32209b14e2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "536edb9525fec9c3cdd6300e09a51fe1e62631ddb9283dccf622bdd650530db4": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "67c6e5584ef9d81144ad058efbd838e5af8bea025c776f67036bf33e55b460a3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "747a39fce7c44555b2456df3a25acecada51be218d262f64730644ac86173192": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot return value referencing function parameter `target`",
+          "slot_ids": [],
+          "rust_code": "E0515"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7a7d6f2085e364c69cbd8b137f1cc06d9e02c6a979dc60c39af8c0c93b0476c6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "lifetime_error",
+          "message": "explicit lifetime required in the type of `target`",
+          "slot_ids": [],
+          "rust_code": "E0621"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f6003dfd84e00082536ec81bbf69aec3123a7ddd01271327fc489afdc02f8504": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "t"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fd7fb28ca47e88d36c2410fae9001507a9cf046ccc578a077415c79d2e87329b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [
+            "t"
+          ],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "use of undeclared lifetime name `'a`",
+          "slot_ids": [],
+          "rust_code": "E0261"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

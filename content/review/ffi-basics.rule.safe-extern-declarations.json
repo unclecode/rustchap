@@ -1,0 +1,11 @@
+{
+  "id": "ffi-basics.rule.safe-extern-declarations",
+  "kind": "rule",
+  "title": "Safe function declarations inside extern...",
+  "concepts": [
+    "ffi-basics"
+  ],
+  "prompt": "When can an external C function inside an unsafe extern block be declared as safe?",
+  "answer": "An external function can be declared safe when it has no preconditions and cannot cause undefined behavior for any input values. Functions taking primitive integers like abs are typically declared safe.",
+  "schema_version": 1
+}

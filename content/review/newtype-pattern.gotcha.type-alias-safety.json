@@ -1,0 +1,11 @@
+{
+  "id": "newtype-pattern.gotcha.type-alias-safety",
+  "kind": "gotcha",
+  "title": "Type aliases versus newtype wrappers",
+  "concepts": [
+    "newtype-pattern"
+  ],
+  "prompt": "Why do type aliases fail to prevent argument order bugs between identical underlying types?",
+  "answer": "Type aliases created with `type` are transparent compile-time synonyms rather than distinct types. The compiler allows swapping two aliased parameters freely, whereas newtype tuple structs enforce strict type separation.",
+  "schema_version": 1
+}

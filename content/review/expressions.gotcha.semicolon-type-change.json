@@ -1,0 +1,11 @@
+{
+  "id": "expressions.gotcha.semicolon-type-change",
+  "kind": "gotcha",
+  "title": "Semicolons change block values to unit",
+  "concepts": [
+    "expressions"
+  ],
+  "prompt": "What happens to the value and type of a block expression when you add a semicolon to its final line?",
+  "answer": "Adding a semicolon converts the expression into a statement. The block then evaluates to the unit type `()` instead of the value of the expression.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "unsafe-rust.rule.soundness-contract",
+  "kind": "rule",
+  "title": "Soundness requirement for safe functions",
+  "concepts": [
+    "unsafe-rust"
+  ],
+  "prompt": "What makes a safe function sound when it internally uses an unsafe block?",
+  "answer": "A safe function is sound if no possible arguments or caller behavior can cause undefined behavior. The function must validate all preconditions before entering unsafe code.",
+  "schema_version": 1
+}

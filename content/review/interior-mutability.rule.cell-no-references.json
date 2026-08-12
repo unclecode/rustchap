@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.rule.cell-no-references",
+  "kind": "rule",
+  "title": "Why Cell Avoids Runtime Panics",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "Why is Cell immune to runtime borrow panics?",
+  "answer": "Cell never hands out references to its internal value. It only copies values in and out with get and set, or moves whole values with replace. Because no references to the inner value ever exist, borrowing rules cannot be broken.",
+  "schema_version": 1
+}

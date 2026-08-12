@@ -1,0 +1,11 @@
+{
+  "id": "pattern-matching.gotcha.match-guard-fallthrough",
+  "kind": "gotcha",
+  "title": "Failing match guards trigger fallthrough",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "prompt": "How does a failing match guard affect control flow in a `match` expression?",
+  "answer": "If a match guard condition evaluates to false, the match arm is skipped and matching proceeds to the next arm. This differs from an `if` statement inside the arm body, which would execute the arm and not attempt later arms.",
+  "schema_version": 1
+}

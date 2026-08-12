@@ -1,0 +1,11 @@
+{
+  "id": "send-and-static.rule.spawn-static-bound",
+  "kind": "rule",
+  "title": "Spawned tasks require static lifetime",
+  "concepts": [
+    "send-and-static"
+  ],
+  "prompt": "Why does `tokio::spawn` require its future to have a 'static lifetime?",
+  "answer": "Spawned tasks run concurrently and may outlive the function that created them. The task cannot borrow local variables from the stack, so captured data must be owned using move.",
+  "schema_version": 1
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.006",
+  "version": 1,
+  "title": "Closing Channel Senders",
+  "track": "threads-and-channels",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "difficulty": 3,
+  "goal": "Ensure channel receivers stop waiting once all thread tasks complete.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Channels"
+  },
+  "template": "use std::sync::mpsc;\nuse std::thread;\n\nfn main() {\n    let (tx, rx) = mpsc::channel();\n    for i in 1..=3 {\n        let tx = ⟦slot1⟧;\n        thread::spawn(move || {\n            tx.send(i).unwrap();\n        });\n    }\n    ⟦slot2⟧;\n    let mut res: Vec<i32> =\n        rx.into_iter().collect();\n    res.sort();\n    assert_eq!(res, vec![1, 2, 3]);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "tx",
+        "label": "sender handle",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "tx.clone()"
+          },
+          {
+            "id": "sl2",
+            "text": "&tx"
+          },
+          {
+            "id": "sl3",
+            "text": "tx"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "()",
+        "label": "channel cleanup",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "drop(tx)"
+          },
+          {
+            "id": "sl2",
+            "text": "drop(rx)"
+          },
+          {
+            "id": "sl3",
+            "text": "()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_channel_close() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Each spawned thread needs its own owned Sender handle.",
+    "A channel receiver iterator only stops when every Sender instance in the program is dropped."
+  ],
+  "explanation": "Calling tx.clone() gives each spawned thread its own Sender handle. In main, drop(tx) drops the original Sender. Once all spawned threads finish and their cloned senders drop, zero senders remain, allowing rx.into_iter() to finish. Passing &tx into spawned threads fails with E0373 because thread closures require static lifetimes. Passing tx directly moves it on the first loop iteration, causing E0382 on subsequent iterations. Leaving () keeps main's tx alive, causing the receiver loop to hang forever."
+}

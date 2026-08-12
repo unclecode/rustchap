@@ -1,0 +1,11 @@
+{
+  "id": "mpsc-channels.rule.sender-cloning",
+  "kind": "rule",
+  "title": "Sharing Senders Across Threads",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "prompt": "How do you allow multiple spawned threads to send messages into the same mpsc channel?",
+  "answer": "You call clone() on the Sender handle for each thread. In mpsc, Sender implements Clone so multiple producers can send to a single Receiver.",
+  "schema_version": 1
+}

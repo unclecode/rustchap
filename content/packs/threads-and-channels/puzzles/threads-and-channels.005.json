@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.005",
+  "version": 1,
+  "title": "Safely Increment Across Threads",
+  "track": "threads-and-channels",
+  "concepts": [
+    "arc-and-mutex",
+    "interior-mutability"
+  ],
+  "difficulty": 2,
+  "goal": "Increment a shared counter from multiple spawned threads using Arc and Mutex.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Shared State"
+  },
+  "template": "use std::sync::{Arc, Mutex};\nuse std::thread;\n\nfn main() {\n    let c = Arc::new(Mutex::new(0));\n    let hs: Vec<_> = (0..3).map(|_| {\n        let c = Arc::clone(&c);\n        thread::spawn(move || {\n            let mut guard = ⟦slot1⟧;\n            ⟦slot2⟧ += 1;\n        })\n    }).collect();\n    for h in hs { h.join().unwrap(); }\n    assert_eq!(*c.lock().unwrap(), 3);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "c.clone()",
+        "label": "lock acquisition",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "c.lock().unwrap()"
+          },
+          {
+            "id": "sl2",
+            "text": "c.borrow_mut()"
+          },
+          {
+            "id": "sl3",
+            "text": "c.clone()"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "guard",
+        "label": "counter modification",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "*guard"
+          },
+          {
+            "id": "sl2",
+            "text": "guard"
+          },
+          {
+            "id": "sl3",
+            "text": "&mut guard"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_inc() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "An Arc only gives shared references. You must lock the inner Mutex to gain mutable access.",
+    "MutexGuard implements DerefMut, so dereferencing it yields the inner value."
+  ],
+  "explanation": "Calling lock().unwrap() on a Mutex acquires exclusive access and returns a MutexGuard. Because MutexGuard implements DerefMut, using *guard dereferences the guard to reach the inner i32 value. Calling borrow_mut() fails with E0599 because that is a RefCell method, not a Mutex method. Attempting guard += 1 directly on the guard fails with E0369 because addition is not implemented for MutexGuard."
+}

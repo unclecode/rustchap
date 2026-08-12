@@ -1,0 +1,11 @@
+{
+  "id": "match-basics.syntax.wildcard-pattern",
+  "kind": "syntax",
+  "title": "The match wildcard pattern",
+  "concepts": [
+    "match-basics"
+  ],
+  "prompt": "When should you use the wildcard pattern `_` in a `match` expression?",
+  "answer": "Use `_` as a catch-all arm to match any remaining values you do not explicitly list. Use it deliberately, because it prevents the compiler from warning you when new variants are added to an enum.",
+  "schema_version": 1
+}

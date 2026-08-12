@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.009",
+  "version": 1,
+  "title": "Buffering Byte Input",
+  "track": "standard-traits",
+  "concepts": [
+    "io-traits",
+    "traits"
+  ],
+  "difficulty": 2,
+  "goal": "Adapt a generic reader to read line by line.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Standard Traits"
+  },
+  "template": "use std::io::{BufRead, BufReader, Read};\n\nfn count_lines<R: Read>(reader: R) -> usize {\n    let buf = ⟦wrap⟧;\n    buf.⟦method⟧().count()\n}\n\nfn main() {\n    let data: &[u8] = b\"a\\nb\\nc\\n\";\n    println!(\"{}\", count_lines(data));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "wrap",
+        "original": "reader",
+        "label": "reader wrapper",
+        "choices": [
+          {
+            "id": "wr1",
+            "text": "BufReader::new(reader)"
+          },
+          {
+            "id": "wr2",
+            "text": "reader"
+          },
+          {
+            "id": "wr3",
+            "text": "&mut reader"
+          }
+        ]
+      },
+      {
+        "id": "method",
+        "original": "bytes",
+        "label": "reading method",
+        "choices": [
+          {
+            "id": "me1",
+            "text": "lines"
+          },
+          {
+            "id": "me2",
+            "text": "bytes"
+          },
+          {
+            "id": "me3",
+            "text": "by_ref"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn counts_lines() {\n    assert_eq!(count_lines(&b\"one\\ntwo\\nthree\\n\"[..]), 3);\n}",
+      "#[test]\nfn empty_input() {\n    assert_eq!(count_lines(&b\"\"[..]), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The `lines` method belongs to `BufRead`, not `Read`.",
+    "Wrap the generic reader in a `BufReader` instance first."
+  ],
+  "explanation": "`Read` only provides low-level byte operations like `read` or `bytes`. Calling `lines` directly on `Read` triggers `E0599` because `lines` is defined on `BufRead`. Wrapping the input in `BufReader::new` provides the required trait implementation. `bytes` compiles on `Read`, but counts raw bytes instead of newline-delimited strings."
+}

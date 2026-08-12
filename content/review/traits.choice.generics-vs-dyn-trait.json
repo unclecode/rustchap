@@ -1,0 +1,12 @@
+{
+  "id": "traits.choice.generics-vs-dyn-trait",
+  "kind": "choice",
+  "title": "Choosing between generics and Box<dyn Trait>",
+  "concepts": [
+    "traits",
+    "generics"
+  ],
+  "prompt": "When should you choose Box<dyn Trait> over generic type parameters?",
+  "answer": "Use Box<dyn Trait> when you need a heterogeneous collection holding different concrete types at runtime. Use generics when all items share a single type so you benefit from static dispatch and zero runtime overhead.",
+  "schema_version": 1
+}

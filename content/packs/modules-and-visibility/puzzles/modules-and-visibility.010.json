@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.010",
+  "version": 1,
+  "title": "Bringing Traits Into Scope",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "traits",
+    "modules"
+  ],
+  "difficulty": 2,
+  "goal": "Import a trait into scope so its extension methods can be resolved.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "template": "mod convert {\n    pub trait Distance {\n        fn to_meters(&self) -> f64;\n    }\n\n    impl Distance for f64 {\n        fn to_meters(&self) -> f64 {\n            *self * 1000.0\n        }\n    }\n}\n\n⟦slot1⟧ convert::⟦slot2⟧;\n\nfn total_meters(km: f64) -> f64 {\n    km.to_meters()\n}\n\nfn main() {\n    assert_eq!(total_meters(2.5), 2500.0);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "import",
+        "label": "import keyword",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "use"
+          },
+          {
+            "id": "sl2",
+            "text": "import"
+          },
+          {
+            "id": "sl3",
+            "text": "using"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "to_meters",
+        "label": "trait item",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Distance"
+          },
+          {
+            "id": "sl2",
+            "text": "Distance::*"
+          },
+          {
+            "id": "sl3",
+            "text": "to_meters"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_total_meters() {\n    assert_eq!(total_meters(2.5), 2500.0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rust uses `use` to bring module items into scope.",
+    "Import the trait itself, not individual trait methods."
+  ],
+  "explanation": "Rust requires the trait `Distance` to be in scope to call its method `to_meters`. `use convert::Distance;` imports the trait. Keywords like `import` or `using` from other languages cause syntax errors in Rust."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "unsafe-rust.gotcha.unsound-safe-functions",
+  "kind": "gotcha",
+  "title": "Unsound safe functions exposing undefined...",
+  "concepts": [
+    "unsafe-rust"
+  ],
+  "prompt": "What makes a safe Rust function unsound?",
+  "answer": "A safe function is unsound if safe callers can cause undefined behavior by passing valid Rust values. Any function performing unsafe operations on unchecked raw inputs must be marked unsafe.",
+  "schema_version": 1
+}

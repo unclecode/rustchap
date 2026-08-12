@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.004",
+  "version": 1,
+  "title": "Typestate, Tokens, and RAII",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "typestate-pattern",
+    "token-types",
+    "drop-trait"
+  ],
+  "difficulty": 1,
+  "goal": "Enforce valid state transitions and resource cleanup using Rust ownership.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Idiomatic Patterns"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In object-oriented programming, state machines rely on runtime checks and boolean flags. Rust models states as distinct types to catch invalid transitions at compile time."
+      },
+      {
+        "kind": "code",
+        "code": "struct Locked;\nstruct Unlocked;\nstruct Door<S> { state: S }\n\nimpl Door<Locked> {\n    fn unlock(self) -> Door<Unlocked> {\n        Door { state: Unlocked }\n    }\n}",
+        "caption": "unlock takes self by value and returns a new Door state."
+      },
+      {
+        "kind": "prose",
+        "text": "Taking `self` by value moves the locked door out of scope. You cannot call `unlock` twice because the borrow checker rejects using a moved value with error `E0382`."
+      },
+      {
+        "kind": "prose",
+        "text": "You can also enforce permission by hiding private fields inside a module. Code outside the module cannot construct the type directly and must call your authorized constructor."
+      },
+      {
+        "kind": "code",
+        "code": "pub struct Token { _private: () }\n\nimpl Token {\n    pub fn acquire() -> Option<Self> {\n        Some(Token { _private: () })\n    }\n}",
+        "caption": "The private field prevents external instantiation."
+      },
+      {
+        "kind": "prose",
+        "text": "Finally, the `Drop` trait runs cleanup code automatically when a value leaves scope. This pattern is called Resource Acquisition Is Initialization or RAII."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Enforce valid state transitions and resource cleanup using Rust ownership."
+}

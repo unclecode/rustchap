@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.010",
+  "version": 1,
+  "title": "Compare Exchange Loops",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "atomic-types"
+  ],
+  "difficulty": 1,
+  "goal": "Update atomic state conditionally using a compare-and-swap loop.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You will recognise retry loops from lock-free algorithms in C++ or Java. In Rust, compare-and-swap loops update atomic values based on their previous state."
+      },
+      {
+        "kind": "code",
+        "code": "let mut current = val.load(Ordering::Relaxed);\nwhile let Err(actual) = val.compare_exchange_weak(\n    current, new_val,\n    Ordering::Release, Ordering::Relaxed,\n) {\n    current = actual;\n}",
+        "caption": "compare_exchange_weak handles spurious failures inside loops."
+      },
+      {
+        "kind": "prose",
+        "text": "`compare_exchange_weak` may fail even when the atomic value equals the expected value. On architectures like ARM, this spurious failure allows cheaper CPU instructions."
+      },
+      {
+        "kind": "prose",
+        "text": "Inside a retry loop, spurious failures are retried automatically. Outside a loop, use `compare_exchange` to avoid unnecessary retries."
+      },
+      {
+        "kind": "code",
+        "code": "let res = val.compare_exchange(\n    old, new,\n    Ordering::AcqRel, Ordering::Acquire,\n);",
+        "caption": "compare_exchange only fails when values differ."
+      },
+      {
+        "kind": "prose",
+        "text": "Passing invalid memory orderings like `Ordering::Release` on a load will panic at runtime."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Update atomic state conditionally using a compare-and-swap loop."
+}

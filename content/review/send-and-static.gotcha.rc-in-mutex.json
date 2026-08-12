@@ -1,0 +1,11 @@
+{
+  "id": "send-and-static.gotcha.rc-in-mutex",
+  "kind": "gotcha",
+  "title": "Rc inside Mutex thread safety",
+  "concepts": [
+    "send-and-static"
+  ],
+  "prompt": "Why does wrapping an Rc inside a Mutex still fail to compile when sent across thread boundaries?",
+  "answer": "Mutex<T> only implements Send if T implements Send. Because Rc is explicitly non-Send due to non-atomic reference counting, Mutex<Rc<T>> is also non-Send and cannot cross thread boundaries.",
+  "schema_version": 1
+}

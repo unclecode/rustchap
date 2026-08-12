@@ -11,9 +11,17 @@
     "remove-the-clone.002",
     "remove-the-clone.004",
     "remove-the-clone.005",
-    "remove-the-clone.006"
+    "remove-the-clone.006",
+    "remove-the-clone.008",
+    "remove-the-clone.009",
+    "remove-the-clone.010",
+    "remove-the-clone.011",
+    "remove-the-clone.012",
+    "remove-the-clone.013",
+    "remove-the-clone.014",
+    "remove-the-clone.015"
   ],
   "icon": "doc.on.doc.fill",
   "accent": "red",
-  "level": "core"
+  "level": "ownership"
 }

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "testing",
+  "title": "Testing",
+  "description": "Unit tests, assertions, and what to test in Rust.",
+  "toolchain": "1.97.1",
+  "order": [
+    "testing.001",
+    "testing.002",
+    "testing.003",
+    "testing.004",
+    "testing.005",
+    "testing.006",
+    "testing.007",
+    "testing.008",
+    "testing.009",
+    "testing.010",
+    "testing.011",
+    "testing.012",
+    "testing.013",
+    "testing.014",
+    "testing.015"
+  ],
+  "icon": "checklist",
+  "accent": "green",
+  "level": "mastery"
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers.013",
+  "version": 1,
+  "title": "Clone Only When Shared",
+  "track": "smart-pointers",
+  "concepts": [
+    "smart-pointers",
+    "clone",
+    "mutability"
+  ],
+  "difficulty": 2,
+  "goal": "Mutate an `Rc` buffer efficiently using clone-on-write with `Rc::make_mut`.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4: Smart Pointers"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "make_mut",
+        "code": "use std::rc::Rc;\n\nfn push_value(data: &mut Rc<Vec<i32>>, val: i32) {\n    Rc::make_mut(data).push(val);\n}"
+      },
+      {
+        "id": "direct_push",
+        "code": "use std::rc::Rc;\n\nfn push_value(data: &mut Rc<Vec<i32>>, val: i32) {\n    data.push(val);\n}"
+      },
+      {
+        "id": "unconditional_clone",
+        "code": "use std::rc::Rc;\n\nfn push_value(data: &mut Rc<Vec<i32>>, val: i32) {\n    let mut new_vec = (**data).clone();\n    new_vec.push(val);\n    *data = Rc::new(new_vec);\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn modifies_in_place_when_unique() {\n    let mut vec = Rc::new(vec![1, 2]);\n    let ptr_before = Rc::as_ptr(&vec);\n    push_value(&mut vec, 3);\n    assert_eq!(*vec, vec![1, 2, 3]);\n    assert_eq!(Rc::as_ptr(&vec), ptr_before);\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Cloning data every time you mutate wastes memory allocations when the handle is already unique.",
+    "`Rc::make_mut` checks reference counts. It only clones data when active sharing is present."
+  ],
+  "explanation": "`Rc::make_mut` implements copy-on-write. When the `Rc` is uniquely owned, it borrows the inner vector mutably without cloning. Unconditionally dereferencing and cloning allocates a fresh vector on every call. That creates a new `Rc` pointer and fails the pointer identity check."
+}

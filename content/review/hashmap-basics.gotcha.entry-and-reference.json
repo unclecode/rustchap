@@ -1,0 +1,11 @@
+{
+  "id": "hashmap-basics.gotcha.entry-and-reference",
+  "kind": "gotcha",
+  "title": "Updating Values in a HashMap",
+  "concepts": [
+    "hashmap-basics"
+  ],
+  "prompt": "How does the entry API let you modify a missing key and increment its counter in one expression?",
+  "answer": "`map.entry(key).or_insert(0)` creates the entry if missing and returns a mutable reference `&mut V`. You then dereference and increment the counter using `*count += 1`.",
+  "schema_version": 1
+}

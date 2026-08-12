@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.005",
+  "version": 1,
+  "title": "Calling Foreign Functions",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "ffi-basics",
+    "unsafe-rust"
+  ],
+  "difficulty": 1,
+  "goal": "Learn how to declare external C functions with unsafe extern blocks.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from FFI: Foreign Functions"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Rust code can call functions written in C using `extern \"C\"` blocks."
+      },
+      {
+        "kind": "code",
+        "code": "unsafe extern \"C\" {\n    safe fn abs(input: i32) -> i32;\n}",
+        "caption": "C functions without safety preconditions are declared safe."
+      },
+      {
+        "kind": "prose",
+        "text": "Functions taking pointers can cause undefined behavior if given invalid inputs."
+      },
+      {
+        "kind": "code",
+        "code": "use std::ffi::c_char;\n\nunsafe extern \"C\" {\n    unsafe fn strlen(s: *const c_char) -> usize;\n}",
+        "caption": "Functions with preconditions must be marked unsafe."
+      },
+      {
+        "kind": "prose",
+        "text": "The compiler cannot inspect foreign code. You must match C function signatures accurately."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn how to declare external C functions with unsafe extern blocks."
+}

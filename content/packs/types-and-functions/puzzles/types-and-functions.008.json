@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.008",
+  "version": 1,
+  "title": "Sum the Matrix Row",
+  "track": "types-and-functions",
+  "concepts": [
+    "primitive-types"
+  ],
+  "difficulty": 2,
+  "goal": "Index into a nested array using square bracket indexing.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Arrays"
+  },
+  "template": "fn main() {\n    let matrix: [[i32; 2]; 2] = [[1, 2], [3, 4]];\n    println!(\"{}\", row_sum(matrix, 1));\n}\n\nfn row_sum(m: [[i32; 2]; 2], row: usize) -> i32 {\n    let r = ⟦index_row⟧;\n    ⟦sum_expr⟧\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "index_row",
+        "original": "m.row",
+        "label": "row access",
+        "choices": [
+          {
+            "id": "in1",
+            "text": "m.row"
+          },
+          {
+            "id": "in2",
+            "text": "m[row]"
+          },
+          {
+            "id": "in3",
+            "text": "m(row)"
+          }
+        ]
+      },
+      {
+        "id": "sum_expr",
+        "original": "r[0, 1]",
+        "label": "element sum",
+        "choices": [
+          {
+            "id": "su1",
+            "text": "r[0, 1]"
+          },
+          {
+            "id": "su2",
+            "text": "r[0] + r[1]"
+          },
+          {
+            "id": "su3",
+            "text": "r.0 + r.1"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn calculates_row_sum() {\n    let matrix = [[1, 2], [3, 4]];\n    assert_eq!(row_sum(matrix, 0), 3);\n    assert_eq!(row_sum(matrix, 1), 7);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Arrays use square brackets `[i]` for indexing, not dot notation.",
+    "Each dimension is indexed separately with its own pair of square brackets."
+  ],
+  "explanation": "Arrays are indexed using square brackets like `m[row]`. Using dot notation causes error `E0608` because field access is reserved for tuples and structs. Rust does not support comma indexing like `r[0, 1]`. Each index step requires separate square brackets."
+}

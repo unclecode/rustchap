@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.009",
+  "version": 1,
+  "title": "Enforce Order with Type-State",
+  "track": "design-the-api",
+  "concepts": [
+    "api-design",
+    "typestate-pattern"
+  ],
+  "difficulty": 3,
+  "goal": "Ensure a connection can only send data after it is authenticated.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from API Guidelines: Type Safety"
+  },
+  "template": "struct Raw;\nstruct Authed;\n\nstruct Connection<State> {\n    target: String,\n    marker: State,\n}\n\nimpl Connection<Raw> {\n    fn new(target: &str) -> Self { Self { target: target.into(), marker: Raw } }\n    fn authenticate(self) -> Connection<Authed> { Connection { target: self.target, marker: Authed } }\n}\n\nimpl Connection<⟦state_bound⟧> {\n    fn send(&self, msg: &str) -> String { format!(\"{}: {msg}\", self.target) }\n}\n\nfn main() {\n    let conn = Connection::new(\"db.local\");\n    let active = conn.⟦auth_call⟧;\n    println!(\"{}\", active.send(\"ping\"));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "state_bound",
+        "original": "Raw",
+        "label": "state bound on send method",
+        "choices": [
+          {
+            "id": "st1",
+            "text": "Authed"
+          },
+          {
+            "id": "st2",
+            "text": "Raw"
+          },
+          {
+            "id": "st3",
+            "text": "State"
+          }
+        ]
+      },
+      {
+        "id": "auth_call",
+        "original": "clone()",
+        "label": "authentication call",
+        "choices": [
+          {
+            "id": "au1",
+            "text": "authenticate()"
+          },
+          {
+            "id": "au2",
+            "text": "clone()"
+          },
+          {
+            "id": "au3",
+            "text": "authenticate().authenticate()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_flow() {\n    let conn = Connection::new(\"test\");\n    let authed = conn.authenticate();\n    assert_eq!(authed.send(\"hello\"), \"test: hello\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Check which state `Connection::send` should require to guarantee authentication.",
+    "Follow how `conn` transitions when authenticated in `main`."
+  ],
+  "explanation": "By defining `send` only on `Connection<Authed>`, calling `send` on an unauthenticated `Connection<Raw>` is rejected at compile time with `E0599`. Transitioning from `Raw` to `Authed` consumes `self` and returns `Connection<Authed>`. Calling `authenticate()` twice fails because `authenticate()` is only defined for `Connection<Raw>`. This enforces API safety at zero runtime cost."
+}

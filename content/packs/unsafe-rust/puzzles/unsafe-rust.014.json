@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust.014",
+  "version": 1,
+  "title": "Accepting the Trait Contract",
+  "track": "unsafe-rust",
+  "concepts": [
+    "traits",
+    "unsafe-rust"
+  ],
+  "difficulty": 2,
+  "goal": "Implement an unsafe trait using the correct keyword and return value.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Unsafe Rust: Implementing Unsafe Traits"
+  },
+  "template": "pub unsafe trait SafeBuffer {\n    fn capacity(&self) -> usize;\n}\n\nstruct FixedBuf([u8; 64]);\n\n⟦impl_kw⟧ SafeBuffer for FixedBuf {\n    fn capacity(&self) -> usize {\n        ⟦size_expr⟧\n    }\n}\n\nfn main() {\n    let buf = FixedBuf([0; 64]);\n    println!(\"{}\", buf.capacity());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "impl_kw",
+        "original": "impl",
+        "label": "impl statement",
+        "choices": [
+          {
+            "id": "im1",
+            "text": "unsafe impl"
+          },
+          {
+            "id": "im2",
+            "text": "impl"
+          },
+          {
+            "id": "im3",
+            "text": "dyn impl"
+          }
+        ]
+      },
+      {
+        "id": "size_expr",
+        "original": "0",
+        "label": "capacity expression",
+        "choices": [
+          {
+            "id": "si1",
+            "text": "64"
+          },
+          {
+            "id": "si2",
+            "text": "0"
+          },
+          {
+            "id": "si3",
+            "text": "self.0.as_ptr() as usize"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn checks_capacity() {\n    let buf = FixedBuf([0; 64]);\n    assert_eq!(buf.capacity(), 64);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Unsafe traits require explicit acknowledgment when writing their implementation block.",
+    "The capacity function must return the actual length of the internal array."
+  ],
+  "explanation": "Implementing an unsafe trait requires `unsafe impl` so you explicitly accept the trait's safety contract. Omission of `unsafe` yields compiler error `E0200`. Using `dyn impl` is invalid syntax resulting in compiler error `E0407`. Returning `0` or the pointer address compiles with `unsafe impl` but fails test verification."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "bindings.gotcha.shadowing-vs-mutation",
+  "kind": "gotcha",
+  "title": "Shadowing Versus Reassignment",
+  "concepts": [
+    "bindings"
+  ],
+  "prompt": "How does shadowing a variable with `let` differ from reassigning a `mut` variable?",
+  "answer": "Reassigning a `mut` variable updates its stored value but cannot change its type. Shadowing creates a brand new binding with the same name, which allows changing the binding type entirely.",
+  "schema_version": 1
+}

@@ -1,0 +1,12 @@
+{
+  "id": "slice.gotcha.char-boundary-panic",
+  "kind": "gotcha",
+  "title": "Slicing across character boundaries",
+  "concepts": [
+    "slice",
+    "string-types"
+  ],
+  "prompt": "What happens if you slice a string using byte indices that sit inside a UTF-8 character?",
+  "answer": "The program panics at runtime because Rust requires string slices to land on valid UTF-8 character boundaries. Use method is_char_boundary to verify offsets before slicing dynamically.",
+  "schema_version": 1
+}

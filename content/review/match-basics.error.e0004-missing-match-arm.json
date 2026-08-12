@@ -1,0 +1,11 @@
+{
+  "id": "match-basics.error.e0004-missing-match-arm",
+  "kind": "error",
+  "title": "Understanding error E0004",
+  "concepts": [
+    "match-basics"
+  ],
+  "prompt": "What causes compiler error `E0004` during pattern matching?",
+  "answer": "`E0004` occurs when a `match` expression fails to cover every possible variant or value. To fix it, add the missing variant arms or an unguarded wildcard `_` arm.",
+  "schema_version": 1
+}

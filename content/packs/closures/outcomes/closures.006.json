@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "closures.006",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "2121c7369055077e4f67762fc2293dcd26e9db09c74175c93212193d8daedd29": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "call_field"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `validate` exists for struct `Validator<{closure@main.rs:12:32}>`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `validate` exists for struct `Validator<{closure@main.rs:22:36}>`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `validate` exists for struct `Validator<{closure@main.rs:22:36}>`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "29a06945914ec5c101f42abf24c529f3df4103eded326959a4f887cf05e552f9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of unstable library feature `fn_traits`",
+          "slot_ids": [
+            "call_field"
+          ],
+          "rust_code": "E0658"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "call_field"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3212067609710ab0c458e86317ac4ded0c5c2dbcdba96814b3b2c375956433bf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected identifier, found keyword `fn`",
+          "slot_ids": [
+            "bound"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4164266a33c536fffbff4b6e2973dd6dc6510b4bed416d1dfe28e9ee98cea67c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `check` found for reference `&Validator<F>` in the current scope",
+          "slot_ids": [
+            "call_field"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8790449b4a04370127f1c2b46cbfbdfd690a0dc64a43c59877a7b52fba39555e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `check` found for reference `&Validator<F>` in the current scope",
+          "slot_ids": [
+            "call_field"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `validate` exists for struct `Validator<{closure@main.rs:12:32}>`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `validate` exists for struct `Validator<{closure@main.rs:22:36}>`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `validate` exists for struct `Validator<{closure@main.rs:22:36}>`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8b06787b8034bbf9e4e92dc2fc50173e475bcf266d96cc4e9223b54fd408b073": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "use of unstable library feature `fn_traits`",
+          "slot_ids": [
+            "call_field"
+          ],
+          "rust_code": "E0658"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "call_field"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "call_field"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `validate` exists for struct `Validator<{closure@main.rs:12:32}>`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `validate` exists for struct `Validator<{closure@main.rs:22:36}>`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "the method `validate` exists for struct `Validator<{closure@main.rs:22:36}>`, but its trait bounds were not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b0a7cf1bd6ffa7f5fd7103aa44bb957b2d24f7005b527f17784223ec3bd80f9d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected identifier, found keyword `fn`",
+          "slot_ids": [
+            "bound"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "use of unstable library feature `fn_traits`",
+          "slot_ids": [
+            "call_field"
+          ],
+          "rust_code": "E0658"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "call_field"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b250f595e0e757e13f133c1d006bd250b578b1a594a62ec7ea875ecdb0129677": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected identifier, found keyword `fn`",
+          "slot_ids": [
+            "bound"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `check` found for reference `&Validator<F>` in the current scope",
+          "slot_ids": [
+            "call_field"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ef403cd67cce9d990ebcdf984c7d049f094a6d4b0fbe61f843436c03b85bd3ee": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    }
+  }
+}

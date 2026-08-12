@@ -3,14 +3,14 @@
   "id": "structs",
   "title": "Structs",
   "topic": "Data shapes",
-  "summary": "Named fields, instantiated with braces; update syntax ..other copies the rest.",
+  "summary": "A struct groups several named, typed values under one type name.",
   "lecture": [
-    "A struct names a shape: `struct User { name: String }`. Each field has a type; you build a value by naming every field: `User { name: String::from(\"Ferris\") }`. Missing fields are error E0063 - there are no partially built structs.",
-    "Struct update syntax fills in the tail from another value: `Order { count: 2, ..base }` takes every remaining field from `base`. It must come last in the braces.",
-    "Methods live in an `impl` block. A method that only reads takes `&self`; one that consumes the value takes `self`. Calling a `self` method twice on the same value is E0382 - the first call moved it."
+    "A struct groups several values under one name. Each field has a name and a type, and you must fill in every field when you build one. Rust has no half-built values, so a missing field is error `E0063`.",
+    "Behavior goes in an `impl` block. A method's first parameter is `&self` when it only needs to read, and the caller keeps the value. It is `self` when the method consumes the value, and after one call the caller no longer has it.",
+    "When most fields come from an existing value, `..base` fills in the rest. It must come last in the literal."
   ],
   "example": {
-    "code": "struct Package { weight: u32 }\n\nimpl Package {\n    fn cost(&self) -> u32 { self.weight * 3 }\n}",
-    "caption": "&self lets you call cost() as many times as you like."
+    "code": "struct User {\n    name: String,\n}\n\nimpl User {\n    fn greet(&self) -> String {\n        format!(\"hi {}\", self.name)\n    }\n}",
+    "caption": "&self borrows, so the caller keeps the user."
   }
 }

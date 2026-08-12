@@ -1,0 +1,16 @@
+{
+  "id": "token-types",
+  "title": "Token Types",
+  "topic": "Abstraction",
+  "summary": "Use types with private fields to act as proof of completed operations or permissions.",
+  "lecture": [
+    "Token types use module privacy rules to prevent consumers from constructing values directly.",
+    "A struct with a private field can only be instantiated by constructor functions within its module.",
+    "Passing a token value into an API function proves that required initialization or authorization was performed."
+  ],
+  "example": {
+    "code": "pub struct Token { _priv: () }\nimpl Token {\n    pub fn new() -> Self {\n        Token { _priv: () }\n    }\n}",
+    "caption": "Private field prevents manual struct literal creation."
+  },
+  "schema_version": 1
+}

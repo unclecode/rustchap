@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.001",
+  "version": 1,
+  "title": "Threads and Ownership",
+  "track": "threads-and-channels",
+  "concepts": [
+    "threads-basics"
+  ],
+  "difficulty": 1,
+  "goal": "Spawn OS threads, move owned data into thread closures, and join threads to get results.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Plain Threads"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In Go or C++, threads can easily capture local variables from outer scopes. Rust threads created with `thread::spawn` run independently and might outlive the stack frame that created them."
+      },
+      {
+        "kind": "code",
+        "code": "use std::thread;\n\nfn main() {\n    let handle = thread::spawn(|| {\n        println!(\"hello\");\n    });\n    handle.join().unwrap();\n}",
+        "caption": "`thread::spawn` runs a closure on a new thread and returns a `JoinHandle`."
+      },
+      {
+        "kind": "prose",
+        "text": "Because a thread can run for any length of time, captured data must live for `'static` or be moved in. Passing borrowed references triggers compiler error `E0373`."
+      },
+      {
+        "kind": "code",
+        "code": "let msg = String::from(\"hello\");\nlet handle = thread::spawn(move || {\n    println!(\"{msg}\");\n});",
+        "caption": "The `move` keyword transfers ownership of `msg` into the closure."
+      },
+      {
+        "kind": "prose",
+        "text": "Calling `join()` on a `JoinHandle` blocks until that thread completes. It returns a `Result` containing the closure return value or panic payload."
+      },
+      {
+        "kind": "code",
+        "code": "let handle = thread::spawn(|| 42);\nlet result: i32 = handle.join().unwrap();",
+        "caption": "Joining a thread retrieves the return value from its closure."
+      },
+      {
+        "kind": "prose",
+        "text": "Sharing mutable state safely across multiple threads requires atomic reference counting and mutexes, which are covered in the next deck."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Spawn OS threads, move owned data into thread closures, and join threads to get results."
+}

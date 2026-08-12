@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "generics-and-dyn.007",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0d761f335a5a5618cfb2f6a1035cd585516c95adddc0210ecc58e71cc85a3d0b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `(`, `+`, `,`, `::`, `<`, or `{`, found `and`",
+          "slot_ids": [
+            "b1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0e89fc25c09c85dcb9eeeb9c9a258cbbb0da629e429af8dd3262351ade4a85a7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `(`, `+`, `::`, `:`, `<`, `==`, or `=`, found `,`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2b7c67a1970db38457b81557b2ce75f4a2912a2ff48966da98ff0eae5e1e0cb2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected trait, found derive macro `Debug`",
+          "slot_ids": [
+            "b2"
+          ],
+          "rust_code": "E0404"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4a829fc05306717d5d82e1ebbb8efc779a4a7fe98184f964990cca98759980a5": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "581d42c8fc8bfb6ee0a4cf358e0fe94c3b64ad351ab246cb8e4d74a7a36489b0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `(`, `+`, `,`, `::`, `<`, or `{`, found `and`",
+          "slot_ids": [
+            "b1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7c7d9c66743783799128b9272edac54458ad5a3f7f52968081bda1a45116e222": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `(`, `+`, `::`, `:`, `<`, `==`, or `=`, found `,`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b7fdb09026166d5f5d1a831ae636752346fa78ba980004d5339ad76ca46be35f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`T` doesn't implement `std::fmt::Display`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `String: Copy` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `String: Copy` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bb2fc933806fea806c31880e67418fcec115dd9068fb324d54b358cb591c59f8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `(`, `+`, `::`, `:`, `<`, `==`, or `=`, found `,`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ef6b6322e3502e103b0f29e0ee67be9439c92fcec64014c0be2bdc054373e858": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `(`, `+`, `,`, `::`, `<`, or `{`, found `and`",
+          "slot_ids": [
+            "b1"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

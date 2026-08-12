@@ -1,0 +1,11 @@
+{
+  "id": "error-propagation.choice.ok-or-versus-match",
+  "kind": "choice",
+  "title": "Converting Option to Result before try",
+  "concepts": [
+    "error-propagation"
+  ],
+  "prompt": "How do you convert an Option value into a Result so you can propagate errors with the try operator?",
+  "answer": "Call .ok_or(err_val) or .ok_or_else(|| err_val) on the Option before appending the try operator. This transforms Some(v) into Ok(v) and None into Err(err_val).",
+  "schema_version": 1
+}

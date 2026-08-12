@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.014",
+  "version": 1,
+  "title": "Combine Similar Arms",
+  "track": "enums-and-matching",
+  "concepts": [
+    "enums-basics",
+    "pattern-matching"
+  ],
+  "difficulty": 2,
+  "goal": "Match multiple variants with one pattern without repeating logic.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Pattern Matching"
+  },
+  "template": "enum Media {\n    Book(u32),\n    Audio(u32),\n    Video { id: u32 },\n}\n\nfn item_id(media: &Media) -> u32 {\n    match media {\n        ⟦or_pattern⟧ => *id,\n        Media::Video { ⟦struct_field⟧ } => *id,\n    }\n}\n\nfn main() {\n    let m = Media::Book(42);\n    println!(\"{}\", item_id(&m));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "or_pattern",
+        "original": "Media::Book(id) | Media::Audio(code)",
+        "label": "OR pattern",
+        "choices": [
+          {
+            "id": "or1",
+            "text": "Media::Book(id) | Media::Audio(id)"
+          },
+          {
+            "id": "or2",
+            "text": "Media::Book(id) | Media::Audio(code)"
+          },
+          {
+            "id": "or3",
+            "text": "Media::Book(id) || Media::Audio(id)"
+          }
+        ]
+      },
+      {
+        "id": "struct_field",
+        "original": "id: code",
+        "label": "struct field pattern",
+        "choices": [
+          {
+            "id": "st1",
+            "text": "id"
+          },
+          {
+            "id": "st2",
+            "text": "id: code"
+          },
+          {
+            "id": "st3",
+            "text": "ref id"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn extracts_ids() {\n    assert_eq!(item_id(&Media::Book(10)), 10);\n    assert_eq!(item_id(&Media::Audio(20)), 20);\n    assert_eq!(item_id(&Media::Video { id: 30 }), 30);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Every branch of a pattern separated by `|` must bind the exact same variable names.",
+    "Struct field pattern shorthand `id` binds the field `id` directly to a variable named `id`."
+  ],
+  "explanation": "OR patterns use a single pipe `|` to match multiple variants in one arm. Every branch of an OR pattern must bind the exact same variable names, so `Media::Book(id) | Media::Audio(code)` fails with `E0408` because `id` is not bound on both sides. Using `||` is invalid syntax because double pipe is a logical operator. For struct variants, writing `id` is shorthand for `id: id`, which binds the field to local variable `id`. Writing `id: code` binds `code` instead, leaving `id` undefined and causing `E0425`."
+}

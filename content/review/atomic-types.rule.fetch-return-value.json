@@ -1,0 +1,11 @@
+{
+  "id": "atomic-types.rule.fetch-return-value",
+  "kind": "rule",
+  "title": "Atomic Fetch Operation Return Values",
+  "concepts": [
+    "atomic-types"
+  ],
+  "prompt": "What value do atomic operations like fetch_add or fetch_or return?",
+  "answer": "Atomic `fetch_` operations return the previous value held by the atomic variable before the mutation occurred. To inspect the new value, you must compute it yourself or perform a subsequent load. This guarantees that you see the exact prior state when mutating.",
+  "schema_version": 1
+}

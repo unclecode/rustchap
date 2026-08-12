@@ -1,0 +1,12 @@
+{
+  "id": "drop-trait.rule.field-drop-order",
+  "kind": "rule",
+  "title": "Struct field destruction order",
+  "concepts": [
+    "drop-trait",
+    "structs"
+  ],
+  "prompt": "In what order are the fields of a struct dropped when the struct goes out of scope?",
+  "answer": "After the struct's own `Drop::drop` method finishes, its fields drop in top-to-bottom declaration order. This is the opposite of local variables in a block, which drop in reverse declaration order.",
+  "schema_version": 1
+}

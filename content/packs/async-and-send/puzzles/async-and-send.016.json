@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.016",
+  "version": 1,
+  "title": "Async Methods in Trait Objects",
+  "track": "async-and-send",
+  "concepts": [
+    "traits",
+    "async-await",
+    "pinned-futures"
+  ],
+  "difficulty": 1,
+  "goal": "Understand why async fn in traits requires Boxed futures for trait objects.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Async Traits"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Rust allows `async fn` inside traits. However, because each `async fn` returns a unique, un-namable future type, traits with `async fn` cannot be made into trait objects (`dyn Trait`)."
+      },
+      {
+        "kind": "code",
+        "code": "trait Worker {\n    // Cannot be used as `dyn Worker`!\n    async fn do_work(&self) -> i32;\n}",
+        "caption": "An async fn in a trait returns an implicit opaque type."
+      },
+      {
+        "kind": "prose",
+        "text": "To use an async trait with dynamic dispatch (`dyn Trait`), the return type must be an explicit boxed pinned future: `Pin<Box<dyn Future<Output = T>>>`."
+      },
+      {
+        "kind": "code",
+        "code": "use std::future::Future;\nuse std::pin::Pin;\n\ntrait DynWorker {\n    fn do_work(&self) -> Pin<Box<dyn Future<Output = i32>>>;\n}",
+        "caption": "Pin<Box<dyn Future>> provides a uniform type for dynamic dispatch."
+      },
+      {
+        "kind": "prose",
+        "text": "The `async_trait` crate automates this transformation using a procedural macro. Knowing the underlying pinned box explains what that macro generates under the hood."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand why async fn in traits requires Boxed futures for trait objects."
+}

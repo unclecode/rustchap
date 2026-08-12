@@ -1,0 +1,11 @@
+{
+  "id": "typestate-pattern.gotcha.moving-behind-references",
+  "kind": "gotcha",
+  "title": "Moving non-Copy fields out of references",
+  "concepts": [
+    "typestate-pattern"
+  ],
+  "prompt": "What error occurs when attempting to transition state using `&self` while moving inner non-Copy data?",
+  "answer": "The compiler raises error `E0507` because non-Copy values cannot be moved out of a reference. Transition methods must take `self` by value to transfer inner data to the new state type. Taking ownership allows moving fields without extra cloning.",
+  "schema_version": 1
+}

@@ -8,9 +8,20 @@
     "smart-pointers.004",
     "smart-pointers.001",
     "smart-pointers.002",
-    "smart-pointers.003"
+    "smart-pointers.003",
+    "smart-pointers.005",
+    "smart-pointers.006",
+    "smart-pointers.007",
+    "smart-pointers.008",
+    "smart-pointers.009",
+    "smart-pointers.010",
+    "smart-pointers.011",
+    "smart-pointers.012",
+    "smart-pointers.013",
+    "smart-pointers.014",
+    "smart-pointers.015"
   ],
   "icon": "link",
   "accent": "pink",
-  "level": "advanced"
+  "level": "systems"
 }

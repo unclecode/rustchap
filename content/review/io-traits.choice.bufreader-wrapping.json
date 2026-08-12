@@ -1,0 +1,11 @@
+{
+  "id": "io-traits.choice.bufreader-wrapping",
+  "kind": "choice",
+  "title": "When to Wrap with BufReader",
+  "concepts": [
+    "io-traits"
+  ],
+  "prompt": "When should a generic reader parameter be wrapped in BufReader inside a function?",
+  "answer": "Wrap input in `BufReader` when making many small read operations or calling line-oriented methods. It reduces syscall overhead by buffering bytes in memory. Avoid wrapping if the input is already a memory slice or buffered type.",
+  "schema_version": 1
+}

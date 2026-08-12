@@ -1,0 +1,11 @@
+{
+  "id": "builder-pattern.syntax.build-validation",
+  "kind": "syntax",
+  "title": "Role of the build method in builders",
+  "concepts": [
+    "builder-pattern"
+  ],
+  "prompt": "How does the final `build()` method in the builder pattern handle missing or invalid configurations?",
+  "answer": "The `build()` method consumes the builder by value and returns either the constructed object or a `Result`. It validates all required fields and invariant constraints before instantiating the target struct.",
+  "schema_version": 1
+}

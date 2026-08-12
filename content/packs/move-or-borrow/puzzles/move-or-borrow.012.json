@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.012",
+  "version": 1,
+  "title": "Borrowing Struct Fields",
+  "track": "move-or-borrow",
+  "concepts": [
+    "borrow",
+    "structs",
+    "mutability"
+  ],
+  "difficulty": 1,
+  "goal": "Understand how Rust borrows individual struct fields versus borrowing &mut self.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Borrow Checking"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Rust's borrow checker understands struct fields. You can borrow two different fields of a struct at the same time, even if one borrow is mutable."
+      },
+      {
+        "kind": "code",
+        "code": "struct Player { hp: i32, name: String }\nlet mut p = Player { hp: 100, name: \"A\".into() };\nlet name_ref = &p.name;\np.hp -= 10;\nprintln!(\"{name_ref} has {}\", p.hp);",
+        "caption": "Borrowing p.name leaves p.hp available for mutation."
+      },
+      {
+        "kind": "prose",
+        "text": "However, calling a method that takes `&mut self` borrows the entire struct mutably. While that method borrow is active, no field of the struct can be read or borrowed."
+      },
+      {
+        "kind": "code",
+        "code": "impl Player {\n    fn heal(&mut self) { self.hp += 10; }\n}\nlet name_ref = &p.name;\np.heal(); // error E0502: borrows all of `p`\nprintln!(\"{name_ref}\");",
+        "caption": "&mut self borrows the entire struct, conflicting with name_ref."
+      },
+      {
+        "kind": "prose",
+        "text": "To fix this conflict, finish using the field reference before calling the method, or access the fields directly instead of calling `&mut self` methods."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand how Rust borrows individual struct fields versus borrowing &mut self."
+}

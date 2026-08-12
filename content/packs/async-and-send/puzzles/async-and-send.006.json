@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.006",
+  "version": 1,
+  "title": "Async Code Must Not Block",
+  "track": "async-and-send",
+  "concepts": [
+    "async-await"
+  ],
+  "difficulty": 1,
+  "goal": "Keep worker threads free by avoiding synchronous blocking calls in async functions.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Async Pitfalls"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Async tasks share a small pool of worker threads. When an async task calls a blocking function like `std::thread::sleep`, that thread stops doing any work for all other tasks assigned to it."
+      },
+      {
+        "kind": "code",
+        "code": "async fn wait_bad() {\n    std::thread::sleep(\n        Duration::from_millis(100),\n    );\n}",
+        "caption": "std::thread::sleep halts the entire OS thread."
+      },
+      {
+        "kind": "prose",
+        "text": "An async function should yield execution back to the runtime while waiting. Use non-blocking timers like `tokio::time::sleep` that return a future instead of blocking."
+      },
+      {
+        "kind": "code",
+        "code": "async fn wait_good() {\n    tokio::time::sleep(\n        Duration::from_millis(100),\n    ).await;\n}",
+        "caption": "sleep().await pauses only this task, letting others run."
+      },
+      {
+        "kind": "prose",
+        "text": "If you must run CPU-heavy or blocking I/O code, offload it using `tokio::task::spawn_blocking`. That moves the blocking work onto a dedicated thread pool managed by the runtime."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Keep worker threads free by avoiding synchronous blocking calls in async functions."
+}

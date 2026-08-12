@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "design-the-api.009",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "03ee23e66e2851d5903527d7bce90072cc3b320ffdc50b441051c0a5aaa0c8eb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `clone` found for struct `Connection<State>` in the current scope",
+          "slot_ids": [
+            "auth_call"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3f31fb2813f80407ba11afc5fdd27b8b0bd2bbb2274611b61165e3fe3bf75dc7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `State` in this scope",
+          "slot_ids": [
+            "state_bound"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `authenticate` found for struct `Connection<Authed>` in the current scope",
+          "slot_ids": [
+            "auth_call"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4d949986ba2d7a393bcc8f626c927eb70bc189d5a136e4399cee69653eecd4a5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `State` in this scope",
+          "slot_ids": [
+            "state_bound"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `clone` found for struct `Connection<State>` in the current scope",
+          "slot_ids": [
+            "auth_call"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "56e9994569f0b562f4cc9eb1f6620962c5f7f6d8fb2b2d71c7b7656a84bbb36c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `clone` found for struct `Connection<State>` in the current scope",
+          "slot_ids": [
+            "auth_call"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `send` found for struct `Connection<Authed>` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "82c9dce6c517b862d934547145e22693ea7dfd8f5b77a67b98947079bb198725": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "c4c021a060c3125568399c1bc9d1c9afa71df5a410179d8bdd5f37f022320faf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `State` in this scope",
+          "slot_ids": [
+            "state_bound"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d0e4de887d6b3a001d01d2c3ba5c6d79176a27c3e8e2e42709ededb803618683": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `send` found for struct `Connection<Authed>` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `send` found for struct `Connection<Authed>` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f643b6205cff62695099c524398195d6f752c61c8e43e1e6d5e2dbe849e75f81": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `authenticate` found for struct `Connection<Authed>` in the current scope",
+          "slot_ids": [
+            "auth_call"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fbe6c90421b0a4b6c4426aaf22a527488a263df84a36650ebf5b4586a81aeb8f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `authenticate` found for struct `Connection<Authed>` in the current scope",
+          "slot_ids": [
+            "auth_call"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `send` found for struct `Connection<Authed>` in the current scope",
+          "slot_ids": [],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

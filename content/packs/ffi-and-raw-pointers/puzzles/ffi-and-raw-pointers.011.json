@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.011",
+  "version": 1,
+  "title": "Inside Unsafe Functions",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "unsafe-rust",
+    "raw-pointers"
+  ],
+  "difficulty": 2,
+  "goal": "Perform raw pointer dereferencing correctly inside an unsafe function.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Unsafe Rust"
+  },
+  "template": "#[deny(unsafe_op_in_unsafe_fn)]\nunsafe fn deref_val(ptr: *const i32) -> i32 {\n    ⟦read_expr⟧\n}\n\nfn read_ref(x: &i32) -> i32 {\n    let p = ⟦ptr_expr⟧;\n    unsafe { deref_val(p) }\n}\n\nfn main() {\n    let val = 42;\n    println!(\"{}\", read_ref(&val));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "read_expr",
+        "original": "*ptr",
+        "label": "pointer dereference",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "unsafe { *ptr }"
+          },
+          {
+            "id": "re2",
+            "text": "*ptr"
+          },
+          {
+            "id": "re3",
+            "text": "ptr.read()"
+          }
+        ]
+      },
+      {
+        "id": "ptr_expr",
+        "original": "*x as *const i32",
+        "label": "pointer creation",
+        "choices": [
+          {
+            "id": "pt1",
+            "text": "x as *const i32"
+          },
+          {
+            "id": "pt2",
+            "text": "*x as *const i32"
+          },
+          {
+            "id": "pt3",
+            "text": "x as usize as *const i32"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn reads_pointer_value() {\n    let x = 42;\n    assert_eq!(read_ref(&x), 42);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 3
+    },
+    "optimal": {
+      "token_edits": 3
+    }
+  },
+  "hints": [
+    "Modern Rust requires an explicit unsafe block inside unsafe fn bodies under unsafe_op_in_unsafe_fn.",
+    "A shared reference &i32 can be coerced or cast directly to a raw pointer with `x as *const i32`."
+  ],
+  "explanation": "Casting the reference with `x as *const i32` produces the raw pointer directly. Dereferencing first gives an `i32`, which is a value and not an address, so that cast is rejected."
+}

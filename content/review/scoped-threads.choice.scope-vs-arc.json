@@ -1,0 +1,11 @@
+{
+  "id": "scoped-threads.choice.scope-vs-arc",
+  "kind": "choice",
+  "title": "Selecting scoped threads over Arc",
+  "concepts": [
+    "scoped-threads"
+  ],
+  "prompt": "When should you choose scoped threads over Arc and Mutex for concurrent tasks?",
+  "answer": "Choose scoped threads when all child operations complete before the spawning function returns and you want to avoid allocation overhead. Reach for Arc and Mutex when thread lifetimes are independent or outlive the current stack frame.",
+  "schema_version": 1
+}

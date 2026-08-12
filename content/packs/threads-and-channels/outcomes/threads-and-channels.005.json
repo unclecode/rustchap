@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "threads-and-channels.005",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0f9dae48ec59fc46df855d6d2e036d8261ef20a666b546452914427a9a05f88f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "binary assignment operation `+=` cannot be applied to type `&mut std::sync::MutexGuard<'_, {integer}>`",
+          "slot_ids": [
+            "slot2"
+          ],
+          "rust_code": "E0368"
+        },
+        {
+          "category": "compile_error",
+          "message": "invalid left-hand side of assignment",
+          "slot_ids": [],
+          "rust_code": "E0067"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "57f92ceba9f8f33ffc634c7c0c4e12b38a4fc663bf84a9260abfd70a27bce1d1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `borrow_mut` found for struct `Arc<std::sync::Mutex<{integer}>>` in the current scope",
+          "slot_ids": [
+            "slot1"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "invalid left-hand side of assignment",
+          "slot_ids": [],
+          "rust_code": "E0067"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "585dac42468aa2f9eb84a4f69f4dbd5539215b5670a50d101bc1d9924f7e10c7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "binary assignment operation `+=` cannot be applied to type `std::sync::MutexGuard<'_, {integer}>`",
+          "slot_ids": [
+            "slot2"
+          ],
+          "rust_code": "E0368"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "735ba297b989e00377eb69aeea45c8614e1f4461cb9e4550538a29b3ed302837": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "binary assignment operation `+=` cannot be applied to type `&mut Arc<std::sync::Mutex<{integer}>>`",
+          "slot_ids": [
+            "slot2"
+          ],
+          "rust_code": "E0368"
+        },
+        {
+          "category": "compile_error",
+          "message": "invalid left-hand side of assignment",
+          "slot_ids": [],
+          "rust_code": "E0067"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7a1bfb0814b3ad0bea7bd9b72f8af0853503db49890a34ebf00b6501b8f9139f": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "9509545e39eadbdb7d9450fcd6916dbe304dfb4e810f85d78679fbf12f226982": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "binary assignment operation `+=` cannot be applied to type `Arc<std::sync::Mutex<{integer}>>`",
+          "slot_ids": [
+            "slot2"
+          ],
+          "rust_code": "E0368"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c607ac9fee11686517660a9f2475b4877aca5d6ccf3d85bf663864aa7deeb2ca": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `borrow_mut` found for struct `Arc<std::sync::Mutex<{integer}>>` in the current scope",
+          "slot_ids": [
+            "slot1"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d76ee8ad2a4b0763a8c4ae343ed42d9bf85c8f0cc4e39e67bb0f59872cbb1684": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `borrow_mut` found for struct `Arc<std::sync::Mutex<{integer}>>` in the current scope",
+          "slot_ids": [
+            "slot1"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f4c7558903669b82af8f9f825bbeac2f5f5ed501063391f122f90dfddb68cbda": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "binary assignment operation `+=` cannot be applied to type `std::sync::Mutex<{integer}>`",
+          "slot_ids": [
+            "slot2"
+          ],
+          "rust_code": "E0368"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

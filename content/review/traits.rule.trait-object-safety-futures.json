@@ -1,0 +1,11 @@
+{
+  "id": "traits.rule.trait-object-safety-futures",
+  "kind": "rule",
+  "title": "Trait object safety for async methods",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "What requirement must a trait method return type meet to preserve object safety for dynamic dispatch?",
+  "answer": "The return type must be a concrete heap-allocated or referenced type with a known fixed size rather than an opaque impl Trait. Returning Pin Box dyn Future satisfies this requirement for async operations.",
+  "schema_version": 1
+}

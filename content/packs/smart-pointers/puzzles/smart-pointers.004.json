@@ -36,7 +36,7 @@
     ]
   },
   "hints": [],
-  "explanation": "Box gives single-owner heap allocation and enables recursion. Rc gives counted shared ownership. Rc::clone is a count bump, not a copy.",
+  "explanation": "Box gives single-owner heap allocation and enables recursion. Rc gives counted shared ownership. `Rc::clone` is a count bump, not a copy.",
   "prerequisites": [],
   "source": {
     "origin": "original",

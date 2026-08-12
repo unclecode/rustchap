@@ -1,0 +1,11 @@
+{
+  "id": "pinned-futures.syntax.pin-macro",
+  "kind": "syntax",
+  "title": "Pin stack futures with std::pin::pin!",
+  "concepts": [
+    "pinned-futures"
+  ],
+  "prompt": "How do you pin a stack-allocated future without allocating on the heap?",
+  "answer": "Use the `std::pin::pin`! macro on the local variable. It borrows and pins the future in place on the stack, returning a Pin<&mut F> wrapper.",
+  "schema_version": 1
+}

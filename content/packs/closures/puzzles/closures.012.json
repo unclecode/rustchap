@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "closures.012",
+  "version": 1,
+  "title": "Matching Closure Signatures",
+  "track": "closures",
+  "concepts": [
+    "closures",
+    "primitive-types"
+  ],
+  "difficulty": 2,
+  "goal": "Specify parameter and value types so the closure parses and operates on string inputs.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from google/comprehensive-rust: closures syntax"
+  },
+  "template": "fn main() {\n    let parse_and_add = |s: ⟦t_spec⟧| -> i32 {\n        s.parse::<i32>().unwrap_or(0) + ⟦add_val⟧\n    };\n    let val = parse_and_add(\"42\");\n    assert_eq!(val, 52);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "t_spec",
+        "original": "String",
+        "label": "parameter type",
+        "choices": [
+          {
+            "id": "t_1",
+            "text": "&str"
+          },
+          {
+            "id": "t_2",
+            "text": "String"
+          },
+          {
+            "id": "t_3",
+            "text": "i32"
+          }
+        ]
+      },
+      {
+        "id": "add_val",
+        "original": "10_u32",
+        "label": "added offset",
+        "choices": [
+          {
+            "id": "ad1",
+            "text": "10"
+          },
+          {
+            "id": "ad2",
+            "text": "10_u32"
+          },
+          {
+            "id": "ad3",
+            "text": "\"10\""
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn parses_correctly() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The argument passed to `parse_and_add` is a string slice `\"42\"`, not an owned `String`.",
+    "The closure returns `i32`, so adding an unsigned integer `10_u32` causes a type mismatch."
+  ],
+  "explanation": "`\"42\"` is a string slice `&str`, so the closure parameter must accept `&str`. Annotated `String` produces `E0308` because string slices do not implicitly convert to owned strings. Using `i32` for the parameter produces `E0599` because `parse` is a string method. For `add_val`, adding `10_u32` or `\"10\"` triggers type mismatch `E0308` because integer addition requires matching types without implicit conversion."
+}

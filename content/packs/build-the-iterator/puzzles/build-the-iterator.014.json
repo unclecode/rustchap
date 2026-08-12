@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "build-the-iterator.014",
+  "version": 1,
+  "title": "Pairing Coordinates",
+  "track": "build-the-iterator",
+  "concepts": [
+    "iterator",
+    "tuples"
+  ],
+  "difficulty": 2,
+  "goal": "Pair x and y coordinates side-by-side into tuple points.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 3 Afternoon: Iterators"
+  },
+  "template": "fn pair_coords(xs: &[i32], ys: &[i32]) -> Vec<(i32, i32)> {\n    xs.iter()\n        .⟦slot1⟧(ys.iter())\n        .⟦slot2⟧(|(&x, &y)| (x, y))\n        .collect()\n}\n\nfn main() {\n    let xs = vec![1, 2];\n    let ys = vec![10, 20];\n    println!(\"{:?}\", pair_coords(&xs, &ys));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "chain",
+        "label": "combining adapter",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "zip"
+          },
+          {
+            "id": "sl2",
+            "text": "chain"
+          },
+          {
+            "id": "sl3",
+            "text": "enumerate"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "inspect",
+        "label": "transforming adapter",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "map"
+          },
+          {
+            "id": "sl2",
+            "text": "filter"
+          },
+          {
+            "id": "sl3",
+            "text": "inspect"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn pairs_equal_lengths() {\n    let xs = vec![1, 2, 3];\n    let ys = vec![10, 20, 30];\n    assert_eq!(pair_coords(&xs, &ys), vec![(1, 10), (2, 20), (3, 30)]);\n}",
+      "#[test]\nfn stops_at_shortest() {\n    let xs = vec![1, 2];\n    let ys = vec![10, 20, 30, 40];\n    assert_eq!(pair_coords(&xs, &ys), vec![(1, 10), (2, 20)]);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "chain joins sequences end-to-end. You need an adapter that pairs elements in lockstep.",
+    "The adapter after pairing must transform each (&i32, &i32) pair into an owned (i32, i32) tuple."
+  ],
+  "explanation": "zip steps through both iterators in parallel and yields pairs as (&i32, &i32) tuples. map converts each borrowed pair into an owned (i32, i32) tuple. chain yields items sequentially, so the closure expects a single integer reference and fails with type mismatch E0308. enumerate takes zero arguments, producing E0061."
+}

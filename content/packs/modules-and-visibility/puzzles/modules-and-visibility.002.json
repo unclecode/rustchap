@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.002",
+  "version": 1,
+  "title": "Reaching Into Modules",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "modules",
+    "visibility"
+  ],
+  "difficulty": 1,
+  "goal": "Expose a helper function so main can call it.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "template": "mod math {\n    ⟦slot1⟧ fn add(a: i32, b: i32) -> i32 {\n        a + b\n    }\n}\n\nfn main() {\n    let sum = ⟦slot2⟧::add(2, 3);\n    assert_eq!(sum, 5);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "",
+        "label": "visibility modifier",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "pub"
+          },
+          {
+            "id": "sl2",
+            "text": ""
+          },
+          {
+            "id": "sl3",
+            "text": "pub(self)"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "self",
+        "label": "module path",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "math"
+          },
+          {
+            "id": "sl2",
+            "text": "super"
+          },
+          {
+            "id": "sl3",
+            "text": "self"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_add() {\n    assert_eq!(math::add(2, 3), 5);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Items in a module are private by default.",
+    "Refer to items inside a module using the module name as a path prefix."
+  ],
+  "explanation": "The `pub` keyword exposes `add` to outer modules. Calling `math::add` specifies the module path from the current scope. Without `pub`, Rust emits `E0603` because items are private by default."
+}

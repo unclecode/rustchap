@@ -1,0 +1,11 @@
+{
+  "id": "pinned-futures.rule.why-pinning-is-needed",
+  "kind": "rule",
+  "title": "Why Async Futures Require Memory Pinning",
+  "concepts": [
+    "pinned-futures"
+  ],
+  "prompt": "Why must a future be pinned in memory before its poll method can be called?",
+  "answer": "Async state machines can hold internal references to their own local variables across `.await` points. Moving the future in memory would invalidate those internal pointers and corrupt memory. Wrapping the reference in `Pin` prevents safe code from moving the state machine after polling begins.",
+  "schema_version": 1
+}

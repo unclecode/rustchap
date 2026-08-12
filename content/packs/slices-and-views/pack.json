@@ -10,9 +10,18 @@
     "slices-and-views.003",
     "slices-and-views.004",
     "slices-and-views.002",
-    "slices-and-views.005"
+    "slices-and-views.005",
+    "slices-and-views.007",
+    "slices-and-views.008",
+    "slices-and-views.009",
+    "slices-and-views.010",
+    "slices-and-views.011",
+    "slices-and-views.012",
+    "slices-and-views.013",
+    "slices-and-views.014",
+    "slices-and-views.015"
   ],
   "icon": "scissors",
   "accent": "teal",
-  "level": "core"
+  "level": "ownership"
 }

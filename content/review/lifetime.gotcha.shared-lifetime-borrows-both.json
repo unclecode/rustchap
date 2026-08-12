@@ -1,0 +1,11 @@
+{
+  "id": "lifetime.gotcha.shared-lifetime-borrows-both",
+  "kind": "gotcha",
+  "title": "Shared Lifetime Borrows Both Inputs",
+  "concepts": [
+    "lifetime"
+  ],
+  "prompt": "What happens when a function takes two reference parameters with the same lifetime parameter `'a`?",
+  "answer": "The compiler assumes the return value could point to either parameter. It keeps both arguments borrowed for as long as the returned reference is in use.",
+  "schema_version": 1
+}

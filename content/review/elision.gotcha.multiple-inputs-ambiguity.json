@@ -1,0 +1,11 @@
+{
+  "id": "elision.gotcha.multiple-inputs-ambiguity",
+  "kind": "gotcha",
+  "title": "When elision fails on multiple inputs",
+  "concepts": [
+    "elision"
+  ],
+  "prompt": "Why does lifetime elision fail when a function takes two reference parameters and returns a reference?",
+  "answer": "The compiler cannot determine which input parameter the returned reference borrows from. It refuses to guess and produces compiler error `E0106`. You must explicitly annotate the return type and input parameters to specify the borrowing relationship.",
+  "schema_version": 1
+}

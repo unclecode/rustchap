@@ -5,7 +5,7 @@
   "topic": "Ownership",
   "summary": "A clone is a real deep copy - often a hidden allocation used to silence the borrow checker.",
   "lecture": [
-    "Calling .clone() on a String or Vec allocates fresh heap memory and copies every element. Cloning a Vec<String> clones the vector AND every string inside it. It is never free, and unlike in reference-counted languages it is never just a pointer bump (that's Rc::clone, a different thing).",
+    "Calling .clone() on a String or Vec allocates fresh heap memory and copies every element. Cloning a Vec<String> clones the vector AND every string inside it. It is never free, and unlike in reference-counted languages it is never just a pointer bump (that's `Rc::clone`, a different thing).",
     "Clones are legitimate when two owners genuinely must exist independently. The anti-pattern - the one this app trains you to feel - is cloning to make a move error go away. If the callee only reads the value, the correct fix is a borrow; the clone merely hides the design question and pays an allocation to do so.",
     "A useful reflex: every time you type .clone(), ask 'who needs to own this second copy?'. If the answer is 'nobody, I just needed the compiler to stop complaining', it's a borrow in disguise."
   ],

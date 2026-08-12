@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.011",
+  "version": 1,
+  "title": "Extend Foreign Slices",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "extension-traits",
+    "slice"
+  ],
+  "difficulty": 2,
+  "goal": "Implement an extension trait for slices using method chaining.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from idiomatic/leveraging-the-type-system"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "pub trait SliceExt<T> {\n    fn ends(&self) -> Option<(&T, &T)>;\n}\n\nimpl<T> SliceExt<T> for [T] {",
+    "blocks": [
+      {
+        "id": "sig",
+        "text": "\n    fn ends(&self) -> Option<(&T, &T)> {"
+      },
+      {
+        "id": "first",
+        "text": "\n        let f = self.first()?;"
+      },
+      {
+        "id": "last",
+        "text": "\n        let l = self[1..].last().unwrap_or(f);"
+      },
+      {
+        "id": "ret",
+        "text": "\n        Some((f, l))"
+      },
+      {
+        "id": "close",
+        "text": "\n    }"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn gets_ends() {\n    let nums = vec![10, 20, 30];\n    assert_eq!(\n        nums.ends(),\n        Some((&10, &30))\n    );\n}\n\n#[test]\nfn empty_slice_returns_none() {\n    let empty: Vec<i32> = vec![];\n    assert_eq!(empty.ends(), None);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "Start by defining the method signature of ends inside the trait implementation.",
+    "Extract the first element before using it to fallback for single-element slices."
+  ],
+  "explanation": "To add methods to foreign types like `[T]`, you declare an extension trait and implement it for `[T]`. The second block relies on `f` defined in the previous block, ensuring a strict and valid block order."
+}

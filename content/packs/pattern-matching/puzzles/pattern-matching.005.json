@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.005",
+  "version": 1,
+  "title": "Destructuring Structs",
+  "track": "pattern-matching",
+  "concepts": [
+    "pattern-matching",
+    "structs"
+  ],
+  "difficulty": 1,
+  "goal": "Unpack structs and tuples into individual variables using patterns.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Pattern Matching"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You can unpack structs and tuples directly in a `match` or `let` statement."
+      },
+      {
+        "kind": "code",
+        "code": "let p = Point { x: 10, y: 20 };\nlet Point { x, y } = p;",
+        "caption": "Field names become local variables automatically."
+      },
+      {
+        "kind": "prose",
+        "text": "When you only care about specific fields, use `..` to ignore the remaining ones."
+      },
+      {
+        "kind": "code",
+        "code": "match p {\n    Point { x: 0, y } => println!(\"{y}\"),\n    Point { x, .. } => println!(\"{x}\"),\n}",
+        "caption": "`..` ignores all unlisted struct fields."
+      },
+      {
+        "kind": "prose",
+        "text": "Nested patterns unpack inner structures in one step. You can destructure tuples inside structs without temporary variables."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Unpack structs and tuples into individual variables using patterns."
+}

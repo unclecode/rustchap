@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "pattern-matching.015",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "45519cf13b68fa68cc346abdc92d210c579a9e66e76e5ec6b7a9083d89c74071": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of `opt` as enum variant `Some` which is behind a shared reference",
+          "slot_ids": [
+            "scrutinee"
+          ],
+          "rust_code": "E0507"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6bcdc05b8b0060fee505eb1e47da7442c2c193277047f640c6f5c49a33b54007": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "84cfc4e26444099f0b0812d661c1b9702d525d490bf47d5184b5159a4c6b4564": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "pattern"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "88df6b8383d4fcb06a013c212edbb7fdce0227c69a62e106245ff476d440d7ef": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "cannot move out of `opt` as enum variant `Some` which is behind a shared reference",
+          "slot_ids": [
+            "scrutinee"
+          ],
+          "rust_code": "E0507"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c20aa81a1044427e04c83d63a14c53e4377375a2206b72a0d6b73ea256e89d34": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "pattern"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "dd6e5400f5a762f3c4091d954cc2d21d2a0c07135ef14d10785fc5eb8dd22573": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot borrow `opt` as mutable, as it is not declared as mutable",
+          "slot_ids": [
+            "scrutinee"
+          ],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e276e8116634eb3f27292444ea7d37227b063054c994aaba9a625ed355a40cbd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot mutably bind by value within an implicitly-borrowing pattern",
+          "slot_ids": [
+            "pattern"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "move_error",
+          "message": "cannot move out of `opt` as enum variant `Some` which is behind a shared reference",
+          "slot_ids": [
+            "scrutinee"
+          ],
+          "rust_code": "E0507"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f4814e12dbac52771e62eaadf6d19800411afabbf11a4d799d7d344fc8b8de91": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "pattern"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fdc3c42b2a0d3ab22c19fa9617bd59b67f823ca2e17a5c7150b0c44b6adba936": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot mutably bind by value within an implicitly-borrowing pattern",
+          "slot_ids": [
+            "pattern"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "move_error",
+          "message": "cannot move out of a mutable reference",
+          "slot_ids": [
+            "scrutinee"
+          ],
+          "rust_code": "E0507"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot borrow `opt` as mutable, as it is not declared as mutable",
+          "slot_ids": [
+            "scrutinee"
+          ],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

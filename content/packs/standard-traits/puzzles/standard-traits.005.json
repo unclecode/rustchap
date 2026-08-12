@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.005",
+  "version": 1,
+  "title": "Adding Custom Types",
+  "track": "standard-traits",
+  "concepts": [
+    "standard-traits"
+  ],
+  "difficulty": 2,
+  "goal": "Implement operator overloading for references to preserve ownership.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Standard Traits"
+  },
+  "template": "use std::ops::Add;\n\n#[derive(Debug, PartialEq, Clone)]\nstruct Score(i32);\n\nimpl Add for ⟦slot1⟧ {\n    type Output = Score;\n    fn add(self, rhs: &Score) -> Score {\n        Score(self.0 + rhs.0)\n    }\n}\n\nfn main() {\n    let s1 = Score(10);\n    let s2 = Score(20);\n    let total = ⟦slot2⟧ + &s2;\n    assert_eq!(total, Score(30));\n    assert_eq!(s1, Score(10));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "Score",
+        "label": "trait target",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "&Score"
+          },
+          {
+            "id": "sl2",
+            "text": "Score"
+          },
+          {
+            "id": "sl3",
+            "text": "&mut Score"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "s1",
+        "label": "left hand operand",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "&s1"
+          },
+          {
+            "id": "sl2",
+            "text": "s1"
+          },
+          {
+            "id": "sl3",
+            "text": "s1.clone()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_score_add() {\n    let a = Score(5);\n    let b = Score(15);\n    let c = &a + &b;\n    assert_eq!(c, Score(20));\n    assert_eq!(a, Score(5));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Check the signature of add: rhs is a reference, so LHS must also be a reference trait implementation.",
+    "Using &s1 passes a reference so s1 is not moved."
+  ],
+  "explanation": "Implementing `Add for &Score` allows addition between `&Score` and `&Score` without taking ownership of `s1` or `s2`. Implementing `Add for Score` with `fn add(self, rhs: &Score)` fails with `E0053` because the trait signature expects `rhs: Score`. Passing `s1` instead of `&s1` fails with `E0308` because type mismatch occurs when LHS is expected to be a reference."
+}

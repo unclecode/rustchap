@@ -1,0 +1,12 @@
+{
+  "id": "option.gotcha.collect-fallible",
+  "kind": "gotcha",
+  "title": "Collecting Option or Result into Collections",
+  "concepts": [
+    "option",
+    "iterator"
+  ],
+  "prompt": "What happens when you collect an iterator of Result items into a single Result containing a Vec?",
+  "answer": "Collecting an iterator of Result values into Result<Vec<T>, E> processes items until the first error. If any item is an Err, iteration stops and that Err is returned immediately. If all items succeed, you get Ok with the full Vec.",
+  "schema_version": 1
+}

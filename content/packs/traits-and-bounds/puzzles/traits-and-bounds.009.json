@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.009",
+  "version": 1,
+  "title": "Choose the Output",
+  "track": "traits-and-bounds",
+  "concepts": [
+    "traits"
+  ],
+  "difficulty": 2,
+  "goal": "Implement a trait with an associated type and refer to it in method signatures.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Associated Types"
+  },
+  "template": "trait Transform {\n    type Output;\n    fn transform(&self) -> Self::Output;\n}\nstruct Meters(i32);\nstruct Feet(i32);\n\nimpl Transform for Meters {\n    ⟦assoc_type_slot⟧\n    fn transform(&self) -> ⟦return_type_slot⟧ { Feet(self.0 * 3) }\n}\n\nfn main() {\n    let m = Meters(5);\n    println!(\"{}\", m.transform().0);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "assoc_type_slot",
+        "original": "type Output = i32;",
+        "label": "associated type definition",
+        "choices": [
+          {
+            "id": "as1",
+            "text": "type Output = Feet;"
+          },
+          {
+            "id": "as2",
+            "text": "type Output = i32;"
+          },
+          {
+            "id": "as3",
+            "text": "type Output = Meters;"
+          }
+        ]
+      },
+      {
+        "id": "return_type_slot",
+        "original": "Output",
+        "label": "return type signature",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "Self::Output"
+          },
+          {
+            "id": "re2",
+            "text": "Self"
+          },
+          {
+            "id": "re3",
+            "text": "Output"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn transforms_meters() {\n    let m = Meters(10);\n    assert_eq!(m.transform().0, 30);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The return value is a Feet struct, so the associated Output type must match.",
+    "Use `Self::Output` to refer to associated types inside trait method signatures."
+  ],
+  "explanation": "`type Output = Feet;` defines the concrete associated type for `Meters`. `Self::Output` in the method signature refers to that defined type. Setting `type Output = i32` causes type error `E0308` because the function body returns `Feet`. Using `Self` as the return type expects `Meters`, which also causes `E0308`. Referring to plain `Output` fails with `E0412` because associated types require qualification."
+}

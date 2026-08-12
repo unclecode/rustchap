@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel",
+  "title": "Errors That Travel",
+  "description": "The ? operator, the Error trait, and converting between error types.",
+  "toolchain": "1.97.1",
+  "order": [
+    "errors-that-travel.001",
+    "errors-that-travel.002",
+    "errors-that-travel.003",
+    "errors-that-travel.004",
+    "errors-that-travel.005",
+    "errors-that-travel.006",
+    "errors-that-travel.007",
+    "errors-that-travel.008",
+    "errors-that-travel.009",
+    "errors-that-travel.010",
+    "errors-that-travel.011",
+    "errors-that-travel.012",
+    "errors-that-travel.013",
+    "errors-that-travel.014",
+    "errors-that-travel.015"
+  ],
+  "icon": "arrow.uturn.up.circle.fill",
+  "accent": "orange",
+  "level": "everyday"
+}

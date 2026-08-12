@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.014",
+  "version": 1,
+  "title": "Writing to a Buffer",
+  "track": "standard-traits",
+  "concepts": [
+    "io-traits"
+  ],
+  "difficulty": 2,
+  "goal": "Pass a mutable buffer reference to a generic I/O writer.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Standard Traits"
+  },
+  "template": "use std::io::{Result, Write};\n\nfn write_header<W: Write>(w: ⟦slot1⟧) -> Result<()> {\n    w.write_all(b\"HEAD\")\n}\n\nfn main() {\n    let mut buf = Vec::new();\n    write_header(⟦slot2⟧).unwrap();\n    assert_eq!(buf, b\"HEAD\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "&W",
+        "label": "writer parameter type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "&mut W"
+          },
+          {
+            "id": "sl2",
+            "text": "&W"
+          },
+          {
+            "id": "sl3",
+            "text": "W"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "&buf",
+        "label": "writer argument",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "&mut buf"
+          },
+          {
+            "id": "sl2",
+            "text": "&buf"
+          },
+          {
+            "id": "sl3",
+            "text": "buf"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_write_header() {\n    let mut buffer = Vec::new();\n    write_header(&mut buffer).unwrap();\n    assert_eq!(buffer, b\"HEAD\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at the receiver type expected by `Write::write_all`.",
+    "To keep using buf in main after writing, borrow it mutably rather than moving it."
+  ],
+  "explanation": "`Write::write_all` requires a mutable reference to the target stream or buffer. Passing `&mut buf` allows the function to mutate the buffer while keeping ownership in `main`. Shared references like `&buf` produce error `E0596` because shared data cannot be mutated. Taking `W` by value moves `buf` and produces `E0382` when reading `buf` later."
+}

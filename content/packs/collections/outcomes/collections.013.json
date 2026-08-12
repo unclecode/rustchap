@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "collections.013",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "9b6c52e5ff368ae54da4c6e73a1acd37eeae45787258bc3db24ca769605f5754": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type `i32` cannot be dereferenced",
+          "slot_ids": [],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "compile_error",
+          "message": "type `i32` cannot be dereferenced",
+          "slot_ids": [
+            "deref_op"
+          ],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ac1e513201b433b66adc344022bad300bc30c1fb76ef60c1cdae292bf618aef2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "binary assignment operation `*=` cannot be applied to type `&mut i32`",
+          "slot_ids": [
+            "deref_op"
+          ],
+          "rust_code": "E0368"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "afe701096c7bb00b7ad384d0e9ec1b6525f54235935b5f1a4a691281084715d7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`&&mut Vec<i32>` is not an iterator",
+          "slot_ids": [
+            "iter_ref"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b5027260d4a45b7a4b9a5cb65f641ae2d0fbfb12c4589cf7ce1f12a9c8541797": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cae352e9eead6c7871c99484d8031398fa3b51eb87333d955386b3581ee28f8d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type `i32` cannot be dereferenced",
+          "slot_ids": [],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "compile_error",
+          "message": "type `i32` cannot be dereferenced",
+          "slot_ids": [
+            "deref_op"
+          ],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ce935f8e873f7cef180071d80ab4d40a06a82f15349eb52e176552dd9200fbd7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`&&mut Vec<i32>` is not an iterator",
+          "slot_ids": [
+            "iter_ref"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f4953601d2e745038032956cdb74a4323ffd440a32377974104ad6d6cc33fbae": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type `i32` cannot be dereferenced",
+          "slot_ids": [],
+          "rust_code": "E0614"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f7c8c6369815d4b493170dfc1939a6fe5d49f81e56cd3d4b8e5b432bc8632534": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "fea6d445980cc370fe79dfdb1d4e3d812abb610666bcb7a28111f050348f5386": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "`&&mut Vec<i32>` is not an iterator",
+          "slot_ids": [
+            "iter_ref"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

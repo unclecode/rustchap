@@ -1,11 +1,11 @@
 {
-  "schema_version": 1,
   "id": "option.gotcha.no-null",
   "kind": "gotcha",
-  "title": "There is no null",
+  "title": "Absence as an explicit type",
   "concepts": [
     "option"
   ],
-  "prompt": "Rust has no null. What replaces it, and what does the compiler force you to do?",
-  "answer": "`Option<T>`, with the variants `Some(T)` and `None`. Because the absent case is part of the type, the compiler makes you handle it before you can touch the value, so there is no way to dereference nothing by accident."
+  "prompt": "Why does Rust use Option instead of null pointers for missing values?",
+  "answer": "Null allows missing values to be passed silently until they cause a runtime crash. `Option<T>` forces absence into the type system so the compiler requires every caller to handle the `None` case explicitly.",
+  "schema_version": 1
 }

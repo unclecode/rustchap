@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "id": "testing.004",
+  "version": 1,
+  "title": "Structure a Test Module",
+  "track": "testing",
+  "concepts": [
+    "unit-testing",
+    "cfg-test"
+  ],
+  "difficulty": 2,
+  "goal": "Arrange the declaration and body of a unit test module.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Unit Tests"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "#[derive(Debug, PartialEq)]\nstruct Err;\n\nfn double(x: i32) -> Result<i32, Err> {\n    Ok(x * 2)\n}\n",
+    "blocks": [
+      {
+        "id": "mod_decl",
+        "text": "#[cfg(test)]\nmod tests {"
+      },
+      {
+        "id": "import",
+        "text": "\n    use super::*;"
+      },
+      {
+        "id": "attr",
+        "text": "\n    #[test]"
+      },
+      {
+        "id": "fn_decl",
+        "text": "\n    fn test_double() -> Result<(), Err> {"
+      },
+      {
+        "id": "body_close",
+        "text": "\n        assert_eq!(double(3)?, 6);\n        Ok(())\n    }\n}"
+      }
+    ],
+    "fixed_suffix": ""
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_doubles() {\n    assert_eq!(double(4), Ok(8));\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "Start by opening the test module with `#[cfg(test)]`.",
+    "Import parent items so that types used in function signatures (like Err) are resolved before declaring test functions."
+  ],
+  "explanation": "The `#[cfg(test)]` attribute applies to `mod tests`. `use super::*;` must be at module level before function declarations so types in return type signatures like `Result<(), Err>` resolve correctly in module scope. Each test function needs `#[test]` directly above its signature."
+}

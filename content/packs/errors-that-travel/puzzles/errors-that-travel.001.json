@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.001",
+  "version": 1,
+  "title": "The Try Operator",
+  "track": "errors-that-travel",
+  "concepts": [
+    "error-propagation"
+  ],
+  "difficulty": 1,
+  "goal": "Unwrap success or early return error using the try operator.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Error Handling"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In languages like Python or Java, exceptions bubble up automatically. In Rust, error propagation is explicit using `?`."
+      },
+      {
+        "kind": "code",
+        "code": "use std::num::ParseIntError;\n\nfn parse(s: &str)\n    -> Result<i32, ParseIntError>\n{\n    let n = s.parse::<i32>()?;\n    Ok(n * 2)\n}",
+        "caption": "The try operator unwraps Ok or returns Err immediately."
+      },
+      {
+        "kind": "prose",
+        "text": "When attached to a `Result`, `?` evaluates to the inner `Ok` value if successful. If it is an `Err`, the function returns early with that error."
+      },
+      {
+        "kind": "prose",
+        "text": "You can only use `?` inside a function that returns a compatible `Result` or `Option` type."
+      },
+      {
+        "kind": "code",
+        "code": "fn main()\n    -> Result<(), ParseIntError>\n{\n    let v = \"12\".parse::<i32>()?;\n    Ok(())\n}",
+        "caption": "Main can return Result to use the try operator at top level."
+      },
+      {
+        "kind": "prose",
+        "text": "Converting between different error types with `?` involves trait conversions, which comes next."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Unwrap success or early return error using the try operator."
+}

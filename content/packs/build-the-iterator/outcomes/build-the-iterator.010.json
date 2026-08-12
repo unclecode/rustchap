@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "build-the-iterator.010",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1d58c061df1bf20fe5a4df197c6dfe875e2afb395d7bc12065297921cb869669": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "adapter",
+            "consumer"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "289295ae5dde343c1b2e63e68d7fb473e6c993f23bc4f46240fd4e11c262d0b5": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "296494e1e4636e1020779373e898e4a86074510b1c705a68ecfc4de48318795c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "adapter",
+            "consumer"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "474cfacc50511477d800f5eda0b6e5c7f1befa764ae542a77ed1cb6033ec5016": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "a value of type `Vec<i32>` cannot be made by summing an iterator over elements of type `i32`",
+          "slot_ids": [
+            "consumer"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "63b1c60dbeb36ce21b5d3d533323ff0935e1cadb3c61f7339c3ca7d1607a9fc9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "a value of type `Result<Vec<i32>, ParseIntError>` cannot be made by summing an iterator over elements of type `i32`",
+          "slot_ids": [
+            "consumer"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "77df36a529fb2496e57063d330c5d3962a9ae264504ea707e7d262314421b3ae": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "a value of type `Result<Vec<i32>, ParseIntError>` cannot be built from an iterator over elements of type `i32`",
+          "slot_ids": [
+            "consumer"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "86a47c8ac2c4d08efe92234f8becb739918f0077a03e2237cd387c0502b50fff": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "a value of type `Result<Vec<i32>, ParseIntError>` cannot be built from an iterator over elements of type `i32`",
+          "slot_ids": [
+            "consumer"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c4d60c869e679ed947a3407f8364f7c6e272f208da7ff275cc0d15f2526d402c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "a value of type `Result<Vec<i32>, ParseIntError>` cannot be made by summing an iterator over elements of type `i32`",
+          "slot_ids": [
+            "consumer"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d50371daae88714ef94f304e45ad7075021c6eece71dc243690ab7d7891072b0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "adapter",
+            "consumer"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

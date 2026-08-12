@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.013",
+  "version": 1,
+  "title": "Fluid Builder Methods",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "builder-pattern",
+    "mutability"
+  ],
+  "difficulty": 2,
+  "goal": "Implement builder methods that enable method chaining by value.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Builder Pattern"
+  },
+  "template": "struct Config { port: u16 }\nstruct Builder { port: u16 }\n\nimpl Builder {\n    fn new() -> Self { Builder { port: 80 } }\n    fn port(⟦slot1⟧, port: u16) -> ⟦slot2⟧ {\n        self.port = port;\n        self\n    }\n    fn build(self) -> Config { Config { port: self.port } }\n}\n\nfn main() {\n    let c = Builder::new().port(8080).build();\n    assert_eq!(c.port, 8080);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "&self",
+        "label": "the receiver parameter",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "mut self"
+          },
+          {
+            "id": "sl2",
+            "text": "&self"
+          },
+          {
+            "id": "sl3",
+            "text": "self"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "()",
+        "label": "the return type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Self"
+          },
+          {
+            "id": "sl2",
+            "text": "()"
+          },
+          {
+            "id": "sl3",
+            "text": "&Self"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_builder_port() {\n    let c = Builder::new().port(9000).build();\n    assert_eq!(c.port, 9000);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Method chaining requires returning the builder value back to the caller.",
+    "Modifying fields on `self` requires a mutable binding for `self`."
+  ],
+  "explanation": "Builder methods that take `mut self` by value gain mutable access to update fields and return `Self` to allow method chaining. Taking `&self` fails with `E0594` because immutable references cannot mutate fields. Taking un-mutable `self` also fails with `E0594` because the `self` variable itself must be declared `mut` to mutate its fields. Returning `()` causes `E0308` type mismatch and prevents chaining `.build()`."
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "strings-basics.006",
+  "version": 1,
+  "title": "Count and Extract",
+  "track": "strings-basics",
+  "concepts": [
+    "string-types"
+  ],
+  "difficulty": 2,
+  "goal": "Find the actual character count and safely fetch a character.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from std-types/string"
+  },
+  "template": "fn char_info(s: &str, index: usize) -> (usize, Option<char>) {\n    let count = s.⟦count_op⟧;\n    let ch = s.⟦char_op⟧;\n    (count, ch)\n}\n\nfn main() {\n    let (len, c) = char_info(\"🦀 Rust\", 0);\n    println!(\"{len}, {c:?}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "count_op",
+        "original": "len()",
+        "label": "character count operation",
+        "choices": [
+          {
+            "id": "co1",
+            "text": "chars().count()"
+          },
+          {
+            "id": "co2",
+            "text": "len()"
+          },
+          {
+            "id": "co3",
+            "text": "bytes().count()"
+          }
+        ]
+      },
+      {
+        "id": "char_op",
+        "original": "[index]",
+        "label": "character fetch operation",
+        "choices": [
+          {
+            "id": "ch1",
+            "text": "chars().nth(index)"
+          },
+          {
+            "id": "ch2",
+            "text": "[index]"
+          },
+          {
+            "id": "ch3",
+            "text": "get(index)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_char_info() {\n    let (count, ch) = char_info(\"🦀 Rust\", 0);\n    assert_eq!(count, 6);\n    assert_eq!(ch, Some('🦀'));\n    let (count2, ch2) = char_info(\"hello\", 1);\n    assert_eq!(count2, 5);\n    assert_eq!(ch2, Some('e'));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rust strings use UTF-8 encoding. The `len()` method returns byte count rather than character count.",
+    "Indexing with brackets is not supported on `str` slices. Use an iterator method instead."
+  ],
+  "explanation": "`chars().count()` counts Unicode scalar values. The `len()` and `bytes().count()` methods return byte lengths which fail on multi-byte characters like emojis. Standard bracket indexing causes compiler error E0608 because `str` cannot be indexed by integer. Calling `get(index)` causes error E0308 because `&str::get` expects a range. Using `chars().nth(index)` safely retrieves the character at the given index."
+}

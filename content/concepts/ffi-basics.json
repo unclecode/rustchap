@@ -1,0 +1,16 @@
+{
+  "id": "ffi-basics",
+  "title": "FFI Declarations",
+  "topic": "Unsafe",
+  "summary": "Foreign Function Interface allows Rust code to call and be called by foreign C functions.",
+  "lecture": [
+    "FFI relies on extern blocks to declare signatures of functions compiled in external C libraries.",
+    "Functions in unsafe extern blocks can be marked safe if they have no memory safety preconditions.",
+    "Strings passed across FFI must use C-compatible NUL-terminated types like CStr instead of &str."
+  ],
+  "example": {
+    "code": "unsafe extern \"C\" {\n    safe fn abs(i: i32) -> i32;\n}",
+    "caption": "Safe FFI declarations permit calls without unsafe blocks."
+  },
+  "schema_version": 1
+}

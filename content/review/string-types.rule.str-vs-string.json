@@ -1,0 +1,11 @@
+{
+  "id": "string-types.rule.str-vs-string",
+  "kind": "rule",
+  "title": "String versus str reference",
+  "concepts": [
+    "string-types"
+  ],
+  "prompt": "What is the core difference between String and &str?",
+  "answer": "String is an owned growable buffer stored on the heap. &str is an immutable borrowed view into UTF-8 text stored elsewhere. Functions that only read text should accept &str to accept both types.",
+  "schema_version": 1
+}

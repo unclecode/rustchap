@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.007",
+  "version": 1,
+  "title": "Spinlock Guard",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "atomic-types",
+    "memory-ordering"
+  ],
+  "difficulty": 3,
+  "goal": "Build a lock acquisition loop using atomic compare_exchange_weak.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "template": "use std::sync::atomic::{AtomicBool, Ordering};\n\npub struct SpinLock { locked: AtomicBool }\n\nimpl SpinLock {\n    pub const fn new() -> Self { Self { locked: AtomicBool::new(false) } }\n    pub fn lock(&self) {\n        while self.locked.⟦op⟧(false, true, Ordering::Acquire, Ordering::Relaxed).⟦res⟧ {\n            std::hint::spin_loop();\n        }\n    }\n    pub fn unlock(&self) { self.locked.store(false, Ordering::Release); }\n}\n\nfn main() {}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "op",
+        "original": "swap",
+        "label": "atomic operation method",
+        "choices": [
+          {
+            "id": "op1",
+            "text": "compare_exchange_weak"
+          },
+          {
+            "id": "op2",
+            "text": "swap"
+          },
+          {
+            "id": "op3",
+            "text": "store"
+          }
+        ]
+      },
+      {
+        "id": "res",
+        "original": "is_ok()",
+        "label": "loop continuation condition",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "is_err()"
+          },
+          {
+            "id": "re2",
+            "text": "is_ok()"
+          },
+          {
+            "id": "re3",
+            "text": "unwrap_err()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_spinlock() {\n    use std::sync::Arc;\n    let lock = Arc::new(SpinLock::new());\n    lock.lock();\n    let l2 = lock.clone();\n    let h = std::thread::spawn(move || { l2.lock(); l2.unlock(); });\n    std::thread::sleep(std::time::Duration::from_millis(50));\n    assert!(!h.is_finished());\n    lock.unlock();\n    h.join().unwrap();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "`compare_exchange_weak` is idiomatic inside spin loops because it can fail spuriously yielding better performance on ARM.",
+    "The while loop should continue spinning as long as the atomic exchange fails (returns `Err`)."
+  ],
+  "explanation": "`compare_exchange_weak` is preferred inside retry loops because it can fail spuriously yielding better performance on architectures like ARM. When `compare_exchange_weak` successfully acquires the lock, it returns `Ok`, so `is_err()` evaluates to `false` and terminates the loop. Using `is_ok()` causes callers to exit prematurely without waiting when another thread holds the lock. `unwrap_err()` panics on `Ok`. Methods `swap` and `store` take 2 arguments instead of 4, producing compiler error `E0061`."
+}

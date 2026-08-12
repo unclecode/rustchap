@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "collections.008",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "7dd085defb996aa37c04d5acc5fda32d875f48ef3a5bafef48ddc42c1b6aa8fe": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0
+      },
+      "diagnostics": []
+    },
+    "ce0df4aaf952093477a99545ed33f86792b7c8526c95077871cd3537d3d602b1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "the method `collect` exists for array `[(&str, {integer}); 2]`, but its trait bounds were not satisfied",
+          "slot_ids": [
+            "array_collect"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "fe6d81d03dceba854ae1e07249bfca166d778bcd2339b3e48964adadcd966b28": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this method takes 2 arguments but 1 argument was supplied",
+          "slot_ids": [
+            "insert_tuple"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "insert_tuple"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

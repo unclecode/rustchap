@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views.010",
+  "version": 1,
+  "title": "Mutable Slices",
+  "track": "slices-and-views",
+  "concepts": [
+    "slice",
+    "mutability",
+    "borrow"
+  ],
+  "difficulty": 1,
+  "goal": "Mutate data in place using exclusive mutable slices.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from borrowck"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "A mutable slice `&mut [T]` provides temporary exclusive access to a region of elements. You can modify elements directly through it."
+      },
+      {
+        "kind": "code",
+        "code": "let mut data = [10, 20, 30];\nlet slice = &mut data[1..];\nslice[0] = 99;\nassert_eq!(data, [10, 99, 30]);",
+        "caption": "Modifying slice[0] mutates data[1] in place."
+      },
+      {
+        "kind": "prose",
+        "text": "The aliasing rule applies strictly to mutable slices. You cannot create two overlapping mutable slices from the same collection."
+      },
+      {
+        "kind": "prose",
+        "text": "Even non-overlapping range indexes like `&mut a[..1]` and `&mut a[1..]` fail in the same scope because indexing borrows the whole array as mutable."
+      },
+      {
+        "kind": "code",
+        "code": "let mut a = [1, 2, 3, 4];\nlet (left, right) = a.split_at_mut(2);\nleft[0] = 10;\nright[0] = 20;",
+        "caption": "split_at_mut splits an array into two disjoint mutable slices."
+      },
+      {
+        "kind": "prose",
+        "text": "Methods like `split_at_mut` allow safely mutating distinct parts of a collection simultaneously."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Mutate data in place using exclusive mutable slices."
+}

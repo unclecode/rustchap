@@ -1,0 +1,11 @@
+{
+  "id": "pattern-matching.rule.refutable-patterns",
+  "kind": "rule",
+  "title": "Refutable versus irrefutable patterns",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "prompt": "Why does writing `let Variant(x) = val;` produce compiler error `E0005`?",
+  "answer": "A standard `let` binding requires an irrefutable pattern that always matches. Since enum variants are refutable, you must use `if let`, `let else`, or `match` instead.",
+  "schema_version": 1
+}

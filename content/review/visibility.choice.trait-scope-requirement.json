@@ -1,0 +1,12 @@
+{
+  "id": "visibility.choice.trait-scope-requirement",
+  "kind": "choice",
+  "title": "Bringing Traits Into Scope for Method Res...",
+  "concepts": [
+    "visibility",
+    "traits"
+  ],
+  "prompt": "Why might a trait method call fail even when the underlying type implements that trait?",
+  "answer": "Rust requires the trait itself to be in scope for its methods to be callable on a type. You must import the trait into the current module using a `use` statement.",
+  "schema_version": 1
+}

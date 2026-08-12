@@ -1,0 +1,11 @@
+{
+  "id": "token-types.error.private-type-in-public-interface",
+  "kind": "error",
+  "title": "Private type in public interface error E0446",
+  "concepts": [
+    "token-types"
+  ],
+  "prompt": "What causes error E0446 when exposing a token struct from a module?",
+  "answer": "Error `E0446` occurs when a public struct or function exposes a private type in its signature or public field list. Keep the field private or declare the field type public.",
+  "schema_version": 1
+}

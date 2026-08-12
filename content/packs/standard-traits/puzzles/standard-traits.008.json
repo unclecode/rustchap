@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.008",
+  "version": 1,
+  "title": "Abstracting Stream Reading",
+  "track": "standard-traits",
+  "concepts": [
+    "io-traits",
+    "traits"
+  ],
+  "difficulty": 1,
+  "goal": "Read from byte streams using the Read trait.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Standard Traits"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In other languages, byte streams rely on standard class hierarchies. Rust uses the `Read` trait from `std::io` for generic byte input."
+      },
+      {
+        "kind": "code",
+        "code": "use std::io::{Read, Result};\n\nfn head<R: Read>(mut r: R) -> Result<u8> {\n    let mut buf = [0u8; 1];\n    r.read_exact(&mut buf)?;\n    Ok(buf[0])\n}",
+        "caption": "`Read` takes mutable references to fill byte buffers."
+      },
+      {
+        "kind": "prose",
+        "text": "Functions taking `impl Read` accept byte slices `&[u8]`, files, and network sockets without extra allocation."
+      },
+      {
+        "kind": "prose",
+        "text": "Line-by-line reading requires buffering, provided by the `BufRead` trait."
+      },
+      {
+        "kind": "code",
+        "code": "use std::io::{BufRead, BufReader, Read};\n\nfn line_count<R: Read>(r: R) -> usize {\n    BufReader::new(r).lines().count()\n}",
+        "caption": "`BufReader` adapts any `Read` type into a `BufRead`."
+      },
+      {
+        "kind": "prose",
+        "text": "This separation keeps the base `Read` trait lean while buffering remains explicit."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Read from byte streams using the Read trait."
+}

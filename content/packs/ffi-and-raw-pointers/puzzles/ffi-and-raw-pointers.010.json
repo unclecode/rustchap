@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.010",
+  "version": 1,
+  "title": "Unsafe Functions and Soundness",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "unsafe-rust"
+  ],
+  "difficulty": 1,
+  "goal": "Declare unsafe functions and build safe, sound wrappers around them.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Unsafe Rust"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Marking a function as `unsafe` tells callers that they must uphold safety preconditions."
+      },
+      {
+        "kind": "code",
+        "code": "unsafe fn swap_val(\n    a: *mut i32,\n    b: *mut i32,\n) {\n    let temp = *a;\n    *a = *b;\n    *b = temp;\n}",
+        "caption": "The unsafe keyword moves responsibility to the caller."
+      },
+      {
+        "kind": "prose",
+        "text": "Calling an `unsafe` function requires an `unsafe` block at the call site."
+      },
+      {
+        "kind": "prose",
+        "text": "Inside an `unsafe fn`, performing unsafe operations still requires an explicit `unsafe` block in modern Rust."
+      },
+      {
+        "kind": "code",
+        "code": "#[deny(unsafe_op_in_unsafe_fn)]\nunsafe fn read_raw(\n    ptr: *const i32,\n) -> i32 {\n    unsafe { *ptr }\n}",
+        "caption": "Unsafe operations inside unsafe functions need explicit blocks."
+      },
+      {
+        "kind": "prose",
+        "text": "A safe function wrapping unsafe code is sound only if no possible input can cause undefined behavior."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Declare unsafe functions and build safe, sound wrappers around them."
+}

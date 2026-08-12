@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.013",
+  "version": 1,
+  "title": "Override the Default",
+  "track": "traits-and-bounds",
+  "concepts": [
+    "traits"
+  ],
+  "difficulty": 2,
+  "goal": "Implement the required trait method and override the default behavior.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Traits"
+  },
+  "template": "trait Notifier {\n    fn user(&self) -> &str;\n    fn notify(&self) -> String {\n        format!(\"Alert for {}\", self.user())\n    }\n}\n\nstruct Admin {\n    name: String,\n}\n\nimpl Notifier for Admin {\n    ⟦slot1⟧\n    ⟦slot2⟧\n}\n\nfn main() {\n    let a = Admin { name: String::from(\"Alice\") };\n    assert_eq!(a.notify(), \"URGENT Alert for Alice\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "fn user() -> &str {\n        \"admin\"\n    }",
+        "label": "required method implementation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "fn user(&self) -> &str {\n        &self.name\n    }"
+          },
+          {
+            "id": "sl2",
+            "text": "fn user(&self) -> String {\n        self.name.clone()\n    }"
+          },
+          {
+            "id": "sl3",
+            "text": "fn user() -> &str {\n        \"admin\"\n    }"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "fn notify(&self) {\n        println!(\"URGENT Alert for {}\", self.user());\n    }",
+        "label": "method override",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "fn notify(&self) -> String {\n        let u = self.user();\n        format!(\"URGENT Alert for {u}\")\n    }"
+          },
+          {
+            "id": "sl2",
+            "text": "fn notify(&self) {\n        println!(\"URGENT Alert for {}\", self.user());\n    }"
+          },
+          {
+            "id": "sl3",
+            "text": "fn notify(&mut self) -> String {\n        let u = self.user();\n        format!(\"URGENT Alert for {u}\")\n    }"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_admin_notify() {\n    let a = Admin { name: String::from(\"Bob\") };\n    assert_eq!(a.notify(), \"URGENT Alert for Bob\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Check the trait definition: user takes &self and returns &str, and notify returns String.",
+    "The method signatures in your impl block must match the trait definition exactly, including receiver types like &self."
+  ],
+  "explanation": "Trait method overrides must match the declared signature in the trait definition. Changing the return type of user from &str to String triggers E0053, and omitting &self triggers E0185. For notify, changing &self to &mut self causes E0186, while returning () instead of String causes E0308. Matching the trait signature exactly allows custom implementations to seamlessly replace default behavior."
+}

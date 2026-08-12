@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "collections.006",
+  "version": 1,
+  "title": "Safe Element Fetch",
+  "track": "collections",
+  "concepts": [
+    "vec-basics",
+    "option"
+  ],
+  "difficulty": 2,
+  "goal": "Safely fetch an item at an arbitrary index without crashing if out of bounds.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Vec"
+  },
+  "template": "fn fetch_third(items: &[i32]) -> i32 {\n    let item = items.⟦access⟧;\n    item.⟦unwrap_op⟧\n}\n\nfn main() {\n    let res = fetch_third(&[10, 20, 30]);\n    println!(\"{res}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "access",
+        "original": "[2]",
+        "label": "access method",
+        "choices": [
+          {
+            "id": "ac1",
+            "text": "get(2)"
+          },
+          {
+            "id": "ac2",
+            "text": "[2]"
+          },
+          {
+            "id": "ac3",
+            "text": "first()"
+          }
+        ]
+      },
+      {
+        "id": "unwrap_op",
+        "original": "unwrap()",
+        "label": "unwrap operation",
+        "choices": [
+          {
+            "id": "un1",
+            "text": "copied().unwrap_or(0)"
+          },
+          {
+            "id": "un2",
+            "text": "unwrap()"
+          },
+          {
+            "id": "un3",
+            "text": "clone()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn fetches_correctly() {\n    assert_eq!(fetch_third(&[10, 20, 30, 40]), 30);\n    assert_eq!(fetch_third(&[10, 20]), 0);\n    assert_eq!(fetch_third(&[]), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Indexing directly with [2] panics when the slice has fewer than three items.",
+    ".get(2) returns an Option<&i32>, which needs to be safely converted and unwrapped with a fallback value."
+  ],
+  "explanation": "`items.get(2)` returns an `Option<&i32>`, which avoids panicking on short slices. `.copied()` converts `Option<&i32>` to `Option<i32>`, and `.unwrap_or(0)` safely returns 0 if `None`. Direct indexing `items[2]` panics when the slice length is under 3. Calling `.unwrap()` panics on `None` for short inputs. `.first()` accesses index 0 instead of index 2."
+}

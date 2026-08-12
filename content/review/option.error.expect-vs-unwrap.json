@@ -1,0 +1,11 @@
+{
+  "id": "option.error.expect-vs-unwrap",
+  "kind": "error",
+  "title": "Handling Missing Elements Safely",
+  "concepts": [
+    "option"
+  ],
+  "prompt": "What error occurs when calling unwrap on None, and how should production code handle missing keys?",
+  "answer": "Calling `.unwrap()` on `None` causes a thread panic with no context. Production code uses pattern matching with `if let` or fallback methods like `.unwrap_or_default()` to handle missing values gracefully.",
+  "schema_version": 1
+}

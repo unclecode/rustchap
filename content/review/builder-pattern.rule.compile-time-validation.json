@@ -1,0 +1,11 @@
+{
+  "id": "builder-pattern.rule.compile-time-validation",
+  "kind": "rule",
+  "title": "Ensuring required builder fields at compi...",
+  "concepts": [
+    "builder-pattern"
+  ],
+  "prompt": "How can a builder ensure that required fields are set before build can be called?",
+  "answer": "By using generic type parameters as state markers in the builder struct. The build method is implemented exclusively on the builder specialized with the completed state type parameter.",
+  "schema_version": 1
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.013",
+  "version": 1,
+  "title": "Recover from a Poisoned Mutex",
+  "track": "threads-and-channels",
+  "concepts": [
+    "arc-and-mutex",
+    "interior-mutability"
+  ],
+  "difficulty": 2,
+  "goal": "Access the protected data inside a Mutex even after another thread panicked.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Shared State"
+  },
+  "template": "use std::sync::{Arc, Mutex};\nuse std::thread;\n\nfn recover_data(mutex: Arc<Mutex<i32>>) -> i32 {\n    let _ = thread::spawn({\n        let m = Arc::clone(&mutex);\n        move || {\n            let mut g = m.lock().unwrap();\n            *g += 10;\n            panic!();\n        }\n    }).join();\n    let guard = match mutex.lock() {\n        Ok(g) => g,\n        Err(err) => ⟦slot1⟧,\n    };\n    ⟦slot2⟧\n}\n\nfn main() {\n    let m = Arc::new(Mutex::new(0));\n    recover_data(m);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "panic!(\"poisoned lock\")",
+        "label": "the error recovery expression",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "err.into_inner()"
+          },
+          {
+            "id": "sl2",
+            "text": "panic!(\"poisoned lock\")"
+          },
+          {
+            "id": "sl3",
+            "text": "err.get_ref()"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "*guard",
+        "label": "the return expression",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "*guard"
+          },
+          {
+            "id": "sl2",
+            "text": "guard"
+          },
+          {
+            "id": "sl3",
+            "text": "&guard"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn recovers_poisoned_value() {\n    let m = Arc::new(Mutex::new(5));\n    assert_eq!(recover_data(m), 15);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "When a thread panics while holding a lock, lock() returns Err(PoisonError).",
+    "PoisonError carries the MutexGuard inside it, which you can extract with into_inner()."
+  ],
+  "explanation": "mutex.lock() returns Err(PoisonError) if a thread panicked while holding the mutex. Calling into_inner() on PoisonError retrieves the underlying MutexGuard, allowing data access. Calling panic! terminates execution rather than recovering the value, and err.get_ref() returns &MutexGuard, causing a match arm type mismatch."
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.007",
+  "version": 1,
+  "title": "Distinguish IDs with Newtypes",
+  "track": "design-the-api",
+  "concepts": [
+    "api-design",
+    "newtype-pattern"
+  ],
+  "difficulty": 2,
+  "goal": "Use dedicated tuple structs to make mixing up raw ID integers a compile error.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from API Guidelines: Type Safety"
+  },
+  "template": "struct UserId(pub u64);\nstruct GroupId(pub u64);\n\nfn grant_access(user: ⟦user_param⟧, group: ⟦group_param⟧) -> bool {\n    user.0 != 0 && group.0 != 0\n}\n\nfn main() {\n    let user = UserId(42);\n    let group = GroupId(10);\n    println!(\"{}\", grant_access(user, group));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "user_param",
+        "original": "u64",
+        "label": "user parameter type",
+        "choices": [
+          {
+            "id": "us1",
+            "text": "UserId"
+          },
+          {
+            "id": "us2",
+            "text": "u64"
+          },
+          {
+            "id": "us3",
+            "text": "GroupId"
+          }
+        ]
+      },
+      {
+        "id": "group_param",
+        "original": "u64",
+        "label": "group parameter type",
+        "choices": [
+          {
+            "id": "gr1",
+            "text": "GroupId"
+          },
+          {
+            "id": "gr2",
+            "text": "u64"
+          },
+          {
+            "id": "gr3",
+            "text": "UserId"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_access() {\n    assert!(grant_access(UserId(1), GroupId(1)));\n    assert!(!grant_access(UserId(0), GroupId(1)));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Notice how `user` and `group` are created in `main`. They are wrapper structs, not raw `u64` values.",
+    "The function parameter types must match the wrapper struct types defined at the top."
+  ],
+  "explanation": "The newtype pattern wraps primitive types in single-field tuple structs like `UserId(pub u64)`. Raw integers or `type` aliases permit swapping arguments accidentally because `type` aliases do not create distinct types. Using `UserId` and `GroupId` in signatures enforces exact domain boundary checking at compile time. Passing `u64` or swapped newtypes triggers type mismatch error `E0308`."
+}

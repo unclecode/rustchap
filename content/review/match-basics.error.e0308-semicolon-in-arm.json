@@ -1,0 +1,11 @@
+{
+  "id": "match-basics.error.e0308-semicolon-in-arm",
+  "kind": "error",
+  "title": "Semicolon inside a match arm block",
+  "concepts": [
+    "match-basics"
+  ],
+  "prompt": "Why does adding a semicolon inside a match arm cause error E0308?",
+  "answer": "A semicolon turns the last expression inside a block into a statement. That causes the block to yield `()` instead of the value, creating a type mismatch with other arms that yield a value.",
+  "schema_version": 1
+}

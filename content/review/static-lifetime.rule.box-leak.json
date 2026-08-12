@@ -1,0 +1,12 @@
+{
+  "id": "static-lifetime.rule.box-leak",
+  "kind": "rule",
+  "title": "Creating static references at runtime",
+  "concepts": [
+    "static-lifetime",
+    "smart-pointers"
+  ],
+  "prompt": "How do you produce a reference with `'static` lifetime from a dynamically allocated string at runtime?",
+  "answer": "Allocate the string on the heap inside a `Box` and pass ownership to `Box::leak`. This function intentionally forfeits automatic cleanup, returning a mutable or immutable reference that remains valid for the rest of the program execution.",
+  "schema_version": 1
+}

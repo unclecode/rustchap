@@ -1,0 +1,11 @@
+{
+  "id": "smart-pointers.choice.deref-coercion-box",
+  "kind": "choice",
+  "title": "Passing Boxed values to function references",
+  "concepts": [
+    "smart-pointers"
+  ],
+  "prompt": "When a function accepts `&T`, should you manually unbox a `Box<T>` before calling it?",
+  "answer": "You should pass a reference to the box using `&boxed_val` instead of unboxing it. Rust applies deref coercion automatically to convert `&Box<T>` into `&T`.",
+  "schema_version": 1
+}

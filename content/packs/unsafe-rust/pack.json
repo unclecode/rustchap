@@ -8,9 +8,20 @@
     "unsafe-rust.004",
     "unsafe-rust.001",
     "unsafe-rust.002",
-    "unsafe-rust.003"
+    "unsafe-rust.003",
+    "unsafe-rust.005",
+    "unsafe-rust.006",
+    "unsafe-rust.007",
+    "unsafe-rust.008",
+    "unsafe-rust.009",
+    "unsafe-rust.010",
+    "unsafe-rust.011",
+    "unsafe-rust.012",
+    "unsafe-rust.013",
+    "unsafe-rust.014",
+    "unsafe-rust.015"
   ],
   "icon": "exclamationmark.triangle.fill",
   "accent": "red",
-  "level": "advanced"
+  "level": "systems"
 }

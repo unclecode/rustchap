@@ -1,0 +1,11 @@
+{
+  "id": "async-await.gotcha.futures-are-inert",
+  "kind": "gotcha",
+  "title": "Calling an async fn does not execute it",
+  "concepts": [
+    "async-await"
+  ],
+  "prompt": "What happens when you call an async function without writing .await?",
+  "answer": "Calling an async function creates and returns a future state machine without executing its body. Nothing runs until an executor or .await polls the future.",
+  "schema_version": 1
+}

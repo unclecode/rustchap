@@ -1,0 +1,11 @@
+{
+  "id": "async-await.syntax.async-move-syntax",
+  "kind": "syntax",
+  "title": "Writing owned async blocks with move",
+  "concepts": [
+    "async-await"
+  ],
+  "prompt": "What is the correct syntax for creating an async block that takes ownership of its captured variables?",
+  "answer": "Write the keywords async move followed by a block in curly braces. Writing move async or move block alone is a syntax error.",
+  "schema_version": 1
+}

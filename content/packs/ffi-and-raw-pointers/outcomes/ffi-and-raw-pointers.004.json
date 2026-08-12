@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "ffi-and-raw-pointers.004",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "81015eff4cad4edeb810683721e89a6963c17163fc0537aba4f49a29175f1d11": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b0224f469c757c1355a10918352a8bad8ad8026ebcf2a069140e1f5fc7b99809": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "unsafe_blocks": 1
+      },
+      "diagnostics": []
+    },
+    "d4858d69dccd0f9d03b9161e6d0ace5f820a1728767e588099e93795a4d2bdd8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "dereference of raw pointer is unsafe and requires unsafe block",
+          "slot_ids": [
+            "missing_unsafe_block"
+          ],
+          "rust_code": "E0133"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

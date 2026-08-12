@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "generics-and-dyn.014",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1eb6776b2aac9dc32c4f3e49e9462912e2b7f81b459a2dcca507cb41e265c93c": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "2fb429794fed1570dda3e0da100c4aadcff233443fdca0fb0167e6d729d8e6e0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`impl Trait` is not allowed in paths",
+          "slot_ids": [
+            "turbofish"
+          ],
+          "rust_code": "E0562"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3dc404589bbb8c518251599383fb67ea0bcae6081277d756174df8259c01526f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`impl Trait` is not allowed in paths",
+          "slot_ids": [
+            "turbofish"
+          ],
+          "rust_code": "E0562"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `T: FromStr` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5e7441f079f8ee3918253fe1706b2226a9ad23e47fb5c16ea12d621b95b7ce5e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `T: FromStr` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7636efaae3161634359f85fb80bfdbfe3231adba817accf20d1519d998f23829": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [],
+          "rust_code": "E0284"
+        },
+        {
+          "category": "compile_error",
+          "message": "function takes 0 generic arguments but 1 generic argument was supplied",
+          "slot_ids": [],
+          "rust_code": "E0107"
+        },
+        {
+          "category": "compile_error",
+          "message": "binary operation `==` cannot be applied to type `impl FromStr`",
+          "slot_ids": [],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`impl FromStr` doesn't implement `Debug`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9b6280412158d73a03ffad7739f5960773f0b7e5b9e508c1c3c6b5c884b9e362": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `T: FromStr` is not satisfied",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "can't compare `&str` with `{integer}`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d5c88b05d5c905ebc13707db0c4642fad44e3e18a2cc269eab4384f24f0bf8f9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [],
+          "rust_code": "E0284"
+        },
+        {
+          "category": "compile_error",
+          "message": "function takes 0 generic arguments but 1 generic argument was supplied",
+          "slot_ids": [],
+          "rust_code": "E0107"
+        },
+        {
+          "category": "compile_error",
+          "message": "binary operation `==` cannot be applied to type `impl FromStr`",
+          "slot_ids": [],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`impl FromStr` doesn't implement `Debug`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e0510d57ab314a75964ec86e28d490920a3c33226d6c952fb32150e808c40924": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `&str: FromStr` is not satisfied",
+          "slot_ids": [
+            "turbofish"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "can't compare `&str` with `{integer}`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e81f7c78dcee36d45cb44213bc28d5cb6a72ec3f25b60e45487705b307f1e89f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`impl Trait` is not allowed in paths",
+          "slot_ids": [
+            "turbofish"
+          ],
+          "rust_code": "E0562"
+        },
+        {
+          "category": "compile_error",
+          "message": "type annotations needed",
+          "slot_ids": [],
+          "rust_code": "E0284"
+        },
+        {
+          "category": "compile_error",
+          "message": "binary operation `==` cannot be applied to type `impl FromStr`",
+          "slot_ids": [],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "trait_not_implemented",
+          "message": "`impl FromStr` doesn't implement `Debug`",
+          "slot_ids": [],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

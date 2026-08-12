@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "testing.009",
+  "version": 1,
+  "title": "Return Result from Tests",
+  "track": "testing",
+  "concepts": [
+    "unit-testing"
+  ],
+  "difficulty": 2,
+  "goal": "Configure a test function signature and return value to use ? safely.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Unit Tests"
+  },
+  "template": "fn parse_age(s: &str) -> Result<u32, String> {\n    s.parse().map_err(|_| \"invalid number\".to_string())\n}\n\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_valid_age() -> ⟦slot1⟧ {\n        let age = parse_age(\"20\")?;\n        assert_eq!(age, 20);\n        ⟦slot2⟧\n    }\n}\nfn main() {}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "()",
+        "label": "test return type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Result<(), String>"
+          },
+          {
+            "id": "sl2",
+            "text": "Result<u32, String>"
+          },
+          {
+            "id": "sl3",
+            "text": "()"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "()",
+        "label": "final expression",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Ok(())"
+          },
+          {
+            "id": "sl2",
+            "text": "()"
+          },
+          {
+            "id": "sl3",
+            "text": "Ok(20)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_parse_age_helper() {\n    assert_eq!(parse_age(\"20\"), Ok(20));\n    assert!(parse_age(\"abc\").is_err());\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The `?` operator requires the enclosing function to return a compatible `Result` or `Option` type.",
+    "The test runner expects tests to return `Result<(), E>`, so the success variant must be unit `()`."
+  ],
+  "explanation": "To use `?` inside a test function, the signature must return `Result<(), E>`. Returning `()` causes `E0277` because `?` cannot be used in a function returning unit. Returning `Result<u32, String>` causes `E0277` because `Termination` is only implemented for `Result<(), E>`. The final expression must be `Ok(())` to match the expected unit return type, whereas returning `()` or `Ok(20)` causes `E0308` type mismatches."
+}

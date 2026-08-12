@@ -1,0 +1,11 @@
+{
+  "id": "borrow-scope.rule.guard-drop-order",
+  "kind": "rule",
+  "title": "Releasing RefCell Guards Explicitly",
+  "concepts": [
+    "borrow-scope"
+  ],
+  "prompt": "How do you explicitly release a RefCell guard before the end of its block?",
+  "answer": "Pass the guard variable to the drop function. This manually destroys the guard and decrements the internal RefCell borrow counter. Subsequent calls to borrow_mut in the same scope will then succeed.",
+  "schema_version": 1
+}

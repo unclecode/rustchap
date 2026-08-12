@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.015",
+  "version": 1,
+  "title": "Pointer Indexing Pipeline",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "raw-pointers",
+    "unsafe-rust"
+  ],
+  "difficulty": 2,
+  "goal": "Chain raw pointer arithmetic to read the third element of an array.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Unsafe Rust"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn read_third(data: &[u16; 4]) -> u16 {\n    unsafe {",
+    "blocks": [
+      {
+        "id": "b1",
+        "text": "\n        let ptr = data.as_ptr();"
+      },
+      {
+        "id": "b2",
+        "text": "\n        let target = ptr.add(2);"
+      },
+      {
+        "id": "b3",
+        "text": "\n        *target"
+      }
+    ],
+    "fixed_suffix": "\n    }\n}\n\nfn main() {\n    let arr = [10, 20, 30, 40];\n    println!(\"{}\", read_third(&arr));\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn reads_third_element() {\n    assert_eq!(read_third(&[10, 20, 30, 40]), 30);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "First obtain a raw pointer from the slice using as_ptr().",
+    "Advance the raw pointer by 2 elements, then dereference target with *."
+  ],
+  "explanation": "To read through raw pointer arithmetic, you must first obtain a `*const u16` using `as_ptr()`, advance it by 2 elements using `ptr.add(2)`, and finally dereference `*target`. Out of order evaluation fails compilation with `E0425` because variable names are not yet defined in scope."
+}

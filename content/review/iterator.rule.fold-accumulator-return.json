@@ -1,0 +1,11 @@
+{
+  "id": "iterator.rule.fold-accumulator-return",
+  "kind": "rule",
+  "title": "Fold closures must return the next accumu...",
+  "concepts": [
+    "iterator"
+  ],
+  "prompt": "What must the closure passed to fold return on every iteration step?",
+  "answer": "The closure passed to `fold` takes the current accumulator and an item. It must return the updated accumulator value at the end of the closure block. Mutating variables in place without returning the next accumulator causes a type mismatch error.",
+  "schema_version": 1
+}

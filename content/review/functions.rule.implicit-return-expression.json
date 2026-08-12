@@ -1,0 +1,11 @@
+{
+  "id": "functions.rule.implicit-return-expression",
+  "kind": "rule",
+  "title": "Functions return their tail expression",
+  "concepts": [
+    "functions"
+  ],
+  "prompt": "How do you return a value from a Rust function without using the `return` keyword?",
+  "answer": "Omit the trailing semicolon from the final expression in the function body. The block evaluates to that final expression, making it the return value of the function.",
+  "schema_version": 1
+}

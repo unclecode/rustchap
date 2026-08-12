@@ -1,0 +1,11 @@
+{
+  "id": "async-await.error.e0733-recursion",
+  "kind": "error",
+  "title": "Reading Error E0733 Recursion In Async",
+  "concepts": [
+    "async-await"
+  ],
+  "prompt": "What causes error code E0733 during compilation of an async function, and how do you resolve it?",
+  "answer": "Error `E0733` occurs when an async function calls itself recursively without indirection. The compiler cannot determine the size of the generated future state machine. Fix it by returning a pinned heap allocation such as `Pin<Box<dyn Future<Output = T>>>` and wrapping the async block with `Box::pin`.",
+  "schema_version": 1
+}

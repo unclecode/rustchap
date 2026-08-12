@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.004",
+  "version": 1,
+  "title": "Shared State with Arc and Mutex",
+  "track": "threads-and-channels",
+  "concepts": [
+    "arc-and-mutex"
+  ],
+  "difficulty": 1,
+  "goal": "Share mutable data safely across multiple threads.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Shared State"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Shared references `&T` cannot cross threads if `T` uses non-atomic reference counting. To share owned data between threads, use `Arc<T>`."
+      },
+      {
+        "kind": "code",
+        "code": "use std::sync::Arc;\nlet data = Arc::new(vec![1, 2]);\nlet data_clone = Arc::clone(&data);",
+        "caption": "Arc::clone increments the atomic count without copying the vector."
+      },
+      {
+        "kind": "prose",
+        "text": "`Arc` only gives shared, read-only references. To modify shared data, wrap the inner value in a `Mutex<T>`."
+      },
+      {
+        "kind": "code",
+        "code": "use std::sync::{Arc, Mutex};\nlet count = Arc::new(Mutex::new(0));\nlet clone = Arc::clone(&count);",
+        "caption": "Arc manages shared ownership, while Mutex provides interior mutability."
+      },
+      {
+        "kind": "prose",
+        "text": "Calling `lock()` on a `Mutex` blocks until the lock is acquired, returning a `MutexGuard`. The lock releases automatically when the guard goes out of scope."
+      },
+      {
+        "kind": "code",
+        "code": "let mut guard = count.lock().unwrap();\n*guard += 1;",
+        "caption": "lock() returns a Result to handle poisoned locks if another thread panicked."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Share mutable data safely across multiple threads."
+}

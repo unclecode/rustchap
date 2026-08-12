@@ -1,0 +1,11 @@
+{
+  "id": "tuples.syntax.destructuring-vs-indexing",
+  "kind": "syntax",
+  "title": "Accessing fields in tuple values",
+  "concepts": [
+    "tuples"
+  ],
+  "prompt": "What are the two ways to access elements inside a tuple?",
+  "answer": "You can destructure the tuple with pattern matching like `let (x, y) = point;`, or access fields directly by zero-based dot notation like `point.0` and `point.1`.",
+  "schema_version": 1
+}

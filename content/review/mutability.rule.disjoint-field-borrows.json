@@ -1,0 +1,11 @@
+{
+  "id": "mutability.rule.disjoint-field-borrows",
+  "kind": "rule",
+  "title": "Disjoint Struct Field Borrows",
+  "concepts": [
+    "mutability"
+  ],
+  "prompt": "How does Rust handle borrowing different fields of the same struct simultaneously?",
+  "answer": "Rust tracks struct fields independently, allowing one field to be borrowed mutably while another field is borrowed immutably. However, calling a method taking &mut self borrows the entire struct, which conflicts with any active field borrows.",
+  "schema_version": 1
+}

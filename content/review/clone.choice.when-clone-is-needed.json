@@ -1,0 +1,13 @@
+{
+  "id": "clone.choice.when-clone-is-needed",
+  "kind": "choice",
+  "title": "When clone is actually required",
+  "concepts": [
+    "clone",
+    "move",
+    "borrow"
+  ],
+  "prompt": "When is calling `.clone()` on an owned value genuinely necessary?",
+  "answer": "Clone is required when two independent parts of your code must own their own copy of heap data at the same time. If one part only needs temporary read access, borrow instead. If the original owner no longer needs the value, move ownership instead.",
+  "schema_version": 1
+}

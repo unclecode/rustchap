@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "standard-traits.010",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "20b4773bcd1c0b8d49b016c49e5df57240badededb4518836f5be72073343ef6": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "53eec2ce0bb163fa77709a8314e703426d995625a7148b5be68041e13bea97ec": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "60a4614d68d422ca1a9381c136cdecfac0a9b027d478d373b6661d8be7372e93": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `)`, `,`, `.`, `::`, `?`, `{`, or an operator, found `into`",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `into` in this scope",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this struct takes 1 argument but 2 arguments were supplied",
+          "slot_ids": [],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "664153d7c10eddfb8c5e053496c7151a8f85e332964d08a843c34eee20333d4e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "851128f1e2ac61171ecce06df66d299e59b2014483726c6232a1c66d6f4b95b4": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "973e59a5abe53dbd58eabbc84a0a03bbd8effac702ce63e2fc1c5df4abc6cfef": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `)`, `,`, `.`, `::`, `?`, `{`, or an operator, found `into`",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `into` in this scope",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this struct takes 1 argument but 2 arguments were supplied",
+          "slot_ids": [],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "abb32ca2d7d82e0be3a6d32edf56a3dbf18a9c1fb2180bc8b7149997fc5aa9a6": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ea5418af2f34b11eaf9ecbfee00d85662a34a599427842d123d157c5d8b05fb6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `!`, `)`, `,`, `.`, `::`, `?`, `{`, or an operator, found `into`",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find function `into` in this scope",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "this struct takes 1 argument but 2 arguments were supplied",
+          "slot_ids": [],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f73f6a336afa66133a713549a167a669ae12111a168986be24e380e4ebd6c170": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "cast"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

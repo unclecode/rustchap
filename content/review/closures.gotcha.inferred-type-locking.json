@@ -1,0 +1,12 @@
+{
+  "id": "closures.gotcha.inferred-type-locking",
+  "kind": "gotcha",
+  "title": "Type inference lock on first closure call",
+  "concepts": [
+    "closures",
+    "generics"
+  ],
+  "prompt": "What happens when an unannotated closure is called for the first time with a specific argument type?",
+  "answer": "The compiler infers and locks in the concrete types of the closure parameters from that first call site. Subsequent calls with different argument types trigger type mismatch error E0308 because closures are not generic functions.",
+  "schema_version": 1
+}

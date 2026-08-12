@@ -12,9 +12,19 @@
     "move-or-borrow.007",
     "move-or-borrow.004",
     "move-or-borrow.005",
-    "move-or-borrow.006"
+    "move-or-borrow.006",
+    "move-or-borrow.009",
+    "move-or-borrow.010",
+    "move-or-borrow.011",
+    "move-or-borrow.012",
+    "move-or-borrow.013",
+    "move-or-borrow.014",
+    "move-or-borrow.015",
+    "move-or-borrow.016",
+    "move-or-borrow.017",
+    "move-or-borrow.018"
   ],
   "icon": "arrow.left.arrow.right",
   "accent": "orange",
-  "level": "core"
+  "level": "ownership"
 }

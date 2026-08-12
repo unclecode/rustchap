@@ -1,0 +1,11 @@
+{
+  "id": "tuples.syntax.pattern-matching-pairs",
+  "kind": "syntax",
+  "title": "Destructure tuple parameters in closures",
+  "concepts": [
+    "tuples"
+  ],
+  "prompt": "How do you destructure a two-element tuple reference in a closure parameter?",
+  "answer": "Use parentheses matching the tuple structure in the closure arguments, such as `|(a, b)|` or `|(&a, &b)|` for primitive references. Surrounding arguments with parentheses tells the compiler to unpack the tuple fields directly into named local variables.",
+  "schema_version": 1
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.004",
+  "version": 1,
+  "title": "Unsafe Function Boundary",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "unsafe-rust",
+    "raw-pointers"
+  ],
+  "difficulty": 2,
+  "goal": "Choose the cleanest encapsulation for dereferencing a raw pointer.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Unsafe Rust: Functions"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "clean_encapsulation",
+        "code": "fn read_raw(ptr: *const i32) -> i32 {\n    unsafe { *ptr }\n}\n\nfn main() {\n    let val = 99;\n    let res = read_raw(&val as *const i32);\n    println!(\"{res}\");\n}"
+      },
+      {
+        "id": "missing_unsafe_block",
+        "code": "fn read_raw(ptr: *const i32) -> i32 {\n    *ptr\n}\n\nfn main() {\n    let val = 99;\n    let res = read_raw(&val as *const i32);\n    println!(\"{res}\");\n}"
+      },
+      {
+        "id": "cast_address_instead",
+        "code": "fn read_raw(ptr: *const i32) -> i32 {\n    ptr as usize as i32\n}\n\nfn main() {\n    let val = 99;\n    let res = read_raw(&val as *const i32);\n    println!(\"{res}\");\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn reads_val() {\n    let val = 99;\n    let res = read_raw(&val as *const i32);\n    assert_eq!(res, 99);\n}"
+    ],
+    "metrics": [
+      "unsafe_blocks"
+    ]
+  },
+  "scoring": {
+    "primary": "unsafe_blocks",
+    "secondary": [],
+    "fluent": {
+      "unsafe_blocks": 2
+    },
+    "optimal": {
+      "unsafe_blocks": 1
+    }
+  },
+  "hints": [
+    "Encapsulate unsafe pointer dereferencing within a safe function boundary when possible.",
+    "Minimize the number of `unsafe` blocks in your code."
+  ],
+  "explanation": "A safe function can encapsulate unsafe pointer operations internally. This hides unsafe details from callers and minimizes `unsafe` blocks."
+}

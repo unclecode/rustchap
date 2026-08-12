@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.002",
+  "version": 1,
+  "title": "Early Return with Question Mark",
+  "track": "errors-that-travel",
+  "concepts": [
+    "error-propagation"
+  ],
+  "difficulty": 1,
+  "goal": "Replace explicit error checking with the try operator.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Error Handling"
+  },
+  "template": "use std::num::ParseIntError;\n\nfn add_str(a: &str, b: &str) -> Result<i32, ParseIntError> {\n    let x = a.parse::<i32>()⟦slot1⟧;\n    let y = b.parse::<i32>()⟦slot2⟧;\n    Ok(x + y)\n}\n\nfn main() {\n    let _ = add_str(\"3\", \"4\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": ".unwrap()",
+        "label": "first parsing step",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "?"
+          },
+          {
+            "id": "sl2",
+            "text": ".unwrap()"
+          },
+          {
+            "id": "sl3",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": ".unwrap()",
+        "label": "second parsing step",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "?"
+          },
+          {
+            "id": "sl2",
+            "text": ".unwrap()"
+          },
+          {
+            "id": "sl3",
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_valid() {\n    assert_eq!(add_str(\"10\", \"20\"), Ok(30));\n}",
+      "#[test]\nfn test_invalid() {\n    assert!(add_str(\"abc\", \"20\").is_err());\n    assert!(add_str(\"10\", \"xyz\").is_err());\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at the function return type. It returns a Result.",
+    "Use the try operator to return early if string parsing fails."
+  ],
+  "explanation": "The `?` operator unwraps `Ok` values or returns early on `Err`. Using `.unwrap()` panics on invalid input instead of returning a `Result::Err`. Omitting `?` leaves the value as a `Result`, causing type mismatch error `E0308` when performing addition."
+}

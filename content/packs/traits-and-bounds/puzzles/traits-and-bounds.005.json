@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "traits-and-bounds.005",
+  "version": 1,
+  "title": "Custom Trait Contracts",
+  "track": "traits-and-bounds",
+  "concepts": [
+    "traits"
+  ],
+  "difficulty": 1,
+  "goal": "Explicitly implement traits on custom types using impl Trait for Type.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Implementing Traits"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You will recognise interfaces from Go, Java, or C++, but Rust does not implement them automatically by matching method names."
+      },
+      {
+        "kind": "code",
+        "code": "trait Speaker {\n    fn speak(&self) -> String;\n}",
+        "caption": "A trait defines a contract of required methods."
+      },
+      {
+        "kind": "prose",
+        "text": "You must write an explicit `impl Trait for Type` block. Without this block, the type does not satisfy the trait even if it has matching methods."
+      },
+      {
+        "kind": "code",
+        "code": "struct Dog;\n\nimpl Speaker for Dog {\n    fn speak(&self) -> String {\n        \"Woof!\".to_string()\n    }\n}",
+        "caption": "impl Trait for Type connects the capability to the struct."
+      },
+      {
+        "kind": "prose",
+        "text": "Standard compiler error `E0277` occurs when a generic function expects a trait bound that the type has not implemented."
+      },
+      {
+        "kind": "prose",
+        "text": "Associated types and supertraits build on this foundation later in this deck."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Explicitly implement traits on custom types using impl Trait for Type."
+}

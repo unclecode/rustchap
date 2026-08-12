@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust.015",
+  "version": 1,
+  "title": "Slices from Raw Pointers",
+  "track": "unsafe-rust",
+  "concepts": [
+    "raw-pointers",
+    "slice",
+    "unsafe-rust"
+  ],
+  "difficulty": 3,
+  "goal": "Construct a slice from a raw pointer using unsafe functions.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Unsafe Rust: Dereferencing Raw Pointers"
+  },
+  "template": "use std::slice;\n\nfn sum_raw(ptr: *const i32, len: usize) -> i32 {\n    let items = ⟦unsafe_kw⟧ {\n        slice::⟦slice_fn⟧(ptr, len)\n    };\n    items.iter().sum()\n}\n\nfn main() {\n    let numbers = [10, 20, 30];\n    let total = sum_raw(numbers.as_ptr(), numbers.len());\n    println!(\"{total}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "unsafe_kw",
+        "original": "",
+        "label": "block qualifier",
+        "choices": [
+          {
+            "id": "un1",
+            "text": "unsafe"
+          },
+          {
+            "id": "un2",
+            "text": ""
+          },
+          {
+            "id": "un3",
+            "text": "if true"
+          }
+        ]
+      },
+      {
+        "id": "slice_fn",
+        "original": "from_ref",
+        "label": "slice constructor",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "from_raw_parts"
+          },
+          {
+            "id": "sl2",
+            "text": "from_ref"
+          },
+          {
+            "id": "sl3",
+            "text": "from_raw_parts_mut"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn sums_slice() {\n    let numbers = [10, 20, 30];\n    assert_eq!(sum_raw(numbers.as_ptr(), numbers.len()), 60);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Constructing a slice from a raw pointer assumes memory safety that the compiler cannot verify.",
+    "Check whether your raw pointer is immutable or mutable when picking the standard slice function."
+  ],
+  "explanation": "Calling `slice::from_raw_parts` is unsafe because the caller must guarantee memory validity, so calling it outside `unsafe` triggers compiler error `E0133`. Passing a `*const i32` to `from_raw_parts_mut` causes a type mismatch error `E0308` because mutable slices require mutable pointers. Calling `from_ref` causes type and argument count mismatch errors."
+}

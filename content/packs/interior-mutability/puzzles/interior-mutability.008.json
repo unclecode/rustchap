@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.008",
+  "version": 1,
+  "title": "Shared Non-Copy State",
+  "track": "interior-mutability",
+  "concepts": [
+    "interior-mutability",
+    "smart-pointers"
+  ],
+  "difficulty": 1,
+  "goal": "Combine Rc with RefCell to share and mutate non-Copy data across multiple owners.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: RefCell and Rc"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You will recognize shared ownership from reference counting in C++ or garbage collection in Java. `Rc` gives multiple owners access to a value, but only through shared references."
+      },
+      {
+        "kind": "prose",
+        "text": "Combining `Rc` with `RefCell` grants both shared ownership and dynamic mutability. This pattern allows non-`Copy` data to be mutated through any handle."
+      },
+      {
+        "kind": "code",
+        "code": "use std::cell::RefCell;\nuse std::rc::Rc;\n\nlet data = Rc::new(RefCell::new(42));\nlet h1 = Rc::clone(&data);\n*h1.borrow_mut() += 1;",
+        "caption": "Rc shares ownership while RefCell allows dynamic mutation."
+      },
+      {
+        "kind": "prose",
+        "text": "Calling `borrow_mut()` on an `Rc` handle reaches into the inner `RefCell` and gives exclusive write access. Keep guard scopes short so other handles can access the cell without panicking."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Combine Rc with RefCell to share and mutate non-Copy data across multiple owners."
+}

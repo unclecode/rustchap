@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.syntax.ref-map-projection",
+  "kind": "syntax",
+  "title": "Projecting Guards with Ref Map",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "How do you borrow a single field of a struct inside a RefCell without returning a reference to the outer struct?",
+  "answer": "Use `Ref::map` or `RefMut::map` on the guard returned by borrow or borrow_mut. Pass a closure that borrows the field, which transfers guard ownership to that specific field.",
+  "schema_version": 1
+}

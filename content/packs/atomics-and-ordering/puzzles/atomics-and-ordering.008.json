@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "atomics-and-ordering.008",
+  "version": 1,
+  "title": "Atomic Pointers",
+  "track": "atomics-and-ordering",
+  "concepts": [
+    "atomic-types",
+    "unsafe-rust"
+  ],
+  "difficulty": 1,
+  "goal": "Use AtomicPtr to swap raw pointers atomically across threads.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Concurrency: Shared State"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Beyond primitive numbers, Rust provides `AtomicPtr<T>` to manage raw pointers `*mut T` atomically."
+      },
+      {
+        "kind": "code",
+        "code": "use std::ptr::null_mut;\nuse std::sync::atomic::AtomicPtr;\n\nlet ptr = AtomicPtr::new(null_mut());",
+        "caption": "AtomicPtr wraps a raw pointer *mut T."
+      },
+      {
+        "kind": "prose",
+        "text": "Reading or writing the `AtomicPtr` itself is safe Rust code. Dereferencing the raw pointer loaded from it requires an `unsafe` block."
+      },
+      {
+        "kind": "prose",
+        "text": "`AtomicPtr` is the foundation for building lock-free data structures like lock-free stacks and queues."
+      },
+      {
+        "kind": "code",
+        "code": "use std::sync::atomic::Ordering;\n\nlet raw = Box::into_raw(Box::new(10));\nptr.store(raw, Ordering::Release);",
+        "caption": "Box::into_raw turns a Box into a raw pointer."
+      },
+      {
+        "kind": "prose",
+        "text": "Managing memory with `AtomicPtr` requires strict care. You must ensure heap allocations are reclaimed with `Box::from_raw` when discarded."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Use AtomicPtr to swap raw pointers atomically across threads."
+}

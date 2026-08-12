@@ -1,0 +1,11 @@
+{
+  "id": "expressions.gotcha.semicolon-changes-type",
+  "kind": "gotcha",
+  "title": "Semicolons and Unit Return Types",
+  "concepts": [
+    "expressions"
+  ],
+  "prompt": "What happens when you accidentally put a semicolon after the last line of a function?",
+  "answer": "The trailing semicolon converts the final expression into a statement. The function then evaluates to `()` instead of the expression value, causing compiler error E0308 if a return type was specified.",
+  "schema_version": 1
+}

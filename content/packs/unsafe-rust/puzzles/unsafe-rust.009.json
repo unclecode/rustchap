@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust.009",
+  "version": 1,
+  "title": "Mutable Statics Need Unsafe",
+  "track": "unsafe-rust",
+  "concepts": [
+    "unsafe-rust",
+    "static-lifetime"
+  ],
+  "difficulty": 2,
+  "goal": "Access and return a global mutable static variable within an unsafe block.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Mutable Statics"
+  },
+  "template": "static mut CALL_COUNT: u32 = 0;\n\nfn track_call() -> u32 {\n    ⟦slot1⟧ {\n        CALL_COUNT += 1;\n        ⟦slot2⟧\n    }\n}\n\nfn main() {\n    track_call();\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "if true",
+        "label": "the block type",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "unsafe"
+          },
+          {
+            "id": "sl2",
+            "text": "loop"
+          },
+          {
+            "id": "sl3",
+            "text": "if true"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "&CALL_COUNT",
+        "label": "the return value",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "CALL_COUNT"
+          },
+          {
+            "id": "sl2",
+            "text": "&CALL_COUNT"
+          },
+          {
+            "id": "sl3",
+            "text": "&raw const CALL_COUNT"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn increments_count() {\n    assert_eq!(track_call(), 1);\n    assert_eq!(track_call(), 2);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Reading or modifying a static mut variable requires an unsafe block.",
+    "The function signature returns u32, so return the value directly, not a reference or raw pointer."
+  ],
+  "explanation": "Accessing or modifying a `static mut` variable is unsafe because concurrent threads could create a data race. Wrapping the logic in an `unsafe` block satisfies the compiler check for `E0133`. `CALL_COUNT` yields a `u32` value directly. Returning `&CALL_COUNT` or `&raw const CALL_COUNT` results in a type mismatch error (`E0308`) because the function return type is `u32` rather than a reference or pointer."
+}

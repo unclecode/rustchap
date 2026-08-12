@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "errors-that-travel.015",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "468c8685adecb55db035e51562152ce8e9aaa4f73dba3a48e049b44333717838": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `trim` found for enum `Result<T, E>` in the current scope",
+          "slot_ids": [
+            "trim"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4bc7533b476d2999c0b17fc7f1809281f229f318a78b05932b8f796e0049844b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `map_err` found for reference `&str` in the current scope",
+          "slot_ids": [
+            "map_err"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "94988ceb7f1ede8e70becd9088102782c501f4d3ebb85677eb20f649fa8252a7": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0
+      },
+      "diagnostics": []
+    },
+    "b7e3cefd381a68a452dfc099c7e7894305e949e584b019791ddd8200b9bb0689": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `map_err` found for reference `&str` in the current scope",
+          "slot_ids": [
+            "map_err"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "be74c25adb3ae513f7e2b2f8ebe21e0a5b560ed8f7943ae63128da4d1709be8d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `trim` found for enum `Result<T, E>` in the current scope",
+          "slot_ids": [
+            "trim"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e9acaf1d175f12507874e0afa74ffa1dc57751a0fac77acffc5d9cab5d7bd038": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `map_err` found for reference `&str` in the current scope",
+          "slot_ids": [
+            "map_err"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,3947 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "idiomatic-patterns.011",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "025c97d5b58bd938047ac08ca94b1b3b72c0dfa7ba7bd70d69fdfaf82b9a0702": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "02843c664460510667bb12bb83a1389a0176afb9a890c7c7689aa8d697e0cc3f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "075ff215f5a1e47d87be880aa13cd575ee41aca347da5b03e897c9c941f69ffb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "08270016f002b277df70eb4e02aeca69aac78c51c561d9935b5d63e75ae91151": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "08d3ecdf15a1e61fad163702fce86e31e216b408dd2ec94693ed84098a3ccf79": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0ab059345a6a644e6356acc0cf2787b2f030dfb0edbd7d65800d88eb9a066e2e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0bce0ca3d1fe4cab3f2eca528a9afca328aae17bf597fdf09301b7196bb6b357": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0d31bd68cce177f33ebc88dea94fd0ebf0386d97297883b36b348a1bf9ede599": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "0db5235ed3148a0c7d54dc5b6d5219a3cfbfe8aa08a6e8eb2cfdc226e1abf72d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "108c067eb35416e2a1adf11db63a96da71c4b58b6e64ec3a840bf210cb0c501a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "12c3a45a2a38aac6a2c5a7c3786a6f700090d7918ee351b62f6748023f7a0177": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "191914babceedc9adaca63cc6634f263b502c3c23879f0dea429626bbabbdddc": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1a032700ec2867f0758ecef8386c1d859cabde17c4179cb74fca66abe93273f5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `l` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 7 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1af8cb9176edaada43a63f6ae9b9444edbe4bef0e7001994e8b73e8ef77d438c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1d20c84f10db6b2fa3b2dbb20b444288d3940759488fd8925a4977c5d31a565f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1fb25357bd95c4924cf40358af98c8dc8a3ea050fd787a59f0d2ae8ff5aa1da5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1fff739c4fe8da9baa4d1ca4068697d6ee06690efd5ac73a2f829fdf39f00b04": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "21d54477b0af840280a19aa781b1d49e06f3efb0c11df1bdbce563119ee08cec": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "23c42e80b442815d90c3effa43c903cdc312cf121380d9106566e31042776838": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "25062e40ca64a9ccffa5c51b1d015da2b817f4e9c38c073d9adea71aae3cae6f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "26480f53a2e6d835b154423bfcab5392c3e9ef431875840256d8df604ed25c4d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "26c06538eeeb6b0f67d21c30496731440dc0bf005471d48c8036ec10c9f9230f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "26d16dc8ad1bdbe4ca9baa9edfdc5ba9d5f18127468605b776379511d540185e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "287e7713e054a127bab202e3038386fccc06e2db81d34144b99276f6040dd9ad": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "291e260621464ece1b6f9f3e99dd62bb40ead2d8384d884770abdf6fa4246d81": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2970082499828385a689c47e178ed92a84ddbcad5bfadae10d42ebb7742bc0c7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 7 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2abb9063377cb49a4f37fd3e2eab5514d2c5dd5780f36cd270ea93ee1a81db4e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2c4a6b5809c55412658c3a7b864a4602a63e55624547e7fabb405f03b7b62858": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "30944f8e1f24ba0f1d6110f5540b1e4344c3e5f78eb4e44352718091cf7a6977": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "344a7d57afe5661a3d0258f1fa60518a3e8db2bb702704b13a37456a689746b9": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "39c91420f473e73977948d7bade374b2a473502ffcb8e2369f39a512b6eeead4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3a87762076fe89a3f15f73a7ff5d21a7d6a8877791b001e60d5e3a5af460d5ce": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3e7777102f0a52aad0fc111cd4ed0b9d7d12da6d17437ee2beec5c4f528eba79": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3edffac53a5b0cad7fa3468677601f842e6e387c6cdc057db9479ff1c641dd48": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4042dc49826bf0cfd41cd6bcf37088da45e53bdfea3f675621af79b4e318793b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "44a49516e9f141e051453b480871386c97d798ee20b86c9597879af2acc83468": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "49eb98bdc2b3327735533f489a73bf5c91a7ff4b83751450c363042e9efe31f1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4acd8f75fb207667c22a6916e7821a622207afe30d09d4d2889c97ae638362c5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4f59e3c31c077d54c811fc502a7398580b29d2d9b679a9cf78bb35c1dc546238": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "50fc503c4ad506bb04e02cea59360a46ad0977d561533f1a6473d4db8e0ecbf4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5112034c797f553cd6b1838f0322f1182dfee21f7a81b4094085ba5733722972": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "53aa2878f67e7fee9056d3eb318a5d468081c41036dd4593916bc6c704a425c3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "54404a1eea58eeea8fc07a380618d672098eff38095e27936aef0ec029c33290": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "57d363624f3081a99d196e3fa1ad2e4bfe45ef939b44cc14714fa109a08019b1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "59d968a99567a452f301dc01d6180bf2bd319e82394bf944318e7a270305d5cb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `l` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5a3cd9bbb9f3b8de3492ceae364b971fb322226122f154ab2358e36ebcd115b2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5f5ddbc932bfa2f2a777701d585abed51cc860f213756520a3531e371995116a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "60f314e71c840683b4884c1059790c09079518f76358c66198cdb50a253cfb62": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "653d0938df75b1f8ff40284d4d72f8c28f21a48628eb830dc10e0d23b6769567": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "66a808e8f263af41e509bd54e297076ad16552a45fb80bba1b2de100d876b58e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `l` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "685c32ea0d42f3801d8bdfe9c2d44c1d811f4d00191eac63f24daab15a5933ec": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6adec0bb86b1c9054880e30d828f7a1083b6abece8c340e7b5c5c00e8deb8fd0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6d0254472b3c21613832ae25584bb4ebb6761aaff0a3fdfa053404d4dbc5f361": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6dffa535c1cd58d8077b95904077f069473fa2fbbb39a7a14df984c93ec3c204": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6e64b88769325a720520d80cde11183b1997b99616e75a000bbd08a142f510fa": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `l` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "75f047439956b14009c67e66f31b9870a865f3ccfadb0eea2a047653c9e83c1a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 7 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "77005924dfee1f26b214925bf531b998609f540110a0677336452d9e752f0c68": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8004a23397b149403225031678ba20977c2086e3f6bdb795aabb0fecfe03b4ba": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "808e2ddd3f514c814bd3e068d8d46a74ed06fbab65204918cc01ef5bce91cb82": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "80ce9120ab99710b0b9c12f2e899b856c676275ef354386992709f59f819b911": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "818fd943cabb3089f622f1486b7b2d81d7d9c531f17faa20b4b34da7020467b6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "827f44f40d4f0b5a7e0f50c194359bbfcaadfeb0b21b9c36e4e0cb6f4ba50893": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "83b0ff60c745d6927498e3f44f4c3ded4c2b124201f068cfe201f60f1badf2fc": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "explicit_loops": 0
+      },
+      "diagnostics": []
+    },
+    "89b89c581025bb3b976b3e9d7c54e0203c909dd407eb863e5e4c5216e90f8335": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8bf79ce2a58c149bcdb6cb6950061b589b4e2bb16c2f290eede1c9840ed7d96d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8d7e1043ebc3c8d963f321e0f48e159e3510d11c1936a980345a3bbb9c499fbf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8db53a0bcda8711304036908c2b04804444d12e051d9d7db1ed5dec20358e09b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8df44bfe57ed90c80bd3acbe96e4d2858584dc876d41f02905be47acf1ff0dea": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "900e1a99c4ff0ca561baa2460144826d14a5dfde6d1d764fd29ec4c93c329820": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9523ed75ae0e13f3b9aa9ef082f3f7af5870cfbca8a96cc758f6a8f7220f55e0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "962903854ea8552773685a983cd9e147c8f6fadc5b17fd4f51f7f746a4044c03": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9973f03c9342f1f229d413ca242c70780debcb91c51e4c6e693221c95dad3038": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "999a4d8a1354166e93887139b275a8fa33a4c3c0237834f6136dbc343ba22c85": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `l` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 7 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9c1c6cf2527f21005198aa9718430e7d454f295baa6e5272d5a17b5a20c8c66d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9e94d1ae75886b824c3fc0159b72fddf135ed50c5863afcade830634056945cd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a3ae0c335c71a96fc6a7ed42fb7b1d2760c70f57d6aaef2f78dd30cd85c477b3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a541d9d68344654db19084cb45e07aed217f07b5378014762f692113e3d56212": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a5c30752615495a28ecd704607705710cae6925b5ad965235d49e5800c0763a2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a77feb8f379debc1349e28adbe860ee5a2a6f986837f7184259220b40e4eec28": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a8d94ff37f757efc3d873a5987784b53af16dfb3603cdddaabb4f808c216e33b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ae148d83f65bde2a3c013acf8007191ce8d07434d04754d83e4544df579384f6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ae17ab019b32a4d337824970b1aee0712f1ce6c651816bd3cdf6acd168c47aba": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "aec8a53073e7cbab6a151ad666e161d258b27e0f34ea5c45d1e80840a5c71fec": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "aecd1d980287bc1ed657b8fc9cd2c5a9bae2aa23887efdf0b8e4074413a903e8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b0579145e280780faf3ed9fd6e8c2841a36a8ebee50f2e3b1295a5d874a67244": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b0b5aa799d1878d8a75f9890308ca14eb557cb1646fdb837c9bae6fc326bda90": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b2e6f96786ba56f9ebdb7a9e9f3d244df93940c45c63b93a01a1971058c932e2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b415b340b1df2f62e1be43dd190552b34bfb50a4928973fed61bc19412ffa7e1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b4b0f2d758bb3af7a256062c2fb8f8ee3d9410efc71d13bc8e9596ab0d47740a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "b89bbe8e44ee7d2d0dcb708b1089d26114f4aae988337e781c9f0663baa279ea": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ba1ad2653c42d2785918dfab20a8cf5a0d340bba3fae10ab462cd74858240056": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ba89097008f942fa2d2d27a80f4076e455aff108212d2ee41a70c0fd109e3d2f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bc4bb1fedad15f0bc09d4d5a7f78e309de66b565dfe5f7c0d8a3aaa9c886088e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "bcd9132483849a0a2ae5900bd78bf5858cd265ad98569657ef390631b647f18b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "be078f15ca777ce9a615afbf6385c727969b062ff3b079a1cbf3aff3384bf8b4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c622ef5f5b0b473035ee335ee5ae8cf707ac65e31cc3f244fb53ab61e382bc41": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c667f807a4da701fc2f22d65cbf44c90565b8dee70ff874933db3d6ec7b90513": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `l` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c86b8798bc858668267ba811412a5e84687e07ebc75ab1efcfddd3de447d3cf5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cb2c1069cf85cc463fa558581153d330fc281b9ca625811b7007ace281beb696": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cb5c494d5561991e8af641e749afaf12013c171540ec24c2e37614a5dc6ec9c3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d0e4f9d08fc360439c2637ca7a40ae63fcd0db278fd8adfe831dee0fb92f023d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d395e147c18ba727fa7768471a7e10f4b98334ae310ca3fc5297cf8992538146": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d52e814db514b65878639a260bfb8492cc9e105ececf95a0be101b5dbe289040": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d745367beef5be854330db09ca7dc6acce3f80d39b4c908a8a66bcf207cee7d7": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d78d6f9ab79758002f60a186c0d6e59b0bb114ec59ce5aa16bea6e785e97f0c0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "dd1cfa9a212587a0546d3d1e388b923b045e0c319aa6ffb3af9a9a4f2895b737": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ddcc814bb14fbfa567aad94212fd59875c82b255d136899d09dfefe40a477651": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "dfb0425a229ef6bf1f32c61b607f4a3d9588953aab823caa6a9934488d840cca": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e13ce8fc9df518c24d95ae58afb705788149204471bc08946541083121c39642": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e430d800be37917bc59ad48dd2d9e42b3a5c330db7d01740d012bb80ca82c539": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ea55e78b77d12d7da7f419c9f2ca2d8d1ae39779e3b0b24ced22de4e97a4eed0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ea95dcf8e1f0721a4edc2a748ee8e15d4246c62343d65f8f29ad7af9fca41e7f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ebded0f8088ea7a867f7fec063cfa34354d492ca6e07039642172b8f410107f2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ee0443d2069301b4dc97fa1f21d5e389dacdda859b5bbbde489b2e1a2307ad52": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `f` in this scope",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 6 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "efed0a9bb3e1edf495b272dedf893d83554bdc45edabf785de992e74923a0701": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f03d3ed71379f3dc76b75f5dd267ac770551e74448ad8693a3336a14045dc13b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f07a776bec4e11c6d4fd949f2a4bd0cfdd185021063cb04797ae3a7660fc48fd": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "`self` parameter is only allowed in associated functions",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find type `T` in this scope",
+          "slot_ids": [
+            "sig"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 5 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f64f201cf1a297817093e99d3a77f2f991fd642806b040d331518ff1585c9648": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "not all trait items implemented, missing: `ends`",
+          "slot_ids": [],
+          "rust_code": "E0046"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f67e88deae43d1122abb2cd27773d57947c13a8262b02cb4c8edcfecf7d5bafe": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "last"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected item, found keyword `let`",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f91c4424bd820fa784bd00750e3308ab02a9fcaa549c499a72f5e42671789e6e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "non-item in item list",
+          "slot_ids": [
+            "first"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "missing `fn` or `struct` for function or struct definition",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

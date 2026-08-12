@@ -1,0 +1,11 @@
+{
+  "id": "iterator.gotcha.zip-length-mismatch",
+  "kind": "gotcha",
+  "title": "Zip stops when shortest ends",
+  "concepts": [
+    "iterator"
+  ],
+  "prompt": "How does zip behave when paired iterators have different lengths?",
+  "answer": "The `zip` adapter stops producing pairs as soon as either underlying iterator returns `None`. Any remaining elements in the longer iterator are ignored and never pulled from the stream. This prevents out-of-bounds indexing errors when processing sequences in parallel.",
+  "schema_version": 1
+}

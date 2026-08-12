@@ -1,0 +1,11 @@
+{
+  "id": "mpsc-channels.gotcha.single-consumer",
+  "kind": "gotcha",
+  "title": "Single consumer channel restriction",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "prompt": "Why can you clone an mpsc Sender but not an mpsc Receiver?",
+  "answer": "mpsc stands for multi-producer single-consumer. Senders can be cloned so multiple threads can write into the channel. The Receiver cannot be cloned because only one thread is allowed to consume messages from that endpoint.",
+  "schema_version": 1
+}

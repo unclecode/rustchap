@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.010",
+  "version": 1,
+  "title": "Borrow Views for Substrings",
+  "track": "design-the-api",
+  "concepts": [
+    "api-design",
+    "zero-copy"
+  ],
+  "difficulty": 2,
+  "goal": "Extract a domain from an email address without allocating fresh strings.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from API Guidelines: Ergonomics"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "borrowed",
+        "code": "fn extract_domain(email: &str) -> &str {\n    email.split('@').nth(1).unwrap_or(\"\")\n}"
+      },
+      {
+        "id": "owned",
+        "code": "fn extract_domain(email: &str) -> String {\n    email.split('@').nth(1).unwrap_or(\"\").to_string()\n}"
+      },
+      {
+        "id": "dangling_borrow",
+        "code": "fn extract_domain(email: &str) -> &str {\n    let domain = email.split('@').nth(1).unwrap_or(\"\");\n    let owned = domain.to_string();\n    &owned\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_domain() {\n    let domain: &str = extract_domain(\"user@example.com\");\n    assert_eq!(domain, \"example.com\");\n    let empty: &str = extract_domain(\"invalid\");\n    assert_eq!(empty, \"\");\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "The domain string segment already exists inside the input `email` slice.",
+    "Returning `&str` hands back a view tied to the input lifetime, requiring zero allocations."
+  ],
+  "explanation": "Returning `&str` borrows directly from `email`, resulting in zero heap allocations or clones. Returning `String` fails type checks when a zero-copy `&str` view is required by caller APIs. Attempting to create an intermediate `String` inside the function and return a borrow to it fails to compile because the local buffer is dropped at function exit."
+}

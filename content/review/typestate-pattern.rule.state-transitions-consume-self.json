@@ -1,0 +1,11 @@
+{
+  "id": "typestate-pattern.rule.state-transitions-consume-self",
+  "kind": "rule",
+  "title": "State transitions consume self by value",
+  "concepts": [
+    "typestate-pattern"
+  ],
+  "prompt": "How does the typestate pattern enforce that an old state cannot be reused after a transition?",
+  "answer": "Transition methods take ownership of `self` by value rather than borrowing. Calling the transition moves the value out of the caller scope and causes compile error `E0382` if reused.",
+  "schema_version": 1
+}

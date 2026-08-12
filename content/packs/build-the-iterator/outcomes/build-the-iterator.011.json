@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "build-the-iterator.011",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "01ee8acfcdbff3371492538109736c81954a94098f8dd54f762401c12b61c506": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "2ddd5de9b478d5fd1b93c4f4815dd2c945f92293fef017e322077677ef398e93": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "closure is expected to take a single 2-tuple as argument, but it takes 2 distinct arguments",
+          "slot_ids": [],
+          "rust_code": "E0593"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2e690507abbfc8d44c7535a2cfb533689dce8892854ea79c5d58147961f72bbb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "closure is expected to take 1 argument, but it takes 2 arguments",
+          "slot_ids": [],
+          "rust_code": "E0593"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "47ba52e0439138a185f9706810333128b48fe63145f6295f80b2481cb1cc4654": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `enumerate` found for reference `&[&str]` in the current scope",
+          "slot_ids": [
+            "iter_source"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a2eb1256d06f5bd7b0fe694a1567ae27f575a797f0d5b0f0b521c09b60293a84": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "closure_arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "abfc5512e818de5786ce5fd83c4743dc355654e4e2efd4f93af0b1760b8cdd15": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "closure_arg"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c84bcab591b161be41bb6c75ada16a364fd4f7e017ccc66ab8b08b4a274a82da": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ed06ca1bf1276903b277a2c19c13356d6dd0a6fdbfddb7e18b58371f4d9b1811": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `enumerate` found for reference `&[&str]` in the current scope",
+          "slot_ids": [
+            "iter_source"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f4fc04f6e9224bf8e3c94661288506d5d3c03149d632735d26b22032e3425126": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `enumerate` found for reference `&[&str]` in the current scope",
+          "slot_ids": [
+            "iter_source"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

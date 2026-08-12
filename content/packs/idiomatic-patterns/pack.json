@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns",
+  "title": "Idiomatic Patterns",
+  "description": "Newtype, builder, typestate, and RAII.",
+  "toolchain": "1.97.1",
+  "order": [
+    "idiomatic-patterns.001",
+    "idiomatic-patterns.002",
+    "idiomatic-patterns.003",
+    "idiomatic-patterns.004",
+    "idiomatic-patterns.005",
+    "idiomatic-patterns.006",
+    "idiomatic-patterns.007",
+    "idiomatic-patterns.008",
+    "idiomatic-patterns.009",
+    "idiomatic-patterns.010",
+    "idiomatic-patterns.011",
+    "idiomatic-patterns.012",
+    "idiomatic-patterns.013",
+    "idiomatic-patterns.014",
+    "idiomatic-patterns.015"
+  ],
+  "icon": "wand.and.stars",
+  "accent": "purple",
+  "level": "mastery"
+}

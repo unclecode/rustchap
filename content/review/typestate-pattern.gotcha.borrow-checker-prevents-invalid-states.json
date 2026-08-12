@@ -1,0 +1,11 @@
+{
+  "id": "typestate-pattern.gotcha.borrow-checker-prevents-invalid-states",
+  "kind": "gotcha",
+  "title": "Typestate errors happen at compile time",
+  "concepts": [
+    "typestate-pattern"
+  ],
+  "prompt": "How do API users experience an invalid state transition in a typestate API compared to runtime checks?",
+  "answer": "Invalid transitions fail at compile time because methods for illegal operations are not implemented on the current state type. The user gets a clear error before code ever executes.",
+  "schema_version": 1
+}

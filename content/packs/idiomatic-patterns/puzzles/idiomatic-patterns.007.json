@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.007",
+  "version": 1,
+  "title": "State Recovery and Builders",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "typestate-pattern",
+    "builder-pattern"
+  ],
+  "difficulty": 1,
+  "goal": "Return ownership on failed typestate transitions and enforce step ordering with builders.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from idiomatic/leveraging-the-type-system"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You already know how methods consume `self` to transition between types. In other languages, invalid state changes throw exceptions at runtime."
+      },
+      {
+        "kind": "code",
+        "code": "fn open(self) -> Result<Open, Closed> {\n    if self.key_ok() {\n        Ok(Open)\n    } else {\n        Err(self)\n    }\n}",
+        "caption": "Returning self in Err preserves ownership when a transition fails."
+      },
+      {
+        "kind": "prose",
+        "text": "When a transition fails, returning `Err(self)` gives the original value back to the caller. This allows retrying without losing data."
+      },
+      {
+        "kind": "code",
+        "code": "struct ClientBuilder<State> {\n    url: State,\n}",
+        "caption": "Generic parameters track construction state at compile time."
+      },
+      {
+        "kind": "prose",
+        "text": "You can also use type parameters to build values step by step. Methods like `build` are only implemented on the struct once required fields are provided."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Return ownership on failed typestate transitions and enforce step ordering with builders."
+}

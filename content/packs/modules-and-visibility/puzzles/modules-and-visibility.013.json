@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.013",
+  "version": 1,
+  "title": "Enum Variant Privacy",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "visibility",
+    "enums-basics"
+  ],
+  "difficulty": 2,
+  "goal": "Expose enum variants correctly across module boundaries.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "template": "mod status {\n    pub enum State {\n        ⟦slot1⟧(i32),\n        Closed,\n    }\n}\n\nfn check(s: status::State) -> i32 {\n    match s {\n        status::State::⟦slot2⟧(n) => n,\n        status::State::Closed => 0,\n    }\n}\n\nfn main() {\n    assert_eq!(check(status::State::Active(5)), 5);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "pub Active",
+        "label": "enum variant",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Active"
+          },
+          {
+            "id": "sl2",
+            "text": "pub Active"
+          },
+          {
+            "id": "sl3",
+            "text": "pub(crate) Active"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "pub Active",
+        "label": "matched variant",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Active"
+          },
+          {
+            "id": "sl2",
+            "text": "pub Active"
+          },
+          {
+            "id": "sl3",
+            "text": "State::Active"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_check_state() {\n    assert_eq!(check(status::State::Active(10)), 10);\n    assert_eq!(check(status::State::Closed), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Enum variants inherit the visibility of their enum.",
+    "Adding visibility qualifiers like pub directly to an enum variant is a syntax error."
+  ],
+  "explanation": "Enum variants do not accept visibility qualifiers like `pub`. Making the `State` enum `pub` automatically exposes all of its variants and their contained values. Adding `pub` to individual variants causes a syntax error."
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "remove-the-clone.011",
+  "version": 1,
+  "title": "Unnecessary Conversions and Hidden Clones",
+  "track": "remove-the-clone",
+  "concepts": [
+    "string-types",
+    "clone",
+    "borrow"
+  ],
+  "difficulty": 1,
+  "goal": "Spot hidden string allocations like to_string() and to_owned() when references work.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Strings"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In languages like Python or Java, passing strings around never copies heap text because string objects are garbage-collected references."
+      },
+      {
+        "kind": "prose",
+        "text": "In Rust, calling `.to_string()` or `.to_owned()` on a string slice `&str` allocates new memory on the heap and copies every byte."
+      },
+      {
+        "kind": "code",
+        "code": "fn print_label(s: &str) {\n    println!(\"{s}\");\n}",
+        "caption": "The function parameter requires only a borrowed string slice."
+      },
+      {
+        "kind": "prose",
+        "text": "Calling `print_label(&name)` passes a borrow with zero allocations. Writing `print_label(&name.to_string())` allocates a temporary `String`, borrows it, and immediately drops it."
+      },
+      {
+        "kind": "code",
+        "code": "let name = \"ferris\";\nprint_label(name);        // zero allocations\nprint_label(&name.to_string()); // unnecessary heap clone",
+        "caption": "Converting a &str to String just to borrow it back as &str is a hidden clone."
+      },
+      {
+        "kind": "prose",
+        "text": "When designing APIs that only read string data, accept `&str` instead of `String`. That allows callers to pass string literals and borrowed slices without allocating."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Spot hidden string allocations like to_string() and to_owned() when references work."
+}

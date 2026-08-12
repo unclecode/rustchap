@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust.007",
+  "version": 1,
+  "title": "Pointer Read and Write",
+  "track": "unsafe-rust",
+  "concepts": [
+    "raw-pointers",
+    "unsafe-rust",
+    "borrow"
+  ],
+  "difficulty": 2,
+  "goal": "Read and modify memory through a raw pointer without creating illegal reference aliases.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Pointer Aliasing"
+  },
+  "template": "fn update_if_pos(ptr: *mut i32) -> bool {\n    if ptr.is_null() {\n        return false;\n    }\n    unsafe {\n        if ⟦slot1⟧ > 0 {\n            ⟦slot2⟧ = 42;\n            true\n        } else {\n            false\n        }\n    }\n}\n\nfn main() {\n    let mut x = 10;\n    update_if_pos(&mut x as *mut i32);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "*ptr",
+        "label": "reading pointer value",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "*ptr"
+          },
+          {
+            "id": "sl2",
+            "text": "&*ptr"
+          },
+          {
+            "id": "sl3",
+            "text": "ptr"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "*ptr",
+        "label": "writing pointer value",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "*ptr"
+          },
+          {
+            "id": "sl2",
+            "text": "ptr"
+          },
+          {
+            "id": "sl3",
+            "text": "&mut *ptr"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn updates_positive() {\n    let mut x = 10;\n    assert!(update_if_pos(&mut x as *mut i32));\n    assert_eq!(x, 42);\n}",
+      "#[test]\nfn ignores_negative() {\n    let mut x = -5;\n    assert!(!update_if_pos(&mut x as *mut i32));\n    assert_eq!(x, -5);\n}",
+      "#[test]\nfn handles_null() {\n    assert!(!update_if_pos(std::ptr::null_mut()));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "To read the value pointed to by a raw pointer, dereference it directly with *.",
+    "Assigning to *ptr modifies the underlying memory location in place."
+  ],
+  "explanation": "Dereferencing a raw pointer with `*ptr` accesses the value directly as an `i32`. Comparing `&*ptr` against `0` produces a type mismatch (`E0308`). Assigning to `*ptr = 42` mutates the target memory in place. Assigning directly to `ptr` fails with type error `E0308` because `ptr` is a raw pointer. Assigning to `&mut *ptr` also fails with `E0308` because `&mut *ptr` is a reference."
+}

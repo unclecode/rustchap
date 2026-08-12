@@ -8,9 +8,20 @@
     "traits-and-bounds.004",
     "traits-and-bounds.001",
     "traits-and-bounds.002",
-    "traits-and-bounds.003"
+    "traits-and-bounds.003",
+    "traits-and-bounds.005",
+    "traits-and-bounds.006",
+    "traits-and-bounds.007",
+    "traits-and-bounds.008",
+    "traits-and-bounds.009",
+    "traits-and-bounds.010",
+    "traits-and-bounds.011",
+    "traits-and-bounds.012",
+    "traits-and-bounds.013",
+    "traits-and-bounds.014",
+    "traits-and-bounds.015"
   ],
   "icon": "checkmark.seal.fill",
   "accent": "green",
-  "level": "advanced"
+  "level": "abstraction"
 }

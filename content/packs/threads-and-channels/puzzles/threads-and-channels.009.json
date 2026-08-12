@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "threads-and-channels.009",
+  "version": 1,
+  "title": "Thread Boundaries and Send",
+  "track": "threads-and-channels",
+  "concepts": [
+    "send-and-static",
+    "arc-and-mutex"
+  ],
+  "difficulty": 3,
+  "goal": "Choose container types that satisfy the Send bound for multi-threaded state.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Send and Sync"
+  },
+  "template": "use std::sync::{Arc, Mutex};\nuse std::thread;\n\nfn shared_counter() -> i32 {\n    let counter = ⟦slot1⟧::new(Mutex::new(0));\n    let mut handles = vec![];\n\n    for _ in 0..5 {\n        let c = ⟦slot2⟧::clone(&counter);\n        handles.push(thread::spawn(move || {\n            let mut guard = c.lock().unwrap();\n            *guard += 1;\n        }));\n    }\n\n    for h in handles {\n        h.join().unwrap();\n    }\n\n    let guard = counter.lock().unwrap();\n    *guard\n}\n\nfn main() {\n    println!(\"{}\", shared_counter());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "std::rc::Rc",
+        "label": "outer pointer constructor",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Arc"
+          },
+          {
+            "id": "sl2",
+            "text": "std::rc::Rc"
+          },
+          {
+            "id": "sl3",
+            "text": "Box"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "std::rc::Rc",
+        "label": "outer pointer clone target",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Arc"
+          },
+          {
+            "id": "sl2",
+            "text": "std::rc::Rc"
+          },
+          {
+            "id": "sl3",
+            "text": "Box"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn increments_correctly() {\n    assert_eq!(shared_counter(), 5);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The compiler checks whether captured variables implement the Send trait before allowing them into a spawned thread.",
+    "Rc is non-atomic and cannot implement Send, even when wrapped in a Mutex. Use Arc for thread-safe reference counting."
+  ],
+  "explanation": "Arc provides atomic reference counting, which implements Send when wrapping a Mutex. Rc uses non-atomic counters, so wrapping it in a Mutex still results in a non-Send type that triggers E0277. Using Box allocates a separate mutex for each clone, causing threads to mutate independent counters so the test fails."
+}

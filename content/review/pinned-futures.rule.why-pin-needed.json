@@ -1,0 +1,11 @@
+{
+  "id": "pinned-futures.rule.why-pin-needed",
+  "kind": "rule",
+  "title": "Pinning keeps self references valid",
+  "concepts": [
+    "pinned-futures"
+  ],
+  "prompt": "Why do futures holding local references across .await require pinning before being polled?",
+  "answer": "Local references across .await make the generated state machine self-referential. Pinning guarantees the future will not move in memory, keeping internal references valid.",
+  "schema_version": 1
+}

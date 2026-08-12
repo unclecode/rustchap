@@ -1,0 +1,12 @@
+{
+  "id": "iterator.error.enumerate-on-slice",
+  "kind": "error",
+  "title": "Calling enumerate directly on slice",
+  "concepts": [
+    "iterator",
+    "slice"
+  ],
+  "prompt": "Why does calling .enumerate() directly on a slice fail with E0599?",
+  "answer": "Slices do not implement the Iterator trait directly. You must call .iter(), .iter_mut(), or .into_iter() first to create an iterator before calling adapter methods like .enumerate().",
+  "schema_version": 1
+}

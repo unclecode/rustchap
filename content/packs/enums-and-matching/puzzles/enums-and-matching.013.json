@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.013",
+  "version": 1,
+  "title": "Early Return with Let Else",
+  "track": "enums-and-matching",
+  "concepts": [
+    "enums-basics",
+    "pattern-matching"
+  ],
+  "difficulty": 3,
+  "goal": "Unpack a variant or diverge early using let else.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Pattern Matching"
+  },
+  "template": "enum Token {\n    Number(i32),\n    Word(String),\n}\n\nfn parse_num(t: Token) -> i32 {\n    ⟦let_else_stmt⟧ ⟦else_block⟧;\n    val * 2\n}\n\nfn main() {\n    let t = Token::Number(21);\n    println!(\"{}\", parse_num(t));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "let_else_stmt",
+        "original": "if let Token::Number(val) = t",
+        "label": "let else statement",
+        "choices": [
+          {
+            "id": "le1",
+            "text": "let Token::Number(val) = t"
+          },
+          {
+            "id": "le2",
+            "text": "if let Token::Number(val) = t"
+          },
+          {
+            "id": "le3",
+            "text": "let val = Token::Number(t)"
+          }
+        ]
+      },
+      {
+        "id": "else_block",
+        "original": "else { 0 }",
+        "label": "else block",
+        "choices": [
+          {
+            "id": "el1",
+            "text": "else { return 0; }"
+          },
+          {
+            "id": "el2",
+            "text": "else { 0 }"
+          },
+          {
+            "id": "el3",
+            "text": "else { break; }"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn parse_number_token() {\n    assert_eq!(parse_num(Token::Number(21)), 42);\n    assert_eq!(parse_num(Token::Word(String::from(\"hi\"))), 0);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "In `let pattern = expr else { ... };`, the variable binding is available in the surrounding scope.",
+    "The `else` block in a `let else` construct must diverge by returning, panicking, or breaking."
+  ],
+  "explanation": "`let Token::Number(val) = t else { return 0; };` binds `val` in the outer scope if the pattern matches. The `else` block of a `let else` statement is required to diverge (using `return`, `panic!`, `break`, or `continue`), so returning early with `return 0;` compiles. Providing a value without diverging like `else { 0 }` triggers `E0308` because the compiler expects type `!` (never). `if let` cannot be used with this syntax and scope behavior."
+}

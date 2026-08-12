@@ -1,0 +1,16 @@
+{
+  "id": "cfg-test",
+  "title": "Conditional Test Compilation",
+  "topic": "Basics",
+  "summary": "Isolate unit tests inside mod tests annotated with `#[cfg(test)]`.",
+  "lecture": [
+    "The `#[cfg(test)]` attribute ensures test code is only compiled when running cargo test.",
+    "Grouping tests in an inner mod tests module allows testing private functions in the same file.",
+    "Inside the test module, use super::*; imports all items from the outer module."
+  ],
+  "example": {
+    "code": "#[cfg(test)]\nmod tests {\n    use super::*;\n}",
+    "caption": "use super::*; grants tests access to private functions."
+  },
+  "schema_version": 1
+}

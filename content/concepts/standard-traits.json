@@ -1,0 +1,16 @@
+{
+  "id": "standard-traits",
+  "title": "Standard Traits",
+  "topic": "Abstraction",
+  "summary": "Core traits in std for conversions, defaults, comparison, and operators.",
+  "lecture": [
+    "Rust uses standard library traits to integrate custom types with language features.",
+    "Traits like From, Into, and Default manage safe type creation and conversion.",
+    "Comparison and operator traits like PartialEq and Add enable clean syntax for domain types."
+  ],
+  "example": {
+    "code": "let s: String = \"hello\".into();\nlet d = u32::default();",
+    "caption": "Standard traits enable idiom reuse."
+  },
+  "schema_version": 1
+}

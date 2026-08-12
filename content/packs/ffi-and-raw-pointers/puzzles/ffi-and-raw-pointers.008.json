@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.008",
+  "version": 1,
+  "title": "Soundness Contracts",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "api-design",
+    "unsafe-rust"
+  ],
+  "difficulty": 1,
+  "goal": "Distinguish between unsafe code and unsound safe abstractions.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Unsafe Rust: Soundness"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "A function marked safe promises that no input can cause undefined behavior."
+      },
+      {
+        "kind": "code",
+        "code": "// UNSOUND: Safe callers can pass invalid pointers!\nfn read_ptr(p: *const i32) -> i32 {\n    unsafe { *p }\n}",
+        "caption": "Safe functions must not expose undefined behavior."
+      },
+      {
+        "kind": "prose",
+        "text": "If a function cannot validate its inputs internally, it must be marked `unsafe`."
+      },
+      {
+        "kind": "code",
+        "code": "// SOUND: Caller promises p is valid.\nunsafe fn read_ptr(p: *const i32) -> i32 {\n    unsafe { *p }\n}",
+        "caption": "Marking the function unsafe requires callers to uphold invariants."
+      },
+      {
+        "kind": "prose",
+        "text": "Sound safe abstractions check inputs before calling `unsafe` code."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Distinguish between unsafe code and unsound safe abstractions."
+}

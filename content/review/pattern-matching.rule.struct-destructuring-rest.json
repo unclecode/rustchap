@@ -1,0 +1,11 @@
+{
+  "id": "pattern-matching.rule.struct-destructuring-rest",
+  "kind": "rule",
+  "title": "Ignoring remaining struct fields",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "prompt": "How do you ignore unmentioned fields when pattern matching on a struct?",
+  "answer": "You write `..` at the end of the struct pattern. This tells the compiler to ignore all remaining fields without listing them individually. Listing a field as `field: _` only ignores that single field.",
+  "schema_version": 1
+}

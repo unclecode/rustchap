@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "interior-mutability.013",
+  "version": 1,
+  "title": "Exclusive RefMut Mapping",
+  "track": "interior-mutability",
+  "concepts": [
+    "interior-mutability",
+    "borrow-scope"
+  ],
+  "difficulty": 2,
+  "goal": "Use `RefMut::map` to mutate a field nested inside a RefCell.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Interior Mutability: RefMut::map"
+  },
+  "template": "use std::cell::{RefCell, RefMut};\n\nstruct Config {\n    port: u16,\n}\n\nfn get_port_mut(c: &RefCell<Config>)\n    -> RefMut<u16>\n{\n    let guard = c.⟦slot1⟧();\n    RefMut::map(guard, |c| ⟦slot2⟧)\n}\n\nfn main() {\n    let cfg = RefCell::new(Config { port: 8080 });\n    *get_port_mut(&cfg) = 9090;\n    println!(\"{}\", cfg.borrow().port);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "borrow",
+        "label": "borrow method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "borrow_mut"
+          },
+          {
+            "id": "sl2",
+            "text": "borrow"
+          },
+          {
+            "id": "sl3",
+            "text": "get_mut"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "&c.port",
+        "label": "field reference",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "&mut c.port"
+          },
+          {
+            "id": "sl2",
+            "text": "&c.port"
+          },
+          {
+            "id": "sl3",
+            "text": "c.port"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn mutates_port() {\n    let cfg = RefCell::new(Config { port: 80 });\n    *get_port_mut(&cfg) = 443;\n    assert_eq!(cfg.borrow().port, 443);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "`RefMut::map` requires an exclusive RefMut guard created by borrow_mut().",
+    "The projection closure must return a mutable reference &mut u16."
+  ],
+  "explanation": "`RefMut::map` consumes a `RefMut<Config>` and projects it into a `RefMut<u16>`. `borrow()` returns `Ref<Config>`, which is incompatible with `RefMut::map` (`E0308`). Returning `&c.port` yields a shared reference `&u16`, breaking the closure signature requirement of returning `&mut u16` (`E0308`). `get_mut()` fails because `c` is a shared reference `&RefCell<Config>`, requiring exclusive access (`E0596`)."
+}

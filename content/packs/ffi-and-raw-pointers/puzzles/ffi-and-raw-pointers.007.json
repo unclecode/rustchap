@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.007",
+  "version": 1,
+  "title": "Safe FFI Functions",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "ffi-basics",
+    "unsafe-rust"
+  ],
+  "difficulty": 2,
+  "goal": "Declare C functions without preconditions as safe in an extern block.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from FFI: Foreign Functions"
+  },
+  "template": "unsafe extern \"C\" {\n    ⟦decl_slot⟧ fn abs(input: i32) -> i32;\n}\n\nfn compute(val: i32) -> i32 {\n    ⟦call_slot⟧\n}\n\nfn main() {\n    println!(\"{}\", compute(-42));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "decl_slot",
+        "original": "unsafe",
+        "label": "declaration qualifier",
+        "choices": [
+          {
+            "id": "de1",
+            "text": "safe"
+          },
+          {
+            "id": "de2",
+            "text": "unsafe"
+          },
+          {
+            "id": "de3",
+            "text": "mut"
+          }
+        ]
+      },
+      {
+        "id": "call_slot",
+        "original": "abs(&val)",
+        "label": "function call",
+        "choices": [
+          {
+            "id": "ca1",
+            "text": "abs(val)"
+          },
+          {
+            "id": "ca2",
+            "text": "abs(&val)"
+          },
+          {
+            "id": "ca3",
+            "text": "abs(val as *const i32)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn computes_abs() {\n    assert_eq!(compute(-42), 42);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Functions like `abs` take simple integers and cannot cause undefined behavior.",
+    "Marking the function `safe` allows calling it without an `unsafe` block."
+  ],
+  "explanation": "External C functions that cannot cause undefined behavior can be marked `safe` in `unsafe extern` blocks. Calling a `safe` FFI function does not require an `unsafe` block at the call site. Declaring it `unsafe` causes `E0133` when called safely."
+}

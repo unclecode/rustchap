@@ -1,0 +1,11 @@
+{
+  "id": "borrow.gotcha.reference-extends-argument-borrow",
+  "kind": "gotcha",
+  "title": "How Returned References Extend Borrows",
+  "concepts": [
+    "borrow"
+  ],
+  "prompt": "How does storing a returned reference affect the caller variable that was borrowed?",
+  "answer": "The borrow of the input argument remains active for as long as the returned reference is used. You cannot mutate or move the input until that returned reference goes out of scope.",
+  "schema_version": 1
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "remove-the-clone.013",
+  "version": 1,
+  "title": "Inspect the Map",
+  "track": "remove-the-clone",
+  "concepts": [
+    "hashmap-basics",
+    "borrow",
+    "clone",
+    "zero-copy"
+  ],
+  "difficulty": 2,
+  "goal": "Inspect a value in a HashMap without cloning the entry string.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Collections"
+  },
+  "template": "use std::collections::HashMap;\n\nfn lookup_domain<'a>(map: &'a HashMap<String, String>, key: &str) -> Option<⟦ret_ty⟧> {\n    map.get(key)⟦transform⟧\n}\n\nfn main() {\n    let mut map = HashMap::new();\n    map.insert(String::from(\"app\"), String::from(\"example.com\"));\n    let res: Option<&str> = lookup_domain(&map, \"app\");\n    println!(\"{:?}\", res);\n}\n",
+  "interaction": {
+    "type": "slot-selection",
+    "slots": [
+      {
+        "id": "ret_ty",
+        "original": null,
+        "label": "return inner type",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "&'a str"
+          },
+          {
+            "id": "re2",
+            "text": "String"
+          },
+          {
+            "id": "re3",
+            "text": "&'a String"
+          }
+        ]
+      },
+      {
+        "id": "transform",
+        "original": null,
+        "label": "method chain",
+        "choices": [
+          {
+            "id": "tr1",
+            "text": ".map(|s| s.as_str())"
+          },
+          {
+            "id": "tr2",
+            "text": ".cloned()"
+          },
+          {
+            "id": "tr3",
+            "text": ".map(|s| s.clone())"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_lookup() {\n    let mut map = HashMap::new();\n    map.insert(String::from(\"app\"), String::from(\"example.com\"));\n    let res: Option<&str> = lookup_domain(&map, \"app\");\n    assert_eq!(res, Some(\"example.com\"));\n    assert_eq!(lookup_domain(&map, \"missing\"), None);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "map.get(key) returns Option<&String>.",
+    "Mapping with s.as_str() yields Option<&str> without allocating."
+  ],
+  "explanation": "`map.get(key)` returns `Option<&String>`. Mapping `s.as_str()` converts the borrowed reference into `Option<&str>` with zero heap clones. Choosing `.cloned()` or `.map(|s| s.clone())` returns `Option<String>`, causing a type mismatch `E0308` with `Option<&str>`."
+}

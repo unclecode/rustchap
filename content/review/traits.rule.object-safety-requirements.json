@@ -1,0 +1,11 @@
+{
+  "id": "traits.rule.object-safety-requirements",
+  "kind": "rule",
+  "title": "Object safety requirements for dyn Trait",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "What fundamental property must a trait have to be usable as dyn Trait, and what breaks it?",
+  "answer": "A trait must be object-safe, meaning all its methods can be placed in a fixed vtable. Returning `Self` or having generic method parameters breaks object safety because the return size or function signature depends on the concrete type.",
+  "schema_version": 1
+}

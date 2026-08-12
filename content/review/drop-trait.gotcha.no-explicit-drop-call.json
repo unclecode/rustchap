@@ -1,0 +1,11 @@
+{
+  "id": "drop-trait.gotcha.no-explicit-drop-call",
+  "kind": "gotcha",
+  "title": "Explicit calls to drop method forbidden",
+  "concepts": [
+    "drop-trait"
+  ],
+  "prompt": "What diagnostic code appears if you attempt to call x.drop() directly in Rust?",
+  "answer": "The compiler rejects explicit calls to `Drop::drop` with error E0040. You must call `std::mem::drop(x)` instead if you need to destroy a value early.",
+  "schema_version": 1
+}

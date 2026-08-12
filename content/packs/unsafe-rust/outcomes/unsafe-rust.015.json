@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "unsafe-rust.015",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "180228fb1d45831da7b0669fa8b86fec97bc57076b9eb754616b0d09769b8953": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this function takes 1 argument but 2 arguments were supplied",
+          "slot_ids": [
+            "slice_fn"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "18606b9ae9f7c50531c3b1ace31ba159f0d0999d3da6b562eab10ae396aba313": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`if` may be missing an `else` clause",
+          "slot_ids": [
+            "unsafe_kw",
+            "slice_fn"
+          ],
+          "rust_code": "E0317"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "19010f85afc98b070c002d73de2ea4096157cc0e1a052e40e1c62e6ffe6458dd": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "1a5eb9563f57d0cb1937596167004f2d4691ec9c95b8d32384e759b64fe0d713": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3f2c810724c3f5289cc94c180cefa949baa40d4935c01b091c2ce37e93463f00": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "`if` may be missing an `else` clause",
+          "slot_ids": [
+            "unsafe_kw",
+            "slice_fn"
+          ],
+          "rust_code": "E0317"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6228144e8c9b527dd49f8f2a673c45e0f012b7306e94accfa83b4d2e3ceade44": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this function takes 1 argument but 2 arguments were supplied",
+          "slot_ids": [
+            "slice_fn"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "639a52b6048a744d97b7e4342b790b0e3439125fb0c7573c3e0724edbdd791bb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this function takes 1 argument but 2 arguments were supplied",
+          "slot_ids": [
+            "slice_fn"
+          ],
+          "rust_code": "E0061"
+        },
+        {
+          "category": "compile_error",
+          "message": "`if` may be missing an `else` clause",
+          "slot_ids": [
+            "unsafe_kw",
+            "slice_fn"
+          ],
+          "rust_code": "E0317"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9cc33167d6d5b370d31896684a5996dcfc36fa733fd409df126e3da04fb7ca64": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f261a32dff41a04672ed4fe49a6488e5ddbd37ac24036ec45318ad2dbb0f4f3c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "call to unsafe function `std::slice::from_raw_parts` is unsafe and requires unsafe block",
+          "slot_ids": [
+            "slice_fn"
+          ],
+          "rust_code": "E0133"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

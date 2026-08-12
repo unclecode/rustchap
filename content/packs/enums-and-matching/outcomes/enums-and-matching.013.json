@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "enums-and-matching.013",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "03703e367bae1677675ac691458b4b20c1badc302792c378291330b30f359a8a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "`else` clause of `let...else` does not diverge",
+          "slot_ids": [
+            "else_block"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3713e9f9f34ef8c25e857e511171b170710b362bf633c0b46b832de816d0de98": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this `if` expression is missing a block after the condition",
+          "slot_ids": [
+            "let_else_stmt"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `val` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "59704eaef05e7172541c3cb081f33cb0b9701fdb1d9bf100d42e3db809139257": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this `if` expression is missing a block after the condition",
+          "slot_ids": [
+            "let_else_stmt"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `val` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "`break` outside of a loop or labeled block",
+          "slot_ids": [
+            "else_block"
+          ],
+          "rust_code": "E0268"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "736386333bd408a8b76a1ecd2868edb5788dd53e9fe033a5852bb32c7048e71c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`break` outside of a loop or labeled block",
+          "slot_ids": [
+            "else_block"
+          ],
+          "rust_code": "E0268"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "`else` clause of `let...else` does not diverge",
+          "slot_ids": [
+            "else_block"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "91901fcee8b1085dafe8afff79513400aff190e4189054e8bc9d103cdf422d52": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "this `if` expression is missing a block after the condition",
+          "slot_ids": [
+            "let_else_stmt"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `val` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9d89fa4cd06947ec5426461f757ff8a707d5eee1ab020bb601aa910947436e7b": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "bc18ba219294ef8bb153214f48a6cef05e0923ab60c7e720bcdd34580ddb6ffb": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "let_else_stmt"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot multiply `Token` by `{integer}`",
+          "slot_ids": [],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c66f0fb48fd0456d676e82801d773ca39dafa16d3a017ee529f4c27a37f40ad3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "let_else_stmt"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "`else` clause of `let...else` does not diverge",
+          "slot_ids": [
+            "else_block"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot multiply `Token` by `{integer}`",
+          "slot_ids": [],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e7c5f708bfffdf873d90d4da22c8e0eebdc0e131d1157959c4956a4e920c0481": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "`break` outside of a loop or labeled block",
+          "slot_ids": [
+            "else_block"
+          ],
+          "rust_code": "E0268"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [
+            "let_else_stmt"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "`else` clause of `let...else` does not diverge",
+          "slot_ids": [
+            "else_block"
+          ],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot multiply `Token` by `{integer}`",
+          "slot_ids": [],
+          "rust_code": "E0369"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "cfg-test.rule.conditional-compilation",
+  "kind": "rule",
+  "title": "Purpose of cfg test annotation",
+  "concepts": [
+    "cfg-test"
+  ],
+  "prompt": "Why should unit test modules be annotated with cfg(test)?",
+  "answer": "The cfg(test) attribute tells the compiler to compile the test module only when running cargo test. This prevents test code and test dependencies from bloating production binary builds. It also keeps internal helper functions out of final releases.",
+  "schema_version": 1
+}

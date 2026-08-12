@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.012",
+  "version": 1,
+  "title": "Unpack the First and Last",
+  "track": "pattern-matching",
+  "concepts": [
+    "pattern-matching",
+    "primitive-types"
+  ],
+  "difficulty": 2,
+  "goal": "Extract the boundary elements of an array while ignoring the middle elements.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Irrefutable Patterns"
+  },
+  "template": "fn first_and_last(arr: [i32; 4]) -> (i32, i32) {\n    let [first, ⟦ignore⟧, last] = ⟦source⟧;\n    (first, last)\n}\n\nfn main() {\n    println!(\"{:?}\", first_and_last([10, 20, 30, 40]));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "ignore",
+        "original": "_",
+        "label": "middle pattern",
+        "choices": [
+          {
+            "id": "ig1",
+            "text": ".."
+          },
+          {
+            "id": "ig2",
+            "text": "_"
+          },
+          {
+            "id": "ig3",
+            "text": "..."
+          }
+        ]
+      },
+      {
+        "id": "source",
+        "original": "&arr",
+        "label": "array expression",
+        "choices": [
+          {
+            "id": "so1",
+            "text": "arr"
+          },
+          {
+            "id": "so2",
+            "text": "&arr"
+          },
+          {
+            "id": "so3",
+            "text": "arr[..]"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn extracts_ends() {\n    assert_eq!(first_and_last([10, 20, 30, 40]), (10, 40));\n    assert_eq!(first_and_last([1, 2, 3, 4]), (1, 4));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "A single underscore ignores exactly one item. Arrays with four items need a syntax for multiple items.",
+    "Pass the array value directly so its type matches the fixed array pattern."
+  ],
+  "explanation": "`..` ignores all middle elements between `first` and `last`. A single `_` expects exactly one element, triggering `E0527` because four items remain. The pattern expects `[i32; 4]`, so passing `&arr` fails with type mismatch `E0308`."
+}

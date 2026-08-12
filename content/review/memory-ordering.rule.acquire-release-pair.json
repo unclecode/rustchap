@@ -1,0 +1,11 @@
+{
+  "id": "memory-ordering.rule.acquire-release-pair",
+  "kind": "rule",
+  "title": "Acquire and Release Synchronization",
+  "concepts": [
+    "memory-ordering"
+  ],
+  "prompt": "How do Acquire and Release memory orderings establish synchronization across threads?",
+  "answer": "A store with `Release` ordering ensures all preceding memory writes in that thread become visible to other threads. When another thread performs a load with `Acquire` ordering on the same atomic variable and sees that stored value, it observes all memory writes that happened before the Release store.",
+  "schema_version": 1
+}

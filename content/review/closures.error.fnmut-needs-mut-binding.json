@@ -1,0 +1,12 @@
+{
+  "id": "closures.error.fnmut-needs-mut-binding",
+  "kind": "error",
+  "title": "Why calling FnMut requires a mutable binding",
+  "concepts": [
+    "closures",
+    "mutability"
+  ],
+  "prompt": "You see compiler error `E0596` when invoking a closure parameter `f: F` where `F: FnMut()`. What is wrong and how do you fix it?",
+  "answer": "Calling an `FnMut` closure requires mutating the closure state, which requires a mutable binding to `f`. Declare the function parameter as `mut f: F` to allow mutable invocation.",
+  "schema_version": 1
+}

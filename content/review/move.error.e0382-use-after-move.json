@@ -1,0 +1,11 @@
+{
+  "id": "move.error.e0382-use-after-move",
+  "kind": "error",
+  "title": "Understanding error code E0382",
+  "concepts": [
+    "move"
+  ],
+  "prompt": "What causes compiler diagnostic E0382 and how do you resolve it?",
+  "answer": "E0382 occurs when code attempts to use a variable whose value has already been moved to another owner. You resolve it by borrowing the value if the receiver only needs read access, or by cloning if both locations require independent ownership.",
+  "schema_version": 1
+}

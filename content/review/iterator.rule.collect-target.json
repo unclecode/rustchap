@@ -1,0 +1,11 @@
+{
+  "id": "iterator.rule.collect-target",
+  "kind": "rule",
+  "title": "Collecting iterator items into collections",
+  "concepts": [
+    "iterator"
+  ],
+  "prompt": "How does collect know whether to produce a Vec or a HashMap?",
+  "answer": "`collect()` relies on type inference from the target variable or function return type. If the type is ambiguous, specify it with the turbofish syntax like `.collect::<HashMap<_, _>>()`.",
+  "schema_version": 1
+}

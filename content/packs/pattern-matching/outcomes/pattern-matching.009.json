@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "pattern-matching.009",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1815dc46e41ea01183ebbcc8c0f0cff64288a7aa0e44c4305c884cff0892b686": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "389abf8ef410c8a2f1676ff0f836f525f4cc98f7cc011cc00ad79bb5d7417ee1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `>`",
+          "slot_ids": [
+            "arm2_pat"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "39d515bffe05280980518709a96b813234f1d46161af9fe04db56b866c2632b3": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "41d2c3b85dbd4a70c206ef45e8b8cc53eab1b6637d219162aeee525525029710": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5b16a868411290178520f3147cf0c0e4ac1b5b403f3c2b10a7855a8a9ba09544": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `=>`, `@`, `if`, or `|`, found `&&`",
+          "slot_ids": [
+            "arm1_pat"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5fd2e1bf0f7e469b2e7ef2ca4cb10bfcf49901a06498c82db6714e0cb5e0e86b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `=>`, `@`, `if`, or `|`, found `&&`",
+          "slot_ids": [
+            "arm1_pat"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "607d0d31908b18dd3915d5d211bf0294f706df8ea83bd366be8664e06403406f": {
+      "status": "test_failure",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "test_failure",
+          "message": "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9a13dddfc3f7a708c0fb1c0eaf223b24875957292b59f463e6ce7b5040b67754": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `>`",
+          "slot_ids": [
+            "arm2_pat"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a0e5a40745774d26922c21d92b4682d59ca4f1b2972787329d260616eb978ab2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected one of `=>`, `@`, `if`, or `|`, found `&&`",
+          "slot_ids": [
+            "arm1_pat"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

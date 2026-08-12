@@ -1,0 +1,11 @@
+{
+  "id": "zero-copy.rule.struct-lifetime-declaration",
+  "kind": "rule",
+  "title": "Struct lifetime parameters for borrowed f...",
+  "concepts": [
+    "zero-copy"
+  ],
+  "prompt": "Why must a struct declare generic lifetime parameters when it holds reference fields?",
+  "answer": "The struct lifetime parameter informs the compiler that an instance of the struct cannot outlive the borrowed data it references. This prevents the struct from holding dangling pointers if the underlying data is dropped.",
+  "schema_version": 1
+}

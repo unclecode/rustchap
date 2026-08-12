@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "remove-the-clone.014",
+  "version": 1,
+  "title": "Zero-Copy Iterator Chain",
+  "track": "remove-the-clone",
+  "concepts": [
+    "iterator",
+    "slice",
+    "zero-copy"
+  ],
+  "difficulty": 2,
+  "goal": "Build an iterator pipeline that parses strings without cloning.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 3 Morning: Iterators"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn parse_scores(inputs: &[String]) -> Vec<u32> {\n    inputs",
+    "blocks": [
+      {
+        "id": "iter",
+        "text": "\n        .iter()"
+      },
+      {
+        "id": "as_str",
+        "text": "\n        .map(|s| s.as_str())"
+      },
+      {
+        "id": "parse",
+        "text": "\n        .filter_map(|s| s.parse().ok())"
+      },
+      {
+        "id": "collect",
+        "text": "\n        .collect()"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_parse() {\n    let raw = vec![String::from(\"10\"), String::from(\"abc\"), String::from(\"42\")];\n    assert_eq!(parse_scores(&raw), vec![10, 42]);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    ".iter() yields borrowed &String items from the slice.",
+    ".map(|s| s.as_str()) coerces &String into &str views before parsing."
+  ],
+  "explanation": "The pipeline begins by borrowing each item with `.iter()`. `.map(|s| s.as_str())` turns `&String` references into `&str` slices without heap allocations. `.filter_map()` parses numbers directly from slices, and `.collect()` gathers `u32` values into a `Vec`. Placing `.map(|s| s.as_str())` after `.filter_map()` fails with `E0599` because `u32` does not have an `.as_str()` method."
+}

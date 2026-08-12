@@ -1,0 +1,11 @@
+{
+  "id": "dynamic-errors.rule.trait-object-heap-allocation",
+  "kind": "rule",
+  "title": "How Box<dyn Error> erases error types",
+  "concepts": [
+    "dynamic-errors"
+  ],
+  "prompt": "What trade-offs come with using Box<dyn Error> as a function return error type?",
+  "answer": "Box<dyn Error> allows returning any error type implementing the Error trait without defining a custom enum. However, it allocates the error on the heap and makes pattern matching on specific error variants harder for callers.",
+  "schema_version": 1
+}

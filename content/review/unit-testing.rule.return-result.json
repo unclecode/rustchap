@@ -1,0 +1,11 @@
+{
+  "id": "unit-testing.rule.return-result",
+  "kind": "rule",
+  "title": "Returning Result from test functions",
+  "concepts": [
+    "unit-testing"
+  ],
+  "prompt": "How does a unit test function indicate failure when its return type is Result<(), E>?",
+  "answer": "A test function returning Result fails when it returns an Err value. Cargo catches the Err and prints its Debug representation as the failure reason. Return Ok(()) when all test assertions pass.",
+  "schema_version": 1
+}

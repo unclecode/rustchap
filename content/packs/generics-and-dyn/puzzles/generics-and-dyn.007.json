@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.007",
+  "version": 1,
+  "title": "Combining Trait Bounds",
+  "track": "generics-and-dyn",
+  "concepts": [
+    "generics",
+    "traits"
+  ],
+  "difficulty": 2,
+  "goal": "Require multiple traits using valid bound syntax.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Generics"
+  },
+  "template": "use std::fmt::Display;\n\nfn duplicate<T>(val: &T) -> (T, T)\nwhere\n    T: ⟦b1⟧,\n{\n    (val.clone(), val.clone())\n}\n\nfn show<T: ⟦b2⟧>(val: T) {\n    println!(\"{val} and {val}\");\n}\n\nfn main() {\n    let s = String::from(\"rust\");\n    let (a, b) = duplicate(&s);\n    show(a);\n    show(b);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "b1",
+        "original": "Clone, Display",
+        "label": "where bounds",
+        "choices": [
+          {
+            "id": "b11",
+            "text": "Clone + Display"
+          },
+          {
+            "id": "b12",
+            "text": "Clone, Display"
+          },
+          {
+            "id": "b13",
+            "text": "Clone and Display"
+          }
+        ]
+      },
+      {
+        "id": "b2",
+        "original": "Debug",
+        "label": "inline bound",
+        "choices": [
+          {
+            "id": "b21",
+            "text": "Display"
+          },
+          {
+            "id": "b22",
+            "text": "Debug"
+          },
+          {
+            "id": "b23",
+            "text": "Copy"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn duplicates_and_shows() {\n    let s = String::from(\"test\");\n    let (a, b) = duplicate(&s);\n    assert_eq!(a, \"test\");\n    assert_eq!(b, \"test\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Rust uses a mathematical symbol to combine multiple required traits.",
+    "Look at how println! interacts with the value in show - default braces {} require Display."
+  ],
+  "explanation": "Multiple trait bounds are joined using `+`, as in `Clone + Display`. Commas and `and` are syntax errors inside bound specifications. In `show`, printing with `{}` requires `Display`. Choosing `Debug` fails with `E0277` because `Display` is not satisfied, while choosing `Copy` fails with `E0277` because `String` does not implement `Copy`."
+}

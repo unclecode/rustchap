@@ -1,0 +1,13 @@
+{
+  "id": "borrow.rule.slice-over-vec-ref",
+  "kind": "rule",
+  "title": "Prefer slice references in parameters",
+  "concepts": [
+    "borrow",
+    "slice",
+    "api-design"
+  ],
+  "prompt": "Why should function parameters accept `&[T]` instead of `&Vec<T>`?",
+  "answer": "`&Vec<T>` restricts callers to actual vector instances. `&[T]` accepts references to vectors, fixed arrays, and sub-slices through deref coercion. Using slice references makes function APIs broader without imposing allocation requirements.",
+  "schema_version": 1
+}

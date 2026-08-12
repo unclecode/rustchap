@@ -1,0 +1,11 @@
+{
+  "id": "mpsc-channels.gotcha.clone-sender-not-receiver",
+  "kind": "gotcha",
+  "title": "Which channel endpoint is cloneable",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "prompt": "Which endpoint of an mpsc channel can be cloned, and what constraint does this enforce?",
+  "answer": "Sender can be cloned to support multiple producers sending to the same queue. Receiver cannot be cloned because mpsc supports only a single consumer.",
+  "schema_version": 1
+}

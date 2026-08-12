@@ -1,0 +1,11 @@
+{
+  "id": "borrow-scope.gotcha.early-drop-via-copy",
+  "kind": "gotcha",
+  "title": "Ending Borrows by Copying Data",
+  "concepts": [
+    "borrow-scope"
+  ],
+  "prompt": "How does copying a primitive value like i32 before mutating a collection prevent a borrow conflict?",
+  "answer": "Primitive types like i32 implement Copy, so reading vec[0] into a local variable copies the bits directly and ends the borrow of vec on that line. The vector can then be mutated on subsequent lines without holding an active reference.",
+  "schema_version": 1
+}

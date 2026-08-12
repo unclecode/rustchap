@@ -1,0 +1,16 @@
+{
+  "id": "threads-basics",
+  "title": "Thread Spawning and Joining",
+  "topic": "Concurrency",
+  "summary": "Spawn OS threads that execute closures and wait for their completion with JoinHandle.",
+  "lecture": [
+    "Rust threads are native 1:1 OS threads created with `thread::spawn`.",
+    "Because spawned threads run independently, variables captured by the closure must be moved into the thread using the move keyword.",
+    "Calling join on the returned JoinHandle blocks until the thread finishes and yields its return value wrapped in a Result."
+  ],
+  "example": {
+    "code": "let h = thread::spawn(move || 42);\nlet res = h.join().unwrap();",
+    "caption": "Move data into the thread and join to get the result."
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "send-and-static.gotcha.rc-not-send-or-sync",
+  "kind": "gotcha",
+  "title": "Why Rc cannot cross thread boundaries",
+  "concepts": [
+    "send-and-static"
+  ],
+  "prompt": "Why does the compiler refuse to send an Rc smart pointer across a thread boundary?",
+  "answer": "`Rc` uses non-atomic operations for its reference counting. Concurrent updates from multiple threads would cause data races. For this reason, `Rc` implements neither `Send` nor `Sync`.",
+  "schema_version": 1
+}

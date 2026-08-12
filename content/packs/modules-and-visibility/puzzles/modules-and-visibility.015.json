@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.015",
+  "version": 1,
+  "title": "Bringing Traits Into Scope",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "visibility",
+    "traits"
+  ],
+  "difficulty": 2,
+  "goal": "Import a trait so its method can be called on a public struct.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "template": "mod graphics {\n    pub trait Render {\n        fn draw(&self) -> &'static str;\n    }\n    pub struct Circle;\n    impl Render for Circle {\n        fn draw(&self) -> &'static str { \"circle\" }\n    }\n}\nmod ui {\n    ⟦slot1⟧;\n    pub fn display(c: &super::graphics::Circle) -> &'static str {\n        c.⟦slot2⟧()\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "use super::graphics::Circle",
+        "label": "trait import",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "use super::graphics::Render"
+          },
+          {
+            "id": "sl2",
+            "text": "use super::graphics::Circle"
+          },
+          {
+            "id": "sl3",
+            "text": "use super::graphics"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "Render::draw",
+        "label": "method call",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "draw"
+          },
+          {
+            "id": "sl2",
+            "text": "Render::draw"
+          },
+          {
+            "id": "sl3",
+            "text": "render"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_display() {\n    let c = graphics::Circle;\n    assert_eq!(ui::display(&c), \"circle\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Trait methods are only visible when the trait itself is in scope.",
+    "Import the Render trait inside the ui module using `super::graphics::Render`."
+  ],
+  "explanation": "`c.draw()` calls the trait method directly once `use super::graphics::Render;` brings `Render` into scope inside `ui`. Without importing `Render`, Rust reports `E0599` because trait methods are not available on types unless the trait is in scope. Writing `c.Render::draw()` is invalid method syntax."
+}

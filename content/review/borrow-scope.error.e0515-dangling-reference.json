@@ -1,0 +1,11 @@
+{
+  "id": "borrow-scope.error.e0515-dangling-reference",
+  "kind": "error",
+  "title": "Understanding error code E0515",
+  "concepts": [
+    "borrow-scope"
+  ],
+  "prompt": "What triggers compiler error E0515, and how do you fix it?",
+  "answer": "Error E0515 occurs when a function returns a reference to data owned by its own scope. You fix it by changing the return type to an owned type like String or Vec and returning the value by move.",
+  "schema_version": 1
+}

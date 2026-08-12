@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "move-or-borrow.014",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "2ea24239f33859637ca5bdc51d058b7eb2d6d7a8662933453d636050a4c24ce1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Item: Clone` is not satisfied",
+          "slot_ids": [
+            "cloned_items"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "`Cloned<std::slice::Iter<'_, Item>>` is not an iterator",
+          "slot_ids": [
+            "cloned_items"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5f5e601dc5263b3bfc6769bfb0d1b8699312758ff1bb682853538c75e3fa41c2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "trait_not_implemented",
+          "message": "the trait bound `Item: Clone` is not satisfied",
+          "slot_ids": [
+            "cloned_vec"
+          ],
+          "rust_code": "E0277"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a0d88c39e6ef2c5e0da457642a6eeebba3c6706b348497f3bfe147c726b14d1c": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    }
+  }
+}

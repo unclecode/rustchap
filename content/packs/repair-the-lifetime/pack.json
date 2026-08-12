@@ -12,9 +12,19 @@
     "repair-the-lifetime.005",
     "repair-the-lifetime.003",
     "repair-the-lifetime.002",
-    "repair-the-lifetime.006"
+    "repair-the-lifetime.006",
+    "repair-the-lifetime.009",
+    "repair-the-lifetime.010",
+    "repair-the-lifetime.011",
+    "repair-the-lifetime.012",
+    "repair-the-lifetime.013",
+    "repair-the-lifetime.014",
+    "repair-the-lifetime.015",
+    "repair-the-lifetime.016",
+    "repair-the-lifetime.017",
+    "repair-the-lifetime.018"
   ],
   "icon": "hourglass",
   "accent": "purple",
-  "level": "core"
+  "level": "ownership"
 }

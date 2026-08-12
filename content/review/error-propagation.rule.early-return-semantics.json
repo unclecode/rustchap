@@ -1,0 +1,11 @@
+{
+  "id": "error-propagation.rule.early-return-semantics",
+  "kind": "rule",
+  "title": "Control flow of the question mark operator",
+  "concepts": [
+    "error-propagation"
+  ],
+  "prompt": "What does the question mark operator do when applied to a Result value?",
+  "answer": "If the Result is Ok(v), the question mark unwraps and evaluates to v. If the Result is Err(e), it immediately returns Err(`From::from(e)`) from the enclosing function.",
+  "schema_version": 1
+}

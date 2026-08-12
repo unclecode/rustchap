@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.001",
+  "version": 1,
+  "title": "One of Several",
+  "track": "enums-and-matching",
+  "concepts": [
+    "enums-basics"
+  ],
+  "difficulty": 1,
+  "goal": "A value that is exactly one of a few named options.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: User-Defined Types"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "An enum declares a type whose value is exactly one of a few named options, called variants. Most languages have something like this, usually as a list of constants."
+      },
+      {
+        "kind": "code",
+        "code": "enum Direction {\n    North,\n    South,\n    East,\n    West,\n}\n\nlet heading = Direction::North;",
+        "caption": "Four variants, and heading is exactly one of them."
+      },
+      {
+        "kind": "prose",
+        "text": "Rust adds something those constant lists do not have. A variant can carry data, and each variant can carry something different."
+      },
+      {
+        "kind": "code",
+        "code": "enum Command {\n    Add(i32),\n    SetName(String),\n    Reset,\n}",
+        "caption": "Add carries a number, SetName carries text, Reset carries nothing."
+      },
+      {
+        "kind": "prose",
+        "text": "This is why enums do so much work in Rust. `Option` and `Result`, which you meet later, are just enums whose variants carry the value or the error."
+      },
+      {
+        "kind": "prose",
+        "text": "Because the type lists every possibility, the compiler knows them all. That becomes useful the moment you read the value back, which is the next lecture."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "A value that is exactly one of a few named options."
+}

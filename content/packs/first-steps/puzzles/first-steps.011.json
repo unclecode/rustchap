@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.011",
+  "version": 1,
+  "title": "Compute the Mean",
+  "track": "first-steps",
+  "concepts": [
+    "primitive-types",
+    "functions"
+  ],
+  "difficulty": 2,
+  "goal": "Order the statements to compute a floating point average from three i32 integers.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1: Types and Values"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn average(a: i32, b: i32, c: i32) -> f64 {\n    let sum =",
+    "blocks": [
+      {
+        "id": "sum",
+        "text": " a + b + c;"
+      },
+      {
+        "id": "count",
+        "text": "\n    let count = 3.0;"
+      },
+      {
+        "id": "cast",
+        "text": "\n    (sum as f64) /"
+      },
+      {
+        "id": "denom",
+        "text": " count"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn calculates_mean() {\n    assert!((average(10, 20, 30) - 20.0).abs() < 1e-6);\n    assert!((average(1, 2, 2) - 1.666666).abs() < 1e-4);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "Compute sum first before trying to cast it.",
+    "Both numerator and denominator must be f64 before division."
+  ],
+  "explanation": "Order matters for statement evaluation and scoping in Rust. `sum` must be declared before casting with `(sum as f64)`. `count` is defined as `3.0` (`f64`). Dividing `(sum as f64)` by `count` produces the expected `f64` average."
+}

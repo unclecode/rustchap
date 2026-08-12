@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "testing.001",
+  "version": 1,
+  "title": "Unit Testing in Rust",
+  "track": "testing",
+  "concepts": [
+    "unit-testing",
+    "cfg-test"
+  ],
+  "difficulty": 1,
+  "goal": "Write unit tests using the test attribute and test modules.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Unit Tests"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You write unit tests as regular functions marked with the `#[test]` attribute. You do not need an external test framework library to get started."
+      },
+      {
+        "kind": "code",
+        "code": "#[test]\nfn test_add() {\n    assert_eq!(2 + 2, 4);\n}",
+        "caption": "The #[test] attribute turns a function into a test runner target."
+      },
+      {
+        "kind": "prose",
+        "text": "Unit tests usually live in a nested module named `tests`. Annotating that module with `#[cfg(test)]` ensures test code is excluded from production builds."
+      },
+      {
+        "kind": "prose",
+        "text": "In Rust, nested modules do not inherit parent scope items automatically. You must bring items from the outer module into scope using `use super::*;`."
+      },
+      {
+        "kind": "code",
+        "code": "#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn check() {\n        assert_eq!(1, 1);\n    }\n}",
+        "caption": "use super::*; imports outer module functions into the test scope."
+      },
+      {
+        "kind": "prose",
+        "text": "Omitting `use super::*;` causes compiler error `E0425` when calling functions defined in the parent module."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Write unit tests using the test attribute and test modules."
+}

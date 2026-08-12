@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "collections.008",
+  "version": 1,
+  "title": "Map from Pairs",
+  "track": "collections",
+  "concepts": [
+    "hashmap-basics",
+    "iterator"
+  ],
+  "difficulty": 2,
+  "goal": "Build a HashMap from key-value tuples efficiently.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: HashMap"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "from_array",
+        "code": "use std::collections::HashMap;\n\nfn make_map()\n    -> HashMap<&'static str, i32>\n{\n    HashMap::from([\n        (\"apple\", 3),\n        (\"banana\", 5),\n    ])\n}"
+      },
+      {
+        "id": "array_collect",
+        "code": "use std::collections::HashMap;\n\nfn make_map()\n    -> HashMap<&'static str, i32>\n{\n    [\n        (\"apple\", 3),\n        (\"banana\", 5),\n    ].collect()\n}"
+      },
+      {
+        "id": "insert_tuple",
+        "code": "use std::collections::HashMap;\n\nfn make_map()\n    -> HashMap<&'static str, i32>\n{\n    let mut map = HashMap::new();\n    for pair in [(\"apple\", 3), (\"banana\", 5)] {\n        map.insert(pair);\n    }\n    map\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn builds_map() {\n    let m = make_map();\n    assert_eq!(m.get(\"apple\"), Some(&3));\n    assert_eq!(m.get(\"banana\"), Some(&5));\n    assert_eq!(m.len(), 2);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 1
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "The standard map type converts directly from fixed arrays of key-value tuples.",
+    "The conversion constructor builds the map directly without loops or mutable variables."
+  ],
+  "explanation": "The array conversion constructor builds a map directly from key-value pairs. Fixed arrays do not support iterator methods without an iterator conversion. The map insertion method requires key and value as separate arguments."
+}

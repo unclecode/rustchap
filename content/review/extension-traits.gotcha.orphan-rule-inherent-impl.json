@@ -1,0 +1,11 @@
+{
+  "id": "extension-traits.gotcha.orphan-rule-inherent-impl",
+  "kind": "gotcha",
+  "title": "Inherent impls on foreign types fail",
+  "concepts": [
+    "extension-traits"
+  ],
+  "prompt": "Why does writing impl str directly in your crate fail to compile?",
+  "answer": "Rust prohibits inherent implementations on foreign types to prevent naming collisions and ambiguity across dependencies. You must define a local trait and implement that trait for the foreign type instead.",
+  "schema_version": 1
+}

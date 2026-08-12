@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.001",
+  "version": 1,
+  "title": "Modules and Privacy",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "modules",
+    "visibility"
+  ],
+  "difficulty": 1,
+  "goal": "Organize code with mod and understand default privacy boundaries.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You use `mod` to group functions, structs, and traits under a named namespace."
+      },
+      {
+        "kind": "code",
+        "code": "mod logger {\n    pub fn log(msg: &str) {\n        println!(\"{msg}\");\n    }\n}",
+        "caption": "`pub` makes the function visible outside the module."
+      },
+      {
+        "kind": "prose",
+        "text": "Items in Rust are private by default. A parent module cannot see private items inside a child module."
+      },
+      {
+        "kind": "code",
+        "code": "fn main() {\n    logger::log(\"hello\");\n}",
+        "caption": "Call module items with the `::` path separator."
+      },
+      {
+        "kind": "prose",
+        "text": "Use the `pub` keyword to grant visibility to outer modules. If a module itself is private, its public items cannot be reached from outside."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Organize code with mod and understand default privacy boundaries."
+}

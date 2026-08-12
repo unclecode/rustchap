@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "modules-and-visibility.012",
+  "version": 1,
+  "title": "Exposing Internal Types",
+  "track": "modules-and-visibility",
+  "concepts": [
+    "modules",
+    "visibility"
+  ],
+  "difficulty": 2,
+  "goal": "Re-export a deeply nested struct so main can access it.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Modules"
+  },
+  "template": "mod storage {\n    mod engine {\n        pub struct Db;\n    }\n    ⟦slot1⟧ engine::Db;\n}\n\nfn main() {\n    let _db = storage::⟦slot2⟧;\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "use",
+        "label": "import modifier",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "pub use"
+          },
+          {
+            "id": "sl2",
+            "text": "use"
+          },
+          {
+            "id": "sl3",
+            "text": "pub mod"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "engine::Db",
+        "label": "struct path",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Db"
+          },
+          {
+            "id": "sl2",
+            "text": "engine::Db"
+          },
+          {
+            "id": "sl3",
+            "text": "engine"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_storage_db() {\n    let _db = storage::Db;\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Plain use statements bring items into scope privately.",
+    "Re-export the type at the storage module root so main can reference it directly."
+  ],
+  "explanation": "`pub use` re-exports `Db` at the root of `storage`, allowing `main` to reach `storage::Db`. A plain `use` imports `Db` privately inside `storage`, causing error `E0603` when accessed from outside. Calling `storage::engine::Db` fails because module `engine` is private inside `storage`."
+}

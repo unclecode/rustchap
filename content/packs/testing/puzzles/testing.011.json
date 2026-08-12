@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "testing.011",
+  "version": 1,
+  "title": "Question Mark in Tests",
+  "track": "testing",
+  "concepts": [
+    "unit-testing",
+    "error-propagation"
+  ],
+  "difficulty": 1,
+  "goal": "Return a Result from a test to avoid manual panics or unwraps.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Unit Tests"
+  },
+  "template": "fn parse(s: &str) -> Result<u16, &'static str> {\n    s.parse::<u16>().map_err(|_| \"bad\")\n}\n\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_port() -> ⟦ret_type⟧ {\n        let p = parse(\"8080\")⟦op⟧;\n        assert_eq!(p, 8080);\n        Ok(())\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "ret_type",
+        "original": "()",
+        "label": "test return type",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "Result<(), &'static str>"
+          },
+          {
+            "id": "re2",
+            "text": "()"
+          },
+          {
+            "id": "re3",
+            "text": "Result<u16, &'static str>"
+          }
+        ]
+      },
+      {
+        "id": "op",
+        "original": ";",
+        "label": "error propagation operator",
+        "choices": [
+          {
+            "id": "op1",
+            "text": "?"
+          },
+          {
+            "id": "op2",
+            "text": ".ok()"
+          },
+          {
+            "id": "op3",
+            "text": ";"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn check_parse() {\n    assert_eq!(parse(\"8080\"), Ok(8080));\n    assert_eq!(parse(\"invalid\"), Err(\"bad\"));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Check the signature of the function under test and what the test function returns.",
+    "Use the ? operator to propagate errors and match the return type signature."
+  ],
+  "explanation": "Returning `Result<(), &'static str>` allows using the `?` operator inside test functions. If the test returns `()`, using `?` produces compiler error `E0277` because `?` cannot be used in a function returning `()`. If the function returns `Result<u16, &'static str>`, returning `Ok(())` at the end produces `E0308` due to mismatched types."
+}

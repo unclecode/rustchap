@@ -1,0 +1,16 @@
+{
+  "id": "dynamic-errors",
+  "title": "Dynamic Errors",
+  "topic": "Errors and absence",
+  "summary": "Box<dyn Error> allows functions to return multiple error types at runtime.",
+  "lecture": [
+    "When a function calls methods that return different error types, boxing standardizes them.",
+    "Box<dyn Error> creates a trait object pointer on the heap.",
+    "This approach sacrifices specific error type inspection for signature simplicity."
+  ],
+  "example": {
+    "code": "type Errs = Box<dyn std::error::Error>;\nfn run() -> Result<(), Errs> {\n    Ok(())\n}",
+    "caption": "Box<dyn Error> accepts any type implementing Error."
+  },
+  "schema_version": 1
+}

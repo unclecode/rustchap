@@ -1,0 +1,11 @@
+{
+  "id": "smart-pointers.rule.weak-upgrade",
+  "kind": "rule",
+  "title": "Accessing values through Weak pointers",
+  "concepts": [
+    "smart-pointers"
+  ],
+  "prompt": "Why can you not dereference a `Weak` pointer directly, and what method must you call instead?",
+  "answer": "A `Weak` pointer does not prevent its referenced data from being dropped by `Rc`. Calling `.upgrade()` on a `Weak` pointer returns an `Option<Rc<T>>`. If the value was already dropped, `.upgrade()` returns `None`.",
+  "schema_version": 1
+}

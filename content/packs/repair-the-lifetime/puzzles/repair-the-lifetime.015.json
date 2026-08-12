@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "repair-the-lifetime.015",
+  "version": 1,
+  "title": "Lifetimes with Slices and Views",
+  "track": "repair-the-lifetime",
+  "concepts": [
+    "lifetime",
+    "slice",
+    "zero-copy"
+  ],
+  "difficulty": 1,
+  "goal": "Understand how functions return slices of input data without allocating new memory.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from google/comprehensive-rust lifetime-elision"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Parsing strings or binary protocols in Rust usually returns slices of the input. You return views into existing memory instead of allocating new buffers."
+      },
+      {
+        "kind": "code",
+        "code": "fn split_header(data: &[u8]) -> &[u8] {\n    &data[..4]\n}",
+        "caption": "Single input reference: elision ties output to input."
+      },
+      {
+        "kind": "prose",
+        "text": "Lifetime elision automatically connects the returned slice to the single input parameter. No lifetime annotations are needed when there is only one input reference."
+      },
+      {
+        "kind": "prose",
+        "text": "When a function takes two references but only returns a view into one, default elision fails with `E0106`. You must explicitly name the lifetime of the input that is sliced."
+      },
+      {
+        "kind": "code",
+        "code": "fn match_prefix<'a>(\n    data: &'a str,\n    prefix: &str,\n) -> &'a str {\n    if data.starts_with(prefix) {\n        &data[prefix.len()..]\n    } else {\n        \"\"\n    }\n}",
+        "caption": "data has lifetime 'a, prefix is unlinked."
+      },
+      {
+        "kind": "prose",
+        "text": "Unlinking `prefix` allows the caller to mutate or drop the prefix variable immediately after the call. The returned slice only borrows `data`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand how functions return slices of input data without allocating new memory."
+}

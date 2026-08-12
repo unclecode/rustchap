@@ -1,0 +1,11 @@
+{
+  "id": "arc-and-mutex.rule.lock-guard-lifetime",
+  "kind": "rule",
+  "title": "How long a Mutex lock remains held",
+  "concepts": [
+    "arc-and-mutex"
+  ],
+  "prompt": "How long does a MutexGuard keep a Mutex locked, and how can you release the lock earlier?",
+  "answer": "A `MutexGuard` keeps the mutex locked until the guard variable goes out of scope and drops. You can release the lock earlier by wrapping the locked section in an inner block scope. You can also release it by calling `drop(guard)` explicitly.",
+  "schema_version": 1
+}

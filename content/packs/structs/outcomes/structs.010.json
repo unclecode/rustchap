@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "structs.010",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "1fd01e3ffa1660911a000792754c3081ed287cfcce4157b1e998aa5902bd2805": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `account`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `account`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "350af3c2521b090fba5e58e2921348a660d29b1b66b24e749d5efe4928c89708": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot borrow `account` as mutable, as it is not declared as mutable",
+          "slot_ids": [],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5f65c34ed04691e3f311cbaa3df1dcb8e2f43047c151f07b9c17908f3b91ac45": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing type for `const` item",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `self.balance`, which is behind a `&` reference",
+          "slot_ids": [],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7bfe60758473c0e9049382fddc372ff80b1253a18eb44f1aec86c33e2485505b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing type for `const` item",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `account`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8a6b70ea05ee6900eee8f3d3ea1a43164ac754eb2e0695f168c29e1e48560228": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "a732b0dfb096f51230af2c7f9ff53122c3728c7910ff96ff7a7f1b6faff13adf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `self.balance`, which is behind a `&` reference",
+          "slot_ids": [],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "aa371471fc8ef61907a632b5b4d10ba66462020f5f4d8b0c9f0b23ac8dd70e4f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot assign to `self.balance`, which is behind a `&` reference",
+          "slot_ids": [],
+          "rust_code": "E0594"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d13aae9f6cb987b5d691788e58fe60f2a982308181e27381967d43073220c3e1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "missing type for `const` item",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "f9bd88458d7da3da02c1b351347c8c4585daf28cf93cbc59ae53694b8bd3c041": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `account`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "move_error",
+          "message": "borrow of moved value: `account`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

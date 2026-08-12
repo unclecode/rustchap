@@ -56,7 +56,7 @@
     "Before transmuting, search the type's methods - integers know how to serialize themselves.",
     "The hand-rolled loop is safe and correct. It's also a reimplementation of a one-line std call."
   ],
-  "explanation": "All three produce identical bytes. transmute is the heaviest tool in the language - here it signs an unsafe waiver for something u32::to_le_bytes() does safely, in one call, with the endianness in the name. The hand-rolled loop avoids unsafe but rebuilds std with mutable state and shift arithmetic to review. The instinct this trains: most unsafe (and most clever bit-twiddling) in application code is a std method you haven't found yet. Look first.",
+  "explanation": "All three produce identical bytes. transmute is the heaviest tool in the language - here it signs an unsafe waiver for something `u32::to_le_bytes()` does safely, in one call, with the endianness in the name. The hand-rolled loop avoids unsafe but rebuilds std with mutable state and shift arithmetic to review. The instinct this trains: most unsafe (and most clever bit-twiddling) in application code is a std method you haven't found yet. Look first.",
   "prerequisites": [
     "unsafe-rust.001"
   ],

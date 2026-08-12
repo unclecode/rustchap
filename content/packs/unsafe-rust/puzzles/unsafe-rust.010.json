@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "unsafe-rust.010",
+  "version": 1,
+  "title": "Safely Wrapping C Strings",
+  "track": "unsafe-rust",
+  "concepts": [
+    "unsafe-rust",
+    "ffi-basics",
+    "string-types"
+  ],
+  "difficulty": 3,
+  "goal": "Convert a raw C string pointer into a safe Rust string slice with minimal unsafe surface.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: FFI and C Strings"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "missing_unsafe",
+        "code": "use std::ffi::CStr;\nuse std::os::raw::c_char;\n\nfn parse_c_str(\n    p: *const c_char,\n) -> Option<&'static str> {\n    if p.is_null() {\n        return None;\n    }\n    let c = CStr::from_ptr(p);\n    c.to_str().ok()\n}"
+      },
+      {
+        "id": "tight_unsafe",
+        "code": "use std::ffi::CStr;\nuse std::os::raw::c_char;\n\nfn parse_c_str(\n    p: *const c_char,\n) -> Option<&'static str> {\n    if p.is_null() {\n        return None;\n    }\n    let c = unsafe { CStr::from_ptr(p) };\n    c.to_str().ok()\n}"
+      },
+      {
+        "id": "unchecked_null",
+        "code": "use std::ffi::CStr;\nuse std::os::raw::c_char;\n\nfn parse_c_str(\n    p: *const c_char,\n) -> Option<&'static str> {\n    let c = unsafe { CStr::from_ptr(p) };\n    c.to_str().ok()\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn parses_c_str() {\n    let bytes = b\"hello\\0\";\n    let ptr = bytes.as_ptr() as *const std::os::raw::c_char;\n    assert_eq!(parse_c_str(ptr), Some(\"hello\"));\n    assert_eq!(parse_c_str(std::ptr::null()), None);\n}"
+    ],
+    "metrics": [
+      "unsafe_blocks"
+    ]
+  },
+  "scoring": {
+    "primary": "unsafe_blocks",
+    "secondary": [],
+    "fluent": {
+      "unsafe_blocks": 3
+    },
+    "optimal": {
+      "unsafe_blocks": 1
+    }
+  },
+  "hints": [
+    "Only operations that dereference raw pointers require an `unsafe` block.",
+    "Always check if a raw pointer is null before passing it to `CStr::from_ptr`."
+  ],
+  "explanation": "Only `CStr::from_ptr` requires an `unsafe` block because it dereferences a raw pointer. Calling `CStr::from_ptr` without `unsafe` causes a compilation error `E0133`. Failing to check `p.is_null()` causes undefined behavior when passed a null pointer. The `c.to_str()` method is safe because it validates UTF-8."
+}

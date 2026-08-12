@@ -1,0 +1,11 @@
+{
+  "id": "modules.gotcha.default-privacy",
+  "kind": "gotcha",
+  "title": "Default Privacy of Module Items",
+  "concepts": [
+    "modules"
+  ],
+  "prompt": "What visibility do module items have by default, and how do you make them accessible to outer modules?",
+  "answer": "Module items are private by default to everything outside that module. You must prefix an item with the `pub` keyword to make it visible to parent and sibling modules.",
+  "schema_version": 1
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.002",
+  "version": 1,
+  "title": "Raw Pointer to Slice",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "raw-pointers",
+    "slice",
+    "unsafe-rust"
+  ],
+  "difficulty": 2,
+  "goal": "Construct a slice view from a raw pointer using element count.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Unsafe Rust: Raw Pointers"
+  },
+  "template": "use std::slice;\n\nfn sum_pair(ptr: *const u16) -> u16 {\n    let items = unsafe {\n        slice::from_raw_parts(ptr, ⟦len_slot⟧)\n    };\n    ⟦access_slot⟧\n}\n\nfn main() {\n    let data = [10u16, 20u16];\n    println!(\"{}\", sum_pair(data.as_ptr()));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "len_slot",
+        "original": "4",
+        "label": "length parameter",
+        "choices": [
+          {
+            "id": "le1",
+            "text": "2"
+          },
+          {
+            "id": "le2",
+            "text": "4"
+          },
+          {
+            "id": "le3",
+            "text": "std::mem::size_of::<[u16; 2]>()"
+          }
+        ]
+      },
+      {
+        "id": "access_slot",
+        "original": "*items",
+        "label": "sum expression",
+        "choices": [
+          {
+            "id": "ac1",
+            "text": "items.iter().sum()"
+          },
+          {
+            "id": "ac2",
+            "text": "*items"
+          },
+          {
+            "id": "ac3",
+            "text": "items[0]"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn sums_correctly() {\n    let data = [10u16, 20u16];\n    assert_eq!(sum_pair(data.as_ptr()), 30);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "The second argument to `slice::from_raw_parts` is the number of elements, not bytes.",
+    "A slice cannot be directly dereferenced. Use iterator methods to operate on its contents."
+  ],
+  "explanation": "`slice::from_raw_parts` expects the number of elements as its second parameter, not byte size. Passing 4 reads past the 2-element array. Slices must be iterated or indexed rather than dereferenced directly."
+}

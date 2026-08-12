@@ -1,0 +1,12 @@
+{
+  "id": "visibility.rule.struct-field-privacy",
+  "kind": "rule",
+  "title": "Struct fields are private by default",
+  "concepts": [
+    "visibility",
+    "structs"
+  ],
+  "prompt": "What visibility do fields have inside a struct marked `pub`?",
+  "answer": "Struct fields remain private by default even if the struct type itself is marked `pub`. Each field must be explicitly marked with `pub` to allow direct access or literal instantiation outside the module.",
+  "schema_version": 1
+}

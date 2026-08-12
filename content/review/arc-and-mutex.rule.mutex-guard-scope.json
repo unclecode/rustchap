@@ -1,0 +1,11 @@
+{
+  "id": "arc-and-mutex.rule.mutex-guard-scope",
+  "kind": "rule",
+  "title": "When Mutex Lock Is Released",
+  "concepts": [
+    "arc-and-mutex"
+  ],
+  "prompt": "When is a Mutex lock released in Rust, and how do you control its duration?",
+  "answer": "A Mutex lock is released automatically when its MutexGuard is dropped at the end of its scope. You can drop the guard early using drop(guard) or wrap lock usage in a block to release the lock as soon as possible.",
+  "schema_version": 1
+}

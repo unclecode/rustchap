@@ -1,0 +1,11 @@
+{
+  "id": "pattern-matching.gotcha.let-else-divergence",
+  "kind": "gotcha",
+  "title": "Required divergence in let else",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "prompt": "What requirement does the `else` block of a `let else` statement have?",
+  "answer": "The `else` block must diverge using `return`, `panic!`, `break`, or `continue`. Falling through or returning a value without diverging triggers compiler error `E0308`.",
+  "schema_version": 1
+}

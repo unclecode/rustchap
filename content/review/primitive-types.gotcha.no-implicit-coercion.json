@@ -1,0 +1,11 @@
+{
+  "id": "primitive-types.gotcha.no-implicit-coercion",
+  "kind": "gotcha",
+  "title": "Numeric Types and Coercion",
+  "concepts": [
+    "primitive-types"
+  ],
+  "prompt": "How does Rust handle implicit type conversion between different integer or float types?",
+  "answer": "Rust never performs implicit numeric type conversion in expressions. You must explicitly convert types using the `as` keyword, such as `x as f64`, or match the types at definition.",
+  "schema_version": 1
+}

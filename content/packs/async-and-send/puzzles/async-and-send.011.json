@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.011",
+  "version": 1,
+  "title": "State Must Outlive the Future",
+  "track": "async-and-send",
+  "concepts": [
+    "cancellation-safety",
+    "async-await"
+  ],
+  "difficulty": 2,
+  "goal": "Retain accumulated data across async calls by mutating struct state instead of creating transient local state.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Cancellation"
+  },
+  "template": "struct Worker {\n    buf: Vec<u8>,\n}\n\nimpl Worker {\n    async fn process(&mut self, chunk: &[u8]) {\n        ⟦target⟧.⟦action⟧(chunk);\n    }\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "target",
+        "original": "self.buf",
+        "label": "target buffer",
+        "choices": [
+          {
+            "id": "tg1",
+            "text": "self.buf"
+          },
+          {
+            "id": "tg2",
+            "text": "let mut buf"
+          },
+          {
+            "id": "tg3",
+            "text": "buf"
+          }
+        ]
+      },
+      {
+        "id": "action",
+        "original": "extend_from_slice",
+        "label": "buffer mutation method",
+        "choices": [
+          {
+            "id": "ac1",
+            "text": "extend_from_slice"
+          },
+          {
+            "id": "ac2",
+            "text": "copy_from_slice"
+          },
+          {
+            "id": "ac3",
+            "text": "push"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_worker_process() {\n    fn noop(_: *const ()) {}\n    fn clone(p: *const ()) -> std::task::RawWaker { std::task::RawWaker::new(p, &VTABLE) }\n    static VTABLE: std::task::RawWakerVTable = std::task::RawWakerVTable::new(clone, noop, noop, noop);\n    let waker = unsafe { std::task::Waker::from_raw(std::task::RawWaker::new(std::ptr::null(), &VTABLE)) };\n    let mut cx = std::task::Context::from_waker(&waker);\n    let mut w = Worker { buf: vec![] };\n    {\n        let mut fut = std::pin::pin!(w.process(b\"hello\"));\n        let _ = fut.as_mut().poll(&mut cx);\n    }\n    assert_eq!(w.buf, b\"hello\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 0
+    },
+    "optimal": {
+      "token_edits": 0
+    }
+  },
+  "hints": [
+    "Mutate the buf field on self directly so the modified data persists on the struct.",
+    "extend_from_slice appends a byte slice directly to a Vec<u8>."
+  ],
+  "explanation": "To persist state across async function invocations, mutate `self.buf` directly. Writing `buf` without `self.` causes `E0425` because no local variable exists. Writing `let mut buf` creates local transient state that disappears when the function frame is dropped. Calling `push(chunk)` fails with `E0308` because `push` expects a single `u8`, not a slice."
+}

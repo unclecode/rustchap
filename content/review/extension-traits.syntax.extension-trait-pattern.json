@@ -1,0 +1,11 @@
+{
+  "id": "extension-traits.syntax.extension-trait-pattern",
+  "kind": "syntax",
+  "title": "How to declare an extension trait",
+  "concepts": [
+    "extension-traits"
+  ],
+  "prompt": "How do you add a custom helper method to a standard library type like str?",
+  "answer": "Define a `pub trait` in your crate with the helper method signature. Then write `impl TraitName for str` in the same crate and bring the trait into scope where needed.",
+  "schema_version": 1
+}

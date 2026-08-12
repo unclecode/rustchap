@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "generics-and-dyn.014",
+  "version": 1,
+  "title": "Caller-Driven Types vs impl Trait",
+  "track": "generics-and-dyn",
+  "concepts": [
+    "generics",
+    "traits"
+  ],
+  "difficulty": 2,
+  "goal": "Allow callers to choose the target type using turbofish syntax.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 3 Afternoon: Generics"
+  },
+  "template": "use std::str::FromStr;\n\nfn convert⟦sig⟧ {\n    s.parse().ok().unwrap()\n}\n\nfn main() {\n    let val = convert⟦turbofish⟧(\"100\");\n    assert_eq!(val, 100);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "sig",
+        "original": "(s: &str) -> impl FromStr",
+        "label": "signature",
+        "choices": [
+          {
+            "id": "si1",
+            "text": "<T: FromStr>(s: &str) -> T"
+          },
+          {
+            "id": "si2",
+            "text": "(s: &str) -> impl FromStr"
+          },
+          {
+            "id": "si3",
+            "text": "<T>(s: &str) -> T"
+          }
+        ]
+      },
+      {
+        "id": "turbofish",
+        "original": "::<impl FromStr>",
+        "label": "turbofish call",
+        "choices": [
+          {
+            "id": "tu1",
+            "text": "::<i32>"
+          },
+          {
+            "id": "tu2",
+            "text": "::<impl FromStr>"
+          },
+          {
+            "id": "tu3",
+            "text": "::<&str>"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn converts_correctly() {\n    main();\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Look at who decides the concrete type: generic T lets the caller choose, while impl Trait lets the function choose.",
+    "Turbofish requires an explicit generic parameter T on the function signature."
+  ],
+  "explanation": "Declaring `<T: FromStr>(s: &str) -> T` defines a function where the caller chooses `T` via turbofish syntax `convert::<i32>`. Returning `impl FromStr` means the function itself fixes the return type, making turbofish explicit arguments invalid (`E0632`). Omitting the `FromStr` bound on `T` causes `s.parse()` to fail with `E0277` because parsing requires `FromStr`. Passing `impl FromStr` into turbofish syntax produces error `E0782`."
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "repair-the-lifetime.011",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "23b47435238a133a379e87afdd9a9ed45e6eb8a40d41377df8dc2c1c8f76b412": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "df050e04ed7f1a2ce8481990631e295d879a964b9932fb738d6b7ca2dea70e72": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot return reference to local variable `s`",
+          "slot_ids": [
+            "dangling_borrow"
+          ],
+          "rust_code": "E0515"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e7311ee762752971f4d7d3c3e6aa955cfce7e9727d804ea7ecb2b33a66250b15": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "lifetime may not live long enough",
+          "slot_ids": [
+            "unbound_lifetime"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.003",
+  "version": 1,
+  "title": "Default Struct Values",
+  "track": "standard-traits",
+  "concepts": [
+    "standard-traits"
+  ],
+  "difficulty": 2,
+  "goal": "Initialize struct fields using Default and update syntax.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Standard Traits"
+  },
+  "template": "#[derive(Debug, PartialEq, Default)]\nstruct Config {\n    port: u16,\n    host: String,\n}\n\nfn main() {\n    let cfg = Config {\n        port: 8080,\n        ⟦slot1⟧\n    };\n    let empty = Config⟦slot2⟧;\n    assert_eq!(cfg.host, \"\");\n    assert_eq!(empty.port, 0);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "..Config",
+        "label": "struct update syntax",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "..Default::default()"
+          },
+          {
+            "id": "sl2",
+            "text": "..Config"
+          },
+          {
+            "id": "sl3",
+            "text": "..default()"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "{}",
+        "label": "default constructor call",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "::default()"
+          },
+          {
+            "id": "sl2",
+            "text": "{}"
+          },
+          {
+            "id": "sl3",
+            "text": "()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_defaults() {\n    let cfg = Config { port: 80, ..Default::default() };\n    assert_eq!(cfg.port, 80);\n    assert_eq!(cfg.host, \"\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Struct update syntax uses two dots followed by an expression that produces a default struct instance.",
+    "Default can be called directly as an associated function on the type."
+  ],
+  "explanation": "`..Default::default()` creates a default instance of `Config` and fills in remaining unspecified fields. `Config::default()` constructs a full struct with all default values. Using `..Config` fails with `E0423` because `Config` is a type name, not an instance value. Using `{}` without fields causes `E0063` because required fields are missing."
+}

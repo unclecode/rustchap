@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "first-steps.010",
+  "version": 1,
+  "title": "Capped Increment",
+  "track": "first-steps",
+  "concepts": [
+    "primitive-types",
+    "functions"
+  ],
+  "difficulty": 2,
+  "goal": "Increment a byte counter without panicking when it reaches maximum capacity.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1: Types and Values"
+  },
+  "template": "fn add_bonus(score: u8, bonus: u8) -> u8 {\n    score.⟦slot1⟧(⟦slot2⟧)\n}\n\nfn main() {\n    println!(\"Score: {}\", add_bonus(250, 10));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "checked_add",
+        "label": "overflow method",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "saturating_add"
+          },
+          {
+            "id": "sl2",
+            "text": "wrapping_add"
+          },
+          {
+            "id": "sl3",
+            "text": "checked_add"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "bonus",
+        "label": "method argument",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "bonus"
+          },
+          {
+            "id": "sl2",
+            "text": "bonus as u16"
+          },
+          {
+            "id": "sl3",
+            "text": "&bonus"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn caps_at_max() {\n    assert_eq!(add_bonus(200, 10), 210);\n    assert_eq!(add_bonus(250, 10), 255);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Which overflow method clamps at the maximum type limit instead of wrapping?",
+    "Check the expected parameter type of `u8` method calls."
+  ],
+  "explanation": "`saturating_add` caps the sum at `u8::MAX` (255) when adding `250` and `10`, preventing arithmetic overflow. `wrapping_add` wraps around to `4`, failing the boundary test. `checked_add` returns an `Option<u8>`, causing compiler error `E0308` because the function expects a plain `u8` return type."
+}

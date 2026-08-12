@@ -1,0 +1,11 @@
+{
+  "id": "primitive-types.gotcha.no-implicit-numeric-coercion",
+  "kind": "gotcha",
+  "title": "Implicit conversion between numeric types",
+  "concepts": [
+    "primitive-types"
+  ],
+  "prompt": "How does Rust handle arithmetic operations or comparisons between two different numeric types like i32 and i64?",
+  "answer": "Rust requires explicit type casting with the as keyword for operations between different numeric types. The compiler will raise type mismatch error E0308 if you mix integer or floating-point widths directly. There are no implicit numeric conversions in Rust.",
+  "schema_version": 1
+}

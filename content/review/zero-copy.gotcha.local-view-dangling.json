@@ -1,0 +1,11 @@
+{
+  "id": "zero-copy.gotcha.local-view-dangling",
+  "kind": "gotcha",
+  "title": "Views of local variables cannot escape fu...",
+  "concepts": [
+    "zero-copy"
+  ],
+  "prompt": "Why does returning a `&str` view into a locally created `String` trigger compiler error `E0515`?",
+  "answer": "Locally created owned values are dropped when the function scope ends. A borrowed view cannot reference memory that has been deallocated.",
+  "schema_version": 1
+}

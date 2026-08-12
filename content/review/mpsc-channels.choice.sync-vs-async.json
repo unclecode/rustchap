@@ -1,0 +1,11 @@
+{
+  "id": "mpsc-channels.choice.sync-vs-async",
+  "kind": "choice",
+  "title": "Bounded vs unbounded channel selection",
+  "concepts": [
+    "mpsc-channels"
+  ],
+  "prompt": "How does `mpsc::sync_channel` differ from `mpsc::channel` when sending messages?",
+  "answer": "`mpsc::channel` is unbounded, so send never blocks the calling thread unless memory is exhausted. `mpsc::sync_channel` has a fixed buffer limit, so send blocks until there is space available in the channel.",
+  "schema_version": 1
+}

@@ -80,7 +80,7 @@
     "Moving score into judge leaves the later score.set with nothing - share, don't transfer.",
     "judge.get() + 1 computes a number and lets it evaporate. Cells only change when someone calls set."
   ],
-  "explanation": "Rc shares the Cell (both handles reach ONE counter), and each set() lands where both can see it - 2. Moving score breaks the later lines (E0382). The evaporating bump is the quiet failure: computing get()+1 without set() changes nothing, compiles cleanly, and returns 1 - only the test complains. And spelling: score.clone() does the same cheap counter-bump as Rc::clone(&score), but reads like a deep copy - clone_on_ref_ptr keeps the syntax honest. Interior mutability plus shared ownership is powerful exactly because every piece is explicit.",
+  "explanation": "Rc shares the Cell (both handles reach ONE counter), and each set() lands where both can see it - 2. Moving score breaks the later lines (E0382). The evaporating bump is the quiet failure: computing get()+1 without set() changes nothing, compiles cleanly, and returns 1 - only the test complains. And spelling: score.clone() does the same cheap counter-bump as `Rc::clone(&score)`, but reads like a deep copy - clone_on_ref_ptr keeps the syntax honest. Interior mutability plus shared ownership is powerful exactly because every piece is explicit.",
   "prerequisites": [
     "interior-mutability.001"
   ],

@@ -1,0 +1,11 @@
+{
+  "id": "borrow.error.e0507-cannot-move-out-of-ref",
+  "kind": "error",
+  "title": "Understanding error code E0507",
+  "concepts": [
+    "borrow"
+  ],
+  "prompt": "What causes error E0507, and how do you resolve it?",
+  "answer": "Error E0507 happens when you try to move a value out of behind a reference or index. You resolve it by borrowing the value with & instead of moving it, or by cloning if an independent copy is truly required.",
+  "schema_version": 1
+}

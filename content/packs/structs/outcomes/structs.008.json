@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "structs.008",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "16fda432a977a907e6d7bbee81428bb43d3170d54842447d9eacf5ac30de67ea": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected type, found module `self`",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "527e43aab792d5b0202bf7335367cc7f34b033d0ff5de34f297e7345aa25b323": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `value` on type `()`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `value` on type `()`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "742595bfe3dea77cbf2a79e7c2220d81e4eacfdac948d494f832d468bae912f8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no field `value` on type `fn() -> Counter {Counter::zero}`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8b17865e20aa027094a5a7c0dc3930cec04930c4dc50ca315421e56256892dc6": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected type, found module `self`",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "compile_error",
+          "message": "expected value, found struct `Counter`",
+          "slot_ids": [
+            "call_expr"
+          ],
+          "rust_code": "E0423"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "97a44881a38cc9feea5adb292fcf60dffce87245e6663ebd8de3b70eae094b0e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected type, found module `self`",
+          "slot_ids": [
+            "ret_type"
+          ],
+          "rust_code": "E0573"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `value` on type `fn() -> {type error} {Counter::zero}`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a26a1f06f9b8babf9965ee4b944e6383e4b978e32b2a30e17d88a3b0d650e24a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected value, found struct `Counter`",
+          "slot_ids": [
+            "call_expr"
+          ],
+          "rust_code": "E0423"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a610b71f7c7ee13c63d971690268c56b66c6505fd2e37961ee7f571b9a2c96ba": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `value` on type `fn() {Counter::zero}`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `value` on type `()`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "c5b66e6e4e7f6afd8e58006a40b7199dab5036eb4e055f9d59586d0c8eacc94a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected value, found struct `Counter`",
+          "slot_ids": [
+            "call_expr"
+          ],
+          "rust_code": "E0423"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `value` on type `()`",
+          "slot_ids": [],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ea6d0e25981c602cf86bfcc7519874d4c0e3c11d3b1aa9c6d448ce73468e8a7e": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    }
+  }
+}

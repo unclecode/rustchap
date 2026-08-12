@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.011",
+  "version": 1,
+  "title": "Total vs Partial Ordering",
+  "track": "standard-traits",
+  "concepts": [
+    "cmp-traits",
+    "traits"
+  ],
+  "difficulty": 1,
+  "goal": "Distinguish strict total orderings from partial orderings.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Standard Traits"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In Java or C++, primitive numeric comparisons assume all values can be ordered. Rust distinguishes total orderings from partial orderings."
+      },
+      {
+        "kind": "code",
+        "code": "fn is_greater(a: f64, b: f64) -> bool {\n    a > b\n}",
+        "caption": "Floats implement `PartialOrd` because NaN cannot be ordered."
+      },
+      {
+        "kind": "prose",
+        "text": "Because `f64::NAN > 0.0` and `f64::NAN <= 0.0` are both false, floating point types cannot implement `Ord`."
+      },
+      {
+        "kind": "prose",
+        "text": "The `partial_cmp` method returns `Option<Ordering>`, where unordered values return `None`."
+      },
+      {
+        "kind": "code",
+        "code": "use std::cmp::Ordering;\n\nfn safe_cmp(a: f64, b: f64) -> Ordering {\n    a.partial_cmp(&b)\n        .unwrap_or(Ordering::Equal)\n}",
+        "caption": "`partial_cmp` returns `None` when comparing against NaN."
+      },
+      {
+        "kind": "prose",
+        "text": "Types with full total order implement `Ord`, which is required by key-based structures like `BTreeMap`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Distinguish strict total orderings from partial orderings."
+}

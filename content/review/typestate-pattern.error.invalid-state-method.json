@@ -1,0 +1,11 @@
+{
+  "id": "typestate-pattern.error.invalid-state-method",
+  "kind": "error",
+  "title": "Compiler diagnostic for wrong type-state",
+  "concepts": [
+    "typestate-pattern"
+  ],
+  "prompt": "What compiler error occurs when calling a method on an object in the wrong type-state?",
+  "answer": "The compiler emits error `E0599` stating that the method does not exist for the current generic state parameter. This turns potential runtime state bugs into immediate compile-time errors.",
+  "schema_version": 1
+}

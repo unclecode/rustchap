@@ -1,0 +1,12 @@
+{
+  "id": "deref-coercion.error.ref-immutable-deref",
+  "kind": "error",
+  "title": "Mutating Through a Shared Ref Guard",
+  "concepts": [
+    "deref-coercion",
+    "interior-mutability"
+  ],
+  "prompt": "What compiler error occurs when you try to call a mutating method on a Ref guard returned by borrow?",
+  "answer": "The compiler emits error E0596, indicating that it cannot borrow the dereference of Ref as mutable. Because Ref only implements Deref and not DerefMut, you must switch to borrow_mut to mutate the underlying value.",
+  "schema_version": 1
+}

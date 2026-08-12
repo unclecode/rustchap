@@ -1,0 +1,11 @@
+{
+  "id": "token-types.rule.private-fields-prevent-construction",
+  "kind": "rule",
+  "title": "Private fields restrict struct construction",
+  "concepts": [
+    "token-types"
+  ],
+  "prompt": "How does a module prevent external code from constructing a public struct directly?",
+  "answer": "The module leaves at least one field private inside the struct. Code outside the module cannot use struct literal syntax to instantiate it and must call an authorized constructor function.",
+  "schema_version": 1
+}

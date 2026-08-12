@@ -1,0 +1,11 @@
+{
+  "id": "pinned-futures.gotcha.self-referential",
+  "kind": "gotcha",
+  "title": "Why futures need pinning in memory",
+  "concepts": [
+    "pinned-futures"
+  ],
+  "prompt": "Why does polling an async function require a pinned pointer instead of a standard mutable reference?",
+  "answer": "Async state machines store local variables that live across await points. When these variables hold references to other locals in the same frame, moving the future in memory invalidates those pointers. Pin guarantees the future stays at a fixed address while being polled.",
+  "schema_version": 1
+}

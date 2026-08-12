@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.009",
+  "version": 1,
+  "title": "Pinned Futures and Memory Stability",
+  "track": "async-and-send",
+  "concepts": [
+    "pinned-futures"
+  ],
+  "difficulty": 1,
+  "goal": "Understand why self-referential futures require pinning before being polled.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Pin"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "An async function body is compiled into a state machine enum. If that function holds references to its own local variables across an `.await`, moving the future in memory would invalidate those internal pointers."
+      },
+      {
+        "kind": "code",
+        "code": "async fn self_ref() {\n    let x = 10;\n    let rx = &x;\n    tokio::time::sleep(\n        Duration::from_millis(10),\n    ).await;\n    println!(\"{rx}\");\n}",
+        "caption": "Local references across await create self-referential futures."
+      },
+      {
+        "kind": "prose",
+        "text": "To prevent moving a future while polling it, Rust requires a pinned pointer, written `Pin<&mut F>`. `Pin` wraps a reference and guarantees the target will not move in memory until dropped."
+      },
+      {
+        "kind": "prose",
+        "text": "Types like `Box::pin(fut)` or the `std::pin::pin!(fut)` macro pin a future so it can be safely polled or re-used in loops and macro constructs."
+      },
+      {
+        "kind": "code",
+        "code": "let fut = sleep(Duration::from_millis(10));\nlet mut pinned = std::pin::pin!(fut);",
+        "caption": "pin! borrows and pins a future on the stack."
+      },
+      {
+        "kind": "prose",
+        "text": "Most standard types implement `Unpin`, meaning they can move freely even when pinned. Compiler-generated futures that hold references across `.await` do NOT implement `Unpin`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Understand why self-referential futures require pinning before being polled."
+}

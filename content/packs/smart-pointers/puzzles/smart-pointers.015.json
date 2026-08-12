@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers.015",
+  "version": 1,
+  "title": "Runtime Static Borrow",
+  "track": "smart-pointers",
+  "concepts": [
+    "smart-pointers",
+    "static-lifetime"
+  ],
+  "difficulty": 2,
+  "goal": "Leak a dynamically generated String to produce a &'static str reference.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4: Smart Pointers"
+  },
+  "template": "fn get_tok(id: u32) -> &'static str {\n    let s = format!(\"token_{id}\");\n    let boxed = ⟦slot1⟧;\n    ⟦slot2⟧\n}\n\nfn main() {\n    let tok: &'static str = get_tok(42);\n    println!(\"{}\", tok);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "&s",
+        "label": "wrap string",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Box::new(s)"
+          },
+          {
+            "id": "sl2",
+            "text": "&s"
+          },
+          {
+            "id": "sl3",
+            "text": "s.as_str()"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "boxed.as_str()",
+        "label": "leak memory",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "Box::leak(boxed)"
+          },
+          {
+            "id": "sl2",
+            "text": "boxed.as_str()"
+          },
+          {
+            "id": "sl3",
+            "text": "&boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn generates_static_token() {\n    let t1 = get_tok(100);\n    let t2 = get_tok(200);\n    assert_eq!(t1, \"token_100\");\n    assert_eq!(t2, \"token_200\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Standard stack strings are dropped when the function scope exits.",
+    "`Box::leak` forfeits stack cleanup. It promotes heap memory to a `'static` lifetime."
+  ],
+  "explanation": "`Box::leak` takes ownership of `Box<String>`. It forfeits drop cleanup and returns `&'static mut String`. This deref coerces to `&'static str`. Using `&s` creates a reference bound to the local stack frame. This fails with `E0597` because `s` is dropped when the function returns. Calling `boxed.as_str()` or `&boxed` causes `E0515` for returning a reference to a local variable."
+}

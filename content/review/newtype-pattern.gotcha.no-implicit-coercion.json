@@ -1,0 +1,11 @@
+{
+  "id": "newtype-pattern.gotcha.no-implicit-coercion",
+  "kind": "gotcha",
+  "title": "Newtypes do not coerce to underlying prim...",
+  "concepts": [
+    "newtype-pattern"
+  ],
+  "prompt": "What happens when you pass a newtype struct into a function expecting the underlying primitive type?",
+  "answer": "The compiler rejects the call with a type mismatch error E0308. Newtypes create entirely distinct types and require explicit extraction or trait conversions to yield their inner primitive value.",
+  "schema_version": 1
+}

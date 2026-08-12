@@ -1,0 +1,11 @@
+{
+  "id": "borrow.gotcha.vec-push-while-borrowed",
+  "kind": "gotcha",
+  "title": "Modifying Collections During Iteration",
+  "concepts": [
+    "borrow"
+  ],
+  "prompt": "Why does calling vec.push() fail when you hold a reference to an element in vec?",
+  "answer": "Pushing to a vector may reallocate its internal heap buffer, which would invalidate all existing references to its elements. Rust enforces safety by requiring an exclusive reference for push, conflicting with shared element references.",
+  "schema_version": 1
+}

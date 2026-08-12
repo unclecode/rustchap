@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.015",
+  "version": 1,
+  "title": "Filter with Guards",
+  "track": "enums-and-matching",
+  "concepts": [
+    "match-basics",
+    "enums-basics"
+  ],
+  "difficulty": 2,
+  "goal": "Refine a match arm with a condition without losing exhaustiveness.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Pattern Matching"
+  },
+  "template": "enum Status {\n    Pending,\n    Active(u32),\n    Finished,\n}\n\nfn process(status: Status, max: u32) -> &'static str {\n    match status {\n        Status::Active(p) ⟦guard⟧ => \"high priority\",\n        Status::Active(_) => \"normal priority\",\n        ⟦fallback⟧ => \"not active\",\n    }\n}\n\nfn main() {\n    println!(\"{}\", process(Status::Active(10), 5));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "guard",
+        "original": "if max",
+        "label": "priority condition",
+        "choices": [
+          {
+            "id": "gu1",
+            "text": "if p > max"
+          },
+          {
+            "id": "gu2",
+            "text": "if max"
+          },
+          {
+            "id": "gu3",
+            "text": "&& p > max"
+          }
+        ]
+      },
+      {
+        "id": "fallback",
+        "original": "Status::Pending",
+        "label": "remaining cases",
+        "choices": [
+          {
+            "id": "fa1",
+            "text": "_"
+          },
+          {
+            "id": "fa2",
+            "text": "Status::Pending"
+          },
+          {
+            "id": "fa3",
+            "text": "Pending | Finished"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn handles_priorities() {\n    assert_eq!(process(Status::Active(10), 5), \"high priority\");\n    assert_eq!(process(Status::Active(3), 5), \"normal priority\");\n    assert_eq!(process(Status::Pending, 5), \"not active\");\n    assert_eq!(process(Status::Finished, 5), \"not active\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Patterns check shapes and constants, but extra runtime conditions on variables require `if` after the pattern.",
+    "The match must still cover every variant of `Status`, including `Finished`."
+  ],
+  "explanation": "The fallback arm has to cover every variant you did not name. Listing only `Status::Pending` leaves `Finished` unhandled, so the match is not exhaustive and the compiler rejects it with `E0004`."
+}

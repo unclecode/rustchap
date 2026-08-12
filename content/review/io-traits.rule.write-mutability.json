@@ -1,0 +1,11 @@
+{
+  "id": "io-traits.rule.write-mutability",
+  "kind": "rule",
+  "title": "Write Trait Mutability Requirement",
+  "concepts": [
+    "io-traits"
+  ],
+  "prompt": "Why do methods on the Write trait require a mutable reference to the target stream?",
+  "answer": "Writing output mutates the underlying buffer, file offset, or stream handle. Passing a mutable reference guarantees exclusive access while updating the destination. Immutable references cannot be passed to `Write` methods.",
+  "schema_version": 1
+}

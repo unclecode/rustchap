@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "drop-and-cleanup.010",
+  "version": 1,
+  "title": "Unlocking Early",
+  "track": "drop-and-cleanup",
+  "concepts": [
+    "drop-trait",
+    "smart-pointers"
+  ],
+  "difficulty": 3,
+  "goal": "Choose the pattern that releases a Mutex lock without allocating unnecessary copies.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Drop"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "scoped_block",
+        "code": "use std::sync::Mutex;\n\nfn sum_data(data: &Mutex<Vec<i32>>) -> i32 {\n    let total = {\n        let guard = data.lock().unwrap();\n        guard.iter().sum()\n    };\n    total\n}"
+      },
+      {
+        "id": "drop_while_borrowed",
+        "code": "use std::sync::Mutex;\n\nfn sum_data(data: &Mutex<Vec<i32>>) -> i32 {\n    let guard = data.lock().unwrap();\n    let iter = guard.iter();\n    std::mem::drop(guard);\n    iter.sum()\n}"
+      },
+      {
+        "id": "use_after_drop",
+        "code": "use std::sync::Mutex;\n\nfn sum_data(data: &Mutex<Vec<i32>>) -> i32 {\n    let guard = data.lock().unwrap();\n    std::mem::drop(guard);\n    guard.iter().sum()\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_sum() {\n    let m = Mutex::new(vec![1, 2, 3]);\n    assert_eq!(sum_data(&m), 6);\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "You can process borrowed data directly inside a block scope.",
+    "Dropping a MutexGuard while an iterator still references it will trigger a borrow checker error."
+  ],
+  "explanation": "Using block scoping `{}` drops `guard` at the end of the block scope as soon as computation completes, releasing the lock cleanly with 0 clones. Dropping `guard` explicitly while `iter` borrows from it fails to compile with E0505. Calling `guard.iter()` after `drop(guard)` fails with E0382 (use of moved value)."
+}

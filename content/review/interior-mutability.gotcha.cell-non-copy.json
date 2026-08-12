@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.gotcha.cell-non-copy",
+  "kind": "gotcha",
+  "title": "Cell with non-Copy types",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "How do you extract or update a non-Copy type stored inside a Cell?",
+  "answer": "Use `Cell::take` or `Cell::replace` rather than `Cell::get`. `take` moves the value out and leaves default data behind, while `replace` swaps in a new value and returns the old one.",
+  "schema_version": 1
+}

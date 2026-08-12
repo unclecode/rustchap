@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "closures.014",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0b5d645c28da5b58ade6d8e2d0f1c23d2e800f4189d350ac43e5ff5efe29a36f": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 0
+      },
+      "diagnostics": []
+    },
+    "2d49d45dae50ef712600c615770f64b0d94f4eae89cc2e5df459c6c371ef3c53": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a closure that implements the `Fn` trait, but this closure only implements `FnMut`",
+          "slot_ids": [
+            "closure_expr"
+          ],
+          "rust_code": "E0525"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "2e14ef64f22d3485d61f724c6afc80a832eaf774d0540c14f784c3f4bc54da36": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a closure that implements the `FnMut` trait, but this closure only implements `FnOnce`",
+          "slot_ids": [
+            "closure_expr"
+          ],
+          "rust_code": "E0525"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot borrow `f` as mutable, as it is not declared as mutable",
+          "slot_ids": [],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "49c20600d954f430c4471cdda978e54e3432ea49cf8fac1626b0428f03dc6328": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot borrow `f` as mutable, as it is not declared as mutable",
+          "slot_ids": [],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "6cfbe9219bff7d84d64fc4d4effe04927c372718bb2a16db89a9f9dc2bc70279": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "use of moved value: `f`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "8f4d90ea7b0b98599b6d8c1756ef65174278d27a4a95defbb52819fa6d271ed2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot borrow `f` as mutable, as it is not declared as mutable",
+          "slot_ids": [],
+          "rust_code": "E0596"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ba0158f088e2b3e7bb166b6b62e4b8a1d4cc10fd86ba67d07d2e0cc64f2c93d8": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected a closure that implements the `Fn` trait, but this closure only implements `FnOnce`",
+          "slot_ids": [
+            "closure_expr"
+          ],
+          "rust_code": "E0525"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cec813f37cd2d4199f9a5a8a15b7b9df7d32e891d2c9eafcdfdc510a0e09e94f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "use of moved value: `f`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d5babf18f29fb583766050093900a151a09ad96fd3684bf860fb13de985ff7be": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "move_error",
+          "message": "use of moved value: `f`",
+          "slot_ids": [],
+          "rust_code": "E0382"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error; 2 warnings emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

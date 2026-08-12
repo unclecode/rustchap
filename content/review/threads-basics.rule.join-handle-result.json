@@ -1,0 +1,11 @@
+{
+  "id": "threads-basics.rule.join-handle-result",
+  "kind": "rule",
+  "title": "What join on JoinHandle returns",
+  "concepts": [
+    "threads-basics"
+  ],
+  "prompt": "What does calling join on a JoinHandle return, and why is it wrapped in a Result?",
+  "answer": "It returns a Result containing the thread return value. If the spawned thread panics during execution, join returns an Err containing the panic payload.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "drop-trait.rule.automatic-cleanup-order",
+  "kind": "rule",
+  "title": "When drop runs for local stack variables",
+  "concepts": [
+    "drop-trait"
+  ],
+  "prompt": "When does the Drop implementation execute for a local variable in a function scope?",
+  "answer": "The drop method runs automatically when the variable goes out of scope, including early return paths and unwinding panics. Variables are dropped in reverse order of their declaration.",
+  "schema_version": 1
+}

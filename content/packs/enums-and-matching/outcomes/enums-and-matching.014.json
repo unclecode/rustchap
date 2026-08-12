@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "enums-and-matching.014",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "0228de3a37733e8019ae662f7086cbd28aa7583df4adab119bb47451a201bd13": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected token `||` in pattern",
+          "slot_ids": [
+            "or_pattern"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `id` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "1f2749f41a5274ae15f74a78e78bd1b5f551c1e5cf6d581797caea933078f51d": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "cannot explicitly borrow within an implicitly-borrowing pattern",
+          "slot_ids": [
+            "struct_field"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "40a9fe3b24ad3a8e953432618b3af36545e3be449688288fb9a7d7c80e5f8ea4": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "variable `code` is not bound in all patterns",
+          "slot_ids": [
+            "or_pattern"
+          ],
+          "rust_code": "E0408"
+        },
+        {
+          "category": "compile_error",
+          "message": "variable `id` is not bound in all patterns",
+          "slot_ids": [
+            "or_pattern"
+          ],
+          "rust_code": "E0408"
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `id` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "425536a81438a4a8e678accebcf3d99ba4fc7ffde940dd0e5d7c72017411e4b0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected token `||` in pattern",
+          "slot_ids": [
+            "or_pattern"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "7f51c02fe26628123b960750217a02869b9cb939590e1358564b46fb9269bd47": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "variable `code` is not bound in all patterns",
+          "slot_ids": [
+            "or_pattern"
+          ],
+          "rust_code": "E0408"
+        },
+        {
+          "category": "compile_error",
+          "message": "variable `id` is not bound in all patterns",
+          "slot_ids": [
+            "or_pattern"
+          ],
+          "rust_code": "E0408"
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot explicitly borrow within an implicitly-borrowing pattern",
+          "slot_ids": [
+            "struct_field"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "used binding `id` is possibly-uninitialized",
+          "slot_ids": [],
+          "rust_code": "E0381"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a229c5b93d5e1e4256cb37c7c7ebfb2b23de5f37cfdb8b0a07f33e2b465b4584": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "token_edits": 2
+      },
+      "diagnostics": []
+    },
+    "ab8c417d26c86f37642bb686254364a13eda76f8ef4cd46b5219daaabde8a68f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "unexpected token `||` in pattern",
+          "slot_ids": [
+            "or_pattern"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "cannot explicitly borrow within an implicitly-borrowing pattern",
+          "slot_ids": [
+            "struct_field"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ca83ab5a04286c093128a71751dbc59650d33349bb4a5f7ac33e27f04f2f27b1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "variable `code` is not bound in all patterns",
+          "slot_ids": [
+            "or_pattern"
+          ],
+          "rust_code": "E0408"
+        },
+        {
+          "category": "compile_error",
+          "message": "variable `id` is not bound in all patterns",
+          "slot_ids": [
+            "or_pattern"
+          ],
+          "rust_code": "E0408"
+        },
+        {
+          "category": "compile_error",
+          "message": "used binding `id` is possibly-uninitialized",
+          "slot_ids": [],
+          "rust_code": "E0381"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors; 1 warning emitted",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d41d28cb85e06b265dc6a4db4c7a7ab0a8b1e9da3c10f0a01a828d754e0f0576": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `id` in this scope",
+          "slot_ids": [],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

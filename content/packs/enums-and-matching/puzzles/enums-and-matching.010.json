@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.010",
+  "version": 1,
+  "title": "Match Guards",
+  "track": "enums-and-matching",
+  "concepts": [
+    "match-basics"
+  ],
+  "difficulty": 1,
+  "goal": "Refine pattern matching with extra conditions using match guards.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Pattern Matching"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Patterns match on shapes and values. When you need to test a condition beyond the value's shape, use a match guard."
+      },
+      {
+        "kind": "code",
+        "code": "match num {\n    n if n < 0 => \"negative\",\n    n if n > 0 => \"positive\",\n    _ => \"zero\",\n}",
+        "caption": "The if condition runs after pattern matching."
+      },
+      {
+        "kind": "prose",
+        "text": "A match guard adds an `if` expression after the pattern and before the arrow."
+      },
+      {
+        "kind": "prose",
+        "text": "If the guard evaluates to `false`, that match arm is skipped and checking continues to the next arm."
+      },
+      {
+        "kind": "code",
+        "code": "match val {\n    x if x % 2 == 0 => \"even\",\n    x => \"odd\",\n}",
+        "caption": "If x is odd, the guard fails and falls through."
+      },
+      {
+        "kind": "prose",
+        "text": "Guards do not count toward exhaustiveness. The compiler cannot verify `if` conditions, so an unguarded catch-all arm is still required. Missing it causes error `E0004`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Refine pattern matching with extra conditions using match guards."
+}

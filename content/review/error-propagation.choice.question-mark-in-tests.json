@@ -1,0 +1,11 @@
+{
+  "id": "error-propagation.choice.question-mark-in-tests",
+  "kind": "choice",
+  "title": "Question mark versus unwrap in unit tests",
+  "concepts": [
+    "error-propagation"
+  ],
+  "prompt": "When should you return Result from a test function instead of using unwrap?",
+  "answer": "Return Result when a test calls multiple fallible functions and you want clean error propagation without repeated unwrap panics. The question mark operator propagates any Err early, causing Cargo to display the error cleanly. Reserve unwrap for quick checks where precise error reporting is unnecessary.",
+  "schema_version": 1
+}

@@ -1,0 +1,12 @@
+{
+  "id": "error-trait.syntax.blanket-from-conversion",
+  "kind": "syntax",
+  "title": "How the try operator converts error types",
+  "concepts": [
+    "error-trait",
+    "error-propagation"
+  ],
+  "prompt": "How does the question mark operator convert an inner error type into the function's returned error type?",
+  "answer": "The try operator calls `From::from` on the error value. If the target error type implements From<E> for the source error type E, the error converts automatically during early return.",
+  "schema_version": 1
+}

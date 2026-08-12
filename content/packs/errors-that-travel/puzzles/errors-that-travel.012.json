@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "errors-that-travel.012",
+  "version": 1,
+  "title": "Context and Option Conversion",
+  "track": "errors-that-travel",
+  "concepts": [
+    "error-propagation",
+    "option"
+  ],
+  "difficulty": 3,
+  "goal": "Convert an Option into a Result with a descriptive error message using ok_or.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Morning: Error Handling"
+  },
+  "template": "fn find_user(id: i32) -> Option<&'static str> {\n    if id == 1 { Some(\"Alice\") } else { None }\n}\n\nfn get_name(\n    id: i32,\n) -> Result<&'static str, &'static str> {\n    let u = find_user(id)\n        ⟦slot1⟧\n        ⟦slot2⟧;\n    Ok(u)\n}\n\nfn main() { let _ = get_name(1); }\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "slot1",
+        "original": "",
+        "label": "option conversion",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": ".ok_or(\"not found\")"
+          },
+          {
+            "id": "sl2",
+            "text": ""
+          },
+          {
+            "id": "sl3",
+            "text": ".unwrap_or(\"not found\")"
+          }
+        ]
+      },
+      {
+        "id": "slot2",
+        "original": "",
+        "label": "try propagation",
+        "choices": [
+          {
+            "id": "sl1",
+            "text": "?"
+          },
+          {
+            "id": "sl2",
+            "text": ""
+          },
+          {
+            "id": "sl3",
+            "text": ".unwrap()"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_get_name() {\n    assert_eq!(get_name(1), Ok(\"Alice\"));\n    assert_eq!(get_name(2), Err(\"not found\"));\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "find_user returns Option, but get_name returns Result.",
+    "Use ok_or to transform None into an Err containing the string error message."
+  ],
+  "explanation": "The `find_user` function returns an `Option`, but `get_name` returns a `Result`. Calling `.ok_or(\"not found\")` transforms `None` into `Err(\"not found\")`. The `?` operator then extracts the inner string or returns the error early. Using `.unwrap_or()` suppresses the error by returning a fallback `Ok` value."
+}

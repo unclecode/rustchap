@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "id": "ffi-and-raw-pointers.009",
+  "version": 1,
+  "title": "Safe Wrapper Check",
+  "track": "ffi-and-raw-pointers",
+  "concepts": [
+    "api-design",
+    "raw-pointers",
+    "unsafe-rust"
+  ],
+  "difficulty": 2,
+  "goal": "Build a safe wrapper that guards against null pointer dereferences.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Unsafe Rust: Soundness"
+  },
+  "interaction": {
+    "type": "block-arrangement",
+    "fixed_prefix": "fn safe_read(ptr: *const i32) -> Option<i32> {\n",
+    "blocks": [
+      {
+        "id": "check_null",
+        "text": "    if ptr.is_null() {\n        return None;\n    }\n"
+      },
+      {
+        "id": "deref_ptr",
+        "text": "    let val = unsafe {\n        *ptr\n    };\n"
+      },
+      {
+        "id": "return_val",
+        "text": "    Some(val)"
+      }
+    ],
+    "fixed_suffix": "\n}"
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn handles_valid() {\n    let x = 77;\n    assert_eq!(safe_read(&x as *const i32), Some(77));\n}",
+      "#[test]\nfn handles_null() {\n    assert_eq!(safe_read(std::ptr::null()), None);\n}"
+    ],
+    "metrics": [
+      "explicit_loops"
+    ]
+  },
+  "scoring": {
+    "primary": "explicit_loops",
+    "secondary": [],
+    "fluent": {
+      "explicit_loops": 0
+    },
+    "optimal": {
+      "explicit_loops": 0
+    }
+  },
+  "hints": [
+    "Always check if a raw pointer is null before dereferencing it.",
+    "Perform safety checks before entering the `unsafe` block."
+  ],
+  "explanation": "To maintain soundness in a safe wrapper function, you must check for null pointers before performing dereferences. Dereferencing prior to checking null leads to undefined behavior when passed a null pointer."
+}

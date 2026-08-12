@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "smart-pointers.008",
+  "version": 1,
+  "title": "Break Reference Cycles",
+  "track": "smart-pointers",
+  "concepts": [
+    "smart-pointers"
+  ],
+  "difficulty": 1,
+  "goal": "Prevent memory leaks in shared data structures using Weak pointers.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Rc and Weak"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Two `Rc` pointers referring to each other create a reference cycle. Their reference counts never hit zero, so their allocated heap memory is leaked forever."
+      },
+      {
+        "kind": "prose",
+        "text": "A `Weak<T>` pointer holds a reference to data managed by `Rc` without incrementing the strong reference count."
+      },
+      {
+        "kind": "code",
+        "code": "use std::rc::{Rc, Weak};\n\nlet strong: Rc<i32> = Rc::new(42);\nlet weak: Weak<i32> = Rc::downgrade(&strong);",
+        "caption": "Rc::downgrade creates a non-owning weak handle."
+      },
+      {
+        "kind": "prose",
+        "text": "Because a `Weak<T>` handle does not own the data, the inner value might be dropped at any time when all strong `Rc` handles go away."
+      },
+      {
+        "kind": "prose",
+        "text": "You cannot dereference a `Weak<T>` directly. You must call `.upgrade()`, which returns an `Option<Rc<T>>`."
+      },
+      {
+        "kind": "code",
+        "code": "if let Some(rc) = weak.upgrade() {\n    println!(\"Value is {}\", rc);\n}",
+        "caption": "upgrade returns None if the inner value was already dropped."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Prevent memory leaks in shared data structures using Weak pointers."
+}

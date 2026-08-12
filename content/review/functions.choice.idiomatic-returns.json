@@ -1,0 +1,11 @@
+{
+  "id": "functions.choice.idiomatic-returns",
+  "kind": "choice",
+  "title": "Idiomatic Function Returns",
+  "concepts": [
+    "functions"
+  ],
+  "prompt": "When should you use the `return` keyword in a Rust function?",
+  "answer": "Use the `return` keyword only for early returns from inside conditional logic or loops. For the final result of a function, omit `return` and the trailing semicolon.",
+  "schema_version": 1
+}

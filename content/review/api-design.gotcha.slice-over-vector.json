@@ -1,0 +1,12 @@
+{
+  "id": "api-design.gotcha.slice-over-vector",
+  "kind": "gotcha",
+  "title": "Slices versus vector references in parame...",
+  "concepts": [
+    "api-design",
+    "slice"
+  ],
+  "prompt": "Why should a read-only collection parameter take &[T] instead of &Vec<T>?",
+  "answer": "Taking `&[T]` allows callers to pass vector references, fixed arrays, and slice views without allocating. A parameter typed as `&Vec<T>` forces owners of arrays or slices to allocate a new vector just to call the function.",
+  "schema_version": 1
+}

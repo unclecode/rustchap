@@ -1,0 +1,11 @@
+{
+  "id": "lifetime.error.e0502-mut-while-borrowed",
+  "kind": "error",
+  "title": "Understanding error E0502 during function...",
+  "concepts": [
+    "lifetime"
+  ],
+  "prompt": "Why does compiler error E0502 occur when mutating an argument after calling a function that returns a reference?",
+  "answer": "Error `E0502` occurs because the returned reference is still active and holds a borrow on that argument. The borrow checker prevents mutating data while an active reference exists. Unlinking unused input parameters with separate lifetimes solves the error.",
+  "schema_version": 1
+}

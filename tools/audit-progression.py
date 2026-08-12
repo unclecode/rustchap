@@ -22,6 +22,8 @@ ALLOWED_TIES = {
     "pattern-matching.002": "named variant vs wildcard — future-proofing is unmeasurable",
     "pattern-matching.003": "match vs if let — equally idiomatic",
     "strings-basics.002": "literal &str vs &String via deref coercion — both correct, lesson says so",
+    "control-flow.003": "1..=5 vs 1..6 — same range, explanation says either earns the star",
+    "control-flow.006": "_ vs a named binding — both are catch-all arms, explanation says so",
 }
 
 hard_flags, review = [], []

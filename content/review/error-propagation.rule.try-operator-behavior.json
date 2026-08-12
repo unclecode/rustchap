@@ -1,0 +1,11 @@
+{
+  "id": "error-propagation.rule.try-operator-behavior",
+  "kind": "rule",
+  "title": "What the try operator does on Result",
+  "concepts": [
+    "error-propagation"
+  ],
+  "prompt": "What control flow occurs when applying the try operator ? to a Result value?",
+  "answer": "When applied to Ok(value), the try operator unwraps and evaluates to value. When applied to Err(err), it immediately returns Err from the enclosing function. It also applies `From::from` to convert the error type if necessary.",
+  "schema_version": 1
+}

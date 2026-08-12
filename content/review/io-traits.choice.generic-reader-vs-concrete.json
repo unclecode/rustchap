@@ -1,0 +1,11 @@
+{
+  "id": "io-traits.choice.generic-reader-vs-concrete",
+  "kind": "choice",
+  "title": "generic parameter over concrete io type",
+  "concepts": [
+    "io-traits"
+  ],
+  "prompt": "When should a function accept `R: Read` or `W: Write` instead of a concrete type like `File`?",
+  "answer": "Accepting `R: Read` or `W: Write` allows the function to work with files, network streams, and in-memory byte buffers interchangeably. This makes testing without disk or network access straightforward.",
+  "schema_version": 1
+}

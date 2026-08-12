@@ -1,0 +1,763 @@
+{
+  "schema_version": 1,
+  "puzzle_id": "smart-pointers.010",
+  "puzzle_version": 1,
+  "toolchain": "1.97.1",
+  "outcomes": {
+    "067afa690eef5a049ca0d7af7f1dfa1b549ae8d4a8018a881a004e050df9057f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "no method named `borrow` found for reference `&std::rc::Weak<std::cell::RefCell<Node>>` in the current scope",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "080102dba7b626a639ee33de30ae8598c53e96253d4d060db8c4e425cae250b1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `cell` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "17442e9f180b0e9450722ad2f9f9a1e691d22b34e8d89b18a43fbf874698e14c": {
+      "status": "solved",
+      "rank": "optimal",
+      "metrics": {
+        "clone_count": 0
+      },
+      "diagnostics": []
+    },
+    "233a4685e705f4a15d3355b59b5cf87053ed8b61f77ee776ce7825c2d4a8ba08": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `.`",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "3d3fbbe84e443aab80c8cc18e2e3e5227cd73bb58392815a133fb15d03c0eb57": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `Some`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `cell` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "470068ffe9f8064454916ef06da3df4b51bcb50b29706328c248f85f90d572b3": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `borrow` found for reference `&std::rc::Weak<std::cell::RefCell<Node>>` in the current scope",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "4df700da8575d8b720b1a273967fa7693bec5d056bb6de6276bab37a0166a7c2": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `Some`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `cell` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `borrow` found for reference `&std::rc::Weak<std::cell::RefCell<Node>>` in the current scope",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "563d0e31abe2bfe2029af3e842fd82568f0235535fcf52a8a784ff58dba9e63b": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `Some`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `.`",
+          "slot_ids": [
+            "upg"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `cell` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "5d712b22ef8faf4d0059e512b4ef1a62c7b511d27e9b688c2f2732dd8155adc0": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `Some`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `val` on type `std::rc::Rc<std::cell::RefCell<Node>>`",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "67a8004a53d7df67374b9b81014d03237503726a01c44dbda6fc46f45df44a71": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `val` on type `std::rc::Rc<std::cell::RefCell<Node>>`",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "716d02f02eac2a08f47f57b99d014d966fc163fea77bf892801f83aca425c38c": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `Some`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `.`",
+          "slot_ids": [
+            "upg"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `val` on type `&std::rc::Weak<std::cell::RefCell<Node>>`",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "72d43e399dad8fde398c70bdde2199574811000990bcd0a45df1e654a8c7b40e": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `.`",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 1 previous error",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "74df4b79725ea4d33f4483fdd45ec5472293a9b1596e7b1a6f2b7798b259d2d5": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `Some`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `.`",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no field `val` on type `&std::rc::Weak<std::cell::RefCell<Node>>`",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0609"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "93137420457aff048c53d73e82f03d143d46970f062c1de32c0459316f0a0bf1": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `.`",
+          "slot_ids": [
+            "upg"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `borrow` found for reference `&std::rc::Weak<std::cell::RefCell<Node>>` in the current scope",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "9825a251031e53514b08b18ea675173995487b8f8f65162319a3a58476fb6bff": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `}`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `cell` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `borrow` found for reference `&std::rc::Weak<std::cell::RefCell<Node>>` in the current scope",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "a513629e582f360711a27fb16d86787ada6c205b637f89f6715c8f14137d7a8a": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `.`",
+          "slot_ids": [
+            "upg"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `borrow` found for reference `&std::rc::Weak<std::cell::RefCell<Node>>` in the current scope",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ca1e21583279c99f6a8426945c0cf6632cbc3cac3383304f936df5e1f21bc199": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `borrow` found for reference `&std::rc::Weak<std::cell::RefCell<Node>>` in the current scope",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "cd744e70465a5b11653b4583c724abc2213fce9793573f8e4c9ffda119f4e39f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `Some`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `borrow` found for reference `&std::rc::Weak<std::cell::RefCell<Node>>` in the current scope",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d4ec6a940aedc1f14be880103819ec7f243f84960aa19f5c56f8dc8fca01e9bf": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `.`",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "d524a2886fbc963bb601a69c0da4cafe8e7b715bcd1e5403263d6428e46e803f": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `Some`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `.`",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "unresolved_name",
+          "message": "cannot find value `cell` in this scope",
+          "slot_ids": [
+            "ret"
+          ],
+          "rust_code": "E0425"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e36e5f0eaf6f0df2256914aedf6cd872f96c1057c3c8cf95adebff79baf2be87": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `Some`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `.`",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 3 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "e914801de912b00a6418e631f042170ef6e5db3ffb646f947e600d3726bdf164": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found `Some`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `.`",
+          "slot_ids": [
+            "upg"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `borrow` found for reference `&std::rc::Weak<std::cell::RefCell<Node>>` in the current scope",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 4 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "eae3d34febfb8716d210654c5b6ca28ea573f0626c4e0f076f9c73f2bdc78a78": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected expression, found `.`",
+          "slot_ids": [
+            "upg"
+          ],
+          "rust_code": null
+        },
+        {
+          "category": "compile_error",
+          "message": "no method named `borrow` found for reference `&std::rc::Weak<std::cell::RefCell<Node>>` in the current scope",
+          "slot_ids": [
+            "bor"
+          ],
+          "rust_code": "E0599"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    },
+    "ffacf23e538b7626c9edadf38d6cbadf563c45b5372388faa446e71adc5e9866": {
+      "status": "compile_error",
+      "rank": null,
+      "metrics": {},
+      "diagnostics": [
+        {
+          "category": "compile_error",
+          "message": "expected `;`, found keyword `let`",
+          "slot_ids": [],
+          "rust_code": null
+        },
+        {
+          "category": "type_mismatch",
+          "message": "mismatched types",
+          "slot_ids": [],
+          "rust_code": "E0308"
+        },
+        {
+          "category": "compile_error",
+          "message": "aborting due to 2 previous errors",
+          "slot_ids": [],
+          "rust_code": null
+        }
+      ]
+    }
+  }
+}

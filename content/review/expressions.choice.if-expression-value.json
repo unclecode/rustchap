@@ -1,0 +1,11 @@
+{
+  "id": "expressions.choice.if-expression-value",
+  "kind": "choice",
+  "title": "Using if as an expression",
+  "concepts": [
+    "expressions"
+  ],
+  "prompt": "How do you produce a value from an if block in Rust without using an explicit return keyword?",
+  "answer": "Omit the trailing semicolon from the expression in each branch of the if block. Both the if branch and else branch must evaluate to the same type, allowing the overall block to be assigned or returned directly.",
+  "schema_version": 1
+}

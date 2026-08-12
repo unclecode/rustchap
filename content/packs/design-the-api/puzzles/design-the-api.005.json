@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "design-the-api.005",
+  "version": 1,
+  "title": "Accept Slices Instead of Vectors",
+  "track": "design-the-api",
+  "concepts": [
+    "api-design",
+    "slice"
+  ],
+  "difficulty": 1,
+  "goal": "Learn why public function signatures should take slice references rather than vector references.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from API Guidelines: Flexibility"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In Go or Java, passing a slice or list reference is standard. In Rust, functions that only read items should accept `&[T]` instead of `&Vec<T>`."
+      },
+      {
+        "kind": "code",
+        "code": "fn total(values: &[i32]) -> i32 {\n    values.iter().sum()\n}",
+        "caption": "A slice parameter accepts vectors, arrays, and slices."
+      },
+      {
+        "kind": "prose",
+        "text": "A `&Vec<T>` parameter restricts your callers. Callers with fixed arrays `[T; N]` or slice views cannot call your function without creating a new `Vec`."
+      },
+      {
+        "kind": "prose",
+        "text": "Through deref coercion, a `&Vec<T>` automatically converts into `&[T]`. Passing `&[T]` gives your API maximum caller flexibility at zero performance cost."
+      },
+      {
+        "kind": "code",
+        "code": "let vec = vec![1, 2, 3];\nlet arr = [4, 5, 6];\ntotal(&vec); // deref coercion\ntotal(&arr); // fixed array view",
+        "caption": "Both vector references and fixed arrays fit the same parameter."
+      },
+      {
+        "kind": "prose",
+        "text": "Generics like `AsRef` extend this idea further, which is covered in the trait bounds deck later."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn why public function signatures should take slice references rather than vector references."
+}

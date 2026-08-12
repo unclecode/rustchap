@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "remove-the-clone.008",
+  "version": 1,
+  "title": "Derive Copy for Small Types",
+  "track": "remove-the-clone",
+  "concepts": [
+    "copy",
+    "clone",
+    "structs"
+  ],
+  "difficulty": 1,
+  "goal": "Learn when to derive Copy on custom types so passing them duplicates without calling clone.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Afternoon: Copy Types"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In C++ or Java, assignment copies primitive values or references. Rust moves custom struct values by default, even if they hold only primitive numbers."
+      },
+      {
+        "kind": "code",
+        "code": "struct Point {\n    x: i32,\n    y: i32,\n}",
+        "caption": "Without Copy, passing a Point moves ownership."
+      },
+      {
+        "kind": "prose",
+        "text": "If a struct contains only types that implement `Copy`, you can opt into copy semantics. You add `#[derive(Copy, Clone)]` above the struct definition."
+      },
+      {
+        "kind": "code",
+        "code": "#[derive(Copy, Clone)]\nstruct Point {\n    x: i32,\n    y: i32,\n}",
+        "caption": "Deriving Copy gives this struct bitwise copy semantics."
+      },
+      {
+        "kind": "prose",
+        "text": "With `Copy`, assignments duplicate the bytes in memory automatically. You never need to write `.clone()` on a `Copy` type."
+      },
+      {
+        "kind": "prose",
+        "text": "Types that allocate memory, like `String` or `Vec`, cannot implement `Copy`. The compiler gives error `E0204` if you try to derive `Copy` on them."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Learn when to derive Copy on custom types so passing them duplicates without calling clone."
+}

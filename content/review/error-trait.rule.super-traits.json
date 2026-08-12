@@ -1,0 +1,11 @@
+{
+  "id": "error-trait.rule.super-traits",
+  "kind": "rule",
+  "title": "Supertraits of std error Error",
+  "concepts": [
+    "error-trait"
+  ],
+  "prompt": "What traits must a type implement before it can implement `std::error::Error`?",
+  "answer": "A type must implement both Debug and Display before implementing `std::error::Error`. Display provides user-facing error formatting, while Debug provides developer-focused output.",
+  "schema_version": 1
+}

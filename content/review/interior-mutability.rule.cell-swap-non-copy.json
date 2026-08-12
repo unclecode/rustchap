@@ -1,0 +1,11 @@
+{
+  "id": "interior-mutability.rule.cell-swap-non-copy",
+  "kind": "rule",
+  "title": "Swapping non-Copy values in Cell",
+  "concepts": [
+    "interior-mutability"
+  ],
+  "prompt": "How can you exchange non-Copy values between two Cell wrappers without taking or cloning them?",
+  "answer": "`Cell::swap` exchanges the inner values of two Cell instances directly in memory. It works for any type, even non-Copy types like String, without creating external references.",
+  "schema_version": 1
+}

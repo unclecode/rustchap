@@ -1,0 +1,11 @@
+{
+  "id": "io-traits.gotcha.write-requires-mut",
+  "kind": "gotcha",
+  "title": "standard io write requires mutable reference",
+  "concepts": [
+    "io-traits"
+  ],
+  "prompt": "Why does writing to a buffer or stream with `std::io::Write` require a mutable reference?",
+  "answer": "`Write::write_all` and `Write::write` mutate the internal state of the stream or vector. Calling write methods on a shared reference causes compiler error `E0596`.",
+  "schema_version": 1
+}

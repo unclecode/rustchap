@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.003",
+  "version": 1,
+  "title": "Carry the Data",
+  "track": "enums-and-matching",
+  "concepts": [
+    "enums-basics"
+  ],
+  "difficulty": 1,
+  "goal": "The click needs to remember which button. Give the variant somewhere to put it.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: User-Defined Types (Enums)"
+  },
+  "template": "#[derive(Debug, PartialEq)]\nenum Event {\n    Click⟦payload⟧,\n    Close,\n}\n\nfn describe(e: Event) -> String {\n    match e {\n        Event::Click(n) => format!(\"click {n}\"),\n        Event::Close => String::from(\"close\"),\n    }\n}\n\nfn main() {\n    println!(\"{}\", describe(Event::Click(3)));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "payload",
+        "original": "",
+        "label": "what Click carries",
+        "choices": [
+          {
+            "id": "pa1",
+            "text": "(i32)"
+          },
+          {
+            "id": "pa2",
+            "text": ""
+          },
+          {
+            "id": "pa3",
+            "text": ": i32"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn describes() {\n    assert_eq!(describe(Event::Click(3)), \"click 3\");\n    assert_eq!(describe(Event::Close), \"close\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "Look at how the match arm reads the click.",
+    "A variant carries its data in brackets, like a function's parameters."
+  ],
+  "explanation": "`Click(i32)` gives the variant one piece of data, which the match arm then binds to `n`. With no brackets at all, `Click` carries nothing and the arm `Event::Click(n)` has nothing to bind, so the compiler rejects it. The form `Click: i32` is not enum syntax. A variant either carries nothing, carries unnamed values in brackets, or carries named fields in braces."
+}

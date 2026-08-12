@@ -11,6 +11,9 @@ struct ProfileView: View {
     @Environment(\.dismiss) private var dismiss
     @AppStorage("appearance") private var appearance = "system"
     @AppStorage("tutorEngine") private var tutorEngine = TutorEngineKind.local.rawValue
+    #if DEBUG
+    @AppStorage(Progression.unlockAllKey) private var unlockAll = false
+    #endif
     @State private var openRouterKey = TutorSettings.openRouterKey ?? ""
     @Query private var progress: [PuzzleProgressRecord]
 
@@ -181,6 +184,18 @@ struct ProfileView: View {
                 } footer: {
                     Text("Progress is tied to this device's Keychain identity and synced to the server — deleting and reinstalling the app restores it.")
                 }
+
+                #if DEBUG
+                // Debug builds only, so it can never reach TestFlight or the
+                // store. For reviewing content without playing the chain first.
+                Section {
+                    Toggle("Unlock every deck", isOn: $unlockAll)
+                } header: {
+                    Text("Developer")
+                } footer: {
+                    Text("Opens every deck in every level for review. Your solved puzzles and stars are untouched, so turning this off restores the normal progression.")
+                }
+                #endif
             }
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)

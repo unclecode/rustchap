@@ -1,0 +1,12 @@
+{
+  "id": "closures.error.e0373-missing-move",
+  "kind": "error",
+  "title": "Reading error E0373 on returning closures",
+  "concepts": [
+    "closures",
+    "move"
+  ],
+  "prompt": "What causes error E0373 when creating a closure, and how do you fix it?",
+  "answer": "Error `E0373` occurs when a closure borrows a variable that might not live long enough, such as when returning a closure or passing it to a background thread. You fix it by prepending the `move` keyword to the closure, forcing it to take ownership of the borrowed variable.",
+  "schema_version": 1
+}

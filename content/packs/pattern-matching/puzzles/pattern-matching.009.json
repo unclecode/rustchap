@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "pattern-matching.009",
+  "version": 1,
+  "title": "Guards vs Body Conditions",
+  "track": "pattern-matching",
+  "concepts": [
+    "pattern-matching",
+    "match-basics"
+  ],
+  "difficulty": 2,
+  "goal": "Ensure unmatched conditions fall through to subsequent arms.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: Pattern Matching"
+  },
+  "template": "fn classify(val: i32) -> &'static str {\n    match val {\n        ⟦arm1_pat⟧ => \"positive even\",\n        ⟦arm2_pat⟧ => \"positive odd\",\n        _ => \"other\",\n    }\n}\n\nfn main() {\n    println!(\"{}\", classify(4));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "arm1_pat",
+        "original": "x if x % 2 == 0",
+        "label": "first arm pattern",
+        "choices": [
+          {
+            "id": "ar1",
+            "text": "x if x > 0 && x % 2 == 0"
+          },
+          {
+            "id": "ar2",
+            "text": "x if x % 2 == 0"
+          },
+          {
+            "id": "ar3",
+            "text": "x && x > 0"
+          }
+        ]
+      },
+      {
+        "id": "arm2_pat",
+        "original": "_",
+        "label": "second arm pattern",
+        "choices": [
+          {
+            "id": "ar1",
+            "text": "x if x > 0"
+          },
+          {
+            "id": "ar2",
+            "text": "_"
+          },
+          {
+            "id": "ar3",
+            "text": "x if > 0"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_classify() {\n    assert_eq!(classify(4), \"positive even\");\n    assert_eq!(classify(3), \"positive odd\");\n    assert_eq!(classify(-2), \"other\");\n    assert_eq!(classify(0), \"other\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "A match guard uses `if` right after the pattern to restrict when the arm matches.",
+    "Ensure both positive check and parity check are included in the guard condition."
+  ],
+  "explanation": "Match guards use the syntax `pattern if condition`. If the condition evaluates to false, matching falls through to subsequent arms. Omitting the `x > 0` check causes negative even numbers to match the first arm. Using `_` in the second arm causes negative odd numbers to be misclassified as positive odd."
+}

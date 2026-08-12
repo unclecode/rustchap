@@ -1,0 +1,11 @@
+{
+  "id": "structs.syntax.increment-operator",
+  "kind": "syntax",
+  "title": "Modifying numeric fields in Rust",
+  "concepts": [
+    "structs"
+  ],
+  "prompt": "How do you increment a numeric struct field in Rust, and why does `self.value++` fail?",
+  "answer": "Rust has no unary postfix `++` or prefix `--` operators. You must write `self.value += 1;` instead.",
+  "schema_version": 1
+}

@@ -1,0 +1,12 @@
+{
+  "id": "clone.gotcha.clone-then-borrow",
+  "kind": "gotcha",
+  "title": "The clone then borrow anti-pattern",
+  "concepts": [
+    "clone",
+    "borrow"
+  ],
+  "prompt": "What cost does `&value.clone()` incur when passing a String to a function that takes `&str`?",
+  "answer": "It allocates a brand new `String` on the heap, copies the characters, borrows the copy for the function call, and drops it immediately. Passing `&value` directly performs the exact same borrow with zero heap allocations.",
+  "schema_version": 1
+}

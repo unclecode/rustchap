@@ -1,0 +1,11 @@
+{
+  "id": "error-trait.syntax.implementing-display-and-error",
+  "kind": "syntax",
+  "title": "Writing a minimal custom error type",
+  "concepts": [
+    "error-trait"
+  ],
+  "prompt": "How do you define a minimal struct that implements `std::error::Error`?",
+  "answer": "Define the struct, derive Debug, implement `fmt::Display` using write!, and provide an empty impl `std::error::Error` for MyStruct {} block.",
+  "schema_version": 1
+}

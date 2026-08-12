@@ -1,0 +1,16 @@
+{
+  "id": "cmp-traits",
+  "title": "Comparison Traits",
+  "topic": "Abstraction",
+  "summary": "Eq, PartialEq, Ord, and PartialOrd for total and partial equivalence and ordering.",
+  "lecture": [
+    "Rust separates total comparison from partial comparison to handle types with undefined orderings like floating point numbers.",
+    "PartialEq and PartialOrd allow comparisons that may fail or return false for equal representations like NaN.",
+    "Eq and Ord represent full equivalence relations and total orderings required by collections like BTreeMap."
+  ],
+  "example": {
+    "code": "use std::cmp::Ordering;\n\nfn cmp(a: f64, b: f64) -> Ordering {\n    a.partial_cmp(&b)\n        .unwrap_or(Ordering::Equal)\n}",
+    "caption": "partial_cmp returns an Option."
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views.013",
+  "version": 1,
+  "title": "The Escape View Trap",
+  "track": "slices-and-views",
+  "concepts": [
+    "slice",
+    "borrow",
+    "lifetime"
+  ],
+  "difficulty": 3,
+  "goal": "Return formatted text from a function without holding references to local variables.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from borrowck"
+  },
+  "template": "fn get_prefix(s: &str) -> ⟦ret_type⟧ {\n    let uppercase = s.trim().to_uppercase();\n    ⟦ret_expr⟧\n}\n\nfn main() {\n    let input = \"  rust compiler  \";\n    println!(\"{}\", get_prefix(input));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "ret_type",
+        "original": "&str",
+        "label": "return type",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "String"
+          },
+          {
+            "id": "re2",
+            "text": "&str"
+          },
+          {
+            "id": "re3",
+            "text": "&String"
+          }
+        ]
+      },
+      {
+        "id": "ret_expr",
+        "original": "&uppercase[..4]",
+        "label": "returned expression",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "uppercase[..4].to_string()"
+          },
+          {
+            "id": "re2",
+            "text": "&uppercase[..4]"
+          },
+          {
+            "id": "re3",
+            "text": "&uppercase"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn returns_uppercase_prefix() {\n    assert_eq!(get_prefix(\"  rust compiler  \"), \"RUST\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "to_uppercase creates a brand new owned String on the stack inside get_prefix.",
+    "Returning a view &str into a local String leaves a dangling pointer when the function returns."
+  ],
+  "explanation": "s.trim().to_uppercase() creates a new owned String on the function's stack frame. Returning &uppercase[..4] attempts to hand back a borrowed view into memory that will be dropped at the end of the function, triggering E0515. To return data that outlives the local scope, the function must transfer ownership of a new String using uppercase[..4].to_string()."
+}

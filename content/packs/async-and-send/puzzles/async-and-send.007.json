@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "async-and-send.007",
+  "version": 1,
+  "title": "Spawn Needs Ownership",
+  "track": "async-and-send",
+  "concepts": [
+    "async-await",
+    "move"
+  ],
+  "difficulty": 2,
+  "goal": "Pass data into a spawned task without lifetime errors.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Tasks"
+  },
+  "template": "use std::future::Future;\n\nfn count_chars(s: String) -> impl Future<Output = usize> + 'static {\n    ⟦keyword⟧ ⟦body⟧\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "keyword",
+        "original": "async",
+        "label": "async keyword",
+        "choices": [
+          {
+            "id": "kw1",
+            "text": "async move"
+          },
+          {
+            "id": "kw2",
+            "text": "async"
+          },
+          {
+            "id": "kw3",
+            "text": "move ||"
+          }
+        ]
+      },
+      {
+        "id": "body",
+        "original": "{ s.len() }",
+        "label": "task body",
+        "choices": [
+          {
+            "id": "bd1",
+            "text": "{ s.len() }"
+          },
+          {
+            "id": "bd2",
+            "text": "{ &s.len() }"
+          },
+          {
+            "id": "bd3",
+            "text": "{ 0 }"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn tests_count() {\n    fn noop(_: *const ()) {}\n    fn clone(p: *const ()) -> std::task::RawWaker { std::task::RawWaker::new(p, &VTABLE) }\n    static VTABLE: std::task::RawWakerVTable = std::task::RawWakerVTable::new(clone, noop, noop, noop);\n    let waker = unsafe { std::task::Waker::from_raw(std::task::RawWaker::new(std::ptr::null(), &VTABLE)) };\n    let mut cx = std::task::Context::from_waker(&waker);\n    let mut fut = std::pin::pin!(count_chars(String::from(\"hello\")));\n    if let std::task::Poll::Ready(res) = fut.as_mut().poll(&mut cx) {\n        assert_eq!(res, 5);\n    } else {\n        panic!(\"future not ready\");\n    }\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "Returning an impl Future + 'static requires the future to own all captured variables.",
+    "Use the move keyword on the async block to transfer ownership of s into the future."
+  ],
+  "explanation": "Returning an `impl Future + 'static` requires that the future owns all captured data. A plain `async { s.len() }` borrows `s` from the function parameter frame, failing the `'static` bound with `E0373`. Adding `move` to make `async move { s.len() }` gives the future full ownership of `s`. Writing `move ||` creates a closure instead of a future, which fails with `E0277` because closures do not implement `Future`."
+}

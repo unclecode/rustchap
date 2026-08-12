@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.008",
+  "version": 1,
+  "title": "Struct Variants",
+  "track": "enums-and-matching",
+  "concepts": [
+    "enums-basics"
+  ],
+  "difficulty": 1,
+  "goal": "Group named fields inside a single enum variant.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Afternoon: User-Defined Types"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Enum variants are not limited to single values or tuple fields. A variant can also carry named fields inside curly braces."
+      },
+      {
+        "kind": "code",
+        "code": "enum Action {\n    Quit,\n    Move { x: i32, y: i32 },\n}\n\nlet a = Action::Move { x: 10, y: 20 };",
+        "caption": "Move carries named x and y coordinates."
+      },
+      {
+        "kind": "prose",
+        "text": "This acts like an inline struct definition attached directly to that variant."
+      },
+      {
+        "kind": "prose",
+        "text": "When you read a struct variant in a match, you use curly braces and match the field names."
+      },
+      {
+        "kind": "code",
+        "code": "match action {\n    Action::Quit => 0,\n    Action::Move { x, y } => x + y,\n}",
+        "caption": "Braces destructure the named fields x and y."
+      },
+      {
+        "kind": "prose",
+        "text": "Using parentheses instead of braces on a struct variant triggers compiler error `E0023`."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Group named fields inside a single enum variant."
+}

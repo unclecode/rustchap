@@ -1,0 +1,11 @@
+{
+  "id": "async-await.gotcha.async-move-captures",
+  "kind": "gotcha",
+  "title": "Async blocks borrow scope by default",
+  "concepts": [
+    "async-await"
+  ],
+  "prompt": "Why does returning an async block that uses local function parameters cause compile error E0373?",
+  "answer": "By default an async block borrows variables from its surrounding scope. When the function returns, those stack references become invalid, requiring the async move keyword to transfer ownership.",
+  "schema_version": 1
+}

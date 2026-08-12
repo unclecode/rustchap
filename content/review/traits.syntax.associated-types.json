@@ -1,0 +1,11 @@
+{
+  "id": "traits.syntax.associated-types",
+  "kind": "syntax",
+  "title": "Qualifying associated types with Self",
+  "concepts": [
+    "traits"
+  ],
+  "prompt": "How do you reference an associated type inside a trait method signature?",
+  "answer": "You reference associated types using `Self::TypeName`. Plain `TypeName` is not in scope without the `Self::` prefix.",
+  "schema_version": 1
+}

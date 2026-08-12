@@ -1,0 +1,11 @@
+{
+  "id": "pattern-matching.syntax.at-binding",
+  "kind": "syntax",
+  "title": "Binding values with at pattern syntax",
+  "concepts": [
+    "pattern-matching"
+  ],
+  "prompt": "How do you test a pattern while simultaneously binding the matched value to a variable name?",
+  "answer": "Place the variable name followed by the @ symbol before the sub-pattern. For example, s @ 90..=100 tests that the score is in range while binding s to that score. This avoids writing duplicate match guards.",
+  "schema_version": 1
+}

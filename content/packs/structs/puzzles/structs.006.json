@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "structs.006",
+  "version": 1,
+  "title": "Borrow Yourself",
+  "track": "structs",
+  "concepts": [
+    "structs"
+  ],
+  "difficulty": 2,
+  "goal": "cost() is called twice on the same package. Pick the form that survives the first call.",
+  "template": "struct Package {\n    weight: u32,\n}\n\nimpl Package {\n    fn cost(⟦selfparam⟧) -> u32 {\n        self.weight * ⟦rate⟧\n    }\n}\n\nfn main() {\n    let p = Package { weight: 2 };\n    println!(\"{} then {}\", p.cost(), p.cost());\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "selfparam",
+        "original": "self",
+        "label": "self parameter",
+        "choices": [
+          {
+            "id": "s1",
+            "text": "self"
+          },
+          {
+            "id": "s2",
+            "text": "&self"
+          },
+          {
+            "id": "s3",
+            "text": "this: &Package"
+          }
+        ]
+      },
+      {
+        "id": "rate",
+        "original": "3",
+        "label": "rate",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "3"
+          },
+          {
+            "id": "r2",
+            "text": "RATE"
+          },
+          {
+            "id": "r3",
+            "text": "3.0"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn costs_twice() {\n    let p = Package { weight: 2 };\n    assert_eq!(p.cost(), 6);\n    assert_eq!(p.cost(), 6);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 1
+    },
+    "optimal": {
+      "token_edits": 1
+    }
+  },
+  "hints": [
+    "Look at how many times main calls the method.",
+    "One of these forms takes the package away."
+  ],
+  "explanation": "`&self` borrows the package for the call, so the second call still has something to work with. `self` would consume it on the first call and the second is then error `E0382`, use of a moved value. This is the most common shape of that error in real code.",
+  "prerequisites": [],
+  "source": {
+    "origin": "rustlings",
+    "license": "MIT",
+    "attribution": "adapted from rustlings structs3"
+  }
+}

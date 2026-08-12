@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "types-and-functions.011",
+  "version": 1,
+  "title": "Cap at the Upper Bound",
+  "track": "types-and-functions",
+  "concepts": [
+    "primitive-types"
+  ],
+  "difficulty": 2,
+  "goal": "Prevent unsigned integer overflow using saturating arithmetic.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 1 Morning: Values and Variables"
+  },
+  "template": "fn main() {\n    println!(\"{}\", add_bonus(250, 15));\n}\n\nfn add_bonus(score: u8, bonus: u8) -> ⟦ret_type⟧ {\n    score.⟦method⟧(bonus)\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "ret_type",
+        "original": "i32",
+        "label": "return type",
+        "choices": [
+          {
+            "id": "re1",
+            "text": "i32"
+          },
+          {
+            "id": "re2",
+            "text": "u8"
+          },
+          {
+            "id": "re3",
+            "text": "u16"
+          }
+        ]
+      },
+      {
+        "id": "method",
+        "original": "add",
+        "label": "arithmetic method",
+        "choices": [
+          {
+            "id": "me1",
+            "text": "add"
+          },
+          {
+            "id": "me2",
+            "text": "saturating_add"
+          },
+          {
+            "id": "me3",
+            "text": "concat"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn saturates_at_max() {\n    assert_eq!(add_bonus(250, 15), 255);\n    assert_eq!(add_bonus(10, 20), 30);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Calling arithmetic methods on `u8` returns a `u8` value.",
+    "Look for the built-in method that clamps addition at `u8::MAX`."
+  ],
+  "explanation": "`saturating_add` adds two numbers and caps the result at the type maximum `255` instead of overflowing. The return type remains `u8`. Standard integers do not have a bare `.add()` method without importing traits, causing `E0599`. Returning `i32` or `u16` causes `E0308` because `saturating_add` on `u8` produces `u8`."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "scoped-threads.rule.borrow-stack-data",
+  "kind": "rule",
+  "title": "Borrowing stack data in threads",
+  "concepts": [
+    "scoped-threads"
+  ],
+  "prompt": "How does `thread::scope` allow spawned threads to borrow stack references without requiring 'static?",
+  "answer": "`thread::scope` blocks and joins all threads spawned within its closure before returning. Because child threads cannot outlive the scope, borrowing references to local stack variables is completely memory-safe.",
+  "schema_version": 1
+}

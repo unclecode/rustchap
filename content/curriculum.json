@@ -1,0 +1,388 @@
+{
+  "note": "The build plan for the whole curriculum. Minimum 15 nodes per deck (18 for the four the language leans on: move-or-borrow, repair-the-lifetime, threads-and-channels, async-and-send). Raised from 10 on 2026-08-07. status: planned | thin | shipped.",
+  "levels": [
+    {
+      "id": "foundations",
+      "title": "Foundations"
+    },
+    {
+      "id": "ownership",
+      "title": "Ownership"
+    },
+    {
+      "id": "everyday",
+      "title": "Everyday Rust"
+    },
+    {
+      "id": "abstraction",
+      "title": "Abstraction"
+    },
+    {
+      "id": "systems",
+      "title": "Systems"
+    },
+    {
+      "id": "mastery",
+      "title": "Mastery"
+    }
+  ],
+  "decks": [
+    {
+      "id": "first-steps",
+      "title": "First Steps",
+      "level": "foundations",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "types-and-values"
+      ]
+    },
+    {
+      "id": "types-and-functions",
+      "title": "Types & Functions",
+      "level": "foundations",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "types-and-values",
+        "control-flow-basics/functions",
+        "tuples-and-arrays"
+      ]
+    },
+    {
+      "id": "control-flow",
+      "title": "Control Flow",
+      "level": "foundations",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "control-flow-basics"
+      ]
+    },
+    {
+      "id": "structs",
+      "title": "Structs",
+      "level": "foundations",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "user-defined-types",
+        "methods-and-traits/methods"
+      ]
+    },
+    {
+      "id": "enums-and-matching",
+      "title": "Enums & Matching",
+      "level": "foundations",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "user-defined-types/enums",
+        "pattern-matching"
+      ]
+    },
+    {
+      "id": "collections",
+      "title": "Collections",
+      "level": "foundations",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "std-types"
+      ]
+    },
+    {
+      "id": "strings-basics",
+      "title": "Strings",
+      "level": "foundations",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "std-types/string",
+        "references/strings"
+      ]
+    },
+    {
+      "id": "move-or-borrow",
+      "title": "Move or Borrow",
+      "level": "ownership",
+      "nodes": 18,
+      "target": 18,
+      "status": "shipped",
+      "source_segments": [
+        "memory-management",
+        "borrowing"
+      ]
+    },
+    {
+      "id": "remove-the-clone",
+      "title": "Remove the Clone",
+      "level": "ownership",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "memory-management/clone",
+        "memory-management/copy-types"
+      ]
+    },
+    {
+      "id": "slices-and-views",
+      "title": "Slices & Views",
+      "level": "ownership",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "references/slices",
+        "borrowing"
+      ]
+    },
+    {
+      "id": "repair-the-lifetime",
+      "title": "Repair the Lifetime",
+      "level": "ownership",
+      "nodes": 18,
+      "target": 18,
+      "status": "shipped",
+      "source_segments": [
+        "lifetimes"
+      ]
+    },
+    {
+      "id": "drop-and-cleanup",
+      "title": "Drop & Cleanup",
+      "level": "ownership",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "memory-management/drop"
+      ]
+    },
+    {
+      "id": "option-and-result",
+      "title": "Option & Result",
+      "level": "everyday",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "std-types/option",
+        "std-types/result"
+      ]
+    },
+    {
+      "id": "pattern-matching",
+      "title": "Pattern Matching",
+      "level": "everyday",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "pattern-matching"
+      ]
+    },
+    {
+      "id": "build-the-iterator",
+      "title": "Build the Iterator",
+      "level": "everyday",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "iterators"
+      ]
+    },
+    {
+      "id": "errors-that-travel",
+      "title": "Errors That Travel",
+      "level": "everyday",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "error-handling"
+      ]
+    },
+    {
+      "id": "modules-and-visibility",
+      "title": "Modules & Visibility",
+      "level": "everyday",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "modules"
+      ]
+    },
+    {
+      "id": "standard-traits",
+      "title": "Standard Traits",
+      "level": "everyday",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "std-traits"
+      ]
+    },
+    {
+      "id": "closures",
+      "title": "Closures",
+      "level": "abstraction",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "closures"
+      ]
+    },
+    {
+      "id": "traits-and-bounds",
+      "title": "Traits & Bounds",
+      "level": "abstraction",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "methods-and-traits/traits",
+        "methods-and-traits/deriving"
+      ]
+    },
+    {
+      "id": "generics-and-dyn",
+      "title": "Generics vs dyn",
+      "level": "abstraction",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "generics"
+      ]
+    },
+    {
+      "id": "design-the-api",
+      "title": "Design the API",
+      "level": "abstraction",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "idiomatic/api-design"
+      ]
+    },
+    {
+      "id": "smart-pointers",
+      "title": "Smart Pointers",
+      "level": "systems",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "smart-pointers"
+      ]
+    },
+    {
+      "id": "interior-mutability",
+      "title": "Interior Mutability",
+      "level": "systems",
+      "nodes": 25,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "borrowing/interior-mutability"
+      ]
+    },
+    {
+      "id": "threads-and-channels",
+      "title": "Threads & Channels",
+      "level": "systems",
+      "nodes": 0,
+      "target": 18,
+      "status": "planned",
+      "source_segments": [
+        "concurrency/threads",
+        "concurrency/channels",
+        "concurrency/send-sync",
+        "concurrency/shared-state"
+      ]
+    },
+    {
+      "id": "async-and-send",
+      "title": "Async & Send",
+      "level": "systems",
+      "nodes": 28,
+      "target": 18,
+      "status": "shipped",
+      "source_segments": [
+        "concurrency/async",
+        "concurrency/async-pitfalls"
+      ]
+    },
+    {
+      "id": "unsafe-rust",
+      "title": "Unsafe Rust",
+      "level": "systems",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "unsafe-rust"
+      ]
+    },
+    {
+      "id": "idiomatic-patterns",
+      "title": "Idiomatic Patterns",
+      "level": "mastery",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "idiomatic/leveraging-the-type-system",
+        "idiomatic/polymorphism"
+      ]
+    },
+    {
+      "id": "testing",
+      "title": "Testing",
+      "level": "mastery",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "testing"
+      ]
+    },
+    {
+      "id": "atomics-and-ordering",
+      "title": "Atomics & Ordering",
+      "level": "mastery",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "concurrency/shared-state"
+      ]
+    },
+    {
+      "id": "ffi-and-raw-pointers",
+      "title": "FFI & Raw Pointers",
+      "level": "mastery",
+      "nodes": 15,
+      "target": 15,
+      "status": "shipped",
+      "source_segments": [
+        "unsafe-deep/ffi",
+        "unsafe-rust/unsafe-functions"
+      ]
+    }
+  ]
+}

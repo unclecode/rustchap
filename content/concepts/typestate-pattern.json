@@ -1,0 +1,16 @@
+{
+  "id": "typestate-pattern",
+  "title": "Typestate Pattern",
+  "topic": "Data shapes",
+  "summary": "Encode valid object states and transitions directly into the type system.",
+  "lecture": [
+    "The typestate pattern uses distinct generic types to represent state machine states.",
+    "Transition methods consume self by value and return the struct with a new state type parameter.",
+    "This pattern eliminates runtime state flags and converts invalid state operations into compile-time errors."
+  ],
+  "example": {
+    "code": "struct Open;\nstruct Door<S> { state: S }\nimpl Door<Open> {\n    fn close(self) -> Door<Closed> {\n        Door { state: Closed }\n    }\n}",
+    "caption": "close consumes self to transition state."
+  },
+  "schema_version": 1
+}

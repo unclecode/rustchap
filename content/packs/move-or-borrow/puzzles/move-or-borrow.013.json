@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "move-or-borrow.013",
+  "version": 1,
+  "title": "Field vs Method Borrow",
+  "track": "move-or-borrow",
+  "concepts": [
+    "borrow",
+    "structs",
+    "mutability"
+  ],
+  "difficulty": 2,
+  "goal": "Modify a struct field directly to avoid borrowing the entire struct.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Borrow Checking"
+  },
+  "template": "struct Inventory {\n    gold: u32,\n    label: String,\n}\n\nimpl Inventory {\n    fn add_gold(&mut self, amount: u32) {\n        self.gold += amount;\n    }\n}\n\nfn print_and_add(inv: &mut Inventory) {\n    let name = ⟦name_expr⟧;\n    ⟦update_expr⟧;\n    println!(\"{name}: {}\", inv.gold);\n}\n\nfn main() {\n    let mut inv = Inventory { gold: 50, label: String::from(\"Vault\") };\n    print_and_add(&mut inv);\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "name_expr",
+        "original": "&inv",
+        "label": "label expression",
+        "choices": [
+          {
+            "id": "na1",
+            "text": "&inv.label"
+          },
+          {
+            "id": "na2",
+            "text": "inv.label"
+          },
+          {
+            "id": "na3",
+            "text": "&inv"
+          }
+        ]
+      },
+      {
+        "id": "update_expr",
+        "original": "inv.add_gold(10)",
+        "label": "update expression",
+        "choices": [
+          {
+            "id": "up1",
+            "text": "inv.gold += 10"
+          },
+          {
+            "id": "up2",
+            "text": "inv.add_gold(10)"
+          },
+          {
+            "id": "up3",
+            "text": "inv.gold = inv.add_gold(10)"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn updates_gold() {\n    let mut inv = Inventory { gold: 50, label: String::from(\"Vault\"), };\n    print_and_add(&mut inv);\n    assert_eq!(inv.gold, 60);\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Calling inv.add_gold() borrows all of inv mutably via &mut self.",
+    "Borrow the label field directly instead of borrowing the whole struct, then modify inv.gold directly."
+  ],
+  "explanation": "Borrowing &inv.label borrows only the label field, leaving inv.gold available for mutation. Modifying inv.gold += 10 succeeds because Rust tracks field borrows independently. Calling inv.add_gold(10) or borrowing &inv borrows the entire struct, which conflicts with any existing reference to a field and triggers E0502. Trying inv.label without & attempts to move the String out of a reference, causing E0507."
+}

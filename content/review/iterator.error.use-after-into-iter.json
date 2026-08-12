@@ -1,0 +1,12 @@
+{
+  "id": "iterator.error.use-after-into-iter",
+  "kind": "error",
+  "title": "Reading a collection after into_iter",
+  "concepts": [
+    "iterator",
+    "move"
+  ],
+  "prompt": "You see compiler error E0382 after calling into_iter on a vector. Why did this happen?",
+  "answer": "Calling `into_iter` takes ownership of the vector and consumes it. The vector is moved into the iterator, so using the original vector variable afterward is invalid. Call `iter` instead to borrow elements without moving the collection.",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "id": "borrow.rule.match-ergonomics",
+  "kind": "rule",
+  "title": "Match ergonomics when matching references",
+  "concepts": [
+    "borrow"
+  ],
+  "prompt": "How does matching on a shared reference affect the variables bound in pattern arms?",
+  "answer": "Matching on a reference automatically binds captured fields as references to the original data. The compiler infers ref mode so you do not move values out of shared references. This prevents move errors like E0507 without manual ref keywords.",
+  "schema_version": 1
+}

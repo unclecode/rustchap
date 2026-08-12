@@ -1,0 +1,11 @@
+{
+  "id": "arc-and-mutex.gotcha.combine-arc-mutex",
+  "kind": "gotcha",
+  "title": "Combining Arc and Mutex handles",
+  "concepts": [
+    "arc-and-mutex"
+  ],
+  "prompt": "Why is Mutex alone insufficient to share mutable data across spawned threads?",
+  "answer": "A Mutex provides safe interior mutability but only has a single owner. Spawned threads require static ownership, so you must wrap the Mutex inside an Arc to clone shared handle references for each thread.",
+  "schema_version": 1
+}

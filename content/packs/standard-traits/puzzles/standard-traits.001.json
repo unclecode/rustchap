@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "standard-traits.001",
+  "version": 1,
+  "title": "Converting Types with From and Into",
+  "track": "standard-traits",
+  "concepts": [
+    "standard-traits"
+  ],
+  "difficulty": 1,
+  "goal": "Convert types safely using standard conversion traits.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 4 Afternoon: Standard Traits"
+  },
+  "interaction": {
+    "type": "lesson",
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "You convert types explicitly in Rust using standard conversion traits. Rust avoids implicit type coercions to prevent subtle bugs."
+      },
+      {
+        "kind": "code",
+        "code": "let num = i32::from(42_i16);\nlet ip = std::net::Ipv4Addr::from([127, 0, 0, 1]);",
+        "caption": "From creates a target type from an input."
+      },
+      {
+        "kind": "prose",
+        "text": "The `From` trait defines how to construct a type from another input type. It represents a lossless and infallible conversion."
+      },
+      {
+        "kind": "code",
+        "code": "let num: i32 = 42_i16.into();\nlet ip: std::net::Ipv4Addr = [127, 0, 0, 1].into();",
+        "caption": "Into converts using the expected target type."
+      },
+      {
+        "kind": "prose",
+        "text": "Implementing `From<T> for U` automatically provides an implementation of `Into<U> for T`. You should implement `From` for your custom types."
+      }
+    ]
+  },
+  "hints": [],
+  "explanation": "Convert types safely using standard conversion traits."
+}

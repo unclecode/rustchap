@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "slices-and-views.015",
+  "version": 1,
+  "title": "In-Place Swap",
+  "track": "slices-and-views",
+  "concepts": [
+    "slice",
+    "mutability",
+    "move"
+  ],
+  "difficulty": 2,
+  "goal": "Swap the first and last elements of a string slice without moving values out.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Slices and Borrowing"
+  },
+  "template": "fn swap_ends(items: &mut [String]) {\n    let len = items.len();\n    if len < 2 {\n        return;\n    }\n    ⟦action⟧;\n}\n\nfn main() {\n    let mut words = vec![\n        String::from(\"a\"),\n        String::from(\"b\"),\n    ];\n    swap_ends(⟦arg⟧);\n    println!(\"{words:?}\");\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "action",
+        "original": "let tmp = items[0]; items[0] = items[len - 1]",
+        "label": "swap statement",
+        "choices": [
+          {
+            "id": "ac1",
+            "text": "items.swap(0, len - 1)"
+          },
+          {
+            "id": "ac2",
+            "text": "let tmp = items[0]; items[0] = items[len - 1]"
+          },
+          {
+            "id": "ac3",
+            "text": "let (a, b) = (&mut items[0], &mut items[len - 1])"
+          }
+        ]
+      },
+      {
+        "id": "arg",
+        "original": "&words",
+        "label": "argument passed",
+        "choices": [
+          {
+            "id": "ar1",
+            "text": "&mut words"
+          },
+          {
+            "id": "ar2",
+            "text": "&words"
+          },
+          {
+            "id": "ar3",
+            "text": "words"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn test_swaps() {\n    let mut w = vec![\n        String::from(\"first\"),\n        String::from(\"second\"),\n    ];\n    swap_ends(&mut w);\n    assert_eq!(w[0], \"second\");\n    assert_eq!(w[1], \"first\");\n}",
+      "#[test]\nfn test_short() {\n    let mut w = vec![String::from(\"one\")];\n    swap_ends(&mut w);\n    assert_eq!(w[0], \"one\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Indexing a slice of non-Copy items produces a reference, not an owned value that can be moved.",
+    "Slice methods like .swap() operate on &mut [T] in place without breaking aliasing rules."
+  ],
+  "explanation": "`items.swap(0, len - 1)` exchanges elements in place safely. Trying `let tmp = items[0]` fails with `E0507` because `String` does not implement `Copy` and cannot be moved out of a slice. Indexing twice mutably like `&mut items[0]` fails with `E0499` because indexing borrows the whole slice mutably, blocking a second borrow. Passing `&mut words` provides the required mutable slice borrow (`E0308` on immutable or owned arguments)."
+}

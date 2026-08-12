@@ -1,0 +1,12 @@
+{
+  "id": "option.syntax.transpose",
+  "kind": "syntax",
+  "title": "Swapping nested Option and Result",
+  "concepts": [
+    "option",
+    "error-propagation"
+  ],
+  "prompt": "How do you turn an Option containing a Result into a Result containing an Option?",
+  "answer": "Call `.transpose()` on the `Option<Result<T, E>>`. This converts it into `Result<Option<T>, E>` without requiring a manual `match` statement.",
+  "schema_version": 1
+}

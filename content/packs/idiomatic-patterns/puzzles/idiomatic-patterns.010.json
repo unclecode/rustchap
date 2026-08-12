@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "idiomatic-patterns.010",
+  "version": 1,
+  "title": "Automatic Scope Cleanup",
+  "track": "idiomatic-patterns",
+  "concepts": [
+    "drop-trait",
+    "api-design"
+  ],
+  "difficulty": 2,
+  "goal": "Ensure state is reset on function exit without duplicating manual cleanup code.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from idiomatic/leveraging-the-type-system"
+  },
+  "interaction": {
+    "type": "best-solution",
+    "candidates": [
+      {
+        "id": "raii_guard",
+        "code": "struct Guard<'a>(&'a mut String);\n\nimpl<'a> Drop for Guard<'a> {\n    fn drop(&mut self) {\n        self.0.clear();\n    }\n}\n\nfn process(data: &mut String) -> usize {\n    let _guard = Guard(data);\n    42\n}"
+      },
+      {
+        "id": "clone_backup",
+        "code": "fn process(data: &mut String) -> usize {\n    let mut backup = data.clone();\n    backup.clear();\n    42\n}"
+      },
+      {
+        "id": "double_clone",
+        "code": "fn process(data: &mut String) -> usize {\n    let backup = data.clone();\n    let _backup2 = backup.clone();\n    42\n}"
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn cleans_up_flag() {\n    let mut data = String::from(\"hello\");\n    let res = process(&mut data);\n    assert_eq!(res, 42);\n    assert!(data.is_empty());\n}"
+    ],
+    "metrics": [
+      "clone_count"
+    ]
+  },
+  "scoring": {
+    "primary": "clone_count",
+    "secondary": [],
+    "fluent": {
+      "clone_count": 1
+    },
+    "optimal": {
+      "clone_count": 0
+    }
+  },
+  "hints": [
+    "Look at how each candidate manages restoring or clearing state.",
+    "RAII uses destructors to reset state automatically without making extra clones."
+  ],
+  "explanation": "The `Guard` struct implements `Drop` to clear `data` as soon as `_guard` leaves scope. This avoids cloning values entirely and guarantees cleanup even if the function exits early or panics."
+}

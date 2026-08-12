@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "enums-and-matching.011",
+  "version": 1,
+  "title": "Guards Need Fallbacks",
+  "track": "enums-and-matching",
+  "concepts": [
+    "match-basics"
+  ],
+  "difficulty": 2,
+  "goal": "Ensure match patterns remain exhaustive when using guards.",
+  "prerequisites": [],
+  "source": {
+    "origin": "comprehensive-rust",
+    "license": "CC-BY-4.0",
+    "attribution": "adapted from Day 2 Morning: Pattern Matching"
+  },
+  "template": "fn classify(n: i32) -> &'static str {\n    match n {\n        x if x > 0 => \"positive\",\n        ⟦negative_arm⟧ => \"negative\",\n        ⟦fallback_arm⟧ => \"zero\",\n    }\n}\n\nfn main() {\n    println!(\"{}\", classify(0));\n}\n",
+  "interaction": {
+    "type": "minimal-edit",
+    "slots": [
+      {
+        "id": "negative_arm",
+        "original": "x < 0",
+        "label": "negative arm",
+        "choices": [
+          {
+            "id": "ne1",
+            "text": "x if x < 0"
+          },
+          {
+            "id": "ne2",
+            "text": "x < 0"
+          },
+          {
+            "id": "ne3",
+            "text": "_ if x < 0"
+          }
+        ]
+      },
+      {
+        "id": "fallback_arm",
+        "original": "_ if true",
+        "label": "fallback arm",
+        "choices": [
+          {
+            "id": "fa1",
+            "text": "_"
+          },
+          {
+            "id": "fa2",
+            "text": "_ if true"
+          },
+          {
+            "id": "fa3",
+            "text": "0"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "tests": [
+      "#[test]\nfn classifies_numbers() {\n    assert_eq!(classify(10), \"positive\");\n    assert_eq!(classify(-5), \"negative\");\n    assert_eq!(classify(0), \"zero\");\n}"
+    ],
+    "metrics": [
+      "token_edits"
+    ]
+  },
+  "scoring": {
+    "primary": "token_edits",
+    "secondary": [],
+    "fluent": {
+      "token_edits": 2
+    },
+    "optimal": {
+      "token_edits": 2
+    }
+  },
+  "hints": [
+    "Guard conditions must be preceded by the `if` keyword after variable binding.",
+    "The final fallback arm must be an unguarded pattern like `_` to satisfy exhaustiveness."
+  ],
+  "explanation": "`x if x < 0` binds `x` and checks the guard condition. `_` provides an unguarded fallback pattern that guarantees exhaustiveness. The compiler cannot inspect guard conditions at compile time, so `_ if true` fails with `E0004` because guards are treated as potentially failing. Writing `_ if x < 0` causes `E0425` because `_` discards the value without binding `x`. Writing `x < 0` without `if` is invalid pattern syntax."
+}
