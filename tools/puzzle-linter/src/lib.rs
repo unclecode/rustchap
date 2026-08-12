@@ -308,6 +308,13 @@ fn evaluate_puzzle(
     if opts.check {
         match fs::read_to_string(&out_path) {
             Ok(existing) if existing == rendered => {}
+            // Compare VERDICTS, not bytes. Diagnostic text is compiler prose and
+            // varies by platform: rustc names closures by source location and
+            // prints that path relative on macOS but absolute on Linux, so a
+            // byte comparison reported content stale on CI that verified fine on
+            // a developer machine. What has to match is what the app scores
+            // against - status, rank and metrics for every submission.
+            Ok(existing) if verdicts_match(&existing, &sidecar) => {}
             Ok(_) => report.errors.push(format!(
                 "{id}: outcomes/{id}.json is stale — regenerate with the linter"
             )),
@@ -321,4 +328,27 @@ fn evaluate_puzzle(
         report.outcomes_written += 1;
     }
     Ok(())
+}
+
+
+/// Do two outcome sets agree on every submission's verdict?
+///
+/// Ignores diagnostic text, which is compiler prose and platform-dependent.
+/// A mismatch in status, rank or metrics is a real drift and still fails.
+fn verdicts_match(existing_json: &str, fresh: &Outcomes) -> bool {
+    let Ok(existing) = serde_json::from_str::<Outcomes>(existing_json) else {
+        return false;
+    };
+    if existing.puzzle_id != fresh.puzzle_id
+        || existing.puzzle_version != fresh.puzzle_version
+        || existing.toolchain != fresh.toolchain
+        || existing.outcomes.len() != fresh.outcomes.len()
+    {
+        return false;
+    }
+    existing.outcomes.iter().all(|(hash, was)| {
+        fresh.outcomes.get(hash).is_some_and(|now| {
+            was.status == now.status && was.rank == now.rank && was.metrics == now.metrics
+        })
+    })
 }
