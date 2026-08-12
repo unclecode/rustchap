@@ -8,6 +8,7 @@ import SwiftUI
 struct DeckListView: View {
     @Binding var path: [Route]
     @Environment(ContentStore.self) private var store
+    @Environment(\.modelContext) private var modelContext
     @Environment(SyncService.self) private var sync
     @Query private var progress: [PuzzleProgressRecord]
     @State private var showProfile = false
@@ -129,6 +130,35 @@ struct DeckListView: View {
         GridItem(.flexible(), spacing: 12),
     ]
 
+    /// `--seed-progress` marks a plausible run of early decks as solved so
+    /// screenshots and demos show a lived-in app. Debug builds only.
+    private func seedProgress() {
+        guard ProcessInfo.processInfo.arguments.contains("--seed-progress"),
+              progress.isEmpty else { return }
+        // Finish Foundations' first decks, most of the next two, and dip into
+        // Ownership - the shape of someone a few sessions in.
+        let plan: [(String, Int)] = [
+            ("first-steps", 15), ("types-and-functions", 15), ("control-flow", 12),
+            ("structs", 9), ("enums-and-matching", 6),
+            ("move-or-borrow", 8), ("remove-the-clone", 4),
+        ]
+        for (deckId, count) in plan {
+            guard let deck = store.packs.first(where: { $0.id == deckId }) else { continue }
+            for (i, loaded) in deck.puzzles.prefix(count).enumerated() {
+                let record = PuzzleProgressRecord(
+                    puzzleId: loaded.id, puzzleVersion: loaded.puzzle.version)
+                record.solved = true
+                record.attemptCount = i % 3 == 0 ? 2 : 1
+                // most optimal, some merely solved - a real player's mix
+                record.bestRankRaw = (i % 4 == 3) ? EvalResult.Rank.solved.rawValue : EvalResult.Rank.optimal.rawValue
+                record.firstSolvedAt = .now.addingTimeInterval(Double(-i) * 3600)
+                record.bestSolvedAt = record.firstSolvedAt
+                modelContext.insert(record)
+            }
+        }
+        try? modelContext.save()
+    }
+
     var body: some View {
         ScrollView {
             if let error = store.loadError {
@@ -161,6 +191,7 @@ struct DeckListView: View {
             .padding(.vertical, 14)
         }
         .navigationTitle("RustChap")
+        .onAppear { seedProgress() }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {

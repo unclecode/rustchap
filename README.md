@@ -36,6 +36,19 @@ requests are welcome - puzzles, lectures, and more.
 > type system permits, expressing ownership correctly, recognising the idiomatic
 > solution.
 
+<p align="center">
+  <img src="docs/screens/01-home.png" width="24%" alt="Six levels, thirty-one decks">
+  <img src="docs/screens/02-puzzle.png" width="24%" alt="A puzzle: tap tokens, watch the cost meter">
+  <img src="docs/screens/03-lecture.png" width="24%" alt="A short lecture in plain English">
+  <img src="docs/screens/04-skills.png" width="24%" alt="Skills: review what you have learned">
+</p>
+
+<p align="center"><sub>
+  Six levels · a puzzle scored <code>0C·4E</code> (zero clones, four edits) ·
+  a lecture that assumes you already program · the Skills list that remembers
+  what you learned
+</sub></p>
+
 ## What's in it
 
 **477 nodes across 31 decks, in six levels.** 3,160 answers precompiled and
