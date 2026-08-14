@@ -37,6 +37,16 @@ requests are welcome - puzzles, lectures, and more.
 > solution.
 
 <p align="center">
+  <img src="docs/screens/demo.gif" width="34%" alt="A lecture, a puzzle, the tutor explaining the error, then solving it">
+</p>
+
+<p align="center"><sub>
+  A lecture, a puzzle, and the built-in tutor explaining <code>E0384</code> about
+  the code on screen. Then two taps, and the deck completes.
+  <a href="docs/screens/demo.mp4">Watch the full 48-second tour</a>
+</sub></p>
+
+<p align="center">
   <img src="docs/screens/01-home.png" width="24%" alt="Six levels, thirty-one decks">
   <img src="docs/screens/02-puzzle.png" width="24%" alt="A puzzle: tap tokens, watch the cost meter">
   <img src="docs/screens/03-lecture.png" width="24%" alt="A short lecture in plain English">
