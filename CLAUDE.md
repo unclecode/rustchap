@@ -15,3 +15,4 @@ shared crates in `crates/`, puzzle content in `content/`, the puzzle JSON contra
   treat it as current truth; `docs/context/` supersedes it.
 - Product name is **RustChap** (`rustchap` in identifiers). The directory name `rustup` is
   historical; don't introduce new "rustup"/"rust-instinct" identifiers.
+

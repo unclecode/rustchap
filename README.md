@@ -3,16 +3,13 @@
 **Learn Rust the way Euclidea teaches geometry: small puzzles with exact answers,
 verified by the real compiler.**
 
-### ▶ [Play it now on TestFlight](https://testflight.apple.com/join/uCRCD2wq)
+### ▶ [Download on the App Store](https://apps.apple.com/app/id6798180343)
 
-Free, no account, no ads. You need Apple's free
-[TestFlight](https://apps.apple.com/app/testflight/id899247664) app first, then
-the link above installs RustChap.
+Free, no account, no ads, no tracking. Works entirely offline.
 
-> The App Store version is *still in review*. It has been sitting in "Waiting for
-> Review" since 5 August, which I'm told is a normal amount of time in the same
-> way that a fortnight is a normal amount of time to wait for a bus. Stay tuned.
-> Meanwhile the TestFlight link above is the whole game, today.
+Prefer the beta? [TestFlight](https://testflight.apple.com/join/uCRCD2wq) gets
+builds first, and needs Apple's free
+[TestFlight](https://apps.apple.com/app/testflight/id899247664) app.
 
 I'm [Uncle Code](https://unclecode.com) ([@unclecode](https://x.com/unclecode)),
 author of [Crawl4AI](https://github.com/unclecode/crawl4ai)
